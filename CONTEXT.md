@@ -337,7 +337,7 @@ Sous Windows, si `python` n'est pas reconnu, utiliser `py archive_crawler.py ...
 | Option | Défaut | Rôle |
 |---|---|---|
 | `--out DOSSIER` | `archive` | Dossier de sortie |
-| `--delay S` | `0.5` | Secondes entre deux requêtes (augmenter pour ménager le serveur) |
+| `--delay S` | `0.25` | Secondes entre deux requêtes (augmenter pour ménager le serveur) |
 | `--timeout S` | `30` | Délai maximal d'une requête |
 | `--retries N` | `4` | Tentatives avant d'abandonner une page (erreurs 429/503/réseau) |
 | `--only GALAXIE` | (tout) | Limite à une galaxie, ex. `gamma2/galaxie1` ou `beta1/galaxie0` ; répétable. Les index et ressources partagées restent suivis. |

@@ -30,7 +30,7 @@ Exemples
   python archive_crawler.py                                   # sans argument : full, html + json
   python archive_crawler.py inventory --out archive
   python archive_crawler.py report    --out archive
-  python archive_crawler.py full      --out archive --delay 0.5
+  python archive_crawler.py full      --out archive --delay 0.25
   python archive_crawler.py json      --out archive   # (re)génère le JSON depuis la capture brute
   python archive_crawler.py full      --out archive --only gamma2/galaxie1   # essai ciblé
 """
@@ -211,7 +211,7 @@ class Store:
             "INSERT OR IGNORE INTO urls(url, kind, found_on) VALUES (?,?,?)", (url, kind, found_on)
         )
 
-    def next_todo(self, kinds):
+    def next_todo(self, kinds, assets_first=False):
         q = ",".join("?" * len(kinds))
         # la page en cours lors de la coupure précédente passe en premier
         cur = self.get_state("current_url")
@@ -222,11 +222,12 @@ class Store:
             ).fetchone()
             if r:
                 return r
-        # les pages structure d'abord, puis topics, puis ressources ; ordre stable
+        # les pages structure d'abord, puis topics, puis ressources (ressources avant topics si assets_first) ; ordre stable
+        rang = "WHEN 'struct' THEN 0 WHEN 'topic' THEN 2 ELSE 1" if assets_first else "WHEN 'struct' THEN 0 WHEN 'topic' THEN 1 ELSE 2"
         return self.db.execute(
             f"""SELECT url, kind, tries FROM urls
                 WHERE status IS NULL AND kind IN ({q})
-                ORDER BY CASE kind WHEN 'struct' THEN 0 WHEN 'topic' THEN 1 ELSE 2 END, rowid
+                ORDER BY CASE kind {rang} END, rowid
                 LIMIT 1""",
             kinds,
         ).fetchone()
@@ -395,6 +396,7 @@ RE_J_BETA_TOPIC = re.compile(r"^/([^/]+)/galaxie_?(\d+)/forums_galactiques/(\d+)
 RE_TAG = re.compile(r"<[^>]+>")
 RE_DATE = re.compile(r"(\d\d)/(\d\d)(?:/(\d{4}))? ETU (\d\d:\d\d)")
 RE_J_ROW = re.compile(r'<tr>\s*<td class="wrap_allowed">(.*?)</tr>', re.S)
+RE_J_SUPPRIME = re.compile(r'<div class="red">\s*<img[^>]*trashcan_full[^>]*>\s*Ce message a été supprimé durant la partie\.\s*</div>\s*(?:<hr\s*/?>)?')
 
 
 def _txt(s: str) -> str:
@@ -512,7 +514,11 @@ def _post(left: str, right: str, gamma: bool, base: str):
         if crit:
             p["positifs"] = crit
     m = re.search(r"</table>[^<]*</div>\s*</div>", right) or re.search(r'<div class="posthead">\s*</div>', right)
-    text, liens, images = _body(right[m.end():] if m else right)
+    corps = right[m.end():] if m else right
+    corps, n = RE_J_SUPPRIME.subn("", corps)
+    if n:
+        p["supprime"] = True  # bannière « supprimé durant la partie » : le message est conservé, la bannière retirée du texte
+    text, liens, images = _body(corps)
     p["texte"] = text
     if liens:
         p["liens"] = liens
@@ -766,7 +772,7 @@ class Crawler:
         n = 0
         t0 = time.time()
         while not self.stop:
-            row = self.store.next_todo(kinds)
+            row = self.store.next_todo(kinds, self.args.assets_first)
             if row is None:
                 break
             url, kind, tries = row
@@ -910,7 +916,9 @@ def main(argv=None):
                     help="archives produites pendant la capture : html (octets bruts), json (infos utiles "
                          "seulement) ou html,json (défaut)")
     ap.add_argument("--out", default="archive", help="dossier de sortie (défaut: archive)")
-    ap.add_argument("--delay", type=float, default=0.5, help="secondes entre deux requêtes (défaut 0.5)")
+    ap.add_argument("--delay", type=float, default=0.25, help="secondes entre deux requêtes (défaut 0.25)")
+    ap.add_argument("--assets-first", action="store_true",
+                    help="récupérer les ressources déjà connues (images, CSS, JS) avant les topics restants")
     ap.add_argument("--timeout", type=float, default=30.0)
     ap.add_argument("--retries", type=int, default=4)
     ap.add_argument("--only", action="append", help="limiter à une galaxie, ex. gamma2/galaxie1 ou beta1/galaxie0 (répétable)")
