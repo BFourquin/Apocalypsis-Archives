@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17559 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>L&#039;extra-terrestre</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;extra-terrestre</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=iti">Cdt. iti</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12526.jpg" style="width:85px;height:128px" alt="Avatar" /><br />09/05/1025 ETU 06:15</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313534')">Détails</a> <a href="javascript:warnpost(313534)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313534" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313534',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#1e92f7">Une plan&egrave;te bleue, une for&ecirc;t o&ugrave; le vent s&rsquo;engouffre en sifflant dans la nuit qu&rsquo;&eacute;claire une demi-lune. Une petite lueur d&rsquo;or s&rsquo;approche du sol, puis remonte lentement, et s&rsquo;&eacute;teint : une fleur fan&eacute;e se redresse et renait. Un c&oelig;ur trop grand, trop lourd, rutilant d&rsquo;une d&eacute;tresse si forte qu&rsquo;on en voit l&rsquo;&eacute;tincelle &agrave; travers une peau frip&eacute;e, pourtant si jeune encore. L&rsquo;extra-terrestre chanc&egrave;le entre les arbres, errant au hasard, dans une d&eacute;marche qu&rsquo;il ne pourrait affirmer d&rsquo;avantage avec toute sa volont&eacute;, quand bien m&ecirc;me il fut empli de joie. Son corps fr&ecirc;le n&rsquo;est pas fait pour ce monde, il se sent lourd, ses bras qui touchent le sol l&rsquo;encombrent. Ses grands yeux ne s&eacute;cr&egrave;tent pas les larmes qui l&rsquo;auraient soulag&eacute;. Dans le cr&eacute;puscule de son enfance qui se m&ecirc;le &agrave; celui de ce monde, il g&eacute;mit : </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font color="#9a00b2"><font size="3">&deg;~{((( z&curren;dui&ugrave;h&micro;vi&auml;ud&sect;ni*v#n&micro;d&curren;fi )))}~&deg;</font></font> <font color="#ff0000">...</font> <font color="#68c4e8">&lsquo;&rsquo;PAAA MAISOOOOOOOOOOooooooonnnn&rsquo;&rsquo;</font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#1e92f7">Il se croit seul, mais quelqu&rsquo;un l&rsquo;observe, quelqu&rsquo;un qui a vu luire son doigt et son c&oelig;ur. L&rsquo;&ecirc;tre sort de l&rsquo;ombre et s&rsquo;approche, il porte un long manteau dont la capuche cache son visage. Quand l&rsquo;extra-terrestre le voit, il s&rsquo;exclame de surprise et d&rsquo;effroi, tente de s&rsquo;enfuir mais tr&eacute;buche aussit&ocirc;t et tombe. L&rsquo;occulte personnage continue son approche assur&eacute;e vers iti, s&rsquo;accroupi, et lui tend une main gant&eacute;e.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=iti">Cdt. iti</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12526.jpg" style="width:85px;height:128px" alt="Avatar" /><br />13/05/1025 ETU 09:33</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313606', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313604')">Détails</a> <a href="javascript:warnpost(313604)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313604" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313604',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Quelques jours plus tard ...</em></div><div class="post_line"></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#1e92f7">Dans cette m&ecirc;me&nbsp;for&ecirc;t, iti se tient, statique, face au myst&eacute;rieux personnage. Les yeux ferm&eacute;s, le c&oelig;ur&nbsp;&eacute;teint, il est concentr&eacute;, ses paupi&egrave;res closes tressaillent.&nbsp;Son nouvel ami semble lui parler, pourtant, aucun son n&#039;&eacute;mane de sa personne... Sa t&ecirc;te&nbsp;toujours masqu&eacute;e s&#039;anime de petits mouvements comme s&#039;il &eacute;tait en pleine discussion, ses bras s&#039;agitent, dessinent dans l&#039;air des explications. Seuls les oiseaux perch&eacute;s sur les branches des arbres&nbsp;brisent ce silence, spectateurs &eacute;tonn&eacute;s semblant commenter l&#039;&eacute;trange rituel auquel s&#039;adonnent les deux protagonistes. Parfois, les yeux de l&#039;extra-terrestre&nbsp;s&#039;ouvrent un bref instant. On peut alors y distinguer quelque chose de nouveau, une &eacute;tincelle, le reflet d&#039;un&nbsp;nouveau savoir.&nbsp;&nbsp;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><font color="#005dc2">&nbsp;&nbsp;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=iti">Cdt. iti</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12526.jpg" style="width:85px;height:128px" alt="Avatar" /><br />21/05/1025 ETU 13:46</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313995', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313990')">Détails</a> <a href="javascript:warnpost(313990)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313990" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313990',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>et quelques heures plus tard...</em></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#1e92f7">L&#039;extra-terrestre ouvre les yeux et les gardes enfin tels quels, on y d&eacute;c&egrave;le toujours cette nouvelle&nbsp;&eacute;tincelle. Il l&egrave;ve les bras comme pour s&#039;&eacute;tirer, fait quelques pas, son long cou se d&eacute;ploie, se r&eacute;tracte, et s&#039;&eacute;tire de nouveau pendant qu&#039;il marche. il finit par revenir vers l&#039;&eacute;tranger qui &ocirc;te&nbsp;sa capuche.</font></div></div><div class="post_line"><div align="justify">&nbsp;</div></div><div class="post_line"><font color="#005dc2">&quot;&nbsp;nuit tomber, rentrer maintenant.&quot; lui dit-il.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=iti">Cdt. iti</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12526.jpg" style="width:85px;height:128px" alt="Avatar" /><br />18/07/1025 ETU 09:54</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal315806')">Détails</a> <a href="javascript:warnpost(315806)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal315806" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=315806',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff"><em>Le soir m&ecirc;me, assis sur une b&ucirc;che&nbsp;dans la cabane en papier m&acirc;ch&eacute;&nbsp;d&#039;iti, les deux comp&egrave;res discutent :</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3"><em>- </em>Sais tou qu&eacute; tou es oune&nbsp;cr&eacute;atoure&nbsp;extra-ordinaria iti, sais tou pourquoi tou es l&agrave;?</font></div><div class="post_line"><font color="#44b8ff">- iti pa s&eacute;&nbsp;rien Ma&icirc;tre Ferraris, iti tojour tou seul pa parl&nbsp;bien et l&eacute; gens pa confienss dan iti, iti tr&egrave; triste</font></div><div class="post_line"><font color="#ffc6c3">- Los humanos&nbsp;c&#039;est&nbsp;com&eacute; &ccedil;a monn p&eacute;tit homonculus, mais n&eacute; t&#039;inequi&egrave;te pas, Maurizio Ferraris est&agrave; aqui pour t&#039;aider, car y&eacute; souis c&eacute;loui qui t&#039;a cr&eacute;&eacute;, &eacute; si hombre.&nbsp;</font></div><div class="post_line"><font color="#44b8ff">- Merssi Ma&icirc;tre, merssi ! iti homonculus.. koi c&eacute; homonculus?</font></div><div class="post_line"><font color="#ffc6c3">- Homonculus, o tanbien homoncule,&nbsp;&ccedil;a c&#039;est toi, oune cr&eacute;atoure artificiale mais bien vivant&eacute; &eacute; qui peut faire cosas incroyabl&eacute;s porqu&eacute;... Ma porqu&eacute; tou n&#039;a pas d&eacute; limitas, puedes aprendre&nbsp;siempre mas dentro de ta vilaine grosse t&ecirc;te,&nbsp;sisi. Maurizio t&#039;explique, escolta bien: &agrave; l&#039;origine...</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><u><a href="https://www.youtube.com/watch?v=l3Iv1XuTTvg&amp;t=91s" target="_blank" rel="nofollow"></a><a href="https://www.youtube.com/watch?v=l3Iv1XuTTvg&amp;t=91s" target="_blank" rel="nofollow">Ma&icirc;tre Ferraris d&eacute;crit la fonction de l&#039;homoncule</a></u></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=iti">Cdt. iti</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12526.jpg" style="width:85px;height:128px" alt="Avatar" /><br />24/10/1025 ETU 09:29</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal316939')">Détails</a> <a href="javascript:warnpost(316939)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316939" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316939',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>Ainsi donc&nbsp;fut r&eacute;v&eacute;l&eacute; &agrave; l&#039;extra-terrestre sa&nbsp;v&eacute;ritable&nbsp;nature: une cr&eacute;ature artificielle&nbsp;con&ccedil;ue &agrave; partir d&#039;&eacute;prouvettes, de r&eacute;actions chimiques et alchimiques, fruits d&#039;une recherche scientifique multi-s&eacute;culaire. Un&nbsp;s&eacute;rum de vie inject&eacute; &agrave; la seringue dans un &oelig;uf&nbsp;de poule d&#039;exoplan&egrave;te, une couvaison au radiateur, une croissance&nbsp;au n&eacute;on, pour donner vie &agrave; cette cr&eacute;ature hideuse, faible et difforme, inappropri&eacute;e.&nbsp;</em></font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#0074d9">iti continua&nbsp;son &eacute;ducation aupr&egrave;s de Ma&icirc;tre Ferraris son cr&eacute;ateur. Bient&ocirc;t il parla, bougea&nbsp;et pensa de mani&egrave;re adapt&eacute;e &agrave; l&#039;univers. Un peu plus adapt&eacute;, dirons nous... comment pr&eacute;tendre convenir &agrave; un environnement malade et&nbsp;d&eacute;clinant.&nbsp;</font></div></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Un jour, le ma&icirc;tre dit &agrave; son &eacute;l&egrave;ve:</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">&quot; Oyourd&#039;oui, pas d&#039;entrainement, demain non plou ! C&eacute; qu&#039;il t&eacute; reste &agrave; apprendere, tou dois l&eacute; d&eacute;couvrir par toi m&ecirc;me.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">iti se sentit envahir par un sentiment de tristesse:</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot; Mais,&nbsp;Ma&icirc;tre! Tant de choses encore ignore iti !!&nbsp;&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Ferraris ne r&eacute;pondit pas. Alors, iti comprit qu&#039;il allait se retrouver seul encore une fois. Il posa la question qui le rongeait depuis des cycles&nbsp;:&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot; - Ma&icirc;tre Ferraris, pourquoi avoir cr&eacute;&eacute; iti?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#ffc0cb">&nbsp; - C&#039;est oune bonne question, c&#039;est LA&nbsp;question. Y&eacute; t&eacute; fait pour aller d&eacute; part la galaxia et tenter d&#039;y amener oune poco d&#039;&eacute;quilibre. Como? N&eacute;&nbsp;m&eacute; l&eacute; demande pas, c&#039;est youst&eacute;ment parce qu&eacute; ton coeur est pur qu&eacute; y&#039;esp&egrave;re t&eacute; voir changer les choses, r&eacute;veiller les consciencias qui tourent dans oune farandola qui s&eacute; r&eacute;pete galaxia apr&egrave;s galaxia. Mais y&eacute; n&eacute; s&eacute; pas si mon experiencia va r&eacute;oussir, c&#039;est oune tentative d&eacute;sesp&eacute;rada. Si y&eacute; t&#039;en apprends&nbsp;trop, tou seras sous mon influencia et tou n&eacute; pourra plou&nbsp;&ecirc;tre la cr&eacute;atoure ig&eacute;nua qu&eacute; tou es encore. Mais como y&eacute; t&eacute; l&eacute; dit oune jour, tou n&#039;a pas de limitas, tou peux apprendere tant qu&eacute; tou vives, c&#039;est pour &ccedil;a qu&eacute; j&eacute; crois en toi! Fais d&eacute; ton mieux et ce sera bene. C&eacute; qu&eacute; y&#039;ignore encore, c&#039;est si tou pourras quitter cette galaxia quand viendra l&#039;apocalypsa. A le meilleur, tou pourra continuer, sinon tou transmettra tout c&eacute; qu&eacute; tou &agrave; appris pour oune civilisatione foutoura.&quot;</font></div></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ffc0cb">&quot; Maintenant va! Va mon p&eacute;tit homonculus, et fait c&eacute; qu&eacute; t&eacute; dicte ton corazon! &quot;</font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Et sur ces mots, le ma&icirc;tre&nbsp;tourna les talons&nbsp;et disparut dans la for&ecirc;t d&#039;o&ugrave; il &eacute;tait apparu, il y a semblait-il si longtemps d&eacute;j&agrave;.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot;Adieu Ma&icirc;tre&quot;</font><font color="#1e92f7">&nbsp;</font><font color="#0074d9">murmura iti quand il ne put plus &ecirc;tre entendu.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#9a00b2">&deg;&deg;~{) Adieu (}~&deg;&deg;&nbsp;</font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#0074d9">traduit-il en pens&eacute;e, cette forme de communication qu&#039;il savait &agrave; peine employer, si jeune qu&#039;il &eacute;tait encore. Qu&#039;allait il faire &agrave; pr&eacute;sent? Quel serait son combat? Fallait-il prendre les armes contre le fl&eacute;au qui refermait d&eacute;j&agrave; ses ailes autour de la galaxie naissante? Fallait-il tenter de discuter, de persuader? D&#039;une mani&egrave;re ou d&#039;une autre, il fallait apprendre, encore et encore, et plus encore &agrave; chaque nouveau cycle.</font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17559&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17559" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17559" name="d_reply_17559" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17559');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17559'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;extra-terrestre</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15312 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Lumineuse Lionne de Barakhan</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Lumineuse Lionne de Barakhan</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lakshm%C3%AE+Kayal">Cdte. Lakshm&icirc; Kayal</a><br>Prestige de chroniqueur&nbsp;: 68<br /><br /><img src="/avatars/11063.jpg" style="width:95px;height:128px" alt="Avatar" /><br />14/01/1021 ETU 16:44</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279879', 544, 464)">version précédente</a> - Score&nbsp;: 8 <a href="javascript:toggle_bloc('cal279874')">Détails</a> <a href="javascript:warnpost(279874)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279874" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 7<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279874',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Odeur de sang, de fer. Comme une impression de violence, sur un fin suaire voilant la conscience des hommes. Lakshm&icirc; courrait, l&rsquo;esprit froid, ignorant ce que lui &eacute;voquait cette puanteur&nbsp;; qu&rsquo;elle pataugeait dans les morts. Mais elle n&rsquo;&eacute;tait pas seule. En la comptant ils &eacute;taient quinze, des &quot;Lions&quot;, volontaires r&eacute;sistants qu&rsquo;elle avait form&eacute;e, qui l&rsquo;avaient suivi des imposantes favelas des Structures Treize et Douze jusqu&rsquo;aux monolithiques stations de pompages install&eacute;es par Nos Bienfaiteurs, &agrave; l&rsquo;embouchure du m&egrave;re-fleuve, d&rsquo;o&ugrave; s&rsquo;&eacute;coulaient les deux tiers des rivi&egrave;res du continent. Ces stations de pompage. L&rsquo;ultime sabotage. Sa mission la plus importante. Termin&eacute; les ponts min&eacute;s, les chars r&eacute;duits en cendre au d&eacute;tour d&rsquo;un virage. Fini la contrebande, les armes vol&eacute;es, cach&eacute;es dans la campagne ou la jungle. La politique avec les gangs, les tentatives d&rsquo;apporter de la nourriture et des m&eacute;dicaments aux millions d&rsquo;habitants des structures, exploit&eacute;s comme une r&eacute;serve de biomasse par les collaborateurs et les cadres de leur parodie de r&eacute;gime, pour le compte des occupants, et oubliaient m&ecirc;me de les nourrir&nbsp;; Leur n&eacute;gligence, au moins, avait rendu la r&eacute;bellion possible. Un peuple heureux &eacute;tait plus ais&eacute;ment soumis. Un peuple dont la survie d&eacute;pendait du r&eacute;gime h&eacute;sitait avant de prendre les armes. Fut un temps, dit-on, o&ugrave; les choses &eacute;taient plus dures. O&ugrave; le totalitarisme de Nos Bienfaiteurs &eacute;tait tel que l&rsquo;id&eacute;e m&ecirc;me de r&eacute;bellion pouvait amener &agrave; une ex&eacute;cution rapide par la milice de s&eacute;curit&eacute; plan&eacute;taire. Ou bien &eacute;tait-ce encore une de leurs rumeurs&nbsp;? Les occupants entouraient toutes leurs activit&eacute;s de mensonges. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Plus pour longtemps.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La lumineuse lionne de Barakhan attrapa son fusil d&rsquo;assaut et s&rsquo;arr&ecirc;ta avec ses hommes, de part en part d&rsquo;une porte verrouill&eacute;e sur laquelle s&rsquo;affaira aussit&ocirc;t une m&eacute;canicienne&nbsp;: remettant son arme en bandouli&egrave;re, elle d&eacute;boutonna une esp&egrave;ce de bracelet de force qui s&rsquo;ouvrit pour r&eacute;v&eacute;ler toute une s&eacute;rie d&rsquo;outils cach&eacute;s dans le cuir. Elle attrapa deux tiges, d&eacute;cela un panneau m&eacute;tallique sur la porte et tritura bri&egrave;vement circuits imprim&eacute;s qui se trouvaient derri&egrave;re. Elle leva un pouce. Tous les fusils s&rsquo;orient&egrave;rent aussit&ocirc;t en direction de la porte, sauf celui de Malkov, imposant bras droit de Lakshm&icirc;, qui s&#039;assurait que rien ne passe dans le couloir sous peine d&rsquo;oblit&eacute;ration. Le risque &eacute;tait faible&nbsp;:&nbsp; les miliciens et les drones avaient &eacute;t&eacute; &eacute;limin&eacute;s avec une efficacit&eacute; hors-norme, les esclaves implant&eacute;s achev&eacute;s dans les r&egrave;gles et toutes les portes rencontr&eacute;es sur le chemin &ndash; d&eacute;rob&eacute;es ou non &ndash; avaient &eacute;t&eacute; scell&eacute;es.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Dans l&rsquo;ensemble, la station de pompage n&rsquo;&eacute;tait pas lourdement s&eacute;curis&eacute;e &ndash; ce qui &eacute;tait plus ou moins incompr&eacute;hensible aux yeux de Lakshm&icirc;. Elle et les siens avaient march&eacute;s des jours durant dans la jungle et les mar&eacute;cages, suivant le trac&eacute; d&rsquo;un tr&egrave;s haut pont suspendu destin&eacute; aux trains de Nos Bienfaiteurs, et ouvrant la voie &agrave; plus d&rsquo;hommes. Ils &eacute;taient l&rsquo;avant-garde. Arriv&eacute;s &agrave; proximit&eacute; de l&rsquo;immense structure, bloc d&rsquo;acier empal&eacute; &agrave; l&rsquo;embouchure du fleuve, d&eacute;ployant des milliers de tubes comme autant de trompes dans ses ascendants pour en sucer la s&egrave;ve &ndash; on ne savait pas vraiment ce qu&rsquo;ils trouvaient &agrave; l&rsquo;eau, on ne savait m&ecirc;me pas s&rsquo;ils l&rsquo;exportaient hors de la plan&egrave;te o&ugrave; la traitaient sur place pour une utilisation obscure &ndash; les lions avaient pris une journ&eacute;e enti&egrave;re pour escalader le pont ferroviaire sans se faire rep&eacute;rer par les drones cam&eacute;ras. Puis, apr&egrave;s une nuit agit&eacute;e pass&eacute;e dans un cagibi de maintenance, le groupe s&rsquo;&eacute;tait &eacute;lanc&eacute; dans la station. Et &agrave; partir de l&agrave;&nbsp;? Tout avait &eacute;t&eacute; trop simple. Une poign&eacute;e de miliciens, quelques drones s&rsquo;agitant mollement &agrave; leur approche, un syst&egrave;me de s&eacute;curit&eacute; archa&iuml;que &ndash; l&rsquo;informatique des occupants n&rsquo;avait pas &eacute;volu&eacute; depuis leur arriv&eacute;e et il &eacute;tait devenu une seconde nature pour les barakhans de la d&eacute;tourner, de la pirater, de l&#039;utiliser &agrave; leur avantage. Ce qui devait &agrave; l&rsquo;origine &ecirc;tre un coup os&eacute; &ndash; envoyer un commando d&rsquo;&eacute;lite ouvrir la station de l&rsquo;int&eacute;rieur et permettre aux ind&eacute;pendantistes de l&rsquo;envahir pour de bon &ndash; &eacute;tait ainsi devenu une op&eacute;ration de presque-routine&nbsp;; Restait &agrave; esp&eacute;rer que les autres groupes, ailleurs sur la plan&egrave;te, rencontrent aussi peu de r&eacute;sistance. Notamment celui compos&eacute; des leaders r&eacute;sistants, &agrave; la t&ecirc;te de l&rsquo;insurrection de la M&eacute;gastructure Z&eacute;ro, capitale plan&eacute;taire des collaborateurs. Si&egrave;ges de Nos Bienfaiteurs sur Barakhan. Op&eacute;ration &agrave; laquelle la lionne aurait pu prendre part, en fait, s&#039;il n&#039;avait pas sembl&eacute; si important pour le moral des hommes d&#039;envoyer une personne de confiance attaquer la station.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Lakshm&icirc; contint un soupire. Et Barakhan s&rsquo;&eacute;tait fait soumettre par &ccedil;a. L&rsquo;empire de son peuple avait &eacute;t&eacute; &eacute;cras&eacute;, humili&eacute;, castr&eacute; puis soumis par ces occupants de pacotille incapables de maintenir une garnison pleine. Une coquille vide. Depuis toujours, ou bien l&rsquo;&eacute;tait&eacute;taient-t-ils devenu&nbsp;? Lakshm&icirc; n&rsquo;en savait rien. Mais elle &eacute;tait plus qu&rsquo;heureuse d&rsquo;apporter sa pierre &agrave; l&rsquo;&eacute;difice de leur destruction. Pivotant vers la m&eacute;canicienne, elle leva &agrave; son tour un pouce. La porte s&rsquo;ouvrit.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle donnait sur une grande salle circulaire, au plafond haut, o&ugrave; d&eacute;bouchaient plusieurs autres couloirs et au centre de laquelle se trouvaient des cages d&rsquo;ascenseurs circulaires en verre. Des barri&egrave;res m&eacute;talliques s&rsquo;&eacute;taient soulev&eacute;es du sol, formant plusieurs s&eacute;ries de barricades derri&egrave;res lesquelles &eacute;taient retranch&eacute;s six barakhans cyberimplant&eacute;s, dont la nature m&ecirc;me d&rsquo;humain n&rsquo;&eacute;tait plus &eacute;vidente au premier regard. Lakshm&icirc; ouvrit le feu.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">Encerclez-les mes gaillards&nbsp;!&nbsp;</font>&raquo; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les autres ne durent pas trouver cela tr&egrave;s Coubertin et l&rsquo;officier oppos&eacute; y alla aussi de son petit commentaire.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#d9f4ff"><strong>&nbsp;</strong><font color="#C3FFFF">Inoculez, st&eacute;rilisez</font><font color="#C3FFFF">.</font></font>&nbsp;&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La fusillade fut br&egrave;ve. Quelques tirs pour maintenir les miliciens en place tandis que le groupe se d&eacute;ployait derri&egrave;re les barricades les plus proches. Les lions voulaient encercler les positions ennemies. La riposte ne se fit pas attendre&nbsp;: des tirs, de la fureur, et une grenade qui fit &eacute;clater un couvert et permis &agrave; un tir crois&eacute; brillamment ex&eacute;cut&eacute; par deux des miliciens de r&eacute;pandre le cerveau de la m&eacute;canicienne dans son casque et de d&eacute;chirer le visage et la gorge du lion qui se trouvait &agrave; c&ocirc;t&eacute;. Projection de sang. Les deux miliciens furent r&eacute;compens&eacute;s de leur efficacit&eacute; par une mort rapide. Fusill&eacute;s &agrave; six endroits en m&ecirc;me temps. Leurs quatre coll&egrave;gues n&rsquo;eurent quant &agrave; eux pas l&lsquo;occasion de r&eacute;p&eacute;ter leurs exploits, massacr&eacute;s par la simple force du nombre et de la coordination des lions. Lakshm&icirc; grogna et approcha des morts. Les ind&eacute;pendantistes ne portaient pas de plaques, et &eacute;vitaient g&eacute;n&eacute;ralement de conserver sur eux les matricules assign&eacute;s par le r&eacute;gime. Alors il n&rsquo;y avait pas grand-chose &agrave; prendre pour les proches. Elle se saisit malgr&eacute; tout du poignet de force-&agrave;-outil et, pour l&rsquo;homme, d&rsquo;un tr&egrave;fle s&eacute;ch&eacute; dans une petite pochette de tissus que Lakshm&icirc; l&rsquo;avait vu serrer &agrave; plusieurs occasions durant le voyage jusqu&rsquo;ici. Si elle venait &agrave; mourir, ses hommes savaient quoi ramener d&#039;elle. Ses lunettes de soleil, d&eacute;j&agrave;, qui lui avaient valu quelques surnoms et moqueries ironiques au sein de la r&eacute;sistance. Et une photo, aussi, que tous les membres du comit&eacute; centrale de lib&eacute;ration portaient sur eux. Elle c&#039;&eacute;tait dans une poche de sa chemise, au niveau du coeur. On pouvait y voir un escalier devant une usine fumante, et une douzaine de types en combinaison de combat, souriants, ravis. Lakshm&icirc; et Molkov &eacute;taient en bas &agrave; droite. Ils n&#039;&eacute;taient que des seconds couteaux. Les vrais h&eacute;ros &eacute;taient au centre. L&#039;id&eacute;aliste g&eacute;n&eacute;ralissime Rajni Sarrav, &agrave; c&ocirc;t&eacute; celui qu&#039;on surnommait l&#039;Homme de bien, un expert en infiltration, au-dessus d&#039;eux Kavita Ojas, g&eacute;nitrice des protocoles de s&eacute;curit&eacute; et de cryptographie du groupe, etc. Les chefs de Lakshm&icirc;. Et aussi ses proches. Si elle devait mourir, c&#039;&eacute;tait cette photo que ses lions devraient leur ramener. Cette photo, donc, et ses lunettes.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pendant que Lakshm&icirc; contemplait ses pens&eacute;es, les lions verrouill&egrave;rent chaque porte donnant sur la salle et se saisirent de leurs grappins, suivant les consignes de Molkov. Ce dernier bouscula la lionne, qui attrapa son propre grappin et fit signe &agrave; ses hommes de forcer les portes des cages d&rsquo;ascenseurs. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ffdbbb">Merde. On continue.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Tout va bien Lakshm&icirc;&nbsp;?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">On tue ces salopes, Molkov. On les tue enfin. Je suis&hellip; Putain je suis d&#039;humeur chantante, l&agrave;, tu vois.</font>&nbsp;&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Molkov cligna de son &oelig;il valide. L&rsquo;autre avait depuis longtemps &eacute;t&eacute; remplac&eacute; par un petit implant de fortune, fabriqu&eacute; par les techos de la r&eacute;sistance apr&egrave;s qu&#039;une explosion ait emport&eacute;e l&#039;original. Appuyant sur la d&eacute;tente de son grappin, il observa le bout m&eacute;tallique se planter dans sa cible, des dizaines de m&egrave;tres au-dessus de lui. Il grogna.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#b3d5f4">Ils doivent nous attendre de pied ferme, en haut.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Ou bien on les a pris par surprise et le temps que des renforts arrivent on aura <em>s&eacute;rieusement </em>bais&eacute; les d&eacute;fenses.</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#b3d5f4"> Si seulement.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Plus vite on y sera, plus vite on saura. Quelqu&#039;un a quelque-chose &agrave; dire pour la post&eacute;rit&eacute; ?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pas un mot. Elle acquies&ccedil;a pour elle-m&ecirc;me.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#ffdbbb"> C&#039;est ce qui me semblait : grouillons-nous.&nbsp;</font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle actionna son grappin, qui se mit en route et la treuilla &agrave; pleine vitesse. Suivant son mouvement, les douze lions restant commenc&egrave;rent leur ascension. Ils y &eacute;taient presque, maintenant.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lakshm%C3%AE+Kayal">Cdte. Lakshm&icirc; Kayal</a><br>Prestige de chroniqueur&nbsp;: 68<br /><br /><img src="/avatars/11063.jpg" style="width:95px;height:128px" alt="Avatar" /><br />17/01/1021 ETU 19:26</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280100', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280095')">Détails</a> <a href="javascript:warnpost(280095)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280095" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280095',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Lucille s&rsquo;&eacute;tait toujours consid&eacute;r&eacute;e comme une r&eacute;formiste. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Non pas que le mot ait beaucoup de sens au sein d&rsquo;une administration s&ucirc;re d&rsquo;elle, morale et n&rsquo;admettant pas le factionnalisme &ndash; ce qu&rsquo;elle trouvait assez sain et respectable. Non, en fait, il s&rsquo;agissait plut&ocirc;t d&rsquo;une mission personnelle qu&#039;elle s&#039;&eacute;tait donn&eacute;e. Une fa&ccedil;on de se caract&eacute;riser et de caract&eacute;riser ses objectifs et sa fa&ccedil;on de les atteindre. Quelque-chose qu&rsquo;elle n&rsquo;avait jamais perdue de vue tout au long de sa carri&egrave;re, et qu&rsquo;elle pensait bien ne jamais perdre de vue de sa vie. Plus qu&rsquo;une mani&egrave;re de se d&eacute;finir : un mot d&rsquo;ordre. Le c&oelig;ur de sa d&eacute;marche. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il &eacute;tait vrai, maintenant, que l&rsquo;on pouvait faire bien peu de r&eacute;formes depuis le poste de commandeur de la Station de pompage du fleuve-m&egrave;re. Simple &eacute;tape transitoire de sa carri&egrave;re dont elle percevait pleinement l&rsquo;importance : il n&rsquo;&eacute;tait pas donn&eacute; &agrave; tout le monde de prot&eacute;ger les int&eacute;r&ecirc;ts de Nos Bienfaiteurs et d&#039;assurer le bon fonctionement d&rsquo;un des composants essentiels de leur plan. Elle s&rsquo;en f&eacute;licitait avec le peu d&rsquo;&eacute;gocentrisme qu&rsquo;elle s&rsquo;autorisait &agrave; conserver. Oui, vraiment : elle m&eacute;ritait cette position, et en &eacute;tait heureuse. Elle s&rsquo;attelait &agrave; briller &agrave; ce poste, comme en toute chose.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&Ccedil;a avait commenc&eacute; assez t&ocirc;t. D&egrave;s son adolescence, en fait. Ses parents &eacute;taient des petits cadres s&rsquo;occupant des distributions alimentaires au sein de la M&eacute;gastructure deux. Et elle avait grandi dans l&rsquo;asc&eacute;tisme particulier qu&rsquo;offrait le R&eacute;gime, &agrave; base de nuits courtes, d&rsquo;habits incolores, d&rsquo;aliments de synth&egrave;se si concentr&eacute;s en &eacute;nergie qu&rsquo;on pouvait avaler tout ce qu&rsquo;il fallait pour tenir la journ&eacute;e sans jamais calmer la sensation de faim. Et pour quoi faire, d&rsquo;ailleurs ? La philosophie du R&eacute;gime avait toujours &eacute;t&eacute; de rejeter la dictature du corps, des hormones, des besoins ressentis. C&rsquo;&eacute;tait une bonne le&ccedil;on : la sensation de faim persiste mais pas la n&eacute;cessite de manger plus. Rejeter les instincts, contr&ocirc;lez-vous.&nbsp; Soyez, en fait, des adultes. M&ecirc;me si la faim persiste, constamment. Elle ne deviendra que le bruit de fond de votre existence. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Adolescente, donc, Lucille avait consid&eacute;r&eacute;e la situation avec une certaine s&eacute;v&eacute;rit&eacute;, emprunte de cet id&eacute;alisme boudeur propre &agrave; la jeunesse. Pourquoi &eacute;tait-il n&eacute;cessaire de se contr&ocirc;ler ? Ces ouvriers, pourtant bons travailleurs, qui se pr&eacute;sentaient tous les jours pour &eacute;changer leurs coupons contre des repas n&rsquo;avaient pas l&rsquo;air heureux. Pourquoi ne leur permettait-on pas de l&#039;&ecirc;tre ? La M&eacute;gastructure &eacute;tait d&rsquo;une laideur &agrave; en pleurer, et les fringues aussi. Pourquoi les loisirs &eacute;taient-ils si contr&ocirc;l&eacute;s et les m&eacute;dias si fades ? Pourquoi telle chose &eacute;tait-elle injuste ? Et pourquoi des gens disparaissaient, parfois ? Des pens&eacute;es appelant naturellement &agrave; punition et qui, si elles n&rsquo;avaient pas &eacute;man&eacute;es de l&rsquo;esprit tumultueux d&rsquo;une adolescente aussi instable qu&rsquo;on doit l&rsquo;&ecirc;tre &agrave; cet &acirc;ge, auraient probablement amen&eacute;es &agrave; un code Inoculation-Vaccination de la part de la milice. Elle &eacute;tait d&rsquo;une extr&ecirc;me s&eacute;v&eacute;rit&eacute;, pour des raisons que Lucille ne comprit que bien plus tard. Heureusement, &agrave; cet &acirc;ge elle d&eacute;pendait encore de l&rsquo;autorit&eacute; de ses parents qui d&eacute;cid&egrave;rent, plut&ocirc;t que de la d&eacute;noncer comme cela pouvait se faire, de simplement l&rsquo;&eacute;duquer, lui expliquer avec patience le pourquoi des choses. De lui donner toute la documentation n&eacute;cessaire pour qu&rsquo;elle comprenne d&rsquo;elle-m&ecirc;me. C&rsquo;&eacute;tait une gamine intelligente. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Nos Bienfaiteurs n&rsquo;&eacute;taient pas humains. C&rsquo;est vrai que leur gouvernement pouvait sembler froid. Mais ce n&rsquo;&eacute;tait qu&rsquo;une question de perspective, d&rsquo;attentes. Et il fallait remettre la situation dans le contexte de leurs efforts, de leurs plans pour Barakhan, &eacute;tablis en collaboration avec les nombreux scientifiques et grands hommes du Conseil, le gouvernement humain de la plan&egrave;te, charg&eacute; de g&eacute;rer le R&eacute;gime et de servir d&rsquo;interm&eacute;diaire entre la population et Nos Bienfaiteurs. Tout cela r&eacute;pondait &agrave; une r&eacute;alit&eacute; sordide &ndash; la surpopulation, l&rsquo;&eacute;tat catastrophique de la biosph&egrave;re. Il fallait &eacute;conomiser des ressources, r&eacute;parer ce qui pouvait l&rsquo;&ecirc;tre, &eacute;duquer la population &agrave; rejeter peu &agrave; peu les aspects les plus regrettables de sa nature humaine et de son ancienne culture pour ne plus jamais d&eacute;truire cette plan&egrave;te. Pour que les r&eacute;parations tiennent. Il fallait, aussi, maintenir un contr&ocirc;le tr&egrave;s strict de la population et des pens&eacute;es autoris&eacute;es pour &eacute;viter qu&rsquo;on oublie jamais le pourquoi de ce r&eacute;gime. Cette souffrance n&rsquo;&eacute;tait pas gratuite. Il ne s&rsquo;agissait pas de martyriser tout un peuple. Barakhan n&rsquo;&eacute;tait pas mise sur une croix pour y mourir de fa&ccedil;on humiliante : elle &eacute;tait en servage, et les syndromes du manque continueraient malheureusement quelque temps encore. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Fort bien. Lucille avait accept&eacute;e cette explication pour la simple et bonne raison qu&rsquo;elle &eacute;tait logique. La plan&egrave;te &eacute;tait effectivement &agrave; &ccedil;a de devenir un enfer invivable. Elle le savait, comme tout le monde. Tous les documentaires, les livres et journaux disponibles, le disaient : les cours d&rsquo;eaux &eacute;taient pollu&eacute;s. La biodiversit&eacute; &eacute;tait une ruine. L&rsquo;atmosph&egrave;re trou&eacute;e de part en part, les terres empoisonn&eacute;es. Et il y avait trop de monde. Une population vorace, barbare comme des nu&eacute;s de sauterelle. Et ignare, c&rsquo;&eacute;tait bien le pire, incapable de comprendre les enjeux, demandant son plaisir quotidien et direct plut&ocirc;t que d&rsquo;accepter d&rsquo;attendre, de vivre chichement pour les g&eacute;n&eacute;rations futures. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Une situation d&eacute;sastreuse, provoqu&eacute;e par les anciens gouvernements plan&eacute;taires. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Malgr&eacute; tout, quelque-chose dans l&rsquo;adolescente qu&rsquo;elle &eacute;tait alors l&rsquo;emp&ecirc;cha de simplement accepter cette situation. Il lui semblait, toujours, qu&rsquo;il y avait mati&egrave;re &agrave; am&eacute;lioration. A l&rsquo;&eacute;poque elle ne savait pas encore que cela ferait d&rsquo;elle une r&eacute;formiste, mais elle en avait d&eacute;j&agrave; l&rsquo;id&eacute;e : elle allait rejoindre le gouvernement. D&rsquo;une mani&egrave;re ou d&rsquo;une autre, elle allait rejoindre le R&eacute;gime, et imposer ses vues. Qu&rsquo;on pouvait faire mieux sans d&eacute;naturer le but m&ecirc;me du R&eacute;gime. Peut-&ecirc;tre en rendant les m&eacute;dias moins moroses ? Les habits et l&rsquo;architecture plus agr&eacute;ables ? Il y avait forc&eacute;ment quelque-chose &agrave; faire pour am&eacute;liorer la situation. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">D&egrave;s qu&rsquo;elle en eu l&rsquo;&acirc;ge, Lucille voulu rejoindre la milice. Elle n&rsquo;&eacute;tait pas d&rsquo;inclinaison fondamentalement violente, mais il n&rsquo;y avait pas vraiment d&rsquo;autres moyens de rejoindre l&#039;administration : elle avait d&eacute;j&agrave; tous les fonctionnaires, leaders, d&eacute;cideurs qu&rsquo;il lui fallait, et faute d&rsquo;une &eacute;ducation technique suffisante, la jeune femme n&rsquo;avait alors aucun moyen de vraiment se faire rep&eacute;rer. La milice, au moins, offrait des promotions &agrave; ses membres les plus habiles, intelligents. Elle pourrait avoir de l&rsquo;avancement.&nbsp; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les programmes d&rsquo;entra&icirc;nement furent rudes, ainsi que les premi&egrave;res ann&eacute;es de terrain. Tabasser des petites frappes et des partisans de la surconsommation n&rsquo;&eacute;tait pas vraiment un exercice d&eacute;tendant. Mais la r&eacute;formiste ne s&rsquo;en faisait pas : elle allait briller. &Ecirc;tre la meilleure. Obtenir de l&rsquo;avancement. Et plus tard, elle pourrait faire changer les choses. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">On nomma Lucille offici&egrave;re de terrain, puis on la transf&eacute;ra de la section polici&egrave;re &agrave; la section militaire. Ce fut &agrave; ce moment qu&rsquo;on lui proposa ses premiers implants.&nbsp; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ce fut un moment assez difficile. Elle savait que pour le R&eacute;gime, il s&rsquo;agissait de rejeter le biologisme. De quitter ce qui faisait d&rsquo;un humain un humain pour obtenir une forme de transcendance. Et cela ne lui posait aucun probl&egrave;me. Mais quand on lui expliqua qu&rsquo;il allait falloir se d&eacute;barrasser de son ut&eacute;rus, en plus des greffes musculaires et de l&rsquo;interface neurale qui lui servirait &agrave; garder le contact avec ses hommes, elle crut bien ne pas pouvoir y arriver. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Finalement elle accepta. Elle n&rsquo;avait jamais voulu d&rsquo;enfant et s&rsquo;&eacute;tait d&eacute;tach&eacute;e, comme il le fallait, de tout d&eacute;sir sexuel depuis d&eacute;j&agrave; longtemps. Pass&eacute; ce qui restait une forme de traumatisme, il s&rsquo;av&eacute;ra que sa nouvelle force physique doubl&eacute;e de la disparition de ce qu&rsquo;elle vint &agrave; consid&eacute;rer comme des instabilit&eacute;s hormonales et de ses menstruations lui firent le plus grand bien. Elle &eacute;tait plus stable. Plus puissante. Elle &eacute;tait aussi bien meilleure sur le terrain : elle ne craignait plus vraiment de mourir. L&rsquo;avenir transhumain auquel aspirait le R&eacute;gime &eacute;tait vraiment quelque-chose. Il fallait le vivre, pour le comprendre. Cela ne fit que renforcer sa conviction : qu&rsquo;il fallait am&eacute;liorer le R&eacute;gime. Mieux faire comprendre &agrave; la population l&rsquo;objectif de Nos Bienfaiteurs. Faire preuve de p&eacute;dagogie, peut-&ecirc;tre. Responsabiliser les citoyens. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle continua sa carri&egrave;re. De soldate de la milice elle devint offici&egrave;re puis arriva finalement en charge de la s&eacute;curit&eacute; d&rsquo;un district de la M&eacute;gastructure une. Un honneur qui avait l&rsquo;avantage de la rapprocher du centre du pouvoir. Chaque promotion allait avec de nouveaux implants visant &agrave; l&rsquo;assister das sa t&acirc;che. Ce fut &agrave; la M&eacute;gastructure une que Lucille commen&ccedil;a &agrave; rencontrer des officiers du centre de commandement, eut l&rsquo;occasion d&rsquo;assister &agrave; des discours du Conseil. Bien entendu il n&rsquo;y avait pas vraiment de vie sociale ou mondaine, mais au moins elle s&rsquo;entendait bien avec ses coll&egrave;gues des autres districts et &eacute;tait consid&eacute;r&eacute;e par ses hommes et ses sup&eacute;rieurs comme une excellente offici&egrave;re. Durant tout le temps qu&rsquo;elle passa &agrave; la capitale, Lucille n&rsquo;eut de cesse que d&rsquo;observer et de noter tout ce qu&rsquo;elle voyait. Il y avait des choses &agrave; am&eacute;liorer, toujours des choses &agrave; am&eacute;liorer. Parall&egrave;lement, son ascension de la hi&eacute;rarchie lui permettait de mieux comprendre le fonctionnement du R&eacute;gime. De voir l&agrave; o&ugrave; elle avait pu se tromper par le pass&eacute;, par manque de visibilit&eacute;. Parfois, certaines des choses qu&rsquo;elle percevait comme des dysfonctionnements du R&eacute;gime tenaient plut&ocirc;t de l&rsquo;optimal atteignable. Soit on ne pouvait pas faire mieux, soit il n&rsquo;&eacute;tait pas n&eacute;cessaire de faire autrement, pour &eacute;viter de saboter les objectifs m&ecirc;me du R&eacute;gime. En tout cas, concernant sa mission de maintien de l&rsquo;ordre, elle ne percevait pas vraiment de moyen ou de raison de r&eacute;former les choses. Cela viendrait plus tard, lorsqu&rsquo;elle serait mieux plac&eacute;e dans l&rsquo;administration. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le temps passa, elle continua de grimper la hi&eacute;rarchie jusqu&rsquo;&agrave; enfin &ecirc;tre nomm&eacute;e &agrave; la Station de pompage pour superviser sa s&eacute;curit&eacute; et son rendement. Sa premi&egrave;re mission ne tenant pas purement du maintien de l&rsquo;ordre ; la preuve que bient&ocirc;t, tr&egrave;s bient&ocirc;t, on allait la transf&eacute;rer vers des postes politiques ; La preuve, s&rsquo;il en fallait une de plus, qu&rsquo;elle aurait bient&ocirc;t l&rsquo;occasion de changer les choses. D&rsquo;am&eacute;liorer le R&eacute;gime comme il l&rsquo;avait am&eacute;lior&eacute;e. De lui renvoyer l&rsquo;ascenseur, pourrait-on dire avec na&iuml;vet&eacute;. Bient&ocirc;t, tr&egrave;s bient&ocirc;t, les choses allaient s&rsquo;am&eacute;liorer sur Barakhan. Elle les ferait changer.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Mais pas aujourd&rsquo;hui. Car aujourd&rsquo;hui, une esp&egrave;ce de garce &eacute;tait venue lui g&acirc;cher son bonheur. Pour la cinqui&egrave;me fois depuis que l&rsquo;alerte avait &eacute;t&eacute; donn&eacute;e, Lucille se concentra sur ses interfaces neurales, observant les lions avec froideurs. Petits parasites d&eacute;valant les couloirs de sa station, abattant les miliciens sur leur route. Ils ne semblaient pas implant&eacute;s. Ou pas lourdement. Un tel niveau d&#039;efficacit&eacute; avait ainsi de quoi surprendre. Mais enfin, vraiment. Que vaut l&#039;efficacit&eacute; lorsqu&#039;elle est employ&eacute;e pour des fins aussi contre-productives ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ils approchaient de son centre de commandement. Lucille activa l&rsquo;intercom.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <strong><font color="#C3FFFF">Vous faites une erreur d&eacute;sastreuse. Sil-vous-pla&icirc;t, prenez le temps d&#039;y r&eacute;fl&eacute;chir : vous ne savez m&ecirc;me pas vraiment ce que nous faisons, ici.</font></strong> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle fixa son attention sur celle qui servait de cheffe au d&eacute;tachement. Une femme un peu ridicule, avec ses lunettes de soleil en int&eacute;rieur. Elle surveillait ses hommes, qui soudaient des portes pendant qu&rsquo;une caucasienne plus &acirc;g&eacute;e que les autres s&rsquo;attelait sur un panneau de contr&ocirc;le reli&eacute; &agrave; un sas blind&eacute;, essayant d&#039;en prendre le contr&ocirc;le avec une console pirate. Dans les faits, tout ce qui s&eacute;parait les lions d&#039;elle, se dit Lucille, &eacute;tait un couloir de trente m&egrave;tres de long, en pente montante, ferm&eacute; par une dizaine de sas. Elle ne s&#039;inqui&eacute;tait pas. Quand il lui avait paru que les envahisseurs &eacute;taient capables de contourner les s&eacute;curit&eacute;s de son site, elle avait aussit&ocirc;t demand&eacute; de nouveaux protocoles de s&eacute;curit&eacute; au commandement central. M&ecirc;me s&#039;ils avaient leurs propres probl&egrave;mes, ou peut-&ecirc;tre &agrave; cause de &ccedil;a, ils lui r&eacute;pondirent imm&eacute;diatement. Maintenant, il &eacute;tait tout &agrave; fait inenvisageable que ces anarchistes n&#039;aillent plus loin. Les sachant bloqu&eacute;s, Lucille avait redirig&eacute;e l&#039;essentiel de la s&eacute;curit&eacute; de la station sur leur position. Sans doute inconsciente de ce qui allait lui tomber dessus, la cheffe des terroristes leva un majeur vers le plafond. Lucille repris.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <strong><font color="#C3FFFF">Qu&rsquo;est-ce que vous esp&eacute;rez obtenir ? Il n&rsquo;y a rien pour vous, ici. &Agrave; ce stade, votre victoire signifierait votre d&eacute;faite : vous ne pouvez pas r&eacute;ussir. Nos Bienfaiteurs sont l&agrave; pour sauver notre Barakhan. Pour nous sauver. Et pour sauver nos enfants, vous ne comprenez donc pas ? Cette insurrection n&#039;a rien de logique. Vous pensez &agrave; court terme !</font></strong> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&rsquo;ironie de parler d&rsquo;enfants tout en &eacute;tant st&eacute;rile ne lui vint pas &agrave; l&rsquo;esprit. De son c&ocirc;t&eacute;, la cheffe l&acirc;cha son fusil pour fouiller ses poches. Elle sembla h&eacute;siter, fit appel au type qui lui servait de bras droit, sembla lui demander quelque-chose et, avec son aide, extirpa sa main de sa combinaison : elle pr&eacute;senta ainsi un second majeur &agrave; l&rsquo;intention du plafond. Elle semblait tr&egrave;s, tr&egrave;s, tr&egrave;s surprise de le trouver l&agrave;. Soudain, Lucille se sentit exc&eacute;d&eacute;e.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <strong><font color="#C3FFFF">Vous &ecirc;tes&hellip; Des enfants. Et puisque nous ne pouvons pas discuter... </font></strong>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Lakshm&icirc; eut un rire gras et pivota vers Molkov. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#ffdbbb"> Tu vois ! Je t&rsquo;avais dit que je saurai l&rsquo;&eacute;nerver.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Je te tire mon chapeau m&eacute;taphorique. </font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La lionne rattrapa son fusil et pivota vers la femme qui s&rsquo;occupait du panneau.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">Et c&rsquo;en est o&ugrave; ?</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#ffffff"><font color="#E8C500"> <font color="#FF857A">C&rsquo;est&hellip; Un instant&hellip; Ils ont modifi&eacute;s toute la crypto&#039;. C&#039;est plus ou moins la m&ecirc;me architecture mais &ccedil;a devrait me prendre... Un instant, et...</font> </font>Elle se leva en essuyant ses mains sur sa combinaison. <font color="#FF857A">Ta-da.</font></font> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La caucasienne se plaqua &agrave; droite du panneau, tirant un fils le reliant &agrave; sa console faite de mat&eacute;riaux de r&eacute;cup&eacute;ration. Elle temporisa un instant, pour l&#039;emphase, puis pressa un bouton rectangulaire orange qui cracha le bruit caract&eacute;ristique d&#039;un modem t&eacute;l&eacute;phonique. Le sas blind&eacute; s&#039;ouvrit. Et le sas suivant. Et le suivant. Et ainsi de suite sur plusieurs dizaines de m&egrave;tres de couloir sombre. Lakshm&icirc; acquies&ccedil;a, impressionn&eacute;e.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line">&ndash; <font color="#ffdbbb">Chouette. Molkov, Elijh, Mina, en couverture. Sh&eacute;h&eacute;raz, ferme ces portes derri&egrave;re-nous.&nbsp; </font>&raquo;</div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lakshm%C3%AE+Kayal">Cdte. Lakshm&icirc; Kayal</a><br>Prestige de chroniqueur&nbsp;: 68<br /><br /><img src="/avatars/11063.jpg" style="width:95px;height:128px" alt="Avatar" /><br />04/02/1021 ETU 01:15</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D281527', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal281526')">Détails</a> <a href="javascript:warnpost(281526)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal281526" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=281526',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Cela n&#039;&eacute;tait pas arriv&eacute; depuis bien longtemps, et elle &eacute;tait pour ainsi-dire incapable de d&eacute;terminer ce que &ccedil;a pouvait vouloir dire et comment elle devait r&eacute;agir &agrave; la question, mais voil&agrave; : Lucille &eacute;tait terrifi&eacute;e. Horrifi&eacute;e. Dans un &eacute;tat de panique que seuls ses r&eacute;gulateurs cardiaques et hormonaux emp&ecirc;chaient de devenir handicapant. Elle avait observ&eacute; les parasites entrer dans sa structure. En &eacute;liminer une partie de la garnison tout en esquivant l&#039;autre, avancer jusqu&#039;&agrave; elle. Jusqu&#039;&agrave; son centre de commandement. Jusqu&#039;&agrave; elle. Jusqu&#039;&agrave; elle. Jusqu&#039;&agrave;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle le sentait tomber dans un genre d&#039;abysse lourd, s&#039;enfoncer dans sa propre personne sans arriver &agrave; y dispara&icirc;tre. Un vertige sans nom, une naus&eacute;e. Allait-elle mourir ? Non, bien-entendu que non. Les bienfaiteurs ne laisseraient pas faire. Ils prenaient soin de tout leurs officiers, car ils savaient reconna&icirc;tre leur valeur. Mais les codes d&#039;acc&egrave;s envoy&eacute;s depuis la M&eacute;gastructure une et z&eacute;ro n&#039;avaient pas bloqu&eacute;s les parasites. Alors quoi ? Alors quoi ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle pensait, r&eacute;fl&eacute;chissait, faisait le tour de ses options et de ses possibilit&eacute;s. Elle devait d&eacute;fendre cette station. Son r&ocirc;le &eacute;tait essentiel. Pourquoi ? Pourquoi quoi, pourquoi devait-elle la d&eacute;fendre ou pourquoi la station &eacute;tait essentielle ? Peu importe. Le sujet &eacute;tait ailleurs. Les parasites grimpaient le couloir jusqu&#039;au poste de commandement. Ils donnaient tout pour transpercer les lignes de la milice. Grenades en tout genre, munitions rares, le borgne implant&eacute; avait m&ecirc;me utilis&eacute; un applicateur de structugel pour g&eacute;n&eacute;rer des couverts de fortune. Il ne devait pas en avoir beaucoup, le structugel &eacute;tait l&#039;un des biens les plus prot&eacute;g&eacute;s du R&eacute;gime, mais c&#039;&eacute;tait un usage assez innovant de la mati&egrave;re.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Lucille tentait de coordonner ses hommes. Il lui en aurait fallu plus. Les renforts ? Il n&#039;y en avait pas. Et les strat&eacute;gies qu&#039;elle avait appliqu&eacute;e toute sa vie &eacute;taient inadapt&eacute;es &agrave; la situation. Le R&eacute;gime ne d&eacute;fendait jamais. Pourquoi faire ? Il n&#039;en avait pas besoin. Elle essayait de r&eacute;fl&eacute;chir. D&#039;innover. De trouver quelque-chose de nouveau. Son esprit examinait les options rapidement, efficacement, comme elle avait appris &agrave; le faire. Rien. Rien. Et elle n&#039;arrivait tout simplement pas &agrave; trouver quelque-chose de nouveau. Elle &eacute;carquilla les yeux, ils y &eacute;taient. Ils y &eacute;taient. Ils &eacute;taient entr&eacute;s.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">Et ainsi, bande de sales pouilleux, s&#039;ach&egrave;ve la glorieuse prise de la Station de Pompage du Fleuve-m&egrave;re ! Voyez o&ugrave; nous a men&eacute;e la folie humaine !</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#b3d5f4"> Jusqu&#039;&agrave; la victoire, Lakshm&icirc; ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Jusqu&#039;&agrave; la victoire, Molkov. </font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle pivota vers son camarade et, voyant qu&#039;un des officiers milicien continuait d&#039;agoniser au sol, termina de vider son chargeur dans le cr&acirc;ne de l&#039;implant&eacute;. Un r&acirc;le humain, un crissement &eacute;lectrique, il &eacute;tait mort et pour de bon. Lakshm&icirc; se retourna vers ses lions et lan&ccedil;a un regard panoramique &agrave; la salle pendant que ses hommes en prenaient possession, non sans en souder les portes. C&#039;&eacute;tait une grande pi&egrave;ce circulaire &eacute;tablie sur deux niveaux. Le plus haut &ndash; celui par lequel on entrait, &eacute;tait une mezzanine en arc-de-cercle allant d&#039;un bout &agrave; l&#039;autre de la salle, o&ugrave; se trouvaient les portes d&#039;entr&eacute;e. Les murs de la mezzanine &eacute;taient couverts de consoles de contr&ocirc;le et il y avait aussi une esp&egrave;ce de table de r&eacute;union. Le premier &eacute;tage, sous la mezzanine, &eacute;tait la partie &agrave; proprement dite circulaire. On y trouvait une esp&egrave;ce d&#039;&eacute;norme cylindre m&eacute;tallique grimpant jusqu&#039;au plafond, reli&eacute; &agrave; ce dernier et aux murs par une s&eacute;rie de c&acirc;bles et de tubes flexibles de diff&eacute;rentes tailles, parqu&eacute;s sous un sol et un faux-plafond compos&eacute;s de plaques amovibles de verre renforc&eacute;. Il y avait aussi des consoles, entourant le tube.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Bon. Il s&#039;agissait d&eacute;sormais de prendre le contr&ocirc;le de la station. Lakshm&icirc; se mit &agrave; r&eacute;fl&eacute;chir &agrave; son plan et se rendit compte qu&#039;elle y &eacute;tait un peu all&eacute;e &agrave; l&#039;aveugle. En fait, maintenant qu&#039;elle &eacute;tait ici, dans le poste de commandement de sa cible, elle ne se souvenait m&ecirc;me plus vraiment de ce qu&#039;elle avait envisag&eacute; de faire &agrave; l&#039;origine. Sans doute pas faire sauter la station, puisqu&#039;elle &eacute;tait dedans. D&eacute;sactiver les d&eacute;fenses ? Eh bien elle s&#039;&eacute;tait imagin&eacute;e qu&#039;&agrave; ce stade il aurait s&#039;agit d&#039;un si&egrave;ge incroyablement sanglant durant lesquels ses hommes auraient tenus la position pendant que leurs alli&eacute;s &agrave; l&#039;ext&eacute;rieur les rejoignaient, flingues crachant la mort et portes s&#039;ouvrant sur leurs passages. Mais il n&#039;y avait pas vraiment eu de contre-attaque de la milice. Alors, quoi faire ? Ses hommes avaient termin&eacute; de souder les portes. D&eacute;sormais ils la fixaient, attendant les ordres. Ils semblaient anxieux, tr&egrave;s excit&eacute;s. Ils mesuraient bien l&#039;importance de la situation. La lumineuse lionne acquies&ccedil;a doucement.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#ffdbbb"> Bon. D&eacute;j&agrave; essayons de prendre le contr&ocirc;le de ce <em>truc</em>. S&#039;il y a des d&eacute;fenses encore actives vous me les abaissez, et vous ouvrez toutes les portes. Je veux que nos gars en planque &agrave; l&#039;ext&eacute;rieur puissent entrer. Mina ? </font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La vieille caucasienne approcha.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#FF857A"> Madame ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Essaie de voir s&#039;il y a moyen d&#039;acc&eacute;der aux communications du R&eacute;gime, je veux voir o&ugrave; en est la situation &agrave; la capitale. Ah ! Et les gars ! Avant qu&#039;on oublie : d&eacute;sactivez-moi cette station de pompage, hein. Molkov ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Hmhm ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">&Agrave; ton humble avis, o&ugrave; se planque la propri&eacute;taire de cette jolie voix d&eacute;sincarn&eacute;e qui nous mena&ccedil;ait tout du long ?</font> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il haussa les &eacute;paules mais posa une main sur son fusil.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#b3d5f4">Morte, ou vive ?</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#ffdbbb"> Avise si sa gueule te revient ou pas.</font> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle haussa les &eacute;paules, se disant qu&#039;avoir une prisonni&egrave;re &agrave; interroger aurait sans doute fait plaisir aux historiens du mouvement. Partant de l&agrave;, les choses prirent comme une pause. La prise de contr&ocirc;le de la station fut l&#039;affaire de plusieurs dizaines de minutes, que ses lions pass&egrave;rent &agrave; d&eacute;manteler des consoles pour y brancher les leurs. Apr&egrave;s quoi on ouvrit effectivement les portes ext&eacute;rieurs et l&#039;on abaissa les passerelles donnant sur la jungle. Le corps d&#039;invasion p&eacute;n&eacute;tra dans la structure pour la d&eacute;couvrir pratiquement vide. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pour Lucille ce fut une torture. D&eacute;j&agrave; car se d&eacute;roulait devant elle la destruction pure et simple de ses illusions et de son id&eacute;al, ensuitecar elle &eacute;tait reli&eacute;e &agrave; chacune des consoles. Chacune des portes. Chaque sous-syst&egrave;me de la station. Chaque fois qu&#039;ils d&eacute;truisaient, reconstruisaient, prenaient le contr&ocirc;le, c&#039;&eacute;tait comme si on lui arrachait un membre, comme si on introduisait des fils de fer br&ucirc;lant dans ses veines, dans ses nerfs. Ses muscles se tordaient, hurlaient, et une force ext&eacute;rieure, hostile, horrible, une humiliation inconcevable, dans le sens premier du terme, animait son corps &agrave; sa place. &Agrave; la place de sa volont&eacute;. Elle voulut hurler. Faute d&#039;y arriver, son esprit court-circuita. Laissant les miliciens seuls &agrave; leur sort. Eux au moins eurent cette chance qu&#039;ils ne surv&eacute;curent pas &agrave; l&#039;invasion.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les rares poches de r&eacute;sistance milicienne, qui se content&egrave;rent, faute d&#039;ordres, de tenir la position sans essayer de d&eacute;loger les envahisseurs, furent rapidement &eacute;limin&eacute;es. Le b&acirc;timent fermement occup&eacute;, on essaya de d&eacute;sactiver ses fonctions de pompage. Comme ce fut un pur et simple &eacute;chec, il fut finalement d&eacute;cid&eacute; de saboter les pompes &agrave; l&#039;ancienne. Quelques balles bien plac&eacute;es, des explosifs. Except&eacute; la perte de temps on ne fit pas la diff&eacute;rence : la monolithique station &eacute;tait d&eacute;sormais inop&eacute;rante. Bien-entendu c&#039;&eacute;tait une victoire plus symbolique qu&#039;autre-chose, il allait falloir faire la m&ecirc;me chose sur toutes ses petites s&oelig;urs dispers&eacute;es le long du fleuve, mais on savait d&eacute;sormais que c&#039;&eacute;tait faisable. Que le R&eacute;gime pouvait &ecirc;tre vaincu. Restait pour Lakshm&icirc; &agrave; contacter ses sup&eacute;rieurs pour leur annoncer son succ&egrave;s, et &agrave; trouver la commandante. Son esprit bouillonnait d&eacute;j&agrave; d&#039;id&eacute;es quant &agrave; ce que lui r&eacute;servait l&#039;avenir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#b3d5f4"> &Ccedil;a, c&#039;est vraiment inqui&eacute;tant. Lakshm&icirc; ? Lakshm&icirc; !</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Heu. Ouais du calme, du calme. J&#039;arrive. </font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle approcha de la rambarde s&eacute;parant la mezzanine de la section inf&eacute;rieure du poste de commandement, et fixa son bras droit, entour&eacute; de deux lions, occup&eacute;s &agrave; bidouiller l&#039;une des consoles entourant le cylindre d&#039;acier.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#b3d5f4"> Descends-voir !</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Et pour quoi faire ? </font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Comme il ne trouva rien &agrave; r&eacute;pondre, se contentant de froncer les sourcils face &agrave; ce qu&#039;il consid&eacute;rait &ecirc;tre une question particuli&egrave;rement conne, et puisqu&#039;il avait l&#039;air particuli&egrave;rement inquiet, Lakshm&icirc; se d&eacute;cida enfin &agrave; le rejoindre. Elle n&#039;&eacute;couta pas sa premi&egrave;re impulsion qui avait &eacute;t&eacute; de sauter par-dessus la rambarde pour faire une esp&egrave;ce de &quot;roulade trop classe&quot; en se r&eacute;ceptionnant, et passa plut&ocirc;t par l&#039;un des escaliers dispos&eacute; et part et d&#039;autres de son &eacute;tage. Elle approcha de Molkov, rehaussant ses lunettes sur son nez, et lui fit signe de parler.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#b3d5f4">J&#039;ai trouv&eacute; propri&eacute;taire de notre voix.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">L&agrave;-dedans ?</font> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il acquies&ccedil;a.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#ffdbbb"> Je pensais que c&#039;&eacute;tait un genre d&#039;unit&eacute; centrale.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">C&#039;est l&#039;id&eacute;e.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle pivota vers les deux lions.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">Et on peut l&#039;ouvrir ?</font> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ils h&eacute;sit&egrave;rent, l&#039;un r&eacute;pondit que oui, et s&#039;&eacute;carta un peu. Le cylindre m&eacute;tallique s&#039;abaissa. Il s&#039;agissait en fait d&#039;un genre de rideau m&eacute;tallique entourant une cuve transparente. Elle &eacute;tait pleine d&#039;un liquide rouge, opaque, dans lequel on percevait une v&eacute;ritable jungle de c&acirc;bles et, s&#039;entortillant les uns autours des autres comme une masse inerte de serpents ou d&#039;anguilles. Certains s&#039;achevaient sur de longues &eacute;pines m&eacute;talliques, d&#039;autres &eacute;taient accroch&eacute;s &agrave; des genres d&#039;anneaux, de machinerie &eacute;tranges. Tous convergeaient vers ce qui, &agrave; une &eacute;poque, avait probablement &eacute;t&eacute; un corps de femme. La chair, parfaitement glabre, &eacute;tait couverte de tissu cicatriciel, et d&#039;un teint laiteux d&eacute;plaisant.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">Qu&#039;est-ce que c&#039;est que &ccedil;a, putain.</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#b3d5f4"> C&#039;est&hellip; Elle. Je crois.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Non. Non putain &ccedil;a n&#039;a rien d&#039;humain.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Qu&#039;est-ce qu&#039;on fait ?</font> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Lakshm&icirc; cligna des yeux. Sa gorge se noua. Elle avait d&eacute;j&agrave; vu des esclaves implant&eacute;s. Et au fond il s&#039;agissait du m&ecirc;me proc&eacute;d&eacute;. Ce qui la choquait, plus que le spectacle d&eacute;plaisant d&#039;un corps bris&eacute;, li&eacute; &agrave; la machine d&#039;une fa&ccedil;on si grotesque, c&#039;&eacute;tait l&#039;id&eacute;e que... Cette femme leur avait parl&eacute;. Dans un baragouin propres aux serviteurs du R&eacute;gime et qui t&eacute;moignait d&#039;un important niveau de formatage intellectuel, mais elle avait parl&eacute;. Elle &eacute;tait, d&#039;une mani&egrave;re ou d&#039;une autre, consciente. La lionne tenta d&#039;apercevoir son visage, cach&eacute; derri&egrave;re les c&acirc;bles. Elle n&#039;en devina m&ecirc;me pas la forme. C&#039;&eacute;tait plus fort qu&#039;elle, elle se mettait &agrave; imaginer ce que l&#039;autre devait ressentir. Son esprit imaginant le pire, elle eut envie de vomir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#ffdbbb"> On&hellip; On peut la sortir de l&agrave; ? Non, non nous ne sommes pas &eacute;quip&eacute;s pour ce genre de merde. Refermez-moi cette cuve. Si vous pouvez la d&eacute;connecter du r&eacute;seau, faites-le. Ce&hellip; Cette chose doit &ecirc;tre &eacute;tudi&eacute;e et comprise. C&#039;est aux chefs de d&eacute;cider, &ccedil;a d&eacute;passe largement mon niveau. Merde. Merde putain, merde. </font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle pivota et quitta les lieux, retirant bri&egrave;vement ses lunettes pour se frotter les yeux. Ses mains tremblaient un peu. Elle se for&ccedil;a &agrave; inspirer, bloquer sa respiration. Exprier. Derri&egrave;re elle, la cuve se refermait, Molkov grogna. Ce type avait &eacute;t&eacute; son poisson pilote depuis les premiers jours de son premier gang. Le connaissant il devait s&#039;inqui&eacute;ter pour elle. Elle souffla et grimpa les escaliers jusqu&#039;aux consoles sup&eacute;rieures. Pourquoi cette r&eacute;action ? Elle savait que le R&eacute;gime, que Nos Bienfaiteurs, menaient ce genre d&#039;exp&eacute;rimentations. La milice, les esclaves. Les implants affreux, les lobotomies, le lavage de cerveau, le re-s&eacute;quen&ccedil;age g&eacute;n&eacute;tique, la torture physique, psychologique. Elle savait pour tout &ccedil;a. Et elle avait vu son lot d&#039;horreur. Pas uniquement &agrave; cause du r&eacute;gime, d&#039;ailleurs. La vie dans les gangs &eacute;tait particuli&egrave;rement rude. Des types ouverts pour l&#039;exemple, branch&eacute;s &agrave; des supports vitaux et dont on r&eacute;coltait lentement les organes. Des trucs inf&acirc;mes qui l&#039;avaient toujours r&eacute;volt&eacute; &ndash; et qui en un sens expliquaient probablement pourquoi son propre gang avait h&eacute;rit&eacute; d&#039;une aussi bonne r&eacute;putation, elle &eacute;tait incapable de se montrer vraiment monstrueuse, &ccedil;a la faisait gerber.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alors quoi ? Pourquoi cette connasse dans sa cuve lui faisait cet effet ? Lui g&acirc;chait sa putain de journ&eacute;e ? Sa plus grande victoire ? Elle grogna, se planta le plus grand &eacute;cran de la mezzanine et roula des &eacute;paules, faisant craquer ses doigts pour se redonner contenance.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">On a un lien avec la M&eacute;gastructure z&eacute;ro ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#bbbbbb">Mieux que &ccedil;a. </font>&raquo; Le rebelle qui lui r&eacute;pondit avait du mal &agrave; garder le semblant de discipline qu&#039;il avait appris depuis son d&eacute;part des favelas. Il souriait malgr&eacute; lui, se frottait sans cesses les mains &laquo;<font color="#bbbbbb"> Le syst&egrave;me de communication est <em>totalement </em>sous notre contr&ocirc;le. Et par notre contr&ocirc;le je veux dire &quot;sous contr&ocirc;le ind&eacute;pendantistes&quot;. Ce qui veut dire&hellip;</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Qu&#039;on a gagn&eacute;.</font> &raquo; Cette pens&eacute;e lui r&eacute;chauffa le c&oelig;ur. &laquo; <font color="#ffdbbb">Gamin, si tu me mets en communication avec le g&eacute;n&eacute;ralissime Sarrav ou l&#039;Homme de bien, je te fais m&eacute;dailler.</font> &raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il haussa un sourcils et, consid&eacute;rant la proposition honn&ecirc;te, attrapa sa console.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#bbbbbb">Eh bien pari tenu, cheffe. </font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">De la suite, elle ne gardait aucun souvenir. Elle savait ce qui s&#039;&eacute;tait pass&eacute;, bien entendu. D&eacute;j&agrave; car il &eacute;tait impossible de l&#039;ignorer, c&#039;&eacute;tait trop important, et puis on lui avait racont&eacute; cent, mille fois les &eacute;v&eacute;nements. Il y avait des livres, des s&eacute;ries, des po&egrave;mes, des films, des reconstitutions &agrave; ce sujet. Son gouvernement provisoire n&#039;avait pas r&eacute;ussi &agrave; en faire un tabou et elle se retrouvait seule, probablement traumatis&eacute;e, incapable de mettre le doigt sur la texture, le go&ucirc;t des &eacute;v&eacute;nements. Elle n&#039;en gardait que des images floues. Le sentiment d&#039;une joie allant crescendo, comme sur une montagne russe, avant se tomber. De sombrer. De mourir. Un r&ecirc;ve mort n&eacute;e, qui apr&egrave;s plusieurs mois de gestation, finissait simplement par rendre l&#039;&acirc;me. Sans tuer celle qui l&#039;avait enfant&eacute;e.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle n&#039;avait pas encore fait son deuil.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Mais elle savait ce qui s&#039;&eacute;tait pass&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un &eacute;change, bref. Tous les leaders &eacute;taient l&agrave;, finissant d&#039;occuper la M&eacute;gastructure Z&eacute;ro et son centre de commandement. La ville &eacute;tait prise. La r&eacute;gion sous contr&ocirc;le. Les caches d&#039;arm&eacute;es occup&eacute;es, l&rsquo;insurrection un succ&egrave;s total. On parlait avenir. On parlait expansion vers les &eacute;toiles. On parlait de tant et tant de choses. Et Lakshm&icirc;, qui se sentait presque honteuse de n&#039;avoir jamais pris que le contr&ocirc;le d&#039;une station de pompage, admirant ses h&eacute;ros. Avant leur oblit&eacute;ration finale.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un dernier affront de Nos Bienfaiteurs &agrave; Barakhan, sous la forme de cylindres m&eacute;talliques l&acirc;ch&eacute;s depuis des satellites en orbite sur les M&eacute;gastructures centrales de leur administration d&#039;occupation. Changeant des r&eacute;gions enti&egrave;res en crat&egrave;res par la force seule de l&#039;&eacute;nergie cin&eacute;tique . Des villes et des montagnes souffl&eacute;es par l&#039;impact, des tremblements de terre d&eacute;figurant une part enti&egrave;re de la plan&egrave;te et tuant des milliards et des milliards d&#039;individus. Derni&egrave;re mesure de contingence pour &eacute;viter que l&#039;on ne capture leurs secrets, peut-&ecirc;tre. Le suicide de leur R&eacute;gime ; Et le meurtre de leurs occup&eacute;s.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Apr&egrave;s &ccedil;a, il avait fallu r&eacute;cup&eacute;rer ce qui avait pu l&#039;&ecirc;tre. Lakshm&icirc;, par d&eacute;faut, s&#039;&eacute;tait retrouv&eacute;e &agrave; la t&ecirc;te de l&#039;organigramme insurg&eacute;. Et, par automatisme, elle avait pris la t&ecirc;te du gouvernement libre de la plan&egrave;te - l&#039;exercice avait &eacute;t&eacute; plus simple que pr&eacute;vu, les diff&eacute;rentes cellules rebelles des diff&eacute;rentes villes se soumettant docilement &agrave; leur nouvelle leader. Apr&egrave;s, on avait d&ucirc; r&eacute;fl&eacute;chir au sort des collaborateurs. Chaque ville, cellule, arriva &agrave; des conclusions diff&eacute;rentes. Comme il fallait meubler la nouvelle administration on sauva un certain nombre de petites mains. Les autres furent ex&eacute;cut&eacute;s, fait prisonniers, &eacute;tudi&eacute;s en laboratoire pour les plus malchanceux. La milice, elle, fut jug&eacute;e globalement irr&eacute;cup&eacute;rable et ses membres furent d&eacute;mantel&eacute;s. Ce fut le terme officiel, on les consid&eacute;rait plus machines qu&#039;hommes. En secret, on garda quelques mod&egrave;les plus &eacute;tranges, incompr&eacute;hensibles, potentiellement utiles. Lucille fit parti de ceux-l&agrave;. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et Lakshm&icirc; &eacute;tait l&agrave;. Toujours. Elle n&#039;avait pas boug&eacute;, depuis.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line">La lumineuse lionne de Barakhan. </div><div class="post_line"></div><div class="post_line">G&eacute;n&eacute;ralissime dont la principale victoire, donc, &eacute;tait d&#039;avoir surv&eacute;cu.</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15312&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15312" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15312" name="d_reply_15312" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15312');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15312'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Lumineuse Lionne de Barakhan</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

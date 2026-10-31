@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15852 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>A la d&eacute;couverte de la galaxie</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la d&eacute;couverte de la galaxie</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Y%C3%BCna">Cdte. Y&uuml;na</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/11260.jpg" style="width:85px;height:128px" alt="Avatar" /><br />11/08/1021 ETU 18:06<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D287009', 544, 464)">version précédente</a> - Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal287003')">Détails</a> <a href="javascript:warnpost(287003)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal287003" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 7<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=287003',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Secteur 8, plan&egrave;te </font><font color="#ffc0cb">Sak&uuml;ka</font><font color="#ffffff"> hangar spatial 575, croiseur amiral Takoyaki 8.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">L&#039;imp&eacute;ratrice arrive devant le croiseur avec toute sa garde, </font><font color="#d9f4ff">Naka</font><font color="#ffffff"> &agrave; ses c&ocirc;t&eacute;s. On peux lire l&#039;impatience sur le visage de la jeune dirigeante, le sourie aux l&egrave;vres, elle donne ses derniers ordres avant de monter dans l&#039;appareil.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Direction de la passerelle, ou elle prend place dans le si&egrave;ge qui lui &eacute;tait destin&eacute;, une banale m&eacute;ridienne de fer, recouverte de lin clair sans dossier, un simple accoudoir de bois semble &ecirc;tre dispos&eacute; sur la droite de la commandante. Quelques boutons se trouvent sur une sellette qui semble sortir du sol de m&eacute;tal gris.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Divers posts sont&nbsp;plac&eacute;s de chaque c&ocirc;t&eacute; de la pi&egrave;ce, des sortes d&#039;immense plateau de boutons aux couleurs plus chatoyant les uns des autres. Un grand cercle de lumi&egrave;re de couleur cuisse de nymphe &eacute;claire la pi&egrave;ce, ce qui a pour effet de donner un ton ros&eacute; sur la totalit&eacute; de l&#039;espace.</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#5593bd">Y&uuml;na</font><font color="#ffffff"> a&nbsp;rev&ecirc;tu son kimono de soie rouge, d&eacute;cor&eacute; de fine broderie bordeaux repr&eacute;sentant des cam&eacute;lias, des liser&eacute;s jaune fait ressortir la couleur primaire de l&#039;ensemble. Elle a toujours en main son uchiwa.</font></em></div><div class="post_line"><font color="#ffffff"><em>L&#039;&eacute;quipage est habill&eacute; plus simplement, un uniforme de couleur bleu de minuit, avec des liser&eacute;s de couleurs pour les grades, carmin pour les op&eacute;rations, et bleu drag&eacute;e pour les scientifiques. L&#039;&eacute;quipe m&eacute;dicale quant &agrave; elle, porte un uniforme blanc, aux liser&eacute;s ardoise.</em></font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#ffdc00">L&#039;imp&eacute;ratrice &agrave; bord</font>&quot; <em><font color="#ffffff">pr&eacute;vient &agrave; l&#039;un des gardes de la passerelle.</font></em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Op&eacute;rateur ! Veuillez ouvrir un canal de communication interne</font>&quot; <font color="#ffffff"><em>lance-t-elle , apr&egrave;s un signe de t&ecirc;te du jeune homme &agrave; son post</em></font>&nbsp;&quot;<font color="#5593bd">Bonjour &agrave; tous, ici. Je vous compagne dans ce premier voyage hors secteur huit, nous prenons la direction de la Capital galactique dans un premier temps.</font></div><div class="post_line"><font color="#5593bd">Profitons de cette opportunit&eacute;, pour passer un agr&eacute;able moment et marquer l&#039;histoire de notre peuple dans ce voyage. Je vous remercie de votre attention.</font>&quot;</div><div class="post_line"><font color="#ffffff"><em>La communication se coupe.</em></font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Y%C3%BCna">Cdte. Y&uuml;na</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/11260.jpg" style="width:85px;height:128px" alt="Avatar" /><br />14/08/1021 ETU 20:00<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D287045', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal287043')">Détails</a> <a href="javascript:warnpost(287043)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal287043" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=287043',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Secteur 0, Centre de Recherche d&#039;Entropie Plan&egrave;te Gravit&eacute; Entropique, hangar spatial 1 856.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>L&#039;engouement de Y&uuml;na d&eacute;tonn&eacute; avec la rectitude de sa garde. Elle prit une tablette holographique pour se rep&eacute;rer dans l&#039;immense b&acirc;tisse qu&#039;est l&#039;Assembl&eacute;e galactique.</em></font></div><div class="post_line"><em><font color="#ffffff">Au fil des couloirs et des pi&egrave;ces, ils arrivent devant la statue de Cassandre &agrave; moiti&eacute; d&eacute;capit&eacute;.</font></em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Pauvre IA, finir ainsi... Ne pouvons-nous pas faire quelque chose pour la r&eacute;parer ?</font>&quot; <em><font color="#ffffff">Demande la jeune imp&eacute;ratrice en regardant </font><font color="#d9f4ff">Naka</font><font color="#ffffff">.</font></em></div><div class="post_line"></div><div class="post_line">&quot;J<font color="#d9f4ff">e ne sais pas madame, je peux contacter nos scientifiques sur le vaisseau pour qu&#039;ils &eacute;tablissent un diagnostic, si cela vous va ?</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Oui faite ! Trouvons quelqu&#039;un du Gouvernement pour lui en parler.</font>&quot;</div><div class="post_line"></div><div class="post_line"><em><font color="#d9f4ff">Naka</font><font color="#ffffff"> se place &agrave; part du groupe afin de contacter les &eacute;quipes. </font><font color="#5593bd">Y&uuml;na</font><font color="#ffffff"> continue de faire le tour de la pi&egrave;ce, assez vide en soi, pas de d&eacute;coration propre &agrave; une civilisation. Mais un m&eacute;lang&eacute; de culture, s&ucirc;rement d&ucirc; aux commandants faisant partie de la coalition.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Puis elle aper&ccedil;us le commandant </font><font color="#ff4136">Ogbunabali</font><font color="#ffffff"> approch&eacute;.</font></em></div><div class="post_line"><font color="#ffffff"><em>Le regarde sur l&#039;un de ses gardes, qui commencer &agrave; ex&eacute;cuter quelques mouvements de bras. Puis le temps ce fige, seuls quelques gardes n&#039;&eacute;taient pas atteint par la petite science du grisha.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#5593bd">Merci Akio, depuis le temps que je r&ecirc;ve de voir ce commandant de plus pr&egrave;s.</font><font color="#ffffff">&quot; <em>Elle fait le tour d&#039;Ogbunabali plusieurs fois</em> &quot; </font><font color="#5593bd">regardez moi, cette perfection, je ne vois qu&#039;une mani&egrave;re d&#039;atteindre ses circuits internes, mais la s&eacute;curit&eacute; y a l&#039;air maximal. Une orbite flottante, ne trouve pas vous pas &ccedil;a fascinant</font><font color="#ffffff">&quot; <em>elle caresse l&#039;objectif </em>&quot;, </font><font color="#5593bd">c&#039;est d&#039;une avanc&eacute;e spectaculaire, plusieurs objectifs monter les uns &agrave; c&ocirc;t&eacute; des autres pour une meilleure prise de vues, le fish-eye est juste &agrave; la pointe de ce qui pourrait &ecirc;tre fait pour une telle machine. J&#039;en suis &eacute;poustoufl&eacute;e </font><font color="#ffffff">!&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#ffdbbb">Madame, le temps va reprendre son cours. Veuillez-vous replacer &agrave; cet endroit</font><font color="#ffffff">&quot; <em>indiquant de la main l&#039;emplacement de l&#039;imp&eacute;ratrice avant l&#039;arr&ecirc;t du temps.</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Quelques secondes plus tard, le commandant </font><font color="#ff4136">Ogbunabali</font> <font color="#ffffff">continue sa route saluant l&#039;imp&eacute;ratrice.</font></em></div><div class="post_line"><font color="#ffffff"><em>Naka rejoint le groupe, et interpelle sa dirigeante.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#d9f4ff">Madame, un signal nous parvient.</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Y&uuml;na</font><font color="#ffffff"><em> se retourne vers sa garde </em>&quot;</font><font color="#5593bd">quel genre de signal ? D&eacute;tresse ? Nos terres ?</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#d9f4ff">Non, cela vient d&#039;un autre secteur proche. Nos analystes ne savent pas ce qu&#039;il est, il n&#039;a rien d&#039;un signal de d&eacute;tresse. Visiblement, il serait &eacute;mis du secteur 2</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Apr&egrave;s un temps de r&eacute;flexion, l&#039;imp&eacute;ratrice prit sa d&eacute;cision</em> &quot;</font><font color="#5593bd">La visite attendra, allons voir se signale au plus vite !</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Y%C3%BCna">Cdte. Y&uuml;na</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/11260.jpg" style="width:85px;height:128px" alt="Avatar" /><br />16/08/1021 ETU 07:39<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D287058', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal287056')">Détails</a> <a href="javascript:warnpost(287056)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal287056" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=287056',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff"><em>Secteur 2, orbite stationnaire Point Madhava, abord du croiseur amiral Takoyaki 8.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>La passerelle est en effervescence, les op&eacute;rateurs tapotent sur leurs tableaux de bord. Les cliquetis incessants r&eacute;sonne&nbsp;inlassablement sur la plate-forme, &agrave; cela se rajoute le mart&egrave;lement de l&#039;accoudoir par la jeune souveraine, traduisant&nbsp;son impatience.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>D&#039;un bond, elle se redresse de son assise.</em></font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Bon ! Cela avance ?</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#e8b6ef">Madame, nous y sommes presque, nos analyses du secteur seront bient&ocirc;t disponibles. L&#039;analyse est d&eacute;j&agrave; &agrave; 95 %, d&#039;ici quelques minutes, nous pourrons, vous indiquez le syst&egrave;me du signal</font>&quot; r<em><font color="#ffffff">&eacute;pond l&#039;</font><font color="#e8b6ef">op&eacute;ratrice premi&egrave;re&nbsp;classe</font><font color="#ffffff">, tous en gardant les yeux riv&eacute;s sur son &eacute;cran.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#5593bd">Y&uuml;na</font><font color="#ffffff"> s&#039;appr&ecirc;te &agrave; r&eacute;pondre, mais </font><font color="#d9f4ff">Naka</font><font color="#ffffff"> prit la parole.</font></em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#d9f4ff">Madame, un Com X du commandant Elendil. Je pense que vous devriez r&eacute;pondre.</font>&quot;</div><div class="post_line"><em><font color="#ffffff">La garde lui tend la tablette holographique.</font></em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Bien ! .... Hum..</font>.&quot;</div><div class="post_line"><font color="#ffffff"><em>Elle s&#039;assit sur son si&egrave;ge, pose la tablette dans une fente se situant sur la sellette. Un &eacute;cran translucide ce place devant l&#039;imp&eacute;ratrice. L&agrave;, voil&agrave; qui tapote sur l&#039;&eacute;cran, apr&egrave;s quelques secondes de r&eacute;flexion le message fut transmis &agrave; son destinataire.</em></font></div><div class="post_line"><font color="#ffffff"><em>Puis elle retourne &agrave; son mart&egrave;lement. L&#039;air d&eacute;pit&eacute; par sa longue attente, s&#039;il a bien une chose qu&#039;elle d&eacute;teste c&#039;est bien cela, attendre sans rien faire.</em></font></div><div class="post_line"><font color="#ffffff"><em>Puis...</em></font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#e8b6ef">Madame, nous avons trouv&eacute;</font>&quot; <font color="#ffffff"><em>l&#039;op&eacute;ratrice marque une pause</em></font> &quot;<font color="#e8b6ef">Oui, c&#039;est bien cela, le signal vient du syst&egrave;me 3.</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Bien, c&#039;est d&eacute;j&agrave; un bon d&eacute;but. Quelle coordonn&eacute;e ?</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#e8b6ef">Nous ne savons pas, quelques choses nous emp&ecirc;chent localiser plus pr&eacute;cis&eacute;ment le signal. Il faudrait que nous soyons plus proches.</font>&quot;</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Soit ! Timonier direction le syst&egrave;me 3</font>&quot;</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Y%C3%BCna">Cdte. Y&uuml;na</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/11260.jpg" style="width:85px;height:128px" alt="Avatar" /><br />23/08/1021 ETU 22:56<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D287156', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal287155')">Détails</a> <a href="javascript:warnpost(287155)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal287155" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=287155',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Secteur 2, syst&egrave;me 3 orbites stationnaires </font><font color="#ff857a">S&aelig;hr&iacute;mnir</font><font color="#ffffff">, plan&egrave;te glaci&egrave;re.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em><a href="https://www.youtube.com/watch?v=s6i6qQlqVlQ" target="_blank" rel="nofollow"><u><font size="3">Le signal</font></u></a>&nbsp;devient plus net, les op&eacute;rateurs calibres les sonars afin de localiser la position exacte de l&#039;&eacute;mission. Fixant leurs &eacute;crans des yeux, il s&#039;acharne sur les boutons de leurs tableaux de bord, la cadence rapide.</em></font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#fbb8ec">Madame, nous avons trouv&eacute; ! Le signal est &eacute;mis d&#039;un objet non identifi&eacute; se trouvant dans l&#039;orbite de la plan&egrave;te Ak&#039;Hulle.</font>&quot; <font color="#ffffff"><em>L&#039;op&eacute;ratrice de premi&egrave;re classe avait fait un bond de son si&egrave;ge.</em></font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Bien des informations sur cette plan&egrave;te ?</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#fbb8ec">Eh bien, c&#039;est une plan&egrave;te habit&eacute;e, elle est &agrave; la coordonne 3 du syst&egrave;me... Il semblerait que le commandant Stinger en soit le propri&eacute;taire Madame !</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Op&eacute;rateur ouvrez un canal de communication externe. Nous allons contacter le commandant Stinger pour lui demander la permission d&#039;entre dans la zone orbitale de cette&nbsp;plan&egrave;te</font>.&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Bonjour commandant Stinger !</font></div><div class="post_line"><font color="#5593bd">Je tenais &agrave; vous remercier </font><strong><font color="#ffdbbb">[confidentiel]</font></strong><font color="#5593bd"> encore &eacute;t&eacute; fait.</font></div><div class="post_line"><font color="#5593bd">Mais si je vous contacte aujourd&#039;hui, c&#039;est pour une tout autres raisons.</font></div><div class="post_line"><font color="#5593bd">Il y a de cela 3 cycles, lors de notre visite officielle de la capital galactique, nous avons per&ccedil;u un faible signal provenant du secteur II.</font></div><div class="post_line"><font color="#5593bd">Analyse du signal </font><strong><font color="#ffdbbb">[confidentiel]</font></strong><font color="#5593bd"> envoy&eacute; afin de chercher la provenance.</font></div><div class="post_line"><font color="#5593bd">Je vous remercie de votre attention</font>.&quot;</div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Une r&eacute;ponse plus que favorable nous parviens du Commandants Stinger, c&#039;est &agrave;&nbsp;lors que le croiseur amiral Takoyaki 8, se mis en route vers la plan&egrave;te.</font></em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Y%C3%BCna">Cdte. Y&uuml;na</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/11260.jpg" style="width:85px;height:128px" alt="Avatar" /><br />28/08/1021 ETU 00:17<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal287240')">Détails</a> <a href="javascript:warnpost(287240)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal287240" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=287240',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Secteur 2, syst&egrave;me 3, orbites plan&eacute;taires </font><font color="#ff857a">Ak&#039;hulle</font><font color="#ffffff">.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>L&#039;imp&eacute;ratrice s&#039;est plac&eacute; derri&egrave;re l&#039;op&eacute;ratrice premi&egrave;re classe pour ne rien perdre de leur d&eacute;couverte.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#5593bd">C&#039;est l&agrave; !</font><font color="#ffffff">&quot; </font><font color="#5593bd"><em>Y&uuml;na</em></font><font color="#ffffff"><em> pointe du doigt un point sur l&#039;&eacute;cran du tableau de bord.</em> &quot;</font><font color="#5593bd">Essaye de rapprocher la sonde et analyser les mat&eacute;riaux, la taille, et s&#039;il se trouve de l&#039;armement sur cet objet</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#fbb8ec">Bien madame !</font><font color="#ffffff">&quot; <em>L&#039;op&eacute;ratrice pris en charge les demande et informe sa sup&eacute;rieure des r&eacute;sultats au fur et &agrave; mesure des r&eacute;ponses de la sonde.</em> &quot;</font><font color="#fbb8ec">Elle est compos&eacute;e de titaneet d&#039;acier &agrave; 56 %, de poly-paraph&eacute;nyl&egrave;ne t&eacute;r&eacute;phtalamide &agrave; 20 % principalement en protection externe des modules, et 24 % d&#039;alliage autres comme l&#039;aluminium ou la fibre de carbone, en ce qui concerne l&#039;ext&eacute;rieur... La sonde nous rapporte une taille de 4,9 pieds de longueur pour 2,6 pieds de largeur.</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#5593bd">Je vois, es une sonde nouvelle g&eacute;n&eacute;ration ? Ou vaisseaux d&#039;espionnage qui serai ind&eacute;tectable ?</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#fbb8ec">Je ne sais pas, il semble que la configuration soit nouvelle. Je n&#039;ai jamais rien vue de semblable, une sorte de camouflage se met en place quand nos sondes s&#039;&eacute;loigne de l&#039;objet.</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#5593bd">Peut-elle le ramener sur le vaisseau ?</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#fbb8ec">Non, la force de traction de la sonde n&#039;est pas essay&eacute;e puissante, il faut envoyer un de nos vaisseaux tracteur pour le ramener. Mais sans savoir l&#039;identit&eacute; de cet objet cela peut-&ecirc;tre dangereux !</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#d9f4ff">Naka</font><font color="#5593bd"> avec moi</font><font color="#ffffff">&quot; <em>l&#039;imp&eacute;ratrice se dirige vers l&#039;ascenseur de la passerelle,</em> &quot;</font><font color="#5593bd">nous allons le chercher !</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#d9f4ff">Madame, vous n&#039;y pensiez pas, dois-je vous rappeler que vous avez loup&eacute; tous les examens de pilotages ! Je ne vous...</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><em><font color="#5593bd">Y&uuml;na </font><font color="#ffffff">lui coupe l parole</font></em><font color="#ffffff"> &quot;, </font><font color="#5593bd">c&#039;est pour cela que tu m&#039;accompagnes, il me semble que tu as &eacute;t&eacute; major de ta promo, et que tu as obtenu les meilleurs r&eacute;sultats de pilotage ! Un techniciens tracteur te servira de copilote, je compte bien voire cette chose de mes yeux</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Y%C3%BCna">Cdte. Y&uuml;na</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/11260.jpg" style="width:85px;height:128px" alt="Avatar" /><br />09/09/1021 ETU 23:56<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D287449', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal287448')">Détails</a> <a href="javascript:warnpost(287448)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal287448" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=287448',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Apr&egrave;s le rapatriement de l&#039;objet sur Takoyaki 8, l&#039;&eacute;quipage quitte le secteur 2 dans la pr&eacute;cipitation. Seule l&#039;imp&eacute;ratrice connaissait la destination, pour cela, la passerelle f&ucirc;t vid&eacute;e des op&eacute;rateurs non-essentiels, et toute indication sur le voyage ne sortit pas de ces quatre murs.</font></em></div><div class="post_line">{<em><font color="#ffffff">quelques heures plutard</font></em>}</div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Espace galactique inconnu, orbite stationnaire {</font><font color="#ff0000">CONFIDENTIELLE</font><font color="#ffffff"><strong>}</strong> abord du vaisseau scientifique Intr&eacute;pide.</font></em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Y&uuml;na</font><font color="#ff56ff"> nous avons plac&eacute; l&#039;objet dans la salle 131B, nous vous attendons pour proc&eacute;der &agrave; son inspection.</font>&quot; <font color="#ffffff"><em>Lance une des scientifique, une jeune fille d&#039;&agrave; peine 25 ans qui paraissaient 10 de moins.</em></font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Bien, je me change et je vous rejoins.</font>&quot;</div><div class="post_line"><em><font color="#ffffff">La jeune fille s&#039;appr&ecirc;te &agrave; sortir de la pi&egrave;ce quand </font><font color="#5593bd">Y&ucirc;na</font><font color="#ffffff"> l&#039;interpelle.</font></em></div><div class="post_line">&quot;<font color="#5593bd">Surtout </font><font color="#ff56ff">Yuri</font><font color="#5593bd">, ne touchez &agrave; rien tant que je ne suis pas l&agrave; !</font>&quot;</div><div class="post_line"><font color="#ff56ff">Yuri</font> <em><font color="#ffffff">hoche la t&ecirc;te est dispara&icirc;t</font>.</em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">{...}</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Y%C3%BCna">Cdte. Y&uuml;na</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/11260.jpg" style="width:85px;height:128px" alt="Avatar" /><br />10/09/1021 ETU 02:12<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal287456')">Détails</a> <a href="javascript:warnpost(287456)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal287456" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=287456',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Salle 131B de l&#039;intr&eacute;pide.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Y&ucirc;na a abandonn&eacute; son &eacute;ternel kimono, pour une combinaison blanche, munie de protection aux points sensibles de son corps. Il n&#039;&eacute;tait pas ais&eacute; de travailler avec cet attirail sur le dos. Mais la s&eacute;curit&eacute; prim&eacute;e &agrave; cet instant !</em></font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Bien commen&ccedil;ons, Yuri, tu te charges de l&#039;avant</font>&quot; <font color="#ffffff"><em>montrant ce qui lui sembler le devant de l&#039;appareil, </em></font>&quot;<font color="#5593bd">je me charge de cette partie qui me semble &ecirc;tres l&#039;arri&egrave;re, vous deux&quot; </font><font color="#ffffff"><em>d&eacute;signant deux des assistantes</em></font> &quot;<font color="#5593bd">vous prenez chacun un c&ocirc;t&eacute;, chercher le moindre petit interstice, bouton ou autre qui vous semble &eacute;trange. Bien s&ucirc;re personne ne fait rien tant que je n&#039;ai pas valid&eacute; la man&oelig;uvre</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#4cea5e">Bien madame !</font>&quot; <em><font color="#ffffff">Ont-ils r&eacute;pondu toutes en choeur.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#5593bd">Y&ucirc;na</font><font color="#ffffff"> commence &agrave; laisser ses mains gliss&eacute;es le long de la carlingue, la douceur allier &agrave; la pr&eacute;cision de ses gestes lui laisser que peu de place au doute, il n&#039;y ait pas la moindre trace d&#039;ouverture ou de verrou de son c&ocirc;t&eacute; de l&#039;appareillage.</font></em></div><div class="post_line"><font color="#ffffff"><em>Elle se redressa l&#039;air d&eacute;&ccedil;u, recule pour prendre de la distance sur l&#039;objet. Ses yeux cherch&eacute;s, la moindre faille, le moindre petit indice.</em></font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#ff56ff">Y&uuml;na, ici. La sensation est diff&eacute;rente</font>&quot; <em>Un sourire aux l&egrave;vres de la jeune <font color="#ff56ff">Yuri</font>.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>L&#039;imp&eacute;ratrice se d&eacute;place vers sa s&oelig;ur cadette, et touche l&#039;endroit indiqu&eacute;.</em></font></div><div class="post_line">&quot;<font color="#5593bd">Effectivement, on sent quelque chose, mais c&#039;est &eacute;trange</font>&quot; <font color="#ffffff"><em>elle semble r&eacute;fl&eacute;chir </em></font>&quot;<font color="#5593bd">comment faire pour activer ... &Ccedil;a, est une sorte de bouton ?! Hum...</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ff56ff">Le </font><font color="#fffa1e">氣 </font><font color="#ff56ff">peux peut-&ecirc;tre l&#039;ouvrir, si tu arrives &agrave; envoyer une impulsion de </font><font color="#ffff44">氣 </font><font color="#ff56ff">&agrave; cet endroit, il faut tenter !</font>&quot;</div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Les mains plac&eacute;es sur la plaque, l&#039;imp&eacute;ratrice se concentre essayant de focaliser son</font> <font color="#ffff44">氣</font> <font color="#ffffff">sur ses mains. La concentration a son maximum, on peut voir ses mains trembler l&eacute;g&egrave;rement, mais malgr&eacute; tous ses efforts rien ne se passe.</font></em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Je vois, toujours autant de mal avec ton</font> <font color="#ffff44">氣</font> <font color="#5593bd">onissan. Laisse-moi essayer, sinon je n&#039;y arrive pas, on appellera </font><font color="#d9f4ff">Naka</font><font color="#5593bd">.</font>&quot;</div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Y&uuml;na</font> <font color="#ffffff"><em>recule pour laisser la place &agrave; Yuri, on peut y voir une certaine fiert&eacute; dans le regarde de l&#039;imp&eacute;ratrice, de voir sa petite s&oelig;ur cadette travailler avec acharnement, elle qui faisait toujours en sorte de s&eacute;cher les cours de 氣 ou de science dont elles avaient d&ucirc; &eacute;tudier pendant de longues heures.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">{...}</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Y%C3%BCna">Cdte. Y&uuml;na</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/11260.jpg" style="width:85px;height:128px" alt="Avatar" /><br />17/09/1021 ETU 02:23<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal287649')">Détails</a> <a href="javascript:warnpost(287649)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal287649" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=287649',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#f012be">Yuri</font><font color="#ffffff"> concentre son </font><font color="#fffa1e">氣</font><font color="#ffffff"> sur l&#039;extr&eacute;mit&eacute; de ses doigts, de minuscule &eacute;clair d&#039;un violet translucide parcourt la plaque. Un cliquetis retenti, puis une l&eacute;g&egrave;re fente apparue, l&#039;ouverture s&#039;agrandit et un objectif en sort.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Un hologramme s&#039;alluma, un jeune homme brun un visage fig&eacute; appara&icirc;t.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#e86e04">Salutation Commandant, je me pr&eacute;sente R.2.6.2 conseil personnel de la commandante Erika. Si vous avez trouv&eacute; cette capsule, c&#039;est que vous avez capt&eacute; le signal !</font></div><div class="post_line"><font color="#e86e04">F&eacute;licitations, vous avez mis 96 cycles pour nous trouver.&quot; </font><font color="#ffffff"><em>L&#039;hologramme rit</em></font><font color="#e86e04"> &quot;Bon cela n&#039;&eacute;tant pas le moment de faire des blagues, vous venez de trouver la capsule de stase d&#039;Erika. Vous pourrez constater qu&#039;elle est toujours vivante d&#039;une certaine mani&egrave;re. Vous trouverez dans cette cl&eacute;&quot;</font><em><font color="#ffffff"> une cl&eacute; USB sorti de la capsule sur le c&ocirc;t&eacute; de l&#039;hologramme</font></em><font color="#e86e04"> &quot;toutes les informations m&eacute;dicales de la commandante, des &eacute;chantillons de sang, plaquettes, et moelle osseuse, tous &eacute;tait soigneusement&nbsp;plac&eacute; sous les coter de la capsule, faite le n&eacute;cessaire pour les conserver et les &eacute;tudier fin de ramener la commandante au pr&eacute; des siens en <strong>VIE</strong>. Sur la cl&eacute;, vous trouverez mon emplacement actuel tenu secret pour des raisons de s&eacute;curit&eacute;, j&#039;esp&egrave;re que vous avez de bon informaticien</font><font color="#ffffff">&quot; <em>R2.6.2 souri et dispara&icirc;t.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Y&uuml;na prend la cl&eacute; et la tend &agrave; l&#039;une des assistantes.</em></font></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#5593bd">Prends ceux-ci, et apporte-le au service informatique de la plateforme Delta ! Et fait moi parvenir tous les d&eacute;tails au plus vite. Yuri, je te laisse te charger des &eacute;chantillons, je te tiens au courant de la suite pour la capsule, en attendant ne prenais aucun risque et &eacute;viter les voies galactique les plus emprunt&eacute;es, rester discret. Je vais contacter quelques commandants du secteur 2 pour avoir plus ample information sur cette Erika.</font><font color="#ffffff">&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>L&#039;imp&eacute;ratrice quitte l&#039;intr&eacute;pide, bien loin d&#039;&ecirc;tre sereine face &agrave; cette d&eacute;couverte.</em></font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15852&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15852" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15852" name="d_reply_15852" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15852');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15852'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la d&eacute;couverte de la galaxie</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

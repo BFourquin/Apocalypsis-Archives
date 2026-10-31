@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17546 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Stand by</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Stand by</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />25/04/1025 ETU 17:58</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313340', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313339')">Détails</a> <a href="javascript:warnpost(313339)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313339" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313339',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#2ecc40">Syt&egrave;me 15 : vaisseau de transport de mat&eacute;riaux de construction en route pour Sablion</font></div><div class="post_line"></div><div class="post_line">Le vaisseau commen&ccedil;ait &agrave; approcher de la plan&egrave;te, bient&ocirc;t, enfin, ils pourraient d&eacute;charger, pass&eacute; 2 mois dans l&#039;espace, il serait bon de prendre enfin un peu d&#039;atmosph&egrave;re chlor&eacute; pur, ce ne serait pas si mal, les Xydians avaient h&acirc;te de d&eacute;barquer.</div><div class="post_line"></div><div class="post_line">Kabe un trentenaire, Xydian d&#039;&eacute;quipage, les cheveux verts coup&eacute;s en brosse, v&ecirc;tu de vieilles bottes de cuir claires, un pantalon de toile tout aussi us&eacute; qui devenait vert p&acirc;le a force du temps, des poches &agrave; diff&eacute;rentes hauteurs, un tee short gris,&nbsp;&eacute;tait impatient, &agrave; l&#039;id&eacute;e de d&eacute;barquer bient&ocirc;t il&nbsp;s&#039;en frottait les mains, le Commandant avait promis une longue p&eacute;riode de d&eacute;tente, &agrave; l&#039;id&eacute;e de fouler un vrai sol, &eacute;voluer sans parois autour de soi serait un soulagement pour tous les membres d&#039;&eacute;quipage et puis enfin rencontrer de nouvelles t&ecirc;tes n&#039;&eacute;tait pas pour lui d&eacute;plaire loin de l&agrave;.</div><div class="post_line"></div><div class="post_line">Il gagna alors la salle de commandement, ici, tous le monde &eacute;tait affair&eacute;, &agrave; diverses t&acirc;ches, le commandant concentr&eacute; ... Kabe observa l&#039;espace par l&#039;immense verri&egrave;re, il voyait au loin la plan&egrave;te Sablion, bient&ocirc;t, il&nbsp;seraient plac&eacute;s en orbite en attendant l&#039;autorisation de p&eacute;n&eacute;trer dans l&#039;atmosph&egrave;re de la plan&egrave;te et de s&#039;y poser, il r&ecirc;va&nbsp;plus que ce qu&#039;il imaginait, se diriger vers un bar qu&#039;il connaissait bien, et y commander un nectar en attendant de retrouver une amie, la plus belle Xydianne &agrave; ses yeux, belle ? Elle l&#039;&eacute;tait r&eacute;ellement....3 ans qu&#039;ils se connaissaient d&eacute;j&agrave; ...Cela finirait t&ocirc;t ou tard par une belle c&eacute;r&eacute;monie ...</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center"><font size="4"><font color="#ffff00">https://www.youtube</font><font color="#ffa339">.com/watch?</font><font color="#ff0000">v=TB2piLyPNk8&amp;list</font><font color="#ffa500">=RDTB2piL</font><font color="#ffff00">yPNk8&amp;start_radio=1</div><div class="post_line"></font></font></div></div><div class="post_line"></div><div class="post_line">Il en &eacute;tait l&agrave; de ses pens&eacute;es lorsque, il crut que la plan&egrave;te se d&eacute;doublait...2 Sablion ? C&#039;&eacute;tait impossible ! Pourtant, il y avait bien&nbsp; 2 points jaunes ! Kabe &eacute;carquilla les yeux pour observer plus attentivement, sortant brusquement de sa r&ecirc;verie ...</div><div class="post_line">2 Sablion ? ...Non ! L&#039;un des points jaunes, lui s&#039;avan&ccedil;ait et il s&#039;avan&ccedil;ait plut&ocirc;t rapidement, ....Si rapidement, Kabe mit un temps avant de comprendre que ...&quot;La chose&quot; fon&ccedil;ait droit dans leur direction ...Grandissant au fur et &agrave; mesure ...</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Commandant !! On nous attaque !!</font> Fit il&nbsp;</div><div class="post_line"></div><div class="post_line">Tous les regards converg&egrave;rent vers l&#039;objet en question&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Bouclier !</font> Fit&nbsp;e Commandant<font color="#44b8ff"> Qu&#039;est ce que c&#039;est que c&#039;est que &ccedil;a, il est fou celui l&agrave; non ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Les boucliers apparurent, tandis que l&#039;objet apparaissait plus nettement maintenant,, il n&#039;&eacute;tait pas que jaune, l&#039;&eacute;picentre en &eacute;tait plus oranger voir m&ecirc;me rouge, il semblait se d&eacute;gager de cette forme floue, des sortes de vapeurs ou de flammes cette chose semblait foncer droit sur eux !</div><div class="post_line"></div><div class="post_line">Tous &eacute;taient rassur&eacute;s, les boucliers en termes g&eacute;n&eacute;ral, &eacute;taient tous fiables, donc aucun danger....Normalement ! ...Mais l&agrave; ...Ils &eacute;taient dans l&#039;erreur, mais comment auraient ils pu le savoir ...</div><div class="post_line"></div><div class="post_line">La chose s&#039;avan&ccedil;ant, malgr&eacute; le flou, ils purent distinguer vaguement ce qui pouvait ressembler &agrave; une t&ecirc;te ! Filant &agrave; toute allure droit sur eux !&nbsp;</div><div class="post_line"></div><div class="post_line">l&#039;un des Xydians d&#039;&eacute;quipage s&#039;exclama : <font color="#7fdbff">Mais qu&#039;est ce que c&#039;et que cet &eacute;nergum&egrave;ne ? Il est dingue lui !</font></div><div class="post_line"></div><div class="post_line">L&#039;offici&egrave;re radar fit <font color="#c0f0c6">Curieux ! je ne le d&eacute;tecte m&ecirc;me pas au radar !! Il va heurter notre champs de force Commandant...Ca y est il est dessus il ...<strong>HAAAA !</strong></font></div><div class="post_line"></div><div class="post_line">Tous le monde hurla en m&ecirc;me temps, la forme, la chose venait de traverser le champs de force comme si de rien n&#039;&eacute;tait , p&eacute;n&eacute;tra le vaisseau, en faisant une large br&egrave;che dans la coque, tous le monde hurla de terreur, tous bouscul&eacute;s violemment, les sir&egrave;nes d&#039;alarme se d&eacute;clench&egrave;rent, d&#039;&eacute;norme d&eacute;g&acirc;ts dans le vaisseau, le Commandant hurla : <font color="#44b8ff"><font size="4"><strong>AUX NAVETTES DE SECOURS&nbsp; ! DE&nbsp; SUITE&nbsp; !!&nbsp;</strong></font></font></div><div class="post_line"></div><div class="post_line">Ce fut la panique alors que une forme incandescente et vaguement humaine avait travers&eacute; le vaisseau de part en part et &eacute;tait ressortie de l&#039;autre cot&eacute;, nouveau choc donc, cette chose continua sa course comme si rien ne s&#039;&eacute;tait pass&eacute;...</div><div class="post_line"></div><div class="post_line">Mais dans le vaisseau c&#039;&eacute;tait l&#039;incompr&eacute;hension totale, l&#039;offici&egrave;re radar avait bien tent&eacute; de communiquer....Sans aucun r&eacute;sultat, Kab eu de la chance, il &eacute;tait rapide et prompte &agrave; r&eacute;agir, il trouva sans mal une navette a 8 places, derri&egrave;re lui, tonnaient des explosions en s&eacute;rie, finalement, lui et les personnes qui l&#039;accompagnaient, allaient bien atteindre Sablion mais d&#039;une dr&ocirc;le de fa&ccedil;on, quand &agrave; la cargaison ... Inutile d&#039;y penser maintenant, mais de multiples questions lui traversait l&#039;esprit, qu&#039;est ce qui les avait travers&eacute;s ? Et pourquoi ? pourquoi aucune r&eacute;ponse, s&#039;en &eacute;tait il aper&ccedil;u au moins et d&#039;o&ugrave; venait il ? Sablion avait ils d&eacute;tect&eacute;s quelque chose ?&nbsp;</div><div class="post_line"></div><div class="post_line">il commanda l&#039;&eacute;quipage, il savait comment piloter cet engin, il se d&eacute;gag&egrave;rent alors que le vaisseau &eacute;tait en flamme de partout, des gigantesques explosions, il pouvait dire qu&#039;il avait eu de la chance, beaucoup de chance m&ecirc;me ....La navette arriverait, elle, &agrave; bon port, c&#039;&eacute;tait sur maintenant, il observa le point jaune filant, presque imperceptible d&eacute;sormais ...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />26/04/1025 ETU 09:46</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313350', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313349')">Détails</a> <a href="javascript:warnpost(313349)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313349" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313349',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">l&#039;entit&eacute; filait dans l&#039;espace, elle n&#039;avais pas de nom ? Elle s&#039;en fichait, elle avait travers&eacute; un vaisseau et fait des victimes ? elle s&#039;en d&eacute;lectait, elle en ferait encore d&#039;autres ? Elle s&#039;en r&eacute;jouissait mais ce quelle pr&eacute;f&eacute;rait c&#039;&eacute;tait de pouvoir se d&eacute;lecter de toutes leurs haines, ressentiments, guerres, jalousies &eacute;go&iuml;sme, crimes, agressions, tortures, tricheries, escroqueries, sadismes, mensonges, vengeances.&nbsp;</div><div class="post_line"></div><div class="post_line">Et tout ce que pourrait porter cette galaxie comme actions mauvaises et m&eacute;chantes mais il lui fallait &ecirc;tre patient, se mettre en stand by pendant un long moment, pour le moment, il lui fallait un refuge ... Un refuge ou patienter, longtemps, immobile, son esprit lui, voyagerais mais pour l&#039;instant .... Il vola toujours &agrave; son allure, il rep&eacute;ra une plan&egrave;te mais ....Trop &eacute;vidente, elle serait un jour colonis&eacute;e, une Lune ? Il devait s&#039;en m&eacute;fier ...</div><div class="post_line"></div><div class="post_line">Le vide de l&#039;espace ne le d&eacute;rangeait nullement, Il lui fallait autre chose, pas une plan&egrave;te, pas une lune, non autre chose !&nbsp; Autre chose comme ....</div><div class="post_line">Il arriva devant quelque chose d&#039;int&eacute;ressant, un ast&eacute;ro&iuml;de creux, Voil&agrave; l&#039;id&eacute;al..</div><div class="post_line">Il diminua sa vitesse et rentra...</div><div class="post_line"></div><div class="post_line">Il reprit corps et commen&ccedil;a &agrave; sourire de toute sa m&acirc;choire, regarda de tout cot&eacute;, un sourire sadique naturel sur son visage...</div><div class="post_line"></div><div class="post_line">2 m 50 de haut, un corps &eacute;cailleux rouge, des pieds et des mains griffus, des griffes de pr&egrave;s de 7 cm&nbsp; deux cornes sur la t&ecirc;te, ses yeux incandescents jaunes,&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center"><font size="4"><strong><font color="#ffff00">&nbsp;https://i.pinimg.com/736x/bb</font><font color="#ff0000">/d6/d8/bbd6d87b94914</font><font color="#ffff00">4a98152b9971a0edd69.jpg</div><div class="post_line"></font></strong></font></div></div><div class="post_line">Il suivi un boyau &agrave; l&#039;int&eacute;rieur de l&#039;Ast&eacute;ro&iuml;de, trouva une caverne int&eacute;rieur, un rauquement de satisfaction&nbsp;, il s&#039;appuya contre la paroi, et sourit, bient&ocirc;t, la galaxie allait s&#039;illuminer, de guerres et de conflits, il fallait juste attendre le bon moment pour ensuite aspirer tout cela pour gagner de la puissance, encore plus de puissance ....Toujours plus ! ...<font size="4">Plus</font>...<font size="3">Plus</font>...<font size="2">Plus</font>...<font size="1">plus</font>&nbsp;....</div><div class="post_line"></div><div class="post_line">Musique de convenance : (traduction disponible dans les param&egrave;tres sur youtube)&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center"><font size="4"><strong><font color="#9df9ff">https://www.youtube.com/watch?v</font><font color="#ffa339">=aDaOgu2CQtI&amp;list=RDaD</font><font color="#9df9ff">aOgu2CQtI&amp;start_radio=1</font></strong></font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17546&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17546" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17546" name="d_reply_17546" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17546');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17546'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Stand by</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

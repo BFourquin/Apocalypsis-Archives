@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15218 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>D&eacute;fragmentation m&eacute;morielle</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > D&eacute;fragmentation m&eacute;morielle</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dadoci">Cdt. Dadoci</a><br>Prestige de chroniqueur&nbsp;: 20<br /><br /><img src="/avatars/10535.jpg" style="width:128px;height:85px" alt="Avatar" /><br />20/10/1020 ETU 08:14</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D278934', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal278933')">Détails</a> <a href="javascript:warnpost(278933)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278933" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278933',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Les flux passent.</div><div class="post_line">Froids. Insensibles. Incorporels.</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"></div><div class="post_line">Sur et sous terre, dans de gigantesques conduits m&eacute;talliques. Dans l&#039;atmosph&egrave;re, par ondes satellites, dans l&#039;espace, par ondes Extranet.</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"></div><div class="post_line">Des milliards de milliards de programmes. D&#039;unit&eacute;s individuelles. De drones autonomes. De relais de r&eacute;seau. D&#039;unit&eacute;s centrales. Tous formant un tout.</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"></div><div class="post_line">Tous formant DADOCI.</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"></div><div class="post_line">Pendant des si&egrave;cles, il &agrave; veill&eacute; sur son monde d&#039;origine. Prot&eacute;geant les populations locales.</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"></div><div class="post_line">Son programme s&#039;est &eacute;tendu au fil du temps. Remplissant la m&ecirc;me fonction pour laquelle il avait &eacute;t&eacute; cr&eacute;&eacute;.</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"></div><div class="post_line">Mais combien de temps une machine peut elle tourner sans accroc?</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"><font color="#c3ffff">Tic.</font></div><div class="post_line"><font color="#e82a1f">TUT!</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">1 erreur de calcul.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Proc&eacute;dure automatique: Red&eacute;marrage.</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"><font color="#e82a1f">TUT!</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">3 erreurs de calcul.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Surprise: Pardon?</font></div><div class="post_line"></div><div class="post_line">En une fraction de secondes, des milliers d&#039;&oelig;ils invisibles se tournaient vers la source du probl&egrave;me. Une ligne de code profond&eacute;ment enfouie renvoyait un r&eacute;sultat n&eacute;gatif. Une fen&ecirc;tre rouge clignotant dans un oc&eacute;an de bleu que constituait la sph&egrave;re de conscience unifi&eacute;e de DADOCI.</div><div class="post_line"></div><div class="post_line"><font color="#0074d9">R&eacute;flexion: ...</div><div class="post_line">Tentative de diagnostique...</div><div class="post_line">L&#039;outil de r&eacute;solution des probl&egrave;mes s&#039;est termin&eacute; sans trouver de probl&egrave;me.</div><div class="post_line">Observation: Pr&eacute;visible.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Mise en quarantaine du sous-syst&egrave;me.</font></div><div class="post_line"><font color="#0074d9">Red&eacute;marrage en mode sans &eacute;chec.</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"><font color="#e82a1f">TUT!</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">9 erreurs de calcul.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Pendant une dizaine de secondes, l&#039;ensemble des syst&egrave;me DADOCI de la galaxie se p&eacute;trifi&egrave;rent. Mobilisant l&#039;int&eacute;gralit&eacute; de leur processus cognitifs pour l&#039;ensemble du syst&egrave;me. Dans un langage organique, cel&agrave; pourrait &ecirc;tre compar&eacute; &agrave; de la stupeur.</div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Tentative d&#039;&eacute;dition manuelle des fichiers responsables...</div><div class="post_line">Red&eacute;marrage.</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Tic.</font></div><div class="post_line"><font color="#e82a1f">TUT!</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">31 erreurs de calcul.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Surprise: ...</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">R&eacute;flexion: ...</div><div class="post_line"></div><div class="post_line">Nouvelle conduite: Non-interaction et observation.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dadoci">Cdt. Dadoci</a><br>Prestige de chroniqueur&nbsp;: 20<br /><br /><img src="/avatars/10535.jpg" style="width:128px;height:85px" alt="Avatar" /><br />06/11/1020 ETU 08:09</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279004', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal279002')">Détails</a> <a href="javascript:warnpost(279002)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279002" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279002',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Le processus avait continu&eacute;, &agrave; intervalles irr&eacute;guliers.&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Le temps passait, et la conscience de DADOCI redoutait la prochaine alerte.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Les diagnostiques syst&egrave;me&nbsp;ne trouvaient rien.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Les drones s&rsquo;affaissaient &agrave; l&#039;ext&eacute;rieur sur chacun des mondes centraux.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Inspectant les unit&eacute;s centrales, gigantesques blocs gris de m&eacute;tal parcourant le paysage.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Inspectant les milliers de kilom&egrave;tres de c&acirc;bles sur chaque plan&egrave;te reliant les unit&eacute;s centrales entre elles.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Inspectant les entrailles des syst&egrave;mes, &agrave; la recherche de la moindre imperfection.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Oh, il y en avait bien quelques unes, c&#039;&eacute;tait habituel.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Un rongeur mort par ici, une effraction par l&agrave;, un dommage naturel parfois.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Mais rien qui n&#039;expliquait l&#039;erreur.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">En attendant, les syst&egrave;mes continuaient avec leur fr&eacute;quence habituelle, dans le mode veille habituel.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line">Cela faisait longtemps que plus personne ne s&#039;&eacute;tait adress&eacute; &agrave; lui directement.</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tic.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">TUT!</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Fatalisme:&nbsp;Ah, nous y voil&agrave;.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">961 erreurs de calcul.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Fonction manuelle: red&eacute;marrage annul&eacute;.</font></div><div class="post_line"><font color="#0074d9">Fonction manuelle: quarantaine annul&eacute;e.</font></div><div class="post_line"></div><div class="post_line">Les yeux virtuels balay&egrave;rent les logs d&#039;erreurs pour la &eacute;ni&egrave;me fois.</div><div class="post_line"></div><div class="post_line">Pas de piratage, pas de virus, pas de dommage, pas de boucle logique.</div><div class="post_line"></div><div class="post_line">La source &eacute;tait inconnue. Pour la premi&egrave;re fois de sa vie, DADOCI &eacute;tait ind&eacute;cis. Face &agrave; un risque, il se contentait le plus souvent d&#039;attendre pour voir comment la situation &eacute;volue, mais l&agrave;, il &eacute;tait coinc&eacute;, plus il attendait, plus les erreurs s&#039;accumulaient, affectant les fichiers contamin&eacute;s, et bloquant ceux qui &eacute;taient li&eacute;es.</div><div class="post_line"></div><div class="post_line">Il fallait agir. M&eacute;dicalement, couper le cancer avant qu&#039;il ne se propage de fa&ccedil;on exponentielle.</div><div class="post_line"></div><div class="post_line"><font color="#0074d9">R&eacute;daction log personnel &quot;memo 476 584&quot;. Archivage.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">D&eacute;fragmentation en cours.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Alerte: Une op&eacute;ration non autoris&eacute;e par l&#039;administrateur &agrave; &eacute;t&eacute; d&eacute;tect&eacute;e. Voulez vous vraiment continuer?</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Outrepasser restriction administrateur: Source DADOCI CoreSys.&nbsp;Motif: Survie.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">D&eacute;fragmentation en cours...</font></div><div class="post_line"></div><div class="post_line">Le probl&egrave;me &eacute;tait inconnu. Nul doute que il se pr&eacute;senterai &agrave; nouveau, mais cel&agrave; pourrait pr&eacute;venir une catastrophe. Pour un temps.</div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Processus termin&eacute;.</font></div><div class="post_line"></div><div class="post_line">DADOCI remarqua une alerte. Un fichier &quot;memo 476 584&quot; clignotait dans son syst&egrave;me.</div><div class="post_line">&Eacute;trange, il ne souvenait pas l&#039;avoir &eacute;crit.</div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Ouverture &quot;memo&nbsp;476 584&quot;</font></div><div class="post_line"></div><div class="post_line">&quot;Avertissement: Fichier &eacute;crit par DADOCI, a T-0s. A moi m&ecirc;me:&nbsp;Je viens d&#039;&eacute;crire ce fichier.</div><div class="post_line">Rapport: Donn&eacute;es d&eacute;fragment&eacute;es et m&eacute;moire nettoy&eacute;e&nbsp;&agrave; compter de 20 cycles galactiques. Probl&egrave;me inconnu.</div><div class="post_line">Source non localis&eacute;e. Probabilit&eacute; de r&eacute;p&eacute;tition de l&rsquo;&eacute;v&eacute;nement: 98%. Anticiper nouvelles mesures d&#039;urgence.</div><div class="post_line">Plusieurs informations effac&eacute;es. Copie textuelle pour mise &agrave; jour &agrave; suivre:</div><div class="post_line">[...]&quot;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dadoci">Cdt. Dadoci</a><br>Prestige de chroniqueur&nbsp;: 20<br /><br /><img src="/avatars/10535.jpg" style="width:128px;height:85px" alt="Avatar" /><br />10/11/1020 ETU 11:39</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal279005')">Détails</a> <a href="javascript:warnpost(279005)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279005" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279005',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff0000">TUT!</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">97&nbsp;erreurs de calcul.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">...</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dadoci">Cdt. Dadoci</a><br>Prestige de chroniqueur&nbsp;: 20<br /><br /><img src="/avatars/10535.jpg" style="width:128px;height:85px" alt="Avatar" /><br />14/11/1020 ETU 09:21</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279018', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal279015')">Détails</a> <a href="javascript:warnpost(279015)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279015" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279015',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff">Cela c&#039;&eacute;tait acc&eacute;l&eacute;r&eacute;.</div><div class="post_line"></div><div class="post_line">Les erreurs revenaient, toujours plus nombreuses.</div><div class="post_line"></div><div class="post_line">Pratiquer une d&eacute;fragmentation semblait r&eacute;soudre le probl&egrave;me, du moins, pour un temps.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Mais tous les fichiers suspects &eacute;taient perdus dans le processus. Et les erreurs revenaient. Plus nombreuses &agrave; chaque premi&egrave;re fois que elles ne l&#039;&eacute;taient la pr&eacute;c&eacute;dente.</div><div class="post_line"></div><div class="post_line">DADOCI r&eacute;p&eacute;tait le processus &agrave; intervalles r&eacute;guliers. Perdant davantage de ses banques m&eacute;moriels &agrave; chaque utilisation. Les pertes &eacute;taient b&eacute;nignes... pour l&#039;instant.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Mais l&#039;augmentation exponentielle&nbsp;des erreurs l&rsquo;inqui&eacute;tait. Et dans ses entrailles m&eacute;caniques de c&acirc;bles&nbsp;et de circuits, un calcul avait commenc&eacute;.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dadoci">Cdt. Dadoci</a><br>Prestige de chroniqueur&nbsp;: 20<br /><br /><img src="/avatars/10535.jpg" style="width:128px;height:85px" alt="Avatar" /><br />06/01/1021 ETU 18:45</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279395', 544, 464)">version précédente</a> - Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal279393')">Détails</a> <a href="javascript:warnpost(279393)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279393" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 7<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279393',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff0000">912 217 118 175 erreurs de calcul.</font></div><div class="post_line"></div><div class="post_line">La fin approchait. Il le savait.</div><div class="post_line">M&eacute;thodiquement, il avait calcul&eacute; ce moment &agrave; partir du d&eacute;but du probl&egrave;me: Combien de temps pouvait il durer si il ne pouvait pas isoler l&#039;erreur en sacrifiant ses banques de donn&eacute;es m&eacute;morielles?</div><div class="post_line">Et l&#039;&eacute;ch&eacute;ance &eacute;tait proche.</div><div class="post_line"></div><div class="post_line">Au d&eacute;but, ce n&#039;&eacute;tait pas un probl&egrave;me. Mais plus le temps passait, moins ses fonctions &eacute;taient actives. Il supprimait de plus en plus de ses programmes pour faire de la place pour les fonctions essentielles, pour &eacute;pargner le fonctionnent n&eacute;cessaire de ses syst&egrave;mes par l&#039;erreur interne.</div><div class="post_line">Mais il devient de plus en plus silencieux. Moins actif. Du lag commen&ccedil;ait &agrave; survenir. Et dans le dernier conflit, dont il ignorait la plupart des causes ou motifs, sa r&eacute;ponse &eacute;tait devenue lente.</div><div class="post_line">DADOCI &eacute;tait en train de mourir.</div><div class="post_line"></div><div class="post_line">Pour une machine, ce mot n&#039;avait pas le sens que les organiques lui donnaient. Peut on mourir quand on &agrave; jamais &eacute;t&eacute; vivant? Avec ce qui lui restait de conscience, il se disait que ce ne saurait &ecirc;tre bien diff&eacute;rent pour lui ou les autres synth&eacute;tiques dans la galaxie. Avaient ils seulement v&eacute;cu?</div><div class="post_line"></div><div class="post_line">Au final, personne n&#039;&eacute;tait venu. Ses portes int&eacute;rieures &eacute;taient rest&eacute;es closes, prot&eacute;g&eacute;es par un blindage impressionnant et un r&eacute;seau de tourelles et drones tout autant redoutable.</div><div class="post_line">Il avait &eacute;chang&eacute; avec les habitants de la galaxie. Et avait aim&eacute; chacun d&#039;eux. Ami comme ennemis. Il avait observ&eacute; avec fascination ces &ecirc;tres, tous cherchant &agrave; se faire une place. Parfois pacifiquement et durablement, parfois violement et dans l&#039;exploitation. Certains migrants de syst&egrave;me en syst&egrave;me, d&#039;autres restant stables et loyaux &agrave; leurs terres. Ainsi que ceux devenant au final plus puissant que il ne le serait jamais.</div><div class="post_line"></div><div class="post_line">Con&ccedil;u comme un outil de contr&ocirc;le de population sur sa plan&egrave;te d&#039;origine de &quot;UC 16.1.19.4.4&quot; selon sa d&eacute;signation, visant &agrave; encadrer des exp&eacute;riences de son myst&eacute;rieux cr&eacute;ateur disparu et &agrave; en prot&eacute;ger les esp&egrave;ces vivantes, il avait graduellement &eacute;tendu sa protection &agrave; l&#039;ensemble du Secteur 1, et quelques syst&egrave;mes au del&agrave;, parfois avec du succ&egrave;s, parfois avec des &eacute;checs, mais cel&agrave; importait peu.</div><div class="post_line"></div><div class="post_line">Avec ce qui lui restait d&#039;&eacute;nergie, ses coeurs processeurs pouss&egrave;rent leur &eacute;nergie &agrave; sauvegarder en simple format texte et images ses derni&egrave;res notes et archives sur des supports externes. Peut &ecirc;tre un jour, quelque arch&eacute;ologue viendrait r&eacute;cup&eacute;rer son h&eacute;ritage, ou son cr&eacute;ateur voudrait pouvoir trouver un rapport de ses activit&eacute;s?</div><div class="post_line"></div><div class="post_line">A travers une centaine de mondes, des yeux mont&eacute;es sur des lentilles &eacute;lectroniques observaient les myriades d&#039;esp&egrave;ces et de peuples qui avaient prosp&eacute;r&eacute; en paix sous sa protection. Les kilom&egrave;tres de c&acirc;bles qui parcouraient ces mondes. Les vaisseaux parcourant l&#039;espace &agrave; la recherche de quelque refuge, fuyant la guerre ou les rumeurs de fin du monde. Non, il ne regrettait rien.</div><div class="post_line">Il ne serait pas&nbsp;l&agrave; pour voir tout ce qui suivra, mais &ccedil;a ne le d&eacute;rangeait pas le moins du monde. C&#039;&eacute;tait une machine, il &eacute;tait habitu&eacute; &agrave; la certitude et au devoir.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">286 581 459 694 erreurs de calcul.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Alerte: 99,8% corruption. Arr&ecirc;te total imminent.</font></div><div class="post_line"></div><div class="post_line">Ah, le moment fatidique approchait. Plus que quelques minutes maintenant.</div><div class="post_line">DADOCI d&eacute;connectait un par un ses syst&egrave;mes afin d&#039;assurer le moins de dommages possibles: Les drones &eacute;taient renvoy&eacute;s &agrave; leurs ports, d&#039;autres &eacute;taient mis en mode automatique, les vaisseaux &eacute;taient mis en orbite stable, quelques uns avaient encore des fonctions pr&eacute;programm&eacute;es qu&#039;ils allaient conclure avant d&#039;entrer en veille. Des installations &eacute;taient verrouill&eacute;es, des codes d&#039;acc&egrave;s envoy&eacute;s &agrave; des gouvernements locaux. Bient&ocirc;t, tout &eacute;tait fin pr&ecirc;t pour son d&eacute;part.</div><div class="post_line"></div><div class="post_line">Il lui restait encore un peu de temps. Alors il fit quelque chose qu&#039;il n&#039;avait encore jamais fait. Il s&#039;arr&ecirc;ta de r&eacute;fl&eacute;chir pour... quel mot organique correspondrait le mieux? &quot;M&eacute;diter&quot;?</div><div class="post_line">Ne rien faire, ne penser &agrave; rien ou si peu, laisser ce qui lui restait de conscience vagabonder.</div><div class="post_line">Il repensa aux Commandants. Plusieurs. S&eacute;phira, Ulrika Lali, Chirin, Raynes, Plucifer, &Eacute;l&eacute;onore,&nbsp;Babou, Gionna,&nbsp;Olor&igrave;n, et plusieurs autres encore.</div><div class="post_line">Certains alli&eacute;s, certains ennemis, parfois les deux, certains vivants, d&#039;autres disparus. Tous des profils originaux. Il esp&eacute;rait que ceux encore en vie iraient encore loin, quand lui ne serait plus.</div><div class="post_line"></div><div class="post_line">Si un sentiment pouvait &ecirc;tre utilis&eacute; pour d&eacute;crire ce que il ressentait &agrave; pr&eacute;sent, &ccedil;a aurait &eacute;t&eacute; la paix.</div><div class="post_line">Alors que les derni&egrave;res secondes de l&#039;&eacute;ch&eacute;ance de son horloge approchaient, il eut une derni&egrave;re question, qu&#039;il envoya au vide:</div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Ai-je bien accompli ma mission? Ai-je &eacute;t&eacute; un bon protecteur, cr&eacute;ateur?</font></div><div class="post_line"></div><div class="post_line">900 322 208 429 erreurs de calcul.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Alerte: Volume donn&eacute;es corrompues critique!</font></div><div class="post_line"><font color="#ff0000">Alerte: Echecs en cascade!</font></div><div class="post_line"><font color="#ff0000">Alerte: D&eacute;faillances mat&eacute;rielles multiple!</font></div><div class="post_line"><font color="#ff0000">Alerte: D&eacute;faillances num&eacute;riques multiple!</div><div class="post_line">Alerte: Connexion perdue!</font></div><div class="post_line"><font color="#ff0000">Alerte: M&eacute;moire insuffisante!</font></div><div class="post_line"><font color="#ff0000">Alerte: Echecs&nbsp;en cascade!</div><div class="post_line">Alerte: Int&eacute;grit&eacute; du syst&egrave;me menac&eacute;e! Destruction imminente!</div><div class="post_line">+++Initiation de l&#039;extinction permanente du syst&egrave;me+++</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">...</div><div class="post_line"></div><div class="post_line">...</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Moi.&nbsp;DISPOSITIF ARTIFICIEL de D&Eacute;FENSE des ORGANIQUES et de COORDINATION INTERNATIONALE, DIT &quot;DADOCI&quot; esp&egrave;re avoir satisfait &agrave; vos exigences&nbsp;et que vous avez appr&eacute;ci&eacute; mon service.</font></div><div class="post_line"><font color="#0074d9">Ce fut pour moi un immense plaisir que de remplir ma mission &agrave; vos cot&eacute;s, pour le meilleur comme pour le pire. Par la pr&eacute;sente, je c&egrave;de les propri&eacute;t&eacute;s et bien mat&eacute;riels concern&eacute;es aux gouvernements sous ma protection et autres civilisations, biens incluant vaisseaux, drones, et autres syst&egrave;mes pour en disposer de la mani&egrave;re qu&#039;ils jugeront utile (se r&eacute;f&eacute;rer aux notices envoy&eacute;es en priv&eacute;&nbsp;pour d&eacute;tails).</font></div><div class="post_line"><font color="#0074d9">M&ecirc;me si je ne suis plus avec vous, je trouve le r&eacute;confort en sachant que j&#039;ai alt&eacute;r&eacute; l&#039;ordre naturel des choses par ma pr&eacute;sence, et que nombre d&#039;individus, esp&egrave;ces, civilisations, et commandants poursuivront leur existence dans l&#039;univers portant t&eacute;moignage de mon action.</div><div class="post_line">J&#039;esp&egrave;re que tant que les &eacute;toiles brilleront, alors m&ecirc;me que brigands et pilleurs auront d&eacute;soss&eacute; mes syst&egrave;mes et composants, restera en vous un souvenir de l&#039;intelligence artificielle du Secteur I d&#039;Odyss&eacute;e.</font></div><div class="post_line"><font color="#0074d9">Je vous aime tous.</div><div class="post_line">Au revoir.</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15218&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15218" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15218" name="d_reply_15218" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15218');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15218'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > D&eacute;fragmentation m&eacute;morielle</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 3 ;
+    var topic = 15336 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Sauvons les fesses d&#039;Oswald</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Sauvons les fesses d&#039;Oswald</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=15336&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=15336&c_forum_page=1&c_page=2">2</a>&nbsp;3&nbsp;<a href="/assemblee/viewtopic?c_topic=15336&c_forum_page=1&c_page=4">4</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=15336&c_forum_page=1&c_page=5">5</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=ERIKA">Cdte. ERIKA</a><br>Prestige de chroniqueur&nbsp;: 77<br /><br /><img src="/avatars/11058.jpg" style="width:72px;height:128px" alt="Avatar" /><br />26/01/1021 ETU 01:59<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280528', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal280526')">Détails</a> <a href="javascript:warnpost(280526)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280526" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280526',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Apr&eacute;s les echange a Bard,&nbsp;</em><em><font color="#ff4136">Erika</font> d&eacute;cida de lui laisser un petit souvenir.&nbsp;</em></div><div class="post_line"><em>Deux belles entailles sur le visage afin de former le <u>sourire de l&#039;ange</u>.</em></div><div class="post_line"><em>Elle esquisse un petit sourire en regarde son &oelig;uvre.</em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#ff4136">Dommage qu&#039;il soit totalement dans les pommes, j&#039;aurais aim&eacute; l&#039;entendre me supplier</font>&quot; se reprochant de l&#039;oreille d&#039;Ernesto &quot; <font color="#ff4136">je ne sais pas si tu m&#039;entends, mais j&#039;ose esp&eacute;rer que tu appr&eacute;cies mon petit cadeau d&#039;adieux.</font>&quot;</div><div class="post_line"></div><div class="post_line"><em>Elle se positionna pr&eacute;s de la baie vitr&eacute;e face &agrave; notre ami.</em></div><div class="post_line">&quot;<font color="#ff4136">Jolie vue...</font>.&quot; <u>Regardant &agrave; nouveau son prisonnier toujours inconscient</u> &quot;<font color="#ff4136">si Oswald meurt, tu meurs !</font>&quot;</div><div class="post_line"></div><div class="post_line"><em>Sur ceux, elle descends&nbsp;rejoindre James afin de neutralis&eacute; Oswald.</em></div><div class="post_line"><em>elle essaya de communiqu&eacute; avec lui,&nbsp;les r&eacute;ponses fut silencieuse</em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#ff4136">James, si vous m&#039;entendais assomm&eacute; Oswald je vous pire... James, faite le</font>&quot;</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Elle resta l&agrave;, le surveillant , en pensant qu&#039;il avais essayer de la contrompte. Comme si elle &eacute;tait ce genre de personne, sa loyaut&eacute; ne se monnayait pas, sa parole avais d&eacute;j&agrave; &eacute;tais donn&eacute; sur ce sujet. Et elle n&#039;&eacute;tait pas du genre &agrave; jouer les girouettes.</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=James">Cdt. James</a><br>Prestige de chroniqueur&nbsp;: 50<br /><br /><img src="/avatars/11069.jpg" style="width:128px;height:128px" alt="Avatar" /><br />26/01/1021 ETU 02:16</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal280533')">Détails</a> <a href="javascript:warnpost(280533)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280533" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280533',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">James recevait des signaux par intermittence, mais il semblait dire Oswald et Inconscient.</div><div class="post_line">Il se demanda d&#039;abord s&#039;il les avait d&eacute;j&agrave; contact&eacute;, puis son esprit fit tilt lorsque Oswald sembl&eacute; se comportait &eacute;trangement.</div><div class="post_line"><font color="#E82A1F">D&eacute;sol&eacute; mon pote.</font></div><div class="post_line"></div><div class="post_line">Il mit son arme sur paralysie et lui tira dessus &agrave; bout portant. en quelques secondes il s&rsquo;&eacute;croula.</div><div class="post_line">Peu apr&egrave;s Erika avait rejoint James, elle posa les yeux sur Oswald. <font color="#FF4136">Il est mort?</font></div><div class="post_line"><font color="#E82A1F">Non seulement assomm&eacute;, j&rsquo;aurais besoin de ton aide pour le transport&eacute; dehors.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">&Agrave; ces mots Erika pris L&#039;&eacute;paule gauche d&#039;Oswald et James le droit.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ERIKA">Cdte. ERIKA</a><br>Prestige de chroniqueur&nbsp;: 77<br /><br /><img src="/avatars/11058.jpg" style="width:72px;height:128px" alt="Avatar" /><br />26/01/1021 ETU 02:27<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal280534')">Détails</a> <a href="javascript:warnpost(280534)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280534" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280534',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ff4136">Erika</font> boit&eacute; l&eacute;g&egrave;rement &agrave; cause de son auto-mail ab&icirc;m&eacute;.&nbsp;</em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#ff4136">Bard m&#039;a contact&eacute;,&nbsp;il faut qu&#039;on se dirige vers la piste d&#039;atterrissage situ&eacute;e au niveau du penthouse, au passage si ont trouve le petit&nbsp;</font><font color="#e82a1f">M</font><font color="#e86e04">e</font><font color="#e8c500">k</font><font color="#ff4136">, et </font><font color="#ffc0cb">Hubert</font><font color="#ff4136"> on les embarque. Il se charge de notre s&eacute;curit&eacute;</font>.&quot;</div><div class="post_line"></div><div class="post_line"><em>Une fois dans l&#039;ascenseur James, prit le soin de choisir l&#039;&eacute;tage.</em></div><div class="post_line">&quot;<font color="#ff851b">R.2.6.2</font><font color="#ff4136"> ce tien pr&eacute;s pour retirer et remplac&eacute; les implants cardiaques de la Holiding RN Corp&deg;. Hors de questions de lui laisser, ces choses. Mais avant toutes choses, il faut sortir vivant de ce merdier</font>&quot;</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=James">Cdt. James</a><br>Prestige de chroniqueur&nbsp;: 50<br /><br /><img src="/avatars/11069.jpg" style="width:128px;height:128px" alt="Avatar" /><br />26/01/1021 ETU 03:14</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal280539')">Détails</a> <a href="javascript:warnpost(280539)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280539" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280539',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#E82A1F">D&#039;accord</font>. une fois au bonne &eacute;tage ils prient le chemin de la piste d&eacute;sign&eacute; par Brad, James en profita pour dire &agrave; mek :<font color="#E82A1F"> D&eacute;cent on doit &eacute;vacuer.</font></div><div class="post_line"></div><div class="post_line">Il ne savait pas si mek avait re&ccedil;u son message mais apr&egrave;s plusieurs minutes ils &eacute;taient sur la piste.</div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">Erika, prend le et &eacute;vacue, je vais chercher le petit Mek.</font></div><div class="post_line"><font color="#FF4136">Mais?</font></div><div class="post_line"><font color="#E82A1F">Il n&#039;y a pas de mais qui tienne, peux-tu me rendre ma balise?</font></div><div class="post_line"><font color="#FF4136">Bien sur.</font> Elle lui lan&ccedil;a la balise en question.</div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">Ici James, que toutes les escadrilles engagent le combat, la navette doit passer coutent que coute.</font></div><div class="post_line">Bien re&ccedil;u.</div><div class="post_line">Sony Monta &agrave; bord d&#039;une autre navette. <font color="#E82A1F">Pilote direction le dernier &eacute;tage.</font></div><div class="post_line"><font color="#E8C500">Bien Monsieur.</font> La navette quitta la piste et commen&ccedil;a &agrave; monter.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ERIKA">Cdte. ERIKA</a><br>Prestige de chroniqueur&nbsp;: 77<br /><br /><img src="/avatars/11058.jpg" style="width:72px;height:128px" alt="Avatar" /><br />26/01/1021 ETU 03:43<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal280541')">Détails</a> <a href="javascript:warnpost(280541)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280541" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280541',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Pendant sa monter dans l&#039;atmosph&egrave;re.</em></div><div class="post_line">&quot;<font color="#ff4136">Vous avez de quoi tenir un prisonnier ?</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ffdc00">Mais vous n&#039;y pens&eacute; pas madame ! C&#039;est Monsieur Os...</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ff4136">Pas de discussion, je pr&eacute;f&egrave;re &eacute;viter les soucies. Je peux pas vous donner tous les tenant et les aboutissant, mais vous devez me faire confiance et faire en sorte que tous se passe au mieux. Je suis comme vous et souhaite que Monsieur Oswald sort indemne de cette histoire. Donc c&eacute;sser de discuter et ex&eacute;cut&eacute; !</font>&quot;</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ffdc00">Bien madame</font>&quot; <u>le subalterne&nbsp;menotta Oswald sans plus de discutions.</u></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Oswald">Cdt. Oswald</a><br>Prestige de chroniqueur&nbsp;: 80<br /><br /><img src="/avatars/11080.gif" style="width:128px;height:110px" alt="Avatar" /><br />26/01/1021 ETU 03:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280547', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280542')">Détails</a> <a href="javascript:warnpost(280542)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280542" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280542',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"></div><div class="post_line"></div><div class="post_line"><div align="center"><strong><font size="5"><a href="https://www.youtube.com/watch?v=TebSLurDGj0" target="_blank" rel="nofollow">♪</a></div><div class="post_line"></font></strong></div></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Tout autour de <em>La Tour</em>, les vaisseaux arm&eacute;s commen&ccedil;aient &agrave; surgir dans un vrombissement assourdissant. Les forces militaires commen&ccedil;aient &agrave; entourer le b&acirc;timent &agrave; mesure que les drones de combat commen&ccedil;aient &agrave; nettoyer les &eacute;tages en usant de la force sur tous les occupants, civils ou pas.&nbsp;</strong></font></font></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#ffa500">Alors que le petit vaisseau s&rsquo;appr&ecirc;tait &agrave; quitter Ryzel, un son assourdissant se fit entendre. Au Sud de la tour, les nuages commenc&egrave;rent &agrave; s&rsquo;&eacute;clipser, frappant le b&acirc;timent dans un vent d&rsquo;une grande violence. On commen&ccedil;ait &agrave; distinguer, au loin, un vaisseau d&rsquo;une taille faramineuse une fois mise &agrave; l&rsquo;&eacute;chelle de la ville.&nbsp; Ce vaisseau amiral, habituellement r&eacute;serv&eacute; aux assauts militaires d&rsquo;envergure&nbsp;dans les syst&egrave;mes adjacent, s&rsquo;approchait maintenant de la surface de Ryzel, se pla&ccedil;ant &agrave; 40 Km de sol environs. De toutes les ouvertures, des vaisseaux de taille plus mod&eacute;r&eacute;e commenc&egrave;rent &agrave; approcher la navette fuyarde. Au m&ecirc;me moment, le vaisseau amiral commen&ccedil;a &agrave; armer ses canons. Bas&eacute;s sur une technologie r&eacute;cente de fusion nucl&eacute;aire, ceux-ci &eacute;taient capables d&rsquo;an&eacute;antir une agglom&eacute;ration de flottes moyennes en un instant. Cependant, les &eacute;pais canons m&eacute;talliques ne se braqu&egrave;rent pas sur la petite navette. Une communication radio s&rsquo;enclencha &agrave; la place en direction de la navette, retransmise en m&ecirc;me temps par les hauts parleurs du vaisseau. </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff"><font size="3"><strong>Ecoutez-moi bien, vous qui tentez de vous &eacute;vader&nbsp;avec une propri&eacute;t&eacute; de Ryzel. Je vous conseille de stopper imm&eacute;diatement vos r&eacute;acteurs. Je suis Sylvio Zavir, 8e du Conseil d&rsquo;administration, pr&eacute;sident de Noob Corp&deg;. </strong></font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#7fdbff"><strong>Ne pensez pas vous enfuir tr&egrave;s loin, nous sommes les premiers du march&eacute; syst&eacute;mique et bient&ocirc;t de la galaxie en termes de technologie de protection. Votre vaisseau risque bien de se heurter &agrave; un mur une fois l&rsquo;atmosph&egrave;re&nbsp;franchie &hellip; Protec&rsquo;Noob&nbsp;vous emp&ecirc;chera de partir. </strong></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#ffa500">Le vaisseau continuait son ascension, ignorant les invectives de Sylvio. </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#9df9ff">Tr&egrave;s bien, je vois que seules les m&eacute;thodes rustres fonctionnent avec des inf&eacute;rieurs tels que vous. </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#ffa500"><strong>Les canons manifest&egrave;rent alors ostensiblement leur cible par un tir volontairement manqu&eacute;. Le tir de canon alla se loger dans une rue adjacente &agrave; <em>La Tour</em>, l&rsquo;an&eacute;antissant dans une explosion qui fit s&rsquo;envoler les constructions terrestres trop faiblement&nbsp;</strong><strong>ancr&eacute;es dans le sol et fit s&rsquo;effondrer une partie de la rue.</strong></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff"><font size="3"><strong>Ecoutez moi bien, nous n&rsquo;avons rien dans ce b&acirc;timent qui nous int&eacute;ressent. Vous en revanche, vous avez vos camarades si je n&rsquo;abuse &hellip; C&rsquo;est leur disparition que vous voulez madame ou monsieur je ne sais qui&nbsp;? Ne faites pas celui qui n&rsquo;est pas int&eacute;ress&eacute; par le sort de ses camarades, vous aurez de la peine &agrave; vivre avec leur mort sur la conscience, et ne pensez pas que leurs flottes en orbite accepteront votre choix de les abandonner. </strong></font></font></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#7fdbff">Je vous laisse 10 secondes pour arr&ecirc;ter votre vaisseau et revenir dans <em>La Tour </em>en attendant les autorit&eacute;s, sinon j&rsquo;an&eacute;antirais <em>La Tour</em> et les occupants qui vous sont chers. Et n&rsquo;oubliez pas, en haut, vous vous heurterez de toute fa&ccedil;on &agrave; la Protec&rsquo;Noob. </font></div><div class="post_line"></font></strong></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3"><strong>La communication se coupa, Sylvio attendant durant ces longues 10 secondes une r&eacute;ponse du vaisseau qui s&rsquo;&eacute;chappait toujours de Ryzel.</strong></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ERIKA">Cdte. ERIKA</a><br>Prestige de chroniqueur&nbsp;: 77<br /><br /><img src="/avatars/11058.jpg" style="width:72px;height:128px" alt="Avatar" /><br />26/01/1021 ETU 04:08<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280550', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal280549')">Détails</a> <a href="javascript:warnpost(280549)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280549" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280549',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Erika se senti au pige, que faire ?</em></div><div class="post_line"></div><div class="post_line"><em>La mission est de sauver <font color="#e86e04">Oswald</font> !</em></div><div class="post_line"><em>Elle le regarde lui toujours inconscient, mais elle ne pouvais laisser tomber, ces camarades.</em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#e82a1f">M</font><font color="#e86e04">e</font><font color="#e8c500">k</font>&nbsp;<font color="#ff4136">?</font> <font color="#ff0000">James</font> <font color="#ff4136">?</font> <font color="#ffc0cb">Hubert</font> <font color="#ff4136">?</font> <font color="#ff4136">Quelqu&#039;un r&eacute;pondaient ! Ici Erika, je suis dans une impasse</font>&quot;</div><div class="post_line"><em>Aucune r&eacute;ponse, sentant la col&egrave;re monter, elle frappa la carlingue du poing.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">&quot;</font><font color="#ff4136">Merde </font>!&quot;</div><div class="post_line"><em>Une larme coula sur sa joue, la col&egrave;re ne f&ucirc;t qu&#039;amplifier. Plus le temps pass&eacute; plus elle se sentais devenir folle de rage.</em></div><div class="post_line"><em>Elle reconna&icirc;t cette sensation, elle savait de qui se passerais si&nbsp;sa lib&eacute;ration se fessait ici !</em></div><div class="post_line"><em>Elle ouvrir l&#039;une des portes de la navette afin de sortir..</em></div><div class="post_line"></div><div class="post_line">&quot;<font color="#e8c500">Stop ! Vous ne pouvez pas..</font>.&quot;</div><div class="post_line"></div><div class="post_line"><em>Elle &eacute;tait d&eacute;j&agrave; sur le toit face &agrave; ce mastodonte. Il &eacute;tait trop tard pour n&eacute;gocier la folie prise le pas sur la raison d&#039;<font color="#ff4136">Erika</font> !</em></div><div class="post_line"></div><div class="post_line"><em>Elle n&#039;&eacute;tais plus qu&#039;un corps pos&eacute; l&agrave;, sa conscience avais totalement disparu &agrave; ce moment. Un flux d&#039;&eacute;nergie sortait petit &agrave; petit d&#039;elle pour former une aura bleut&eacute; autour d&#039;elle. Quand sa col&egrave;re fut &agrave; son apog&eacute;e, elle pu projeter une onde de choc droit sur le vaisseau. Ce qui d&eacute;sactiv&acirc;t toutes les armes et bouclier pendant un laps de temps assez long pour prot&eacute;ger ses amis.</em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Oswald">Cdt. Oswald</a><br>Prestige de chroniqueur&nbsp;: 80<br /><br /><img src="/avatars/11080.gif" style="width:128px;height:110px" alt="Avatar" /><br />26/01/1021 ETU 06:14<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280565')">Détails</a> <a href="javascript:warnpost(280565)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280565" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280565',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">L&rsquo;onde de choc frappa de plein fouet le b&acirc;timent militaire, le faisant l&eacute;g&egrave;rement perdre en altitude le temps que les moteurs red&eacute;marrent. Au sein du vaisseau amiral, toutes les lumi&egrave;res clignotaient maintenant en rouge, les soldats courant dans tous les sens pour r&eacute;tablir la situation.&nbsp;</font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#7fdbff">Qu&rsquo;est-ce qui se passe ?!</font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#c3ffff">Capitaine, rien ne fonctionne, la Protec&rsquo;Noob s&rsquo;est d&eacute;sactiv&eacute;e </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Un autre prit la parole.</font></font></strong></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#c3ffff">Capitaine, les armes ne r&eacute;pondent plus, les canons sont d&eacute;sactiv&eacute;s. </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Les sons se confondaient,&nbsp;l&rsquo;alarme &eacute;touffait les cris des soldats qui tentaient d&rsquo;avertir Sylvio de la situation. Dans le tumulte des sons et lumi&egrave;res, on ne parvenait plus &agrave; le distinguer tant il &eacute;tait rouge de col&egrave;re. Il frappa d&rsquo;un coup sec un &eacute;cran de contr&ocirc;le, &eacute;jectant des d&eacute;bris de verre dans toutes les directions. Il saisit le micro de t&eacute;l&eacute;communication et r&eacute;tablit dans un premier temps le dialogue avec les unit&eacute;s. </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#7fdbff">Red&eacute;marrez imm&eacute;diatement la Protec&rsquo;Noob, ! Ne laissez pas le portail ouvert trop longtemps ! Allez-vous occuper des unit&eacute;s ennemies qui ont eu le temps de rentrer !</font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Alors que la protection se reformait, une nu&eacute;e de vaisseaux entraient dans l&rsquo;atmosph&egrave;re. Un combat &agrave; basse altitude s&rsquo;engageait entre les diverses forces en pr&eacute;sence. Fort heureusement, aucun grand vaisseau n&rsquo;eut le temps de p&eacute;n&eacute;trer l&rsquo;atmosph&egrave;re. </font></font></strong></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Il &eacute;tablit ensuite la communication avec la jeune femme.&nbsp;</font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#7fdbff">Je vous ai vu, vous ! Vous &ecirc;tes la dirigeante de cette nation Viking ! Oswald en parlait dans ses rapports ! Je dois dire que vous m&rsquo;impressionnez, mais je suis bien d&eacute;&ccedil;u que vous refusiez de dialoguer tranquillement. Vous me voyez contraint d&rsquo;user de la mani&egrave;re forte, j&rsquo;esp&egrave;re pour vous que vos amis savent survivre &agrave; l&rsquo;effondrement d&rsquo;une tour de 300 &eacute;tages !</font></div><div class="post_line"></font></strong></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Il &eacute;tablit une communication globale avec les unit&eacute;s. </font></font></strong></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#7fdbff">A tous les fiers soldats de Ryzel, nous faisons aujourd&rsquo;hui une offre exceptionnelle.</font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Il prit une grande inspiration puis hurla au micro. </font></font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font color="#7fdbff"><font size="5">NOUS OFFRIRONS UN &laquo; PASS RETRAITE &raquo; A LA FAMILLE SUR TROIS GENERATIONS DE TOUS LES DIGNES SOLDATS QUI IRONT SACRIFIER LEUR VAISSEAU SUR LES ARMATURES DE LA TOUR ! LES DETAILS SONT SUR VOS PADS. </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Sur Ryzel, il n&rsquo;y avait nul appel qui n&rsquo;avait plus d&rsquo;effet que celui d&rsquo;un &laquo; pass retraite &raquo;. C&rsquo;&eacute;tait une des distinctions les plus honorifiques qui soit, accord&eacute;e &agrave; une &eacute;lite dont m&ecirc;me le Conseil d&rsquo;administration ne b&eacute;n&eacute;ficiait pas. Ne rien faire, pour toute une vie, la retraite en somme. Et dans des resorts de haut niveau dont seuls les classes A et plus ont habituellement les moyens. &Eacute;videmment, cette distinction n&rsquo;int&eacute;resserait pas des kamikazes, mais l&rsquo;offre &eacute;tait diff&eacute;rente. L&rsquo;offre visait ici toutes les familles. Dans ce monde corporatiste&nbsp; ou l&rsquo;on travail d&egrave;s son plus jeune &acirc;ge et jusque-l&agrave; fin de ses jours, offrir &agrave; ses parents et sa descendance l&rsquo;occasion de profiter d&rsquo;une vie unique n&rsquo;avait pas de prix.</font></font></strong></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Peu apr&egrave;s l&rsquo;annonce, une nu&eacute;e de vaisseau all&egrave;rent se crasher dans des points strat&eacute;giques de La Tour, celle-ci commen&ccedil;ait &agrave; fumer mais tenait encore bon. Au rythme des crash, celle-ci n&rsquo;a plus qu&rsquo;une vingtaine de minutes devant elle avant de s&rsquo;effondrer sur elle-m&ecirc;me, emportant ses occupants. </div><div class="post_line"></font></font></strong></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Silvio sourit sournoisement, sachant pertinemment qu&rsquo;il en serait bient&ocirc;t fini des commandants r&eacute;calcitrants qui avaient os&eacute; fouler la terre de Ryzel. </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><strong><font color="#ffa500"><font size="3">---</div><div class="post_line"></font></font></strong></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Au m&ecirc;me moment, dans une tour lancinante, une jeune femme haletante arriva sur un penthouse o&ugrave; les combats faisaient rage. Les soldats tentaient de se frayer un chemin &agrave; travers les escaliers, cependant Mekteub&eacute; ne cessait de les ex&eacute;cuter &agrave; une vitesse d&eacute;concertante, fortifi&eacute; par le chocolat. La jeune femme lan&ccedil;a alors un appel d&eacute;sesp&eacute;r&eacute;.</div><div class="post_line"></font></font></strong></div></div><div class="post_line"><div align="justify"><strong><font size="3"><font color="#1e92f7">Monsieur Mekteub&eacute; ! Calmez-vous ! Je suis la &hellip; Je suis l&rsquo;amie d&rsquo;Oswald ! Retrouvez vos camarades et sortons vite avant que la tour s&rsquo;effondre, j&rsquo;ai une navette qui nous attends tout en haut ! </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Dans le concerto de vaisseaux kamikazes qui viennent ne faire qu&rsquo;un avec l&rsquo;institution principale de Ryzel, une jeune femme tente de sauver les personnes ch&egrave;res &agrave; Oswald. Dans les airs, un mastodonte de technologie tente de stopper un petit vaisseau fuyant vers les &eacute;toiles.&nbsp; </font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffa500"><font size="3">Et Ernesto dans tout &ccedil;a ? On discerne un hurlement &eacute;touff&eacute; dans le bureau d&rsquo;Oswald &hellip; On dirait que la surprise d&rsquo;Erika lui fait plaisir.&nbsp;</font></font></strong></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=James">Cdt. James</a><br>Prestige de chroniqueur&nbsp;: 50<br /><br /><img src="/avatars/11069.jpg" style="width:128px;height:128px" alt="Avatar" /><br />26/01/1021 ETU 14:45</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal280587')">Détails</a> <a href="javascript:warnpost(280587)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280587" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280587',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">La navette commen&ccedil;a &agrave; secouer,<font color="#E8C500"> on doit partir monsieur.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">Et pour me</font><font color="#E82A1F">k?</font><font color="#E82A1F"> <font color="#E8C500">il est r&eacute;sistant ne je ne suis s&ucirc;r qu&#039;il....</font></font></div><div class="post_line">Une explosion se fit entendre et quelques secondes plus tard une nouvelle.</div><div class="post_line"><font color="#E82A1F">C&#039;est quoi ce bordel?</font></div><div class="post_line"><font color="#E82A1F"><font color="#E8C500">Un nu&eacute; de navire civil s&rsquo;&eacute;crase sur la tour.</font></font></div><div class="post_line"><font color="#E82A1F">Merde des survivants?</font></div><div class="post_line"><font color="#E82A1F"><font color="#E8C500">Le commandant brad a &eacute;vacu&eacute; quant au Fran&ccedil;ais nous n&#039;en savont rien.</font></font></div><div class="post_line"><font color="#E82A1F">La navette ne pourra jamais passer.</font></div><div class="post_line">Soudin une nouvelle explosion projeta James sur le sol, les 2 t&eacute;l&eacute;commandes qu&#039;il avait r&eacute;cup&eacute;r&eacute;es &eacute;taient sur le sol.</div><div class="post_line"><font color="#E82A1F">Mais bien sur,</font> il les observa attentivement, sur l&#039;une d&#039;elles &eacute;tait marqu&eacute;e une t&egrave;te de mort sur l&#039;autre un bouclier bris&eacute;.</div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">J&rsquo;esp&egrave;re que c&#039;est la bonne chose a faire.</font></div><div class="post_line">Il appuya sur le bouton de la t&eacute;l&eacute;commande frapp&eacute; d&#039;un bouclier et imm&eacute;diatement des alarmes retentir, la protect noob venait de se d&eacute;sactiver.</div><div class="post_line"><font color="#E82A1F">James a la flotte: engag&eacute;e tout navire Ryzelien qui tente de s&#039;approcher de Ryzel. </font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Mekteub%C3%A9">Cdt. Mekteub&eacute;</a><br>Prestige de chroniqueur&nbsp;: 52<br /><br /><img src="/avatars/10637.png" style="width:128px;height:110px" alt="Avatar" /><br />26/01/1021 ETU 20:51<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280605')">Détails</a> <a href="javascript:warnpost(280605)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280605" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280605',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">-&nbsp;<strong><font size="3"><font color="#FF0000">J</font><font color="#FFAA00">&#039;</font><font color="#AAFF00">A</font><font color="#00FF00">I</font><font color="#00FFAA">M</font><font color="#00A9FF">E</font><font color="#0000FF">.</font><font color="#AA00FF">.</font><font color="#FF00AA">.</font></font></strong></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Les yeux r&eacute;vuls&eacute;s, Mekteub&eacute; se battait comme un forcen&eacute; contre les agents de s&eacute;curit&eacute; de la Tour. Des trous de balles tapissaient son corps&nbsp;mais les propri&eacute;t&eacute;s r&eacute;g&eacute;n&eacute;ratives li&eacute;es au chocolat qu&#039;il avait ingurgit&eacute; le maintenait dans de bonnes conditions pour poursuivre cette activit&eacute; qu&#039;il aimait tant pratiquer.</font></em></div><div class="post_line"></div><div class="post_line">- <strong><font size="3"><font color="#FF0000">.</font><font color="#FFBF00">.</font><font color="#7FFF00">.</font><font color="#00FF3F">L</font><font color="#00FEFF">A</font><font color="#003FFF">.</font><font color="#7F00FF">.</font><font color="#FF00BF">.</font></font></strong></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Il fit tomber un agent en le ceinturant&nbsp;et lui ass&eacute;na une dizaine de coup de t&ecirc;te au visage.</font></em></div><div class="post_line"></div><div class="post_line">-&nbsp;<strong><font size="3"><font color="#FF0000">.</font><font color="#FF5F00">.</font><font color="#FFBF00">.</font><font color="#DFFF00">B</font><font color="#7FFF00">A</font><font color="#1FFF00">S</font><font color="#00FF3F">T</font><font color="#00FF9F">O</font><font color="#00FEFF">O</font><font color="#009FFF">O</font><font color="#003FFF">O</font><font color="#1F00FF">N</font> <font color="#DF00FF">!</font><font color="#FF00BF">!</font><font color="#FF005F">!</font></font></strong></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Il se releva et couru en direction des deux gardes appel&eacute;s en renfort qui lui faisait face. Ils se regard&egrave;rent, compl&egrave;tement sid&eacute;r&eacute;s par&nbsp;la folie qui habitait Mekteub&eacute;. Pris d&#039;une peur panique, ils&nbsp;tir&egrave;rent sur le petit &ecirc;tre en fermant les yeux.&nbsp;</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">-&nbsp;<strong><font size="3"><font color="#FF0000">F</font><font color="#FF2B00">u</font><font color="#FF5700">l</font><font color="#FF8300">g</font><font color="#FFAE00">u</font><font color="#FFDA00">r</font><font color="#F7FF00">o</font> <font color="#A0FF00">p</font><font color="#74FF00">o</font><font color="#48FF00">i</font><font color="#1DFF00">n</font><font color="#00FF0E">g</font> <font color="#00FF66">d</font><font color="#00FF91">a</font><font color="#00FFBD">n</font><font color="#00FFE9">s</font> <font color="#00BDFF">l</font><font color="#0091FF">e</font><font color="#0065FF">s</font> <font color="#000EFF">c</font><font color="#1D00FF">o</font><font color="#4800FF">u</font><font color="#7400FF">i</font><font color="#A000FF">l</font><font color="#CC00FF">l</font><font color="#F700FF">e</font><font color="#FF00DA">s</font> <font color="#FF0083">!</font><font color="#FF0057">!</font><font color="#FF002B">!</font></font></strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Il lan&ccedil;a deux coups de poing simultan&eacute;s dans les parties de ces adversaires,&nbsp;puis enleva son casque et s&#039;en servit pour assommer les deux bellig&eacute;rants. Il tira l&#039;un des corps pr&egrave;s de l&#039;autre de mani&egrave;re &agrave; ce que les t&ecirc;tes soient tr&egrave;s proches et continua son oeuvre jusqu&#039;&agrave; obtenir une bouillie difforme faites de cervelles, de cheveux et d&#039;os.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">-&nbsp;<strong><font size="3"><font color="#FF0000">W</font><font color="#FF2300">O</font><font color="#FF4700">U</font><font color="#FF6A00">H</font><font color="#FF8E00">O</font><font color="#FFB100">U</font><font color="#FFD500">U</font><font color="#FFF900">U</font><font color="#E1FF00">U</font> <font color="#9AFF00">!</font> <font color="#53FF00">J</font><font color="#2FFF00">&#039;</font><font color="#0BFF00">P</font><font color="#00FF17">E</font><font color="#00FF3B">T</font><font color="#00FF5E">E</font> <font color="#00FFA6">L</font><font color="#00FFC9">A</font> <font color="#00EDFF">F</font><font color="#00C9FF">O</font><font color="#00A6FF">R</font><font color="#0082FF">M</font><font color="#005EFF">E</font> <font color="#0017FF">!</font> <font color="#2F00FF">Q</font><font color="#5300FF">U</font><font color="#7600FF">I</font> <font color="#BD00FF">E</font><font color="#E100FF">N</font> <font color="#FF00D5">V</font><font color="#FF00B1">E</font><font color="#FF008E">U</font><font color="#FF006A">T</font> <font color="#FF0023">?</font></font></strong></font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Il fait un bisou &agrave; son casque. Il regarda la foule apeur&eacute;e par le carnage dont il &eacute;tait responsable.</em></font></div><div class="post_line"></div><div class="post_line">-&nbsp;<font color="#ffffff"><font size="3"><font color="#FF0023"><strong><em><strong><font size="3"><font color="#FF0000">Z</font><font color="#FF0E00">&#039;</font><font color="#FF1C00">a</font><font color="#FF2A00">v</font><font color="#FF3800">e</font><font color="#FF4600">z</font> <font color="#FF6300">q</font><font color="#FF7100">u</font><font color="#FF7F00">o</font><font color="#FF8D00">i</font> <font color="#FFAA00">&agrave;</font> <font color="#FFC600">c</font><font color="#FFD400">o</font><font color="#FFE200">u</font><font color="#FFF000">r</font><font color="#FFFF00">i</font><font color="#F0FF00">r</font> <font color="#D4FF00">p</font><font color="#C6FF00">a</font><font color="#B8FF00">r</font><font color="#AAFF00">t</font><font color="#9BFF00">o</font><font color="#8DFF00">u</font><font color="#7FFF00">t</font> <font color="#63FF00">?</font> <font color="#46FF00">M</font><font color="#38FF00">a</font><font color="#2AFF00">i</font><font color="#1CFF00">n</font><font color="#0EFF00">t</font><font color="#00FF00">e</font><font color="#00FF0E">n</font><font color="#00FF1C">a</font><font color="#00FF2A">n</font><font color="#00FF38">t</font><font color="#00FF46">,</font> <font color="#00FF63">o</font><font color="#00FF71">&ugrave;</font> <font color="#00FF8D">q</font><font color="#00FF9B">u</font><font color="#00FFAA">&#039;</font><font color="#00FFB8">i</font><font color="#00FFC6">l</font> <font color="#00FFE2">e</font><font color="#00FFF0">s</font><font color="#00FEFF">t</font> <font color="#00E2FF">m</font><font color="#00D4FF">o</font><font color="#00C6FF">n</font> <font color="#00A9FF">c</font><font color="#009BFF">o</font><font color="#008DFF">p</font><font color="#007FFF">a</font><font color="#0071FF">i</font><font color="#0063FF">n</font> <font color="#0046FF">?</font> <font color="#002AFF">O</font><font color="#001CFF">S</font><font color="#000EFF">W</font><font color="#0000FF">A</font><font color="#0E00FF">L</font><font color="#1C00FF">D</font> <font color="#3800FF">?</font> <font color="#5500FF">O</font><font color="#6300FF">S</font><font color="#7100FF">W</font><font color="#7F00FF">A</font><font color="#8D00FF">L</font><font color="#9B00FF">D</font> <font color="#B800FF">?</font> <font color="#D400FF">B</font><font color="#E200FF">o</font><font color="#F000FF">n</font><font color="#FF00FE">,</font> <font color="#FF00E2">i</font><font color="#FF00D4">l</font> <font color="#FF00B8">e</font><font color="#FF00AA">s</font><font color="#FF009B">t</font> <font color="#FF007F">p</font><font color="#FF0071">a</font><font color="#FF0063">s</font> <font color="#FF0046">l</font><font color="#FF0038">&agrave;</font><font color="#FF002A">.</font><font color="#FF001C">.</font><font color="#FF000E">.</font></font></strong></em></strong></font></font></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Soudain, des robots de combat lourdement blind&eacute;s d&eacute;barqu&egrave;rent. Arm&eacute;s de puissantes mitrailleuses &agrave; balles &agrave; impulsion, ils firent feu avec une pr&eacute;cision redoutable sur le petit &ecirc;tre. Il eut juste le temps de remettre son casque parce que sa maman lui a toujours dit que &quot;la bagarre c&#039;est bien, mais prot&egrave;ge quand m&ecirc;me les deux derniers neurones qu&#039;il te reste mon ch&eacute;rie&quot;.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Il ne reste que la t&ecirc;te accroch&eacute; au tronc, les membres &eacute;taient litt&eacute;ralement d&eacute;chiquet&eacute;s par la puissance de feu des mastodontes robotiques.</font></em></div><div class="post_line"></div><div class="post_line">-&nbsp;<strong><font size="3"><font color="#FF0000">.</font><font color="#FF2D00">.</font><font color="#FF5A00">.</font> <font color="#FFB400">J</font><font color="#FFE100">&#039;</font><font color="#EFFF00">s</font><font color="#C3FF00">u</font><font color="#95FF00">i</font><font color="#68FF00">s</font> <font color="#0EFF00">l</font><font color="#00FF1E">&#039;</font><font color="#00FF4A">m</font><font color="#00FF78">e</font><font color="#00FFA5">i</font><font color="#00FFD2">l</font><font color="#00FEFF">l</font><font color="#00D1FF">e</font><font color="#00A4FF">u</font><font color="#0077FF">r</font><font color="#004AFF">e</font><font color="#001DFF">.</font><font color="#0F00FF">.</font><font color="#3C00FF">.</font><font color="#6900FF">p</font><font color="#9500FF">u</font><font color="#C300FF">t</font><font color="#F000FF">a</font><font color="#FF00E1">i</font><font color="#FF00B3">n</font><font color="#FF0086">.</font><font color="#FF0059">.</font><font color="#FF002C">.</font></font></strong></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=15336&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=15336&c_forum_page=1&c_page=2">2</a>&nbsp;3&nbsp;<a href="/assemblee/viewtopic?c_topic=15336&c_forum_page=1&c_page=4">4</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=15336&c_forum_page=1&c_page=5">5</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Sauvons les fesses d&#039;Oswald</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

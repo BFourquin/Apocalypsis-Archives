@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15321 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>&quot;On peut tous avoir besoin d&rsquo;un psy !&quot;</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > &quot;On peut tous avoir besoin d&rsquo;un psy !&quot;</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Oswald">Cdt. Oswald</a><br>Prestige de chroniqueur&nbsp;: 80<br /><br /><img src="/avatars/11080.gif" style="width:128px;height:110px" alt="Avatar" /><br />16/01/1021 ETU 06:58<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal280031')">Détails</a> <a href="javascript:warnpost(280031)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280031" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 3<br />humour décapant : 2</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280031',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font size="2">Hrp : c&#039;est une phase importante pour le developpement de mon perso, donc pleins d&#039;&eacute;lements importants sur ce que pense Oswald&nbsp;sont r&eacute;v&eacute;l&eacute;s. C&#039;est une chronique donc je&nbsp;compte sur vous pour faire comme si vous n&#039;aviez rien lu h&eacute;h&eacute;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><u><font color="#ffa500"><font size="5">Quelque part entre les &eacute;tages 107 et 208 de <em>La Tour</em>&nbsp;sur Ryzel</font></font></u></div></div><div class="post_line"><div align="center"><u><font color="#ffa500"><font size="2"><em>15/01/1021 ETU aux alentours de 14h30 Heure Ryzelienne</em></font></font></u></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#9df9ff"><font size="3"><strong>Oh non &hellip; S&rsquo;il vous pla&icirc;t ne me renvoyer pas je dois encore trop de Shill &agrave; la Banque Universelle Monsieur Bang &hellip;</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Face &agrave; un Oswald interloqu&eacute;, dans une petite pi&egrave;ce bien joliment d&eacute;cor&eacute;e et tapiss&eacute;e de conseils pour le moral, une jeune femme &eacute;tait tremblante. V&ecirc;tue d&rsquo;une petite blouse blanche et d&rsquo;un col roul&eacute; beige qui mettait en valeur sa frange blonde, on distinguait des larmes se former autour de ses petits yeux couleurs am&eacute;thyste. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Mais enfin mais qu&rsquo;est-ce que vous dites ? Je viens &agrave; peine de rentrer, on ne vous a pas pr&eacute;venue de mon arriv&eacute;e ? </strong></font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><strong><font color="#9df9ff">Si &hellip; Si &hellip; On m&rsquo;a dit que le chef allait passer dans la journ&eacute;e pour parler &hellip; On sait tous ce que &ccedil;a veut dire &hellip; Les managers ne se d&eacute;placent jamais pour voir les Cat&eacute;gories A. Alors voir venir le PDG &hellip; </font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald regardait la jeune femme l&rsquo;air impassible, il inspira pour reprendre lorsque la jeune femme le coupa de nouveau. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff"><font size="3"><strong>Mais si vous ne venez pas parler, qu&rsquo;est-ce qui justifie votre pr&eacute;sence monsieur ? </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald eut l&rsquo;air agac&eacute; et d&eacute;tourna le regard, fixant ses chaussures qui tapotaient fr&eacute;n&eacute;tiquement le sol marbr&eacute;. Il grommela une petite phrase. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font size="1"><strong><font color="#2ecc40">Le Conseil m&rsquo;oblige &agrave; consulter une psy d&rsquo;entreprise &hellip;</font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff"><font size="3"><strong>Comment monsieur, excusez-moi je n&rsquo;ai pas compris. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald leva la t&ecirc;te en direction de la jeune femme puis pris son courage &agrave; deux mains. </strong></font></font></div><div class="post_line"></div><div class="post_line"><strong><font color="#2ecc40"><font size="5">Le Conseil d&rsquo;administration m&rsquo;oblige &agrave; faire une consultation chez une Psy ! </font><font size="3">Bon sang ces politiques de confidentialit&eacute; me mettent dans des situations embarrassantes, je toucherais deux mots au service d&rsquo;assistanat apr&egrave;s. </font></font></strong></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>La jeune femme, face &agrave; l&rsquo;annonce du PDG, semblait &agrave; la fois surprise et perdue de cette annonce soudaine. Apr&egrave;s un court instant l&rsquo;air ahuri, elle s&eacute;cha ses larmes et arbora un large sourire, reprenant un ton plus professionnel. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff"><font size="3"><strong>Oh, pardon monsieur. Et bien &eacute;coutez je comprends que &ccedil;a vous g&ecirc;ne de vous retrouver dans une telle situation, surtout si on vous l&rsquo;impose. Mais nous inqui&eacute;ter pas, nous allons discuter et remettre tout &ccedil;a au clair. Et puis si un besoin se fait sentir, ce n&rsquo;est pas tr&egrave;s grave vous savez. <u><em>On peut tous avoir besoin d&rsquo;un psy ! </em></u></strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald fixait toujours la jeune femme l&rsquo;air impassible, cependant apr&egrave;s quelques instants, il se r&eacute;solu finalement &agrave; jouer le jeu. Ses traits s&rsquo;adoucir et il reprit.&nbsp; </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Oui oui, sans doute. Ecoutez, moi je n&rsquo;ai rien &agrave; faire ici. Nan mais s&eacute;rieusement, vous imaginez un instant le Conseil laisser un incapable diriger une nation intergalactique ? </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Il frappa du poing sur la table. </strong></font></font></div><div class="post_line"></div><div class="post_line"><strong><font color="#2ecc40"><font size="3">C&rsquo;est &eacute;videmment un coup de </font><font size="4"><u>ce satan&eacute; Stavro Blofeld et des sceptiques du conseil !</u></font><font size="3"> Ils veulent m&rsquo;envoyer un signal, sans doute que j&rsquo;ai d&eacute;pass&eacute; les bornes. </font></font></strong></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Vous avez une id&eacute;e de ce qui aurait pu les &eacute;nerver ? </strong></font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><strong><font color="#2ecc40">Je ne sais pas, oui sans doute. J&rsquo;ai refus&eacute; d&rsquo;adh&eacute;rer &agrave; l&rsquo;un de leurs plans dans une colonie. Et puis j&rsquo;ai aussi d&ucirc; faire un rapport apr&egrave;s un &eacute;v&egrave;nement malencontreux &agrave; l&rsquo;assembl&eacute;e galactique r&eacute;cemment.&nbsp;</font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>La psychologue pencha la t&ecirc;te, interpell&eacute; par cette derni&egrave;re phrase. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Un &eacute;v&eacute;nement malencontreux ? </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald semblait r&eacute;ticent &agrave; en discuter.</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Non rien de particulier, de la politique vous savez. &Ccedil;a arrive tous les jours hein ! C&rsquo;est comme &ccedil;a la d&eacute;mocratie, il y a des gens pour et des gens contre. Parfois certains pr&eacute;dominent, c&rsquo;est la vie. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Elle fut un &eacute;chec n&rsquo;est-ce pas ? </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald d&eacute;tourna le regard.</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Non, absolument pas qu&rsquo;est-ce que vous racontez. J&rsquo;ai d&eacute;velopp&eacute; des liens avec de nombreux individus.</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Nous sommes entre nous Monsieur Bang. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font size="5"><strong><font color="#2ecc40"><u>Mais puisque je vous le dis ! </u></font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>La jeune femme prit un ton ferme mais convaincant. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Monsieur, s&rsquo;il vous pla&icirc;t. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald se resigna finalement &agrave; parler. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><strong><font size="3">Bon. Oui sans doute. Oui &ccedil;a aurait pu mieux se passer c&rsquo;est vrai. </font><font size="4">Mais n&rsquo;allez pas me faire dire ce que je n&rsquo;ai pas dit ! &Ccedil;a ne m&rsquo;a pas touch&eacute; ! Je suis un dirigeant apr&egrave;s tout ! </font><font size="5">Bon sang le lib&eacute;ralisme est dans mes veines, notre monde est b&acirc;ti sur la m&eacute;ritocratie et les perdants sont ostracis&eacute;s ! Vous pensez que moi !</font> <font size="6">Oswald Bang, celui qui est arriv&eacute; ici par la force de sa conviction et de son absence de moral va vraiment &ecirc;tre touch&eacute; par des putains de refus de&nbsp;</font><font size="6">civilisations &eacute;trang&egrave;res !?</font></strong></font></div><div class="post_line"></div><div class="post_line"><font size="3"><strong><font color="#ffa500">La jeune femme regarda droit dans les yeux le dirigeant puis pris ensuite une voix douce. </font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><strong><font size="3">Monsieur, nous sommes tous dou&eacute;s de sentiments. Ce n&rsquo;est pas grave si &ccedil;a vous a touch&eacute;.</font><u><font size="4"> Il faut juste en tirer des le&ccedil;ons.</font></u> </strong></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Des le&ccedil;ons &hellip; Oui bien s&ucirc;r, des le&ccedil;ons. Si &ccedil;a m&rsquo;avait vraiment d&eacute;rang&eacute; j&rsquo;&eacute;couterais avec plaisir vos conseils ! &Eacute;videmment puisque je suis un dirigeant sans vergogne, je n&rsquo;ai aucun conseil &agrave; appliquer.</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>La jeune femme esquissa un sourire devant cette fa&ccedil;ade de fiert&eacute;. Oswald se tut quelques instants avant de reprendre. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Si vous &eacute;tiez la dirigeante d&rsquo;une nation, est-ce que vous seriez s&eacute;duite par moi ? Dites-le-moi honn&ecirc;tement. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Oh &hellip; Euh c&rsquo;est si soudain. Et bien, oui bien sur, oui vous &ecirc;tes apr&egrave;s tout le mod&egrave;le de notre civilisation, et assur&eacute;ment &hellip;</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Ses joues se tint&egrave;rent l&eacute;g&egrave;rement.</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Un homme charmant &hellip;</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald ne prit pas le temps d&rsquo;&eacute;couter la fin, il se releva avec &eacute;nergie de sa chaise. </strong></font></font></div><div class="post_line"></div><div class="post_line"><strong><font color="#2ecc40"><font size="4">Haha ! Vous avez bien raison ! Je n&rsquo;ai pas &agrave; avoir honte !</font></font><font size="3"> <font color="#2ecc40">La vie est ainsi faite et toutes les entreprises peuvent rencontrer des murs ! Je ne connais nulle femme qui reprocherait &agrave; quelqu&rsquo;un d&rsquo;avoir voulu porter ses r&ecirc;ves ! Je n&rsquo;ai pas tort ? </font></font></strong></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Oh bien s&ucirc;r oui, c&rsquo;est tout &agrave; fait vrai ! </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Vous m&rsquo;avez d&eacute;finitivement aid&eacute;e ! </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald se rassit sur sa chaise et inspira fort, un grand sourire aux l&egrave;vres. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Rien n&rsquo;est perdu ! J&rsquo;ai encore ma chance ! </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>La jeune femme pris un air interloqu&eacute;.</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Euh Monsieur Bang, on ne parlait pas de votre probl&egrave;me &agrave; l&rsquo;assembl&eacute;e il y a quelques instants ?</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald reprit avec une &eacute;nergie d&eacute;bordante. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><strong><font size="3">Mais non c&rsquo;est pass&eacute; &ccedil;a ! Il faut savoir se relever mademoiselle ! SI mes projets ne fonctionnent pas un jour, je m&rsquo;adapterais ! C&rsquo;est l&rsquo;esprit d&rsquo;entreprise ! </font><font size="4">Ne sommes-nous pas des entrepreneurs HAHA !&nbsp;</font><font size="3"> Nous avons bien plus important &agrave; faire, vous allez me conseiller ! Vous &ecirc;tes une femme, vous saurez m&rsquo;aider !</font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>La jeune femme semblait de plus en plus perdue &agrave; l&rsquo;&eacute;coute d&rsquo;Oswald. </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Oui ! M&rsquo;aider &agrave; comprendre ce qui r&eacute;chauffe et fait battre mon c&oelig;ur m&eacute;canique de chez M&eacute;caHeart&deg; quand je la vois et que je lis ses com-x ! </strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Face &agrave; un Oswald &eacute;trangement enthousiaste, la jeune psychologue. Celle qui venait sans doute de recevoir la promotion de sa vie arborait cependant une expression qui correspondrait &agrave; elle seule &agrave; la d&eacute;finition du mot &laquo; Hein ? &raquo; dans les dictionnaires galactiques.</strong></font></font></div><div class="post_line"><font color="#ffa500"><font size="3"><strong>Oswald sortit un petit calepin de sa poche.</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Quel est votre nom ? &Ccedil;a vous dirait de travailler en tant que Cat&eacute;gorie S ?</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><font size="3"><strong>Cat&eacute;gorie S ? Vous voulez dire &hellip;</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40"><font size="3"><strong>Oui mademoiselle, vous allez travailler avec votre PDG.</strong></font></font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15321&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15321" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15321" name="d_reply_15321" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15321');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15321'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > &quot;On peut tous avoir besoin d&rsquo;un psy !&quot;</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

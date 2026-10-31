@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15340 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>A la recherche d&#039;Oswald</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche d&#039;Oswald</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vostroff">Cdt. Vostroff</a><br>Prestige de chroniqueur&nbsp;: 44<br /><br /><img src="/avatars/11009.jpg" style="width:111px;height:128px" alt="Avatar" /><br />22/01/1021 ETU 14:40</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280418', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal280415')">Détails</a> <a href="javascript:warnpost(280415)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280415" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280415',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#fff5b3">Hyp&eacute;ria....Capitale Moscovianne.....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Une ville d&eacute;j&agrave; trop bien occup&eacute;e, un intense trafic a&eacute;rien de v&eacute;hicules de fonctions, de police, touristiques, ou simple v&eacute;hicules allant au travail, d&#039;autres, s&#039;en revenant, Une ville aux Grattes ciel poss&eacute;dant, pour la majeure partie de ceux ci, des plate formes suspendues aux fontaines et aux jardins artistiques, &agrave; diverses &eacute;tages, rattach&eacute;es aux buildings eux m&ecirc;mes, accessible &agrave; tous, 24 h sur 24,&nbsp;la nuit &eacute;clair&eacute;s par des spots anti grav se d&eacute;pla&ccedil;ant continuellement mais toujours en &eacute;clairant la statue fontaine en couleur constamment changeante dont ils ont &eacute;t&eacute;s programm&eacute;s pour la surveillance, ici, l&#039;air y est pur, toute sortie polluante &eacute;tant &eacute;quip&eacute;e d&#039;un filtre....</font></div><div class="post_line"><font color="#fff5b3">La ville elle m&ecirc;me, sans aucun pauvre, l&#039;argent y &eacute;tant aboli &agrave; tout jamais ......</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">La ville .....Et ses secrets, car tout ne semble pourtant pas idyllique partout ....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Il y a aussi des affaires qui se traitent dans l&#039;ombre .....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Karel Vostroff Sokoreff fils de Andre&iuml; Sokoreff Karel, actuel Premier Secr&eacute;taire G&eacute;n&eacute;ral de la R&eacute;publique Communiste D&eacute;mocratique Moscovianne....Si il en reconnaissait le titre....Pompeux d&#039;ailleurs, il pr&eacute;f&eacute;rais juste simplement Premier Secr&eacute;taire en y ajoutant bien sur le Camarade plac&eacute; avant, tout comme son p&egrave;re, il avait tendance &agrave; la discr&eacute;tion, tout comme son p&egrave;re mais en plus accentu&eacute; cette fois, il avait ce sourire en coin que certains disaient un peu moqueur, pour d&#039;autres, un peu complice, cela d&eacute;pendait des caract&egrave;res....A force, et m&ecirc;me sans le vouloir, les plis de la peau du visage s&#039;&eacute;tait fait, le sourire &eacute;tait devenu naturel avec le temps !</font></div><div class="post_line"><font color="#fff5b3">Il grimpa les marches du palais, car on l&#039;attendaient, il le savait pertinemment et c&#039;&eacute;tait une id&eacute;e de la G&eacute;n&eacute;rale Pavlov nouvellement promue ....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Il rentra, se dirigea dans les couloirs, salua les diff&eacute;rents fonctionnaires militaires ou femmes ing&egrave;nes (diminutif d&#039;ing&eacute;nieurs) et se dirigea vers son bureau ....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Un bureau ? Cela ressemblait plus a un appartement grand luxe, un &eacute;norme bureau lisse en bois rouge fonc&eacute; ou l&#039;on pouvait se mirer, tant il &eacute;tait lisse, des armoires incrust&eacute;es dans le mur qui sortaient toutes seul &agrave; la commande vocale, un bar magnifique aux hologrammes anim&eacute;s montrant des paysages sur le devant, des si&egrave;ges anti grav comme il se doit, l&#039;on s&#039;en doutaient un peu .....</font></div><div class="post_line"><font color="#fff5b3">les deux si&egrave;ges devant, &eacute;taient occup&eacute;s ....</font></div><div class="post_line"><font color="#fff5b3">Et il savait tr&egrave;s bien par qui ....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Il les connaissait ces deux l&agrave;, toujours actifs mais c&#039;&eacute;tait aussi les plus terribles .....</font></div><div class="post_line"><font color="#fff5b3">La premi&egrave;re aurait pu &ecirc;tre Noella, la s&oelig;ur de Skay, cette bande de jeunes aventuriers qui arrivaient toujours &agrave; s&#039;en tirer d&#039;une mani&egrave;re ou d&#039;une autre, Noella qui &eacute;tait toujours dans une combinaison moulante, propre &agrave; affoler n&#039;importe quel c&eacute;libataire endurci, mais elle &eacute;tait une tireuse d&#039;&eacute;lite hors pair, cat&eacute;gorie 3, cela voulait dire qu&#039;elle pouvait descendre n&#039;importe quelle cible a plus de 200 m, comme toutes les cat&eacute;gories trois, ils avaient leurs propres fusils, un engin d&#039;une pr&eacute;cision diabolique et enti&egrave;rement informatis&eacute;, chaque cat&eacute;gorie 3 avait son propre caract&egrave;re, avec ses propres sp&eacute;cificit&eacute;s hight tech ....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Mais ce n&#039;&eacute;tait pas elle cette fois, si la visiteuse &eacute;tait aussi blonde que Noella, dans une combinaison toute aussi moulante, &agrave; croire que c&#039;&eacute;tait la mode pour les filles d&#039;action, toute aussi charmante, un visage ovale, un peu pale, presque enfantin, un petit nez retrouss&eacute; et fin, de fines l&egrave;vres douces et ros&eacute;es, une paire d&#039;yeux bleus clairs&nbsp;en amandes.....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3"><font size="4">Mais cela s&#039;arr&ecirc;tait l&agrave; ! ....P&iuml;le ! Net ! .....Car la suite &eacute;tait plut&ocirc;t effrayante !</font></font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Karel la connaissait que trop bien et savait pertinemment ce que cachait ce visage si charmant , un esprit perverse, particuli&egrave;rement sadique.....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Yola Micha&iuml;lovitch !.....Une tueuse professionnelle,&nbsp;&nbsp;un caract&egrave;re en forme de poignard, poignards qu&#039;elle excellait d&#039;ailleurs au maniement, elle &eacute;tait capable de planter une canette lanc&eacute;e en l&#039;air contre une poutre d&#039;un seul de ses lancer,&nbsp;froide et s&egrave;che comme une terre gel&eacute;e, quand &agrave; son palmar&egrave;s ....Inutile de s&#039;&eacute;tendre plus en avant, il &eacute;tait impressionnant, crimes, kidnappings, tortures en tout genres vols industriels, espionnages, la liste &eacute;tait longue et naturellement, elle avait fini par rencontrer l&#039;individu qui &eacute;tait &agrave; ses cot&eacute;s&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Un tueur qui avait lui m&ecirc;me, un aussi grand palmar&egrave;s qu&#039;elle, Il avait l&#039;habitude de manier n&#039;importe quelle arme....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Mike Zardo; taille moyenne, les cheveux noirs et raides, coup&eacute;s court, portant des ray bans noirs, habill&eacute;, d&#039;un blouson noir de cuir, un tee short noir un pantalon de cuir noir, des boots noirs, d&#039;ailleurs, tout &eacute;tait noir chez cet homme, &agrave; part sa couleur de peau, et des quelques colifichets reli&eacute; par une fine chaine de perles d&#039;argent&nbsp;&nbsp;de d&eacute;coration sur ses boots reli&eacute;s &agrave; quelques&nbsp;t&ecirc;tes de morts aussi en argent,&nbsp;ce qui pouvait &ecirc;tre un signe avant coureur sur sa nature profonde .....</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Karel s&#039;asseya, les observa en silence, tira un dossier, le posa sur le bureau&nbsp; et fit simplement .....</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Connaissez vous le Camarade Commandeur Oswald ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vostroff">Cdt. Vostroff</a><br>Prestige de chroniqueur&nbsp;: 44<br /><br /><img src="/avatars/11009.jpg" style="width:111px;height:128px" alt="Avatar" /><br />24/01/1021 ETU 03:51</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280481', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280480')">Détails</a> <a href="javascript:warnpost(280480)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280480" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280480',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Zardo fit la moue</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Cette affaire l&agrave; ne nous concernent gu&egrave;re et d&#039;ailleurs ou chercher ? Nous n&#039;avons aucun indice ! Rien qui puisse nous aider &agrave; chercher !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">D&#039;autant que nous ne le connaissons que tr&egrave;s peu ! Alors certes, il a une bonne r&eacute;flexion et ses d&eacute;sirs de changer la galaxie rejoignaient un peu les n&ocirc;tres mais cela en fait il quelqu&#039;un qu&#039;il faut r&eacute;cup&eacute;rer &agrave; tout prix ?</font> Rajouta la blonde Ang&eacute;lique (mais seulement par l&#039;apparence )</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Hum ....C&#039;est &agrave; moi de juger je pense !</font> fit Karel&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Mais par ou commencer ? je pense que ce serait mieux de laisser faire les autres non ? d&#039;apr&egrave;s ce que j&#039;ai entendu ! certains se sont mis &agrave; sa recherche, nous pour l&#039;instant, nous sommes loin d&#039;&ecirc;tres pr&ecirc;ts pour ce genre de chose !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Etonnant de la part d&#039;un tueur</font> pensa Karel, <font color="#72ff84">Se ferait il vieux ? ...Le voil&agrave; qui fait de la politique maintenant ?!! A moins que ......</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Dites Zardo ? vous avez une affaire sur les bras en ce moment ?</font> fit Karel avec son petit sourire en coin qui en disait long&nbsp;</div><div class="post_line"></div><div class="post_line">Zardo tourna l&eacute;g&egrave;rement la t&ecirc;te de cot&eacute; en soupirant, cela apporta la r&eacute;ponse &agrave; Karel Mais Zardo se reprit vite&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Goubet ! </font>Finit il par l&acirc;cher !</div><div class="post_line"></div><div class="post_line">Yola &eacute;carquilla ses yeux de surprise ! <font color="#ffff44">Goubet ?</font> fit elle interloqu&eacute;e&nbsp;</div><div class="post_line"></div><div class="post_line">Pour le coup, Karel fron&ccedil;a les sourcils puis r&eacute;fl&eacute;chit un moment ......<font color="#72ff84">.Goubet !</font> R&eacute;p&eacute;ta il en murmurant .....<font color="#72ff84">Ou ? et Quand ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Quand ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Oui quand, et quand je dit quand c&#039;est quand l&#039;avez vous rep&eacute;r&eacute; ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Ca y &eacute;tait ! Il avait mis le temps mais tout vient &agrave; point &agrave; qui sait attendre, il avait r&eacute;ussi &agrave; reprendre le dessus, Zardo vit la lueur d&#039;int&eacute;r&ecirc;t dans les yeux de Vostroff et il devinait le m&ecirc;me regard de Yola &agrave; sa droite, il ne put r&eacute;primer un sourire de satisfaction&nbsp;</div><div class="post_line"></div><div class="post_line">Sourire qui fut capt&eacute; par Karel ...</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Je vous arr&ecirc;te de suite ! si c&#039;est pour l&#039;intercepter ! je vous signale que !.....</font></div><div class="post_line"></div><div class="post_line">Il fut coup&eacute; dans son &eacute;lan&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Il n&#039;en est rien, je pense que il faut le r&eacute;cup&eacute;rer au contraire !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Le r&eacute;cup&eacute;rer ? Mais peut on le r&eacute;cup&eacute;rer ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Entre tueurs du m&ecirc;me camp, on se comprend non ? Il me connait et il connait aussi Zardo alors tant qu&#039;a faire !</font> Fit Yola&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Et Oswald dans tout &ccedil;a ? Hmm ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">On oublient !</font> se risqua Zardo mais il su &agrave; la seconde qu&#039;il venait de commettre une erreur !</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Ben voyons ! Tant qu&#039;a faire hein ?</font> Karel soupira en posant les deux mains sur le bureau et fit d&#039;un ton faussement doucereux .....<font color="#72ff84">Vous savez ce que je vais d&eacute;cider ? ....C&#039;est tr&egrave;s simple ! l&#039;un de vous s&#039;occupe de Goubet et l&#039;autre de Oswald comme &ccedil;a d&#039;une pierre deux coups .....</font>Il vit Zardo qui allait ouvrir la bouche mais &agrave; ce jeu l&agrave;, Karel &eacute;tait un Ma&icirc;tre ....Il le devan&ccedil;a ...<font color="#72ff84">.Et ne me dites pas que ce n&#039;est pas envisageable....Ce serait trop b&ecirc;te de risquer quelque chose ici n&#039;est ce pas ?&nbsp;</font></div><div class="post_line"></div><div class="post_line">Zardo soupira, leva les yeux aux ciel, il devait partir de rien pour chercher un type qui sans doute, n&#039;en valait m&ecirc;me pas la peine ! Et ou chercher ! Mais il avait d&eacute;j&agrave; une petite id&eacute;e, m&ecirc;me si elle paraissait saugrenue mais faute de mieux !</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Tu me donnera tes renseignements Mike ?</font> Fit Yola&nbsp; faisant une mine faussement pensive&nbsp;....Comme pour enfoncer le clou, avait il r&ecirc;v&eacute; ? Ou .....Le ton de yo la blonde infernale &eacute;tait il quelque peu railleur ....Il se promit de l&#039;&eacute;trangler pour plus tard m&ecirc;me si ....Cela ne serait que du r&ecirc;ve !</div><div class="post_line">Il se contenta de grommeler&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Hmmm.... moui bon d&#039;accord</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Il se lev&egrave;rent tout les deux, Zardo broyant du noir, la blonde affichant un sourire sadique en le regardant, ils salu&egrave;rent de fa&ccedil;on rudimentaire, ils n&#039;avaient jamais &eacute;t&eacute; tr&egrave;s forts pour le salut militaire puis ils sortirent ......</div><div class="post_line">Sous le regard de Karel, un sourire en coin comme &agrave; son habitude.....Il ouvrit une boite de cigares et en prit un, qu&#039;il alluma .....</div><div class="post_line"></div><div class="post_line">Il se souvenait de Goubet ....Goubet Emile Goubet...le bon p&egrave;re tranquille, un peu bedonnant, la quarantaine pass&eacute;e, toujours en manche de chemise, chemise blanche et impeccable,&nbsp;un borsalino sur la t&ecirc;te, le visage rubicond, une paire de lunettes et des bretelles tenant un pantalon parfaitement taill&eacute;, un sourire calme et &eacute;nigmatique et passant son temps soit &agrave; siffloter ou &agrave; chantonner, il aurait pu passer pour un excellent grand p&egrave;re, on l&#039;aurait bien vu donner la pi&eacute;cette &agrave; des enfants ou m&ecirc;me quelques sucreries et les faire jouer sur ses genoux, il en avait bien le type,&nbsp;toujours aimable, toujours courtois mais pourtant ......</div><div class="post_line">Pourtant, il se baladait toujours avec une longue mallette ....</div><div class="post_line">Et dans cette mallette, il y avait l&#039;instrument de mort le plus sophistiqu&eacute; que l&#039;on ai jamais vu car ....</div><div class="post_line"></div><div class="post_line">Emile Goubet &eacute;tait un recordman du meurtre, 164 meurtres &agrave; son actif&nbsp;par contrat, un technicien du crime, un vrai sp&eacute;cialiste, une notori&eacute;t&eacute; sans &eacute;gal, il apparaissait l&agrave; ....il s&#039;installait tranquillement en hauteur, il d&eacute;ballait tout son appareillage, un fusil &agrave; lunette longue port&eacute;e, un cordon reli&eacute; &agrave; un ordinateur de calcul, apr&egrave;s quelques r&eacute;glages il attendait la cible, l&#039;ex&eacute;cutait et tout aussi tranquillement comme un travailleur, il d&eacute;montait ensuite son appareillage, rangeait le tout,&nbsp;et s&#039;en allait le plus tranquillement du monde en chantonnant comme un ouvrier qui aurait finit un travail de routine,&nbsp;ni vu ni connu, sa physionomie &eacute;tant placide et inspirant imm&eacute;diatement confiance, jamais paniqu&eacute; ! Cela avait jou&eacute; mainte et mainte fois en sa faveur !</div><div class="post_line">Ensuite.....Le bonhomme disparaissait pour de tr&egrave;s longues dur&eacute;es, personne n&#039;&eacute;tait capable de le rep&eacute;rer....Personne !....Sauf Zardo lui m&ecirc;me mais il le connaissait bien, cela expliquait sans doute le pourquoi du comment et en y pensant, il s&#039;aper&ccedil;ut que Zardo avait soigneusement &eacute;lud&eacute; la question du quand ? et du Ou ?&nbsp;</div><div class="post_line"></div><div class="post_line">Karel sourit, il s&#039;&eacute;tait toujours demand&eacute; comment on pouvait afficher une image de personne l&#039;air sympathique et &ecirc;tre aussi ......Dangereux tout de m&ecirc;me, c&#039;&eacute;tait le cas pour yola, le cas pour Goubet.</div><div class="post_line">&nbsp;Par ailleurs, il&nbsp;savait que bien que Zardo &eacute;tait contre cette id&eacute;e, il ferait son job au mieux ....Comme d&#039;habitude, quand &agrave; Yola...c&#039;&eacute;tait identique, ils &eacute;taient redoutables mais ils avaient de l&#039;honneur ...On peut &ecirc;tre tueurs et avoir quand m&ecirc;me des principes quoi !!&nbsp;</div><div class="post_line">Il sourit &agrave; cette id&eacute;e, il rejeta une bouff&eacute;e de fum&eacute;e puis se d&eacute;cida &agrave; sortir .....Allaient ils r&eacute;ussirent ? Au mieux avoir quelques renseignements pr&eacute;cieux ? Seul l&#039;avenir le dirait .....</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15340&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15340" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15340" name="d_reply_15340" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15340');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15340'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche d&#039;Oswald</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

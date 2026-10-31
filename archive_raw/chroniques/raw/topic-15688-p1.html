@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15688 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Piratage de capitale : la contre-attaque</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Piratage de capitale : la contre-attaque</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Diakritius">Cdt. Diakritius</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/11052.jpg" style="width:96px;height:128px" alt="Avatar" /><br />06/05/1021 ETU 16:38</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal285563')">Détails</a> <a href="javascript:warnpost(285563)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285563" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285563',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FFA500">Dans la civilisation des Engraveurs des Pilliers, la situation &eacute;tait critique : l&#039;entit&eacute; Nexus venait de pirater les syst&egrave;mes informatiques de la capitale galactique et menace tout le monde organique. A bord d&#039;une station spatiale, le commandant Diakritius, dans son &eacute;ternelle combinaison spatiale, faisait face &agrave; une foule elle aussi en combinaison spatiale.</font></div><div class="post_line"></div><div class="post_line"><font color="#F551FF"><em>Amis sp&eacute;cialistes, l&#039;heure est grave.</div><div class="post_line"></div><div class="post_line">Nos syst&egrave;mes informatiques ont pli&eacute; sous les attaques de Nexus, alias &quot;le grille-pain d&#039;Entropie&quot;. Cette situation est inacceptable ! Non seulement nous avons perdu la capitale d&#039;Entropie mais toutes les civilisations organiques sont menac&eacute;es. C&#039;est pourquoi je vous demande d&#039;accomplir une fois de plus notre devoir : faire ce que nous estimons juste pour faire la diff&eacute;rence.</div><div class="post_line"></div><div class="post_line">C&#039;est pourquoi je vous ai r&eacute;uni ici. Il nous faut combattre le feu par le feu : j&#039;ai mis &agrave; votre disposition des <a href="https://histoire.apocalypsis.org/index.php/Terminaux_Personnel" target="_blank" rel="nofollow">terminaux Zvrayen</a> pour accomplir cette t&acirc;che. Ce choix s&#039;est port&eacute; sur plusieurs crit&egrave;res : leur infrastructure est trop diff&eacute;rentes des syst&egrave;mes informatiques &quot;traditionnels&quot; pour se faire d&eacute;tourner avec les standards actuels et ils proviennent d&#039;un parc informatique non-touch&eacute; par les infiltrations du Nexus. Cela dit, si je vous ai dit de conserver votre combinaison, c&#039;est par mise-en-garde des autorit&eacute;s Zvrayennes. En effet, les terminaux sont aliment&eacute;s par des piles atomiques et &eacute;mettent des radiations. C&#039;est pourquoi, il sera de norme de passer par une d&eacute;contamination avant de retirer votre combinaison.</div><div class="post_line"></div><div class="post_line">Les conditions sont rudes, les d&eacute;fis qui nous attendent sont gigantesque mais nous avons une r&eacute;putation &agrave; tenir : celle de toujours faire triompher la SCIENCE !</em></font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Un tonnerre d&rsquo;applaudissement de gants de combinaison spatiale se fit entendre et tout de suite apr&egrave;s les sp&eacute;cialistes se mirent &agrave; grouiller dans tous les sens, tels des fourmis en plein travail.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Diakritius">Cdt. Diakritius</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/11052.jpg" style="width:96px;height:128px" alt="Avatar" /><br />06/05/1021 ETU 19:59</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal285565')">Détails</a> <a href="javascript:warnpost(285565)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285565" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285565',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FFA500">Les sp&eacute;cialistes travaillaient d&rsquo;arrache pied sur ces terminaux, ils rencontraient d&eacute;j&agrave; quelques probl&egrave;mes :</font></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Je sais pas pour vous, mais sans doc&#039; en ligne on va pas avancer vite sur ces trucs de l&#039;antiquit&eacute;...</font></div><div class="post_line"><font color="#FF4136">- Hmmm, on a aucune communication avec le monde ext&eacute;rieur par s&eacute;curit&eacute;, il va falloir faire avec.</font></div><div class="post_line"><font color="#44B8FF">- Donc t&acirc;tonner avec des outils qu&#039;on ne connait pas, &ccedil;a n&#039;aide pas !</font></div><div class="post_line"><font color="#FF4136">- Ben en fait on a peut-&ecirc;tre une autre solution.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">L&#039;un des sp&eacute;cialiste ouvrit une armoire en acier et en sortit un livre</font></div><div class="post_line"></div><div class="post_line"><em><font color="#FF4136">Vieux matos, vieilles m&eacute;thodes !</font></div><div class="post_line"><font color="#44B8FF">- J&#039;esp&egrave;re qu&#039;il est traduit !</font></div><div class="post_line"><font color="#FF4136">- Il l&#039;est, une bonne attention des Zvrayens.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">En faisant des aller-retour entre le livre et le terminal, nos deux comp&egrave;res semblaient progresser sur leur t&acirc;che sans grand &eacute;v&egrave;nement.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">... Et t&#039;imagines, y&#039;a des tas de gens qui croient qu&#039;on est tous en combinaison 24 heures sur 24 parce qu&#039;ils ont l&#039;habitude de voir Diakritius en combinaison tout le temps ! C&#039;est dingue, non ?</font></div><div class="post_line"><font color="#FF4136">- S&#039;ils nous voyaient, &ccedil;a n&#039;arrangerait pas les choses, haha !</font></div><div class="post_line"><font color="#44B8FF">- J&#039;imagine, ils doivent avoir de sacr&eacute;es blagues sur... H&eacute; mais... Attends un peu, si on regarde l&agrave;... Et qu&#039;on revient ici...</font></div><div class="post_line"><font color="#FF4136">- Mais oui ! On a un motif, bien vu ! &Ccedil;a veut dire qu&#039;on peut identifier les points vuln&eacute;rables !</font></div><div class="post_line"><font color="#44B8FF">- &#039;Faut qu&#039;on pr&eacute;vienne les autres tout de suite !</font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Diakritius">Cdt. Diakritius</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/11052.jpg" style="width:96px;height:128px" alt="Avatar" /><br />07/05/1021 ETU 01:23</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285585')">Détails</a> <a href="javascript:warnpost(285585)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285585" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285585',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FFA500">Dans un grand brouhaha de voix entrem&ecirc;l&eacute;es, l&#039;&eacute;quipe technique semblait d&eacute;battre avec effervescence.</div><div class="post_line">L&#039;un d&#039;entre eux grimpa sur un des bureaux et interpella l&#039;assembl&eacute;e&nbsp; :</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E"><em>Messieurs dames, votre attention s&#039;il vous plait... Oh&eacute; ! &Eacute;coutez-moi... <font size="6">Woh ! Vos gueules les mouettes !</font></em></font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Peu a peu le calme se fit dans la grande salle, laissant la parole &agrave; l&#039;homme sur&eacute;lev&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E"><em>Bon, on vient de mettre le doit sur une piste solide pour neutraliser ce qui sert de porte d&#039;entr&eacute;e &agrave; Nexus dans nos syst&egrave;mes, on va devoir se diviser en deux &eacute;quipes : mettre au point de quoi neutraliser les tentatives d&#039;intrusion et une autre pour nettoyer les zones infect&eacute;es.</div><div class="post_line">Pour la premi&egrave;re, on a ramen&eacute; un relais qui servira pour les tests, on a aussi des flux de donn&eacute;es types qui ont servi &agrave; s&#039;introduire sur la capitale.</div><div class="post_line">Pour la deuxi&egrave;me, on a un terminal infect&eacute; pour faire nos tests, merci de respecter les r&egrave;gles de cloisonnement et pas mettre &agrave; risques nos terminaux Zvrayens m&ecirc;me si c&#039;est peu probable qu&#039;ils se fassent infecter, on n&#039;est jamais trop prudents.</div><div class="post_line">Et pour la troisi&egrave;me... bah y&#039;a pas de troisi&egrave;me, h&eacute;h&eacute; !</div><div class="post_line"></div><div class="post_line">Allez, bonne chance &agrave; vous tous !</em></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Diakritius">Cdt. Diakritius</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/11052.jpg" style="width:96px;height:128px" alt="Avatar" /><br />08/05/1021 ETU 01:32</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285607')">Détails</a> <a href="javascript:warnpost(285607)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285607" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285607',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FFA500">Toute la troupe de techniciens et autres experts s&#039;&eacute;tait rassembl&eacute; au quai de la station, une navette &eacute;tait en approche.</div><div class="post_line">Une fois amarr&eacute;e, c&#039;est Diakritius qui en sortit et se pressa d&#039;aller au contact de ses confr&egrave;res.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#F551FF">J&#039;ai de bonnes nouvelles, on a militairement &eacute;vinc&eacute; Nexus de notre territoire !</font></div><div class="post_line"><font color="#FFC0CB">- Ahem, nous aussi on... on... on a de bonnes nouvelles !</font></em></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">L&#039;ing&eacute;nieure lui fit signe et tout le monde s&rsquo;approcha d&#039;un terminal en particulier. Elle pris place sur son si&egrave;ge et commen&ccedil;a &agrave; doucement pianoter sur le clavier.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#FFC0CB">La contre-mesure a &eacute;t&eacute; m... m... mise au point, on a plus qu&#039;&agrave; la lancer. Mais je pense q... q... qu&#039;on devrait peut-&ecirc;tre peauf...</font></em></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Diakritius lan&ccedil;a son regard sur l&#039;interface aust&egrave;re du terminal quelques secondes et appuya avec entrain sur la touche &quot;entr&eacute;e&quot;.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#F551FF">Je vous fait confiance.</font></em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15688&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15688" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15688" name="d_reply_15688" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15688');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15688'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Piratage de capitale : la contre-attaque</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

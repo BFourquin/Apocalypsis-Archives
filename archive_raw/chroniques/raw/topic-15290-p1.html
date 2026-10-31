@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15290 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Exporation</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Exporation</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=James">Cdt. James</a><br>Prestige de chroniqueur&nbsp;: 50<br /><br /><img src="/avatars/11069.jpg" style="width:128px;height:128px" alt="Avatar" /><br />10/01/1021 ETU 19:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal279500')">Détails</a> <a href="javascript:warnpost(279500)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279500" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 5<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279500',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Prologue&nbsp;: une mission prioritaire</div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">Journal de bord du capitaine &ndash; date stellaire: 2225</font><font color="#E82A1F">-12</font><font color="#E82A1F">-4&nbsp;: L&rsquo;UNS Strasbourg a &eacute;t&eacute; missionn&eacute;e pour explorer un trou noir suite &agrave; d&#039;&eacute;tranges informations re&ccedil;ues d&rsquo;une sonde &quot;aval&eacute;e&quot; quelques mois plus t&ocirc;t, nous avons rejoint la station Copernicus afin de recevoir une &eacute;quipe de scientifiques. </font></div><div class="post_line"></div><div class="post_line">La cam&eacute;ra suit un homme d&rsquo;une vingtaine d&rsquo;ann&eacute;es, il marche en direction du sas principal afin de rencontrer les scientifiques, apr&egrave;s plusieurs minutes de marche il s&#039;arr&ecirc;te devant le sas et dit : <font color="#E82A1F">Ordinateur, ouvre le sas. </font></div><div class="post_line"></div><div class="post_line">Le sas s&rsquo;ouvre et l&rsquo;on voit appara&icirc;tre trois scientifiques.</div><div class="post_line"></div><div class="post_line">-<font color="#E82A1F">Bienvenue sur le Strasbourg, je suis&hellip;</font> commen&ccedil;a le capitaine.</div><div class="post_line">-<font color="#0074D9">Nous savons qui vos &ecirc;tes, veuillez nous montrer imm&eacute;diatement nos quartiers.</font> R&eacute;pondit un des scientifiques, c&rsquo;&eacute;tait un vieux barbu.</div><div class="post_line">-<font color="#E82A1F">Bien s&ucirc;r c&rsquo;est par ici.</font> Le capitaine montra le couloir de gauche.</div><div class="post_line">-il pointa ces affaire et demanda a ses 2 acolyte de les transport&eacute;s dans leur cabine</div><div class="post_line"></div><div class="post_line">-10 minute plus tard-</div><div class="post_line"></div><div class="post_line">-<font color="#E82A1F">Voici vos quartier, orient&eacute;s vers la proue, comme vous l&rsquo;avez demand&eacute;.</font></div><div class="post_line">-<font color="#005DC2">Merci bien, quand nous mettrons nous en route&nbsp;?</font></div><div class="post_line">-<font color="#E82A1F">Dans quelques heures le temps d&rsquo;embarquer le ravitaillement n&eacute;cessaire au voyage.</font></div><div class="post_line">-Le scientifique remercia le capitaine et celui si sorti. Il ce retourna est dit&nbsp;:<font color="#005DC2"> Au travail, bande de tire au flan.</font></div><div class="post_line">-Les 2 assistant commencer a d&eacute;ball&eacute; le mat&eacute;riel et a l&rsquo;install&eacute;.</div><div class="post_line"></div><div class="post_line">- 1h plus tard - mess des officiers -</div><div class="post_line"></div><div class="post_line">Nous retrouvons le capitaine, ainsi que M.&nbsp;Douglas a une table en train de discuter.</div><div class="post_line"></div><div class="post_line">-<font color="#E82A1F">Alors que dites-vous de vos quartiers&nbsp;?</font></div><div class="post_line">-<font color="#005DC2">Il son assez spacieux, mais pourquoi partons nous &agrave; bord d&rsquo;un navire militaire&nbsp;?</font></div><div class="post_line">-<font color="#E82A1F">C&#039;est-&agrave;-dire&nbsp;?</font></div><div class="post_line">-<font color="#005DC2">Le Strasbourg est un croiseur de combat non ? . </font></div><div class="post_line">-<font color="#E82A1F">Pas du tout, c&rsquo;est un croiseur d&rsquo;exploration, il a &eacute;tait con&ccedil;u pour explorer les endroits insolites et si le pire devait arriver il serait &agrave; m&ecirc;me de se d&eacute;fendre.</font></div><div class="post_line"><font color="#E82A1F">Mais mon navire a &eacute;t&eacute; con&ccedil;u sp&eacute;cifiquement pour explorer un trou noir, il est assez r&eacute;sistant pour nous approcher de l&rsquo;horizon et survivre.</font></div><div class="post_line">-<font color="#005DC2">Donc vous n&rsquo;embarquez que le strict minimum en mati&egrave;re d&rsquo;&eacute;quipement militaire&nbsp;.</font></div><div class="post_line">-<font color="#E82A1F">Bien &eacute;videment. </font></div><div class="post_line">-<font color="#005DC2">Tr&egrave;s bien, merci de ce repas, je dois retourner &agrave; mes mesures.</font></div><div class="post_line">-<font color="#E82A1F">Pas de soucis, d&rsquo;ailleurs pr&eacute;parez vous, nous partons dans une heure.</font></div><div class="post_line"></div><div class="post_line">Le scientifique acquies&ccedil;a et sortit du mess tandis que le capitaine resta discuter avec des marines. </div><div class="post_line"></div><div class="post_line">---1h plus tard---</div><div class="post_line"></div><div class="post_line"><font color="#68C4E8">-Monsieur, tout est install&eacute;e</font></div><div class="post_line"></div><div class="post_line"><font color="#0074D9">Parfait</font>. &Agrave; ce moment une voix se fit entendre, <font color="#E82A1F">ici le capitaine nous quittons Copernicus pour le syst&egrave;me Maw pr&eacute;parez vous au saut</font>, Quelque minute plus tard le navire sauta dans l&rsquo;hyperespace.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=James">Cdt. James</a><br>Prestige de chroniqueur&nbsp;: 50<br /><br /><img src="/avatars/11069.jpg" style="width:128px;height:128px" alt="Avatar" /><br />16/01/1021 ETU 01:27</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal280003')">Détails</a> <a href="javascript:warnpost(280003)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280003" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280003',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Chapitre 1&nbsp;: l&rsquo;ultime fronti&egrave;re</div><div class="post_line"></div><div class="post_line">Environ 3h plus tard, le navire quitta l&rsquo;hyperespace pour se retrouver face au trou noir. </div><div class="post_line"></div><div class="post_line">Une nouvelle fois la voix du capitaine se fit entendre,<font color="#E82A1F"> A tout l&rsquo;&eacute;quipage, &agrave; vos postes, nous allons entamer la d&eacute;cente,</font> une fois que le capitaine eut fini une alarme retentit, suivie d&rsquo;une voix robotique.<font color="#005DC2"> <font color="#44B8FF">Alerte noire, que tout l&rsquo;&eacute;quipage se pr&eacute;pare &agrave; plonger.</font></font></div><div class="post_line"></div><div class="post_line">Des bruit de pas fr&eacute;n&eacute;tique ce fire entendre alors que tous les protection des hublots se ferment.</div><div class="post_line"></div><div class="post_line"><font color="#005DC2">Vite attachez le mat&eacute;riel.</font> ordonna le scientifique en chef c&#039;est alors que l&rsquo;on sonna &agrave; la porte.</div><div class="post_line"></div><div class="post_line"><font color="#005DC2">J&rsquo;arrive,</font> le professeur Douglas s&rsquo;approcha du panneau de contr&ocirc;le et appuya sur le bouton d&rsquo;ouverture de la porte, <font color="#005DC2">Oui qu&rsquo;y a-t-il&nbsp;?</font> Il se retrouva face &agrave; 2 soldats.</div><div class="post_line"></div><div class="post_line"><font color="#17B529">Le capitaine vous demande sur le pont imm&eacute;diatement</font>. Demanda un des soldats</div><div class="post_line"></div><div class="post_line"><font color="#005DC2">Tr&egrave;s bien j&rsquo;arrive.</font> Il se tourna vers ses scientifiques et dit, <font color="#005DC2">messieurs une fois le mat&eacute;riel s&eacute;curis&eacute; allez vous repos&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#68C4E8">Bien Monsieur.</font> R&eacute;pondis-t-ils. </div><div class="post_line"></div><div class="post_line">---Passerelle --- 10 minutes plus tard---</div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">Vous voil&agrave;, j&rsquo;aimerais que vous observiez avec moi ce magnifique spectacle.</font> Le capitaine montra un &eacute;cran qui permet d&rsquo;observer le trou noir.</div><div class="post_line"></div><div class="post_line"><font color="#005DC2">C&rsquo;est magnifique.</font>&nbsp; r&eacute;pondit le scientifique</div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">Lieutenant, pr&eacute;par&eacute; la d&eacute;cente. </font></div><div class="post_line"></div><div class="post_line">Le navire commen&ccedil;a &agrave; bouger.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Nous sommes &agrave; environ 8 000 km de l&rsquo;horizon des &eacute;v&eacute;nements.</font> R&eacute;pondit la lieutenante.</div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">Activez les boucliers. </font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Bouclier en place nous sommes d&eacute;sormais &agrave; 5 000 km de l&rsquo;horizon .</font></div><div class="post_line"></div><div class="post_line">L&rsquo;image commen&ccedil;a &agrave; vaciller.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Nous entrons dans le puits de gravit&eacute; du trou noir.</font> dit la pilote alors que le navire commen&ccedil;a &agrave; vibrer. </div><div class="post_line"></div><div class="post_line"><font color="#E8C500">3 000&nbsp;km. </font></div><div class="post_line"></div><div class="post_line"><font color="#68C4E8"><font color="#005DC2">C&rsquo;est incroyable, si nous r&eacute;usisont c&rsquo;est la voie vers de nouveaux univers qui s&rsquo;ouvrent.</font></font></div><div class="post_line"></div><div class="post_line">Le navire vibrais de plus en plus fort alors que la camera se coupa.</div><div class="post_line"></div><div class="post_line">Douglas continua &agrave; fixer l&rsquo;&eacute;cran de mani&egrave;re d&eacute;prim&eacute;&nbsp; mais&nbsp;il fini par &eacute;carquiller les yeux alors que la pilote indiquait qu&rsquo;il restait 1 000 km avant d&rsquo;atteindre l&rsquo;horizon. </div><div class="post_line"></div><div class="post_line"><font color="#005DC2">nous sommes si proches.</font> Dit-il dans un m&eacute;lange de peur et d&rsquo;&eacute;tonnement</div><div class="post_line"></div><div class="post_line"><font color="#E82A1F">nous y somme.</font> dit le capitaine alors que le navire disparu dans le trou noir&nbsp; </div><div class="post_line"></div><div class="post_line">--Quelques jours plus tard-;</div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Flash sp&eacute;cial&nbsp;: le Strasbourg, vaisseau de la f&eacute;d&eacute;ration command&eacute; par le capitaine James &agrave; p&eacute;n&eacute;tr&eacute; dans le trou noir du syst&egrave;me Maw, selon les estimations les plus optimistes ils devront nous contacter dans la semaine qui arrive.</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15290&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15290" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15290" name="d_reply_15290" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15290');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15290'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Exporation</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17333 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>NOUS &Eacute;TIONS TROIS EN SECTEUR 8...</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > NOUS &Eacute;TIONS TROIS EN SECTEUR 8...</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Koushtar">Cdt. Koushtar</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12324.jpg" style="width:128px;height:128px" alt="Avatar" /><br />16/09/1024 ETU 02:45</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D310103', 544, 464)">version précédente</a> - Score&nbsp;: 8 <a href="javascript:toggle_bloc('cal310100')">Détails</a> <a href="javascript:warnpost(310100)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal310100" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 6<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=310100',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">En v&eacute;rit&eacute; nous &eacute;tions cinq. Mais trois alli&eacute;s, et m&ecirc;me plus, trois amis. Trois commandants bien diff&eacute;rents, ne serait-ce que par nos esp&egrave;ces qui n&rsquo;avaient rien &agrave; voir. Un &ecirc;tre tentaculaire portant les blessures d&rsquo;un pass&eacute; trop r&eacute;cent, ainsi qu&#039;un Inari parmi les plus illustres, il &eacute;tait Prince Esprit,&nbsp;et moi, un humain comme un autre. Dans mon exil interminable, j&rsquo;&eacute;cris ces lignes pour que l&rsquo;on sache. Pour que l&rsquo;on n&rsquo;oublie pas. Pour que quelqu&rsquo;un retrouve un jour ces pages et qu&rsquo;il raconte &agrave; son tour l&rsquo;histoire de l&rsquo;Union des Civilisations Souveraines.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">C&rsquo;est aussi parce que je meurs d&rsquo;ennui dans ma cabine, &agrave; siffler du whisky et crapoter des cigares. L&rsquo;Apocalypse a d&eacute;truit tous nos espoirs, nous &eacute;tions si pr&egrave;s du but&hellip; Alors j&rsquo;&eacute;cris, parce-que j&rsquo;ai la cafeti&egrave;re qui bout, qu&rsquo;&agrave; part l&rsquo;&eacute;quipe de quart, tout l&rsquo;&eacute;quipage dort depuis des heures. Et puis je suis peut-&ecirc;tre le seul qui sache.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Quand je suis arriv&eacute; dans ce secteur, apr&egrave;s d&rsquo;autres p&eacute;rip&eacute;ties qui sont une autre histoire, mon service de d&eacute;tection m&rsquo;a signal&eacute; une pr&eacute;sence voisine dans le&nbsp;syst&egrave;me : la puissante et myst&eacute;rieuse Commandante N&eacute;mathus. Puissante, je l&rsquo;ai compris tr&egrave;s vite en explorant le secteur. Elle avait conquis le syst&egrave;me de la Contrebande dans son ensemble, et poss&eacute;dait plus de plan&egrave;tes que les quatre autres commandants r&eacute;unis. Myst&eacute;rieuse, tout simplement parce qu&rsquo;elle ne communiquait pas. Jamais je n&rsquo;ai re&ccedil;u la moindre r&eacute;ponse de sa part. Une voisine pas tr&egrave;s engageante dois-je dire, tant par son apparence que par son attitude. Diable, elle aurait pu m&rsquo;&eacute;craser entre l&rsquo;ongle de son pouce et celui de son index ! Mais elle n&rsquo;en n&rsquo;a jamais rien fait, ni &agrave; aucun d&rsquo;entre nous, et &ccedil;a je dois bien le lui rendre. Pourtant je m&rsquo;inqui&eacute;tais, quelles &eacute;taient ses intentions ? Je d&eacute;cidais de mener une campagne de ralliements sur des plan&egrave;tes brigandes et neutres, pour pouvoir &ecirc;tre r&eacute;silient en cas d&rsquo;attaque de sa part. Mais je l&rsquo;avoue, je nourrissais d&eacute;j&agrave; l&rsquo;espoir de la d&eacute;fier un jour.&nbsp; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alors que je cartographiais le secteur et offrais des festivit&eacute;s &agrave; mes nouveaux sujets, j&rsquo;assistais un beau jour &agrave; une &eacute;trange apparition. C&rsquo;&eacute;tait un Inari qui venait prendre contact sous la forme d&rsquo;un renard gris. Oui, ils peuvent changer de forme comme ils le souhaitent. &laquo; <em>Enchant&eacute;. Je m&rsquo;appelle Nogis. Je repr&eacute;sente le peuple Inari. Nous sommes des artistes et professeurs qui n&rsquo;ont pour objectif que de rencontrer et aider les peuples qui croisent notre route</em> &raquo; Je venais de faire la connaissance du Prince Esprit Nogis. Il m&rsquo;invita dans son Temple aux &eacute;trangers, sur la Plan&egrave;te Aux Lacs Secrets. Et je pus voir qu&rsquo;il m&eacute;ritait son rang, par sa g&eacute;n&eacute;rosit&eacute; et par son d&eacute;vouement. Je ne le reverrai jamais, car je sais qu&rsquo;il n&rsquo;a pas fui l&rsquo;apocalypse, que tous les Inaris ont choisi de ne pas quitter leur plan&egrave;te natale. Mon souffle vacille &agrave; cette id&eacute;e&hellip; Mais continuons. Au temple, je rencontrai le Commandant Baert. Nous f&icirc;mes connaissance autour d&rsquo;une belle tabl&eacute;e, et nous fin&icirc;mes &eacute;videmment par parler politique. La premi&egrave;re page de notre alliance &eacute;tait &eacute;crite.&nbsp; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Nous tomb&acirc;mes tous les trois d&rsquo;accord sur la singularit&eacute; de la situation.&nbsp;Aucune&nbsp;de nouvelle de N&eacute;mathus malgr&eacute; les invitations au temple, qu&rsquo;elle avait pourtant accept&eacute;. C&rsquo;&eacute;tait s&ucirc;r, elle y avait un espion qui lui rapportait nos &eacute;changes. Un conseil secret fut cr&eacute;&eacute;, pour parler librement. Baert nous fit part de sa crainte de l&rsquo;ouverture du secteur par N&eacute;mathus, il nous partagea un peu de son histoire et nous l&rsquo;entend&icirc;mes, appr&icirc;mes de ses exp&eacute;riences malheureuses. Le temps passa et notre collaboration s&rsquo;intensifia. Il fallait rattraper le retard technologique manifeste que nous avions sur la Commandante. Le cinqui&egrave;me Commandant, Troctoc, un marchand peu loquace avec qui j&rsquo;avais malgr&eacute; tout quelques &eacute;changes commerciaux, ne se manifesta pas non plus au temple, et semblait peu pr&eacute;sent. Il ne fut&nbsp; pas convi&eacute; au conseil et n&rsquo;a que peu de place dans cette histoire, si ce n&rsquo;est que nous autres cherchions &agrave; le connaitre en vain, pour l&rsquo;avoir de notre c&ocirc;t&eacute; lors de la cr&eacute;ation de l&rsquo;Union. La coalition fut cr&eacute;&eacute;e peu avant la d&eacute;cision consensuelle de tout mettre en &oelig;uvre pour prendre la Contrebande et la tenir. A nous trois nous avions avanc&eacute; plus vite, ralli&eacute; bien des mondes, nos &eacute;changent nous enrichissaient, nous f&icirc;mes un bon bout de route ensemble, une belle collaboration en somme. Mais nos sondages nous montraient que nous n&rsquo;&eacute;tions pas pr&ecirc;ts &agrave; affronter la force de frappe de N&eacute;mathus. Il nous fallait du temps. Avec du temps, et &agrave; nous trois, nous e&ucirc;mes pu vaincre la Commandante sur une bonne tactique, du moins nous l&rsquo;esp&eacute;rions. Nos plans &eacute;voluaient de jour en jour, nos renseignements sur ses plan&egrave;tes devenaient de plus en plus fournis, nous connaissions notre ennemie. Car c&rsquo;&eacute;tait notre ennemie d&eacute;sormais. Le m&eacute;pris de son silence, la menace pesante du cas o&ugrave; elle eut d&eacute;cid&eacute; d&rsquo;ouvrir le secteur, ou nous eut attaqu&eacute;, n&rsquo;&eacute;tait plus supportable et faisait d&rsquo;elle notre ennemie. Nous devions la neutraliser, c&rsquo;&eacute;tait tout.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Nous avions un avantage sur elle, la satisfaction de nos peuples. Un ralliement de la Contrebande &eacute;tait envisageable, mais tenir la plan&egrave;te &eacute;tait une autre histoire. C&rsquo;est alors&nbsp;que re&ccedil;&ucirc;mes les premiers rapports de ph&eacute;nom&egrave;nes spatiaux inqui&eacute;tants. Une catastrophe s&rsquo;annon&ccedil;ait, l&rsquo;apocalypse, et bient&ocirc;t les mesures des scientifiques furent assez pr&eacute;cises pour dater l&rsquo;&eacute;v&egrave;nement. Qu&rsquo;allions nous faire ? Attendre sagement la fin sans tenter quoi que ce soit ? Pas question ! Il fallait tout de m&ecirc;me&nbsp;essayer. Quitte &agrave; tout perdre, autant finir sur&nbsp;un ultime baroud d&rsquo;honneur, un assaut grandiose pour aller au-devant d&rsquo;une mort certaine, pour rester ma&icirc;tres de nos destin&eacute;es.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">En sus d&rsquo;une forte d&eacute;fense, la Contrebande &eacute;tait prot&eacute;g&eacute;e par une puissante flotte de croiseurs, que m&ecirc;me &agrave; nous trois, n&rsquo;aurions su d&eacute;faire. Nous planifi&acirc;mes une grande diversion, il fallait faire bouger ces croiseurs. La cr&eacute;ation d&rsquo;une formidable flotte de l&rsquo;Union, forte de toutes nos ressources additionn&eacute;es, fut ordonn&eacute;e. La logistique &eacute;tait lourde et nous n&rsquo;&eacute;tions pas pr&eacute;par&eacute;s &agrave; agir dans l&rsquo;urgence. La t&acirc;che &eacute;tait ardue, mais la compl&eacute;mentarit&eacute; de nos comp&eacute;tences joua pour nous. Lors du transfert de nos ressources, nous regroup&acirc;mes nos diplomates pour disposer de plusieurs vagues successives de ralliements, en esp&eacute;rant que N&eacute;mathus n&rsquo;eusse pu toutes les intercepter. Pour cela, il &eacute;tait n&eacute;cessaire que sa flotte soit divis&eacute;e, &eacute;parpill&eacute;e. Profitant de l&rsquo;initiative, nous ordonn&acirc;mes &agrave; nos flottes personnelles d&eacute;j&agrave; existantes des invasions sur diff&eacute;rentes plan&egrave;tes de notre ennemie, loin de la Contrebande. Peu apr&egrave;s cela, un grand pillage de cette derni&egrave;re&nbsp;devait avoir lieu, diminuant plus encore le bonheur de la plan&egrave;te pour augmenter les chances de nos diplomates. La coordination &eacute;tait parfaite, nous comptions sur l&rsquo;effet de surprise et sur une r&eacute;action impulsive de N&eacute;mathus pour qu&rsquo;elle d&eacute;tache des forces en vue de reprendre ses positions. Les ordres &eacute;taient donn&eacute;s. L&rsquo;op&eacute;ration lanc&eacute;e, l&rsquo;adr&eacute;naline montait, mais d&eacute;j&agrave; l&rsquo;apocalypse &eacute;tait cens&eacute;e frapper. Les diplomates &eacute;taient en route pour la Contrebande, vague apr&egrave;s vague. Nous esp&eacute;rions qu&rsquo;elle en intercepterait les premi&egrave;res, divisant plus ses forces, la cl&eacute; de voute de toute l&rsquo;attaque &eacute;tant les deux derni&egrave;res tentatives de ralliements. L&rsquo;armada de&nbsp;l&rsquo;Union serait arriv&eacute;e sur ces escarmouches donnant l&rsquo;assaut final sur les croiseurs, attaque suicide mais doublement n&eacute;cessaire, car elle aurait occup&eacute; la flotte restante de N&eacute;mathus, ouvrant une fen&ecirc;tre de temps au derniers diplomates, et aurait affaibli cette flotte. Une fois la Contrebande ralli&eacute;e, nous aurions dispos&eacute; de ses solides d&eacute;fenses, nos escadrons personnels seraient revenus tirailler les croiseurs encore sur place, et basculant sur une tactique d&eacute;fensive, nous aurions tenu le c&oelig;ur de secteur 8. Nous l&rsquo;aurions tenu&hellip;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les premiers vaisseaux &eacute;taient en route. Le plan ficel&eacute;. L&rsquo;armada de l&rsquo;Union incarnait tous nos espoirs. Trop tard ! Peu avant l&rsquo;impact de nos&nbsp;man&oelig;uvres de diversions, l&rsquo;apocalypse &eacute;clata, et dans un battement de cils tout fut fini . N&eacute;mathus ne sut jamais ce qui ce qui se jouait contre elle. Tout fut finit avant m&ecirc;me d&rsquo;avoir vraiment commenc&eacute;, quel g&acirc;chis !</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aujourd&rsquo;hui je n&rsquo;ai plus rien. Plus d&rsquo;armada, plus d&rsquo;Union, plus d&rsquo;alli&eacute;s. Je d&eacute;rive dans l&rsquo;&eacute;ther vers je ne sais o&ugrave;, pour je ne sais quoi. Ma bouteille termin&eacute;e, le jour se l&egrave;verait d&eacute;j&agrave; si seulement il y avait un jour dans cette sombre immensit&eacute;. Qu&rsquo;est devenue la Commandante Nh&eacute;mathus ? Je l&rsquo;ignore. Saura-t-elle un jour que nous &eacute;tions si proches de devenirs r&eacute;ellement ennemis ? Au final, beaucoup de choses se seront pass&eacute;es en Secteur 8, mais pas de guerre, pas d&rsquo;ouverture aux menaces du reste de la galaxie. Pas de grand d&eacute;barquement aux millions de victimes, et c&rsquo;est peut-&ecirc;tre mieux ainsi&hellip; </div><div class="post_line"></div><div class="post_line">Commandant Baert, mon ami ! Vous reverrai-je un jour ? Refonderons-nous l&rsquo;Union des Civilisations Souveraines qui portait nos valeurs? Construiront nous toujours l&rsquo;avenir ensemble ? Derni&egrave;re bouff&eacute;e, derni&egrave;re goutte d&#039;encre, et &agrave; la gr&acirc;ce de Dieu !&nbsp;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Wolff">Cdt. Wolff</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/12374.jpg" style="width:73px;height:128px" alt="Avatar" /><br />24/09/1024 ETU 21:42</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal310327')">Détails</a> <a href="javascript:warnpost(310327)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal310327" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=310327',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#e8b6ef">Le signal transmis se diffuse dans l&#039;immensit&eacute; de l&#039;espace. Atteindra t&#039;il un jour sa cible...</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffff00"><font size="3"><strong>NOUS &Eacute;TIONS TROIS EN SECTEUR 8...</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Je suis le Commandeur Eric Wolf mandat&eacute; par la R&eacute;publique des Clans de la civilisation V&eacute;nusienne. En r&eacute;ponse &agrave; votre message re&ccedil;u, nous pensons que notre anc&ecirc;tre lointain a probablement fait partie prenante de l&#039;Alliance cit&eacute;e <strong>Union des Civilisations Souveraines</strong>. </font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Pour nous , &agrave; priori l&#039;exode vers cette nouvelle Galaxie ne s&#039;est pas fait dans le m&ecirc;me segment de temps que vous. Nous avons des dizaines de g&eacute;n&eacute;rations de plus par rapport &agrave; vous. </font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Le <strong>Commandant Baert</strong>, paix &agrave; son &acirc;me est disparu depuis fort longtemps. C&#039;est la d&eacute;couverte d&#039;une partie de l&#039;&eacute;pave de son vaisseau Amiral qui nous a permis la r&eacute;v&eacute;lation de l&#039;homme &agrave; la t&ecirc;te de notre l&#039;exode,&nbsp;prouvant sans nul doute possible que c&#039;est lui qui nous a amen&eacute; sur ce point de l&#039;espace. Comment ? Il y a encore beaucoup d&#039;inconnus... </font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Toutefois, nous vous pensons sinc&egrave;res dans votre d&eacute;marche et nous sommes pr&ecirc;t d&egrave;s que possible &agrave; renouer des liens &eacute;troits et amicaux avec votre civilisation et avec l&#039;Union. Que pouvons nous faire ?</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Commandeur Eric Wolf</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17333&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17333" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17333" name="d_reply_17333" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17333');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17333'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > NOUS &Eacute;TIONS TROIS EN SECTEUR 8...</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

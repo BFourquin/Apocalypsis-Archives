@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15360 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>chronique d&#039;une fin de monde</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > chronique d&#039;une fin de monde</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />28/01/1021 ETU 03:33</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal280739')">Détails</a> <a href="javascript:warnpost(280739)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280739" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280739',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><div align="left"><div align="center">Zbra, Plan&egrave;te d&#039;Odyss&eacute;e</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div></div><div class="post_line">Dans une mer de sable d&rsquo;un orange pur, le ciel garde toujours les stigmates de L&rsquo;ADM de Kubaloukanakos. Cette attaque avait caus&eacute; la mort de son fils Uruk, de son traducteur Bill, et de plusieurs officiers importants du r&eacute;gime. Si l&rsquo;on regarde plus pr&eacute;cis&eacute;ment dans cette mer orang&eacute;, des trou immenses. C&#039;&eacute;taient des villes importantes. Seul 3 milliards d&rsquo;habitant avait surv&eacute;cu.&nbsp;</div><div class="post_line"></div><div class="post_line">Cela faisait d&eacute;j&agrave; un quart de rotation que cette catastrophe eut lieu. Au d&eacute;tours d&rsquo;une dune de la r&eacute;gion Mantoue, un courcou s&rsquo;&eacute;tait pos&eacute; arr&ecirc;t&eacute; sur la cr&ecirc;te de l&rsquo;une des dunes originel. Le bleu turquoise du v&eacute;hicule indiquait son appartenance au gouvernement. Assise en tailleurs sur le capot du coucou, Lali &eacute;tait habill&eacute;e de sa combinaison kaki, sans k&eacute;pi, sa chevelure brune volant au vent. Sa joue droite avait une br&ucirc;lure radiologique, &agrave;&nbsp; sa ceinture une fiole de Molpass et un revolver &eacute;tait attach&eacute;. &Agrave; sa poitrine son nom en langue locale &lsquo;ల&rsquo; et en commun y &eacute;tait attach&eacute; ainsi que son grade &lsquo;W&rsquo;. &Agrave; sa droite &eacute;tait pos&eacute; son fusil ionique contre le pare-brise.</div><div class="post_line"><div align="center"></div></div><div class="post_line">Elle savait la fait proche, rien n&rsquo;&eacute;tait important a partir de maintenant, elle n&rsquo;avait plus aucune raison de rester sur sa bonne vieille plan&egrave;te natale, Elle savait qu&rsquo;elle pouvait atteindre un monde nouveau, s&rsquo;&eacute;chapper cette fin in&eacute;luctable. elle se devait rester en vie,&nbsp;</div><div class="post_line"><div align="center"></div></div><div class="post_line">Elle ferma les yeux et m&eacute;dita longtemps. Autour d&rsquo;elle seule l&#039;&eacute;nergie vitale d&rsquo;un vers de sables profond&eacute;ment enfoui sous le sol, paisiblement endormie. Passer des ann&eacute;es a dormir et ne se r&eacute;veiller que pour aspirer de pauvre nomade, quelle agr&eacute;able vie &ccedil;a doit &ecirc;tre. Une perturbation vint la troubler, une catastrophe plus grande encore va arriver, la fin de tout. La d&eacute;solation, le grand vide. L&rsquo;Odyss&eacute;e va arriver, c&rsquo;&eacute;tait un pr&eacute;mice de la fin.&nbsp;</div><div class="post_line"><div align="center"></div></div><div class="post_line">Sortant de sa m&eacute;ditation une froide nuit sans &eacute;toile accueillit la commandante, Elle agrippa son fusil et sauta du capot. Le sable froid craque sous sa paire de Ranger, le vent nocturne souffle d&rsquo;une tranquillit&eacute; mena&ccedil;ante, elle ouvre la lourde porte de son courcou, l&#039;int&eacute;rieur de la cabine est en acier. Elle accrocha son fusil sur le tableau de bord et d&eacute;marra. Le moteur atomique d&eacute;marre dans un bruyant bruissement, et roule &agrave; haute vitesse sur le sommet des dunes, guid&eacute; par trois lune, appel&eacute; Nou, Dos, Tri. Le paysage lui &eacute;tait connu, mais cette soir&eacute;e tout&nbsp; lui semblait inconnue.</div><div class="post_line"><div align="center"></div></div><div class="post_line">Quelques heures plus tard, elle est arriv&eacute;e. La base secr&egrave;te Chatur.&nbsp; Elle arr&ecirc;ta le courcou au pied d&rsquo;une falaise. Un vent violent s&rsquo;est lev&eacute;, une temp&ecirc;te arrive. La commandante ne s&rsquo;inqui&eacute;ta pas. Les vents violents ne durent jamais plus de trois heures. Coupant le moteur, un doute lui caresse l&rsquo;esprit, devrait-elle rester l&agrave;, sur sa plan&egrave;te qui l&#039;a vu grandir, sur ce sable o&ugrave; elle a fait ses premier fait d&#039;armes ? Doit-elle laisser tomber, recommencer une nouvelle vie ailleurs ? Elle posa ses mains sur le volant. Au loin, le p&acirc;le soleil se leva. La douce musique du vent agr&eacute;mente ce lever de jour. Elle rentre dans la cabine de repos. Un matelas pos&eacute; &agrave; m&ecirc;me le sol ainsi que quel conserve de nourriture, principalement des d&eacute;riv&eacute;s de patates, indiquait que &ccedil;a faisait longtemps que Lali roulait depuis longtemps. Sur le mur se trouvait le drapeau <a href="https://i.pinimg.com/originals/f6/e4/88/f6e48881dee9807914adb1ac4c335f01.png?epik=dj0yJnU9bWtJSHNTSHdmQnh5cG9KeTNWdkFBUjdXUDlUdFR3ZjkmcD0wJm49bVNhYlViY3l4NDRNYldSZWMtZXYtQSZ0PUFBQUFBR0FSc0RN" target="_blank" rel="nofollow">Zbrayenns</a>. Elle le prit et mis comme une cape, puis sortit du v&eacute;hicule. Elle marcha quelques pas sous un vent de plus en plus violent. le sable volait dans tous les sens, heureusement ce n&rsquo;est pas une temp&ecirc;te de sable. Arrivant devant une porte en m&eacute;tal rouge profond. Quelque chose la troublait, elle ne ressentait aucune &eacute;nergie vitale. Calmement, elle posa sa main sur la porte, et fit le vide en elle.&nbsp;</div><div class="post_line"></div><div class="post_line">Un cliquetis, et la porte se souleva. Une odeur ferreuse accompagn&eacute;e par de l&rsquo;obscurit&eacute; l&#039;accueillit. Du sang. Du sang zbrayens. Elle sortit le pistolet de&nbsp; sa ceinture, but un coup de molpass, et se d&eacute;p&ecirc;cha d&rsquo;atteindre la zone de lancement. Le sol &eacute;tait l&eacute;g&egrave;rement collant et orang&eacute;, et au bout d&rsquo;un couloir, un pauvre soldat d&eacute;capit&eacute;. La commandante faillit pousser un cri. Sa respiration &eacute;tait haletante. Elle s&rsquo;approcha de ce qui reste du corps du pauvre type pour regarder son matricule. YANU. Un soldat de Haut Commandement. Sa respiration &eacute;tait encore plus haletante. Elle devait fuir cette boucherie. Elle ouvrit la porte face &agrave; elle d&rsquo;un grand coup de pied.&nbsp;</div><div class="post_line"><div align="center"></div></div><div class="post_line">Sous la lumi&egrave;re brute des n&eacute;ons d&#039;&eacute;clairage, tant sur le sol que sur les caisses de mat&eacute;riaux de ce hangar de r&eacute;parations, des morceaux de corps. Au pied la commandante, une t&ecirc;te. les globes oculaires manquaient. Plus loin, un corps coup&eacute; en deux dans la longueur. C&rsquo;&eacute;tait bestial. Lali reconnu de qui venait ce massacre, seul un Pinou aurait pu faire &ccedil;a. Tentant de calmer sa panique grandissante, elle traqua mentalement le Pinou. L&rsquo;odeur du sang des siens la troubla, Elle n&rsquo;&eacute;tait pas en &eacute;tat de pouvoir faire quoi que ce soit. Elle &eacute;tait prise de vertiges.&nbsp;</div><div class="post_line"><div align="center"></div></div><div class="post_line">Au milieu des cadavres une corvette atomique neuve &eacute;tait en &eacute;tat de d&eacute;coller. Arme en main, elle s&rsquo;approcha de l&#039;entr&eacute;e de la corvette. La porte n&rsquo;&eacute;tait pas verrouill&eacute;e. Elle entre la corvette est d&eacute;serte, pour l&rsquo;instant. Il faut un &eacute;quipage de 60 personnes pour contr&ocirc;ler un vaisseau de cette envergure dont 3 personnes au pilotage. lentement, elle passait par le mess, la salle &eacute;tait vide. Tout &eacute;tait rang&eacute;, et pr&ecirc;t &agrave; d&eacute;coller. Elle continue sa progression par un escalier central qui m&egrave;ne au pont de commandement. l&rsquo;endroit sent le lapium (un carburant &agrave; base de polonium et d&#039;uranium), c&rsquo;est une bonne nouvelle, le vaisseau &eacute;tait un vaisseau destin&eacute; &agrave; la lutte contre Kubaloukanakos. Elle se posa devant le poste du pilotage et appuya sur le bouton marqu&eacute; pilotage auto. Puis s&rsquo;accrocha au si&egrave;ge. Le vaisseau d&eacute;colla verticalement et arracha les portes qui isolaient la corvette du ciel. Elle jeta un dernier coup d&#039;&oelig;il &agrave; sa terre natale. Intuitivement elle regarda vers sa r&eacute;gion, et une multitude d&#039;explosions hyper-atomiques s&rsquo;occupait des derniers survivants, Au loin d&rsquo;autres vaisseaux d&eacute;colle aussi. Rapidement de multiples secousses se font sentir. Elles furent de plus en plus intenses. C&rsquo;est l&rsquo;une des &eacute;preuves les plus &eacute;prouvantes, d&rsquo;habitude les membres qui pilotent font &ccedil;a calmement. Mais la seule un pilotage automatique, programm&eacute; pour aller tout droit en hauteur jusqu&#039;&agrave; ce qu&rsquo;il n&rsquo;y ait plus assez de carburant. Les vibrations sont trop intenses. Il reste encore 3 minutes avant de quitter l&rsquo;atmosph&egrave;re. Elle devait rester consciente. Un concert de bip bip commence, Lali voit de plus en plus flou. Plaqu&eacute;e sur son si&egrave;ge, la respiration coup&eacute;e, dans un dernier souffle et dans un concert d&rsquo;alarme,&nbsp; elle prononce ces derni&egrave;res paroles :&nbsp;</div><div class="post_line"><font color="#ffff00">Y arlive mY Uruk, Mamia arlive.&nbsp;</font></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />09/03/1021 ETU 06:54</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal283706')">Détails</a> <a href="javascript:warnpost(283706)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283706" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283706',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font size="6">WIP</font></strong></div><div class="post_line"><font size="5">WIP</font></div><div class="post_line"><font size="4">WIP</font></div><div class="post_line"><font size="1">WIP</font></div><div class="post_line"></div><div class="post_line"><font size="1">...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Alie ! Alie ! Dibilu,&rsquo; mY p&rsquo;t&rsquo;mi, </font></div><div class="post_line"><font color="#ffffff"><font size="2">Alie ! Alie! Debout ma petite !</font></font></div><div class="post_line"></div><div class="post_line"><div align="justify">Cette voix&hellip;&nbsp; Ce nom&hellip; Cette odeur&hellip; La commandante ouvrit ses yeux. Elle &eacute;tait allong&eacute;e dans un lit. Elle tourna sa t&ecirc;te vers la gauche puis reconnut le visage familier de sa m&egrave;re avec quarante-cinq ans de moins. </div></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Alie... mY niouche p&rsquo;tmi&rsquo;, Y hepta tem&rsquo;, Y tim d&rsquo;Y s&rsquo;Y dibili&rsquo;, </font></div><div class="post_line"><font color="#ffffff"><font size="2">Alie ... Ma mignone petit. Il est 7h, il est temps de ce lever !</font></font></div><div class="post_line"></div><div class="post_line"><div align="justify">Cela faisait plus de trente-huit ans qu&rsquo;elle n&rsquo;avait pas entendu son nom d&rsquo;enfant. Elle se leva, il r&eacute;gnait une bonne odeur de sable chaud m&eacute;lang&eacute;e avec une odeur de galette de riz grill&eacute;. Posant ses pieds sur le sol en gr&egrave;s de sa chambre d&rsquo;enfant, elle parcourut visuellement cette chambre que le temps avait bien failli effacer. Sa m&egrave;re semblait avoir quitt&eacute; la pi&egrave;ce. En face d&rsquo;elle se situait sa porte entrouverte en aluminium. Elle pouvait y distinguer les traces d&rsquo;impact de couteau qu&rsquo;elle lan&ccedil;ait : certaines &eacute;taient profondes malgr&eacute; que la porte fut &eacute;paisse. Son regard se dirigea vers la droite et elle pu voir sa peluche. Elle repr&eacute;sentait un Megapinus. Il avait une belle couleur blanche, ce qui d&eacute;notait un peu de la blancheur orang&eacute; du gr&egrave;s pr&eacute;sent sur le sol. Il tenait dans ses &ldquo;patounes&rdquo; une carotte. Elle sentit un sourire se dessiner sur son visage des d&eacute;cennies qui semblaient s&rsquo;&ecirc;tre &eacute;coul&eacute;es depuis la derni&egrave;re fois qu&rsquo;elle avait vu ce doudou : des souvenirs dans lesquels elle jouait dans le sable rafra&icirc;chis par l&rsquo;air nocturne avec sa meilleure amie. Son regard se dirigea vers son armoire. C&rsquo;&eacute;tait un trou creus&eacute; &agrave; m&ecirc;me le mur dont un simple rideau en laine cachait l&#039;int&eacute;rieur. Elle posa ses deux pieds par terre. Le sol &eacute;tait froid, c&#039;&eacute;tait agr&eacute;able. Elle s&#039;avan&ccedil;a jusqu&#039;&agrave; la porte et sortit de la pi&egrave;ce.</div></div><div class="post_line"><div align="justify">Elle se trouvait dans un couloir qui servait deux autres pi&egrave;ces : la chambre de ses parents et la salle &agrave; vivre. Elle posa sa main et la rugosit&eacute; du mur la rassura. elle avan&ccedil;a dans cet endroit familier. Puis poussa la porte faite d&rsquo;un alliage m&eacute;tallique traditionnel Svrayens, et entra dans la pi&egrave;ce. Elle sentit une odeur de galette de riz grill&eacute;e tartin&eacute;e de graisse de ver de sable. La premi&egrave;re personne qu&rsquo;elle vit fut son p&egrave;re habill&eacute; dans un uniforme couleur de sable, son ch&egrave;che pos&eacute; sur une table en gr&egrave;s, &agrave; c&ocirc;t&eacute; de son r&eacute;volver. Accroch&eacute; &agrave; son dos d&eacute;passait son fusil ionique. &Agrave; cot&eacute;, une table de gr&egrave;s rouge venant de la r&eacute;gion d&rsquo;Uloun Il y &eacute;tait dispos&eacute; un bloc l&eacute;g&egrave;rement vert, &ccedil;a venait&nbsp; d&rsquo;Oloum, une sp&eacute;cialit&eacute; &agrave; base de graisse de ver de sable : des risgan, des galette de riz, un saladier en verre rempli de datte, une tasse jaune avec marqu&eacute; &ldquo;Mamia&rdquo;, un bol orange pos&eacute; a cot&eacute; du revolver, avec marqu&eacute; sur le r&eacute;cipent &ldquo;Papia&rdquo; et enfin un verre sur lequelle &eacute;tait d&eacute;ssin&eacute; un ver de sable o&ugrave; &eacute;tait grav&eacute;e l&rsquo;inscription &ldquo;Alie&rdquo;. Elle s&rsquo;assit sur une chaise en face de son verre, il &eacute;tait rempli de lait.</div><div class="post_line"></div></div><div class="post_line"><font color="#e86e04">Alie mY p&rsquo;timi&rsquo;,&rsquo;Y dodo dor ? &lsquo;,Y glouglou tY lich&rsquo;dY&rsquo;vic</font></div><div class="post_line">Alie ma petite, tu as bien dormis ? Aller bois ton verre de lait.</div><div class="post_line"></div><div class="post_line"><div align="justify">Lali leva la t&ecirc;te pour regarder son p&egrave;re. et vis son visage avec de nombreuses br&ucirc;lures et sa partie gauche en train de fondre et laissant qu&rsquo;un trou a la place du visage. Terrifi&eacute;e, elle &eacute;touffa un bruit, et partit en courant dehors. Elle renversa les bibelots pr&eacute;sents dans le couloir de l&rsquo;entr&eacute;e. Elle poussa la porte d&rsquo;entr&eacute;e, et le p&acirc;le soleil bleu se tenait bas dans le ciel, &eacute;clairant l&rsquo;atmosph&egrave;re du m&ecirc;me violet que ses yeux. Ne s&#039;arr&ecirc;tant pas pour contempler ce banal lever de soleil, elle courut les pieds nue dans le sable jaune Svrayen en direction de sa grotte. </div></div><div class="post_line"><div align="justify">Une fois dans la grotte de gr&egrave;s violet de son foyer, sa panique se calma. Elle d&eacute;cida de se rendre dans son jardin secret : une zone de la grotte o&ugrave; &eacute;tait entrepos&eacute; divers objets d&rsquo;un temps r&eacute;volu. La grotte &eacute;tait s&egrave;che malgr&eacute; la pr&eacute;sence d&rsquo;un lac souterrain. Il y r&eacute;gnait une odeur de sel. ses bruits de pas sur le granite du sol r&eacute;sonnait froidement. La grotte s&rsquo;&eacute;tirait en longueur par plusieurs salles contigu&euml;. Elle marchait en direction du lac. Plus elle s&rsquo;approchait de l&rsquo;eau, plus la temp&eacute;rature augmentait. Arriv&eacute;e au bord du bassin, elle plongea, car elle acc&eacute;dait au jardin secret par un chemin sous l&rsquo;eau. Le lac &eacute;tait tr&egrave;s profond : les l&eacute;gendes racontais que les lacs souterrains formeraient un oc&eacute;an souterrain qui se jetterait dans les oc&eacute;ans nordiques. Elle &eacute;tait arriv&eacute;e sur le bord de sa grotte, l&rsquo;endroit &eacute;tait &eacute;clair&eacute; par une simple lampe de chantier aliment&eacute; par une pile atomique, et elle &eacute;tait remplie de divers armoires en acier, et une t&eacute;l&eacute;vision atomique tr&ocirc;nait au fond de la pi&egrave;ce. Le sol &eacute;tait en mousse s&eacute;ch&eacute;e qui craquait sous ses pieds humides. Elle s&rsquo;allongea &agrave; m&ecirc;me la mousse et ferma les yeux.</div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />02/08/1021 ETU 23:16</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal286909')">Détails</a> <a href="javascript:warnpost(286909)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal286909" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=286909',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#008000">###################################################################################################################################</font></div></div><div class="post_line"><div align="center"><font color="#008000">TERMINAL PERSONNEL : R&Eacute;SERVE&nbsp;A&nbsp; UN USAGE MILITAIRE</font></div></div><div class="post_line"><div align="center"><font color="#008000">&nbsp; OD-&upsilon;-C, UTILISATEUR : LALI&nbsp;(▓▓▓▓▓)</font></div></div><div class="post_line"><div align="center"><font color="#008000">&nbsp;=== LOCAL ===</font></div></div><div class="post_line"><div align="center"><font color="#008000">###################################################################################################################################</font></div></div><div class="post_line"><div align="justify"><font color="#008000">en attente d&#039;ordre&nbsp;</font></div></div><div class="post_line"><div align="justify"><font color="#008000">pilotage automatique activ&eacute;</font></div></div><div class="post_line"><div align="justify"><font color="#008000">derni&egrave;re entr&eacute;e dans le Journal de Bord : [27/02ETU]</font></div></div><div class="post_line"><div align="justify"><font color="#008000">&gt;JDB</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---RECHERCHE DU JOURNAL DE BORD</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---PARTITION TROUV&Eacute;E</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---TRADUCTION EN COURS</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---D&Eacute;BUT</font></div></div><div class="post_line"><div align="justify"><font color="#008000">Je viens de me r&eacute;veiller dans le vaisseau apr&egrave;s un coma d&rsquo;environ de di cycles. J&rsquo;ai fait l&rsquo;inventaire du vaisseau et il y a assez de nourriture et de provisions pour heptaconta soldats.&nbsp;</font><font color="#008000">Impossible de joindre une quelconque base militaire zvrayenne, il doit se passer quelque la-bas. Je vais essayer d&rsquo;&eacute;crire un peu tout les cycles.</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---FIN</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---D&Eacute;BUT</font></div></div><div class="post_line"><div align="justify"><font color="#008000">J&rsquo;ai r&eacute;ussi &agrave; contacter des survivants, en bas c&rsquo;est l&rsquo;enfer. Ils m&rsquo;ont racont&eacute; que la faune attaque les infrastructures et les soldats se font massacrer, la faute &agrave; ces ADM. Ils parlent d&rsquo;agitateurs qui parlent de d&eacute;mocratie et d&#039;exploitation mini&egrave;re. Ils sont en train de mettre en place une d&eacute;mocratie repr&eacute;sentative lib&eacute;rale. Quelle horreur. Me voil&agrave; &agrave; &eacute;crire des cours sur la guerre.</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---FIN</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---D&Eacute;BUT</font></div></div><div class="post_line"><div align="justify"><font color="#008000">La routine s&rsquo;installe. Je passe mes cycles &agrave; expliquer aux citoyens comment il faut se battre. Comment d&eacute;crire mes cycles. J&rsquo;alterne entre zbra, et cours de guerrilla. En bas c&rsquo;est le bordel. le pr&eacute;sident actuel est un Industrialiste. Des populations exploit&eacute; dans d&rsquo;immense usine. Faut que je fasse qqc.</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---FIN</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---PARTITION CORROMPU</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---RECHERCHE&nbsp;</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---(1) ENTR&Eacute;E(S) NON CORROMPU(S)&nbsp;TROUV&Eacute;</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---D&Eacute;BUT</font></div></div><div class="post_line"><div align="justify"><font color="#008000">Enfin ! Ils arrivent ! Malheuresement, Rahn, Leur &quot;Chef&quot; dans la politique galactique me place au second plan. Toutes les plan&egrave;tes ont d&eacute;clar&eacute;es&nbsp;leur ind&eacute;pendance. J&rsquo;ai perdu ma prestance galactique. Je dois arr&ecirc;ter cette mascarade le plus vite possible.</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---FIN</font></div></div><div class="post_line"><div align="justify"><font color="#008000">---AUCUNE AUTRE PR&Eacute;SENCE D&#039;ENTR&Eacute;E DANS LA PARTITION</font></div></div><div class="post_line"><div align="justify"></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15360&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15360" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15360" name="d_reply_15360" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15360');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15360'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > chronique d&#039;une fin de monde</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16244 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>C&eacute;r&eacute;monie du sang.</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > C&eacute;r&eacute;monie du sang.</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nyalnamar+Veritas">Cdte. Nyalnamar Veritas</a><br>Prestige de chroniqueur&nbsp;: 28<br /><br /><img src="/avatars/11412.jpg" style="width:112px;height:128px" alt="Avatar" /><br />26/02/1022 ETU 01:31<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D292576', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal292575')">Détails</a> <a href="javascript:warnpost(292575)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal292575" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=292575',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">La plan&egrave;te fut arros&eacute;e d&#039;acier.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">C&#039;&eacute;tait un ph&eacute;nom&egrave;ne bien connu de quiconque avait eu le malheur de se trouver sous l&#039;orbite d&#039;une bataille spatiale. Contrairement aux objets entrant traditionnellement dans l&#039;atmosph&egrave;re, les croiseurs de combat et autres vaisseaux de guerre, avec leur co&ucirc;t proche du PIB d&#039;un petit &Eacute;tat, tendaient &agrave; survivre &agrave; la chute. Ils &eacute;taient con&ccedil;us pour. Les blindages en alliages r&eacute;sistants, couverts de carrelage de c&eacute;ramique ou de carbone, ne se consumaient jamais enti&egrave;rement. Pour un peu que les boucliers aient r&eacute;sist&eacute; au choc qui avait propuls&eacute; l&#039;ensemble vers la surface, ils pouvaient aussi, dans une triste r&eacute;manence de leur r&ocirc;le d&#039;usage, permettre &agrave; la structure de survivre &agrave; la chute. In&eacute;vitablement, apr&egrave;s chaque bataille, les restes de la flotte entraient en orbite et, &agrave; une vitesse si incroyable qu&#039;on arrivait pas &agrave; la concevoir, descendait dans l&#039;atmosph&egrave;re pour s&#039;&eacute;craser &agrave; sa surface.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La pluie d&#039;acier commen&ccedil;ait alors. Ph&eacute;nom&egrave;ne bien connu de tout les soldats Labyrinthes. Non. De tout les Labyrinthes. Pas un seul n&#039;avait &eacute;chapp&eacute; &agrave; la guerre, lorsque l&rsquo;enti&egrave;ret&eacute; de l&#039;empire avait &eacute;t&eacute; envahie puis, lentement lib&eacute;r&eacute;. Ils connaissaient tous le ph&eacute;nom&egrave;ne, l&#039;avaient tous sinon observ&eacute;s de leurs propres yeux, au moins &eacute;tudi&eacute; par des photos, des vid&eacute;os. Ces masses lourdes comme des lunes s&#039;embrasant dans le ciel, rasant for&ecirc;ts, collines et villes, vaporisant lacs et mers, scarifiant les plan&egrave;tes d&#039;imposants crat&egrave;res.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;Or&eacute;e se souvenait tr&egrave;s bien des paysages de sa c&ocirc;te natale. Un petit endroit qu&#039;elle avait toujours consid&eacute;r&eacute;e bucolique. Des maisons de p&ecirc;cheur align&eacute;es le long d&#039;un oc&eacute;an gris acier, une plage qui s&#039;&eacute;tendait en pente douce jusqu&#039;&agrave; des prairies d&#039;un vert humide, couverts d&#039;un &eacute;ternel brouillard au-del&agrave; duquel on devinait les formes puissantes de montagnes granites.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ce paysage n&#039;existait plus que dans sa m&eacute;moire. La chute d&#039;un croiseur amiral apocalyptien avait sublim&eacute; l&#039;ensemble. Au sens physique du terme : les maisons et leurs occupants s&#039;&eacute;taient retrouv&eacute;es dans l&#039;atmosph&egrave;re, sous une forme dispers&eacute;e et gazeuse. Une temp&ecirc;te de plasma avait transform&eacute; la plage, magnifique, en surface de verre aux formes abstraites. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Des sacrifices, et de la douleur. Les Labyrinthes n&#039;en demandaient pas moins. Maintenant, l&#039;Or&eacute;e observait les populations de Fort Terreur, si&egrave;ge de son administration de campagne au sein du secteur 5, qui avaient &eacute;t&eacute; simultan&eacute;ment lib&eacute;r&eacute;s et brigands et soumise &agrave; la pluie d&#039;acier de soixante mille corsaires, arrach&eacute;s du ciel par tant de fois moins de vaisseaux labyrinthes&hellip; L&#039;Or&eacute;e n&#039;avait pas un seul survivant &agrave; se reprocher dans le rang de ses ennemis. Elle avait, aussi, de nombreux morts sur la conscience dans le rang de ceux qu&#039;elle avait lib&eacute;r&eacute;e. En cas de bataille spatiale il est tr&egrave;s difficile d&#039;&eacute;viter d&#039;&ecirc;tre pris entre deux feux. Les pirates le savaient&nbsp;: un tir perdu continue ind&eacute;finiment jusqu&#039;&agrave; heurter quelque-chose. Ils &eacute;taient plac&eacute;s juste au dessus de l&#039;atmosph&egrave;re, pr&egrave;s des centres urbains, de fa&ccedil;on &agrave; obliger les labyrinthes &agrave; un choix&nbsp;: les tuer et risquer la mort de nombreux civils, ou les laisser fuir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;Or&eacute;e eut un sourire froid.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Des sacrifices et de la douleur. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle n&#039;avait pas un seul survivant &agrave; se reprocher.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nyalnamar+Veritas">Cdte. Nyalnamar Veritas</a><br>Prestige de chroniqueur&nbsp;: 28<br /><br /><img src="/avatars/11412.jpg" style="width:112px;height:128px" alt="Avatar" /><br />01/04/1022 ETU 06:27<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D292763', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal292760')">Détails</a> <a href="javascript:warnpost(292760)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal292760" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=292760',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Har&egrave;s sur son tr&ocirc;ne, incarn&eacute; en la personne d&#039;une chevali&egrave;re. Irr&eacute;prochable en cela que ses cr&icirc;mes de guerre se firent avec l&#039;approbation des siens. Se salissant les mains dans la limite de ce qu&#039;on lui demandait de faire. Faisant le mal, mais bien. Une v&eacute;ritable sainte du massacre. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;Or&eacute;e.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle fixait devant elle la table tactique et les points verts se transformant, comme un feu d&#039;artifice, en points rouges au fur et &agrave; mesure que ses flottes s&#039;&eacute;crasaient sur des mondes trop d&eacute;fendus pour &ecirc;tre pris. Au sein des Labyrinthes on ne mentait pas. On disait toujours la stricte v&eacute;rit&eacute;. Les d&eacute;faites &eacute;taient toujours pr&eacute;visibles, courues d&#039;avance. On les assumait comme tel, on ne se voilait pas la face.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pas cette fois. Elle ne voyait pas d&#039;o&ugrave; venait le crime, ne comprenait pas exactement son origine, et compris qu&#039;on allait lui demander de rendre des comptes. Inacceptable. Elle se leva et appuya sur un bouton saillant de l&#039;accoudoir de son si&egrave;ge. Convoquant les officiers, tous. Quelqu&#039;un avait d&ucirc; trahir. Car tout &eacute;tait parfait&nbsp;: elle y avait veill&eacute;e elle-m&ecirc;me. Celui ou celle &agrave; l&#039;origine de l&#039;&eacute;chec, le nom du tra&icirc;tre, serait effac&eacute; en m&ecirc;me temps que les forces ennemies, lors de la seconde vague qu&#039;elle&nbsp; commen&ccedil;ait d&eacute;j&agrave; &agrave; organiser, s&#039;assurant cette fois que les facteurs &eacute;taient favorables &agrave; une victoire concr&egrave;te. Elle n&#039;avait pas peur. Elle n&#039;avait pas honte. Elle n&#039;&eacute;tait pas inqui&egrave;te. Elle consid&eacute;rait la victoire in&eacute;luctable. Cependant elle &eacute;tait agac&eacute;e.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ce qui s&#039;&eacute;tait pass&eacute; n&#039;&eacute;tait pas normal.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et tout ce qui &eacute;tait anormal lui d&eacute;plaisait &eacute;norm&eacute;ment.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Quelque-chose se manifesta dans sa vision p&eacute;riph&eacute;rique. Un appel que lui transf&eacute;rait son aide de camp. Elle le r&eacute;ceptionna. La Nyalnamar V&eacute;ritas apparue, immense hologramme suspendu dans l&#039;air, au-dessus d&#039;elle, comme un spectre s&eacute;v&egrave;re, ceux de ces contes pour enfant, dont le regard per&ccedil;ait la chair pour directement fixer l&#039;&acirc;me. La chevali&egrave;re posa un genou &agrave; terre.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&ndash; <font color="#d9f4ff">Ma&icirc;tresse.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle ne lui rendit aucun honneur, indiquant d&#039;un geste de main qu&#039;elle pouvait se relever. Sa voix &eacute;tait pos&eacute;e, calme, n&#039;exprimait aucune col&egrave;re, pas la moindre question. Rien.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&ndash;<font color="#fff5b3"> Allez droit au but, mon amie.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#d9f4ff">Nous allons trouver et &eacute;liminer le traite &agrave; l&#039;origine de cette situation.</font> L&#039;Or&eacute;e se releva et fixa son regard dans celui de l&#039;hologramme. Elle ne cachait pas son agacement.<font color="#d9f4ff"> Nous rattraperons le retard pris par la m&ecirc;me.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#fff5b3">L&#039;Or&eacute;e</font>, et elle n&#039;ajouta d&#039;abord rien. Cherchant les mots juste pour exprimer sa pens&eacute;e. Elle vint avec un soupir tr&egrave;s doux. <font color="#fff5b3">Tous nos manquements ne peuvent pas s&#039;expliquer par la pr&eacute;sence de traites dans nos rangs. Combien de cinqui&egrave;me colonne avons-nous d&eacute;j&agrave; purg&eacute;&nbsp;?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#d9f4ff">Autant que n&eacute;cessaire. </font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#fff5b3">Il doit n&eacute;cessairement y avoir un peu d&#039;incomp&eacute;tence. Au moins statistiquement.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un silence qui se prolongea quelques instants. La chevali&egrave;re finit pas acquiescer.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&ndash; <font color="#d9f4ff">Avez-vous de nouvelles consignes &agrave; me donner ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#fff5b3">Mon plein soutien.</font> Elle pencha la t&ecirc;te sur le c&ocirc;t&eacute;, ne voyant rien d&#039;autre &agrave; dire.<font color="#fff5b3"> Vous avez une mission &agrave; remplir. Remplissez-la. Nous ferons les comptes ensuite, si n&eacute;cessaire.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#d9f4ff">Je comprends.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#fff5b3">Cette erreur, dans un autre contexte, aurait &eacute;t&eacute; fatale. Ce pourquoi je vous fais confiance pour ne pas la r&eacute;p&eacute;ter dans un autre contexte. Je ne veux pas pour autant que vous vous sacrifiiez au pr&eacute;texte d&#039;un &eacute;chec unique. Allez-y, maintenant. Faites ce que vous avez &agrave; faire.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La chevali&egrave;re s&#039;inclina alors que l&#039;image de sa ma&icirc;tresse se dissipait dans l&#039;air. Elle retomba dans son si&egrave;ge et appuya sur un second bouton. Les officiers pouvaient entrer dans la salle de contr&ocirc;le.</div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16244&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16244" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16244" name="d_reply_16244" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16244');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16244'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > C&eacute;r&eacute;monie du sang.</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

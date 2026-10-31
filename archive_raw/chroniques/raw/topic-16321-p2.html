@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 16321 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Un parfum de fleurs...</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Un parfum de fleurs...</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16321&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />05/08/1022 ETU 02:35</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal294197')">Détails</a> <a href="javascript:warnpost(294197)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294197" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294197',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">So&rsquo;ora &eacute;tait noy&eacute;e dans les comptes et rapport&hellip;</div><div class="post_line">Essuyant ses lunettes ronde et &eacute;bouriffant sa tignasse brune.</div><div class="post_line">Entre deux clients, un retour de livraison, l&rsquo;organisation sommaire de la Cryo&hellip;</div><div class="post_line">Ca et le Centre de soin qui ne donnais pas de nouvelles.</div><div class="post_line"></div><div class="post_line"><strong><font color="#44B8FF">- Piti&eacute;eeeeee...</font> </strong>Dit elle, quand le deck d&rsquo;accueil du bureau retentit.</div><div class="post_line">Se manifestant par la monstruosit&eacute; que Synthia avais choisit avec beaucoup d&rsquo;ironie&nbsp;:</div><div class="post_line"><div align="center"><em>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</em></div></div><div class="post_line"><em><font color="#FF0000"><font color="#E8C500"><font size="4">♬&nbsp;</font></font> Tenez! jvous&nbsp;rends le string qu&#039;Synthia a oubli&eacute;&nbsp;<font color="#E8C500"><font size="4">♬ </font></font></font></em></div><div class="post_line"><div align="center"><em><font color="#FF0000"><font color="#E8C500"><font size="4">♬♬</font></font> On le voit bien qu&#039;aujourd&#039;hui elle a beaucoup trop tir&eacute;</font></em></div></div><div class="post_line"><div align="center"><em><font color="#FF0000">On va r&eacute;&eacute;quilibrer la r&eacute;partition des gal&egrave;res<font color="#E8C500"><font size="4">♬ ♬ </font></font></font></em></div></div><div class="post_line"><div align="center"><font color="#E86E04"><font size="2"><em>&nbsp;cr&eacute;dit: Coq rouge</em></font></font></div></div><div class="post_line"><div align="center">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</div></div><div class="post_line">Cette voix insupportable de coq enrhum&eacute; r&eacute;sonnait &agrave; chaque fois que quelqu&rsquo;un sollicitait un entretien avec la pr&eacute;sidente&hellip;</div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">- J&rsquo;en ai marre de cette stupidit&eacute;&nbsp;! Pourquoi&nbsp;?! </font></div><div class="post_line"></div><div class="post_line">So&rsquo;Ora hurlait, Synthia ne lui avais jamais communiqu&eacute; le code d&rsquo;acc&egrave;s&hellip;</div><div class="post_line"></div><div class="post_line">Elle tenta de voir dans les contacts commerciaux si il n&rsquo;y avais pas un sp&eacute;cialiste en s&eacute;curit&eacute; et cryptage des codes&hellip; En vain.</div><div class="post_line"></div><div class="post_line"><strong><font color="#44B8FF">- MERDE&nbsp;!</font></strong> Jura t&rsquo;elle.</div><div class="post_line"><font color="#FF857A">- C&rsquo;est pas merde... c&rsquo;est <strong>P&rsquo;TIN D&rsquo;MERDE&nbsp;!</strong> Qu&rsquo;on dit, quand on joue &agrave; la Pr&eacute;sidente&hellip;</font></div><div class="post_line"></div><div class="post_line">So&rsquo;Ora se tourna vers la porte d&rsquo;entr&eacute;e, elle fondit en larmes&hellip; </div><div class="post_line">Croyant &agrave; peine se que ses yeux lui montrait. Se faisant fit de tout protocoles, elle plongea dans les bras de Synthia, qui souriait dans entreb&acirc;illement de la porte. </div><div class="post_line"></div><div class="post_line"><font color="#FF857A">-T&rsquo;inqui&egrave;te So&rsquo;... J&rsquo;vais la changer cette sonnerie.</font></div><div class="post_line"></div><div class="post_line">So&rsquo;Ora sentit un enivrant parfum bois&eacute; avec une note florale dans le cou de la pr&eacute;sidente...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />06/08/1022 ETU 23:13</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal294261')">Détails</a> <a href="javascript:warnpost(294261)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294261" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294261',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Synthia &eacute;tait face &agrave; la fen&ecirc;tre du bureau, un verre en main&hellip; Elle semblais contempler la m&eacute;tropole, en fredonnant doucement une s&eacute;rie de mots r&eacute;p&eacute;titifs</div><div class="post_line"></div><div class="post_line">Elle n&rsquo;entendit pas So&rsquo;Ora entrer.</div><div class="post_line"><font color="#44B8FF">- Synthia&nbsp;?</font></div><div class="post_line"></div><div class="post_line">La pr&eacute;sidente ne semblais pas l&rsquo;avoir entendue.</div><div class="post_line"><font color="#44B8FF">- Synthia&nbsp;?! Est-ce que &ccedil;a vas&nbsp;?</font></div><div class="post_line"></div><div class="post_line"><font color="#FF857A">- HA&nbsp;!&hellip; Pardon, je ne t&rsquo;ai pas entendue rentrer...</font> Dis la blonde en se tournant vers la secr&eacute;taire.</div><div class="post_line"></div><div class="post_line">So&rsquo;Ora regarda la pr&eacute;sidente, soup&ccedil;onneuse, quelque chose n&rsquo;allait pas.</div><div class="post_line"></div><div class="post_line"><font color="#FF857A">- Ce n&rsquo;est rien So&rsquo; Encore cette fichue migraine&hellip;</font></div><div class="post_line"><font color="#44B8FF">- Voulez-vous que je contacte le centre&nbsp;?</font></div><div class="post_line"></div><div class="post_line"><font color="#FF857A">- Non s&rsquo;te pla&icirc;t, oublie ces nazes&nbsp;! J&rsquo;ai re&ccedil;ut les analyses, et devine quoi&hellip;</font></div><div class="post_line"><font color="#44B8FF">- Heu&hellip;</font></div><div class="post_line"><font color="#FF857A">- Ben ils ont pas trouv&eacute;&nbsp;! J&rsquo;ai les globules rouges sur-d&eacute;velopp&eacute;s comme si j&rsquo;avais pass&eacute; 60 ans de ma vie dans l&rsquo;espace&nbsp;! Et le plus beau, ben ils ne savent pas l&rsquo;expliquer&nbsp;!</font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">- Mais&hellip;</font></div><div class="post_line"><font color="#FF857A">- Ouais j&rsquo;sais c&rsquo;est depuis que j&rsquo;ai fait ma syncope. Et me casse pas la t&ecirc;te avec des &laquo;&nbsp;tu aurais du rester et gnagnagna&nbsp;&raquo;</font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">- Et Jena&nbsp;?</font></div><div class="post_line"><font color="#FF857A">- Ben je sais pas, c&rsquo;est comme si c&rsquo;&eacute;tait devenu une simple d&eacute;co&hellip;</font></div><div class="post_line"><font color="#44B8FF">- Est-ce qu&rsquo;il y aurais un lien entre&hellip; Votre&hellip; enfin&hellip; </font>Pataugea So&rsquo;ora</div><div class="post_line"><strong><font color="#FF857A">- Ouais p&rsquo;t&ecirc;te que oui, ou p&rsquo;t&ecirc;te que j&rsquo;ai vu que le tapis &eacute;tait triste alors je lui ais fait un c&acirc;lin&nbsp;!</font></strong></div><div class="post_line"></div><div class="post_line">Synthia retourna a son bureau pour y saisir un flacon de comprim&eacute;.</div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">- Ca fait le 9eme depuis ce matin&nbsp;! </font>Protesta So&rsquo;Ora</div><div class="post_line"><font color="#FF857A">- Ben oui, c&rsquo;est &ccedil;a, ou j&rsquo;ai la t&ecirc;te qui explose&nbsp;!</font></div><div class="post_line"><font color="#44B8FF">- Peut-&ecirc;tre que vous devriez chercher de l&rsquo;aide ailleurs&nbsp;?</font></div><div class="post_line"><font color="#FF857A">- J&rsquo;y ai pens&eacute;&hellip;&nbsp;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />07/08/1022 ETU 21:57</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294279', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal294278')">Détails</a> <a href="javascript:warnpost(294278)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294278" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294278',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em><strong>Archives centrale (ann&eacute;e 880 apr&egrave;s le premier vol extra plan&eacute;taire.)</strong></em></font></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>Ordonnance N&deg;105-1563-4</em></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>Apr&egrave;s avoir entendu les diff&eacute;rents partis, les experts m&eacute;dicaux, les sociologues</em></font></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em><strong>La cours se prononce en ces mots.</strong></em></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>L&rsquo;ordre des p&egrave;lerins, ne peut &ecirc;tre qualifi&eacute;e de groupe religieux ou marginal.</em></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>Leur biologie alt&eacute;r&eacute;e suivie par examens contr&ocirc;le, d&eacute;montre une mutation d&rsquo;origine ancienne, modifiant la composition sanguine, et transmissible &agrave; leur descendant.</em></font></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>En ce sens qu&rsquo;il n&rsquo;est pas possible de qualifier cet &eacute;tat d&rsquo;anomalie. </em></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>La cours d&eacute;clare donc sur la nature biologique des &ecirc;tres vivants qualifi&eacute; de &laquo;&nbsp;p&egrave;lerins&nbsp;&raquo;, comme &eacute;tant fruit de l&rsquo;&eacute;volution, donc par r&eacute;currence de l&rsquo;ordre naturel.</em></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em><strong>De la scission des p&egrave;lerins et leur ind&eacute;pendance.</strong></em></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>La cours se prononce sur un refus d&rsquo;ind&eacute;pendance, la nature biologique des p&egrave;lerins ne leur permet pas de se diff&eacute;rencier du commun, leur alt&eacute;ration g&eacute;n&eacute;tique n&rsquo;&eacute;tant pas incompatible avec la nature commune.</em></font></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>Nous avons d&eacute;not&eacute; d&rsquo;ailleurs un pros&eacute;lytisme inappropri&eacute; dans cette requ&ecirc;te. </em></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>Leur facult&eacute; en font une &eacute;lite dans le domaine de la navigation spatiale, mais qui sera un jour rendue obsol&egrave;te par les d&eacute;veloppement sur les syst&egrave;me de navigation.</em></font></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em><strong>La cour rejette la demande de statut &laquo;&nbsp;d&rsquo;&ecirc;tres exceptionnel&nbsp;&raquo;</strong></em></font></div></div><div class="post_line"><div align="left"><font color="#fff5b3"><em>[&hellip;] Jugement sans appel. Date [...]</em></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Synthia &eacute;plucha une autre archive d&eacute;couverte dans un vieux serveur oubli&eacute;</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#fbb8ec"><em><strong>Archives centrale (ann&eacute;e 500 apr&egrave;s le premier vol extra plan&eacute;taire.)</strong></em></font></div></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec"><em><strong>Rapport m&eacute;dical partiel&nbsp;: </strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec"><em>Le sang des navigateurs est alt&eacute;r&eacute;s, probablement du &agrave; la faible gravit&eacute;, cependant nous avons constat&eacute; cher certains anciens v&eacute;t&eacute;rans de la marchande, des taux &eacute;lev&eacute;s de fer dans le sang&hellip; </em></font></div><div class="post_line"><font color="#fbb8ec"><em>[fragment&eacute;]</em></font></div><div class="post_line"><font color="#fbb8ec"><em>[&hellip;] avec les &eacute;chantillons nous [&hellip;.] constat est que cela pourrais induire un ressentit d&rsquo;orientation par rapport au champs &eacute;lectromagn&eacute;tique.</em></font></div><div class="post_line"><font color="#fbb8ec"><em>[&hellip; &hellip;] </em></font></div><div class="post_line"><font color="#fbb8ec"><em>Ceci m&ecirc;me au constat [ &hellip; ] non du au radiation [&hellip;] Les g&eacute;nomes portant le chromosome alt&eacute;r&eacute; [&hellip;]</em></font></div><div class="post_line"><div align="left"><font color="#fbb8ec"><em>Li&eacute; &agrave; leur capacit&eacute;s directe [&hellip;] champs gravitationnel&nbsp;</em></font></div></div><div class="post_line"><div align="left">[Contenu manquant]</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">La jeune femme jouait avec sa croix h&eacute;rit&eacute;e, pensivement...</div></div><div class="post_line"><div align="left">Rien dans ces archives n&rsquo;expliquait le lien ressentit quand elle tenait le &quot;Y&quot; des p&egrave;lerins et Jena</div></div><div class="post_line"><div align="left">Elle passa la main dans ses chevaux, sentant toujours ce mal de t&ecirc;te bien pr&eacute;sent... </div></div><div class="post_line"><div align="left">Elle posa les rapport et ferma les yeux.</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Pour les rouvrir aussi t&ocirc;t... Une pr&eacute;sence inconnue dans le bureau, l&agrave; devant elle. Un homme se tenait debout, semblant vaquer a des occupations inconnue.</div></div><div class="post_line"><div align="left"><strong><font color="#FF857A">- Qui &ecirc;tes vous et que faites vous dans ce bureau?</font></strong></div></div><div class="post_line"><div align="left">L&#039;homme ne r&eacute;pondit pas avan&ccedil;ant dans la pi&egrave;ce, semblant esquiver du mobilier invisible, a son cou pendant la croix des p&egrave;lerins, Synthia regarda imm&eacute;diatement l&#039;endroit ou elle avait pos&eacute; la sienne.</div></div><div class="post_line"><div align="left"><strong><font color="#FF857A">- H&eacute; TOI! REND MOI CA!</font></strong></div></div><div class="post_line"><div align="left">Elle voulu se lever, mais impossible, pas comme si ses jambes ne r&eacute;pondaient pas, plut&ocirc;t comme si le fauteuil la retenais fermement. </div></div><div class="post_line"><div align="left">L&#039;&ecirc;tre manipulait des objets invisibles, comme si il concevait quelque chose. Ou du moins l&#039;&eacute;tudiait. </div></div><div class="post_line"><div align="left">Synthia se mit a hurler la s&eacute;curit&eacute;.</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">So&#039;Ora la regardait inqui&egrave;te... </div></div><div class="post_line"><div align="left"><font color="#44B8FF">- Synthia?</font></div></div><div class="post_line"><div align="left"><font color="#FF857A">- </font><font color="#FF857A">Ou il est?</font></div></div><div class="post_line"><div align="left"><font color="#44B8FF">- Qui ?</font></div></div><div class="post_line"><div align="left"><font color="#FF857A">- Le mec qui a piqu&eacute; ma croix!</font></div></div><div class="post_line"><div align="left"><font color="#44B8FF">- Mais tu l&#039;as en main... Tu dormais et puis tu a cri&eacute; dans ton sommeil...</font></div></div><div class="post_line"><div align="left"><font color="#FF857A">- Pince moi, c&#039;est une blague...</font></div></div><div class="post_line"><div align="left">...</div></div><div class="post_line"><div align="left"><strong><font color="#FF857A">- AIIEUUUU! Bordel! Pourquoi t&#039;as fais &ccedil;a?</font></strong></div></div><div class="post_line"><div align="left"><font color="#44B8FF">- Ben tu me l&#039;as demand&eacute;.</font> Rigola So&#039;Ora</div></div><div class="post_line"><div align="left"><font color="#FF857A">- Fout moi l&#039;camp idiote ! </font>Plaisanta Synthia</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />08/08/1022 ETU 16:59</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal294287')">Détails</a> <a href="javascript:warnpost(294287)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294287" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294287',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Synthia &eacute;tait couch&eacute;e, sa respiration calme et lente, ses yeux bougeant rapidement derri&egrave;res les paupi&egrave;res closes en phase de sommeil paradoxal.</div><div class="post_line"><div align="center"><font color="#b3d5f4">...........✻ ✼ ✽ ✾ ✿ ❀ ❁ ❂ ❃ ❆</font></div></div><div class="post_line"><font color="#bbbbbb">- Je pense que nous y sommes Dit le P&egrave;lerin</font></div><div class="post_line"><font color="#bbbbbb">- Vous ne devriez pas&nbsp;!</font></div><div class="post_line"><font color="#bbbbbb">- Ais-je le choix&nbsp;?</font></div><div class="post_line"><font color="#bbbbbb">- Je ne vous comprend pas. Les risques&nbsp;sont&hellip;</font></div><div class="post_line"><font color="#bbbbbb">- Ils sont ce qu&rsquo;il sont. Mais ils sont faible, compar&eacute; a ceci&nbsp;!</font></div><div class="post_line"><strong><em>Le P&egrave;lerin pris entre ses doigts l&rsquo;objet de la discussion, une simple g&eacute;lule d&rsquo;apparence anodine&hellip;</em></strong></div><div class="post_line"><strong><em>Il leva l&rsquo;objet vers ses yeux. La g&eacute;lule se mit a luire faiblement. De fin tentacules s&rsquo;extirp&egrave;rent tel des cheveux vibrants doucement.</em></strong></div><div class="post_line"><strong><em>L&rsquo;homme soupira&nbsp;:</em></strong></div><div class="post_line"><font color="#bbbbbb">- Le savoir d&rsquo;une vie contenu dans une si petite capsule&hellip;</font></div><div class="post_line"><font color="#bbbbbb">- C&rsquo;est une folie, vous n&rsquo;auriez pas du utiliser des nanotechnologies coupl&eacute;e avec des synapses protonique&hellip;</font></div><div class="post_line"><font color="#bbbbbb">- C&rsquo;est une alliance parfaite.</font></div><div class="post_line"><font color="#bbbbbb">- Non&nbsp;! C&rsquo;est le droit chemin vers la fin. Aucun organisme biologique ne pourra fusionner avec &ccedil;a&nbsp;!</font></div><div class="post_line"><strong><em>Le P&egrave;lerin regarda son associ&eacute; avec&nbsp; la d&eacute;fiance marqu&eacute;e sur le visage&hellip;</em></strong></div><div class="post_line"><font color="#bbbbbb">- 86 ann&eacute;es, c&rsquo;est le temps qu&rsquo;il m&rsquo;a fallu pour d&eacute;couvrir la vraie nature du sang des Elus, mon sang&nbsp;!</font></div><div class="post_line"><font color="#bbbbbb">- Allons soyez raisonnable, l&rsquo;&eacute;poque des P&egrave;lerins est r&eacute;volue&hellip;</font></div><div class="post_line"><font color="#bbbbbb">- Je le refuse&nbsp;! Nous avons pris les plus grand risques, fais les plus grandes d&eacute;couvertes, et celle-ci nous appartient!</font></div><div class="post_line"><font color="#bbbbbb"><em>L&rsquo;homme rapprocha la capsule qui tendait ses filaments vers son visage avec avidit&eacute;.</em></font></div><div class="post_line"><font color="#bbbbbb">- Je vous en prie, ne faites pas &ccedil;a&nbsp;! Ce synth&eacute;tis&eacute; de m&eacute;moire artificielle consciente jumel&eacute; avec neurones biologique ne peut pas fonctionner&nbsp;!</font></div><div class="post_line"><font color="#bbbbbb">- Ingrat&hellip; Si ce n&rsquo;&eacute;tait que de la m&eacute;moire artificielle. C&rsquo;est bien plus que cela&hellip; une extension de l&rsquo;&ecirc;tre au travers d&rsquo;un cerveau artificiel. La promesse d&rsquo;une vie &eacute;ternelle et la transmission du savoir par del&agrave; les g&eacute;n&eacute;rations&nbsp;!</font></div><div class="post_line"><font color="#bbbbbb">- DONNEZ MOI CA&nbsp;!</font></div><div class="post_line"><strong><em>Rugit l&rsquo;assistant en se ruant sur le P&egrave;lerin. </em></strong></div><div class="post_line"><strong><em>Les deux hommes lutt&egrave;rent pendant un temps ind&eacute;finissable&hellip;</em></strong></div><div class="post_line"><div align="center"><font color="#C3FFFF">✻ ✼ ✽ ✾ ✿ ❀ ❁ ❂ ❃ ❆...........</font></div></div><div class="post_line"></div><div class="post_line">La douleur vrilla ses tempes, Synthia se retourna dans le lit, repris son &eacute;ni&egrave;me comprim&eacute;&hellip;</div><div class="post_line">S&rsquo;asseyant au bord du lit, elle s&rsquo;effor&ccedil;a de chasser ce r&ecirc;ve absurde et pourtant si r&eacute;el&hellip;</div><div class="post_line">Son corps perlait de sueur, son souffle &eacute;tait court, elle se tenait la t&ecirc;te entre les mains et se mis a pleurer.</div><div class="post_line"></div><div class="post_line">Elle cru entendre une voix au loin, murmurant</div><div class="post_line"></div><div class="post_line">&nbsp; <em><font color="#C3FFFF">De son sang, &agrave; la vie &eacute;ternelle elle revint. Ainsi, en sera-t-il&nbsp; ... </font></em></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />12/08/1022 ETU 04:58</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal294332')">Détails</a> <a href="javascript:warnpost(294332)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294332" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294332',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#44B8FF">- Synthiaaaaa&nbsp;?! </font>G&eacute;missait So&rsquo;Ora.</div><div class="post_line"><font color="#FF857A">- Ouaiiiis&hellip; Quoi&hellip;</font> R&eacute;pondit la blonde</div><div class="post_line"><font color="#44B8FF">- Mais tu as bu&nbsp;??</font></div><div class="post_line"><font color="#FF857A">- Nan j&rsquo;ai juste tass&eacute; trois comprim&eacute;s avec un scotch&nbsp;!</font></div><div class="post_line"><font color="#44B8FF">- Tu dois aller voir le centre&nbsp;!</font></div><div class="post_line"><font color="#FF857A">- Nan&nbsp;!</font></div><div class="post_line"><font color="#44B8FF">- Ce n&rsquo;est pas normal&nbsp;!!! Un examen, juste un examen&nbsp;&hellip; </font>G&eacute;mit encore So&rsquo;Ora</div><div class="post_line"><font color="#FF857A">- OK ok ok&hellip; MAIS LA FERME, j&rsquo;ai un mal de cr&acirc;ne impossible&nbsp;!</font></div><div class="post_line"></div><div class="post_line"><em>So&rsquo;Ora tenta de redresser la Pr&eacute;sidente de son bureau. </em></div><div class="post_line"><em>Elle constata quelques gouttes de sangs opaque et sombre sur bureau. </em></div><div class="post_line"><em>Etait-ce du aux comprim&eacute;s&nbsp;?</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />15/08/1022 ETU 02:00</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294401')">Détails</a> <a href="javascript:warnpost(294401)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294401" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294401',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>So&#039;Ora &eacute;tait assise &agrave; la place de Synthia.</em></div><div class="post_line"><em>Bien que sa charge de travail &eacute;tait maintenant doubl&eacute;e, elle avait su convaincre la Pr&eacute;sidente de prendre contact avec l&#039;interface de Lux... Non sans mal.</em></div><div class="post_line"></div><div class="post_line"><em>Elle revivait la sc&egrave;ne...</em></div><div class="post_line"></div><div class="post_line"><em>Elle venait de rentrer dans le bureau pour la dixi&egrave;me fois et de nouveau Synthia saignait du nez.</em></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">- Synthia! Encore???</font></div><div class="post_line"><font color="#FFC0CB">- Ta gueule et va m&#039;chercher de l&#039;essuie tout, &ccedil;&agrave; n&rsquo;arr&ecirc;te plus...</font></div><div class="post_line"><em>Elle couru dans la petite cuisine attenante au bureau, et la elle sut que Synthia &eacute;tait tr&egrave;s mal...</em></div><div class="post_line"><em>De part la quantit&eacute; de tissus tach&eacute; de sang, mais aussi par les glyphe &eacute;tranges que la Pr&eacute;sidente avait &eacute;crit sur des piles de papiers sur la table.</em></div><div class="post_line"><em>Des trac&eacute; g&eacute;om&eacute;trique, surlign&eacute; appos&eacute;s de glyphes ancien. </em></div><div class="post_line"><em>Elle tenta de trouver une comparaison avec ce qu&#039;elle voyait en plus grand sur la premi&egrave;re feuille:</em></div><div class="post_line"><div align="center"><font color="#E8C500">--- ಋ ౡ ാ ി ! ত থ দ ধ ন --- </font></div></div><div class="post_line"><em>Mais rien ne lui vint &agrave; l&#039;esprit.</em></div><div class="post_line"></div><div class="post_line"><em>Synthia gueula depuis le bureau</em></div><div class="post_line"><font color="#FFC0CB">- H&eacute;&eacute;&eacute;&eacute;, magne toi j&#039;me vide si t&#039;as pas r&#039;marqu&eacute;!!!!!</font></div><div class="post_line"><em>Elle pris l&#039;essuie-tout et couru dans le bureau...</em></div><div class="post_line">Puis elle se campa les deux pieds &eacute;cart&eacute; devant la pr&eacute;sidente.</div><div class="post_line"><font color="#44B8FF">- MAINTENANT CA SUFFIT LES ENFANTILLAGES! </font></div><div class="post_line"><em>Synthia roula des yeux de bille.</em></div><div class="post_line"><font color="#FFC0CB">- Quoi?</font></div><div class="post_line"><font color="#44B8FF">- VOUS ALLEZ PRENDRE CONTACT AVEC LUX! </font></div><div class="post_line"><font color="#FFC0CB">- Ca vas pas la t&ecirc;te?</font></div><div class="post_line"><font color="#44B8FF">- NON c&#039;est la votre qui ne vas pas! C&#039;est soit vous allez sur Lux passer un bilan, soit vous trouverez une autre secr&eacute;taire!</font></div><div class="post_line"></div><div class="post_line"><em>Cela avais dur&eacute; pendant une heure de chantage.</em></div><div class="post_line"><em>&nbsp;Mais &agrave; terme Synthia avec pris son holo deck et contact&eacute; la Shapir Macrotech.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />04/09/1022 ETU 00:15</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal294793')">Détails</a> <a href="javascript:warnpost(294793)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294793" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294793',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Synthia &eacute;tait &agrave; nouveau la principale occupante du bureau des affaires de la Cryo.</em></div><div class="post_line"></div><div class="post_line"><em>Elle repensait a cet implant, son sang&hellip; </em></div><div class="post_line"><em>Dire que tout avait pour origine ce sous-ordre de navigateurs des si&egrave;cles pr&eacute;c&eacute;dents, et encore, elle pouvait compter en mill&eacute;naires.</em></div><div class="post_line"></div><div class="post_line"><em>Saisissant son holo-com, elle demanda les archives. Pensant pour elle-m&ecirc;me que les syst&egrave;me informatiques de la Cryo faisaient pale figures face a Lux...</em></div><div class="post_line"></div><div class="post_line"><font color="#FFC0CB">- Je voudrais toute les archives li&eacute;e &agrave; mon arbres g&eacute;n&eacute;alogique&hellip; Oui au format num&eacute;rique en base de donn&eacute;e&hellip; Si j&rsquo;veux un moteur de recherche avec&nbsp;?</font><strong><font color="#FFC0CB"> P&rsquo;tin c&rsquo;t &eacute;vident nan&nbsp;! Cr&eacute;tin!</font></strong></div><div class="post_line"></div><div class="post_line"><em>Furieuse elle coupa la communication. Attendant un signal. Son com-x vibra.</em></div><div class="post_line"><em>.....------</em></div><div class="post_line"><em><strong><font color="#bbbbbb"><font size="2">屮న ഏ௯ಋგ...... ฝԲღՆ..Բ/Ն... |&deg;&deg;||.|||.||&deg;&deg;&deg;ౠౖ&gt;..........屮న ഏ௯ಋგ...... ฝԲღՆ..Բ/Ն... |&deg;&deg;||.|||.||&deg;&deg;&deg;ౠౖ&gt;..........屮న ഏ௯ಋგ...... ฝԲღՆ..Բ/Ն... |&deg;&deg;||.|||.||&deg;&deg;&deg;ౠౖ&gt;........屮న ഏ௯ಋგ...... ฝԲღՆ..Բ/Ն... |&deg;&deg;||.|||.||&deg;&deg;&deg;ౠౖ&gt;..........屮న ഏ௯ಋგ...... ฝԲღՆ..Բ/Ն... |&deg;&deg;||.|||.||&deg;&deg;&deg;ౠౖ&gt;.......屮న ഏ௯ಋგ...... ฝԲღՆ..Բ/Ն... |&deg;&deg;||.|||.||&deg;&deg;&deg;ౠౖ&gt;</font></font></strong></em></div><div class="post_line">-------......</div><div class="post_line"></div><div class="post_line"><em>Encore une d&eacute;faillance du syst&egrave;me ou un parasite quelconque </em></div><div class="post_line"><em>Elle re&ccedil;ut enfin</em><em> le premier rapport d&rsquo;archive&nbsp;:</em></div><div class="post_line"></div><div class="post_line"><font color="#FFC95F">========== Archive N&deg;0122-C5-G4 =========</font></div><div class="post_line"><font color="#FFA500"><em>Capitaine de vaisseau marchant : J.Talfard</em></font></div><div class="post_line"><font color="#FFA500"><em>Mission reconnaissance de la galaxie en d&eacute;clin : code Firmament</em></font></div><div class="post_line"><font color="#FFC95F">---------- RECONSTITION VOCALE DU COCKPIT ----------</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3"><strong>- apr&egrave;s un voyage plus que chaotique nous avons pu franchir la ligne d&#039;horizon du centre galactique, bien que les &eacute;paves s&rsquo;agglutinent lentement, aucunes n&#039;est r&eacute;cup&eacute;rable. Cette mission devra se solder &agrave; nouveau par un &eacute;chec dans la tentative de retrouver d&#039;anciennes civilisations encore vivantes.</strong></font></div><div class="post_line"><font color="#72FF84">- Capitaine ! J&#039;ai une r&eacute;sonance en &eacute;cho</font></div><div class="post_line"><strong><font color="#fff5b3">- C&#039;est la notre...</font></strong></div><div class="post_line"><font color="#72FF84">- Non le d&eacute;tecteur de masse indique qu&#039;il y a probablement un point de saut encore en activit&eacute;...</font></div><div class="post_line"><strong><font color="#fff5b3">- Je ressent bien un couloir de transfert, mais il semble vide... Attend! non... Explore la bande de r&eacute;ception sur le large spectre.</font></strong></div><div class="post_line"><font color="#72FF84">- Oui j&#039;ai trouv&eacute; un faible signal mais il est loin.</font></div><div class="post_line"><strong><font color="#fff5b3">- A cinq secteurs petit. pas plus...</font></strong></div><div class="post_line"><font color="#72FF84">- 5 sect... Mais comment avez vous pu...</font></div><div class="post_line"><strong><font color="#fff5b3">- Fie toi &agrave; ton sang quand tu porte la croix du p&egrave;lerin.</font></strong></div><div class="post_line">....</div><div class="post_line"><font color="#FFC95F">============ fin de rapport ===============</font></div><div class="post_line"></div><div class="post_line"><font color="#FFC0CB">Des p&egrave;lerins en excurtion dans une galaxie morte&nbsp;! Et ben ma vielle, ton sang te perdra si &ccedil;a continue&hellip;</font></div><div class="post_line"><em>Ironis&acirc;t-elle </em></div><div class="post_line"><em>Elle re&ccedil;ut la deuxi&egrave;me partie du rapport&nbsp;:</em></div><div class="post_line"></div><div class="post_line"><font color="#FFC95F">========== Archive N&deg;0125-C5-G4 =========</font></div><div class="post_line"><font color="#FFA500">Capitaine de vaisseau marchant : J.Talfard</font></div><div class="post_line"><font color="#FFA500">Mission reconnaissance de la galaxie en d&eacute;clin : code Firmament</font></div><div class="post_line"><font color="#FFC95F">----------------- RECONSTITUTION AUDIO VISUELLE DE LA PASSERELLE-------------</font></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Le capitaine &eacute;tait face a la baie d&#039;observation.</font></em></div><div class="post_line"><strong><font color="#fff5b3">- Qui l&#039;aurait cru... Il sont tellement qu&#039;il constituent &agrave; eux seuls une galaxie...</font></strong></div><div class="post_line"><font color="#72FF84">- Le d&eacute;compte est termin&eacute; Capitaine...</font></div><div class="post_line"><strong><font color="#fff5b3">- Combien de plan&egrave;tes encore habitable</font></strong></div><div class="post_line"><font color="#72FF84">- 400</font></div><div class="post_line"><strong><font color="#fff5b3">- libre?</font></strong></div><div class="post_line"><font color="#72FF84">- Nous recevons un signal en code...</font></div><div class="post_line"><strong><font color="#fff5b3">- Alliance?</font></strong></div><div class="post_line"><font color="#72FF84">- Oui... Le cryptage est impressionnant.</font></div><div class="post_line"><strong><font color="#fff5b3">- Ils sont des millions, peut-&ecirc;tre des milliards... tous t&eacute;l&eacute;-pilot&eacute;s, des m&eacute;cano&iuml;des...</font></strong></div><div class="post_line"><font color="#72FF84">- LE RST n&rsquo;indique rien d&#039;autre, aucune unit&eacute;s lourdes, m&ecirc;me pas de convois civils</font>.</div><div class="post_line"><strong><font color="#fff5b3">- Ont-ils besoins d&#039;autre choses? Apr&egrave;s tout, ils sont seuls. Mettons le cap sur la plan&egrave;te commerciale.</font></strong></div><div class="post_line">.....</div><div class="post_line"><font color="#FFC95F">============ fin de rapport =============== </font></div><div class="post_line"></div><div class="post_line"><em>Synthia s&rsquo;arr&ecirc;ta un instant reboucla la partie ou elle pouvait entendre le code.</em></div><div class="post_line"></div><div class="post_line"><em>Quelque chose s&rsquo;&eacute;veilla lentement en elle. </em></div><div class="post_line"><em>A moins que ce ne soit l&rsquo;implant&hellip;</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />15/09/1022 ETU 21:09</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal295194')">Détails</a> <a href="javascript:warnpost(295194)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal295194" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=295194',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Un r&ecirc;ve encore, il lui parlais cette fois, cet &eacute;tranger, fruit d&#039;un lointain pass&eacute;.</div><div class="post_line"></div><div class="post_line"><em><font color="#ffdbbb">- Tu n&#039;as pas &agrave; avoir de crainte...</font></em></div><div class="post_line"><em><font color="#ffdbbb">Elle se voyait comme une enfant.</font></em></div><div class="post_line"><em><font color="#ffdbbb">- Pourquoi?</font></em></div><div class="post_line"><em><font color="#ffdbbb">- Parce-que je suis tes souvenirs.</font></em></div><div class="post_line"><em><font color="#ffdbbb">- C&#039;est idiot!</font></em></div><div class="post_line"><em><font color="#ffdbbb">- T</font></em><em><font color="#ffdbbb">u transporte les souvenirs de multiples g&eacute;n&eacute;rations en toi.</font></em></div><div class="post_line"></div><div class="post_line">Elle se r&eacute;veilla en sueurs. Comme prise d&#039;une crise de manque, mais en autre chose.</div><div class="post_line">D&rsquo;instinct elle consult&acirc;t ses rapports... </div><div class="post_line"></div><div class="post_line"><font color="#FF857A"><font size="4">Encore! P&#039;tin...</font></font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16321&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16321&amp;c_topic_page=2">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16321&c_forum_page=1&c_page=2" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16321" name="d_reply_16321" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16321');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16321'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Un parfum de fleurs...</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

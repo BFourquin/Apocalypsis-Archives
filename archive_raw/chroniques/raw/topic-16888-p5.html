@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 5 ;
+    var topic = 16888 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>A la recherche de Sarah</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche de Sarah</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=2">2</a>&nbsp;...&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=4">4</a>&nbsp;5&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=6">6</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />09/10/1023 ETU 03:15</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D304714', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal304713')">Détails</a> <a href="javascript:warnpost(304713)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304713" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304713',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8">Diantre...&nbsp;Je ne sais pas si celle ci, donnera autant de lait...</font></div><div class="post_line"><font color="#68c4e8">Vous pensez que l&#039;on puisse en faire du fromage ?</font></div><div class="post_line"></div><div class="post_line"><em>*L&#039;effet de la drogue continuer &agrave; agir en Jim*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Allez Myah, fais b&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute; !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />09/10/1023 ETU 22:23<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal304747')">Détails</a> <a href="javascript:warnpost(304747)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304747" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304747',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffc95f">&hellip; un troupeau de ch&egrave;vres&hellip; b&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&nbsp;?</font></em></div><div class="post_line"></div><div class="post_line"><em>Les trois mots anodins firent leur chemin dans le cerveau brumeux de Myah.</em> <em><font color="#ffc95f">Des ch&egrave;vres ? Il dit quoi ??? C&rsquo;est un v&eacute;to ! Ooooh !!!</font></em></div><div class="post_line"><em>Dans un sursaut d&eacute;sesp&eacute;r&eacute;, Myah se redressa tout &agrave; coup en poussant encore plus fort et attrapa la crini&egrave;re de Jim pour se maintenir&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Qui c&rsquo;est ce type ??? Un&hellip; <font size="4">Aa</font><font size="3">aa</font><font size="2">ah</font>&hellip; <strong>boucher</strong> ? Arr&ecirc;te-le ! Veux plus <font size="5">AAa</font><font size="4">Aaa</font><font size="3">ahh-coucher</font> ! Prot&egrave;ge le b&eacute;b&eacute;, vais me le <font size="3">fAAAAAIIIre </font>! <font size="5">Jiiiim&hellip;</font> arr&ecirc;te-le !!!</font> </div><div class="post_line"></div><div class="post_line"><em>Elle retomba pantelante quelques secondes avant les cris du nouveau-n&eacute; qu&rsquo;elle avait finalement expuls&eacute; dans les mains tremblantes&nbsp; du pirate. Entendant les pleurs, elle soupira de soulagement et, ouvrant &agrave; peine les yeux, lan&ccedil;a ses ongles &agrave; la face d&rsquo;Anudar&hellip; pour le lac&eacute;rer.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Qui &ecirc;tes-vous ? J&rsquo;ai conscience d&rsquo;&ecirc;tre un mammif&egrave;re, mais de quel droit vous &ecirc;tes-vous pench&eacute; sur moi ? Et c&rsquo;est quoi ce langage cod&eacute; :</font> <font color="#4cea5e">&ldquo;&alpha;&upsilon;&tau;ό &theta;&alpha; &epsilon;ί&nu;&alpha;&iota; &epsilon;&pi;ί&sigma;&eta;&sigmaf; &alpha;&pi;&alpha;&hellip;&rdquo;</font> <font color="#ffa500">Que dites-vous de secret que je ne peux pas comprendre ?</font></div><div class="post_line"><font color="#ffa500"><font size="3">CharlAaaaaaaaatan ! </font></font></div><div class="post_line"><font color="#ffa500"><font size="3">Boucher mal embouch&eacute; !</font></font></div><div class="post_line"><font color="#ffa500"><font size="3">Clone de Frankenstein !</font></font></div><div class="post_line"><font color="#ffa500"><font size="4">MON SANG EST SUR TES MAINS !!!</font></font></div><div class="post_line"><font color="#ffa500">Bougre de scone trop cuit !</font></div><div class="post_line"><font color="#ffa500">D&eacute;chet malodorant !</font></div><div class="post_line"><font color="#ffa500"><font size="1">Fesse d&rsquo;hu&icirc;tre !</font></font></div><div class="post_line"><font color="#ffa500"><font size="1">Tas de boue !!!</font></font></div><div class="post_line"><font color="#ffa500">&hellip;</font></div><div class="post_line"></div><div class="post_line"><em>Elle aurait continu&eacute; sans fin mais le souffle lui manquait. Elle referma les yeux et essaya d&rsquo;endiguer le flot d&rsquo;adr&eacute;naline qui risquait de la tuer.</em></div><div class="post_line"><em>Priant pour que Jim ait bien prot&eacute;g&eacute; l&rsquo;h&eacute;ritier des Dysmorphiques, elle sourit en se rendant compte qu&rsquo;elle avait rempli sa mission : son fils &eacute;tait apte &agrave; sauver son Peuple !</em></div><div class="post_line"></div><div class="post_line"><em>Son corps ayant la facult&eacute; de se r&eacute;g&eacute;n&eacute;rer tr&egrave;s vite, elle eut t&ocirc;t fait d&rsquo;expulser le placenta et de cicatriser ses plaies. Nul besoin de m&eacute;decine et&hellip; heureusement. Il suffisait maintenant qu&rsquo;elle attende un peu de reconstituer ses forces.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Jim, tu vas bien ? Donne-le moi maintenant&hellip; En tant que Parrain, tu as le devoir de lui donner un pr&eacute;nom&hellip; Pense &agrave; </font><font color="#e86e04">Az&eacute;mar</font><font color="#ffa500">, je voudrais qu&rsquo;il commence par </font><font color="#e86e04">&ldquo;A&rdquo;</font><font color="#ffa500"> pour honorer son p&egrave;re&hellip;</font></div><div class="post_line"><em>L&rsquo;enfant m&acirc;le contre son sein, elle s&rsquo;endormit, insensible &agrave; ce qui pouvait encore se passer autour d&rsquo;elle et le petit &ecirc;tre qui t&ecirc;tait en silence.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />09/10/1023 ETU 23:23<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304748')">Détails</a> <a href="javascript:warnpost(304748)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304748" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304748',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">Croyez-vous que ce moment soit le meilleur pour ce genre d&#039;humour, ami Jim ?</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il &eacute;tait cependant trop tard : la parturiente avait r&eacute;agi avec fureur. Par chance, elle &eacute;tait toujours sous l&#039;influence des substances offertes par Jim et ses mains manquaient de coordination - ce qui permit au Basileus de r&eacute;aliser l&#039;&eacute;valuation obligatoire en un clin d&#039;oeil, sans avoir &agrave; subir la moindre blessure.</em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">Premier cri presque imm&eacute;diat / premiers mouvements normaux / comportement conforme...</font></strong></em></div><div class="post_line"></div><div class="post_line"><em>Une &eacute;valuation plus pouss&eacute;e par des biom&eacute;decins p&eacute;diatres serait n&eacute;cessaire mais il n&#039;y avait aucune raison de s&#039;inqui&eacute;ter pour l&#039;enfant. De nouveaux drones avaient livr&eacute; plus de mat&eacute;riel et Anudar essuya le nouveau-n&eacute; avec une serviette st&eacute;rile avant de le d&eacute;poser sur la poitrine de sa m&egrave;re. Puis il inspecta le placenta qui venait d&#039;&ecirc;tre expuls&eacute;, toujours reli&eacute; &agrave; l&#039;enfant par l&#039;interm&eacute;diaire du cordon : les outils n&eacute;cessaires &agrave; la coupure de celui-ci n&#039;&eacute;taient pas encore arriv&eacute;s.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">Un fragment absent</font></strong><em>, murmura-t-il. </em><strong><font color="#2ecc40">Je vais le chercher pour &eacute;viter une h&eacute;morragie post-natale.</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>La surface manquante &eacute;tait de la taille du bout d&#039;un pouce humain adulte. Il enduisit ses mains du d&eacute;sinfectant - qui jouait aussi le r&ocirc;le de lubrifiant - et jeta un coup d&#039;oeil &agrave; Myah qui venait de s&#039;endormir. Elle lui avait donn&eacute; un peu plus t&ocirc;t son accord pour le toucher&nbsp;interne aussi n&#039;eut-il pas plus d&#039;h&eacute;sitation : outre le fragment placentaire &agrave; d&eacute;crocher, compte-tenu de la conformation normale du nouveau-n&eacute; il fallait faire l&#039;ultime v&eacute;rification - celle qui &eacute;tait li&eacute;e &agrave; cette impression fugitive qu&#039;il avait eue lors du premier examen.</em></div><div class="post_line"></div><div class="post_line"><em>Les contractions ne s&#039;interrompaient pas et la main du Basileus, dans sa progression, se synchronisait avec elles. Explorant l&#039;endom&egrave;tre pour d&eacute;tecter la tum&eacute;faction, il d&eacute;couvrit aussit&ocirc;t l&#039;origine de sa perplexit&eacute; lors de la palpation externe.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">Ah</font></strong><em>.&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Une nouvelle contraction s&#039;exer&ccedil;a, inefficace compte-tenu de la fatigue,&nbsp;et il devint &eacute;vident pour lui qu&#039;il fallait aider la parturiente. Le d&eacute;bris placentaire oubli&eacute; pouvait attendre.&nbsp;Il&nbsp;ouvrit sa main en rassemblant le m&eacute;dius et l&#039;annulaire, puis il forma des crochets avec son index et son auriculaire. Il compta dans sa t&ecirc;te et tira au moment o&ugrave; la contraction suivante se d&eacute;clenchait.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">Et voici le deuxi&egrave;me !</font></strong><em> s&#039;&eacute;cria-t-il en tractant le second nouveau-n&eacute; par les &eacute;paules : son&nbsp;premier cri retentit aussit&ocirc;t.</em></div><div class="post_line"></div><div class="post_line"><em>Du coin de l&#039;oeil, Anudar vit que l&#039;&eacute;quipe d&#039;obst&eacute;trique arrivait avec une civi&egrave;re : il d&eacute;posa le deuxi&egrave;me enfant &agrave; c&ocirc;t&eacute; de son fr&egrave;re.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">F&eacute;licitations, Myah</font></strong><em>, dit-il en adressant l&#039;un de ses rares sourires &agrave; la femme somnolente. </em><strong><font color="#2ecc40">Deux magnifiques faux jumeaux, sauf erreur.</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il accrocha le regard incertain de Jim et pr&eacute;cisa :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>En g&eacute;n&eacute;ral, pareille diff&eacute;rence de pigmentation ne trompe pas...</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Puis, se m&eacute;prenant sur le silence interloqu&eacute; de son interlocuteur :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Allons, les signes vitaux sont excellents !&nbsp;Cet enfant est en parfaite sant&eacute;, malgr&eacute; sa couleur bleu turquoise.</strong></font><em>&quot;</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />10/10/1023 ETU 03:25</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D304751', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal304750')">Détails</a> <a href="javascript:warnpost(304750)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304750" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304750',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffa500">Qui c&rsquo;est ce type ??? Un&hellip; Aaaaah&hellip; boucher ? Arr&ecirc;te-le !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Ah bah quoi ? C&#039;est le&nbsp;Basileus... Anudar !</font></div><div class="post_line"><font color="#68c4e8">Mais ne t&#039;inqui&egrave;te pas, tout va bien se passer...</font></div><div class="post_line"><font color="#68c4e8">Allez ma petite ch&egrave;vre, on pousse !</font></div><div class="post_line"><font color="#68c4e8">B&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;</font></div><div class="post_line"></div><div class="post_line"><em>*Sur ces derniers mots, il poussa un fou&nbsp;rire...*</em></div><div class="post_line"></div><div class="post_line"><em>-------------------------------------------------------------------------------------------------------------------------</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Jim, tu vas bien ? Donne-le moi maintenant&hellip; En tant que Parrain, tu as le devoir de lui donner un pr&eacute;nom&hellip; Pense &agrave; Az&eacute;mar, je voudrais qu&rsquo;il commence par &ldquo;A&rdquo; pour honorer son p&egrave;re&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Un A ??? Atomic Man... Alpha Trion... Alfred...&nbsp;</font></div><div class="post_line"><font color="#68c4e8">Hum...</font></div><div class="post_line"><font color="#68c4e8">Aquaman ?</font></div><div class="post_line"><font color="#68c4e8">Non, c&#039;est pas terrible tous cela...</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f"><font size="5">Assiette&nbsp;de viande !!!</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Heu quoi ? Qui a dit cela ?</font></div><div class="post_line"><font color="#68c4e8">Etrange ?</font></div><div class="post_line"><font color="#68c4e8">J&#039;ai crus entendre quelques choses...</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f"><font size="5">Assiette&nbsp;de viande !!!</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Mais non, &ccedil;a ne vas pas du tout !</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f"><font size="5">Si !</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Non !</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f"><font size="5">Le grand D&eacute;voreur a faim... Tr&egrave;s faim !</font></font></div><div class="post_line"></div><div class="post_line"><em>*Jim semblait parti dans un long monologue. Il finit par se gifl&eacute;, comme si l&#039;homme restait coincer dans son propre cauchemar...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="2">Heu pardonnez moi,</font> les amis !</font></div><div class="post_line"><font color="#68c4e8"><font size="1">Honorer le p&egrave;re... Commencer par un A...</font></font></div><div class="post_line"><font color="#68c4e8"><font size="4">Oh</font>, je sais...&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="3">ARWAAN</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Oui c&#039;est tr&egrave;s bien &ccedil;a, non ?</font></div><div class="post_line"><font color="#68c4e8">Myah ?</font></div><div class="post_line"><font color="#68c4e8">Myah ?</font></div><div class="post_line"><font color="#68c4e8">Zut, elle dort !</font></div><div class="post_line"><font color="#68c4e8">Bon, on verra cela a son r&eacute;veil.</font></div><div class="post_line"></div><div class="post_line"><em>*Le Marshal, observa alors la stupeur sur le visage d&#039;Anudar.*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Basileus ?</font></div><div class="post_line"><font color="#68c4e8">Qu&#039;y a t&#039;il ?</font></div><div class="post_line"></div><div class="post_line"><em>*Le soldat resta alors bouche b&eacute;e, devant la venu d&#039;un deuxi&egrave;me enfants...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bah &ccedil;a alors !</font></div><div class="post_line"><font color="#e82a1f"><font size="5">Digestif !</font></font></div><div class="post_line"><em>*L&#039;homme se remis une nouvelle gifle.*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Et bah mon gars, toi tu sais y faire pour tenir le suspense&nbsp;!</font></div><div class="post_line"></div><div class="post_line"><em>*Jim posa alors sa main sur l&#039;&eacute;paule d&#039;Anudar, en signe de respect.</em></div><div class="post_line"><em>Puis TraineDehors le visage &eacute;mus et les joues rougit, caressa doucement le visage de la m&egrave;re.*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Tu as tr&egrave;s bien travaill&eacute; Myah, repose toi...</font></div><div class="post_line"></div><div class="post_line"><em>*Il se&nbsp;pencha alors vers le&nbsp;Basileus, et lui parla a l&#039;oreille...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Excuse moi, mais tu ne trouve vraiment pas &eacute;trange que l&#039;autre soit bleu ?</font></div><div class="post_line"><font color="#68c4e8">Tu as fait tomber un colorant dessus ?</font></div><div class="post_line"><font color="#68c4e8">Ou c&#039;est moi, qui est encore sous l&#039;influence du cigare ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="6">B&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />11/10/1023 ETU 04:15<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D304770', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal304769')">Détails</a> <a href="javascript:warnpost(304769)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304769" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304769',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>... plus tard...</em></div><div class="post_line"></div><div class="post_line"><em>Le salon de d&eacute;tente o&ugrave; Anudar avait re&ccedil;u le Marshall TraineDehors &eacute;tait l&#039;une de ses pi&egrave;ces pr&eacute;f&eacute;r&eacute;es du complexe basilical de la quatri&egrave;me Th&eacute;ra : la d&eacute;coration en avait voyag&eacute; depuis la Galaxie Entropie, d&#039;abord sur les vaisseaux intergalactiques rudimentaires con&ccedil;us &agrave; la h&acirc;te juste avant l&#039;Apocalypse... puis &agrave; bord des Arches construites en Galaxie Souvenir, qui attendaient dans l&#039;espace neutre l&#039;opportunit&eacute; de ramener leurs passagers sur le sol ancestral - ou bien d&#039;accomplir une future migration. Les traits marqu&eacute;s du Marshall n&#039;apparaissaient en rien d&eacute;plac&eacute;s entre les lambris de bois galba et les marbres anciens de plusieurs mill&eacute;naires, dont certains remontaient selon la tradition &agrave; la vieille Terre des origines.</em></div><div class="post_line"></div><div class="post_line"><em>Le d&eacute;canteur avait rempli son r&ocirc;le et, au fond de la fiole &agrave; base plate, le vin de lavande faisait jouer son &eacute;clat pourpre. Le Basileus d&eacute;versa le liquide avec soin dans un premier verre qu&#039;il remplit &agrave; moiti&eacute;, avant de reproduire le mouvement avec un second. Il y en avait un troisi&egrave;me qui avait &eacute;t&eacute; destin&eacute; &agrave; Myah, mais pour l&#039;heure la Commandante r&eacute;cup&eacute;rait encore suite au double accouchement sur la dalle de l&#039;espace.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">Vous serez heureux d&#039;apprendre que notre amie se porte au mieux et ses enfants aussi</font></strong><em>, fit Anudar en disposant les verres &agrave; port&eacute;e du Marshall, sur la table basse entre les deux canap&eacute;s o&ugrave; chacun avait pris place.</em></div><div class="post_line"></div><div class="post_line"><em>Selon les r&egrave;gles imm&eacute;moriales de la politesse, il s&#039;assit sans toucher aux verres : c&#039;&eacute;tait &agrave; Jim de choisir en premier, s&#039;il d&eacute;sirait go&ucirc;ter &agrave; la boisson rare venu d&#039;Arkh&ecirc;ia Th&eacute;ra.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Il a &eacute;t&eacute; confirm&eacute;</strong></font><em>, ajouta-t-il, </em><strong><font color="#2ecc40">que la coloration inhabituelle de la petite fille ne pr&eacute;sente aucun risque vital. Ainsi que je vous l&#039;ai fait remarquer sur le moment, le placenta &eacute;tait lui-m&ecirc;me bleu turquoise. Le pigment est intracellulaire et s&#039;exprime en particulier au niveau des tissus &eacute;pith&eacute;liaux, ce qui explique la coloration de la peau. Le profil g&eacute;n&eacute;tique montre par ailleurs que les yeux de l&#039;enfant seront verts et ses cheveux bruns... comme sa m&egrave;re dans les deux cas.</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il croisa les jambes, entrela&ccedil;a ses doigts et en arrima le genou sur&eacute;lev&eacute;.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Ces naissances ne seront pas sans cons&eacute;quences internationales</strong></font><em>, reprit-il. </em><font color="#2ecc40"><strong>Selon de tr&egrave;s anciennes lois elladiques, chacun de ces deux enfants pourra plus tard pr&eacute;tendre &agrave; la citoyennet&eacute; au sein de l&#039;Ecoum&eacute;n&ecirc; - ce qui implique par ailleurs l&#039;acc&egrave;s &agrave; nos traitements de long&eacute;vit&eacute;. La chose n&#039;est pas sans implications. La Vieille Boul&ecirc; se trouve confront&eacute;e &agrave; un probl&egrave;me l&eacute;gislatif original et je ne vous cache pas que les d&eacute;bats font rage en ce moment m&ecirc;me. Il faudra que j&#039;en parle &agrave; Myah quand elle sera disponible... et dispos&eacute;e en ce sens.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il marqua un silence.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Mais vous n&#039;&ecirc;tes pas venu ici pour entendre parler de ces probl&egrave;mes potentiels, bien que ceux-ci soient cruciaux pour l&#039;avenir des relations entre les Dysmorphiques et l&#039;Ecoum&eacute;n&ecirc;. Ainsi que je vous l&#039;ai signal&eacute; par voie officielle devant l&#039;Assembl&eacute;e, nous avons eu par le pass&eacute; des &eacute;changes avec une personne correspondant au signalement transmis par vos services, lors de la phase o&ugrave; votre civilisation a &eacute;t&eacute; en charge du gouvernement galactique.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il plongea la main &agrave; l&#039;int&eacute;rieur de son omophorion vert et en tira un tore de donn&eacute;es. Il s&#039;agissait de l&#039;une des nombreuses reliques technologiques venues de la Galaxie Souvenir - la premi&egrave;re o&ugrave; le codex scientifique de l&#039;Ecoum&eacute;n&ecirc; avait atteint le huiti&egrave;me palier : une machine dont la m&eacute;moire presque infinie pouvait stocker textes, images et sons... et r&eacute;pondre aux sollicitations vocales en plusieurs langues, dont bien s&ucirc;r l&#039;elladique mais aussi le basic intergalactique. Pour le Marshall, c&#039;&eacute;tait son contenu qui le rendait sans prix - mais le contenant lui-m&ecirc;me &eacute;tait d&#039;une valeur inestimable, puisque pour le moment tr&egrave;s peu de civilisations voire aucune pouvaient en construire d&#039;identiques.</em></div><div class="post_line"></div><div class="post_line"><em>Anudar d&eacute;posa le tore sur la table basse et ordonna d&#039;une voix claire :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Affichage textuel. Premier &eacute;change&nbsp;ComX&nbsp;avec la jeune Sarah Kl&eacute;ptoman.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Sans aucun bruit, le tore fit appara&icirc;tre un c&ocirc;ne lumineux dans lequel des caract&egrave;res s&#039;affich&egrave;rent un par un, selon un style r&eacute;tro-futuriste qui d&eacute;samor&ccedil;ait la solennit&eacute; de l&#039;instant...</em></div><div class="post_line"></div><div class="post_line"><div align="center">Έ&nu;&alpha;&rho;&xi;&eta; &mu;&epsilon;&tau;ά&delta;&omicron;&sigma;&eta;&sigmaf;</div></div><div class="post_line"></div><div class="post_line">De : Basileus Anudar</div><div class="post_line">A : Reine des &pound;eems Sarah Kl&eacute;ptoman</div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">Salutations, reine des &pound;eems Sarah Kl&eacute;ptoman,</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">Suite &agrave; notre conversation publique en Assembl&eacute;e Galactique, je reviens vers vous pour solliciter la permission de stationner une flotte diplomatique &agrave; l&#039;emplacement que vous voudrez bien d&eacute;signer dans votre Secteur natal.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">L&#039;Ellada que je dirige s&#039;int&eacute;resse aux Secteurs ferm&eacute;s o&ugrave; nous pensons pouvoir identifier des plan&egrave;tes autrefois sous le contr&ocirc;le de peuples apparent&eacute;s au mien. Selon les &eacute;valuations fiables r&eacute;alis&eacute;es depuis son ouverture, votre Secteur a une probabilit&eacute; tr&egrave;s faible de contenir des mondes elladiques ancestraux (&lt;0,1%) et notre pr&eacute;sence sur place sera limit&eacute;e &agrave; des travaux de cartographie.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">Nous d&eacute;sirons toutefois pouvoir stationner une flotte diplomatique (vaisseaux Kela) pour deux raisons, la premi&egrave;re &eacute;tant de faciliter les &eacute;changes entre votre peuple et le n&ocirc;tre, et la deuxi&egrave;me &eacute;tant d&#039;am&eacute;liorer les possibilit&eacute;s d&#039;acc&egrave;s futur aux Secteurs 8 et 9 non encore ouverts. Pour le dire d&#039;une autre fa&ccedil;on, cette flotte serait en transit chez vous dans l&#039;attente d&#039;une &eacute;ventuelle ouverture du Secteur 8 ou 9 afin de limiter le temps de trajet depuis notre base avanc&eacute;e la plus proche en Secteur 13, et ne se livrerait &agrave; aucune autre activit&eacute; au sein du Secteur 5.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">En attendant votre retour quant &agrave; cette question - et, le cas &eacute;ch&eacute;ant, la consigne de d&eacute;placement vers le PC que vous nous aurez assign&eacute; - je vous rappelle que nous sommes dispos&eacute;s &agrave; vous fournir une assistance scientifique (je joins notre codex technologique au pr&eacute;sent message) et vous informe que nous offrons des services au sein des galaxies abandonn&eacute;es (0 &agrave; 17) incluant fourniture d&#039;une base d&#039;exploration aux Commandants disposant de la propulsion extra-galactique. Les deux types de service vous sont fournis &agrave; titre gratuit, et ne sont pas conditionn&eacute;s &agrave; une r&eacute;ponse positive concernant notre requ&ecirc;te telle que formul&eacute;e plus haut.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">Vous souhaitant encore la bienvenue au sein de la communaut&eacute; galactique, bien &agrave; vous,</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">Anudar.</font></strong></em></div><div class="post_line"></div><div class="post_line">De : Reine des &pound;eems Sarah Kl&eacute;ptoman</div><div class="post_line">A : Basileus Anudar</div><div class="post_line"></div><div class="post_line"><em><font color="#d900a7">S&#039;lut Anudar !</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#d900a7">Justement s&#039;as propos j&#039;peux te conseiller d&#039;d&eacute;placer tes k&eacute;la sur l&#039;pc 2 ou 5 du Z&eacute;ro avant d&#039;faire un d&eacute;placement vers le syst&egrave;me 1 ou 2 au Pc d&#039;votre choix.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#d900a7">Mais j&#039;tien a vous pr&eacute;venir d&#039;un potentiel guerre risque d&#039;&eacute;clater ! Mes co-natif chercher d&#039;puis quelques cycles une &quot;excuse&quot; pour m&#039;tuer, et vu qu&#039;ils ont d&eacute;j&agrave; abattue l&#039;un des notre qui n&#039;&eacute;tais clairement pas belliqueux et sous d&eacute;velopper !</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#d900a7">J&#039;ferais tous pour vous &eacute;viter d&#039;perdre votre flottes !</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#d900a7">J&#039;vous tien au jus pour le tech, pour l&#039;moment y a une gentille poulette qui nous as fait parvenir d&#039;quoi tenir le coup.</font></em></div><div class="post_line"></div><div class="post_line"><div align="center">Έ&nu;&alpha;&rho;&xi;&eta; &mu;&epsilon;&tau;ά&delta;&omicron;&sigma;&eta;&sigmaf;</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />13/10/1023 ETU 22:56<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304830')">Détails</a> <a href="javascript:warnpost(304830)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304830" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304830',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Apr&egrave;s quelques heures d&rsquo;un sommeil r&eacute;parateur, Myah ouvrit un &oelig;il, puis l&rsquo;autre, se demandant o&ugrave; elle &eacute;tait. Elle n&rsquo;&eacute;tait plus sur le sol de l&rsquo;astroport, mais dans un lit douillet, v&ecirc;tue d&rsquo;une longue chemise blanche. Tout &eacute;tait blanc autour d&rsquo;elle&hellip; </em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Hou hou ? Hou&hellip;</font></div><div class="post_line"><font color="#ff56ff">Oiiinnn&hellip;</font></div><div class="post_line"></div><div class="post_line"><em>Le vagissement lui fit tourner la t&ecirc;te. Une rang&eacute;e de 5 berceaux longeait le mur et deux d&rsquo;entre eux &eacute;taient manifestement en service, diffusant un halo de lumi&egrave;re douce et chaude. Myah se leva et se dirigea vers eux en appr&eacute;ciant sa forme physique. Elle ne ressentait aucune douleur, aucun tiraillement, elle s&rsquo;&eacute;tait bien remise de son accouchement &ldquo;sauvage&rdquo;.</em></div><div class="post_line"></div><div class="post_line"><em>Elle reconnut son fils et s&rsquo;&eacute;tonna qu&rsquo;il y ait un autre b&eacute;b&eacute;, d&rsquo;une belle couleur de peau d&rsquo;un bleu clair&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Bonjour, Mademoiselle ! Tu en as de la chance, mon fils, d&rsquo;avoir d&eacute;j&agrave; une fianc&eacute;e&hellip;</font></div><div class="post_line"></div><div class="post_line"><em>Puis elle avisa les tableaux affich&eacute;s au-dessus des petites couches&hellip;</em></div><div class="post_line"><font color="#2ecc40"><strong>ARWAAN / Enfant m&acirc;le / fils de Myah d&rsquo;Allow. N&eacute; le 12/10/1023 ETU 11h44</strong></font></div><div class="post_line"><font color="#2ecc40"><strong>Constantes vitales satisfaisantes. Cicatrisation du nombril tr&egrave;s rapide (?).</strong></font></div><div class="post_line"><font color="#2ecc40"><strong>AATHENEA / Enfant femelle / fille de Myah d&rsquo;Allow / N&eacute;e le 12/10/1023 ETU 13h05</strong></font></div><div class="post_line"><font color="#2ecc40"><strong>Constantes vitales idem.</strong></font></div><div class="post_line"></div><div class="post_line"><em>Myah recula d&rsquo;un pas sous le choc. <font color="#ffc95f">L&rsquo;enfant bleu est &agrave; moi aussi ? J&rsquo;&eacute;tais enceinte de jumeaux ???</font></em></div><div class="post_line"></div><div class="post_line"><em>Elle prit la petite fille dans ses bras et scruta son visage rond : Elle avait un toupet de&nbsp; cheveux sombres comme son fr&egrave;re, un petit nez retrouss&eacute; et une petite bouche bien dessin&eacute;e, du la m&ecirc;me forme que la celle de sa m&egrave;re&hellip; Aucun doute, Aath&eacute;n&eacute;a &eacute;tait bien sa fille, elle le sentait profond&eacute;ment dans toutes ses fibres. Elle reposa doucement la petite fille dans son berceau, caressa la t&ecirc;te d&rsquo;Arwaan, et chercha la porte de sortie. Il fallait qu&rsquo;elle trouve ses acolytes. Sit&ocirc;t le sas d&eacute;verrouill&eacute;, elle se heurta &agrave; une femme en blouse d&rsquo;un vert profond.</em></div><div class="post_line"></div><div class="post_line"><font color="#008000">Commandante, vous ne devriez pas&hellip;</font></div><div class="post_line"><font color="#ffa500">Conduisez-moi aupr&egrave;s du Basileus Anudar et du Marshall Tra&icirc;ne-Dehors, et revenez vous occuper des nouveaux-n&eacute;s. Je vous en tiens responsable. Personne ne peut me dire quoi faire ou quoi dire, c&rsquo;est ainsi !</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>Elle entra sans vergogne dans un bureau priv&eacute;.</em></div><div class="post_line"><font color="#ffa500">Vous pouvez m&rsquo;expliquer ? C&rsquo;est vous qui leur avez donn&eacute; leurs pr&eacute;noms ? Alors vous &ecirc;tes leurs parrains et il faudra en assumer la charge !</font></div><div class="post_line"><font color="#ffa500">En premier lieu, les ramener sous bonne escorte sur ma Capitale o&ugrave; les m&egrave;res de mon peuple subviendront &agrave; leurs besoins en mon absence. </font></div><div class="post_line"><font color="#ffa500">Si vous aviez l&rsquo;intention de repartir sans moi, c&rsquo;est rat&eacute;. J&rsquo;ai promis d&rsquo;aider &agrave; retrouver Sarah et je ne faillirai pas &agrave; ma parole !</font></div><div class="post_line"></div><div class="post_line"><em>Elle s&rsquo;aper&ccedil;ut alors qu&rsquo;elle les avait surpris, autant par son irruption que par sa tenue&hellip; sa longue chemise de nuit blanche et froiss&eacute;e&hellip;</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />19/10/1023 ETU 00:23<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D304934', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304932')">Détails</a> <a href="javascript:warnpost(304932)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304932" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304932',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Jim s&#039;&eacute;tait empar&eacute; du tore et en d&eacute;vorait le contenu d&#039;un oeil avide : il ne r&eacute;agit de prime abord pas &agrave; l&#039;entr&eacute;e pour le moins &eacute;clatante de Myah. De l&#039;autre c&ocirc;t&eacute; de la table basse, Anudar &eacute;couta la diatribe de la Commandante d&#039;Allow puis il inclina la t&ecirc;te. Se penchant en avant, il saisit le troisi&egrave;me verre, le remplit de vin de lavande et le disposa de fa&ccedil;on &agrave; former un triangle &eacute;quilat&eacute;ral avec les deux autres. Puis il se redressa et rapprocha un fauteuil de la table basse.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>N&#039;h&eacute;sitez pas &agrave; vous asseoir, amie</strong></font><em>, dit-il avant de reprendre sa place et de croiser &agrave; nouveau les jambes comme un peu plus t&ocirc;t.</em></div><div class="post_line"></div><div class="post_line"><em>Il toussota devant l&#039;ouverture de sa main referm&eacute;e, puis reprit la parole.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Il semble que la question des pr&eacute;noms donn&eacute;s aux enfants ait &eacute;t&eacute; en partie trait&eacute;e par le Commandant TraineDehors, qui savait quel nom devait porter le premier n&eacute;. Quant &agrave; la petite fille, nos lois contraignaient nos services administratifs &agrave; lui donner son nom dans les plus brefs d&eacute;lais.&nbsp;Plusieurs pr&eacute;noms convenables pour elle ont &eacute;t&eacute; sugg&eacute;r&eacute;s &agrave; Jim qui a choisi celui-ci en l&#039;adaptant de telle sorte qu&#039;il soit agr&eacute;able aux oreilles des gens de votre peuple - qu&#039;il conna&icirc;t, je dois l&#039;avouer, mieux que moi.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Ses doigts tambourin&egrave;rent sur l&#039;assise du canap&eacute;.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Je tiens &agrave; vous pr&eacute;senter mes excuses ainsi que celles&nbsp;de mon gouvernement</strong></font><em>, dit-il. </em><font color="#2ecc40"><strong>Nous ignorions tout de votre &eacute;tat et <em>a fortiori</em>&nbsp;de son avancement. Dans le cas contraire, soyez assur&eacute;e qu&#039;une &eacute;quipe biom&eacute;dicale aurait &eacute;t&eacute; pr&eacute;sente sur place avec tout son mat&eacute;riel&nbsp;pour parer &agrave; toute &eacute;ventualit&eacute;. Au lieu de cela, il vous a &eacute;t&eacute; impos&eacute; un accouchement dans des conditions dignes de la m&eacute;decine de guerre. Nous avons eu de la chance - <em>vous</em> avez eu de la chance - que la physiologie des repr&eacute;sentants de votre peuple soit plus robuste que la moyenne. Dans le cas contraire, il n&#039;est pas certain que mes modestes comp&eacute;tences de biom&eacute;decin pour... caprins et autres mammif&egrave;res... aient suffi &agrave; sauver vos enfants. Voire vous-m&ecirc;me.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il s&#039;interrompit, jeta un coup d&#039;oeil &agrave; Jim qui se d&eacute;sint&eacute;ressait toujours - peut-&ecirc;tre de fa&ccedil;on trop ostensible - de la conversation et en revint &agrave; Myah :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>J&#039;ai cru comprendre, si je m&#039;en r&eacute;f&egrave;re &agrave; vos propos lors du travail, que la petite fille n&#039;&eacute;tait pas attendue. Nous avons pris la libert&eacute; de r&eacute;aliser un diagnostic g&eacute;n&eacute;tique total, en craignant que sa coloration inhabituelle soit quelque sympt&ocirc;me d&#039;un trouble &agrave; prendre en charge.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Ses doigts s&#039;introduisirent &agrave; nouveau dans la poche cach&eacute;e de son omophorion et il produisit un second tore.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Il s&#039;av&egrave;re que cette pigmentation bleue n&#039;est corr&eacute;l&eacute;e &agrave; aucun trouble physiologique possible. Le profil g&eacute;n&eacute;tique h&eacute;r&eacute;ditaire de l&#039;enfant a &eacute;t&eacute; constitu&eacute; par ailleurs et stock&eacute; dans cette m&eacute;moire que je vous confie. Vous disposerez ainsi d&#039;une preuve qui vous permettra d&#039;&eacute;tablir la parent&eacute;, si quelqu&#039;un venait &agrave; en douter - une preuve indiscutable, car&nbsp;garantie par l&#039;Ecoum&eacute;n&ecirc;, DONT LES LOIS TRANSCENDENT L&#039;ESPACE ET LE TEMPS.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il tendait &agrave; pr&eacute;sent le tore en direction de Myah. Sa voix, sur la fin de son discours, avait chang&eacute; de ton : il ne s&#039;agissait plus de propos visant &agrave; la simple communication d&#039;informations, mais bel et bien d&#039;une sentence engageant la parole d&#039;une civilisation toute enti&egrave;re. Le d&eacute;corum antique du salon de d&eacute;tente semblait renforcer le poids de la formule.</em></div><div class="post_line"></div><div class="post_line"><em>Puis Anudar - ayant dit ce qu&#039;il avait &agrave; dire en tant que Basileus -&nbsp;se fit soudain attentif aux d&eacute;tails : il&nbsp;inclina la t&ecirc;te sur le c&ocirc;t&eacute;, r&eacute;alisant un geste involontaire qui traduisait chez lui la perplexit&eacute; avant de dire :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Mais pourquoi le personnel m&eacute;dical ne vous a-t-il pas rendu vos v&ecirc;tements ? J&#039;avais donn&eacute; l&#039;ordre qu&#039;ils soient nettoy&eacute;s puis r&eacute;par&eacute;s dans l&#039;heure...</strong></font><em>&quot;</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />22/10/1023 ETU 19:09<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305025')">Détails</a> <a href="javascript:warnpost(305025)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305025" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305025',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><em>Myah alla se r&eacute;fugier dans un fauteuil en serrant sa chemise autour d&rsquo;elle, un peu g&ecirc;n&eacute;e de son accoutrement, avant de penser qu&rsquo;il n&rsquo;y avait aucune fausse pudeur &agrave; &eacute;prouver f&acirc;ce &agrave; Anudar. Il l&rsquo;avait accouch&eacute;e&hellip; et avait vu bien pire ! Elle rougit tout de m&ecirc;me un peu et, pour se donner contenance, prit une voix autoritaire.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Inutile, je ne remettrai pas cette combinaison, m&ecirc;me nettoy&eacute;e et r&eacute;par&eacute;e&hellip; elle est trop large pour moi maintenant. D&rsquo;autres tenues sont dans ma malle. Ayez l&rsquo;obligeance de la faire apporter.</font></div><div class="post_line"></div><div class="post_line"><em>Ayant repris un peu de prestance, elle r&eacute;pondit au sujet de sa fille :</em> </div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Effectivement, je ne m&rsquo;attendais pas &agrave; avoir des jumeaux, m&ecirc;me faux. Et je vous demanderais de le garder pour vous. Officiellement, je n&rsquo;ai qu&rsquo;un fils.</font></div><div class="post_line"><font color="#ffa500">Au fait, je vous remercie de vous &ecirc;tre charg&eacute; des certificats g&eacute;n&eacute;tiques. Bien que moi, je n&rsquo;en doute pas, cela prouve au moins qu&rsquo;ils sont du m&ecirc;me p&egrave;re, le Commandant Az&eacute;ran Silversnow. Leur diff&eacute;rence aurait pu inciter les mauvaises langues au doute et &agrave; la calomnie. Moi, je peux l&rsquo;endurer, mais les enfants doivent &ecirc;tre prot&eacute;g&eacute;s.</font></div><div class="post_line"></div><div class="post_line"><em>Elle demeura pensive un moment.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Cette couleur de peau&hellip; para&icirc;t &ecirc;tre une anomalie. Mais je suppose que les modifications g&eacute;n&eacute;tiques que subit mon peuple depuis la nuit des temps &agrave; cause de son aptitude &agrave; survivre et &agrave; s&rsquo;adapter aux environnements diff&eacute;rents, continuent et que cette couleur de peau existe pour mieux prot&eacute;ger ses organes.</font></div><div class="post_line"><font color="#ffa500">C&rsquo;est s&ucirc;rement notre futur&hellip; de devenir bleus. Ce sont des m&eacute;tisses apr&egrave;s tout et c&rsquo;est ce que nous voulions.</font></div><div class="post_line"><font color="#ffa500">Personne de mon Peuple ne rejettera cette enfant. C&rsquo;est au moins une certitude.</font></div><div class="post_line"></div><div class="post_line"><em>Ayant dit cela, elle replongea dans ses pens&eacute;es, tout en parcourant vaguement la pi&egrave;ce du regard. Elle sortit de sa l&eacute;thargie en apercevant le Marshall pench&eacute; sur un tore qui absorbait toute son attention. Elle se leva alors pour aller le rejoindre mais suspendit son geste pour se tourner vers le Basil&eacute;us :</em> </div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je vous laisse le soin du rapatriement des nourrissons chez moi, vaisseau tr&egrave;s s&eacute;curis&eacute;, &eacute;quipage de confiance et assistance m&eacute;dicale appropri&eacute;e ? Je vais pr&eacute;parer un message et un laisser-passer pour qu&rsquo;ils soient bien accueillis et en toute discr&eacute;tion.</font></div><div class="post_line"></div><div class="post_line"><em>Puis elle s&rsquo;approcha de Jim :</em> </div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Alors ? Qu&rsquo;est-ce que &ccedil;a nous apprend ?</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/10/1023 ETU 00:15<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305033')">Détails</a> <a href="javascript:warnpost(305033)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305033" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305033',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Anudar hocha la t&ecirc;te.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Il va de soi que nos moyens les plus s&ucirc;rs seront r&eacute;serv&eacute;s au transport de vos enfants</strong></font><em>, dit-il. </em><font color="#2ecc40"><strong>L&#039;une de nos navettes express m&eacute;dicalis&eacute;es a d&eacute;j&agrave; &eacute;t&eacute; pr&eacute;par&eacute;e : &agrave; vrai dire, c&#039;est sur un engin identique &agrave; celui-ci que j&#039;accompagnerai le Marshall Jim TraineDehors pour notre excursion extragalactique. Des corvettes atomiques des FSE escorteront&nbsp;la navette. Par ailleurs, deux autres flottilles&nbsp;identiques &agrave; la premi&egrave;re serviront de leurres et emprunteront des routes alternatives. Enfin, les plans ont &eacute;t&eacute; formul&eacute;s de telle sorte que personne - pas m&ecirc;me moi - en dehors de l&#039;op&eacute;ration de transfert ne soit inform&eacute; de la navette o&ugrave; les enfants auront &eacute;t&eacute; install&eacute;s.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il h&eacute;sita un instant puis ajouta :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">Je vais par cons&eacute;quent ordonner au M&uuml;stiki &Uuml;p&eacute;r&ecirc;ssia qui a pr&eacute;par&eacute; l&#039;op&eacute;ration de la mettre en oeuvre. Concernant vos v&ecirc;tements... le n&eacute;cessaire sera fait aussi.</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Sa main plongea dans la poche de son manteau et il en sortit son terminal de communication, dans lequel il murmura quelques ordres avant de hocher la t&ecirc;te &agrave; nouveau. Puis il reporta son attention sur le Marshall, curieux et m&ecirc;me impatient de d&eacute;couvrir si les informations conserv&eacute;es par l&#039;Ecoum&eacute;n&ecirc; depuis la Galaxie Souvenir &eacute;taient celles dont il avait besoin pour sa qu&ecirc;te...</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />25/10/1023 ETU 01:41</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305088')">Détails</a> <a href="javascript:warnpost(305088)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305088" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305088',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>*Jim restait immobile plonger dans le Tore, le doux son de la voix de Sarah lui permettait d&#039;imaginer les conversations. Elle qui lui manquait de temps. Sa chevelure, son parfum, tout lui revenait comme si elle &eacute;tait &agrave; ses c&ocirc;t&eacute;s...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Sarah...</font></div><div class="post_line"></div><div class="post_line"><em>*Une larme se mit a couler le long de son visage.*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Ainsi... Ainsi, elle a surv&eacute;cu &agrave; l&#039;apocalypse d&#039;Odyss&eacute;e...</font></div><div class="post_line"><font color="#68c4e8">Sarah... Tu as pass&eacute; tous ces cycles loin de moi ?</font></div><div class="post_line"><font color="#68c4e8">Pardonne-moi !</font></div><div class="post_line"><font color="#68c4e8">Mais o&ugrave; es-tu aujourd&#039;hui ?</font></div><div class="post_line"><font color="#68c4e8">Que fais-tu ?</font></div><div class="post_line"><font color="#68c4e8">Sarah...</font></div><div class="post_line"></div><div class="post_line"><em>*Ces mains se mirent a trembl&eacute;, son visage deviens de plus en plus pale...*</em></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f"><font size="5">Tu l&#039;as abandonn&eacute;e !</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Non, je... Je ne savais pas o&ugrave; elle &eacute;tait !</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f"><font size="4">Tu es un l&acirc;che !</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Tu... Tu te trompes !</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f"><font size="5">Tu abandonnes tous ceux que tu aimes !</font></font></div><div class="post_line"><font color="#e82a1f"><font size="5">Ta femme, ton enfant puis Sarah...</font></font></div><div class="post_line"><font color="#e82a1f"><font size="5">Sans compter toutes ces personnes, que tu appelais AMIS.</font></font></div><div class="post_line"><font color="#e82a1f"><font size="5">Tu n&#039;es qu&#039;un l&acirc;che !</font></font></div><div class="post_line"><font color="#e82a1f"><font size="6">N&#039;oublie pas, qui tu es...</font></font></div><div class="post_line"></div><div class="post_line"><em>*Le Marshall ne pouvait chasser de sa t&ecirc;te, l&#039;image qu&#039;il avait aper&ccedil;u dans son reflet.*</em></div><div class="post_line"><a href="https://www.zupimages.net/viewer.php?id=23/37/8tam.png" target="_blank" rel="nofollow">#Souvenir#</a></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Nooooooooooooooooooon, &ccedil;a suffit.</font></div><div class="post_line"><font color="#68c4e8">Tais-toi !</font></div><div class="post_line"><font color="#68c4e8">Laisse-moi tranquille !</font></div><div class="post_line"></div><div class="post_line"><em>*Trainedehors &eacute;tait reparti dans un monologue, alors que ces deux comp&egrave;res discut&eacute;s entre eux. Cette interaction avec lui-m&ecirc;me ne lui avait m&ecirc;me pas permis de voir l&#039;arriv&eacute; de la nouvelle maman...*</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Alors ? Qu&rsquo;est-ce que &ccedil;a nous apprend ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Myah ? Excuse-moi, j&#039;&eacute;tais... J&#039;&eacute;tais perdu dans mes pens&eacute;es...</font></div><div class="post_line"><font color="#68c4e8">Et bien... Il semble que Sarah ait v&eacute;cu dans une autre galaxie, il y a quelques cycles maintenant...</font></div><div class="post_line"></div><div class="post_line"><em>*Jim se rappela alors son enseignement militaire. Lorsque l&#039;on recherche quelqu&#039;un, toujours commencer par le dernier lieu fr&eacute;quent&eacute;...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Sa derni&egrave;re position...</font></div><div class="post_line"><font color="#68c4e8">Il nous faut sa derni&egrave;re position !</font></div><div class="post_line"><font color="#68c4e8">Anudar, seriez-vous... Nous dire sa derni&egrave;re position connu ?</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=2">2</a>&nbsp;...&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=4">4</a>&nbsp;5&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=6">6</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche de Sarah</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

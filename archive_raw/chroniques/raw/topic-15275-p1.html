@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15275 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>La fille et le vaisseau</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La fille et le vaisseau</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=S%C3%A9l%C3%A8ne">Cdte. S&eacute;l&egrave;ne</a><br>Prestige de chroniqueur&nbsp;: 20<br /><br /><img src="/avatars/11050.gif" style="width:128px;height:128px" alt="Avatar" /><br />08/01/1021 ETU 08:10<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 8 <a href="javascript:toggle_bloc('cal279413')">Détails</a> <a href="javascript:warnpost(279413)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279413" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279413',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font color="#bbbbbb"><font size="3">♫</font></font><font color="#bbbbbb"> <font size="1"><a href="https://www.youtube.com/watch?v=O4_KUbphbxc" target="_blank" rel="nofollow">Mega Drive &mdash; Haunted (Hunted)</a></font></font></strong></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="justify"><font size="2"><em>Plan&egrave;te M&eacute;r&eacute;dis.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>Au milieu d&#039;un bidonville &agrave; moiti&eacute; perdu sous les sables, une vieille femme aux traits marqu&eacute;s et v&ecirc;tue de modestes tissus d&eacute;color&eacute;s tapait violemment sur la porte d&#039;une cabane.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#2ECC40"><font size="2">- S&eacute;l&egrave;ne, il faut que tu viennes ! Ouvre cette porte !</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>Faute de r&eacute;ponse, les coups sur la porte s&rsquo;amplifi&egrave;rent jusqu&#039;&agrave; ce que la serrure de celle-ci c&egrave;de par sa mis&eacute;rable qualit&eacute;, r&eacute;v&eacute;lant un int&eacute;rieur de mis&egrave;re. </em></font></div></div><div class="post_line"><div align="justify"><font size="2"><em>Au milieu du mobilier fait de planches et de toiles tendues luisait une tablette, &agrave; la fois seule lumi&egrave;re et seul &eacute;l&eacute;ment de richesse notable du logis.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#2ECC40"><font size="2">- S&eacute;l&egrave;ne ? Pourquoi ne r&eacute;pond tu pas ?</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>La vieille femme pouvait percevoir derri&egrave;re un rideau l&eacute;ger la pr&eacute;sence de celle qu&#039;elle recherchait, blottie sur une couche &agrave; m&ecirc;me le sol. Malgr&eacute; sa pr&eacute;cipitation premi&egrave;re, elle comprit que quelque chose n&#039;allait pas.</em></font></div></div><div class="post_line"><div align="justify"><font size="2"><em>Restant interdite plusieurs secondes devant ce silence anormal, son attention fut attir&eacute;e par la tablette, affichant une vid&eacute;o fig&eacute;e sur un membre du clan &agrave; l&#039;expression abattue. H&eacute;sitante, elle relan&ccedil;a le message vid&eacute;o en esp&eacute;rant comprendre ce qu&#039;il se passait.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFA1E"><font size="2">- Ici le ma&icirc;tre caravanier de l&#039;exp&eacute;dition Diniya. Je viens juste de faire mon rapport au conseil et tu es la deuxi&egrave;me personne qui devrait &ecirc;tre tenue au courant.</font></font></div></div><div class="post_line"><div align="justify"><font color="#FFFA1E"><font size="2">Je ne suis pas porteur de bonnes nouvelles, S&eacute;l&egrave;ne... Toi et tes parents aviez raison, nous avons bien retrouv&eacute; l&#039;ancien oasis sous les sables... </font></font></div></div><div class="post_line"><div align="justify"><font color="#FFFA1E"><font size="2">Mais nous n&#039;avons pas trouv&eacute; que cela...</font></font><font color="#FFFA1E"><font size="2"> L&#039;endroit &eacute;tait connu des maraudeurs du d&eacute;sert m&eacute;dian ! Ils ont vite fait de rep&eacute;rer les foreuses une fois hiss&eacute;es... </font></font></div></div><div class="post_line"><div align="justify"><font color="#FFFA1E"><font size="2">On a tout abandonn&eacute; sur place et fui tant que nous le pouvions, mais... Je suis d&eacute;sol&eacute;, S&eacute;l&egrave;ne... Le tout-terrain de tes parents n&#039;&eacute;tait pas assez rapide...</font></font></div></div><div class="post_line"><div align="justify"><font color="#FFFA1E"><font size="2">Je sais que cela n&#039;est probablement qu&#039;une pi&egrave;tre consolation, mais leur sacrifice ne sera pas vain. Cette source d&#039;eau pourrait &ecirc;tre vitale pour la prochaine grande migration.</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>Coupant la vid&eacute;o, la femme se retrouva accabl&eacute;e devant la nouvelle m&ecirc;me si elle ne connaissait gu&egrave;re beaucoup S&eacute;l&egrave;ne ou ses parents. Elle rejoignit la jeune fille, s&#039;accroupit &agrave; son niveau et se permit de poser sa main sur son &eacute;paule.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#2ECC40"><font size="2">- Je sais que c&#039;est une terrible &eacute;preuve pour toi, S&eacute;l&egrave;ne. Le clan sera toujours pr&eacute;sent &agrave; tes c&ocirc;t&eacute;s et nous ferons tout pour t&#039;aider.</font></font></div></div><div class="post_line"><div align="justify"><font color="#2ECC40"><font size="2">Mais il va falloir &ecirc;tre forte, je suis venue ici parce que le conseil des anciens a demand&eacute; ta pr&eacute;sence en urgence...</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>Cette convocation inhabituelle ne fit que d&eacute;sorienter davantage S&eacute;l&egrave;ne, d&eacute;j&agrave; taraud&eacute;e mentalement par la culpabilit&eacute;. Elle avait explor&eacute; les innombrables archives ancestrales depuis sa tablette et trouv&eacute;, au milieu de l&#039;incommensurable volume d&#039;informations, d&#039;anciennes photographies c&eacute;lestes d&eacute;taill&eacute;es de ce qui &eacute;tait d&eacute;sormais le d&eacute;sert m&eacute;dian. </em></font></div></div><div class="post_line"><div align="justify"><font size="2"><em>Quelle n&#039;avait pas &eacute;t&eacute; sa joie &agrave; l&#039;&eacute;poque d&#039;observer les verdures autour d&#039;anciens lacs d&eacute;sormais disparus sous les sables. N&#039;&eacute;tait ce point de son fait si, partis pour retrouver ces points d&#039;eau, ses parents avaient d&eacute;sormais eux aussi &eacute;t&eacute; perdus &agrave; tout jamais dans les sables ?</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>L&#039;incitant et l&#039;aidant &agrave; se relever, la vieille femme avait beau &ecirc;tre la messag&egrave;re du conseil, elle ne comprenait gu&egrave;re davantage pourquoi cette pauvre gamine en &eacute;tat de choc &eacute;tait devenue subitement le centre d&#039;&eacute;v&egrave;nements qui la d&eacute;passait compl&egrave;tement. </em></font></div></div><div class="post_line"><div align="justify"><font size="2"><em>Toutes deux ne pouvaient se douter que ce simple drame bien trop commun sur cette plan&egrave;te de mis&egrave;re avait retenu une attention particuli&egrave;re, bien au del&agrave; des cieux de M&eacute;r&eacute;dis.</em></font></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=S%C3%A9l%C3%A8ne">Cdte. S&eacute;l&egrave;ne</a><br>Prestige de chroniqueur&nbsp;: 20<br /><br /><img src="/avatars/11050.gif" style="width:128px;height:128px" alt="Avatar" /><br />10/01/1021 ETU 02:18<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279470', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal279466')">Détails</a> <a href="javascript:warnpost(279466)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279466" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279466',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><strong><font color="#bbbbbb"><font size="3">♫</font></font><font color="#bbbbbb"> <font size="1"><a href="https://www.youtube.com/watch?v=xWx1Tu5Ghm8" target="_blank" rel="nofollow">Mercury 82 &mdash; Icarus 1</a></font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>A moiti&eacute; pouss&eacute;e par la messag&egrave;re de conseil, S&eacute;l&egrave;ne sortit de son obscure cabane. La lumi&egrave;re r&eacute;v&eacute;lait ses traits encore jeunes, 16 ans, brune claire ainsi qu&#039;un teint clair masqu&eacute; par le bronzage permanent d&#039;un soleil de plomb.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Mais aujourd&rsquo;hui, ni vent charg&eacute; de sables brulants, ni soleil assommant ne venait accabler la petite cit&eacute; bidonville</em><em>. Seulement un froid inhabituel et une couverture nuageuse plus que bienvenue &agrave; cette latitude. Les vents provenant de l&#039;hiver permanent &eacute;tait une v&eacute;ritable b&eacute;n&eacute;diction pour les habitants du proche-d&eacute;sert.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>S&eacute;l&egrave;ne et la vieille femme traversaient &agrave; la h&acirc;te la mis&eacute;rable cit&eacute;, faites de tentes, de mat&eacute;riaux l&eacute;gers et divers &eacute;l&eacute;ments de r&eacute;cup&eacute;ration. Un vaste camp plus ou moins provisoire, grossissant et r&eacute;duisant &agrave; la faveur de la g&eacute;n&eacute;rosit&eacute; des sources d&#039;eau locales. Le seul b&acirc;timent r&eacute;ellement en dur au centre de la ville &eacute;tait leur destination, simple cube de quelques &eacute;tages et &agrave; l&#039;ornementation minime.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Mais sur leur route, une foule nombreuse et exceptionnelle se presse elle aussi vers le centre de la ville. M&ecirc;me si inhabituel, pareil empressement ne pouvait se justifier ni par le climat doux, ni m&ecirc;me les impressionnants et attendus convois de citernes d&#039;eau venant des pays de la nuit permanente.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Bravant la foule du mieux qu&#039;elles le pouvaient, ce fut une fois presque arriv&eacute;es sur le fronton du b&acirc;timent du conseil que la clameur populaire apporta la raison de cette affluence :</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#FF30DC">- L&#039;Intelligence Astrale nous honore de sa pr&eacute;sence ! </font></em></div></div><div class="post_line"><div align="justify"><em><font color="#ffc6c3">- Vive l&#039;Intelligence Astrale !</font></em></div></div><div class="post_line"><div align="justify"><em><font color="#CF2BE7">- Sauvez nous !</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Quand &eacute;tait-ce la derni&egrave;re fois que l&#039;&ecirc;tre c&eacute;leste avait visit&eacute; le peuple de S&eacute;l&egrave;ne ? Pour son village, en tout cas, c&#039;&eacute;tait probablement in&eacute;dit. Mais elle n&#039;eut gu&egrave;re le temps de r&eacute;fl&eacute;chir &agrave; l&#039;importance historique ni aux implications que cela pouvait avoir : son accompagnatrice eut t&ocirc;t fait de passer derri&egrave;re les gardes du b&acirc;timent et de la tirer au travers du d&eacute;dale int&eacute;rieur.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font size="5">✲&nbsp; ✲&nbsp; ✲</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Dans la salle du conseil, une effervescence similaire &agrave; celle ext&eacute;rieure r&eacute;gnait parmi la dizaine de sages assis en demi-cercle. L&#039;entr&eacute;e et la pr&eacute;sentation devant eux de S&eacute;l&egrave;ne n&#039;avait qu&#039;&agrave; peine ralenti le furieux d&eacute;bat.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#0074D9">- Pourquoi l&#039;Intelligence C&eacute;leste ne voudrait d&eacute;voiler ses desseins ?</font></div></div><div class="post_line"><div align="justify"><font color="#9DF9FF">- C&#039;est l&agrave; une demande tr&egrave;s irr&eacute;guli&egrave;re. Avons nous trace de pareille chose par le pass&eacute; ?</font></div></div><div class="post_line"><div align="justify"><font color="#44B8FF">- Je ne le pense pas, mais en tout cas, serait-il avis&eacute; de froisser l&#039;Intelligence Astrale ?</font></div></div><div class="post_line"><div align="justify"><font color="#5593BD">- Quel serait son avenir ici de toute fa&ccedil;on ? Le proche-d&eacute;sert est d&eacute;j&agrave; une terre rude et cruelle, alors pour elle ? Elle est encore jeune et vient de perdre ses parents.</font></div><div class="post_line"></div></div><div class="post_line"><div align="justify"><em>Prononc&eacute;e presque en chuchotement, ce fut cette remarque abrupte de v&eacute;rit&eacute; qui fit revenir le silence et reporta enfin toute l&#039;attention des sages sur la jeune fille t&eacute;tanis&eacute;e se tenant devant eux.</em></div></div><div class="post_line"><div align="justify"><em>Le chef du conseil profita du soudain calme pour mettre un terme au d&eacute;bat.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#9DF9FF">- Le conseil des sages a d&eacute;lib&eacute;r&eacute;, l&#039;Intelligence Astrale peut revenir. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Quelques instants apr&egrave;s rentra ce qui &eacute;tait d&eacute;nomm&eacute; l&#039;Intelligence C&eacute;leste ou Astrale. Et pour cause, cela ne ressemblait gu&egrave;re &agrave; quoi que ce soit de comparable trouvable sur M&eacute;r&eacute;dis. Un quadrup&egrave;de m&eacute;canique aux pattes dispos&eacute;es &agrave; angles droit, sans autre t&ecirc;te que les capteurs sur son corps central. Au sommet de celui-ci, un projecteur holographique projette des figures g&eacute;om&eacute;triques complexes imbriqu&eacute;es et mouvantes lorsque l&#039;entit&eacute; prit la parole d&#039;une voix masculine d&#039;une grande douceur et impeccablement traduite.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">- Quel plaisir d&#039;enfin te rencontrer, S&eacute;l&egrave;ne ! </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#9DF9FF">- Depuis de nombreux si&egrave;cles, vous nous accordez une aide pr&eacute;cieuse et sans limite. Nous ne saisissons pas l&#039;objectif de votre demande, mais apr&egrave;s des si&egrave;cles d&#039;aide et de confiance, le conseil ne peut que satisfaire votre requ&ecirc;te... Si S&eacute;l&egrave;ne l&#039;accorde aussi, bien &eacute;videmment. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La machine se tourna vers la jeune fille et les complexes formes g&eacute;om&eacute;triques projet&eacute;es au dessus de la machine se firent rondes, ondul&eacute;es, apaisantes.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF5F54"><font color="#FF4136">- R&eacute;unissez vos affaires, jeune S&eacute;l&egrave;ne, une longue route nous attend. Je souhaite vous amener avec moi, parmi les &eacute;toiles et les mondes lointains.</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=S%C3%A9l%C3%A8ne">Cdte. S&eacute;l&egrave;ne</a><br>Prestige de chroniqueur&nbsp;: 20<br /><br /><img src="/avatars/11050.gif" style="width:128px;height:128px" alt="Avatar" /><br />13/01/1021 ETU 23:53<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279813', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal279812')">Détails</a> <a href="javascript:warnpost(279812)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279812" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279812',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font color="#bbbbbb"><font size="3">♫</font></font><font color="#bbbbbb"> <font size="1"><a href="https://www.youtube.com/watch?v=y3KC-aiCsjE" target="_blank" rel="nofollow">Carpenter Brut &mdash; Blood Machines Intro</a></font></font></strong></div><div class="post_line"></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF56FF">- Reviendrai-ici un jour ?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>S&eacute;l&egrave;ne s&#039;&eacute;tait risqu&eacute;e &agrave; la question apr&egrave;s un long moment d&#039;h&eacute;sitation, tout en contemplant l&#039;imposante navette qui commen&ccedil;ait &agrave; faire chauffer ses moteurs. Il ne faisait aucun doute pour elle que cette machine formidable devait avoir des centaines de fois plus de valeur que l&#039;int&eacute;gralit&eacute; de la cit&eacute; o&ugrave; elle s&#039;&eacute;tait pos&eacute;e. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">- A n&#039;en pas douter. Mais notre voyage sera long de plusieurs cycles.</font></div></div><div class="post_line"><div align="justify"><font color="#FF56FF">- O&ugrave; nous rendons nous ?</font></div></div><div class="post_line"><div align="justify"><font color="#FF4136">- La destination n&#039;est pas l&#039;objectif.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Sortant de l&#039;immense cohue venue contempler l&#039;entit&eacute; &eacute;trang&egrave;re et son vaisseau, la vieille femme qui avait amen&eacute;e S&eacute;l&egrave;ne au conseil lui avait ramen&eacute;e deux grands sacs contenant ses affaires.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#2ECC40">- Tes habits, ta tablette, quelques denr&eacute;es et voici un collier protecteur. Quelle qu&#039;en soit la distance, avec, la tribu sera avec toi !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le quadrup&egrave;de m&eacute;canique restait immobile pendant les derniers pr&eacute;paratifs. Tous ces objets n&#039;&eacute;taient d&#039;aucune valeur et ne seraient d&#039;aucune utilit&eacute; selon lui, mais il pr&eacute;f&eacute;ra ne pas intervenir sp&eacute;culant que certains pourraient avoir une valeur sentimentale pour la jeune fille. A une exception pr&egrave;s.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">- La tablette ne sera pas n&eacute;cessaire. Elle est pr&eacute;cieuse pour cette plan&egrave;te. Continuez de les transmettre aux membres &eacute;clair&eacute;s de votre peuple.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Apr&egrave;s les sacs ferm&eacute;s et mis dans la navette, quelques derniers adieux, conseils et succincts discours de membres du conseil, S&eacute;l&egrave;ne et l&#039;Intelligence Astrale pouvaient enfin embarquer.</em></div></div><div class="post_line"><div align="justify"><em>Quelques instants de plus et la foule d&eacute;tala &agrave; toute vitesse lorsque forcirent les r&eacute;acteurs pour d&eacute;coller, projetant sables et fum&eacute;es brulantes.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font size="5">✲&nbsp; ✲&nbsp; ✲</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF56FF">- Pourquoi m&#039;avoir choisie ?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Une peur renouvel&eacute;e avait saisie S&eacute;l&egrave;ne lorsque le sas du vaisseau s&#039;&eacute;tait referm&eacute;, la laissant maintenant seule avec la d&eacute;concertante entit&eacute; &eacute;trang&egrave;re dans l&#039;espace exigu de la navette.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">- Sais-tu, S&eacute;l&egrave;ne, je t&#039;observe depuis un moment. &Eacute;norm&eacute;ment de choses, j&#039;observe. </font></div></div><div class="post_line"><div align="justify"><font color="#FF4136">Mes senseurs observent ta plan&egrave;te depuis l&#039;espace. Mais j&#039;observe aussi les membres de vos tribus. Depuis ces tablettes comme celle que tu utilisais.</font></div></div><div class="post_line"><div align="justify"><font color="#FF4136">Tu es intelligente, jeune, et plus grand chose ne te retenait sur ce monde.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>L&#039;Intelligence Astrale percevait clairement l&#039;inqui&eacute;tude de S&eacute;l&egrave;ne et sa r&eacute;ponse n&#039;avait gu&egrave;re aid&eacute;e. Pass&eacute;e la premi&egrave;re acc&eacute;l&eacute;ration du d&eacute;collage, il invita la fille &agrave; se rapprocher de la verri&egrave;re du cockpit pour la distraire de son anxi&eacute;t&eacute;.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">- Viens voir. Toi qui appr&eacute;ciais tant regarder mes observations spatiales, tu vas pouvoir les contempler de tes propres yeux.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle qui n&#039;&eacute;tait jamais mont&eacute;e dans quoi que ce soit de plus puissant que le tout terrain de ses parents, elle lutta sur son si&egrave;ge contre l&#039;acc&eacute;l&eacute;ration colossale du vaisseau pour pouvoir apercevoir le paysage s&#039;&eacute;tendant en contrebas. </em></div></div><div class="post_line"><div align="justify"><em>La cit&eacute; n&#039;&eacute;tait d&eacute;j&agrave; plus qu&#039;une infime poussi&egrave;re infime perdue au milieu des terres du proche-d&eacute;sert. Tout ce qu&#039;elle avait connue disparaissait sous ses yeux &agrave; une vitesse vertigineuse.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">- Sais-tu que M&eacute;r&eacute;dis n&#039;est pas un monde vraiment ordinaire ? Du moins, pas pour une colonie de la race Humaine.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La courbure de la plan&egrave;te commen&ccedil;a &agrave; &ecirc;tre perceptible ainsi que son climat bien particulier. </em></div></div><div class="post_line"><div align="justify"><em>D&#039;un c&ocirc;t&eacute;, blanc et sans lumi&egrave;re, les terres de la nuit-&eacute;ternelle.</em></div></div><div class="post_line"><div align="justify"><em>De l&#039;autre, un d&eacute;sert de sable infini et invivable.</em></div></div><div class="post_line"><div align="justify"><em>Une mince bande de verdure de quelques centaines de kilom&egrave;tres parcours la plan&egrave;te de tout son long et totalement &eacute;cras&eacute;e entre ses deux p&ocirc;les. Il &eacute;tait possible d&#039;observer les gigantesques temp&ecirc;tes entrainant neiges et sables et s&#039;affrontant parfois sur cette terre centrale s&eacute;parant les deux extr&ecirc;mes.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">- Avec toujours la m&ecirc;me face tourn&eacute;e vers son &eacute;toile, le verrouillage gravitationnel de M&eacute;r&eacute;dis condamne irr&eacute;m&eacute;diablement votre peuple &agrave; la d&eacute;solation...</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><em>Quelques minutes et enfin se r&eacute;v&eacute;la en orbite la destination de la navette : un gigantesque vaisseau aux formes et machines similaires &agrave; la navette, mais d&#039;une ampleur d&eacute;mesur&eacute;e, plusieurs kilom&egrave;tres de long, aux r&eacute;acteurs disproportionn&eacute;s.</em></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15275&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15275" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15275" name="d_reply_15275" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15275');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15275'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La fille et le vaisseau</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

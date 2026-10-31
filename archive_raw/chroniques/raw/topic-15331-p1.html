@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15331 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Une autre histoire</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Une autre histoire</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astronema">Cdte. Astronema</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/10618.jpg" style="width:128px;height:96px" alt="Avatar" /><br />19/01/1021 ETU 06:49<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280239', 544, 464)">version précédente</a> - Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal280238')">Détails</a> <a href="javascript:warnpost(280238)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280238" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 1<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280238',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Une rumeur circulait dans la galaxie , l&#039;ouverture d&#039;un bar dans l&#039;assembl&eacute;e avait fait du bruit.</div><div class="post_line">Certains aimaient , d&#039;autres beaucoup moins...</div><div class="post_line">La n&#039;&eacute;tait pas l&#039;importance , l&#039;arriv&eacute;e d&#039;une commandante en ces lieux all&eacute; peut &ecirc;tre tous changer...</div><div class="post_line"></div><div class="post_line">Grace au prouesse technologique du TGP.</div><div class="post_line">Une femme fit son apparition devant le Cosmo Bar.</div><div class="post_line">D&#039;une taille d&#039;un m&egrave;tre soixante-treize.</div><div class="post_line">Des cheveux noirs couper au carr&eacute;.</div><div class="post_line">Des yeux verts comme de l&#039;&eacute;meraude.</div><div class="post_line">V&ecirc;tu d&#039;un ensemble en simili-cuir noir , surmonter d&#039;un corset bustier de combat en Mithril.</div><div class="post_line">Elle tenait alors dans ces mains une lance. Elle ce nommer Astronema !</div><div class="post_line"></div><div class="post_line">Une foule commencer &agrave; s&#039;entasser devant le b&acirc;timent.</div><div class="post_line">Astronema qui n&#039;avait pas l&#039;habitude qu&#039;on la fasse attendre , commencer &agrave; perdre patience.</div><div class="post_line"></div><div class="post_line">Histoire de passer le temps , elle commen&ccedil;a &agrave; &eacute;lectrocuter son valet Elgar un monstre son service depuis quelques cycles.</div><div class="post_line"></div><div class="post_line">Alors qu&#039;Elgar ce d&eacute;battait et courait dans tous les sens , Locutus s&#039;aper&ccedil;us alors de sa pr&eacute;sence.</div><div class="post_line">La ou une partie de la foule rigolait, quand d&#039;autres semblaient choquer par l&#039;attitude d&#039;Astronema.</div><div class="post_line">Locutus rester passible devant la sc&egrave;ne.</div><div class="post_line"></div><div class="post_line">Il fit un signe de la main droite afin de saluer Astronema et a l&#039;invit&eacute; a entrer.</div><div class="post_line">Elle s&#039;arr&ecirc;ta de nuire a Elgar et ce mit a avancer devant toutes les personnes dans la file d&#039;attente , affin d&#039;atteindre Locutus.</div><div class="post_line">Elle salua Locutus d&#039;un signe de t&ecirc;te , puis continua d&#039;avancer.</div><div class="post_line">Elgar quand &agrave; lui qui suivait de pr&eacute;s Astronema , arriva a son tour au pr&eacute; de Locutus.</div><div class="post_line">Il s&#039;approcha du vigil puis lui posa la main droite sur l&#039;&eacute;paule gauche et annon&ccedil;a ...</div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Merci l&#039;ami , j&#039;ai bien cru y passer ce coup l&agrave; !</font></div><div class="post_line"></div><div class="post_line">Soudain d&#039;un coup rapide , net et efficace...</div><div class="post_line">Locutus attrapa de sa main droite le bras d&#039;Elgar , et lui infligea une technique de self d&eacute;fense appeler la Cl&eacute;e de bras !</div><div class="post_line">Un grand bruit de craquement se fit entendre , suivi d&#039;un hurlement de douleur !</div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh !</font></div><div class="post_line"></div><div class="post_line">Elgar &eacute;tait &agrave; terre , avec un bras immobiliser !</div><div class="post_line">Astronema continua sa route sans m&ecirc;me se retourner et entra dans le bar.</div><div class="post_line">Locutus se redressa puis repris sa place initial , le visage toujours inerte.</div><div class="post_line">Elgar quand lui utilisa son TGP&nbsp;pour rentr&eacute; sur le vaisseau amirale d&#039;Astronema.</div><div class="post_line"></div><div class="post_line">&Agrave; peine rentr&eacute; Astronema observa les alentours , elle regarda d&#039;abord a droite puis a gauche.</div><div class="post_line">Elle aper&ccedil;u la Baronne Sam&#039;di , elle lui fit un signe de la t&ecirc;te pour la saluer.</div><div class="post_line">Puis elle vit une nouvelle t&ecirc;te , une nouvelle commandante qu&#039;elle n&#039;avait encore jamais vu.</div><div class="post_line">Elle observa tr&egrave;s attentivement cette femme de la t&ecirc;te au pied.</div><div class="post_line"></div><div class="post_line">Puis elle repris sa d&eacute;marche chaloup&eacute; vers une table du Comos bar , afin de si asseoir.</div><div class="post_line">Elle leva la main est pronon&ccedil;a ...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Annika ...Pars ici , je vous pris !</font></div><div class="post_line"></div><div class="post_line">Seven of Nine arriva aupr&egrave;s de la commandante et la salua...</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">Bonjour Madame , que puis-je pour vous ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Je souhaiterai deux Cassandre !</font></div><div class="post_line"></div><div class="post_line">Bien madame ...</div><div class="post_line">D&#039;abord perplexe , finalement la Borg d&eacute;cida de ne pas poser de question...</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">Je vous ram&egrave;ne cela de suite.</font></div><div class="post_line"></div><div class="post_line">Une minute plus tard la borg arriva avec la boisson.</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">Tenez madame !</font></div><div class="post_line"></div><div class="post_line">Elle posa les boissons sur la table et regarda Astronema.</div><div class="post_line">Elle avait le visage triste et le regard vide...</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">On dirait que vous n&#039;allez pas bien madame ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Silence machine , laisse moi donc !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">Comme vous souhaitez !</font></div><div class="post_line"></div><div class="post_line">La Borg s&#039;&eacute;loignas ...</div><div class="post_line"></div><div class="post_line">Astronema caresser avec le majeure de sa main droite , le haut du verre en faisant des arc de cercle.</div><div class="post_line">Elle &eacute;tait perdu dans ces pensers , accouder sur son bras gauche.</div><div class="post_line">La princesse avait perdu tellement d&#039;amis Raeph , Dadoci , Jon Smoke , S&eacute;phira et bien d&#039;autres...</div><div class="post_line">Elle a aussi perdu son plus grand rival , Traffalgar Law.</div><div class="post_line">Astronema semblait abattu , elle rester a regarder le verre en face d&#039;elle...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Eh bien Capitaine , ainsi votre aventure c&#039;est terminer.</font></div><div class="post_line"><font color="#ff56ff">Vous qui aviez mis tant d&#039;effort a lever cet &eacute;quipage.</font></div><div class="post_line"><font color="#ff56ff">Oh moins ...Vous &ecirc;tes mort comme un vrai pirate , vous avez sombr&eacute; avec le navire.</font></div><div class="post_line"><font color="#ff56ff">Fier et digne jusqu&#039;au bout n&#039;est-ce pas...</font></div><div class="post_line"><font color="#ff56ff">Que doit-je faire a pr&eacute;sent Law ?</font></div><div class="post_line"><font color="#ff56ff">Je ne sait plus...</font></div><div class="post_line"><font color="#ff56ff">Je suis perdu...</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Soudain une larme ce mi a couler de son &oelig;il droit , le long de sa joue...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ERIKA">Cdte. ERIKA</a><br>Prestige de chroniqueur&nbsp;: 77<br /><br /><img src="/avatars/11058.jpg" style="width:72px;height:128px" alt="Avatar" /><br />19/01/1021 ETU 16:06<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal280247')">Détails</a> <a href="javascript:warnpost(280247)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280247" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280247',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Ce&nbsp;jour l&agrave;, elle&nbsp;&eacute;tait&nbsp;venue&nbsp;&agrave;&nbsp;l&#039;assembl&eacute;e afin d&#039;&eacute;couter les divers&nbsp;discours&nbsp;qui y&nbsp;&eacute;taient&nbsp;pr&eacute;sent&eacute;s.&nbsp;Apr&egrave;s avoir&nbsp;&eacute;cout&eacute; le discourt&nbsp;de la <font color="#ff56ff">Commandante&nbsp;Astronema</font>, elle&nbsp;participa&nbsp;en r&eacute;citant un discourt fun&eacute;raire.&nbsp;Elle&nbsp;resta&nbsp;subjugu&eacute;es&nbsp;par la beaut&eacute; de l&#039;oratrice, sont c&oelig;ur battis la chamade, quelques&nbsp;choses, ce&nbsp;pass&eacute; a&nbsp;cet&nbsp;instant pr&eacute;cis,</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Plu&nbsp;tard, elle se pausa au <font color="#ffdc00">Cosmo&nbsp;BAR</font>, tous comme certain elle avais eu l&#039;honneur de recevoir les plan du TGP <font color="#ff5f54">Erika</font> s&rsquo;assit dans l&#039;angle du bar, commanda un&nbsp;LawExpress.&nbsp;Tous en buvant son&nbsp;verre, elle&nbsp;discuter avec<font color="#ff851b"> Baronne Sam&#039;di.</font></div><div class="post_line"></div><div class="post_line">Quand elle fit son entr&eacute;, je ne pu m&rsquo;emp&ecirc;che de la regard&eacute;&nbsp;!</div><div class="post_line">Elle&nbsp;&eacute;tait&nbsp;l&agrave;... assise, regardant son verre comme ensorcel&eacute; par&nbsp;celui-ci.&nbsp;<font color="#ff5f54">Erika</font> ne manqua pas de la regarder plus en d&eacute;taille, ces cheveux noirs de geai&nbsp;mi-long, une combinaison de cuir sombre surmonter de plaque d&#039;armure&nbsp;aux d&eacute;corations&nbsp;diverses.&nbsp;Et&nbsp;ses yeux de jolie pierre de jades, et c&#039;est l&agrave; qu&#039;<font color="#ff5f54">Erika</font> remarqua qu&#039;elle c&#039;&eacute;tais faite remarqu&eacute;.</div><div class="post_line"></div><div class="post_line">Es ce qu&#039;elle l&#039;avais vu la d&eacute;taille ou venait-elle juste&nbsp;de r&eacute;alise&nbsp;qu&#039;elle&nbsp;&eacute;tait&nbsp;&eacute;pi&eacute;e.&nbsp;Erika sentit le rouge lui monter aux joues, choses&nbsp;qui lui arriv&eacute; jamais.&nbsp;Rien ne&nbsp;pouvait&nbsp;la&nbsp;perturber, elle reste ma&icirc;tresse de ses &eacute;motions quoi&nbsp;qu&#039;il arrive&nbsp;!</div><div class="post_line"></div><div class="post_line"><font color="#ff5f54">Erika</font> ce dit que&nbsp;foutu&nbsp;pour foutue, il fallait bien qu&#039;elle se&nbsp;lance apr&egrave;s tous.&nbsp;Elle&nbsp;avala&nbsp;les&nbsp;derni&egrave;res&nbsp;gorg&eacute;es de son breuvage,&nbsp;demanda&nbsp;&agrave;&nbsp;Lou d&#039;apporter&nbsp;deux autres verres a la table d&#039;<font color="#ff56ff">Astronema</font>.&nbsp;Elle&nbsp;prit&nbsp;son&nbsp;courage&nbsp;&agrave;&nbsp;deux mains, d&#039;un&nbsp;bond&nbsp;ce leva&nbsp;de son&nbsp;si&egrave;ge.&nbsp;<font color="#ff5f54">Erika</font> se dirigeant lentement vers la table, on pouvait&nbsp;entendre son c&oelig;ur battre&nbsp;&agrave;&nbsp;chacun de ses pas.</div><div class="post_line"></div><div class="post_line"><font size="1"><em>Elle prit une grande inspiration.</em></font></div><div class="post_line">&laquo;&nbsp;<font color="#ff5f54">Bonjour Commandante, j&#039;ai entendu votre&nbsp;discours&nbsp;pour les fun&eacute;railles du commandant&nbsp;Stercutius</font>.&nbsp;&raquo; <u>Elle marque une pause</u> &laquo;&nbsp;<font color="#ff5f54">j&#039;ai aim&eacute; le fait de ne pas oublier les disparues.</font>&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line"><font color="#ff30dc">Astronema</font>&nbsp;ne parla pas, juste un signe de t&ecirc;te pour l&#039;autoriser&nbsp; a s&#039;assoie.&nbsp;Ce qu&#039;elle fit avec empressement.</div><div class="post_line">&laquo;&nbsp;<font color="#ff56ff">Pourquoi &ecirc;tre vous rester&nbsp;&agrave;&nbsp;me regarder de&nbsp;cette&nbsp;fa&ccedil;on</font>&nbsp;?....&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line"><u>Erika&nbsp;rougit</u> &laquo;&nbsp;<font color="#ff5f54">J&#039;aime beaucoup votre tenue...</font>&nbsp;&raquo;</div><div class="post_line"><font size="1"><em>Elle&nbsp;aurait&nbsp;pr&eacute;f&eacute;r&eacute; &ecirc;tre dans un&nbsp;trou&nbsp;de souris plut&ocirc;t que de ce retrouv&eacute; dans&nbsp;cette&nbsp;situation&nbsp;qui l&rsquo;incommod&eacute;e.</em></font></div><div class="post_line"></div><div class="post_line">&laquo; <font color="#ff5f54">Je&nbsp;suis confuse, je ne me suis pas pr&eacute;sent&eacute;.&nbsp;</font>&raquo; <u>Elle prit un ton plus s&eacute;rieux</u> &laquo;&nbsp;<font color="#ff5f54">Commandante Erika, descendante de Viking&nbsp;!&nbsp;</font>&raquo;</div><div class="post_line"><em>Lou d&eacute;posa les deux verres, avant de reprendre place derri&egrave;re le bar.</em></div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff56ff">Et donc vous m&#039;&eacute;pier, et maintenant vous voulez me so&ucirc;ler&nbsp;?</font>&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff5f54">Pas&nbsp;du tout...&nbsp;Je...J&#039;ai juste pens&eacute;e que faire connaissance autour d&#039;un verre serais plus amical, sur ma plan&egrave;te &ccedil;a serai plus a la chope d&#039;hydromel&nbsp;</font>&raquo;</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff56ff">Soit fessons connaissance, Commandante&nbsp;Astronema,&nbsp;Princesse&nbsp;du Mal &hellip;....&nbsp;</font>&raquo;</div><div class="post_line"></div><div class="post_line"><em>Elles discut&egrave;rent longuement avant d&#039;entendre la sonnerie du TGP. Et de repartir chacune&nbsp;&agrave; leurs vaisseaux...</em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astronema">Cdte. Astronema</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/10618.jpg" style="width:128px;height:96px" alt="Avatar" /><br />21/01/1021 ETU 05:22<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal280356')">Détails</a> <a href="javascript:warnpost(280356)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280356" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 6<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280356',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Une fois dans sa cabine personnelle , Astronema resta allonger sur son divan.</div><div class="post_line">Ce moments pass&eacute;s avec Erika fut tr&egrave;s agr&eacute;able , Astro ce r&eacute;peter sans cesse cette agr&eacute;able rencontre.</div><div class="post_line">Chaque mot ... Chaque phrase , qu&#039;elle avait pu dire resta graver dans sa m&eacute;moire.</div><div class="post_line">La forme de son visage , ces cheveux ch&acirc;tains et ces beaux yeux noisette...</div><div class="post_line"></div><div class="post_line">Les deux jeunes femmes s&#039;&eacute;taient donn&eacute;es rendez-vous au Comos Bar.</div><div class="post_line">L&#039;impatience commencer &agrave; se faire ressentir.</div><div class="post_line">Astronema regard&eacute; &agrave; chaque instant le TGP , afin de v&eacute;rifier son niveau d&#039;&eacute;nergie.</div><div class="post_line">Cette attente fut interminable !</div><div class="post_line">L&#039;appareil n&#039;&eacute;tait pas encore pr&egrave;s.</div><div class="post_line"></div><div class="post_line">Astronema n&#039;en pouvait plus , elle d&eacute;cida de ce lever et de regarder dans son armoire apr&egrave;s une tenue de sortie.</div><div class="post_line">Elle ouvrit les portes et regarda attentivement...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Non , non ... Et non</font></div><div class="post_line"><font color="#ff56ff">Pas &ccedil;a ...&Ccedil;a non plus.</font></div><div class="post_line"><font color="#ff56ff">Zut , je n&#039;ai rien &agrave; me mettre !</font></div><div class="post_line"><font color="#ff56ff">Que faire ...</font></div><div class="post_line"></div><div class="post_line">Soudain Astronema resta immobile ...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Mais qu&#039;est ce que je fait , je la connais &agrave; peine.</font></div><div class="post_line"><font color="#ff56ff">Je devrais rester simple pour l&#039;instant.</font></div><div class="post_line"></div><div class="post_line">Elle referma son armoire puis se retourna.</div><div class="post_line">Elle se retourna et commen&ccedil;a &agrave; faire les cent pas dans sa cabine.</div><div class="post_line">Au bout de deux minutes , un bruit se fit entendre.</div><div class="post_line">Elle sauta au si vite sur le divan afin de regarder le TGP.</div><div class="post_line">Il &eacute;tait enfin recharg&eacute;.</div><div class="post_line">Le moment &eacute;tait venue.</div><div class="post_line">Son visage s&#039;&eacute;gaya...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Oui ! Enfin !</font></div><div class="post_line"></div><div class="post_line">Elle activa aussit&ocirc;t l&#039;appareil et se fit t&eacute;l&eacute;porter a l&#039;assembl&eacute;e galactique au pr&eacute; du Comos Bar.</div><div class="post_line">Elle rentra aussi vite dans l&#039;&eacute;difice et observa les tables ainsi que le comptoir.</div><div class="post_line">Erika n&#039;&eacute;tait pas encore arriv&eacute;e !</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">*soupir*</font></div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Elle n&#039;est pas encore l&agrave;.</font></div><div class="post_line"><font color="#ff56ff">Que fait t&#039;elle ?</font></div><div class="post_line"><font color="#ff56ff">C&#039;est bien &agrave; cette heure si , que nous devions nous retrouver ?</font></div><div class="post_line"><font color="#ff56ff">Et si elle ne venait pas finalement ?</font></div><div class="post_line"><font color="#ff56ff">Elle ne voit peut-&ecirc;tre en moi , qu&#039;une amie ?</font></div><div class="post_line"></div><div class="post_line">Astronema resta immobile quelques secondes puis elle avan&ccedil;a vers une table...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Je me fais trop d&#039;id&eacute;e , je vais aller me d&eacute;tendre avec un verre.</font></div><div class="post_line"></div><div class="post_line">Elle recula la chaise , puis elle s&#039;assis &agrave; la table.</div><div class="post_line">Astronema leva la main en l&#039;air et fit un geste envers Lou.</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Barman !</font></div><div class="post_line"><font color="#ff56ff">Je vais vous prendre un double LawExpress bien serr&eacute;.</font></div><div class="post_line"></div><div class="post_line">Lou lui fit un signe de la t&ecirc;te , puis pr&eacute;para le m&eacute;lange.</div><div class="post_line">Suite a cela il fit signe &agrave; Seven of Nine , afin qu&#039;elle puisse rapporter la commande.</div><div class="post_line">Annika prit la boisson au bar puis alla la donner &agrave; Astronema...</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">Voil&agrave; madame !</font></div><div class="post_line"><font color="#ffc0cb">Faites attention c&#039;est fort !</font></div><div class="post_line"></div><div class="post_line">Astro regarda Annika et la remercia poliment...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Merci Seven of Nine , vous pouvez disposer !</font></div><div class="post_line"></div><div class="post_line">Annika retourna s&#039;occuper de sa client&egrave;le.</div><div class="post_line"></div><div class="post_line">Astronema commen&ccedil;a &agrave; boire son verre , une ...Puis deux gorg&eacute;e !</div><div class="post_line">Elle sentit sa gorge et ces joues chauffer sous les effets de l&#039;alcool.</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Elle avait raison , c&#039;est vraiment fort !</font></div><div class="post_line"></div><div class="post_line">Soudain ... Sortie de nulle part ... Elle arriva !</div><div class="post_line">La femme qu&#039;elle avait tant attendu !</div><div class="post_line">Elle la regarda longuement.</div><div class="post_line">Son regard ... Sa d&eacute;marche , tous chez elle la faisait vibrer !</div><div class="post_line">Une &eacute;trange sensation ce mis &agrave; parcourir son corp , &eacute;tait ce l&#039;alcool ?</div><div class="post_line">Astronema ressentie un immense bonheur en la revoyant.</div><div class="post_line"></div><div class="post_line">Elle avait envie de courir vers elle afin de la saluer , mais n&#039;&eacute;tait ce pas de trop ?</div><div class="post_line">Elle choisit de l&#039;attendre , afin de ne pas perturber son invit&eacute;.</div><div class="post_line">Plus Erika avancer vers elle , plus son c&oelig;ur batt&eacute;e !</div><div class="post_line">Quand la demoiselle s&#039;installa enfin , Astro poussa un soupir de soulagement.</div><div class="post_line"></div><div class="post_line">Elles parl&egrave;rent longuement de tous et de rien...</div><div class="post_line">De leurs passer , de leurs cultures et m&ecirc;me de leurs anciennes relations amoureuses...</div><div class="post_line">Dans leurs passer amoureux , elles avaient subi toutes les deux beaucoup d&#039;&eacute;chec.</div><div class="post_line">Les deux jeunes femmes ne cesser de rapprocher de plus en plus , pour ne finir qu&#039;&ecirc;tre coll&eacute; c&ocirc;te &agrave; c&ocirc;te.</div><div class="post_line">Puis les deux femmes commencer a parler d&#039;une de leurs relations communes , un petit &ecirc;tre amateur de chocolat et de jolies femmes...</div><div class="post_line">Astronema ne s&#039;&eacute;tait pas sentie aussi bien depuis bien longtemps , au point de rire au &eacute;clat avec sa convive.</div><div class="post_line"></div><div class="post_line">Soudain ... Sans sans rendre compte Astro posa sa main droite sur la main gauche de Erika !</div><div class="post_line">Les deux femmes rester &agrave; s&#039;observer les yeux dans les yeux.</div><div class="post_line">Pour Astronema c&#039;&eacute;tait le d&eacute;clic , le moment pour elle de tenter sa chance !</div><div class="post_line">Elle se pencha en avant et colla ces l&egrave;vres sur celle d&#039;Erika.</div><div class="post_line">Pendant ces quelques secondes , elle ce sentie amoureuse.</div><div class="post_line"></div><div class="post_line">Puis le court d&#039;un instant , elle se demanda si la commandante pouvait ressentir aussi cette passion.</div><div class="post_line">Elle d&eacute;cida de d&eacute;coller ces l&egrave;vres , afin de s&#039;excuser aupr&egrave;s d&#039;Erika.</div><div class="post_line">Astro ce senti soudain toute confus...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Pardonnez-moi , je n&#039;aurais pas du ...</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ERIKA">Cdte. ERIKA</a><br>Prestige de chroniqueur&nbsp;: 77<br /><br /><img src="/avatars/11058.jpg" style="width:72px;height:128px" alt="Avatar" /><br />22/01/1021 ETU 04:20<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal280409')">Détails</a> <a href="javascript:warnpost(280409)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280409" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280409',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Pendant ce court bais&eacute;, <font color="#ff4136">Erika</font> eue l&rsquo;impression que le monde s&#039;effacer.&nbsp;Elle oublia ses soucis, et le monde qui l&#039;entoure, seul compt&eacute; cet instant.</div><div class="post_line"></div><div class="post_line">Puis&nbsp;<font color="#ff56ff">Astronema</font>&nbsp;se recula avant de s&#039;excuser platement pour ce geste, quel d&eacute;chirement, ce fut pour elle.</div><div class="post_line"></div><div class="post_line">Elles rest&eacute;es l&agrave;, se fixer.&nbsp;Puis <font color="#ff4136">Erika</font> d&eacute;cida de poser sa main sur la joue d&#039;<font color="#ff56ff">Astronema</font>&nbsp;tout la en glissant lentement vers sa nuque, avant de l&#039;attirer a elle et de l&rsquo;embrass&eacute; &agrave; nouveau passionn&eacute;ment.</div><div class="post_line"><em>Tous se bousculer dans sa t&ecirc;te, est ce qu&#039;elle&nbsp;ressenter la m&ecirc;me chose&nbsp;?&nbsp;Cette passion, cette envie de rest&eacute; comme cela pour l&#039;&eacute;ternit&eacute;, <font color="#ff4136">Erika</font> ne voulais pas que ce moment s&rsquo;arr&ecirc;te, elle avais tellement pensais &agrave;<font color="#ff56ff">&nbsp;Astro</font>, c&#039;est dernier temps qu&#039;elle en avais perdu le sommeil.&nbsp;Elle voulait juste rester aupr&egrave;s d&#039;elle&nbsp;!</em></div><div class="post_line"></div><div class="post_line">Un&nbsp;<font color="#d900a7">BIIIIIP</font>&nbsp;strident coupa ce moment, le&nbsp;TGP&nbsp;&eacute;tais &agrave; bout d&rsquo;&eacute;nergie.&nbsp;La tristesse de devoir se s&eacute;parer &agrave; nouveau emparas les deux tourtereaux.</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff56ff">Merde..</font>.&nbsp;&raquo; <u>Murmura&nbsp;<font color="#ff56ff">Astronema</font></u>.</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff4136">J&#039;ai une terre loin de nos secteurs respectif, je...&nbsp;T&#039;enverrais les coordonn&eacute;es et la d&eacute;marche &agrave; suivre pour nous y rejoindre...</font>&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line"><em>Elle d&eacute;pose un l&eacute;ger bais&eacute; sur ses l&egrave;vres, quand ses yeux s&#039;ouvrir, elle &eacute;tait dans sa cabine seule&nbsp;!</em></div><div class="post_line"><em>Elle resta sur la banquette face au hublot, essayant tant bien que mal &agrave; reprendre ses esprits et sa contenance.</em></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">R.2.6.2</font>&nbsp;la sorti&nbsp;de ses pens&eacute;es &laquo;&nbsp;<font color="#e86e04">Erika, le prototype d&rsquo;implant cardiaque est pr&ecirc;t, juste deux&nbsp;ou&nbsp;trois&nbsp;r&eacute;glages lors de l&#039;installation, pour qu&#039;il soit&nbsp;op&eacute;rationnels&nbsp;</font>&raquo;</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff4136">Bien, je serais de retour dans 12&nbsp;H, je prends le&nbsp;Pip-pad&nbsp;avec moi et resterai joignable.&nbsp;En cas de souci, tu me contactes imm&eacute;diatement, je me mettrais en&nbsp;route</font>&raquo;</div><div class="post_line"><em>Elle se leva d&#039;un bond et parti en direction du hangar afin de prendre l&#039;un des chasseurs pour sa petite sorti.</em></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">R.2.6.2</font>&nbsp;qui l&#039;avais suivie jusqu&#039;&agrave; l&agrave; &laquo;<font color="#e86e04">&nbsp;s&eacute;rieusement...&nbsp;Penses-tu que c&#039;est le moment pour partir, on est sur le pied de guerre&nbsp;!&nbsp;</font>&raquo;</div><div class="post_line"><em>Elle lui fit qu&#039;un simple sourire comme r&eacute;ponse, et disparue dans le vaisseau.&nbsp;Elle tapota son&nbsp;Pip-pad&nbsp;pour envoyer les coordonn&eacute;es et la d&eacute;marche &agrave; suivre a bien aim&eacute;, et&nbsp;ce&nbsp;mise en route.</em></div><div class="post_line"></div><div class="post_line">Quelques heures&nbsp;plu-tard&nbsp;elle se posa &agrave; quelque&nbsp;m&egrave;tre&nbsp;de la maison, elle occulta son&nbsp;vaisseau.&nbsp;Et rentra dans la petite maison de bois, l&#039;int&eacute;rieur &eacute;tais propre, Annabelle ci trouver pour le m&eacute;nage.</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ffff00">Je vous attendais pas madame&nbsp;</font>&raquo; <u>dit elle surprise de voir <font color="#ff4136">Erika</font></u> &laquo;&nbsp;<font color="#ffff00">&ccedil;a fessai si longtemps que vous n&rsquo;&eacute;tiez pas venu, vous restez longtemps&nbsp;?</font>&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff4136">Juste quelques heures, j&#039;attends de la compagnie...</font>&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ffff00">bien je vais repartir, pass&eacute; une agr&eacute;able moment Madame</font>&nbsp;&raquo; <u>Sur&nbsp;ces paroles <font color="#ffff00">Annabelle</font> parti sur-le-champs.</u></div><div class="post_line"></div><div class="post_line"><font color="#ff4136">Erika&nbsp;</font>contempl&acirc;t&nbsp;sa maison, elle ressembl&eacute; &agrave; ces&nbsp;chalet&nbsp;d&rsquo;antan.&nbsp;Tous &eacute;taient en bois, les escaliers, qui men&eacute; &agrave; la mezzanine qui servait de chambre &eacute;tais des demi-rondins de pin.&nbsp;Le rez-de-chausser&nbsp;ce compos&eacute; de deux&nbsp;pi&egrave;ce&nbsp;l&#039;une servais&nbsp;d&#039;entrer et de salon, au fond s&#039;y&nbsp;trouv&eacute;&nbsp;la cuisine, une table et deux&nbsp;blanc&nbsp;s&eacute;par&eacute;&nbsp;le&nbsp;cuisine du salon.&nbsp;L&#039;autre&nbsp;&eacute;tait&nbsp;sur la droite de la cuisine, c&#039;&eacute;tait&nbsp;la salle de bain, une&nbsp;large&nbsp;porte coulissante en acier noir&nbsp;servant&nbsp;de fermeture.&nbsp;Le chemin&eacute; &eacute;tait dans un coin de la maison avec un grand tapie &agrave; poil long d&#039;un blanc immacul&eacute;, Erika lan&ccedil;a le feu afin de&nbsp;r&eacute;chauff&eacute;&nbsp;la maison .</div><div class="post_line"></div><div class="post_line"><em>Quand elle entendu les talons d&#039;<font color="#ff56ff">Atronema</font>&nbsp;sur le porche, avant m&ecirc;me qu&#039;elle puisse&nbsp;montrer&nbsp;sa pr&eacute;sence la porte s&#039;ouvrir.&nbsp;Sans&nbsp;plus&nbsp;tarder, <font color="#ff4136">Erika</font> l&#039;attrapas par la taille et l&rsquo;embrass&acirc;t passionn&eacute;ment sans m&ecirc;me lui&nbsp;laisser&nbsp;le temps d&#039;&eacute;changer&nbsp;le moindre&nbsp;mot, le temps fut trop long, elle&nbsp;la d&eacute;sire plus que tous et souhait&eacute; se l&rsquo;accapar&eacute; pour elle seul .</em></div><div class="post_line">Elle l&#039;attira&nbsp;dans la maison, ferma&nbsp;la&nbsp;porte et serra encore plus son &eacute;treinte.&nbsp;Alla jusqu&#039;&agrave;&nbsp;la&nbsp;plaqu&eacute; sur la porte et lan&ccedil;a ses mains&nbsp;&agrave;&nbsp;leurs explorations, elle remonta ses mains dans son dos&nbsp;pour tir&eacute; sur la fermeture de sa combinaison, tous en&nbsp;desserrant&nbsp;les sangles de son corsage qui fini par tomber lourdement sur le sol de bois.&nbsp;Elle passa ses mains sous la combinaison, afin d&#039;atteindre toutes les zones sensibles, <em>qu&#039;elle s&#039;amusa &agrave; effleurer, titill&eacute;es, caress&eacute; ou l&eacute;ch&eacute;...</em>&nbsp;Leurs baisers f&ucirc;t plus insistant, plus fougueux, leurs caresses s&#039;intensifient jusqu&#039;&agrave; atteindre leurs <em>paroxysmes....</em></div><div class="post_line"></div><div class="post_line"><em>Quelques heures plu tard, elle &eacute;tait l&agrave;, nue.&nbsp;Allong&eacute; sur le grand tapis, des v&ecirc;tements jonch&eacute;s le sol.&nbsp;Un simple&nbsp;drap&nbsp;pour les couvrirent, <font color="#ff4136">Erika</font> avais&nbsp;d&eacute;pos&eacute;e&nbsp;sa t&ecirc;te sur l&rsquo;&eacute;paule d&#039;<font color="#ff56ff">Astro</font>&nbsp;qui lui caress&eacute; d&eacute;licatement les cheveux tous en regarde le plafond, l&#039;air&nbsp;pensant.</em></div><div class="post_line">Elle profit&eacute; pour s&#039;enivrer de son odeur de la douceur de sa peau, elle savait qu&#039;elle ne pourrait plus avoir de pause avant longtemps, pas avant d&#039;avoir finir la mission qu&#039;il l&#039;attende.&nbsp;Rien que d&#039;y penser des larmes naissance dans ses yeux, elle s&#039;interdit d&#039;y penser maintenant, elle &eacute;tait l&agrave;, avec elle.&nbsp;Dans le seul endroit en paix qu&#039;elle connaissais.</div><div class="post_line"></div><div class="post_line">La dure r&eacute;alit&eacute; les&nbsp;rattrap&acirc;t&nbsp;quand le&nbsp;pip-pad&nbsp;d&rsquo;<font color="#ff4136">Erika</font> sonn&acirc;t elle se&nbsp;pr&eacute;cipita&nbsp;pour&nbsp;regarde,&nbsp;un message de <font color="#ff851b">R.2.6.2</font>.</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#e86e04">Nous&nbsp;sommes en position, il ne manque que toi a l&#039;appelle....&nbsp;Je suis&nbsp;d&eacute;soler, mais&nbsp;tu&nbsp;dois&nbsp;revenir une mission nous attends, je suis pas&nbsp;s&ucirc;r&nbsp;que&nbsp;Mek&nbsp;soit du genre de&nbsp;pardonner&nbsp;</font>&raquo;</div><div class="post_line"><em>Sur&nbsp;ces&nbsp;quelques mots, Erika se leva en silence et commen&ccedil;&acirc;t&nbsp;a rassembl&eacute;&nbsp;ses v&ecirc;tements.</em></div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff4136">Je&nbsp;dois y aller, je suis en mission normalement, mais il fallait que...&nbsp;</font>&raquo; <u>sans pouvoir finir</u>,&nbsp;<font color="#ff56ff">Astronema&nbsp;</font>l&#039;embrass&acirc;t&nbsp;!</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;<font color="#ff30dc">Je&nbsp;comprends,&nbsp;tu&nbsp;dois&nbsp;partir malheureusement...</font>&nbsp;&raquo;</div><div class="post_line"><em>Et c&#039;est ainsi qu&#039;elles repartirent&nbsp;chaqu&#039;une&nbsp;&agrave; leurs vaisseaux, reprendre leurs places autres des&nbsp;leurs&nbsp;!</em></div><div class="post_line"></div><div class="post_line"><strong><font size="4"><font color="#e82a1f">Voici</font> <font color="#e86e04">l&#039;histoire</font> <font color="#e8c500">de</font><font color="#17b529"> deux</font>&nbsp;<font color="#005dc2">&acirc;me</font> <font color="#9a00b2">soeur</font> <font color="#d900a7">!</font></font></strong></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astronema">Cdte. Astronema</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/10618.jpg" style="width:128px;height:96px" alt="Avatar" /><br />24/01/1021 ETU 20:19<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280486')">Détails</a> <a href="javascript:warnpost(280486)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280486" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280486',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Astronema de retour sur sa capitale , ne faisait que penser &agrave; Erika.</div><div class="post_line"></div><div class="post_line">Les bais&eacute;s de ces douces l&egrave;vres , l&#039;&eacute;treinte de leurs deux corps moites de sueur.</div><div class="post_line">Ces caresses parcourant son corps br&ucirc;lant de d&eacute;sir.</div><div class="post_line">Puis enfin ce plaisir t&#039;en attendu , d&#039;une jouissance extr&ecirc;me...</div><div class="post_line"></div><div class="post_line">Astro se tourn&eacute;e dans son lit sans pouvoir dormir.</div><div class="post_line">Puis elle ce mi a pensait...</div><div class="post_line">Cette mission si secr&egrave;te pour Erika , la rendait tr&egrave;s inqui&egrave;te.</div><div class="post_line">Et si elle &eacute;tait bless&eacute; ?</div><div class="post_line">Ou pire ... Et si elle ne revenait pas ?</div><div class="post_line">Bien des questions , passer dans sa t&ecirc;te.</div><div class="post_line"></div><div class="post_line">Elle d&eacute;cida de ce lever , afin de v&eacute;rifier ces com-X.</div><div class="post_line">Astronema fit quelques pas vers son poste de communication personnel de sa cabine.</div><div class="post_line">Elle regarda attentivement , mais rien ...</div><div class="post_line">Aucune nouvelle de sa bien-aim&eacute;e.</div><div class="post_line"></div><div class="post_line">Un frisson la parcourra , puis des larmes coula le long de ces joues.</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Reviens-moi , je t&#039;en pris !</font></div><div class="post_line"></div><div class="post_line">Soudain elle fut interrompu par Ecliptor , qui arriva par la porte de dos a Astronema...</div><div class="post_line"></div><div class="post_line"><font color="#17b529">Princesse , pardonnez moi !</font></div><div class="post_line"></div><div class="post_line">Elle s&eacute;cha aussi vite ces larmes de sa main droite&nbsp;, puis se retourna...</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Qui a t&#039;il ?</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Nous avons d&eacute;tect&eacute; plusieurs flottes , qui viennent d&#039;arriver en pc1.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Amis ou ennemis ?</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Heu... Cela semble tr&egrave;s compliquer , vous devriez venir voir !</font></div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">Hum... D&#039;accord allons-y !</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">C&#039;est alors qu&#039;elle quitta la pi&egrave;ce avec Ecliptor , pour ce rendre au poste de commandement...</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15331&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15331" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15331" name="d_reply_15331" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15331');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15331'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Une autre histoire</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17687 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Chroniques d&rsquo;Auriem</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chroniques d&rsquo;Auriem</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lamiwar">Cdt. Lamiwar</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12664.jpg" style="width:128px;height:128px" alt="Avatar" /><br />08/09/1025 ETU 18:53</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal316486')">Détails</a> <a href="javascript:warnpost(316486)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316486" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316486',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font size="7">Chroniques d&rsquo;Auriem &mdash; &laquo; Nous livrons &agrave; l&rsquo;heure. &raquo;</font></strong></div><div class="post_line"><em>Cdt. Lamiwar, Compagnie Libre d&rsquo;Auriem (DCLA)</em></div><div class="post_line"><em>--------------------------------------------------</em></div><div class="post_line"></div><div class="post_line"><strong>Cdt. Lamiwar, en deux lignes</strong></div><div class="post_line">&bull; Quarantaine s&egrave;che, uniforme de vol noir sans galons, cicatrice fine au poignet gauche. </div><div class="post_line">&bull; Marchand de fiabilit&eacute; : marge honn&ecirc;te &gt; promesse impossible. Carnet horodat&eacute;, pas d&rsquo;encre rouge. </div><div class="post_line"><em>Devise perso : &laquo; La cr&eacute;dibilit&eacute;, c&rsquo;est de la monnaie. &raquo;</em></div><div class="post_line"></div><div class="post_line"><em>--------------------------------------------------</em></div><div class="post_line"></div><div class="post_line"><strong>Le DCLA (Direction du Comptoir Libre d&rsquo;Auriem)</strong></div><div class="post_line"><em>Autorit&eacute; ex&eacute;cutive du port-franc d&rsquo;Auriem, sous Charte des Comptoirs Neutres.</em></div><div class="post_line"></div><div class="post_line"><strong>Nos 3 principes</strong></div><div class="post_line">&bull; <strong>Neutralit&eacute; contractuelle</strong> : c&rsquo;est la cargaison qui fait loi.&nbsp; </div><div class="post_line">&bull; <strong>Tra&ccedil;abilit&eacute;</strong> : chaque connaissement, d&eacute;p&ocirc;t d&rsquo;escrow et sanction est horodat&eacute;.&nbsp; </div><div class="post_line">&bull; <strong>S&eacute;curit&eacute; des couloirs</strong> : routes plus s&ucirc;res &agrave; l&rsquo;entr&eacute;e comme &agrave; la sortie.</div><div class="post_line"></div><div class="post_line"><strong>Les bureaux qui font tourner le port</strong></div><div class="post_line">&bull; <strong>Tr&eacute;sorier public</strong> : d&eacute;p&ocirc;ts d&rsquo;escrow, taxes, paiements.&nbsp; </div><div class="post_line">&bull; <strong>Greffe des Contrats</strong> : enregistre connaissements, p&eacute;nalit&eacute;s, arbitrages.&nbsp; </div><div class="post_line">&bull; <strong>Pr&eacute;fet des Docks</strong> : anneaux, cr&eacute;neaux, escorte civile.&nbsp; </div><div class="post_line">&bull; <strong>Office des Voies &amp; &Eacute;nergie</strong> : balises, centrales, corridors s&ucirc;rs.&nbsp; </div><div class="post_line">&bull; <strong>Garde-docks (police financi&egrave;re)</strong> : anti-fraude, anti-corruption, anti-piraterie.&nbsp; </div><div class="post_line">&bull; <strong>Chancellerie</strong> : NAP et relations avec les quatre factions.</div><div class="post_line"></div><div class="post_line"><em>--------------------------------------------------</em></div><div class="post_line"></div><div class="post_line"><strong>R&egrave;gles de port (affich&eacute;es sur les pontons)</strong></div><div class="post_line">&bull; Neutralit&eacute; stricte : aucun pavillon n&rsquo;est discrimin&eacute;.&nbsp; </div><div class="post_line">&bull; NAP &plusmn;72 h autour des docks pour tout navire en manutention.&nbsp; </div><div class="post_line">&bull; Registre public : horaires, d&eacute;p&ocirc;ts, sanctions -&nbsp;<em>tout est horodat&eacute;</em>.&nbsp; </div><div class="post_line">&bull; Taxe stable et mod&eacute;r&eacute;e ; priorit&eacute; au temps de rotation des cargaisons.&nbsp; </div><div class="post_line">&bull; Tol&eacute;rance z&eacute;ro : fraude, piraterie, rupture de contrat.</div><div class="post_line"></div><div class="post_line"><em>--------------------------------------------------</em></div><div class="post_line"></div><div class="post_line"><strong>Ligne politique</strong></div><div class="post_line">&bull; Investissements : <strong>recherche, &eacute;ducation, &eacute;nergie</strong>.&nbsp; </div><div class="post_line">&bull; Arm&eacute;e : <strong>d&eacute;fense des voies uniquement</strong>.&nbsp; </div><div class="post_line">&bull; Position : pas d&rsquo;h&eacute;g&eacute;monie -&nbsp;<strong>nous vendons la fiabilit&eacute;</strong>.</div><div class="post_line"></div><div class="post_line"><em>--------------------------------------------------</em></div><div class="post_line"></div><div class="post_line"><strong>Une journ&eacute;e ordinaire (version courte &amp; d&eacute;velopp&eacute;e)</strong></div><div class="post_line"></div><div class="post_line">&bull; <strong>06:40</strong> - Relev&eacute; du r&eacute;seau de balises : les couloirs Ramou-3 et Ramou-1 passent au vert. L&rsquo;<em>Office des Voies &amp; &Eacute;nergie</em> compense une micro-chute de tension par bascule de charge ; bulletin &ldquo;navigation s&ucirc;re&rdquo; publi&eacute; au registre public.</div><div class="post_line"></div><div class="post_line">&bull; <strong>08:05</strong> - <em>Pr&eacute;fet des Docks</em> : plan de quai du matin valid&eacute;. Deux cargos prioritaires (p&eacute;rissables / pi&egrave;ces critiques) obtiennent les cr&eacute;neaux express ; l&rsquo;escorte civile est brief&eacute;e sur les r&egrave;gles d&rsquo;engagement et les points de regroupement.</div><div class="post_line"></div><div class="post_line">&bull; <strong>09:20</strong> - <em>Tr&eacute;sorier public</em> &amp; <em>Greffe des Contrats</em> : d&eacute;p&ocirc;t d&rsquo;escrow (120 k L) et enregistrement de connaissements. Scell&eacute;s, poids/volume et num&eacute;ro de lot concordent ; un conteneur &ldquo;discret&rdquo; passe par un contr&ocirc;le anti-fraude sans anomalie.</div><div class="post_line"></div><div class="post_line">&bull; <strong>10:10</strong> - Arbitrage de quai : un affr&eacute;teur conteste 3 % de p&eacute;nalit&eacute;. Extraction du log horodat&eacute;, comparaison avec le manifeste : le retard est av&eacute;r&eacute; ; p&eacute;nalit&eacute; maintenue, signature des deux parties, incident clos en dix minutes.</div><div class="post_line"></div><div class="post_line">&bull; <strong>11:40</strong> - <em>Chancellerie</em> : NAP 72 h accord&eacute;e &agrave; un voisin pour d&eacute;chargement lourd ; diffusion publique. En marge, un skiff &eacute;cole s&rsquo;&eacute;gare en lisi&egrave;re du couloir : identification courtoise, rappel de proc&eacute;dure, escorte jusqu&rsquo;&agrave; la zone neutre.</div><div class="post_line"></div><div class="post_line">&bull; <strong>13:05</strong> - Fen&ecirc;tre d&rsquo;&eacute;changes priv&eacute;s : test &ldquo;50 diamants @ 600 L/u&rdquo;, paiement comptant. Transfert crois&eacute; de technologies p2 sous licence (contr&ocirc;le double) ; droits techniques r&eacute;gl&eacute;s (40 k L), quittances horodat&eacute;es.</div><div class="post_line"></div><div class="post_line">&bull; <strong>14:00</strong> - <strong>Passage de cycle</strong> : consolidation des taxes, mise &agrave; jour des index ressources, publication des statistiques d&rsquo;anneau. R&eacute;-allocation de 5 % d&rsquo;&eacute;nergie vers les docks charg&eacute;s ; aucune incidence sur la stabilit&eacute; du r&eacute;seau.</div><div class="post_line"></div><div class="post_line">&bull; <strong>16:20</strong> - Sortie convoi sous escorte : trajectoire v&eacute;rifi&eacute;e, bou&eacute;es ajust&eacute;es pour &eacute;viter un nuage de d&eacute;bris. Une tentative de masquage passif d&eacute;tect&eacute;e au scanner portuaire -&gt; saisie administrative, amende, module retir&eacute;, registre mis &agrave; jour.</div><div class="post_line"></div><div class="post_line">&bull; <strong>19:30</strong> - Cl&ocirc;ture financi&egrave;re : trois escrows lib&eacute;r&eacute;s, soldes ventil&eacute;s vers les maisons de d&eacute;p&ocirc;t ; re&ccedil;u chiffr&eacute; envoy&eacute; aux parties. Le <em>Tr&eacute;sorier</em> ajuste l&rsquo;index interne &ldquo;diamants bruts&rdquo; (-10 L/u) pour coller au march&eacute; r&eacute;gional.</div><div class="post_line"></div><div class="post_line">&bull; <strong>23:30</strong> - Archivage quotidien : films de bord, journaux d&rsquo;&eacute;v&eacute;nements et d&eacute;cisions d&rsquo;arbitrage scell&eacute;s et sauvegard&eacute;s &agrave; distance. Bilan sign&eacute; : aucun horaire manqu&eacute;, aucune cargaison viol&eacute;e. Les anneaux passent au vert nuit.</div><div class="post_line"></div><div class="post_line"><em>--------------------------------------------------</em></div><div class="post_line"></div><div class="post_line"><strong>Pourquoi accoster &agrave; Auriem ?</strong></div><div class="post_line">&bull; Ici, le temps est une monnaie et le registre public un contrat social.&nbsp; </div><div class="post_line">&bull; Un <em>escrow</em> vaut mieux qu&rsquo;un serment ; une bou&eacute;e bien pos&eacute;e &eacute;vite un canon.&nbsp; </div><div class="post_line">&bull; Vous cherchez un anneau calme et une trace propre ? Nous tenons docks, routes et parole.</div><div class="post_line"></div><div class="post_line"><em>&mdash; Cdt. Lamiwar, pour le DCLA</em></div><div class="post_line"><strong>Devise</strong> : &laquo; <em>Nous livrons &agrave; l&rsquo;heure.</em> &raquo;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lamiwar">Cdt. Lamiwar</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12664.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/09/1025 ETU 22:23</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D316659', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal316658')">Détails</a> <a href="javascript:warnpost(316658)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316658" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316658',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font size="6">Chroniques d&rsquo;Auriem &mdash; &laquo; L&rsquo;ordre fonde la prosp&eacute;rit&eacute;. &raquo;</font></strong></div><div class="post_line"><font size="1">Roi Lamiwar Ier, Royaume d&rsquo;Auriem (DCLA)</font></div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Portrait du Royaume d&rsquo;Auriem</font></u></strong></div><div class="post_line">✦ Royaume issu des cargaisons et des contrats, non d&rsquo;une couronne h&eacute;r&eacute;ditaire.</div><div class="post_line">✦ Monarchie constitutionnelle : le Roi arbitre et incarne la stabilit&eacute;, mais les institutions civiles tiennent les clefs du quotidien.</div><div class="post_line">✦ Ambition : devenir <strong>le c&oelig;ur marchand de la galaxie</strong>, un empire commercial fond&eacute; sur la confiance, les routes et la parole tenue.</div><div class="post_line"></div><div class="post_line">Devise royale : <em>&laquo; Gouverner, c&rsquo;est livrer &agrave; l&rsquo;heure. &raquo;</em></div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Institutions du Royaume</font></u></strong></div><div class="post_line">✦ <strong>Conseil des Entreposeurs</strong> : ratifie lois fiscales, investissements et arbitrages.</div><div class="post_line">✦ <strong>Chambre des Navires</strong> : d&eacute;livre pavillons royaux, quotas de flotte civile, escorte marchande.</div><div class="post_line">✦ <strong>Acad&eacute;mie Royale de Logistique</strong> : forme intendants, comptables et n&eacute;gociateurs.</div><div class="post_line">✦ <strong>Office des Mines &amp; &Eacute;nergies</strong> : g&egrave;re gisements de diamants, m&eacute;taux, sources &eacute;nerg&eacute;tiques.</div><div class="post_line">✦ <strong>Chancellerie du Royaume</strong> : trait&eacute;s, NAP, diplomatie intersectorielle.</div><div class="post_line">✦ <strong>Garde Royale des Docks</strong> : force neutre garantissant s&eacute;curit&eacute; et impartialit&eacute; des ports.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Vie du Royaume</font></u></strong></div><div class="post_line">Le quotidien des sujets repose sur deux piliers : <strong>ordre</strong> et <strong>r&eacute;gularit&eacute;</strong>.</div><div class="post_line"></div><div class="post_line">✦ Les <strong>mines royales</strong> de Galendris et Demantoid battent la mesure de l&rsquo;&eacute;conomie.</div><div class="post_line">✦ Les <strong>fermes &eacute;nerg&eacute;tiques</strong> alimentent autant la flotte que les foyers.</div><div class="post_line">✦ Les <strong>&eacute;coles royales</strong> enseignent d&egrave;s l&rsquo;enfance l&rsquo;art de la n&eacute;gociation et de la logistique.</div><div class="post_line">✦ La <strong>justice contractuelle</strong> est rapide : toute fraude sanctionn&eacute;e dans l&rsquo;heure.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Doctrine militaire</font></u></strong></div><div class="post_line">✦ <strong>Principe</strong> : d&eacute;fense des routes et anneaux, non conqu&ecirc;tes.</div><div class="post_line">✦ <strong>Flotte</strong> : principalement civile, appuy&eacute;e par quelques navires lourds.</div><div class="post_line">✦ <strong>R&ocirc;le</strong> : escorter, s&eacute;curiser, dissuader.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Politique et Destin&eacute;e</font></u></strong></div><div class="post_line">✦ <strong>&Eacute;conomie</strong> : les routes commerciales sont notre monnaie, les contrats notre sceptre.</div><div class="post_line">✦ <strong>Soci&eacute;t&eacute;</strong> : ordre public et satisfaction garantissent stabilit&eacute;.</div><div class="post_line">✦ <strong>Diplomatie</strong> : neutre par principe, ouverte par pragmatisme, ferme sur la souverainet&eacute;.</div><div class="post_line">✦ <strong>Horizon</strong> : b&acirc;tir un <strong>Empire galactique commercial</strong>, non par les armes, mais par l&rsquo;unification progressive des march&eacute;s.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Une journ&eacute;e dans le Royaume</font></u></strong></div><div class="post_line">✦ 06:00 &ndash; Mines de Galendris : convoi diamant&eacute; scell&eacute; et escort&eacute;.</div><div class="post_line">✦ 09:30 &ndash; Conseil des Entreposeurs : d&eacute;bat sur quotas &eacute;nerg&eacute;tiques.</div><div class="post_line">✦ 12:00 &ndash; &Eacute;coles royales : serment des &eacute;l&egrave;ves de logistique (&laquo; Je livrerai &agrave; l&rsquo;heure. &raquo;).</div><div class="post_line">✦ 15:20 &ndash; Arbitrage : p&eacute;nalit&eacute; confirm&eacute;e, affaire close en 12 minutes.</div><div class="post_line">✦ 18:10 &ndash; Sortie d&rsquo;un convoi mixte : escorte royale coordonn&eacute;e.</div><div class="post_line">✦ 21:00 &ndash; Mise &agrave; jour de l&rsquo;index des ressources ; satisfaction publique au vert.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Pourquoi reconna&icirc;tre le Royaume d&rsquo;Auriem ?</font></u></strong></div><div class="post_line">✦ Parce qu&rsquo;il n&rsquo;est pas un empire de conqu&ecirc;te, mais de fiabilit&eacute;.</div><div class="post_line">✦ Parce qu&rsquo;ici, <strong>la parole royale vaut plus qu&rsquo;une menace arm&eacute;e</strong>.</div><div class="post_line">✦ Parce que le tr&ocirc;ne d&rsquo;Auriem est b&acirc;ti sur le contrat et l&rsquo;horodatage, non sur le sang.</div><div class="post_line"></div><div class="post_line">&mdash; <strong>Roi Lamiwar Ier</strong>, pour le DCLA</div><div class="post_line">Devise : <em>&laquo; L&rsquo;ordre fonde la prosp&eacute;rit&eacute;. &raquo;</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lamiwar">Cdt. Lamiwar</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12664.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/09/1025 ETU 22:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal316660')">Détails</a> <a href="javascript:warnpost(316660)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316660" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316660',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font size="6">Chroniques d&rsquo;Auriem &mdash; &laquo; La cour est un port, et chaque voix une cargaison. &raquo;</font></strong></div><div class="post_line"><font size="1">Roi Lamiwar Ier, Royaume d&rsquo;Auriem (DCLA)</font></div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">La Cour Royale d&rsquo;Auriem</font></u></strong></div><div class="post_line">✦ La Cour n&rsquo;est pas un th&eacute;&acirc;tre, mais un port : on y entre avec un contrat, on en sort avec un accord.</div><div class="post_line">✦ Les conseillers ne portent pas des couronnes, mais des registres. Leur prestige vient de leur exactitude, non de leur faste.</div><div class="post_line">✦ Le Roi arbitre, mais chaque voix de la Cour p&egrave;se comme une cargaison sur une balance.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Les Conseillers du Tr&ocirc;ne</font></u></strong></div><div class="post_line">✦ <strong>Chancelier Veyron</strong> : gardien des trait&eacute;s, il r&eacute;dige chaque NAP et chaque clause de non-agression. Sa plume est plus redout&eacute;e que des croiseurs.</div><div class="post_line">✦ <strong>Tr&eacute;sori&egrave;re Ma&euml;lys</strong> : veille aux escrows royaux, ajuste les taxes, publie l&rsquo;index des ressources. On dit que sa m&eacute;moire vaut dix registres.</div><div class="post_line">✦ <strong>Pr&eacute;fet Elowan</strong> : ancien navigateur, il dirige les Docks Royaux. Pour lui, un convoi retard&eacute; est un affront personnel.</div><div class="post_line">✦ <strong>Ambassadeur Sir Halrik</strong> : charg&eacute; des relations intersectorielles, il parle avec prudence mais toujours au nom de la stabilit&eacute;.</div><div class="post_line">✦ <strong>Archiviste Calven</strong> : conservateur des journaux royaux, il enregistre chaque contrat, chaque arbitrage, chaque promesse tenue.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">La Diplomatie d&rsquo;Auriem</font></u></strong></div><div class="post_line">✦ <strong>Neutralit&eacute; arm&eacute;e</strong> : le Royaume ne prend pas parti, mais il prot&egrave;ge ses routes et exige le respect de ses accords.</div><div class="post_line">✦ <strong>Ambassades franches</strong> : tout trait&eacute; sign&eacute; &agrave; Auriem est consign&eacute;, horodat&eacute; et scell&eacute; par la Chancellerie.</div><div class="post_line">✦ <strong>&Eacute;changes &eacute;quilibr&eacute;s</strong> : les ressources contre la stabilit&eacute;, les routes contre la confiance.</div><div class="post_line">✦ <strong>Rayonnement royal</strong> : la parole du Roi ne se monnaie pas, mais elle fixe la valeur de toutes les autres.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">La Vie de la Cour</font></u></strong></div><div class="post_line">✦ Le matin, la salle des Conseillers s&rsquo;ouvre sur la lecture des registres et les audiences contractuelles.</div><div class="post_line">✦ &Agrave; midi, les ambassadeurs pr&eacute;sentent leurs rapports, et les arbitrages de quai sont discut&eacute;s en pr&eacute;sence du Roi.</div><div class="post_line">✦ Le soir, les scribes de l&rsquo;Archiviste scellent la chronique du jour et l&rsquo;ajoutent au Livre d&rsquo;Auriem, m&eacute;moire de la Couronne.</div><div class="post_line"></div><div class="post_line"><strong><u><font size="4">Pourquoi traiter avec la Cour d&rsquo;Auriem ?</font></u></strong></div><div class="post_line">✦ Parce que chaque accord est surveill&eacute; par une institution, et non par un caprice.</div><div class="post_line">✦ Parce qu&rsquo;ici, <strong>les conseillers tiennent la balance et le Roi la rend juste</strong>.</div><div class="post_line">✦ Parce que nul ambassadeur n&rsquo;a jamais quitt&eacute; Auriem sans quittance sign&eacute;e.</div><div class="post_line"></div><div class="post_line">&mdash; <strong>Roi Lamiwar Ier</strong>, pour le DCLA</div><div class="post_line"><em>&laquo; La cour est un port, et chaque voix une cargaison. &raquo;</em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lamiwar">Cdt. Lamiwar</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12664.jpg" style="width:128px;height:128px" alt="Avatar" /><br />28/10/1025 ETU 23:48</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal316951')">Détails</a> <a href="javascript:warnpost(316951)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316951" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316951',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font size="6">Chronique d&rsquo;Auriem IV &ndash; L&rsquo;Aube apr&egrave;s l&rsquo;Apocalypse</font></strong></div><div class="post_line"><font size="1">Cycle 00.01.2000 &ndash; &Egrave;re de la Renaissance Imp&eacute;riale</font></div><div class="post_line"></div><div class="post_line">La fin est venue dans le feu et le silence.</div><div class="post_line">Les &eacute;toiles m&ecirc;mes se sont &eacute;teintes, englouties par la folie des anciens empires. Les routes commerciales, jadis illumin&eacute;es par les convois d&rsquo;Auriem, ne sont plus que des cendres dans le vide. Les grands bastions de la civilisation ont disparu, emportant avec eux savoirs, richesses et alliances.</div><div class="post_line"></div><div class="post_line">Et pourtant, <strong>le Commandant Lamiwar</strong> a surv&eacute;cu.</div><div class="post_line">Arrach&eacute; aux ruines de la galaxie d&eacute;truite, il a conduit un dernier convoi &agrave; travers les failles de l&rsquo;espace, franchissant le gouffre jusqu&rsquo;&agrave; une <strong>nouvelle galaxie</strong> encore vierge et indompt&eacute;e.</div><div class="post_line"></div><div class="post_line">De son empire ne subsiste qu&rsquo;une flamme.</div><div class="post_line">Une plan&egrave;te seule, peupl&eacute;e de dix millions d&rsquo;&acirc;mes rescap&eacute;es, artisans, savants, soldats et civils, tous li&eacute;s par la m&eacute;moire d&rsquo;un ordre disparu.</div><div class="post_line">Autour d&rsquo;eux, un vide d&rsquo;opportunit&eacute;s et de p&eacute;rils.</div><div class="post_line"></div><div class="post_line">Mais Auriem ne meurt jamais.</div><div class="post_line">Car la grandeur ne r&eacute;side pas dans le nombre de mondes, mais dans la volont&eacute; de les reb&acirc;tir.</div><div class="post_line"><strong>Lamiwar Ier</strong> ne r&egrave;gne plus sur un empire, il r&egrave;gne sur une <em>promesse</em> : celle de l&rsquo;unit&eacute;, du savoir et de la reconstruction.</div><div class="post_line"></div><div class="post_line">Sous son autorit&eacute; rena&icirc;t le <strong>Premier Comptoir du Renouveau</strong>.</div><div class="post_line">Ses ing&eacute;nieurs restaurent les anciennes doctrines scientifiques, ses diplomates tracent de nouveaux pactes, et ses b&acirc;tisseurs &eacute;r&egrave;gent les premiers piliers d&rsquo;une &egrave;re nouvelle.</div><div class="post_line"></div><div class="post_line">La galaxie est vide.</div><div class="post_line">Mais bient&ocirc;t, elle portera &agrave; nouveau un nom.</div><div class="post_line"><strong>Auriem.</strong></div><div class="post_line"></div><div class="post_line"><em>&ndash; D&eacute;cret inaugural du Haut-Comptoir du Renouveau,</div><div class="post_line">sign&eacute; par Lamiwar Ier, Premier Souverain de la Renaissance Imp&eacute;riale</em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lamiwar">Cdt. Lamiwar</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12664.jpg" style="width:128px;height:128px" alt="Avatar" /><br />31/10/1025 ETU 06:32</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal316984')">Détails</a> <a href="javascript:warnpost(316984)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316984" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316984',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="5">Chronique d&rsquo;Auriem V &ndash;&nbsp;Renaissance R&eacute;publicaine</font></div><div class="post_line"><font color="#00b0b0">Publication officielle de la Compagnie Libre d&rsquo;Auriem</font></div><div class="post_line">Cycle 00.03.1025 &ndash; &Egrave;re de la Reconstruction</div><div class="post_line"></div><div class="post_line"><font color="#e0e0e0"><strong>&laquo; De l&rsquo;ordre contractuel &agrave; la l&eacute;gitimit&eacute; populaire &raquo;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#c0c0c0">Apr&egrave;s plusieurs cycles de stabilit&eacute; institutionnelle et d&rsquo;administration m&eacute;thodique, Auriem a franchi une nouvelle &eacute;tape majeure dans son processus de reconstruction politique.</div><div class="post_line">Ce jour marque la <strong>fondation officielle de la R&eacute;publique d&rsquo;Auriem</strong>, issue de la transformation progressive de la Compagnie Libre en un syst&egrave;me civil repr&eacute;sentatif et r&eacute;gul&eacute; par le suffrage universel.</font></div><div class="post_line"></div><div class="post_line"><font color="#b0d0b0">L&rsquo;ensemble de la population d&rsquo;Auriem II a &eacute;t&eacute; convoqu&eacute; pour cette premi&egrave;re &eacute;lection historique.</div><div class="post_line">Le scrutin, marqu&eacute; par une participation exceptionnelle de <strong>98 %</strong>, s&rsquo;est d&eacute;roul&eacute; dans le calme et sous la supervision du Haut Comit&eacute; de Stabilit&eacute; Civique.</div><div class="post_line">Au premier tour, <strong>le Commandant Lamiwar</strong> a &eacute;t&eacute; &eacute;lu <strong>Pr&eacute;sident de la R&eacute;publique d&rsquo;Auriem</strong> avec <strong>62 % des voix</strong>, confirmant la confiance durable du peuple dans la direction qu&rsquo;il incarne depuis la Chute du Cycle.</div><div class="post_line">Son mandat est fix&eacute; &agrave; <strong>trois ann&eacute;es galactiques</strong>, renouvelable une seule fois selon la nouvelle Constitution R&eacute;publicaine.</font></div><div class="post_line"></div><div class="post_line"><font color="#cccccc">Dans son allocution inaugurale, le Pr&eacute;sident Lamiwar a rappel&eacute; que cette transition ne renie pas l&rsquo;h&eacute;ritage de la Compagnie Libre, mais l&rsquo;accomplit :</div><div class="post_line">&laquo; L&rsquo;ordre contractuel demeure, mais il appartient d&eacute;sormais &agrave; tous.</div><div class="post_line">Auriem ne sera plus une administration survivante, mais une R&eacute;publique vivante.</div><div class="post_line">Notre stabilit&eacute; ne viendra plus d&rsquo;un seul nom, mais d&rsquo;un peuple entier. &raquo;</font></div><div class="post_line"></div><div class="post_line"><font color="#a0a0ff">Le nouveau gouvernement r&eacute;publicain maintiendra les principes fondateurs d&rsquo;Auriem &mdash; <strong>stabilit&eacute;, contrat, fiabilit&eacute;</strong> &mdash; tout en ouvrant la voie &agrave; une participation &eacute;largie des citoyens, des guildes et des colonies affili&eacute;es.</div><div class="post_line">Le Bureau des Affaires &Eacute;trang&egrave;res a d&rsquo;ores et d&eacute;j&agrave; confirm&eacute; que la R&eacute;publique d&rsquo;Auriem respectera l&rsquo;ensemble des accords interstellaires pr&eacute;c&eacute;demment sign&eacute;s, notamment les <em>Accords Pacifistes Sectoriels</em>.</font></div><div class="post_line"></div><div class="post_line"><div align="right"><strong>Chancellerie Civique d&rsquo;Auriem</strong></div><div class="post_line"><em>Service de Presse R&eacute;publicain</em></div></div><div class="post_line"></div><div class="post_line"><font color="#808080">Les empires imposent, les r&eacute;publiques convainquent. Auriem choisit la raison partag&eacute;e.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lamiwar">Cdt. Lamiwar</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12664.jpg" style="width:128px;height:128px" alt="Avatar" /><br />03/12/1025 ETU 18:21</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal317455')">Détails</a> <a href="javascript:warnpost(317455)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal317455" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=317455',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#00b2ff"><font size="6">Chronique d&rsquo;Auriem VI &mdash; Cr&eacute;puscule R&eacute;publicain</font></font></div><div class="post_line"></div><div class="post_line"><em><font size="5">Publication officielle de la Compagnie Libre d&rsquo;Auriem</font></em></div><div class="post_line"><font color="#888888">Cycle 00.13.1025 &mdash; &Egrave;re de l&rsquo;Obscurcissement</font></div><div class="post_line"></div><div class="post_line"><font color="#00b2ff">&laquo; La paix n&eacute;goci&eacute;e n&rsquo;a pas suffi, mais elle restera notre honneur. &raquo;</font></div><div class="post_line"></div><div class="post_line">Apr&egrave;s plusieurs cycles de tensions croissantes, la R&eacute;publique d&rsquo;Auriem a affront&eacute; l&rsquo;&eacute;preuve la plus sombre de son existence.</div><div class="post_line">Malgr&eacute; la prudence diplomatique, la stabilit&eacute; institutionnelle et une politique de neutralit&eacute; stricte, les forces hostiles n&rsquo;ont cess&eacute; de frapper : brigands, opportunistes&hellip; puis la Coa Alliance.</div><div class="post_line"></div><div class="post_line">Ce texte retrace, pour m&eacute;moire collective, les &eacute;v&eacute;nements qui ont conduit &agrave; la chute d&rsquo;Auriem II et &agrave; la mort du Pr&eacute;sident Lamiwar.</div><div class="post_line"></div><div class="post_line"><font color="#00b2ff"><font size="4">I &mdash; L&rsquo;Ombre des Brigands</font></font></div><div class="post_line"></div><div class="post_line">Les signaux d&rsquo;alerte se sont succ&eacute;d&eacute; sans r&eacute;pit.</div><div class="post_line">Pillages r&eacute;currents, tentatives de piratage, mouvements suspects autour des coordonn&eacute;es r&eacute;publicaines&hellip;</div><div class="post_line"></div><div class="post_line"><font color="#ff4444">&bull; Pillage de Detem</div><div class="post_line">&bull; Pillage de Cemela</div><div class="post_line">&bull; Pillage de Bersan</font></div><div class="post_line"></div><div class="post_line">Le Pr&eacute;sident Lamiwar en avertissait r&eacute;guli&egrave;rement les commandants alli&eacute;s :</div><div class="post_line"></div><div class="post_line"><font color="#ffaa00"><em>&laquo; Nos pertes sont minimes, mais l&rsquo;intention hostile est claire.</div><div class="post_line">Nous engageons et d&eacute;truisons tout brigant approchant nos coordonn&eacute;es. &raquo;</em></font></div><div class="post_line"></div><div class="post_line">Mais chaque escarmouche grignotait un peu plus la marge op&eacute;rationnelle d&rsquo;Auriem.</div><div class="post_line"></div><div class="post_line"><font color="#00b2ff"><font size="4">II &mdash; L&rsquo;entr&eacute;e fracassante de la Coa Alliance</font></font></div><div class="post_line"></div><div class="post_line">La rupture survint lorsque les flottes inconnues de la Coa Alliance entr&egrave;rent dans le secteur&hellip;</div><div class="post_line">sans pr&eacute;avis, sans n&eacute;gociation, et sans m&ecirc;me un message compr&eacute;hensible.</div><div class="post_line"></div><div class="post_line">Les premi&egrave;res attaques frapp&egrave;rent en simultan&eacute; :</div><div class="post_line"></div><div class="post_line"><font color="#ff4444">&bull; Invasion de Gerom</div><div class="post_line">&bull; Invasion de Fome</div><div class="post_line">&bull; Pillage syst&eacute;matique de toutes les plan&egrave;te de la r&eacute;publique.</font></div><div class="post_line"></div><div class="post_line">Les comX re&ccedil;us &eacute;taient crypt&eacute;s, &eacute;crits dans un alphabet &eacute;trange.</div><div class="post_line">Gr&acirc;ce aux travaux du Commandant Fridji, leur sens fut finalement compris :</div><div class="post_line"></div><div class="post_line"><font color="#ffaa00"><em>&laquo; Pr&eacute;sentez votre reddition sans condition.</div><div class="post_line">Vous pouvez accepter, refuser&hellip; ou accepter apr&egrave;s. &raquo;</em></font></div><div class="post_line"></div><div class="post_line">La R&eacute;publique refusa.</div><div class="post_line"><font color="#ff4444">Auriem ne capitule pas devant la menace.</font></div><div class="post_line"></div><div class="post_line"><font color="#00b2ff"><font size="4">III &mdash; Neutralit&eacute; pi&eacute;tin&eacute;e, agressions assum&eacute;es</font></font></div><div class="post_line"></div><div class="post_line">Lamiwar avait toujours &eacute;t&eacute; clair :</div><div class="post_line"></div><div class="post_line"><font color="#ffaa00"><em>&laquo; Auriem n&rsquo;attaque jamais en premier.</div><div class="post_line">Mais Auriem r&eacute;pondra toujours &agrave; l&rsquo;agression. &raquo;</em></font></div><div class="post_line"></div><div class="post_line">Malgr&eacute; cela, la Coa poursuivit son avanc&eacute;e le long des coordonn&eacute;es r&eacute;publicaines, ignorant toutes les requ&ecirc;tes de retrait.</div><div class="post_line"></div><div class="post_line">Auriem engageait uniquement les flottes qui p&eacute;n&eacute;traient sa zone d&eacute;fensive rapproch&eacute;e,&nbsp;jamais au-del&agrave;.</div><div class="post_line"></div><div class="post_line">Mais la pression devint rapidement insoutenable.</div><div class="post_line"></div><div class="post_line"><font color="#00b2ff"><font size="4">IV &mdash; La D&eacute;fense d&rsquo;Auriem II : un combat perdu d&rsquo;avance</font></font></div><div class="post_line"></div><div class="post_line">Lorsque la Coa franchit la derni&egrave;re orbite, les d&eacute;fenses au sol r&eacute;pondirent parfaitement.</div><div class="post_line"></div><div class="post_line"><font color="#ff4444">&bull; Batteries laser</div><div class="post_line">&bull; Bunker AA</div><div class="post_line">&bull; Syst&egrave;mes automatiques anti-spatial</div><div class="post_line">&bull; Artillerie orbitale</font></div><div class="post_line"></div><div class="post_line">Tout fonctionnait.</div><div class="post_line">Tout tira.</div><div class="post_line">Tout opposa une r&eacute;sistance totale.</div><div class="post_line"></div><div class="post_line">Mais la r&eacute;alit&eacute; tactique &eacute;tait implacable :</div><div class="post_line"></div><div class="post_line"><font color="#ff4444"><strong>La quantit&eacute; d&rsquo;assaillants d&eacute;passait tout ce que la D&eacute;fense plan&eacute;taire pouvait absorber.</strong></font></div><div class="post_line"></div><div class="post_line">Les syst&egrave;mes surchauff&egrave;rent, les lignes s&rsquo;effondr&egrave;rent une &agrave; une.</div><div class="post_line">Les derni&egrave;res salves furent tir&eacute;es alors que les stations orbitales explosaient les unes apr&egrave;s les autres.</div><div class="post_line"></div><div class="post_line">Auriem II &eacute;tait en feu.</div><div class="post_line"></div><div class="post_line">Aucun renfort n&rsquo;&eacute;tait assez proche pour changer le destin de la plan&egrave;te.</div><div class="post_line"></div><div class="post_line"><font color="#00b2ff"><font size="4">V &mdash; Le Dernier Ordre du Pr&eacute;sident Lamiwar</font></font></div><div class="post_line"></div><div class="post_line">Voyant qu&rsquo;aucune force n&rsquo;arriverait &agrave; temps,</div><div class="post_line">Lamiwar fit ce que peu de dirigeants osent faire :</div><div class="post_line"></div><div class="post_line"><font color="#ffaa00"><strong>Il prit personnellement la t&ecirc;te d&rsquo;une escadre de corvettes l&eacute;g&egrave;res et monta en orbite.</strong></font></div><div class="post_line"></div><div class="post_line">La derni&egrave;re transmission, enti&egrave;rement brouill&eacute;e, fut enregistr&eacute;e par plusieurs relais du secteur :</div><div class="post_line"></div><div class="post_line"><font color="#ff4444"><em>&laquo; &hellip;Auriem&hellip; tiendra&hellip; tant que je resp&hellip;</div><div class="post_line">Ne&hellip; c&eacute;dez&hellip; ja&hellip;mais&hellip; &raquo;</em></font></div><div class="post_line"></div><div class="post_line">Puis plus rien.</div><div class="post_line">Le signal disparut, englouti dans la bataille.</div><div class="post_line"></div><div class="post_line">Les registres militaires confirment que l&rsquo;escadre pr&eacute;sidentielle fut d&eacute;truite en totalit&eacute;.</div><div class="post_line">Lamiwar p&eacute;rit aux c&ocirc;t&eacute;s de ses pilotes, dans un ultime acte de d&eacute;fense.</div><div class="post_line"></div><div class="post_line"><font color="#00b2ff"><font size="4">VI &mdash; La Chute d&rsquo;Auriem II</font></font></div><div class="post_line"></div><div class="post_line">Sans ses d&eacute;fenses orbitales.</div><div class="post_line">Sans escorte.</div><div class="post_line">Sans son Pr&eacute;sident.</div><div class="post_line"></div><div class="post_line">Auriem II fut finalement submerg&eacute;e par la Coa Alliance.</div><div class="post_line"></div><div class="post_line">Les communications plan&eacute;taires s&rsquo;&eacute;croul&egrave;rent en cascade.</div><div class="post_line">Les centres administratifs furent d&eacute;truits.</div><div class="post_line">Les archives officielles incendi&eacute;es.</div><div class="post_line"></div><div class="post_line"><font color="#ff4444"><strong>La capitale r&eacute;publicaine n&rsquo;existe plus.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#00b2ff"><font size="4">VII &mdash;&nbsp;Conclusion,&nbsp;Ce qui reste d&rsquo;Auriem</font></font></div><div class="post_line"></div><div class="post_line">Pas de r&eacute;fugi&eacute;s.</div><div class="post_line">Pas de fragments de flotte.</div><div class="post_line">Pas de colonies restantes.</div><div class="post_line">Aucune base avanc&eacute;e.</div><div class="post_line">Aucun signal.</div><div class="post_line"></div><div class="post_line"><font color="#ff4444"><strong>Auriem n&rsquo;existe plus.</strong></font></div><div class="post_line"></div><div class="post_line">Son territoire est devenu poussi&egrave;re.</div><div class="post_line">Ses cit&eacute;s sont des crat&egrave;res.</div><div class="post_line">Ses archives sont retourn&eacute;es au vide intersid&eacute;ral.</div><div class="post_line">Et son dernier pr&eacute;sident repose quelque part dans l&rsquo;&eacute;pave de son escadre.</div><div class="post_line"></div><div class="post_line">Il ne subsiste que cela :</div><div class="post_line"></div><div class="post_line"><font color="#ffaa00"><strong>Un nom, et le souvenir d&rsquo;un peuple qui refusa la reddition jusqu&rsquo;au dernier souffle.</strong></font></div><div class="post_line"></div><div class="post_line">Auriem ne fut jamais un empire.</div><div class="post_line">Auriem fut un serment :</div><div class="post_line">celui d&rsquo;un monde qui choisit la dignit&eacute; plut&ocirc;t que la soumission.</div><div class="post_line"></div><div class="post_line">Et si Auriem est tomb&eacute;e,</div><div class="post_line"><font color="#aaaaaa">son courage, lui, demeure,&nbsp;dispers&eacute; dans les comX, les t&eacute;moignages et les consciences du secteur.</font></div><div class="post_line"></div><div class="post_line">Car parfois,</div><div class="post_line"><font color="#ffaa00"><em>la victoire d&rsquo;un peuple ne se mesure pas &agrave; ce qu&rsquo;il conserve&hellip;</div><div class="post_line">mais &agrave; ce qu&rsquo;il refuse d&rsquo;abandonner.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="2"><em>Service de Presse R&eacute;publicain (reconstitu&eacute;)</em></div><div class="post_line"><em>Compagnie Libre d&rsquo;Auriem</em></font></div><div class="post_line"></div><div class="post_line"><font color="#00b2ff">La R&eacute;publique est tomb&eacute;e.</div><div class="post_line">Son histoire, elle, continue.</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17687&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17687" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17687" name="d_reply_17687" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17687');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17687'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chroniques d&rsquo;Auriem</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

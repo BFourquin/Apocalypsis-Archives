@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15516 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Exode, Sauriens, matrice.</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Exode, Sauriens, matrice.</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Endarre">Cdt. Endarre</a><br>Prestige de chroniqueur&nbsp;: 12<br /><br /><img src="/avatars/11188.gif" style="width:83px;height:128px" alt="Avatar" /><br />06/03/1021 ETU 13:33<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D283503', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal283499')">Détails</a> <a href="javascript:warnpost(283499)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283499" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283499',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><em><font color="#e82a1f"><font size="3">Exode, Origine de la matrice Saurienne et Naissance &quot;dieu&quot;&nbsp;d&eacute;sir&eacute;.</font></font></em></div></div><div class="post_line"><font color="#72ff84"><em><a href="https://www.youtube.com/watch?v=JW4AKNjQ1FI" target="_blank" rel="nofollow">Musique d&#039;&eacute;criture</a></em></font></div><div class="post_line"><a href="https://www.youtube.com/watch?v=BuHt0xSbru8" target="_blank" rel="nofollow">Musique agr&eacute;able et adapt&eacute;. </a></div><div class="post_line"></div><div class="post_line"><font color="#72ff84"><em>05/01/1021... Galaxy 16...&nbsp;Odyss&eacute;e... Apocalypsis.org</em></font></div><div class="post_line"><font color="#72ff84"><em>Ip serveur ; ***.***.***.**</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f"><em>Plan&egrave;te Cirque galactique, secteur 2 syst&egrave;me 19. Jour d&#039;&eacute;t&eacute;. <u>Vent tunisien, temp&eacute;rature moyenne de l&#039;eau 37&deg;C</u></em></font><font color="#ffc95f"><em><u>, taux d&#039;humidit&eacute; </u>:</em></font><font color="#ffffff"> <font size="1">je n&#039;en sait rien et cela n&#039;a pas d&#039;importance.</font></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff"><font size="1">Reprenons ;&nbsp;</font></font><font color="#ffc95f">Plan&egrave;te </font><font color="#e82a1f">Ci</font><font color="#ff4136">rq</font><font color="#ff857a">ue</font> <font color="#005dc2">Gal</font><font color="#ffff00">ac</font><font color="#c0f0c6">tiq</font><font color="#f012be">ue</font><font color="#ffc95f">...</font></em></div><div class="post_line"><font color="#2ecc40"><em>R&eacute;alit&eacute; parall&egrave;le au &quot;m&ecirc;me instant//Autre &eacute;chelle de temporalit&eacute; :</em></font></div><div class="post_line"><font color="#2ecc40"><em>1E 700... Tamriel Pc-L****/C:Bethesda.</em></font></div><div class="post_line"><font color="#ffc95f"><em>Mundus...</em></font></div><div class="post_line"><font color="#ffc95f"><em>Marais noirs....</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#c3ffff">Dans les for&ecirc;ts du Cirque Galactique, les rares fr&eacute;gates corsaires de </font><a href="https://www.apocalypsis.org/showuser?e_cap=Fatlooaths" target="_blank" rel="nofollow"><font color="#e8c500">Fatlooaths</font></a><font color="#c3ffff">&nbsp;</font><font color="#c3ffff">encore fonctionnel et surcharg&eacute; du peuple Saurien lui &eacute;tant rest&eacute; fid&egrave;les sont pilot&eacute; par l&#039;&eacute;lite de cette civilisation chacun d&#039;entre eux vole en rase-mottes navigant entre divers tirs de canon ioniques, les arbres, et les autres vaisseaux ainsi que</font><font color="#c3ffff">&nbsp;les attaques incessantes de justiciers galactique pr&ecirc;t &agrave; tir&eacute; sur n&#039;importe quel vaisseau non homologu&eacute;.... (Potentiellement ils tirent sur&nbsp;</font><font color="#c3ffff">des femmes et des enfants, sous pr&eacute;texte que ces derniers&nbsp;auraient des caches &oelig;ils et des crochets... </font><font color="#ffffff"><font size="1">tirer sur des handicap&eacute;s, et des suppositions... pfff</font></font><font color="#c3ffff">)&nbsp; Enfin, apr&egrave;s avoir brouill&eacute; les pistes...les Saurien ce posent en toute discr&eacute;tion </font><font color="#c3ffff">en plein milieu d&#039;une jungle pr&ecirc;t d&#039;une grotte, connue sous le nom de &quot; Grotte de Mannimarco&quot;.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">Le chargement des fr&eacute;gates corsaires ? Des millions de Sauriens, les artefacts et les technologies accumul&eacute;es ainsi qu&#039;un sacr&eacute; paquet de Leems que le commandant &agrave; amass&eacute; pendant ses affaires de banquier intouchable. </font><font color="#ffffff"><font size="1">-Ont sait jamais o&ugrave; on va, et &ccedil;a peut toujours servir.-</font></font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">La totalit&eacute; du savoir saurien y &eacute;tait pr&eacute;sent, leurs animaux de compagnie, la faune et la flore de Saurina, chaque fr&eacute;gate d&eacute;truite &eacute;tait pour eux un fardeau, un tr&eacute;sor incommensurable perdu &agrave; jamais et des vies inutilement perdues. </font><font color="#005dc2">&lt;&lt;&nbsp;La situation oblige, fallait faire avec et continu&eacute; d&#039;avancer. &gt;&gt;</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">Les Sauriens ne pouvaient pr&eacute;venir les commandants &eacute;trangers, </font><font color="#005dc2">&lt;&lt;ce satan&eacute; Narnien&gt;&gt;</font> <font color="#ffc95f">&eacute;tait encore vivant, et il fallait rester discret pour ne pas attirer l&#039;attention des dieux.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Fatlooaths et les siens rescap&eacute;s d&#039;une ancienne galaxie avaient su lire les signes annonciateurs de l&rsquo;apocalypse d&#039;Odyss&eacute;e,</font> </div><div class="post_line"></div><div class="post_line"><font color="#72ff84"><em>Les chamans Sauriens et Fatlooaths ne d&eacute;siraient plus se rendre d&eacute;pendants des caprices de dieux lunatiques et incertains, ou jouer &agrave; la roulette russe en esp&eacute;rant v&eacute;n&eacute;r&eacute;s les plus puissants et avenants alors qu&#039;aucun Sauriens ne poss&eacute;dait de la possibilit&eacute; de pouvoir &eacute;valu&eacute; les dieux, si ce n&#039;est aux travers des capacit&eacute;s que ces m&ecirc;me dieux leur ont suppos&eacute;ment l&eacute;gu</em>&eacute;s... </font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Fatlooaths se pensait</font><font color="#005dc2"><em>&nbsp;&quot;Si mes explications sont mauvaises, et que les incoh&eacute;rences observables de la r&eacute;alit&eacute; ne sont pas l&#039;&oelig;uvre de divinit&eacute;s qui changent d&#039;avis et d&#039;humeur, voici une raison de plus pour s&rsquo;enfuir&nbsp;de ce lieu incompr&eacute;hensible avant d&#039;en &ecirc;tre une victime impuissante.&quot;</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">Ce gigantesque groupe de Sauriens voulaient prendre en main leur destin&eacute;e et un </font><font color="#ff56ff">idiot </font><font color="#ffc95f">avait eu le malheur de parler des Elder Scrolls &agrave; Fatlooaths lors d&#039;un r&ecirc;ve partag&eacute;&nbsp;gr&acirc;ce&nbsp;&agrave; la magie acquise durant la lecture d&#039;un&nbsp;</font><font color="#ffc95f">parchemins</font><font color="#ffc95f">...</font><font color="#ff56ff">l&#039;idiot </font><font color="#ffc95f">&nbsp;avide de pouvoir&nbsp;avait sans le savoir entre ouvert la porte &agrave; des arm&eacute;e qu&#039;il ne soup&ccedil;onnais&nbsp;pas... (</font><font color="#ff56ff">L&#039;ancien </font><font color="#ffc95f">pardi !!)</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff"><font size="1">Prochainement;&nbsp;</font></font></em></div><div class="post_line"><em><font color="#ffffff"><font size="1">Tromperie, changement de place...</div><div class="post_line">Magie, et intelligence artificielle. </font></font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Endarre">Cdt. Endarre</a><br>Prestige de chroniqueur&nbsp;: 12<br /><br /><img src="/avatars/11188.gif" style="width:83px;height:128px" alt="Avatar" /><br />06/03/1021 ETU 15:25<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D283526', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal283504')">Détails</a> <a href="javascript:warnpost(283504)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283504" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283504',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff"><font size="1">-Rejouez les musiques conseiller, ou aller cherchez les v&ocirc;tres.-</font></font></em></div><div class="post_line"><font size="1"><em>-L&#039;amabilit&eacute; c&#039;est important parait-il.-</em></font></div><div class="post_line"><em><font color="#1e92f7">-Et oui, ces chroniques ne terminent jamais h&eacute;h&eacute;-</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f"><em>Fatlooaths en &eacute;tait s&ucirc;r ; Il n&#039;existait que pour l&rsquo;amusement qu&#039;il procurait au dieu ou as l&#039;entit&eacute; dont il &eacute;tait parfois momentan&eacute;ment l&#039;avatar, si ce dernier s&#039;ennuyait alors Fatlooaths dispara&icirc;trait.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f"><em>Peut importe la raison connue par autrui pour justifier sa mort ou sont &eacute;vincement pur et simple de la r&eacute;alit&eacute;, la vraie raison serait et resterait : L&#039;ennui d&#039;une chose dont lui-m&ecirc;me ignore tout.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f"><em>Dans sa jeune vie de Saurien, Fatlooaths pensait l&#039;avoir compris ; La chance, le talent soudain, et bien d&#039;autres choses &eacute;taient en v&eacute;rit&eacute; imputable &agrave; la possession momentan&eacute;e d&rsquo;entit&eacute;s ext&eacute;rieures dont certains personnages importants de l&#039;univers &eacute;taient simplement pour une raison inconnu&nbsp;de meilleurs r&eacute;ceptacles que d&#039;autres, Fatlooaths &eacute;tait capable ou &eacute;tait il simplement plus compatible avec une entit&eacute; ext&eacute;rieure, ce qui lui permettait l&#039;octroi de faveurs divines ? Comment expliqu&eacute; de tels diff&eacute;rences de capacit&eacute;s entre des individus&nbsp;pourtant constituant de la m&ecirc;me&nbsp;race?&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff"><font size="1"><em>-En plus, c&#039;&eacute;tait un excellent moyen de remettre ses &eacute;checs sur le dos d&#039;un dieu, qui potentiellement n&#039;existait pas et donc ne ce vengerais pas&nbsp;h&eacute;h&eacute;-&nbsp;</em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>&lt;&lt; Et si le m&eacute;rite n&#039;existait pas? &gt;&gt;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f"><em>Quoiqu&#039;il en soit, Fatlooaths en &eacute;taient persuad&eacute; ; les h&eacute;ros finissent tous par dispara&icirc;tre, car les dieux finissent par ce lasser d&#039;eux. Et non pas, car ils deviennent pr&eacute;tendument inaptes ou se font devancer, comment ceux qui ont l&#039;avantage d&#039;exp&eacute;riences multiples ainsi que d&#039;avanc&eacute; technologique pourraient ils &ecirc;tre vaincu par des jeunes l&eacute;zards arm&eacute;s de lances ? Comment des peuples natifs et pr&eacute;tendument attard&eacute;s&nbsp;de galaxie &eacute;mergente pourraient vaincre des peuples anciens ? Comment les Sauriens auraient ils perdu toutes les possessions apr&egrave;s avoir devanc&eacute;s des dizaines d&#039;autres commandants dans une galaxie pourtant pr&eacute;c&eacute;dente ? </em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f"><em>La r&eacute;ponse &eacute;tait simple ; Les dieux &eacute;taient dans la majorit&eacute; tel des enfants capricieux et les capacit&eacute;s magistrales de certains individus connu venait tr&egrave;s souvent de possession divine temporaire qui &agrave; l&#039;&eacute;chelle des avatars semblait une &eacute;ternit&eacute;. </em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#44b8ff">&lt;&lt; Et si ce plan de fuite envers les dieux que j&#039;ai con&ccedil;u, avait &eacute;t&eacute; &eacute;labor&eacute; avec l&#039;aide inconnue d&#039;au moins l&#039;un d&#039;entre eux ? Hmm possible... Quoi de plus amusant, que ce que l&#039;on ne peut pr&eacute;voir ? &gt;&gt;</div><div class="post_line"></font></em></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&lt;&lt; Et si en cette id&eacute;e de temporalit&eacute; divergente se cachait le secret de l&#039;immortalit&eacute;? &gt;&gt; </font></div><div class="post_line"><em><font color="#44b8ff"><u>&lt;&lt;En transposant nos consciences&nbsp;dans des avatars contenue dans des micro r&eacute;alit&eacute;s ou le temps s&#039;&eacute;coule plus vite, nous pourrions peut &ecirc;tre ne jamais dispara&icirc;tre ou mourir tel la tortue de Z&eacute;non qui jamais ne sera d&eacute;passer?&nbsp;&gt;&gt;</u></font></em></div><div class="post_line"></div><div class="post_line"><font color="#72ff84"><em>Les peuples avaient tous des raisons individuel de perdre la majeurs parti de leurs technologies durant les sauts inter-galactiques, mais les faits &eacute;tait l&agrave; ; Aucun peuple ne parvenais &agrave; garder en sa possession des technologies suffisamment avanc&eacute; pour vraiment se d&eacute;marquer. D&#039;une multitudes de petites excuses, naissait pourtant un tableau commun.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><em>Quoi qu&#039;il en soit ; Fatlooaths n&#039;expliquaient pas la perte de technologies pass&eacute; que par le d&eacute;sir des dieux, de maintenir chacune des races de la galaxie comme pantins.</em></font></div><div class="post_line"><font color="#ff857a"><em>La concurrence entre diff&eacute;rentes races intelligentes stimulant probablement l&#039;int&eacute;r&ecirc;t des dieux pour ce &lt;&lt;spectacle&gt;&gt; .</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f"><em>Pour Fatlooaths qui ne souhaitait pas cesser d&#039;exister, il fallait un h&eacute;ros qui le remplacerait le temps qu&#039;il se fasse oublier, car si les dieux suppriment facilement ce qui est sous leurs yeux, peut &ecirc;tre sont ils trop fain&eacute;ants pour chercher les particularit&eacute;s de ceux qui ne sont pas visibles, peut &ecirc;tre m&ecirc;me ces dieux jouent ils avec leurs avatars, justement car ils sont fain&eacute;ants ?&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f"><em>Un h&eacute;ros serait d&eacute;sign&eacute; pour servir d&#039;&eacute;cran de fum&eacute;e, ce h&eacute;ros servirait sans le savoir Fatlooaths et les Sauriens, c&#039;est le peuple de cet individu qui serait &eacute;vinc&eacute; de la r&eacute;alit&eacute;, et non pas Fatlooaths. Quoi de mieux qu&#039;un adversaire pour remplir ce r&ocirc;le&nbsp;? </em></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><em>Le h&eacute;ros d&eacute;signer&nbsp;serait h&eacute;raut de Fatlooaths, un messager qui porterait aux dieux Sauriens un message si &eacute;trange et si long que Fatlooaths et les Sauriens aurait le temps de dispara&icirc;tre par la petite porte avant que ceux-ci ne rouvrent les yeux. </em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Il lui fallait trouver <s>un univers</s>&nbsp;une r&eacute;alit&eacute; aux lois diff&eacute;rentes, et gr&acirc;ce&nbsp;&agrave; </font><font color="#ff56ff">l&#039;idiot</font><font color="#ffc95f"> c&#039;&eacute;tait chose faite</font><font color="#ffc95f">.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Les pr&eacute;paratifs &eacute;taient pr&ecirc;ts, les chamans Sauriens suivaient les instructions du grand chaman supr&ecirc;me de la discorde pour ouvrir le portail&nbsp;extra-r&eacute;alit&eacute;.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Un cadavre de g&eacute;n&eacute;ral Saurien gisait au sol, sans visage, celui-ci avait contredit Fatlooaths sur le nom &agrave; employ&eacute; pour d&eacute;sign&eacute; la porte, pr&eacute;tendant que portail &quot;extra-univers&quot; pour rejoindre un univers parall&egrave;le &eacute;tait</font> <font color="#44b8ff"><em>-soi-disant plus appropri&eacute;-</em></font><font color="#ffc95f">,&nbsp;apr&egrave;s moult&nbsp;tentatives d&#039;explication au propos de l&#039;univers unique&nbsp;et une patience hors du commun, Fatlooaths fini par lui explos&eacute; subitement la t&ecirc;te d&#039;un tir de blaster pour clore la discussion. </font></div><div class="post_line"></div><div class="post_line"><font color="#17b529"><em>Des petits morceaux de cerveaux reptiliens d&eacute;corait d&eacute;sormais l&#039;entr&eacute;s du portail.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff30dc">Fatlooaths se tourn&acirc;t vers son peuple et levant les bras, il dit ; </font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff"><em>&lt;&lt; Que ceux qui veulent crever du joug de tar&eacute;es lunatiques restent ici ou prennent leurs temps &ccedil;a &eacute;vitera une seconde guerre civile, les autres tous avec moi !&nbsp; &gt;&gt;</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">Puis il marqua une pause et chuchota &agrave; ses g&eacute;n&eacute;raux : </font><font color="#44b8ff">&lt;&lt;&nbsp;</font></em><font color="#44b8ff"><em>Et faites pas la connerie de dire les femmes et les enfants d&#039;abord, on voit un joli panneau avec &quot;Marais noir&quot; &agrave; travers le portail, mais rien nous dit que de l&#039;autre c&ocirc;t&eacute; la premi&egrave;re chose qu&#039;on verra ce ne sera pas un gigantesque chat ou un tordu dans mon genre avec ses arm&eacute;es. Je veux des soldats devant, et derri&egrave;re chaque peloton de civil. &gt;&gt;</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font size="1">Prochainement; </div><div class="post_line"></font></em></div><div class="post_line"><em><font size="1">Tromperie, changement de place...</font></em></div><div class="post_line"><em><font size="1">Magie, et intelligence artificielle.</font></em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15516&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15516" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15516" name="d_reply_15516" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15516');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15516'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Exode, Sauriens, matrice.</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

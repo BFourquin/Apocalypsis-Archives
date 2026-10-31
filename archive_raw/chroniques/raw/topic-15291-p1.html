@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15291 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Quotidien routinier</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Quotidien routinier</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Novarik">Cdt. Novarik</a><br>Prestige de chroniqueur&nbsp;: 37<br /><br /><img src="/avatars/11090.png" style="width:128px;height:128px" alt="Avatar" /><br />10/01/1021 ETU 19:55</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279505', 544, 464)">version précédente</a> - Score&nbsp;: 8 <a href="javascript:toggle_bloc('cal279504')">Détails</a> <a href="javascript:warnpost(279504)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279504" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 8<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279504',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff0000">+BIIP BIIP BIIP+</font></div><div class="post_line"></div><div class="post_line">Une main furieuse fit taire le r&eacute;veil matin d&#039;une pression rapide et forte sur le bouton.</div><div class="post_line">Un long soupir se fit entendre alors que Novarik se passait la main sur le visage afin de r&eacute;veiller ses traits encore endormis. Il se leva lourdement afin d&#039;atteindre un interrupteur sur le mur. Une lumi&egrave;re blanche envahit la salle plong&eacute;e dans l&#039;obscurit&eacute;. Un genre de studio assez petit, une chambre qui faisait autant office de&nbsp;salon et cuisine ainsi que rangement, &eacute;quip&eacute; d&#039;une annexe servant de toilettes et salle de bain.</div><div class="post_line">Il se tra&icirc;na hors du lit, attrapa une barre de c&eacute;r&eacute;ales que il commen&ccedil;a &agrave; manger tout en allumant son datapad pour consulter les informations, nouvelles ainsi que messages priv&eacute;es du jour.</div><div class="post_line"></div><div class="post_line">La m&ecirc;me sc&egrave;ne depuis 50 ans.</div><div class="post_line">Il s&#039;arr&ecirc;ta de m&acirc;cher un moment pour r&eacute;fl&eacute;chir. Depuis sa naissance en fait. A ceci pr&egrave;s que &agrave; l&#039;&eacute;poque, sa m&egrave;re et son p&egrave;re &eacute;taient l&agrave;, dans cette exacte m&ecirc;me salle.</div><div class="post_line"></div><div class="post_line">Mais revenons au datapad.</div><div class="post_line">Nouvelles, quasiment rien. Les m&ecirc;mes choses qui passent en boucle depuis 50 ans. Plus de 50 ans. Il n&#039;&eacute;tait pas n&eacute; que c&#039;&eacute;tait d&eacute;j&agrave; toujours la m&ecirc;me chose, rien d&#039;int&eacute;ressant &agrave; reporter: Nominations ici, rapports publics l&agrave;, proc&egrave;s verbaux, etc. Ces nouvelles &eacute;taient plus similaire &agrave; un fil administratif et judiciaire. Parfois un petit &eacute;v&egrave;nement venait trouble la monotonie: meurtre, accidents, d&eacute;tail amusant, cr&eacute;ation originale. Mais ce jour ne semblait pas &ecirc;tre de ceux l&agrave;.</div><div class="post_line"></div><div class="post_line">Informations et rapports, il passa rapidement son doigt pour valider les courriers re&ccedil;us durant la nuit. Vu, vu, vu. Il n&#039;avait m&ecirc;me pas besoin de les lire pour en deviner le contenu. Il le faisait bien les 10 premi&egrave;res ann&eacute;es, les 10 suivantes, il avait commenc&eacute; &agrave; se rel&acirc;cher. Apr&egrave;s et maintenant, il lui suffisait de voir le titre, la photo de l&#039;envoyeur et les deux ou trois premiers mots pour instinctivement savoir si c&#039;&eacute;tait important ou un simple rapport de routine.</div><div class="post_line"></div><div class="post_line">Vient les messages priv&eacute;s, quelques amis, quelques discussions &agrave; droite &agrave; gauche, sa famille, rendez vous pour prendre le repas ensemble, invitations &agrave; des s&eacute;ances de sport ou jeu virtuel. Les m&ecirc;me choses que d&#039;habitude, mais au moins c&#039;&eacute;tait distrayant. La distraction, un &eacute;l&eacute;ment important pour maintenir le moral quand on vit dans ces conditions, quand on y pense, ces jeux, repas et sports sont autant une n&eacute;cessit&eacute; que les corv&eacute;es journali&egrave;re et les rapports.</div><div class="post_line"></div><div class="post_line">Bon, assez train&eacute;, il &eacute;tait temps.</div><div class="post_line">Il se lava rapidement, et commen&ccedil;a ensuite &agrave; s&#039;habiller. Sous v&ecirc;tements, shirt blanc, chemise blanche, pantalons&nbsp;marron, sur-chemise verte fonc&eacute;e, et enfin manteau vert-fonc&eacute;. Il s&#039;agrafa ses m&eacute;dailles sur le manteau et s&#039;observa dans la glace fix&eacute;e au mur. Droit, son reflet en uniforme militaire lui rendait un regard ennuy&eacute;,&nbsp;fatigu&eacute; et froid.&nbsp;Fini Novarik. Voil&agrave; pour le reste de la journ&eacute;e Amiral Novarik.</div><div class="post_line">Il s&#039;auto-salua. Vieille habitude du temps o&ugrave; il ne portait pas ses galons. Ce petit rituel le faisait toujours sourire.</div><div class="post_line"></div><div class="post_line">Il marcha vers la sortie, s&#039;arr&ecirc;ta devant la porte avant de dire &agrave; voix haute.</div><div class="post_line"></div><div class="post_line"><font color="#17b529">Heure 10. Amiral Novarik, d&eacute;but de journ&eacute;e.</font></div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">Bonjour Amiral. Passez une bonne journ&eacute;e.</font></div><div class="post_line"></div><div class="post_line">Alors que la voix virtuelle lui r&eacute;pondait, la porte de sa chambre s&#039;ouvrit. L&#039;amiral Novarik s&#039;avan&ccedil;a dans le long couloir du vaisseau qui constituait le quartier des officiers, en salua quelques uns au passage, prenant l&#039;ascenseur jusqu&#039;&agrave; la passerelle de commandement.</div><div class="post_line">C&#039;&eacute;tait l&#039;heure de commencer un nouveau jour de travail &agrave; bord du croiseur de guerre.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Novarik">Cdt. Novarik</a><br>Prestige de chroniqueur&nbsp;: 37<br /><br /><img src="/avatars/11090.png" style="width:128px;height:128px" alt="Avatar" /><br />11/01/1021 ETU 23:48</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279668', 544, 464)">version précédente</a> - Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal279665')">Détails</a> <a href="javascript:warnpost(279665)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279665" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 7<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279665',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#17b529">... Et c&#039;est ainsi que je suis fier de d&eacute;clarer le d&eacute;but de l&#039;Op&eacute;ration Ruptide.</font></div><div class="post_line"></div><div class="post_line">Les quelques applaudissements de l&#039;&eacute;quipage sur la passerelle &agrave; la conclusion de son discours faisaient encore un petit effet, mais l&agrave; encore, c&#039;&eacute;tait surtout une formalit&eacute;, une politesse qu&#039;ils lui faisaient, t&eacute;moignage de l&#039;acceptation collective de sa gouvernance en tant qu&#039;amiral de la flotte. Le vrai int&eacute;r&ecirc;t de son discours qui &eacute;tait retransmit dans toute la flotte &eacute;tait de marquer le jour 0 de l&#039;Op&eacute;ration.</div><div class="post_line">Apr&egrave;s des ann&eacute;es &agrave; exploiter des &eacute;toiles orphelines et astres errants, leur entr&eacute;e dans cette galaxie allait n&eacute;cessiter une organisation plus pouss&eacute;e.</div><div class="post_line">Et qui dit nouvelle plan&egrave;te dit dossiers suppl&eacute;mentaires sur son bureau.</div><div class="post_line"></div><div class="post_line">Alors que les diff&eacute;rents capitaines et attach&eacute;s pr&eacute;sents lui adressaient saluts et f&eacute;licitations, son esprit &eacute;tait enti&egrave;rement tourn&eacute; vers le travail qui l&#039;attendait, il se contentait de r&eacute;pondre par de simples &quot;merci&quot; ou de hocher la t&ecirc;te.</div><div class="post_line"></div><div class="post_line">Quand il en eut assez, il claqua des mains, signe pour tout le monde de regagner son poste et de retourner au travail. Alors que la passerelle retombait dans son silence habituel tandis que les officiers retournaient &agrave; leurs &eacute;crans, il monta sur le podium du capitaine qui dominait la pi&egrave;ce, s&#039;accouda &agrave; la rembarde et sortit son datapad.</div><div class="post_line">Rapports d&#039;explorations, relev&eacute;s g&eacute;ologiques, donn&eacute;es sur la faune et la flore du monde qu&#039;ils orbitaient. Les &eacute;quipes de reconnaissances avaient dress&eacute; un rapport complet de ce monde, comme un portrait physique et psychologique d&#039;un criminel. Ce monde vierge n&#039;avait plus rien &agrave; leur cacher.</div><div class="post_line">L&agrave; encore, nul besoin de lire ces rapports en d&eacute;tail, leur contenu ne l&#039;int&eacute;ressait que moyennement. Quelles que soit leur valeurs, ils seraient exploit&eacute;s tout autant.</div><div class="post_line"></div><div class="post_line">Vient enfin le document le plus important. L&#039;ordre d&#039;ex&eacute;cution propre &agrave; l&#039;op&eacute;ration.</div><div class="post_line">Les ordres les plus critiques que il lui incombait de signer pour &ecirc;tre suivis d&#039;effets. Pour ce fichier, il lui fallait en lire l&#039;int&eacute;gralit&eacute;, bien que il se doutait d&eacute;j&agrave; du contenu, mais chaque alin&eacute;a devait &ecirc;tre v&eacute;rifi&eacute;, il ne s&#039;agirait pas d&#039;approuver quelque chose qui serait contraire &agrave; leur &eacute;thique ou au fonctionnement de la flotte.</div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Ordre 1: Occupation et exploitation du Site pour &ecirc;tre converti en base d&#039;op&eacute;ration et r&eacute;approvisionnement de la flotte.</font></div><div class="post_line"></div><div class="post_line">Il pressa son pouce contre l&#039;&eacute;cran de son datapad, &agrave; un emplacement pr&eacute;vu &agrave; cet effet, apposant sa signature num&eacute;rique par empreinte digitale.</div><div class="post_line">L&#039;Ordre &eacute;tait confirm&eacute;, et fut renvoy&eacute; au Comit&eacute; strat&eacute;gique de la Flotte, qui lui m&ecirc;me allait renvoyer les ordres individuels aux&nbsp;officiers de service de commandement &agrave; bord de chaque vaisseau pour qu&#039;ils transmettent &agrave; leurs capitaines respectifs les ordres les concernant.</div><div class="post_line"></div><div class="post_line">Son travail effectu&eacute;, Novarik rangea son datapad dans une poche de son manteau, et contemplait la forme sph&eacute;rique de la&nbsp;plan&egrave;te depuis la baie vitr&eacute;e de la passerelle tandis que certains vaisseaux amor&ccedil;aient leur descente.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Novarik">Cdt. Novarik</a><br>Prestige de chroniqueur&nbsp;: 37<br /><br /><img src="/avatars/11090.png" style="width:128px;height:128px" alt="Avatar" /><br />14/01/1021 ETU 09:00</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279854', 544, 464)">version précédente</a> - Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal279850')">Détails</a> <a href="javascript:warnpost(279850)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279850" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279850',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Varga regardait sur son &eacute;cran un reportage sur le d&eacute;ploiement sur le site &quot;A&quot;.</div><div class="post_line">C&#039;&eacute;tait la premi&egrave;re mission de son fils qui venait d&#039;avoir 14 ans. A la sortie de l&#039;acad&eacute;mie, il avait &eacute;t&eacute; affect&eacute; au Service d&#039;Informations G&eacute;ologiques avec le grade de caporal. Il &eacute;tait tellement fier de lui. Ce n&#039;&eacute;tait pas sens&eacute; &ecirc;tre une mission difficile. Il avait &eacute;t&eacute; entrain&eacute; au combat et la faune locale ne devrait pas poser trop de probl&egrave;me aux forces de d&eacute;fense. N&eacute;anmoins, il s&#039;inqui&eacute;tait pour lui, apr&egrave;s tout, c&#039;&eacute;tait normal pour un p&egrave;re.</div><div class="post_line"></div><div class="post_line">En temps normal, il l&#039;aurait bien appel&eacute;. Mais depuis la mise en application de l&#039;Ordre 1 de l&#039;op&eacute;ration, les communications personnelles&nbsp;entre membres de diff&eacute;rents &eacute;quipages &eacute;taient interdites. Proc&eacute;dure standard visant &agrave; &eacute;viter la coordination de diff&eacute;rents vaisseaux pour des objectifs contraires &agrave; l&#039;ordre. Si il voulait imp&eacute;rativement le contacter, il devrait faire un courrier de d&eacute;rogation passant par son capitaine de bord et la communication serait enregistr&eacute;e et pass&eacute;e en revue par le service de s&eacute;curit&eacute; de bord, donc bon, il en avait pas vraiment envie.</div><div class="post_line"></div><div class="post_line">Varga trouvait dommage que son fils n&#039;ait pas fait ses &eacute;tudes dans les communications comme lui. Il aurait p&ugrave; &ecirc;tre nomm&eacute; comme op&eacute;rateur communications attach&eacute; au Comit&eacute; strat&eacute;gique de la Flotte et travailler &agrave; ses cot&eacute;s, mais il &eacute;tait probablement mieux que son fils suive sa propre vocation et explore les nouveaux mondes plut&ocirc;t que de rester enferm&eacute; dans une salle sur un croiseur &agrave; recevoir et transmettre des ordres.</div><div class="post_line">Varga lui n&#039;&eacute;tait pas fait pour l&#039;aventure. Un bon petit d&eacute;jeuner le matin, et une chaise confortable lui suffisaient.</div><div class="post_line">Lever, boulot, dodo, et la vie est belle!</div><div class="post_line"></div><div class="post_line">Un bip se fit entendre sur son poste de travail, ainsi que ceux de ses coll&egrave;gues dans la m&ecirc;me salle, signalant la r&eacute;ception de messages importants.</div><div class="post_line">Ah, un nouvel ordre venait probablement d&#039;&ecirc;tre approuv&eacute; et&nbsp;d&eacute;livr&eacute;.</div><div class="post_line">Leur mission maintenant &eacute;tait de le relayer au reste de la flotte en redirigeant les consignes de chaque ordre aux officiers de service de commandement concern&eacute;s, qui eux les d&eacute;livreraient &agrave; leurs capitaines pour ex&eacute;cution.</div><div class="post_line"></div><div class="post_line">Curieux, Varga prit le temps de lire uns des messages que il s&#039;appr&ecirc;tait &agrave; envoyer &agrave; uns des officiers attach&eacute;s &agrave; un navire d&#039;escorte. Ce n&#039;&eacute;tait pas oblig&eacute;, il &eacute;tait l&agrave; pour transmettre les ordres et v&eacute;rifier de leur r&eacute;ception, pas pour les lire ni les modifier, mais c&#039;&eacute;tait uns des seuls divertissements de son travail et permettait d&#039;avoir une plus grande image de la situation.</div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Ordre 3: Extension&nbsp;de la zone des pr&eacute;rogatives de l&#039;Ordre 1.</div><div class="post_line">A adresser&nbsp;aux officiers de service de commandement de la flottille 4, groupe de combat 2 et 3.&nbsp;</font></div><div class="post_line"><font color="#bbbbbb">Consigne d&#039;ex&eacute;cution:</div><div class="post_line">Rendez vous aux coordonn&eacute;es&nbsp;plan&eacute;taires d&eacute;sign&eacute;es pour votre mission. Escortez les &eacute;quipages des vaisseaux miniers et de logistique en chemin.</font></div><div class="post_line"><font color="#bbbbbb">Arriv&eacute;s aux coordonn&eacute;es d&eacute;sign&eacute;es, prendre et tenir&nbsp;la zone d&#039;atterrissage, s&eacute;curisez et&nbsp;d&eacute;ployez un p&eacute;rim&egrave;tre d&eacute;fensif jusqu&#039;&agrave; H+10 &agrave; compter du dernier incident, heure d&#039;atterrissage des vaisseaux&nbsp;miniers et de logistique.</div><div class="post_line">Maintenez par la suite le p&eacute;rim&egrave;tre pour maintien longue dur&eacute;e.</div><div class="post_line">Assistez les &eacute;quipes mini&egrave;res et logistiques en proc&eacute;dant &agrave; une r&eacute;assignation des ressources sensibles aux mines.</font></div><div class="post_line"></div><div class="post_line">Assez classique en somme. Rien d&#039;anormal. Il avait d&eacute;j&agrave; envoy&eacute; ce type d&#039;ordre des dizaines de fois.</div><div class="post_line">Il cocha les noms des officiers concern&eacute;s, et cliqua sur &quot;envoyer&quot;, initiant les actions qui m&egrave;neraient &agrave; l&#039;occupation des sites B et C, mais la suite ne le concernait pas. Il finit donc d&#039;envoyer le reste des consignes &agrave; leurs destinataires pour revenir &agrave; son reportage, seule source d&#039;information inter-vaisseau autoris&eacute;e en p&eacute;riode de d&eacute;ploiement.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Novarik">Cdt. Novarik</a><br>Prestige de chroniqueur&nbsp;: 37<br /><br /><img src="/avatars/11090.png" style="width:128px;height:128px" alt="Avatar" /><br />16/01/1021 ETU 03:28</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280023', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280018')">Détails</a> <a href="javascript:warnpost(280018)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280018" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280018',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#17b529">Sale affaire, n&#039;est ce pas?</font></div><div class="post_line"></div><div class="post_line">Novarik regardait l&#039;officier en face de lui, qui ne bronchait pas, se tenant droit au garde &agrave; vous&nbsp;dans son uniforme.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Croyez bien que j&#039;en suis d&eacute;sol&eacute;, amiral.</font></div><div class="post_line"></div><div class="post_line">Il soupira longuement, reposant son menton sur ses mains. Entre ses coudes reposait sur le bureau une liste. Dessus figuraient des noms. Tous de jeunes officiers et certains jeunes capitaines, issus de promotions de moins de 10 ans.</div><div class="post_line">Depuis que il y avait &eacute;t&eacute; expos&eacute; par son aide ici pr&eacute;sent, il l&#039;avait parcouru fr&eacute;n&eacute;tiquement plusieurs fois, mais il avait &eacute;t&eacute; rassur&eacute; de ne pas y voir figurer le nom de sa fille. Cela aurait p&ugrave; affecter sa d&eacute;cision et rendre ses ordres beaucoup moins efficients si impact&eacute;s d&#039;un jugement personnel.</div><div class="post_line">Cela faisait maintenant une heure que son aide attendait en face de son bureau que il rende une d&eacute;cision. L&#039;affaire &eacute;tait pressante, ne pouvait &ecirc;tre ignor&eacute;e ou report&eacute;e. Il lui fallait donner sa d&eacute;cision maintenant.</div><div class="post_line"></div><div class="post_line">Ces jeunes officiers, de sexes et parcours diff&eacute;rents, s&#039;&eacute;taient organis&eacute;s informellement pour faire pression sur leurs sup&eacute;rieurs, avaient rendus des rapports partiels, s&#039;&eacute;taient accord&eacute;s pour diminuer la charge de travail sur leurs &eacute;quipes respectives, et avaient en g&eacute;n&eacute;ral manqu&eacute; de z&egrave;le dans l&#039;application de leurs ordres qui leur posaient un probl&egrave;me moral.</div><div class="post_line">L&#039;accumulation de leurs d&eacute;sob&eacute;issances&nbsp;m&eacute;ritait la cour martiale. En temps normal, ils s&#039;en sortiraient avec un bl&acirc;me et une d&eacute;gradation. Mais leur collusion transformait leur crime en un effort organis&eacute;&nbsp;et coordonn&eacute; nuisant &agrave; l&#039;efficacit&eacute; de la flotte, ce qui devenait de la haute trahison et &eacute;tait passible de mort.</div><div class="post_line"></div><div class="post_line">Soit Novarik suivait la proc&eacute;dure et les envoyait vers une mort certaine, soit il les laissait op&eacute;rer dans leur coin, au risque de voir ses ordres non suivis et leur r&eacute;seau se renforcer.</div><div class="post_line">Il contempla en silence la liste une derni&egrave;re fois, pour se rassurer une fois de plus que sa fille n&#039;&eacute;tait pas dedans. Il reconnaissait h&eacute;las certains enfants de certains de ses coll&egrave;gues.</div><div class="post_line"></div><div class="post_line">Novarik prit son datapad, et tapa un ordre suppl&eacute;mentaire, puis l&#039;envoya &agrave; son aide.</div><div class="post_line"></div><div class="post_line"><font color="#17b529">Contactez leurs officiers de service de commandement respectifs, qu&#039;ils proc&egrave;dent &agrave; leurs arrestations, et actent en tant qu&#039;officiers de remplacement en attendant que de nouvelles affectations soient trouv&eacute;es. Envoyez les en cour martiale, tous.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">A vos ordres amiral. Je vais contacter de suite les communications pour leur transmettre&nbsp;ces directives.</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Disposez.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Novarik">Cdt. Novarik</a><br>Prestige de chroniqueur&nbsp;: 37<br /><br /><img src="/avatars/11090.png" style="width:128px;height:128px" alt="Avatar" /><br />17/01/1021 ETU 11:59</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D280088', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal280079')">Détails</a> <a href="javascript:warnpost(280079)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280079" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280079',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Laska se r&eacute;veilla en sursaut.</div><div class="post_line"></div><div class="post_line">Esp&eacute;rant sortir d&#039;un mauvais r&ecirc;ve, elle fut rapidement d&eacute;moralis&eacute;e en voyant que elle se trouvait toujours allong&eacute;e contre le sol m&eacute;tallique d&#039;une froide cellule.</div><div class="post_line">Soupirant de tristesse, elle s&#039;assit tant bien que mal, autant que le permettaient ses muscles endoloris par une nuit pass&eacute;e &agrave; dormir&nbsp;contre le sol, rabattant sa tunique contre ses jambes.</div><div class="post_line"></div><div class="post_line">Elle passa rapidement en revue son environnement pour la centi&egrave;me fois depuis son internement, &agrave; d&eacute;faut d&#039;autre occupation: des murs lisses en m&eacute;tal. Un sol formant un quadrillage de plaques, une porte verrouill&eacute;e dont la fen&ecirc;tre r&eacute;tractable manuellement depuis l&#039;ext&eacute;rieur &eacute;tait la seule source de bruit. Aucun meuble, pas m&ecirc;me un lit, si ce n&#039;est des crochets au plafond dont elle ignorait l&#039;utilit&eacute;. Une seule lumi&egrave;re au plafond &eacute;clairait &agrave; peine la cellule d&#039;un triste bleu.</div><div class="post_line"></div><div class="post_line">Tout &eacute;tait all&eacute; si vite.</div><div class="post_line"></div><div class="post_line">Ca avait commenc&eacute; comme une journ&eacute;e de travail normale. Elle &eacute;tait capitaine d&#039;une corvette de la flottille 4. S&#039;&eacute;tait lev&eacute;e dans un lit confortable, avait prit un bon petit d&eacute;jeuner, pass&eacute;e en revue ses rapports, s&#039;&eacute;tait pr&eacute;par&eacute;e et avait rejoint la passerelle pour contr&ocirc;ler le moral de son &eacute;quipage et encadrer leurs corv&eacute;es et op&eacute;rations du jour.</div><div class="post_line"></div><div class="post_line">Et puis c&#039;est arriv&eacute;.</div><div class="post_line"></div><div class="post_line">C&#039;est all&eacute; tellement rapidement&nbsp;que elle n&#039;&agrave; pas eu le temps de comprendre ce qu&#039;il s&#039;&eacute;tait pass&eacute;. L&#039;officier du service de commandement est entr&eacute; sur la passerelle, entour&eacute; de soldats du service de s&eacute;curit&eacute; de bord en armure. Ils se sont d&eacute;ploy&eacute;s rapidement, intimidant tout le monde &agrave; couper moteurs et syst&egrave;mes non vitaux et&nbsp;se mettre ventre au sol. Deux l&#039;ont cern&eacute;e et l&#039;officier de service de commandement s&#039;est plant&eacute; en face d&#039;elle, la mena&ccedil;ant de son arme avant que elle n&#039;ait pu r&eacute;pondre. Il &agrave; alors r&eacute;cit&eacute; des chefs d&#039;accusations l&#039;accusant de trahison et la relevant de ses fonctions. Avant que elle n&#039;ait p&ugrave; r&eacute;pondre, elle avait &eacute;t&eacute; menott&eacute;e, ses yeux avaient &eacute;t&eacute; band&eacute;s et elles avait &eacute;t&eacute; conduite dans ce que elle devinait &ecirc;tre le hangar pour y attendre environ une heure.</div><div class="post_line">Oh, elle avait bien tent&eacute; de protester, de demander aux gardes la raison de son arrestation, elle ne re&ccedil;ut que pour seule r&eacute;ponse un coup de crosse sur le front.</div><div class="post_line"></div><div class="post_line">Une navette &eacute;tait ensuite arriv&eacute;e &agrave; bord, et on l&#039;avait train&eacute; &agrave; l&#039;int&eacute;rieur, puis jet&eacute;e sur un si&egrave;ge avant de l&#039;attacher avec une ceinture, toujours ses mains menott&eacute;es dans le dos, elle avait pu sentir quelqu&#039;un d&#039;autre &agrave; ses cot&eacute;s et entendre des sanglots &agrave; proximit&eacute;. La navette avait d&eacute;coll&eacute; et atterri plusieurs fois de suite. A chaque fois quelqu&#039;un d&#039;autre montait, et les seuls sons que elle entendait except&eacute; les escales et les sanglots, &eacute;taient le bruit de bottes m&eacute;talliques patrouillant dans la cabine o&ugrave; ils se trouvaient.</div><div class="post_line"></div><div class="post_line">Enfin, la navette fit un dernier voyage o&ugrave; on d&eacute;tacha sa ceinture et celle des autres. Une femme leur avait ensuite cri&eacute; d&#039;une voix autoritaire&nbsp;de se lever et de garder le silence&nbsp;tandis que un soldat en armure la prenait par le bras et la mettait en rang avec les autres prisonniers. On leur avait ensuite enlev&eacute; leur bandages et lib&eacute;r&eacute; leur vision, et elle avait pu voir une vingtaine d&#039;hommes et femmes en uniformes, align&eacute;s avec elle. Tous entour&eacute;s de garde en armure qui gardaient leurs armes bien en vue.</div><div class="post_line"></div><div class="post_line">On les avait ensuite fait marcher &agrave; travers les couloirs d&#039;un vaisseau. Tous les acc&egrave;s aux couloirs hors de leur chemin&nbsp;barr&eacute;s par des soldats du service de s&eacute;curit&eacute; de bord. Parfois des hommes et femmes de bord &eacute;taient bloqu&eacute;s et regardaient passer le cort&egrave;ge avec des murmures m&ecirc;l&eacute;s de surprise ou un regard m&eacute;fiant.</div><div class="post_line"></div><div class="post_line">Ils avaient fini par arriver dans ce qui semblait &ecirc;tre le quartier de d&eacute;tention du croiseur. L&agrave; on les avait une fois de plus align&eacute;s. Un officier &eacute;tait pass&eacute; et leur avait arrach&eacute; leurs galons, un &agrave; un et les jetant par terre. Sa terreur s&#039;&eacute;tait m&ecirc;l&eacute;e de tristesse en voyant ses galons que elle avait durement gagn&eacute; l&#039;ann&eacute;e plus t&ocirc;t &agrave; l&#039;acad&eacute;mie joncher le sol.</div><div class="post_line">On les avait ensuite appel&eacute;s chacun leur tour, tandis que deux gardes les escortaient &agrave; l&#039;int&eacute;rieur du quartier de haute s&eacute;curit&eacute;, et revenaient quelques minutes plus tard pour&nbsp;en prendre un autre. Elle reconnut le nom de quelques coll&egrave;gues de l&#039;acad&eacute;mie ou que elle s&#039;&eacute;tait faite durant son court service, mais ne put &eacute;changer de mot ou regard.</div><div class="post_line"></div><div class="post_line">Son nom &eacute;tait ensuite venu et elle avait &eacute;t&eacute; tir&eacute;e dans le quartier de haute s&eacute;curit&eacute;. Arriv&eacute;s dans ce qui semblait &ecirc;tre une antichambre, on lui avait retir&eacute; ses menottes en lui intimant l&#039;ordre de ne pas bouger. Des agents de s&eacute;curit&eacute; qui attendaient l&agrave; se sont ensuite approch&eacute;s et on commenc&eacute; &agrave; lui arracher sa veste. Elle avait tent&eacute; de r&eacute;sister mais ne re&ccedil;ut que pour seule r&eacute;action des coups suppl&eacute;mentaires tandis que un garde la gardait en joue de son arme en lui ordonnant de ne pas r&eacute;sister.</div><div class="post_line">Au final, ils lui arrach&egrave;rent et fouill&egrave;rent sa veste, sa chemise, son pantalon et ses bottes, ne lui laissant que sa tunique. Elle observa alors que son uniforme&nbsp;&eacute;tait&nbsp;pass&eacute; au d&eacute;tecteur, et que son datapad et ses papiers &eacute;taient plac&eacute;s dans un dossier scell&eacute;.</div><div class="post_line"></div><div class="post_line">Puis elle avait &eacute;t&eacute; remenott&eacute;e et sans plus de c&eacute;r&eacute;monie, jet&eacute;e dans cette cellule, le son de la porte se refermant comme une pique dans son c&oelig;ur.</div><div class="post_line"></div><div class="post_line">Puis elle avait attendu. Des heures, imaginant toutes les raisons pour lesquelles elle pouvait &ecirc;tre accus&eacute;e de trahison, qui pouvait l&#039;avoir d&eacute;nonc&eacute;e, et pourquoi.</div><div class="post_line">Une longue attente, seule dans l&#039;obscurit&eacute;, et elle avait finit par s&#039;endormir.</div><div class="post_line"></div><div class="post_line">Maintenant, elle attendait &agrave; nouveau, redoutant ce qui allait suivre.</div><div class="post_line"></div><div class="post_line">La porte finit par s&#039;ouvrir. Un officier entra, et la toisa du regard avant de reporter sa vision sur son propre datapad.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Laska, ID 453 845 632. Veuillez me suivre.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Qu&#039;est ce qui se passe? On ne m&#039;a rien dit...</font></div><div class="post_line"></div><div class="post_line">Elle mentionna faiblement en se levant.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Vous &ecirc;tes convoqu&eacute;e en Cour Martiale. L&#039;enqu&ecirc;te et les faits contre vous ont d&eacute;j&agrave; &eacute;t&eacute; &eacute;tablis. Vous allez avoir une chance de vous d&eacute;fendre et expliquer vos actes. Veuillez me suivre, je ne me r&eacute;p&egrave;terai pas.</font></div><div class="post_line"></div><div class="post_line">Ce qui voulait dire &quot;si vous ne coop&eacute;rez pas, je vais devoir appeler la garde&quot;, message re&ccedil;u. Elle hocha la t&ecirc;te en lui emboitant le pas. Ils march&egrave;rent un temps, passant devant plusieurs cellules avant d&#039;arriver dans une salle assez spartiate.</div><div class="post_line"></div><div class="post_line">5 officiers &eacute;taient ainsi &agrave; une longue table.</div><div class="post_line">Une chaise vide en face d&#039;eux.</div><div class="post_line">Deux gardes derri&egrave;re la chaise, deux pr&egrave;s de la porte.</div><div class="post_line">Un dernier homme &eacute;tait assis dans un bureau dans un coin, un ordinateur et clavier en face de lui, une cam&eacute;ra &agrave; cot&eacute; point&eacute;e vers le chaise vide.</div><div class="post_line">Son ge&ocirc;lier l&#039;amena vers la chaise vide, qui &eacute;tait fix&eacute;e au sol et lui attacha les menottes. Il sortit ensuite de la salle. Une fois la porte ferm&eacute;e, l&#039;officier central prit la parole.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">ID 453 845 632, dit &quot;Laska&quot;, anciennement capitaine de la Corvette &quot;R&ecirc;ve d&#039;Alair&quot;, pr&eacute;sent&eacute;e aujourd&#039;hui en Cour Martiale,&nbsp;accus&eacute;e de:</font></div><div class="post_line"><font color="#ff0000">-Insubordination</font></div><div class="post_line"><font color="#ff0000">-D&eacute;sob&eacute;issance &agrave; des ordres directs</font></div><div class="post_line"><font color="#ff0000">-Omission d&#039;&eacute;l&eacute;ments critiques</font></div><div class="post_line"><font color="#ff0000">-Collusion et complicit&eacute; de malfaiteurs</font></div><div class="post_line"><font color="#ff0000">-Mise en danger inutile de personnel sous son autorit&eacute;</font></div><div class="post_line"><font color="#ff0000">Qu&#039;avez vous &agrave; dire pour votre d&eacute;fense?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Je... je ne vois pas...</font></div><div class="post_line"></div><div class="post_line">Il l&#039;interrompit.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">C-14, vous avez &eacute;t&eacute; charg&eacute; d&#039;une mission d&#039;escorte et de protection longue dur&eacute;e de vaisseaux logistiques. Vous avez d&eacute;sob&eacute;i aux ordres en ne suivant pas les directives Ordre 3&nbsp;relatives &agrave; la relocalisation des ressources sensibles. Dans votre rapport de C-12, vous avez omis de mentionner la pr&eacute;sence desdites ressources sensibles et le raid repouss&eacute; sur l&#039;&eacute;quipe logistique mini&egrave;re.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">C&#039;est que, ce n&#039;&eacute;tait que une force n&eacute;gligeable... Je n&#039;ai pas jug&eacute; utile de mentionner un incident aussi mineur.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Pas utile hein? Deux membres du personnel ont perdu la vie dans l&#039;assaut initial.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Reprenons C-13, vous avez &eacute;chang&eacute; en priv&eacute; avec plusieurs des autres capitaines de corvettes en personne, votre conversation avait alors port&eacute; sur le d&eacute;roulement de l&#039;op&eacute;ration, et le traitement des ressources sensibles, il &agrave; &eacute;t&eacute; convenu que votre organisation d&#039;unit&eacute; portait atteinte au bon d&eacute;roulement et rendement de l&#039;op&eacute;ration.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Mais nous avons atteint nos objectifs?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Vous avez d&eacute;sob&eacute;i &agrave; un ordre direct. Nous estimons que le manque &agrave; gagner revient de l&#039;ordre de 40% des taux d&#039;extraction.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Leur participation n&#039;&eacute;tait pas n&eacute;cessaire pour atteindre les quotas cibles. La ... J&#039;ai estim&eacute; que il ne fallait pas risquer la vie de soldats dans des op&eacute;rations inutiles.</font></div><div class="post_line"></div><div class="post_line">Les officiers &eacute;chang&egrave;rent quelques regards, dans un dialogue silencieux que seuls eux comprenaient.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Passons &agrave; la suite, &agrave; C-8, vous avez dirig&eacute; un raid sur ordre de votre chef d&#039;op&eacute;ration, cependant, vous avez laiss&eacute; les cibles fuir, n&#039;engageant pas poursuite ni prisonniers, ne r&eacute;alisant que 1 des 3 objectifs qui vous ont &eacute;t&eacute; assign&eacute;s. Votre commentaire?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Je... euh... je ne voulais pas. Ca me semblait inutile, je suis d&eacute;sol&eacute;e.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Vous avez durant une p&eacute;riode prolong&eacute;e, abus&eacute; de votre privil&egrave;ge de capitaine pour entretenir des conversations priv&eacute;es avec d&#039;autres capitaines parall&egrave;les &agrave; la mission, entravant son efficacit&eacute;. Votre commentaire?</font></div><div class="post_line"></div><div class="post_line">Elle ne r&eacute;pondit pas. C&#039;&eacute;tait inutile, elle le savait, elle avait en effet collabor&eacute; avec des amis pour ne pas accomplir pleinement leurs missions, elle ne pensait pas mal faire sur le moment. Et ils avaient probablement acquis les logs.</div><div class="post_line">Apr&egrave;s un moment, l&#039;officier central prit &agrave; la parole.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Bien. La Cour va maintenant voter sur les chefs d&#039;accusation.</font></div><div class="post_line"></div><div class="post_line">Elle les regarda en baissant la t&ecirc;te. Ils pianot&egrave;rent sur leurs datapad. Sans &eacute;changer un mot, leurs doigts tapant sur le verre allant d&eacute;cider son sort en quelques secondes, si elle avait su, elle aurait agi diff&eacute;remment.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">-Insubordination, 1 pour, 4 contre.</font></div><div class="post_line"><font color="#ff0000">-D&eacute;sob&eacute;issance &agrave; des ordres directs, pour &agrave; l&#039;unanimit&eacute;.</font></div><div class="post_line"><font color="#ff0000">-Omission d&#039;&eacute;l&eacute;ments critiques, 3 pour, 2 contre.</font></div><div class="post_line"><font color="#ff0000">-Collusion et complicit&eacute; de malfaiteurs, pour &agrave; l&#039;unanimit&eacute;.</font></div><div class="post_line"><font color="#ff0000">-Mise en danger inutile de personnel sous son autorit&eacute;, pour &agrave; l&#039;unanimit&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">ID 453 845 632, dit &quot;Laska&quot;, reconnue coupable de d&eacute;sob&eacute;issance &agrave; des ordres directs, collusion et complicit&eacute; de malfaiteurs, et mise en danger inutile de personnel sous son autorit&eacute;, en vertu du Code de Fonctionnement Interne de la Flotte, vous &ecirc;tes rendue coupable de Haute Trahison et S&eacute;dition. Par cet acte, la Cour vous condamne &agrave; la peine capitale.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">S&#039;il vous pla&icirc;t non... je ne voulais pas mal faire...</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Sergent!</font></div><div class="post_line"></div><div class="post_line">Uns des gardes &agrave; ses cot&eacute;s lui b&acirc;illonna la bouche tandis que l&#039;autre lui d&eacute;tacha les menottes de la chaise avant de les lui refermer. Les deux la lev&egrave;rent et la conduisirent &agrave; travers une autre porte. Elle regarda une derni&egrave;re fois les visage froids et quasi identiques des officiers de la Cour, aucun ne la regarda, tous &eacute;taient d&eacute;j&agrave; focalis&eacute;s sur le prochain cas qui prendrait bient&ocirc;t sa place.</div><div class="post_line"></div><div class="post_line">Elle fut conduite &agrave; travers un autre couloir vers une autre salle, pas tr&egrave;s loin: Plus grande. Plus longue. A une extr&eacute;mit&eacute;, une rang&eacute;e de soldats en tenue de c&eacute;r&eacute;monie portant armes, &agrave; l&#039;autre, un sol et un mur macul&eacute; de sang frais. Elle fut conduite l&agrave;.</div><div class="post_line"></div><div class="post_line">Elle se retenait de pleurer, m&ecirc;me si ses jambes tremblaient de honte et de peur alors que son instinct lui intimait l&#039;ordre de s&#039;enfuir. Mais sans armes ni protection, dans un quartier verrouill&eacute; dans un vaisseau de guerre, ses chances de survie &eacute;taient n&eacute;antes. Elle tenait n&eacute;anmoins &agrave; rester debout, tentant de se maintenir au garde &agrave; vous jusqu&#039;au bout.</div><div class="post_line"></div><div class="post_line">Un officier vient &agrave; son cot&eacute;, apr&egrave;s un moment d&#039;h&eacute;sitation, lui enleva le b&acirc;illon,&nbsp;lui d&eacute;tacha les menottes et lui proposa un bandeau.</div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Non.</font></div><div class="post_line"></div><div class="post_line">Elle r&eacute;pondit tant bien que mal, ignorant son regard pour se focaliser sur la rang&eacute;e d&#039;hommes et femmes arm&eacute;s en face d&#039;elle.</div><div class="post_line">Il lui tendit ensuite un micro.</div><div class="post_line"></div><div class="post_line"><font color="#4cea5e">Un dernier mot pour les archives?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Non. Inutile.</font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e">Comme vous voulez.</font></div><div class="post_line"></div><div class="post_line">Il rangea son micro et vient se placer sur le cot&eacute;, hors du champ de la mort.</div><div class="post_line"></div><div class="post_line"><font color="#4cea5e">Armez!</font></div><div class="post_line"></div><div class="post_line">Les larmes lui mont&egrave;rent aux yeux. Ce n&#039;est pas ainsi que elle imaginait sa fin.</div><div class="post_line"></div><div class="post_line"><font color="#4cea5e">En joue!</font></div><div class="post_line"></div><div class="post_line">Et &ccedil;a avait pourtant commenc&eacute; comme une si bonne journ&eacute;e.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font size="4">Fin de la chronique.</font></em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15291&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15291" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15291" name="d_reply_15291" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15291');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15291'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Quotidien routinier</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

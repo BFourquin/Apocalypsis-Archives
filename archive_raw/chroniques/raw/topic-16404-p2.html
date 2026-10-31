@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 16404 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Concert Intergalactique</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Concert Intergalactique</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16404&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=16404&c_forum_page=1&c_page=3">3</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16404&c_forum_page=1&c_page=4">4</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />21/08/1022 ETU 01:36</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294564', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294563')">Détails</a> <a href="javascript:warnpost(294563)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294563" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294563',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">une immense acclamation et d&#039;applaudissements se fit entendre devant les groupes qui se produisait, tous le monde appr&eacute;ciait la musique de tous ces groupes venus d&#039;ailleurs</div><div class="post_line"></div><div class="post_line">&nbsp;Le concert se poursuivait, les nouveaux groupes se pr&eacute;paraient ....Activement ....</div><div class="post_line"></div><div class="post_line"><font size="5">1 -&nbsp;<font color="#e8c500">https://www.youtube.com/watch?v=z-GUjA67mdc</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">2 -&nbsp;<font color="#7fdbff">https://www.youtube.com/watch?v=5kOwZvSpKNs</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">3 -&nbsp;<font color="#e8b6ef">https://www.youtube.com/watch?v=rn8Uy4H10zw</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">4 -&nbsp;<font color="#ffc6c3">https://www.youtube.com/watch?v=MBdVXkSdhwU</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">5 -&nbsp;<font color="#ffc95f">https://www.youtube.com/watch?v=4Y2gK4n35hw</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dee">Cdte. Dee</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11666.png" style="width:123px;height:128px" alt="Avatar" /><br />21/08/1022 ETU 09:03</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294577', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal294575')">Détails</a> <a href="javascript:warnpost(294575)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294575" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 5<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294575',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Yuri</em></font><font color="#FFC95F"><em> toisait son interlocutrice d&#039;un air oscillant entre m&eacute;pris et suffisance :</em></font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><strong>- Mais puisque je vous dis que je suis une invit&eacute;e !!</strong></font></div></div><div class="post_line"><div align="justify"><font color="#5593BD">- C&#039;est &ccedil;a, et moi je suis <strong><u><em>Belobog</em></u></strong> qui chie des lingots d&#039;or.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Son patron l&#039;avait appel&eacute; d&#039;urgence ce matin pour faire le remplacement de Mikha&iuml;l qui avait pos&eacute; un jour urgemment car sa femme &eacute;tait souffrante. La pauvre, son crabe n&#039;allait pas mieux, et Mikha&iuml;l devait souvent poser ses jours afin de subvenir au moindre besoin d&#039;Yelena. Au grand bonheur de Yuri, qui avait tout &agrave; gagner que la grabataire continue de l&#039;&ecirc;tre.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Il &eacute;tait comme &ccedil;a, le Yuri, un grand pragmatique.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>En arrivant sur le <strong>set</strong>, il avait &eacute;t&eacute; surpris par le faste d&eacute;ploy&eacute; par les services festifs dirig&eacute;s de main de ma&icirc;tre par le Premier Secr&eacute;taire G&eacute;n&eacute;ral et son &eacute;quipe : la sc&egrave;ne mise en place &eacute;tait grandiose, et laissait champs libre &agrave; toutes les exp&eacute;rimentations sonores les plus bizarres de la Galaxie. Yuri se savait chanceux d&#039;&ecirc;tre l&agrave; : apr&egrave;s tout, c&ocirc;toyer le luxe des puissant une fois dans sa vie valait mieux que de le voir par la lorgnette d&#039;une holo-vision.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>C&#039;est parce qu&#039;il se savait profitant de cette chance que notre gaillard refusait pr&eacute;sentement l&#039;entr&eacute;e &agrave; cette demie-portion brune coiff&eacute;e en p&eacute;tard qui ne cessait de s&rsquo;&eacute;gosiller en pr&eacute;tendant &agrave; l&#039;injustice. La m&ocirc;me &eacute;tait pas d&eacute;gueulasse, il l&#039;aurait surement laiss&eacute; passer si elle avait su se montrer plus <strong>&quot;avenante et gentille&quot;</strong>, mais pour le moment, c&rsquo;&eacute;tait juste une temp&ecirc;te de bruit et de cheveux d&eacute;fait, portant un vulgaire T-Shirt avec un obscur groupe de futuro-m&eacute;tal et un vieux m&eacute;daillon en croix -encore une techno-pa&iuml;enne, la tendance &eacute;tait en vogue en ce moment- qui pendait entre deux seins bien trop libres au go&ucirc;t du videur.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><strong>&quot;Toi mon bonhomme, quand tu sauras le niveau de merde que tu viens de commettre, je te jure que tu regretteras chaque mot prononc&eacute; contre moi.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Yuri en avait marre.</em></font></div></div><div class="post_line"><div align="justify"><font color="#5593BD">-&Eacute;coute, gamine, c&#039;est pas moi qui donne les ordres. On est chez les grands de ce monde ici, alors tu prends tes fringues et le sac d&#039;os qui les tiens, et tu te casses avant que je devienne vraiment m&eacute;chant.</font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><strong>- Yuri Aliksandr Sedmemnovitch, tu as &eacute;t&eacute; pr&eacute;venu.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>&nbsp;Le vigile eut un moment de latence&nbsp;:</em></font></div></div><div class="post_line"><div align="justify"><font color="#5593BD">- Attends, d&rsquo;o&ugrave; tu connais mon nom ? Qui t&#039;es pour te la jouer comme &ccedil;a ?</font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><strong>- Apelle moi Dee.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#5593BD">- Di ? </font><font color="#FFC95F"><em>-Il regarda &agrave; nouveau sur la liste-</em></font><font color="#5593BD"> Pas de Dee dans les invit..</font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><strong>- </strong></font><font size="3"><u><font color="#bbbbbb"><strong>Attends.</strong></font></u></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>A sa grande surprise, Yuri s&rsquo;ex&eacute;cuta sans broncher tant la voix de la femme semblait sans appel. Il se rappellera plus tard - ou alors &eacute;tait-ce un mirage d&ucirc; au bruit ambiant ou aux ombres lanc&eacute;es par d&#039;habiles jeux de lumi&egrave;res install&eacute;s dans la salle, allez savoir- que le visage de la gamine avait brusquement vir&eacute; au blanc le plus profond. Le genre de blanc que l&#039;on ne voit que rarement dans une vie : celui de l&#039;inerte et de l&rsquo;&eacute;ternel. </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Un blanc de mort. </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>La musique lui sembla plus lointaine, assourdie comme si elle provenait d&#039;&eacute;paisses murailles. Des murailles qui faisaient soudain battre le sang fortement dans ses tempes, l&#039;emmenant dangereusement sur les rives du malaise.</em></font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Puis le visage de Dee redevint cet empourprement d&#039;agacement et de rage mal contenue. Elle pointa du doigt une section du feuillet situ&eacute;e au coin sup&eacute;rieur :</em></font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><strong>&quot;Regarde &agrave; nouveau, g&eacute;nie. La liste des D continue sur l&#039;autre page en verso. </strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#FFC95F">Yuri n&#039;en revenait pas : effectivement, indiqu&eacute; en d&eacute;but de page, dans l&#039;</font></em><em><font color="#FFC95F">&eacute;cornure de papier du listing&nbsp; -h&eacute; ouais on coupe encore des arbres au XXXXIIe si&egrave;cle !-, un minuscule pr&eacute;nom de trois lettre d&eacute;bordait l&eacute;g&egrave;rement de l&#039;agrafe, comme se d&eacute;battant pour exister.</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593BD">- <strong>AH !</strong> Euh, je veux dire oh. On dirait bien que t&#039;es.. que <strong>VOUS</strong> &ecirc;tes sur la liste des invit&eacute;s, Madame Dee. Niveau VIP, aile des Commandants... Je... enfinn, je fais mon boulot.. et vous, votre pr&eacute;nom &eacute;tait si petit.. enfin.. voila...</font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Sa confusion &eacute;tait r&eacute;elle, une telle bourde aurait pu lui valoir le bl&acirc;me de son patron. </em></font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Ou pire : le bl&acirc;me du Parti.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Une minuscule main de femme vint s&#039;abattre sur son &eacute;paule de molosse :</em></font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><strong>-Bah, tu fais ton boulot, et moi aussi. Mais fais le mieux la prochaine fois. Tout le monde n&#039;est pas aussi magnanime dans le coin. D&#039;ailleurs, mes condol&eacute;ances &agrave;</strong></font><font color="#bbbbbb"><strong> Mikha&iuml;l pour sa femme : Yelena s&#039;est bien battue, elle est en paix d&eacute;sormais. Bon allez je te laisse, j&#039;adore ce groupe !</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Dee franchit le cordon de s&eacute;curit&eacute; que barrait Yuri. Un Yuri remplit de question : Qui &eacute;tait-elle ? Comment connaissait-elle Mikha&iuml;l et la condition de sa femme ? Que lui arrivait-il soudainement ? Ces question allaient bient&ocirc;t disparaitre pour l&#039;ancrer pour les prochaines heures dans une mat&eacute;rialit&eacute; bien plus pragmatique quand Dee se retourna une derni&egrave;re fois en un clin d&#039;oeil amus&eacute; :</em></font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><strong>- </strong></font><font color="#bbbbbb"><strong>Au fait, <em><u>Belobog</u></em>, tu m&#039;avais pas jur&eacute; quelque chose tout &agrave; l&#039;heure ?&quot;</strong></font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Puis, </em></font><font color="#FFC95F"><em>elle disparut dans la foule.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Les prochaines heures de Yuri ne sauraient &ecirc;tre d&eacute;crites en ces lignes, mais sachez que des ann&eacute;es plus tard, la l&eacute;gende de &quot;Pause-Caca&quot;, le vigile du concert du Parti resterait une source de rire dans toutes les strates de la soci&eacute;t&eacute; moscovianne.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">------------------------------------------</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><a href="https://youtu.be/u9Dg-g7t2l4" target="_blank" rel="nofollow"><font color="#bbbbbb"><strong>-https://youtu.be/u9Dg-g7t2l4-</strong></font></a></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Dee d&eacute;ambulait.</em></font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>E</em></font><font color="#FFC95F"><em>ntre les trav&eacute;es d&#039;honneurs que Moscovia avait b&acirc;ti pour elle et ceux qu&#039;elle appelait</em></font><font color="#FFC95F"><em> depuis peu</em></font><font color="#FFC95F"><em> les siens, son sourire &eacute;merveill&eacute; n&#039;avait pu &ecirc;tre d&eacute;fait par la petite d&eacute;convenue de l&#039;entr&eacute;e. En repensant &agrave; la conclusion de celle-ci, e</em></font><font color="#FFC95F"><em>lle eu un l&eacute;ger &eacute;clat de rire qu&#039;elle contint en baissant le visage au sol, consciente que cette blague ne ferait au final rire qu&#039;elle.</em></font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Mais il l&#039;avait m&eacute;rit&eacute;, d&#039;abord.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Faisant fi de l&#039;incident, elle s&#039;immobilisa un instant, palpant, respirant, ressentant toute cette vie bouillonnante qui n&#039;attendait que d&#039;exploser en un climax d&#039;euphorie musicale. Si elle avait pu, elle aurait &eacute;tendu les bras pour toucher chacun d&#039;entre eux, les forts, les faibles, les vertueux, les v&eacute;reux, les jeunes, les vieux, les sots, les sages, les officiels et les resquilleurs : tous &eacute;taient venus tels des papillons dans la nuit attir&eacute;s par un soleil &eacute;ph&eacute;m&egrave;re d&#039;oubli et d&#039;abandon. Et elle en faisait parti, apr&egrave;s tout. Elle esp&eacute;rait revoir un repr&eacute;sentant de l&#039;Ordonnateur du Vide, mais h&eacute;las, nul gardien poss&eacute;d&eacute; de la M&eacute;lodie en ces lieux. Elle grima&ccedil;a int&eacute;rieurement en voyant que la Saphir Macrotech Shihai Keiretsu &eacute;tait l&agrave;. A &eacute;viter donc. La Cryo aussi, tiens. A observer, eux. Elle entendit avant de le voir le si bruyant Reggie Rotten, cette vie si pleine, aux promesses vitales si fortes qu&#039;elles en devenaient par m&eacute;garde violentes. Et Alice, extirp&eacute;e de la fange pour se voir confi&eacute;e les nues, une lueur naturelle parmi les n&eacute;ons lasers, tant de potentiel vital &eacute;galement !</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#bbbbbb"><strong>&quot;[R&ecirc;ve], toi mon cher fr&egrave;re, si seulement tu &eacute;tais l&agrave; pour les voir... Toute cette soir&eacute;e nous est d&eacute;di&eacute;e, &agrave; toi, &agrave; moi, &agrave; nous tous, quand on y pense. Il se jettent sur les murs de l&#039;abandon pour oublier hier, demain, et m&ecirc;me le pr&eacute;sent. Magnifique engeance que ceux-ci. Sois fier, soyons-le tous de les servir..&quot;</strong></font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Elle termina cette pri&egrave;re silencieuse en se jetant dans la foule, souhaitant elle aussi gouter fictivement cet abandon &eacute;ph&eacute;m&egrave;re. Appr&eacute;ciant ce chant ancien qu&#039;une entit&eacute; perdue avait chant&eacute; nagu&egrave;re dans l&#039;&eacute;v&egrave;nement similaire d&#039;une galaxie oubli&eacute;e, elle se jeta elle aussi contre les corps et les c&oelig;urs pr&eacute;sents ici bas, comme le font les vivants heureux de vivre, vibrant dans le bruit et la nuit.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Non loin de l&agrave;, &agrave; quelques encablures de sables et de dune, le silence absolu du d&eacute;sert que ne perturbe qu&#039;un vent vagabond.</em></font></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><em>Ailleurs, un moscovian pleure sa femme partie dans un endroit ou il ne pourra la rejoindre.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font color="#FFC95F"><em>D&eacute;sert, Mikha&iuml;l, Dee et M&eacute;lodie.</em></font></div></div><div class="post_line"><div align="center"><font color="#FFC95F"><em>Tous li&eacute;s par la note finale du son du silence &agrave; venir.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />21/08/1022 ETU 20:12</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294585', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294584')">Détails</a> <a href="javascript:warnpost(294584)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294584" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294584',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Une grande acclamation se fit entendre suite a ce nouveau titre, Dee pu entendre sans vraiment savoir d&#039;ou cela venait ....deux voix lointaines ,dans le brouhaha ambiant&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">Une fille</font><font color="#c0f0c6">&nbsp;:&nbsp;</font><font color="#d9f4ff">Hey Mec ce titre est G&eacute;nial !</font></div><div class="post_line"></div><div class="post_line"><font color="#c0f0c6">Ouaiiiiis, on a droit a du lourd ce coup ci ......G&eacute;niaaaal !!</font></div><div class="post_line"></div><div class="post_line">Une nouvelle acclamation se fit entendre et le concert se poursuivait .........</div><div class="post_line"></div><div class="post_line"><font size="5">1 -&nbsp;<font color="#e86e04">https://www.youtube.com/watch?v=DKUTYxJEB44</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">2 -&nbsp;<font color="#f551ff">https://www.youtube.com/watch?v=YV4oYkIeGJc</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">3 -&nbsp;<font color="#ffdbbb">https://www.youtube.com/watch?v=0ohuSUNHePA</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">4 -&nbsp;<font color="#ffffff">https://www.youtube.com/watch?v=vYV-XJdzupY</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">5 -&nbsp;<font color="#e8b6ef">https://www.youtube.com/watch?v=-oMHME8XmtE</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />23/08/1022 ETU 01:06</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294595')">Détails</a> <a href="javascript:warnpost(294595)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294595" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294595',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">De nouveaux&nbsp; groupes se pr&eacute;paraient encore et vinrent se pr&eacute;parer, la f&ecirc;te continuait .....la Restauration de Sinthia &eacute;tait au top niveau, la nourriture et la boisson allait bon train ....</div><div class="post_line"></div><div class="post_line"><font size="5">1 -&nbsp;<font color="#f551ff">https://www.youtube.com/watch?v=wGvEr4vtOK0</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">2-&nbsp;<font color="#fff5b3">https://www.youtube.com/watch?v=CbI79e5iZKs</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">3 -&nbsp;<font color="#e86e04">https://www.youtube.com/watch?v=gmzCDutDOYA</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">4 -<font color="#d9f4ff">&nbsp;</font><font color="#c3ffff">https</font>:<font color="#9df9ff">//www</font>.<font color="#7fdbff">youtube</font>.<font color="#68c4e8">com/watch?</font><font color="#44b8ff">v=1AOKP</font><font color="#1e92f7">TbZEyA</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">5 -&nbsp;<font color="#bbbbbb">https://www.youtube.com/watch?v=w3hJvFO46G4</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Alice+Saglice">Cdte. Alice Saglice</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/11657.jpg" style="width:89px;height:128px" alt="Avatar" /><br />23/08/1022 ETU 04:23</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294596')">Détails</a> <a href="javascript:warnpost(294596)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294596" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294596',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ED9E87">N</font><font color="#EA9D8A">o</font><font color="#E79C8D">u</font><font color="#E59B91">s</font> <font color="#DF9A98">a</font><font color="#DD999B">l</font><font color="#DA989E">l</font><font color="#D797A2">o</font><font color="#D597A5">n</font><font color="#D296A9">s</font> <font color="#CD94AF">v</font><font color="#CA94B3">o</font><font color="#C893B6">u</font><font color="#C592BA">s</font> <font color="#C090C0">p</font><font color="#BD90C4">r</font><font color="#BA8FC7">&eacute;</font><font color="#B88ECB">s</font><font color="#B58DCE">e</font><font color="#B38DD1">n</font><font color="#B08CD5">t</font><font color="#AD8BD8">e</font><font color="#AB8ADC">r</font> <font color="#A589E2">m</font><font color="#A388E6">a</font><font color="#A087E9">i</font><font color="#9E87ED">n</font><font color="#A087EC">t</font><font color="#A288EC">e</font><font color="#A589EC">n</font><font color="#A78AEC">a</font><font color="#AA8BEC">n</font><font color="#AC8CEC">t</font><font color="#AE8DEB">,</font> <font color="#B38FEB">l</font><font color="#B690EB">e</font><font color="#B891EB">s</font> <font color="#BD93EA">G</font><font color="#BF94EA">r</font><font color="#C295EA">o</font><font color="#C496EA">u</font><font color="#C697EA">p</font><font color="#C998EA">e</font><font color="#CB99E9">s</font> <font color="#D09BE9">l</font><font color="#D29CE9">e</font><font color="#D59DE9">s</font> <font color="#DA9FE8">p</font><font color="#DCA0E8">l</font><font color="#DEA1E8">u</font><font color="#E1A2E8">s</font> <font color="#E6A4E8">d</font><font color="#E6A3E4">&eacute;</font><font color="#E6A3E1">j</font><font color="#E6A3DE">a</font><font color="#E6A3DB">n</font><font color="#E7A3D7">t</font><font color="#E7A2D4">&eacute;</font><font color="#E7A2D1">s</font> <font color="#E8A2CA">d</font><font color="#E8A2C7">e</font> <font color="#E8A1C1">n</font><font color="#E9A1BD">o</font><font color="#E9A1BA">s</font> <font color="#E9A0B4">c</font><font color="#E9A0B1">i</font><font color="#EAA0AD">v</font><font color="#EAA0AA">i</font><font color="#EAA0A7">l</font><font color="#EA9FA4">i</font><font color="#EB9FA0">s</font><font color="#EB9F9D">a</font><font color="#EB9F9A">t</font><font color="#EB9F97">i</font><font color="#EC9E93">o</font><font color="#EC9E90">n</font><font color="#EC9E8D">s</font><font color="#EC9E8A">.</div><div class="post_line"></font></div><div class="post_line"></div><div class="post_line">1 -&nbsp;<font color="#ffc0cb">https://www.youtube.com/watch?v=j8Lx3HOiYhQ</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">2 -&nbsp;</font><font color="#ffc95f">https://www.youtube.com/watch?v=_fFPwMfpWC0</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">3 -&nbsp;</font><font color="#c3ffff">https://www.youtube.com/watch?v=NLPyySN9Czw</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">4 -&nbsp;</font><font color="#bbbbbb">https://www.youtube.com/watch?v=7WP-wJvvUIs</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">5 -&nbsp;</font><font color="#17b529">https://www.youtube.com/watch?v=st8xWyMZXOU</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">6 -&nbsp;</font><font color="#e8b6ef">https://www.youtube.com/watch?v=lNen0nL6uDI</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=James+Smith">Cdt. James Smith</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11663.jpg" style="width:84px;height:128px" alt="Avatar" /><br />23/08/1022 ETU 17:49</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294602')">Détails</a> <a href="javascript:warnpost(294602)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294602" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294602',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Une navette approche de la plan&egrave;te, &agrave; son bord, l&#039;amiral Smith et son escorte.</div><div class="post_line"><font color="#FFFF44">Contr&ocirc;le au sol ici la navette RG-254 demandes permission d&#039;atterrir, &agrave; vous?</font></div><div class="post_line"><font color="#FFFF44"><font color="#E8C500">Autorisation accord&eacute;e navette, dirigeait vous vers la plateforme X-4.</font></font></div><div class="post_line"><font color="#FFFF44">Bien re&ccedil;u.</font></div><div class="post_line"></div><div class="post_line">Peu de temps apr&egrave;s la navette se posa, en sortit James, une femme et 2 soldats.</div><div class="post_line">James se retourna vers les soldats et d&eacute;clara. <font color="#44B8FF">Vous deux gard&eacute;s la navette.</font></div><div class="post_line">Les soldats lui firent un salut et rentraire dans la navette.</div><div class="post_line"><font color="#44B8FF">M&rsquo;accompagnerait vous, capitaine?</font></div><div class="post_line"><font color="#FF0000">Avec plaisir.</font> d&eacute;clara la femme.</div><div class="post_line"></div><div class="post_line">Devant eux se tenaient deux soldats Moscovites.</div><div class="post_line"><font color="#17B529">Par ici monsieur.</font> d&eacute;clara un soldat en montrant une &quot;voiture&quot;.</div><div class="post_line">Rapidement ils arrivaient devant l&#039;entr&eacute;e o&ugrave; se tenait un garde.</div><div class="post_line"><font color="#44B8FF">Merci du voyage</font>. D&eacute;clara James en descendant.</div><div class="post_line"></div><div class="post_line">Arrivent devant le garde James d&eacute;clara simplement. <font color="#44B8FF">James Smith.</font></div><div class="post_line">Le garde feuilla rapidement la liste. <font color="#005DC2">James Smith, vous pouvez passer.</font></div><div class="post_line">James entra suivi de son garde du corps.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />23/08/1022 ETU 23:10</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294607', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal294603')">Détails</a> <a href="javascript:warnpost(294603)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294603" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294603',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Pendant que le Cmdt James arrivait dans l&#039;indiff&eacute;rence g&eacute;n&eacute;rale, pass&eacute; les contr&ocirc;les de s&eacute;curit&eacute;s il plongea directement dans la foule tr&egrave;s dense, tandis qu&#039;ils approchaient des sc&egrave;nes ou se produisaient tant de groupes, ils croisaient ainsi, diverses races &eacute;tranges discutant entre eux dans diff&eacute;rentes langues d&eacute;gustant multiples sucreries, certains jouant avec diverses gadgets arborant fi&egrave;rement sacs ou v&ecirc;tements pris sur place sans payer un sou puisque sur l&#039;Empire Moscovian, tout &eacute;tait gratuit, il y avait &eacute;galement beaucoup de I.A, musiciens&nbsp;(<em><font color="#ffff00">Intelligence artificielles</font></em> )&nbsp;&nbsp;aussi,&nbsp;&nbsp;les personnes qu&#039;il croisaient&nbsp;ne lui pr&ecirc;tant donc pas la moindre attention,&nbsp;</div><div class="post_line"></div><div class="post_line">Tous ces gens&nbsp;&nbsp;dont beaucoup n&#039;&eacute;taient m&ecirc;me pas connues de la Galaxie, ....Ils trouv&egrave;rent un panneau digital d&#039;informations qui indiquait que partout sur la plan&egrave;te se produisaient diverses groupes, une estimation approximative indiquait pr&egrave;s de 8000 visiteurs.</div><div class="post_line"></div><div class="post_line">Il y avait l&agrave; bien sur des Moscovians, mais aussi ceux qui venaient de la Galaxie, et ......Les autres, ceux qui venaient d&#039;en dehors de la galaxie, les sp&eacute;cialistes en linguistiques l&#039;affirmaient, il y avait des visiteurs venus d&#039;en dehors de la galaxie........2 !!.....2 autres galaxies diff&eacute;rentes .....</div><div class="post_line"></div><div class="post_line">Il y avait l&agrave; des Krones, ces humano&iuml;des reptiliens,&nbsp;des Mandoriens, ces humains&nbsp;&agrave; peaux bleue,&nbsp;des Daldares, des Gochlaves, des Ramaniens, des Samaliens, des Luppiens, des Romandorois, des Sunlandais, il y avait aussi,&nbsp;des grands &ecirc;tres en armures noires avec des grandes capes bleues flottantes au vent des grands heaumes avec des courtes&nbsp;ailes noires de chaque cot&eacute;s,&nbsp;venant d&#039;un tr&egrave;s grand empire, Valsh&eacute;nar la puissante, un empire Imp&eacute;rialiste, ils venaient d&#039;on ne sait ou......Les Macommoniens, les Tr&eacute;tons Humano&iuml;des reptiliens musculeux &agrave; t&ecirc;tes de crocodiles,&nbsp;des&nbsp;gris, ceux la, les plus D&eacute;mocrates, les Ellowans, cr&eacute;atures blanches humano&iuml;des mais avec des ailes au lieu des bras, des hommes a t&ecirc;tes de lions ......Venus d&#039;on ne sait ou .....Et bien d&#039;autres encore......</div><div class="post_line"></div><div class="post_line">Le concert continuait de plus belle&nbsp;</div><div class="post_line"></div><div class="post_line"><font size="5">1 -&nbsp;<font color="#ffc95f">https://www.youtube.com/watch?v=YOQJxRCCpw8</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">2 -&nbsp;<font color="#d9f4ff">https://www.youtube.com/watch?v=gB0eMHVuPQY</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">3 -&nbsp;<font color="#fff5b3">https://www.youtube.</font><font color="#44b8ff">com/watch?v=dOn7uCux0uc</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">4 -&nbsp;<font color="#4cea5e">https://www.</font><font color="#ff0000">youtube</font><font color="#ffffff">.com/watch?</font><font color="#ffff00">v=2BD</font><font color="#e86e04">SPZTqiUo</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">5 -&nbsp;<font color="#ffffff">https</font>:<font color="#fff5b3">//www</font><font color="#ff857a">.</font><font color="#ffc95f">youtube</font><font color="#ff857a">.</font><font color="#ff4136">com/watch?v</font><font color="#ffffff">=s9NIBZfVBW4</font></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />25/08/1022 ETU 17:47</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294653', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294651')">Détails</a> <a href="javascript:warnpost(294651)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294651" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294651',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">la musique continuait, par l&#039;arriv&eacute;e de nouveaux groupe sur la sc&egrave;ne.......Ils install&egrave;rent leur mat&eacute;riel; sous les regards ravis des spectateurs ......De grandes clameurs se firent entendre alors que les premi&egrave;res notes commenc&egrave;rent a se faire entendre...</div><div class="post_line">Ailleurs, les marchands faisaient affaires, chaque visiteur voulant appr&eacute;cier les douceurs ou boire, aux services de Synthia restauration.... d&#039;autres voulant emporter a tout prix un souvenir de ces journ&eacute;es de musique......</div><div class="post_line"></div><div class="post_line"><font size="5">1 -&nbsp;&nbsp;<font color="#ffc0cb">https://www.youtube.com/watch?v=UtthzkU0yKI</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">2 -&nbsp;&nbsp;<font color="#ffffff">https:</font><font color="#7fdbff">//www.</font><font color="#e82a1f">youtube.</font><font color="#ffffff">com/watch?</font><font color="#7fdbff">v=lbsZB</font><font color="#e82a1f">77jNLw</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">3 -&nbsp;&nbsp;<font color="#72ff84">https://www.youtube.</font><font color="#ff851b">com/watch?v=XXzOkCLdFwI</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">4 -&nbsp;&nbsp;<font color="#ffffff">https://www.youtube.</font><font color="#1e92f7">com/watch?v=CqwrwwOzVcQ</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">5 -&nbsp;&nbsp;<font color="#bbbbbb">https://www.youtube.</font><font color="#008000">com/watch?v=Q3oItpVa9fs</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />26/08/1022 ETU 10:20</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294668', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294666')">Détails</a> <a href="javascript:warnpost(294666)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294666" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294666',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Les derniers groupes arrivaient, d&eacute;j&agrave;, cet immense &eacute;v&egrave;nement sentait la fin, mais les visiteurs tenaient absolument &agrave; en profiter jusque la derni&egrave;re note, la derni&egrave;re m&eacute;lodie....Cet &eacute;v&egrave;nement resterait certainement marqu&eacute; a tout jamais dans bien des m&eacute;moires, comme un vrai &eacute;v&egrave;nement historique inter galactique sans pr&eacute;c&eacute;dent !</div><div class="post_line"></div><div class="post_line"><font size="5">1 -<font color="#b3d5f4">&nbsp;https://www.youtube.com/watch?v=ROoalSB2DOM </font><font color="#fff5b3">(Valsh&eacute;nar)</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">2 -<font color="#ffff00">&nbsp;https</font>:<font color="#72ff84">//www</font><font color="#ff0000">.youtube.</font><font color="#7fdbff">com/watch</font><font color="#c0f0c6">?v=9xi4O</font><font color="#fbb8ec">4RvlnQ </font><font color="#ff0000"><strong>+</strong></font></font></div><div class="post_line"></div><div class="post_line"><font size="5">3 -&nbsp;<font color="#ffdbbb">https://www.youtube</font>.<font color="#e86e04">com/watch?v=</font><font color="#ffdbbb">6KOXbzMRQHs</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">4 -&nbsp;<font color="#ffc0cb">https://www</font><font color="#ffffff">.youtube.com/</font><font color="#ffc0cb">watch?v=</font><font color="#ffffff">TjvvK-Rj0WI</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">5 -<font color="#ffffff">&nbsp;https://www.youtube.com</font>/<font color="#ffdbbb">watch?v=ZavwtJxmqJI</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />28/08/1022 ETU 03:07</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal294683')">Détails</a> <a href="javascript:warnpost(294683)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294683" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294683',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">C&#039;&eacute;tait la fin mais cela restait ouvert a tout groupe qui voulait encore se produire, de grandes acclamation accueillirent les derniers groupes, certains repartaient, mais la&nbsp;plupart&nbsp;des visiteurs ou groupes&nbsp;tenaient &agrave; rester jusqu&#039;&agrave; la derni&egrave;re minute ....</div><div class="post_line"></div><div class="post_line"><font size="5">1 -&nbsp;<font color="#fff5b3">https://www.youtube</font><font color="#68c4e8">.com/watch?v</font><font color="#ffa339">=hN5X4kGhAtU</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">2 -<font color="#ffffff">&nbsp;https://www.</font><font color="#bbbbbb">youtube.com/watch?</font><font color="#ffffff">v=Sei-0WD1bzU</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">3 -&nbsp;<font color="#ff0000">https:</font><font color="#1e92f7">//www.</font><font color="#72ff84">youtube.com/watch?</font><font color="#fffa1e">v=XHTMZX898mo</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">4 -&nbsp;<font color="#0074d9">https://www.youtube.com/</font><font color="#ff0000">watch?v=MV_3Dpw-BRY</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">5 -&nbsp;<font color="#fffa1e">https://www.youtube.</font><font color="#ffffff">com/watch?v</font><font color="#bbbbbb">=2C5SDobNxDk</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">6 -&nbsp;https://www.youtube.com/watch?v=ayGQoJdRcdQ</font></div><div class="post_line"></div><div class="post_line"><font size="5">7 -&nbsp;<font color="#72ff84">https://www.youtube.</font><font color="#ffff00">com/watch?v=r</font><font color="#44b8ff">JABBmAMXnY</font></font></div><div class="post_line"></div><div class="post_line"><font size="5">8 - <font color="#e8b6ef">https://www.youtube.com/</font><font color="#bbbbbb">watch?v=wp43OdtAAkM</font></font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16404&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=16404&c_forum_page=1&c_page=3">3</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16404&c_forum_page=1&c_page=4">4</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Concert Intergalactique</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

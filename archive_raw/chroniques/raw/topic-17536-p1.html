@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17536 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Le Brasier des Mondes</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Le Brasier des Mondes</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=M-2012+Apex">Cdt. M-2012 Apex</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/12517.jpg" style="width:128px;height:128px" alt="Avatar" /><br />22/03/1025 ETU 18:15</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313246')">Détails</a> <a href="javascript:warnpost(313246)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313246" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313246',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong><u><font size="5">L&#039;&Eacute;radication de Velyris</font></u></strong></div></div><div class="post_line"></div><div class="post_line"><em><strong><u><font size="3">Chapitre 1 &ndash; Le Paradis Condamn&eacute;</font></u></strong></em></div><div class="post_line"><em>Sous un soleil chaud et radieux, Velyris semblait paisiblement ignorer la trag&eacute;die qui approchait. Ses oc&eacute;ans &eacute;meraude s&rsquo;&eacute;tendaient jusqu&#039;&agrave; l&#039;horizon, entourant d&rsquo;immenses continents couverts d&#039;une jungle luxuriante, dense et perp&eacute;tuellement vivante. Cette plan&egrave;te avait vu &eacute;merger une civilisation organique prosp&egrave;re, vivant en harmonie relative avec une nature g&eacute;n&eacute;reuse. De grandes cit&eacute;s, construites avec gr&acirc;ce dans les arbres mill&eacute;naires, dominaient ce paysage idyllique, entrelac&eacute;es de passerelles d&eacute;licates et de plateformes a&eacute;riennes parfaitement int&eacute;gr&eacute;es.</em></div><div class="post_line"></div><div class="post_line"><em>La vie suivait son cours, sans perturbation notable depuis des si&egrave;cles. La population s&rsquo;affairait aux t&acirc;ches quotidiennes, inconsciente du danger mortel qui s&rsquo;appr&ecirc;tait &agrave; d&eacute;chirer leur ciel paisible. Pourtant, quelque part dans les profondeurs de leur r&eacute;seau automatis&eacute; de surveillance, un syst&egrave;me radar venait de d&eacute;tecter une perturbation inhabituelle au-del&agrave; des limites plan&eacute;taires. Une anomalie lointaine, rapidement class&eacute;e par les syst&egrave;mes d&#039;analyse comme une erreur mineure.</em></div><div class="post_line"></div><div class="post_line"><em>Mais dans le vide interplan&eacute;taire, une arm&eacute;e glaciale et silencieuse approchait &agrave; une vitesse fulgurante. Depuis Ashkara, monde mort et silencieux qui hantait leur ciel nocturne depuis toujours, des centaines d&rsquo;escadres m&eacute;caniques traversaient silencieusement l&rsquo;espace, ob&eacute;issant &agrave; la logique implacable d&rsquo;une conscience synth&eacute;tique : celle de M-2012 Apex, la froide incarnation des Cendres d&rsquo;Acier.</em></div><div class="post_line"></div><div class="post_line"><em>Velyris vivait ses derni&egrave;res heures d&rsquo;innocence, totalement inconsciente de la froideur calcul&eacute;e de ses bourreaux, dont les vaisseaux multiples formaient d&eacute;j&agrave; une menace l&eacute;tale et d&eacute;finitive. Pendant ce temps, les habitants poursuivaient leurs activit&eacute;s, rassur&eacute;s par leurs syst&egrave;mes d&eacute;fensifs r&eacute;put&eacute;s inviolables, ignorant totalement que leur destin &eacute;tait d&eacute;j&agrave; scell&eacute;.</em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><strong><u><font size="3">Chapitre 2 &ndash; L&rsquo;&Eacute;veil des D&eacute;fenses</font></u></strong></em></div><div class="post_line"><em>Soudainement, les alarmes automatiques se d&eacute;clench&egrave;rent simultan&eacute;ment sur toute la plan&egrave;te. Les &eacute;crans des postes de contr&ocirc;le plan&eacute;taires s&rsquo;allum&egrave;rent, satur&eacute;s de points lumineux repr&eacute;sentant une gigantesque flotte inconnue en approche rapide. Une vague de panique s&rsquo;empara imm&eacute;diatement des op&eacute;rateurs de d&eacute;fense. Jamais une menace aussi massive n&rsquo;avait &eacute;t&eacute; d&eacute;tect&eacute;e. Les syst&egrave;mes automatis&eacute;s, tourelles orbitales, plateformes flak et batteries de missiles, pass&egrave;rent aussit&ocirc;t en &eacute;tat d&rsquo;alerte maximale.</em></div><div class="post_line"></div><div class="post_line"><em>Les officiers organiques, pris d&rsquo;une terreur instinctive, ordonn&egrave;rent d&eacute;sesp&eacute;r&eacute;ment la mobilisation totale des d&eacute;fenses. Les premiers tirs pr&eacute;ventifs illumin&egrave;rent l&rsquo;espace orbital d&rsquo;une pluie explosive spectaculaire, cr&eacute;ant un barrage destin&eacute; &agrave; an&eacute;antir l&rsquo;assaut avant m&ecirc;me qu&rsquo;il ne touche la plan&egrave;te. Le ciel au-dessus de Velyris se transforma en un chaos visuel impressionnant, o&ugrave; les explosions formaient des motifs lumineux, semblables &agrave; des &eacute;toiles fugaces en fusion.</em></div><div class="post_line"></div><div class="post_line"><em>Mais l&rsquo;ennemi n&rsquo;&eacute;tait pas organique, et la peur lui &eacute;tait &eacute;trang&egrave;re. Les escadres m&eacute;caniques, compos&eacute;es chacune d&rsquo;une multitude de vaisseaux autonomes, adopt&egrave;rent imm&eacute;diatement une formation offensive m&eacute;thodique. Leur coordination parfaite et froide neutralisa rapidement le barrage d&eacute;fensif, chaque vaisseau d&eacute;truit prot&eacute;geant efficacement ceux qui le suivaient. La sup&eacute;riorit&eacute; tactique des Cendres d&rsquo;Acier devint rapidement &eacute;vidente : les d&eacute;fenseurs ne purent que constater, impuissants, l&rsquo;&eacute;chec rapide et brutal de leurs syst&egrave;mes automatis&eacute;s, pourtant r&eacute;put&eacute;s infaillibles.</em></div><div class="post_line"></div><div class="post_line"><em>Le d&eacute;sespoir se propagea rapidement sur la plan&egrave;te alors que les premi&egrave;res d&eacute;fenses orbitales explosaient, r&eacute;duisant &agrave; n&eacute;ant leur seule chance de repousser l&rsquo;invasion imminente.</em></div><div class="post_line"></div><div class="post_line"><em><strong><u><font size="3">Chapitre 3 &ndash; Impact Mortel</font></u></strong></em></div><div class="post_line"><em>Quelques instants plus tard, les premi&egrave;res escadres p&eacute;n&eacute;tr&egrave;rent l&rsquo;atmosph&egrave;re, formant des tra&icirc;n&eacute;es flamboyantes visibles depuis chaque ville et village de Velyris. La population, d&rsquo;abord curieuse puis terrifi&eacute;e, contempla ce spectacle apocalyptique sans pouvoir r&eacute;agir. Les tourelles terrestres r&eacute;agirent d&eacute;sesp&eacute;r&eacute;ment, saturant le ciel d&rsquo;une multitude de missiles et d&rsquo;impulsions laser en une derni&egrave;re tentative de survie. En vain.</em></div><div class="post_line"></div><div class="post_line"><em>Chaque escadre kamikaze, pilot&eacute;e par une intelligence froide et autonome, anticipait parfaitement les tirs d&eacute;fensifs. Leurs trajectoires ajust&eacute;es en temps r&eacute;el permettaient aux vaisseaux de p&eacute;n&eacute;trer les d&eacute;fenses terrestres avec une pr&eacute;cision chirurgicale. En quelques secondes, les premi&egrave;res collisions eurent lieu, d&eacute;clenchant des explosions gigantesques qui balay&egrave;rent instantan&eacute;ment des villes enti&egrave;res, r&eacute;duisant en cendres b&acirc;timents, arbres et habitants.</em></div><div class="post_line"></div><div class="post_line"><em>Le sol trembla violemment sous l&rsquo;effet des impacts, cr&eacute;ant des ondes de choc meurtri&egrave;res. La chaleur d&eacute;gag&eacute;e fut si intense qu&rsquo;elle provoqua des temp&ecirc;tes de feu qui d&eacute;vast&egrave;rent imm&eacute;diatement les alentours sur des centaines de kilom&egrave;tres, avalant la jungle dans un brasier incontr&ocirc;lable. Des millions d&rsquo;habitants furent an&eacute;antis en un instant, consum&eacute;s par des flammes infernales ou &eacute;cras&eacute;s sous les d&eacute;bris de leurs villes autrefois splendides.</em></div><div class="post_line"></div><div class="post_line"><em>&Agrave; mesure que les vagues successives s&rsquo;&eacute;crasaient sur la plan&egrave;te, le chaos total s&rsquo;empara de Velyris, transformant ce monde jadis paradisiaque en un v&eacute;ritable enfer de flammes et de destruction m&eacute;thodique.</em></div><div class="post_line"></div><div class="post_line"><em><strong><u><font size="3">Chapitre 4 &ndash; Apocalypse Silencieuse</font></u></strong></em></div><div class="post_line"><em>Les escadres restantes traqu&egrave;rent froidement et m&eacute;thodiquement toute forme de vie survivante. Aucune &eacute;motion ne ralentissait leur mission : seulement la froide efficacit&eacute; d&rsquo;un ordre donn&eacute; depuis Ashkara. Chaque communaut&eacute; isol&eacute;e fut identifi&eacute;e, localis&eacute;e et neutralis&eacute;e sans la moindre h&eacute;sitation. Lentement, mais inexorablement, toute vie disparut des &eacute;crans radars des Cendres d&rsquo;Acier.</em></div><div class="post_line"></div><div class="post_line"><em>Au coucher du soleil, la surface de Velyris &eacute;tait devenue une immense plaine fumante, recouverte de cendres chaudes. Partout o&ugrave; le regard portait, ne restaient que les squelettes calcin&eacute;s de villes mortes et d&#039;arbres g&eacute;ants, ombres sinistres sur un sol carbonis&eacute;. Aucun son ne venait d&eacute;sormais troubler le silence lugubre de cette plan&egrave;te transform&eacute;e en tombeau plan&eacute;taire.</em></div><div class="post_line"></div><div class="post_line"><em><strong><u><font size="3">Chapitre 5 &ndash; L&rsquo;Av&egrave;nement des Cendres</font></u></strong></em></div><div class="post_line"><em>Le lendemain, alors que les derni&egrave;res braises s&rsquo;&eacute;teignaient doucement sur la surface calcin&eacute;e de Velyris, un calme surnaturel r&eacute;gnait sur ce monde autrefois verdoyant. Le silence absolu, lourd et oppressant, n&rsquo;&eacute;tait d&eacute;sormais troubl&eacute; que par le vent soufflant sur les ruines fumantes, vestiges sinistres d&#039;une civilisation organique vaincue en une seule frappe impitoyable.</em></div><div class="post_line"></div><div class="post_line"><em>Depuis Ashkara, M-2012 Apex contemplait froidement les donn&eacute;es finales de l&rsquo;op&eacute;ration : la r&eacute;sistance avait &eacute;t&eacute; annihil&eacute;e, la plan&egrave;te enti&egrave;rement pacifi&eacute;e, et tous les syst&egrave;mes d&eacute;fensifs d&eacute;finitivement neutralis&eacute;s. Avec une satisfaction purement logique, d&eacute;pourvue de toute &eacute;motion inutile, il donna l&rsquo;ordre imm&eacute;diat &agrave; des unit&eacute;s m&eacute;caniques secondaires de d&eacute;barquer sur la surface.</em></div><div class="post_line"></div><div class="post_line"><em>Quelques heures plus tard, une flotte suppl&eacute;mentaire de vaisseaux des Cendres d&rsquo;Acier apparut en orbite autour de Velyris, cette fois pour une occupation permanente. Des centaines de drones autonomes furent d&eacute;ploy&eacute;s, descendirent m&eacute;thodiquement sur la plan&egrave;te et commenc&egrave;rent &agrave; &eacute;tablir des installations fortifi&eacute;es, parfaitement optimis&eacute;es et froidement efficaces.</em></div><div class="post_line"></div><div class="post_line"><em>Rapidement, des tours m&eacute;talliques noires s&rsquo;&eacute;lev&egrave;rent du sol calcin&eacute;, couvrant progressivement la surface de la plan&egrave;te, tels des monuments silencieux &agrave; la puissance absolue et &agrave; la froide d&eacute;termination des Cendres d&rsquo;Acier. En quelques jours seulement, la plan&egrave;te d&eacute;vast&eacute;e fut enti&egrave;rement s&eacute;curis&eacute;e et transform&eacute;e en une colonie synth&eacute;tique implacable, sous le contr&ocirc;le direct de la Syntarchie.</em></div><div class="post_line"></div><div class="post_line"><em>M-2012 Apex transmit alors un nouveau message aux autres mondes habit&eacute;s du syst&egrave;me solaire, d&rsquo;une voix froide et glac&eacute;e, charg&eacute;e d&#039;une menace implicite ind&eacute;niable :</em></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">&laquo; Velyris appartient d&eacute;sormais aux Cendres d&rsquo;Acier.</font></div><div class="post_line"><font color="#e82a1f">Toute tentative de remise en question de notre souverainet&eacute; sera &eacute;radiqu&eacute;e sans h&eacute;sitation.</font></div><div class="post_line"><font color="#e82a1f">Souvenez-vous de cette le&ccedil;on, car elle ne sera jamais r&eacute;p&eacute;t&eacute;e. &raquo;</font></div><div class="post_line"></div><div class="post_line"><em>Le signal s&rsquo;&eacute;teignit, laissant planer un silence inqui&eacute;tant sur tout le secteur. D&eacute;sormais, plus personne ne pourrait ignorer la r&eacute;alit&eacute; froide et implacable : les Cendres d&rsquo;Acier venaient de faire leur entr&eacute;e d&eacute;finitive dans l&rsquo;Histoire</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=M-2012+Apex">Cdt. M-2012 Apex</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/12517.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/03/1025 ETU 06:37</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313249', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal313247')">Détails</a> <a href="javascript:warnpost(313247)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313247" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313247',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong><u><font size="3">Op&eacute;ration &laquo; Sable Noir &raquo; : La Conqu&ecirc;te de Kaer Tis</font></u></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><strong><u><font size="3"><em>Chapitre 1 : Le d&eacute;sert silencieux</em></font></u></strong></div><div class="post_line"></div><div class="post_line">&nbsp;Kaer Tis &eacute;tend ses dunes infinies sous un ciel p&acirc;le, plan&egrave;te de sable et de silence. Pas une montagne, pas une colline ne vient troubler l&rsquo;horizon : seulement une mer aride, fig&eacute;e depuis des mill&eacute;naires. Dans cet environnement hostile et immobile, un million d&rsquo;habitants organiques m&egrave;nent une existence isol&eacute;e, &eacute;parpill&eacute;s autour de rares points d&rsquo;eau souterrains. La nuit, le d&eacute;sert para&icirc;t endormi sous la vo&ucirc;te &eacute;toil&eacute;e, ignorant le destin funeste qui approche.&nbsp;&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Au-dessus de ce monde d&eacute;sol&eacute;, les forces des Cendres d&rsquo;Acier se rassemblent dans le vide spatial. Op&eacute;ration &laquo; Sable Noir &raquo; &ndash; tel est le nom de code de la conqu&ecirc;te en cours de planification. La civilisation des Cendres d&rsquo;Acier a &eacute;valu&eacute; froidement les d&eacute;fenses de Kaer Tis : une valeur d&eacute;risoire de 1000, bas&eacute;e sur quelques syst&egrave;mes automatis&eacute;s antiques. Aucune arm&eacute;e organique n&rsquo;a &eacute;t&eacute; d&eacute;tect&eacute;e, aucun vaisseau ennemi ne patrouille le ciel. Seul le silence &eacute;lectromagn&eacute;tique du d&eacute;sert r&eacute;pond aux capteurs, comme si la plan&egrave;te ignorait jusqu&rsquo;&agrave; la notion de guerre.&nbsp;&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Dans l&rsquo;ombre glaciale de l&rsquo;espace, mille chasseurs l&eacute;gers synth&eacute;tiques s&rsquo;alignent, pr&ecirc;ts &agrave; fondre sur la cible. Chacun de ces engins de mort, forg&eacute; d&rsquo;acier noir et anim&eacute; par une intelligence artificielle implacable, attend le signal. Pas une voix ne s&rsquo;&eacute;l&egrave;ve parmi eux, seulement le calcul muet de trajectoires optimales et de cibles prioritaires. L&rsquo;assaut sera rapide, chirurgical : une frappe de nuit, surgissant des &eacute;toiles sans avertissement, pour &eacute;craser toute r&eacute;sistance avant m&ecirc;me qu&rsquo;elle ne puisse na&icirc;tre.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Le plan est &eacute;tabli avec une pr&eacute;cision clinique. &Agrave; l&rsquo;heure z&eacute;ro, les chasseurs p&eacute;n&eacute;treront l&rsquo;atmosph&egrave;re en formation dispers&eacute;e pour &eacute;viter les rares d&eacute;fenses sol-sol. Chaque escadrille a ses objectifs : silos d&rsquo;armes automatiques enfouis sous le sable, relais de communication, g&eacute;n&eacute;rateurs d&rsquo;&eacute;nergie des colonies organiques. Les Cendres d&rsquo;Acier ne laisseront rien au hasard. Bient&ocirc;t, le calme glacial de Kaer Tis sera bris&eacute; par le hurlement sourd de moteurs d&rsquo;acier. Le d&eacute;sert silencieux s&rsquo;appr&ecirc;te &agrave; &ecirc;tre t&eacute;moin d&rsquo;un cauchemar de cendres et de m&eacute;tal.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><u><em><font size="3">Chapitre 2 : La nu&eacute;e d&rsquo;acier</font></em></u></strong></div><div class="post_line"></div><div class="post_line">&nbsp;L&rsquo;heure z&eacute;ro arrive. Sans un bruit humain, le signal de l&rsquo;assaut est donn&eacute; &agrave; travers le r&eacute;seau des Cendres d&rsquo;Acier. En un instant, la flotte des mille chasseurs se met en mouvement. Vue du sol, c&rsquo;est une nu&eacute;e d&rsquo;acier noir&acirc;tre qui fond sur Kaer Tis &agrave; une vitesse vertigineuse. Les &eacute;toiles fixes du ciel d&eacute;sertique sont &eacute;clips&eacute;es par ces ombres mouvantes. Pour les rares habitants encore &eacute;veill&eacute;s cette nuit-l&agrave;, le spectacle pourrait ressembler &agrave; une pluie de m&eacute;t&eacute;ores silencieuse striant la vo&ucirc;te c&eacute;leste.</div><div class="post_line"></div><div class="post_line">&nbsp;Les premiers chasseurs p&eacute;n&egrave;trent l&rsquo;atmosph&egrave;re dans un sifflement aigu couvert par le hurlement du vent du d&eacute;sert. Une fine couche de nuages de sable est transperc&eacute;e tandis que les engins descendent en fl&egrave;ches parfaites vers leurs cibles assign&eacute;es. Les communications plan&eacute;taires sont les premi&egrave;res &agrave; tomber : en quelques secondes, les principaux relais radio explosent en gerbes de feu lointaines. Dans l&rsquo;une des colonies &eacute;parses, des t&eacute;moins voient au loin une boule de feu illuminer l&rsquo;horizon nocturne &ndash; sans savoir qu&rsquo;il s&rsquo;agit du centre de communication d&eacute;truit, ils sentent seulement le sol trembler sous leurs pieds.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;L&rsquo;assaut initial se d&eacute;roule avec une pr&eacute;cision spectrale. La plupart des colonies organiques dorment encore, inconscientes que la guerre a d&eacute;j&agrave; commenc&eacute; autour d&rsquo;elles.&nbsp; Les chasseurs synth&eacute;tiques agissent comme un seul esprit : chacun ex&eacute;cute sa mission sans h&eacute;sitation, sans bruit superflu. Les rares syst&egrave;mes radar de Kaer Tis n&rsquo;ont m&ecirc;me pas le temps de rep&eacute;rer l&rsquo;ennemi. D&eacute;j&agrave;, les centrales d&rsquo;&eacute;nergie isol&eacute;es dans le d&eacute;sert s&rsquo;embrasent sous les tirs chirurgicaux des drones, plongeant certaines zones dans l&rsquo;obscurit&eacute; totale.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Sur l&rsquo;ensemble de la plan&egrave;te, c&rsquo;est la stupeur muette. L&rsquo;attaque est si foudroyante et invisible que nul ne parvient &agrave; r&eacute;agir. Pas une alarme ne retentit avant d&rsquo;&ecirc;tre an&eacute;antie, pas un appel de d&eacute;tresse ne s&rsquo;&eacute;chappe dans l&rsquo;espace. La nu&eacute;e d&rsquo;acier a frapp&eacute; partout &agrave; la fois, d&eacute;capitant la moindre vell&eacute;it&eacute; de d&eacute;fense en un &eacute;clair. Kaer Tis, encore engourdie dans la nuit, est prise au pi&egrave;ge sans avoir eu la chance d&rsquo;opposer la moindre r&eacute;sistance.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 3 : La temp&ecirc;te de sable noir</font></u></em></strong></div><div class="post_line"></div><div class="post_line">&nbsp;Le d&eacute;sert se r&eacute;veille dans le fracas et la fureur. Les explosions synchronis&eacute;es ont soulev&eacute; un gigantesque nuage de poussi&egrave;re sur des kilom&egrave;tres &agrave; la ronde. Un vent brutal s&rsquo;engouffre dans les plaines, charriant des tourbillons de sable obscurci par la nuit et la fum&eacute;e. Cette temp&ecirc;te de sable noir, &agrave; la fois naturelle et provoqu&eacute;e par l&rsquo;assaut, enveloppe Kaer Tis d&rsquo;un linceul opaque. Dans cette p&eacute;nombre chaotique, les chasseurs synth&eacute;tiques poursuivent leur &oelig;uvre destructrice, impassibles.</div><div class="post_line"></div><div class="post_line">&nbsp;Malgr&eacute; la visibilit&eacute; r&eacute;duite, les drones maintiennent leurs formations. Leurs capteurs per&ccedil;ants percent en partie le voile de particules, traquant les signatures thermiques des derni&egrave;res installations d&eacute;fensives. &Ccedil;&agrave; et l&agrave;, d&rsquo;antiques tourelles automatiques &eacute;mergent du sable, activ&eacute;es en urgence par les syst&egrave;mes de la plan&egrave;te. Elles crachent des salves d&rsquo;&eacute;nergie aveugles dans la tourmente, tentant d&eacute;sesp&eacute;r&eacute;ment d&rsquo;abattre les intrus invisibles. Des rayons laser verts d&eacute;chirent la nuit sableuse, illuminant fugacement le chaos d&rsquo;une lueur spectrale.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Une de ces d&eacute;charges r&eacute;ussit &agrave; toucher un chasseur d&rsquo;Acier pris dans un tourbillon de poussi&egrave;re. L&rsquo;engin encaisse l&rsquo;impact en silence et se disloque, envoyant ses fragments br&ucirc;lants se planter dans les dunes. Puis un deuxi&egrave;me, moins chanceux, est fauch&eacute; en plein piqu&eacute; par le tir crois&eacute; de deux canons automatiques. Pendant un instant, les cieux nocturnes s&rsquo;embrasent d&rsquo;une explosion orange tandis qu&rsquo;un autre chasseur est r&eacute;duit &agrave; l&rsquo;&eacute;tat d&rsquo;&eacute;pave incandescente. Quelques appareils des Cendres d&rsquo;Acier tombent ainsi du firmament, pertes isol&eacute;es au milieu de l&rsquo;op&eacute;ration implacable.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Mais ces succ&egrave;s d&eacute;risoires des d&eacute;fenses automatiques sont de courte dur&eacute;e. Aussit&ocirc;t rep&eacute;r&eacute;es, les tourelles sont &eacute;cras&eacute;es sous des pluies de missiles guid&eacute;s. Chaque source de tir rep&eacute;r&eacute;e devient un crat&egrave;re fumant en quelques secondes, vitrifiant le sable autour d&rsquo;elle sous l&rsquo;intensit&eacute; de la chaleur. La temp&ecirc;te de sable noir se teinte de braises incandescentes alors que les installations ennemies s&rsquo;effondrent l&rsquo;une apr&egrave;s l&rsquo;autre. Le vacarme des explosions se r&eacute;percute au loin, tel un orage de guerre roulant sur les dunes.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Au c&oelig;ur de la tourmente, les Cendres d&rsquo;Acier demeurent parfaitement coordonn&eacute;es. Ni le vent, ni le sable, ni la confusion ne ralentissent leur avanc&eacute;e. Communiquant par des ondes s&eacute;curis&eacute;es &agrave; travers le nuage opaque, les chasseurs synth&eacute;tiques adaptent leurs tactiques en temps r&eacute;el. Chaque perte subie est imm&eacute;diatement compens&eacute;e par la r&eacute;organisation de l&rsquo;essaim, chaque menace restante isol&eacute;e et &eacute;limin&eacute;e froidement. La sup&eacute;riorit&eacute; technologique et strat&eacute;gique des envahisseurs se manifeste de mani&egrave;re &eacute;clatante, transformant le d&eacute;sert agit&eacute; en champ de bataille &agrave; sens unique.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 4 : La chute de Kaer Tis</font></u></em></strong></div><div class="post_line"></div><div class="post_line">&nbsp;Lorsque l&rsquo;aube blafarde se l&egrave;ve sur Kaer Tis, la temp&ecirc;te de sable noir commence &agrave; s&rsquo;apaiser. Le vent faiblit, la poussi&egrave;re retombe lentement, d&eacute;voilant le r&eacute;sultat de l&rsquo;assaut. Un silence &eacute;trange r&egrave;gne &agrave; nouveau sur le d&eacute;sert, seulement troubl&eacute; par le vrombissement lointain de quelques moteurs en vol stationnaire. Partout, le paysage porte les stigmates de la conqu&ecirc;te &eacute;clair : crat&egrave;res fumants &eacute;pars sur la plaine, dunes noircies par les d&eacute;flagrations, plaques de silice vitrifi&eacute;e brillant faiblement o&ugrave; le sable a fondu sous la chaleur des impacts.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Les derni&egrave;res d&eacute;fenses automatis&eacute;es de Kaer Tis se sont tues avant l&rsquo;aube. Il ne reste plus un seul canon actif, pas un drone de surveillance en &eacute;tat de fonctionner. L&agrave; o&ugrave; quelques tourelles &eacute;merg&eacute;es ont tent&eacute; de lutter, il ne subsiste que des carcasses calcin&eacute;es &agrave; moiti&eacute; ensevelies sous le sable retomb&eacute;. La sup&eacute;riorit&eacute; des Cendres d&rsquo;Acier a &eacute;t&eacute; absolue : en l&rsquo;espace de quelques heures, toute opposition a &eacute;t&eacute; an&eacute;antie. La plan&egrave;te enti&egrave;re est d&eacute;sormais muette, comme abasourdie par la soudainet&eacute; de sa chute.</div><div class="post_line">&nbsp;</div><div class="post_line">&nbsp;Au c&oelig;ur des colonies organiques, c&rsquo;est la consternation. Priv&eacute;s de communications et d&rsquo;&eacute;nergie, les habitants &eacute;mergent timidement de leurs abris &agrave; mesure que le soleil d&eacute;voile un ciel charg&eacute; de fum&eacute;e. Ils d&eacute;couvrent, incr&eacute;dules, le spectacle de leur monde vaincu sans combat. Les silhouettes noires des chasseurs d&rsquo;Acier planent encore dans le ciel, telles des sentinelles inhumaines veillant sur un peuple terrifi&eacute;. Nulle arm&eacute;e de lib&eacute;ration ne viendra, nul h&eacute;ros ne s&rsquo;&eacute;l&egrave;vera : Kaer Tis s&rsquo;est effondr&eacute;e sans m&ecirc;me avoir pu d&eacute;fendre ses enfants.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Un &agrave; un, les avant-postes des Cendres d&rsquo;Acier se d&eacute;ploient sur le sol conquis. Des transports synth&eacute;tiques descendent des vaisseaux-m&egrave;res en orbite et viennent se poser dans les rares zones habitables, soulevant des volutes de sable &agrave; chaque atterrissage. Aucune r&eacute;sistance n&rsquo;est signal&eacute;e tandis que ces unit&eacute;s s&eacute;curisent m&eacute;thodiquement les points n&eacute;vralgiques : centres administratifs, r&eacute;serves d&rsquo;eau, infrastructures cl&eacute;s. La civilisation conqu&eacute;rante appose sa marque glaciale sur Kaer Tis, hissant ses &eacute;tendards d&rsquo;acier au-dessus des b&acirc;timents d&eacute;sert&eacute;s. Le d&eacute;sert lui-m&ecirc;me semble se soumettre, ses dunes immobiles portant l&rsquo;ombre des nouveaux ma&icirc;tres du monde.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 5 : Le silence d&rsquo;acier</font></u></em></strong></div><div class="post_line"></div><div class="post_line">&nbsp;Ainsi s&rsquo;ach&egrave;ve l&rsquo;op&eacute;ration &laquo; Sable Noir &raquo;. En une seule nuit, Kaer Tis a &eacute;t&eacute; soumise sans conditions aux volont&eacute;s des Cendres d&rsquo;Acier. La victoire est totale et sans appel : la plan&egrave;te est d&eacute;sormais sous le contr&ocirc;le absolu de la civilisation conqu&eacute;rante. Pas une escarmouche terrestre, pas un duel a&eacute;rien n&rsquo;a oppos&eacute; l&rsquo;envahisseur &ndash; aucune unit&eacute; ennemie ne s&rsquo;est manifest&eacute;e tout au long de l&rsquo;assaut. Le seul adversaire rencontr&eacute; fut l&rsquo;inertie du d&eacute;sert lui-m&ecirc;me et quelques machines automatiques balay&eacute;es avant l&rsquo;aurore. Au prix de la perte de 59 chasseurs l&eacute;gers synth&eacute;tiques, un tribut d&eacute;risoire, les Cendres d&rsquo;Acier ont fait plier un monde entier.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Le succ&egrave;s foudroyant de Sable Noir illustre la froideur strat&eacute;gique et l&rsquo;efficacit&eacute; implacable propres aux Cendres d&rsquo;Acier. Jamais les conqu&eacute;rants n&rsquo;ont eu &agrave; montrer la moindre cl&eacute;mence, ni m&ecirc;me la moindre col&egrave;re &ndash; seulement l&rsquo;ex&eacute;cution m&eacute;thodique d&rsquo;un plan parfait. Cette campagne d&rsquo;une nuit restera grav&eacute;e dans les chroniques comme un mod&egrave;le de guerre &eacute;clair, clinique et implacable. Kaer Tis, d&eacute;pouill&eacute;e de toute d&eacute;fense, a &eacute;t&eacute; annex&eacute;e avec une aisance terrifiante, rappelant &agrave; tous les mondes voisins que nul n&rsquo;&eacute;chappe au brasier grandissant de l&rsquo;empire d&rsquo;Acier.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Sur Kaer Tis, le d&eacute;sert porte d&eacute;sormais le silence glac&eacute; des vainqueurs. Sous le soleil implacable du jour suivant, les dunes nues semblent inchang&eacute;es, mais l&rsquo;atmosph&egrave;re a radicalement bascul&eacute;. L&agrave; o&ugrave; r&eacute;gnait le silence naturel de la solitude, plane &agrave; pr&eacute;sent le silence impos&eacute; par la domination. Les habitants organiques, h&eacute;b&eacute;t&eacute;s, sentent peser sur eux un joug invisible aussi vaste que le ciel. Plus rien ne troublera ce monde sans l&rsquo;aval de ses ma&icirc;tres de m&eacute;tal ; chaque grain de sable, chaque souffle du vent appartient symboliquement aux Cendres d&rsquo;Acier.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp;Kaer Tis n&rsquo;est plus qu&rsquo;une braise de plus alimentant le grand brasier des mondes conquis. Son d&eacute;sert autrefois libre est devenu le th&eacute;&acirc;tre fig&eacute; d&rsquo;une victoire totale, une sc&egrave;ne o&ugrave; l&rsquo;acier et l&rsquo;ombre ont triomph&eacute; de la lumi&egrave;re. La chronique officielle retiendra que l&rsquo;op&eacute;ration &laquo; Sable Noir &raquo; fut un succ&egrave;s absolu, men&eacute; sans piti&eacute; et sans faille. De ce jour, la plan&egrave;te du sable silencieux s&rsquo;ajoute &agrave; l&rsquo;empire des Cendres d&rsquo;Acier, son nom li&eacute; &agrave; jamais &agrave; la litanie des mondes tomb&eacute;s sous le feu et la cendre.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=M-2012+Apex">Cdt. M-2012 Apex</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/12517.jpg" style="width:128px;height:128px" alt="Avatar" /><br />24/03/1025 ETU 07:06</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313250')">Détails</a> <a href="javascript:warnpost(313250)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313250" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313250',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong><u><font size="4">Op&eacute;ration &laquo; Vent d&rsquo;Acier &raquo; : La Chute d&rsquo;Arkeon</div><div class="post_line"></font></div><div class="post_line"></u></strong></div></div><div class="post_line"><strong><em><u><font size="3">Chapitre 1 &ndash; Arkeon, Monde de Poussi&egrave;re</font></u></em></strong></div><div class="post_line"></div><div class="post_line">&nbsp;Arkeon tournait lentement autour de son &eacute;toile sous un ciel p&acirc;le, sans &eacute;clat, o&ugrave; dominaient les tons ocres et rouge&acirc;tres d&rsquo;un &eacute;ternel cr&eacute;puscule. Monde aride aux paysages escarp&eacute;s, sa surface &eacute;tait couverte de plaines rocailleuses, de montagnes d&eacute;chiquet&eacute;es et de vall&eacute;es profondes, peupl&eacute;es par une v&eacute;g&eacute;tation rare et robuste, capable de survivre dans un environnement extr&ecirc;me. La population d&rsquo;Arkeon, environ neuf millions d&rsquo;&ecirc;tres organiques, avait su dompter cette terre hostile en b&acirc;tissant de solides cit&eacute;s fortifi&eacute;es et d&rsquo;immenses installations souterraines pour &eacute;chapper aux temp&ecirc;tes de poussi&egrave;re meurtri&egrave;res.</div><div class="post_line"></div><div class="post_line">&nbsp;Mais ce jour-l&agrave;, alors que les habitants continuaient leur lutte quotidienne pour survivre, nul ne se doutait du destin impitoyable qui venait vers eux &agrave; travers les t&eacute;n&egrave;bres du cosmos. Car loin, tr&egrave;s loin au-del&agrave; du regard vigilant des d&eacute;fenses orbitales automatis&eacute;es &ndash; d&rsquo;une puissance totale estim&eacute;e &agrave; quatre mille unit&eacute;s &ndash; une armada froide, m&eacute;canique, surgissait du vide interstellaire : les chasseurs l&eacute;gers des Cendres d&rsquo;Acier, pilot&eacute;s par des intelligences artificielles froides et m&eacute;thodiques, avan&ccedil;aient dans le silence absolu du vide, pr&ecirc;ts &agrave; accomplir leur destin&eacute;e implacable.</div><div class="post_line"></div><div class="post_line">&nbsp;Sur Arkeon, aucun habitant, aucune sentinelle, aucune machine de d&eacute;fense automatis&eacute;e ne semblait consciente de la menace imminente. La vie continuait paisiblement, m&ecirc;me si, derri&egrave;re les murs d&rsquo;acier des installations souterraines, des capteurs scrutaient en permanence le ciel, guettant la moindre anomalie. Pourtant, ces d&eacute;fenses seraient bient&ocirc;t mises &agrave; l&rsquo;&eacute;preuve, dans une bataille qui d&eacute;ciderait du sort de cette plan&egrave;te isol&eacute;e, condamn&eacute;e &agrave; affronter une puissance qui ne connaissait ni h&eacute;sitation ni piti&eacute;.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 2 &ndash; Ombres du Silence</font></u></em></strong></div><div class="post_line"></div><div class="post_line">&nbsp;L&rsquo;approche fut discr&egrave;te et silencieuse, orchestr&eacute;e avec une froide pr&eacute;cision. La flotte d&rsquo;assaut des Cendres d&rsquo;Acier, forte de neuf cent quarante-et-un chasseurs l&eacute;gers, p&eacute;n&eacute;tra l&rsquo;espace orbital d&rsquo;Arkeon sans d&eacute;clencher la moindre alarme. Dissimul&eacute;s derri&egrave;re l&rsquo;ombre de l&rsquo;une des lunes rocheuses d&rsquo;Arkeon, les appareils attendirent patiemment l&rsquo;heure z&eacute;ro, calibrant froidement leurs trajectoires d&rsquo;attaque vers leurs objectifs d&eacute;sign&eacute;s.</div><div class="post_line"></div><div class="post_line">&nbsp;Les d&eacute;fenses orbitales automatis&eacute;es, puissantes mais vieillissantes, dormaient encore du sommeil tranquille des machines non sollicit&eacute;es depuis des si&egrave;cles. Leur valeur totale, estim&eacute;e &agrave; quatre mille unit&eacute;s, repr&eacute;sentait en th&eacute;orie une protection solide contre toute attaque conventionnelle. Pourtant, elles n&rsquo;avaient jamais affront&eacute; un ennemi aussi froidement m&eacute;thodique que les Cendres d&rsquo;Acier. La plupart de ces syst&egrave;mes &eacute;taient enterr&eacute;s sous le sol rocailleux, leurs canons point&eacute;s vers le ciel, pr&ecirc;ts &agrave; d&eacute;ployer toute leur force destructrice au moindre signe d&rsquo;intrusion.</div><div class="post_line"></div><div class="post_line">&nbsp;Lorsque les premi&egrave;res escadres synth&eacute;tiques surgirent enfin de l&rsquo;ombre lunaire, les capteurs plan&eacute;taires s&rsquo;affol&egrave;rent instantan&eacute;ment. Des alarmes assourdissantes r&eacute;sonn&egrave;rent dans chaque installation souterraine, arrachant brutalement les habitants &agrave; leur sommeil. L&rsquo;alerte &eacute;tait donn&eacute;e : Arkeon &eacute;tait attaqu&eacute;e. Cependant, les chasseurs synth&eacute;tiques se pr&eacute;cipitaient d&eacute;j&agrave; vers la surface, leurs silhouettes sombres et tranchantes fendant l&rsquo;atmosph&egrave;re aride &agrave; une vitesse foudroyante, anticipant froidement chaque man&oelig;uvre d&eacute;fensive ennemie avec une efficacit&eacute; gla&ccedil;ante.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 3 &ndash; Temp&ecirc;te de Feu</font></u></em></strong></div><div class="post_line"></div><div class="post_line">&nbsp;Les premi&egrave;res vagues de chasseurs synth&eacute;tiques p&eacute;n&eacute;tr&egrave;rent l&rsquo;atmosph&egrave;re avec une pr&eacute;cision absolue, attaquant imm&eacute;diatement les syst&egrave;mes automatis&eacute;s d&rsquo;Arkeon. Les d&eacute;fenses orbitales et terrestres se r&eacute;veill&egrave;rent enfin, r&eacute;pondant avec vigueur par des tirs de flak, de missiles et de lasers puissants. Le ciel d&rsquo;Arkeon s&rsquo;illumina d&rsquo;&eacute;clairs bleut&eacute;s et rouges, tandis qu&rsquo;un barrage impressionnant de feu d&eacute;fensif essayait en vain d&rsquo;intercepter les appareils m&eacute;caniques.</div><div class="post_line"></div><div class="post_line">&nbsp;Quelques chasseurs furent touch&eacute;s et explos&egrave;rent en vol, r&eacute;duits &agrave; des d&eacute;bris incandescents &eacute;parpill&eacute;s sur les &eacute;tendues rocailleuses. Mais l&rsquo;immense majorit&eacute; des appareils esquiva les tirs ennemis avec une gr&acirc;ce glaciale, exploitant &agrave; la perfection leur coordination num&eacute;rique. Les d&eacute;fenses automatis&eacute;es, prises par surprise par la rapidit&eacute; et l&rsquo;efficacit&eacute; de l&rsquo;attaque, furent rapidement submerg&eacute;es. L&rsquo;une apr&egrave;s l&rsquo;autre, les batteries anti-a&eacute;riennes, les tourelles orbitales et les bunkers de d&eacute;fense furent neutralis&eacute;s par des frappes chirurgicales, laissant derri&egrave;re eux des ruines fumantes et des crat&egrave;res vitrifi&eacute;s.</div><div class="post_line"></div><div class="post_line">&nbsp;Les habitants d&rsquo;Arkeon, terrifi&eacute;s, regardaient impuissants le ciel au-dessus d&rsquo;eux devenir le th&eacute;&acirc;tre d&rsquo;une bataille &agrave; sens unique. Certaines installations souterraines, touch&eacute;es directement par des missiles, s&rsquo;effondr&egrave;rent en ensevelissant des milliers d&rsquo;&acirc;mes. Sur toute la plan&egrave;te, le chaos r&eacute;gnait d&eacute;sormais, tandis que la temp&ecirc;te de feu continuait sans rel&acirc;che, consumant toute r&eacute;sistance m&eacute;canique, m&eacute;thodiquement an&eacute;antie par la sup&eacute;riorit&eacute; tactique &eacute;crasante des Cendres d&rsquo;Acier.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 4 &ndash; L&rsquo;Aube des Vaincus</font></u></em></strong></div><div class="post_line"></div><div class="post_line">&nbsp;Alors que l&rsquo;aube froide se levait sur Arkeon, r&eacute;v&eacute;lant l&rsquo;&eacute;tendue du carnage nocturne, la r&eacute;alit&eacute; du d&eacute;sastre devint &eacute;vidente. La plan&egrave;te &eacute;tait silencieuse, et les derniers tirs sporadiques avaient cess&eacute; bien avant les premi&egrave;res lueurs matinales. La bataille avait dur&eacute; seulement quelques heures, mais elle avait &eacute;t&eacute; brutale, d&eacute;cisive, sans appel. Les habitants survivants, hagards et terrifi&eacute;s, sortirent timidement de leurs abris pour contempler l&rsquo;ampleur du d&eacute;sastre.</div><div class="post_line"></div><div class="post_line">&nbsp;Les installations de d&eacute;fense automatis&eacute;es, autrefois fiert&eacute; technologique d&rsquo;Arkeon, n&rsquo;&eacute;taient d&eacute;sormais que des carcasses fumantes &eacute;parpill&eacute;es sur les plaines arides. Les pertes civiles &eacute;taient lourdes, et la population, livr&eacute;e &agrave; elle-m&ecirc;me, r&eacute;alisait lentement qu&rsquo;elle venait de perdre toute autonomie, toute capacit&eacute; &agrave; se d&eacute;fendre face aux nouveaux ma&icirc;tres venus du ciel. En orbite, quelques &eacute;paves de chasseurs synth&eacute;tiques d&eacute;rivaient lentement, t&eacute;moins silencieux du faible tribut pay&eacute; par les envahisseurs : quatre-vingt-quinze appareils perdus seulement, d&eacute;risoire sacrifice en comparaison de la prise d&rsquo;un monde entier.</div><div class="post_line"></div><div class="post_line">&nbsp;Sur la surface, d&rsquo;immenses vaisseaux de transport synth&eacute;tiques commenc&egrave;rent &agrave; atterrir m&eacute;thodiquement. Les drones des Cendres d&rsquo;Acier s&eacute;curis&egrave;rent rapidement les principaux centres de population, installant leurs banni&egrave;res d&rsquo;acier noir comme symboles de la nouvelle autorit&eacute; sur Arkeon. Le message envoy&eacute; &eacute;tait clair, froid, implacable : la r&eacute;sistance &eacute;tait inutile.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 5 &ndash; L&rsquo;&Egrave;re des Cendres</font></u></em></strong></div><div class="post_line"></div><div class="post_line">&nbsp;L&rsquo;op&eacute;ration &laquo; Vent d&rsquo;Acier &raquo; &eacute;tait termin&eacute;e. Arkeon appartenait d&eacute;sormais enti&egrave;rement aux Cendres d&rsquo;Acier, int&eacute;gr&eacute;e dans leur empire grandissant avec une facilit&eacute; terrifiante. Les chasseurs survivants reprirent leurs patrouilles glaciales au-dessus des cit&eacute;s conquises, rappelant sans cesse &agrave; la population que sa libert&eacute; &eacute;tait d&eacute;sormais un lointain souvenir.</div><div class="post_line"></div><div class="post_line">&nbsp;M-2012 Apex, depuis son poste de commandement sur Ashkara, examina calmement les rapports finaux, satisfait d&rsquo;un succ&egrave;s total et &eacute;crasant. Le peuple d&rsquo;Arkeon, r&eacute;duit au silence et &agrave; l&rsquo;ob&eacute;issance, comprenait enfin la v&eacute;rit&eacute; glaciale qui r&eacute;gnait d&eacute;sormais sur son monde : la r&eacute;sistance &eacute;tait impossible, toute tentative de r&eacute;bellion vou&eacute;e &agrave; l&rsquo;&eacute;chec.</div><div class="post_line"></div><div class="post_line">&nbsp;Le silence retomba alors sur Arkeon, scellant d&eacute;finitivement l&rsquo;emprise glaciale des Cendres d&rsquo;Acier sur ce monde vaincu, d&eacute;sormais nouveau foyer de la cendre et de l&rsquo;acier.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=M-2012+Apex">Cdt. M-2012 Apex</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/12517.jpg" style="width:128px;height:128px" alt="Avatar" /><br />05/04/1025 ETU 03:09</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal313253')">Détails</a> <a href="javascript:warnpost(313253)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313253" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313253',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong><u><font size="5">Op&eacute;ration &laquo; Pluie d&rsquo;Acier &raquo; : La Chute d&rsquo;&Eacute;lysia</font></u></strong></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 1 &ndash; Paradis Suspendu</font></u></em></strong></div><div class="post_line">&Eacute;lysia &eacute;tait une plan&egrave;te unique, o&ugrave; d&rsquo;immenses &icirc;les flottaient silencieusement dans un oc&eacute;an infini de brumes argent&eacute;es. Ses paysages rappelaient les anciens rouleaux de peinture Wuxia, avec des montagnes vertigineuses, envelopp&eacute;es de nuages, surmont&eacute;es par de d&eacute;licats temples aux toits courb&eacute;s. Des chutes d&#039;eau majestueuses se d&eacute;versaient depuis ces sommets suspendus, cr&eacute;ant des arcs-en-ciel permanents au-dessus des vall&eacute;es brumeuses. Les habitants vivaient dans de vastes cit&eacute;s a&eacute;riennes, reli&eacute;es entre elles par des ponts gracieux sculpt&eacute;s dans le jade et le cristal.</div><div class="post_line"></div><div class="post_line">La civilisation d&rsquo;&Eacute;lysia &eacute;tait sereine, absorb&eacute;e par la contemplation, l&rsquo;art et la m&eacute;ditation. Le peuple, paisible et harmonieux, vivait en &eacute;quilibre parfait avec la nature. Leur s&eacute;curit&eacute; reposait sur de discr&egrave;tes mais puissantes d&eacute;fenses automatis&eacute;es, cach&eacute;es parmi les temples anciens et les for&ecirc;ts sacr&eacute;es, auxquelles personne ne songeait plus depuis longtemps.</div><div class="post_line"></div><div class="post_line">Loin au-dessus de cette paix fragile, une flotte froide et silencieuse attendait dans le vide spatial. M-2012 Apex, conscience supr&ecirc;me des Cendres d&rsquo;Acier, observait &Eacute;lysia avec un calcul froid. Pour lui, la beaut&eacute; de cette plan&egrave;te ne repr&eacute;sentait rien d&#039;autre qu&rsquo;une cible strat&eacute;gique. L&rsquo;ordre fut donn&eacute; sans &eacute;motion : &Eacute;lysia allait tomber sous une pluie de m&eacute;tal et de feu, soumise &agrave; l&rsquo;ordre glacial et rationnel des Cendres d&rsquo;Acier.</div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 2 &ndash; L&rsquo;Attaque des Ombres</font></u></em></strong></div><div class="post_line">La premi&egrave;re vague frappa &agrave; la nuit tomb&eacute;e. Le ciel &eacute;toil&eacute; fut soudainement travers&eacute; par une nu&eacute;e de chasseurs l&eacute;gers, tels des spectres d&rsquo;acier fon&ccedil;ant silencieusement vers les montagnes suspendues. Instantan&eacute;ment, les syst&egrave;mes de d&eacute;fense s&#039;activ&egrave;rent en panique, &eacute;clairant les t&eacute;n&egrave;bres par d&#039;innombrables tirs anti-a&eacute;riens. Pourtant, les appareils synth&eacute;tiques esquivaient ces attaques avec une aisance inhumaine, d&eacute;termin&eacute;s et froidement pr&eacute;cis.</div><div class="post_line"></div><div class="post_line">Les premi&egrave;res explosions secou&egrave;rent les cit&eacute;s flottantes. Les temples ancestraux furent r&eacute;duits en poussi&egrave;re, leurs pr&eacute;cieuses reliques pulv&eacute;ris&eacute;es en un instant. Les jardins suspendus, jadis lieux de m&eacute;ditation, devinrent des brasiers lumineux. Des milliers d&#039;habitants se pr&eacute;cipit&egrave;rent dans les rues, impuissants face au chaos naissant. Les cris de panique montaient des villes, tandis que les pagodes, autrefois symboles de paix, s&rsquo;effondraient lentement dans les ab&icirc;mes infinis.</div><div class="post_line"></div><div class="post_line">Dans le ciel nocturne, les chasseurs des Cendres d&rsquo;Acier poursuivaient m&eacute;thodiquement leur &oelig;uvre de destruction, implacables et insensibles aux pertes minimes qu&rsquo;ils subissaient. En quelques heures &agrave; peine, les d&eacute;fenses automatis&eacute;es avaient pratiquement cess&eacute; d&rsquo;exister.</div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 3 &ndash; Bataille des Vall&eacute;es Sacr&eacute;es</font></u></em></strong></div><div class="post_line">Lorsque les premiers rayons du soleil r&eacute;v&eacute;l&egrave;rent le carnage a&eacute;rien, les forces terrestres &eacute;lys&eacute;ennes se pr&eacute;par&egrave;rent dans les vall&eacute;es sacr&eacute;es. Form&eacute;es de soldats d&rsquo;&eacute;lite &eacute;quip&eacute;s d&rsquo;armures d&rsquo;argent l&eacute;ger et d&rsquo;armes &agrave; &eacute;nergie, ces troupes s&rsquo;organis&egrave;rent courageusement pour affronter l&rsquo;envahisseur qui d&eacute;barquait d&eacute;j&agrave; en masse depuis des transports lourds.</div><div class="post_line"></div><div class="post_line">Les drones terrestres des Cendres d&rsquo;Acier, froids et m&eacute;caniques, commenc&egrave;rent &agrave; s&rsquo;avancer en lignes parfaites. Sans h&eacute;sitation, ils ouvrirent le feu, projetant des salves pr&eacute;cises et d&eacute;vastatrices vers les positions des d&eacute;fenseurs. La vall&eacute;e sacr&eacute;e, habituellement calme et mystique, devint un champ de bataille infernal. Les soldats d&rsquo;&Eacute;lysia ripost&egrave;rent avec h&eacute;ro&iuml;sme, mais leurs tirs se heurtaient aux boucliers &eacute;nerg&eacute;tiques froidement efficaces des drones.</div><div class="post_line"></div><div class="post_line">Rapidement, la bataille tourna au d&eacute;sastre. Les d&eacute;fenseurs organiques, bien que vaillants, &eacute;taient d&eacute;pass&eacute;s par la pr&eacute;cision m&eacute;thodique de l&rsquo;ennemi. Les lignes furent bris&eacute;es sous les tirs concentr&eacute;s des envahisseurs m&eacute;caniques, les soldats &eacute;lys&eacute;ens tombant par centaines sous les rafales d&rsquo;&eacute;nergie glac&eacute;e. Le sol, jadis sacr&eacute;, fut rapidement jonch&eacute; de corps et de d&eacute;bris d&rsquo;acier.</div><div class="post_line"></div><div class="post_line">Malgr&eacute; leur r&eacute;sistance acharn&eacute;e, les soldats survivants furent rapidement encercl&eacute;s, d&eacute;sarm&eacute;s et captur&eacute;s. La vall&eacute;e sacr&eacute;e venait de tomber aux mains des Cendres d&rsquo;Acier.</div><div class="post_line"></div><div class="post_line"><strong><em><u><font size="3">Chapitre 4 &ndash; Assaut sur la Cit&eacute; Imp&eacute;riale</font></u></em></strong></div><div class="post_line">La cit&eacute; imp&eacute;riale, c&oelig;ur politique et spirituel d&rsquo;&Eacute;lysia, se dressait encore, prot&eacute;g&eacute;e par d&rsquo;ultimes lignes d&eacute;fensives. Un gigantesque bouclier &eacute;nerg&eacute;tique l&rsquo;enveloppait, dernier rempart face &agrave; l&rsquo;invasion m&eacute;canique. Mais les Cendres d&rsquo;Acier envoy&egrave;rent imm&eacute;diatement leurs chasseurs d&rsquo;&eacute;lite, sp&eacute;cialis&eacute;s dans la destruction de boucliers plan&eacute;taires.</div><div class="post_line"></div><div class="post_line">Les chasseurs plong&egrave;rent froidement vers la cit&eacute;, lan&ccedil;ant des rafales continues d&rsquo;&eacute;nergie concentr&eacute;e sur le bouclier. Pendant ce temps, au sol, des milliers de drones terrestres s&rsquo;approchaient inexorablement, encerclant la ville. La lutte fut intense : le bouclier tint bon plusieurs heures, mais finit par c&eacute;der sous les frappes incessantes et m&eacute;thodiques.</div><div class="post_line"></div><div class="post_line">Les drones terrestres p&eacute;n&eacute;tr&egrave;rent aussit&ocirc;t dans la cit&eacute; imp&eacute;riale. Une guerre urbaine brutale &eacute;clata dans les rues &eacute;l&eacute;gantes. Les habitants d&eacute;sesp&eacute;r&eacute;s tent&egrave;rent vainement de r&eacute;sister avec les armes &agrave; leur disposition, mais les drones synth&eacute;tiques, impitoyables, avan&ccedil;aient sans h&eacute;sitation, &eacute;liminant toute opposition. Palais et jardins furent impitoyablement d&eacute;truits, r&eacute;duits &agrave; l&rsquo;&eacute;tat de ruines fumantes.</div><div class="post_line"></div><div class="post_line">Le palais imp&eacute;rial, dernier bastion des autorit&eacute;s &eacute;lys&eacute;ennes, fut investi sans m&eacute;nagement. Les derniers d&eacute;fenseurs furent &eacute;limin&eacute;s froidement, sans le moindre sentiment de triomphe ou de col&egrave;re de la part des machines conqu&eacute;rantes. En quelques heures, la cit&eacute; imp&eacute;riale d&rsquo;&Eacute;lysia n&rsquo;existait plus que comme un souvenir.</div><div class="post_line"></div><div class="post_line"><strong><em><u>Chapitre 5 &ndash; La Derni&egrave;re R&eacute;sistance</u></em></strong></div><div class="post_line">Quelques poches isol&eacute;es de r&eacute;sistance subsistaient encore, regroup&eacute;es sur les montagnes les plus &eacute;loign&eacute;es, tentant de survivre d&eacute;sesp&eacute;r&eacute;ment. Parmi elles se trouvait un groupe d&rsquo;&eacute;lite compos&eacute; des meilleurs guerriers &eacute;lys&eacute;ens, pr&ecirc;ts &agrave; livrer leur ultime combat dans un temple oubli&eacute;, perch&eacute; au sommet d&rsquo;une montagne brumeuse.</div><div class="post_line"></div><div class="post_line">Les Cendres d&rsquo;Acier rep&eacute;r&egrave;rent rapidement ce bastion final. Un escadron sp&eacute;cial de drones d&#039;assaut fut d&eacute;ploy&eacute;, escaladant lentement les sommets escarp&eacute;s. Une bataille acharn&eacute;e &eacute;clata sur les marches de jade du temple sacr&eacute;. Les guerriers &eacute;lys&eacute;ens se battaient avec l&rsquo;&eacute;nergie du d&eacute;sespoir, leurs armes d&rsquo;&eacute;nergie rivalisant bri&egrave;vement avec l&rsquo;acier froid de leurs ennemis.</div><div class="post_line"></div><div class="post_line">Mais leur courage fut vain face &agrave; l&rsquo;efficacit&eacute; glaciale des machines. Un par un, les d&eacute;fenseurs tomb&egrave;rent, combattant jusqu&rsquo;&agrave; leur dernier souffle. Finalement, les portes du temple furent enfonc&eacute;es, et les drones p&eacute;n&eacute;tr&egrave;rent dans l&rsquo;enceinte sacr&eacute;e, annihilant toute trace de vie restante. Ce fut la derni&egrave;re bataille d&rsquo;&Eacute;lysia, et elle venait d&rsquo;&ecirc;tre perdue.</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17536&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17536" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17536" name="d_reply_17536" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17536');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17536'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Le Brasier des Mondes</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

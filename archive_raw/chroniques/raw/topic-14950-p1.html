@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 14950 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Titre de Chronique</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Titre de Chronique</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Mekteub%C3%A9">Cdt. Mekteub&eacute;</a><br>Prestige de chroniqueur&nbsp;: 52<br /><br /><img src="/avatars/10637.png" style="width:128px;height:110px" alt="Avatar" /><br />13/05/1020 ETU 18:06<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D274699', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274698')">Détails</a> <a href="javascript:warnpost(274698)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274698" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274698',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Il faisait un froid de canard quand ils sortirent tous les deux du guet-apens, le bar le plus fun et sans aucun doute le plus dangereux de tout le secteur origine. Mekteub&eacute; &eacute;tait impatient et il marchait d&rsquo;un pas alerte. C&rsquo;&eacute;tait une autre affaire pour le Roi de Ralbolie qui essayait tant bien que mal de suivre son nouveau compagnon. Le voyant tituber derri&egrave;re lui, le Petit &ecirc;tre fit quelques pas en arri&egrave;re et mis le bras droit de Chirin sur son &eacute;paule pour l&rsquo;aider &agrave; marcher. Arriv&eacute; au spatioport, Mekteub&eacute; sortit ses cl&eacute;s et actionna la rampe &agrave; distance. La pente fut un obstacle redoutable pour le Roi dont le cerveau barbotait tranquillement dans le rhum. N&rsquo;arrivant plus &agrave; mettre un pas devant l&rsquo;autre, il se coucha au sol. Mekteub&eacute; fut donc contraint de tirer sa carcasse jusqu&rsquo;&agrave; l&rsquo;int&eacute;rieur de son vaisseau.</div></div><div class="post_line"><div align="justify">Une fois le sac &agrave; vin install&eacute; confortablement, Mekteub&eacute; fit vrombir son engin.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>- C&rsquo;est o&ugrave; d&eacute;j&agrave; chez toi Chirin ?</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#eebb6a"># Rabobichon ! Reblochon ! Rabiche ma biche prends moi un pitch ou deux. Non ! Attend. Euh. Rabibolon. Bilbon ! Non pas Bilbon. Rabobo, rabobo, rabobobobo, bolie. Bolie. Rabobobolie. Rabolie. Raaaaaaal. Bo. Lie? Hmmm, Rabol&hellip; Rabloblie&hellip;heu Ralbololie&hellip; syst&egrave;me 13&hellip;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le Petit &ecirc;tre tenta de d&eacute;chiffrer un nom de plan&egrave;te potable et la rentra dans l&rsquo;ordinateur de bord.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#f551ff">- Vous avez rentr&eacute; les coordonn&eacute;es de la plan&egrave;te Ralbolie situ&eacute;e en Syst&egrave;me 13, souhaitez-vous confirmer ?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>- C&rsquo;est bien &ccedil;a Chirin ?</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#eebb6a"># ZzzzZzzzzzzzz&hellip;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>- On a qu&rsquo;&agrave; dire que c&rsquo;est &ccedil;a okay ?</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#f551ff">- Okay. Le pilotage automatique est enclench&eacute;, vous pouvez vous d&eacute;tendre et savourer une de vos d&eacute;licieuses tablettes de chocolat.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>- Un peu que j&rsquo;vais faire &ccedil;a ! Miam ! Allez d&eacute;p&ecirc;che toi j&rsquo;ai trop envie d&rsquo;arriver chez lui ! J&rsquo;vais enfin accomplir mon r&ecirc;ve !</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Les longues heures qui pass&egrave;rent eurent raison de lui et il s&rsquo;endorma &agrave; l&rsquo;instar du Roi.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>&hellip;</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#f551ff">- Monsieur, nous arriverons &agrave; destination dans 10 minutes. R&eacute;veillez-vous.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le Petit &ecirc;tre ouvrit les yeux et constata que son vaisseau &eacute;tait sur le point de se poser. Il pouvait voir une foule nombreuse sur le tarmac. Il se d&eacute;tacha de son si&egrave;ge et alla r&eacute;veiller le Roi.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#eebb6a"># Hmm...Gionna...Hmmm...&Eacute;l&eacute;onore...vous voulez...jouer...avec mon pipou...Hmmm...</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>- Hey ! Qu&#039;est-ce que tu fous avec ta main dans le slip ?&nbsp;R&eacute;veille-toi ! Ton peuple t&rsquo;attends l&agrave; !</strong></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Chirin">Cdt. Chirin</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10534.jpg" style="width:128px;height:128px" alt="Avatar" /><br />13/05/1020 ETU 19:26<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D274708', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274704')">Détails</a> <a href="javascript:warnpost(274704)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274704" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274704',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#e7ebe0">Putain mais vas-y nique ta m&egrave;re quoi ! Chirin faisait un putain de beau r&ecirc;ve o&ugrave; trois jolies filles se disputaient ses attentions, c&#039;&eacute;tait pas la peine de le r&eacute;veiller comme &ccedil;a quoi ! Surtout qu&#039;ils &eacute;taient pas press&eacute;s, le peuple l&#039;avait d&eacute;j&agrave; pas mal attendu puis personne savait que c&#039;&eacute;tait lui qui arrivait quoi, c&#039;&eacute;tait pas son vaisseau ! Parce que ouais Chirin c&#039;&eacute;tait un malin, il avait tout pr&eacute;vu (askip) : de un, on prend pas son vaisseau personnel pour pas se faire flag ; de deux, en vrai c&#039;est juste parce que le p&eacute;lo il venait d&#039;avoir son permis, il voulait pas d&eacute;j&agrave; le perdre pour avoir conduit bourr&eacute; et renvers&eacute; un astro-connard qui avait qu&#039;&agrave; regarder devant lui avant de traverser la rue quoi. Chirin se massa les tempes en grommelant, quel r&eacute;veil de merde. Dans son cr&acirc;ne jouait une m&eacute;lodie morbide, un m&eacute;lange de mart&egrave;lements et de grincements incessants. Franchement, &agrave; cet instant l&agrave;, il regrettait &eacute;norm&eacute;ment de ne pas avoir bu suffisamment d&#039;eau entre chaque gobelet de rhum.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Bon, l&#039;avantage c&#039;&eacute;tait que personne savait qu&#039;il revenait en Ralbolie, donc le peuple n&#039;allait pas se masser dans les rues et il n&#039;aurait pas &agrave; faire semblant d&#039;&ecirc;tre en forme et d&#039;&ecirc;tre content de les revoir. L&agrave; tout ce dont il r&ecirc;vait, c&#039;&eacute;tait un bon soda bien sucr&eacute; pour arranger son ventre, un bain chaud et quelques heures &agrave; zoner sur son lit comme le connard qu&#039;il &eacute;tait. Mais il aurait rien de tout &ccedil;a, parce qu&#039;il venait de se rappeler du traceur qu&#039;on lui avait implant&eacute; dans la fesse gauche il y a certains cycles de cela. Suite &agrave; une de ses escapades nocturnes, il s&#039;&eacute;tait &eacute;gar&eacute; dans une des nombreuses rues de la capitale de Ralbolie et un vaisseau-&eacute;boueur l&#039;avait embarqu&eacute; comme le d&eacute;chet qu&#039;il &eacute;tait. Il s&#039;&eacute;tait r&eacute;veill&eacute; quelques heures plus tard en cellule de d&eacute;grisement et impossible d&#039;en sortir. Le policier voulait pas croire que c&#039;&eacute;tait lui Chirin, que soit disant que c&#039;&eacute;tait facile de se d&eacute;guiser comme ce travelo et qu&#039;il allait devoir faire comme tout le monde et attendre 4h apr&egrave;s son r&eacute;veil pour avoir le droit de sortir. Pendant ce temps l&agrave;, ses arm&eacute;es attendaient pour envahir des plan&egrave;tes de la sauterelle, mais il pouvait donner aucun ordre. Le fin mot dans cette histoire, c&#039;est que le policier ne l&#039;&eacute;tait plus, Chirin avait quand m&ecirc;me r&eacute;ussi &agrave; sortir et qu&#039;en contrepartie on avait d&ucirc; lui implanter une sonde dans le boule, comme &ccedil;a on pouvait le localiser &agrave; tout instant quand l&#039;id&eacute;e lui viendrait de vagabonder.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Apr&egrave;s s&#039;&ecirc;tre rapidement essuy&eacute; le filet de bave au coin de sa bouche et remis les cheveux &agrave; peu pr&egrave;s en ordre, Chirin fit un gros pouce en l&#039;air &agrave; Mekteub&eacute;. &Ccedil;a allait bien se passer, il fallait juste faire semblant de se porter bien pendant une petite demi-heure, saluer tout le monde comme il le fallait puis apr&egrave;s ils pourraient se consacrer &agrave; ce pour quoi ils &eacute;taient venus en Ralbolie. Chirin allait offrir un pouvoir magique &agrave; Mekteub&eacute; ! Ils firent donc ce petit bain de foule, salu&egrave;rent des gens qu&#039;aucun d&#039;eux ne connaissaient car il fallait faire bonne figure puis se retir&egrave;rent dans la maison de campagne de Chirin en emportant avec eux l&#039;immense frigo qui pesait une vache morte.</div></div><div class="post_line"></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#eebb6a"># Mon gars, est-ce que je t&#039;ai mis au courant que la seule personne qui peut faire des incantations magiques comme &ccedil;a, c&#039;est la Pr&ecirc;tresse ? Tu vois la cha&icirc;ne de montagnes l&agrave; bas, ben &ccedil;a s&#039;appelle la Traverse et il y a des sommets qui montent jusqu&#039;&agrave; 14 000 m&egrave;tres en hauteur... Et c&#039;est l&agrave; bas qu&#039;on doit y aller et &agrave; pieds, parce que l&#039;autre grognasse de Pr&ecirc;tresse, ben elle est dans un endroit pas du tout accessible par vaisseau, comme quoi que c&#039;&eacute;tait volontaire et que fallait faire un p&eacute;lerinage pour aller la voir comme quoi c&#039;&eacute;tait une D&eacute;esse ou je sais pas trop quelles conneries encore elle raconte. Mais en tout cas, mon gars, j&#039;esp&egrave;re t&#039;as des jambes solides, parce que on va mettre au moins une journ&eacute;e &agrave; y aller en portant le frigo l&agrave;. Sauf si t&#039;es super bal&egrave;ze et que t&#039;arrives &agrave; le porter tout seul et courir quand m&ecirc;me. Ce que j&#039;esp&egrave;re pas, parce que moi je suis un super mauvais athl&egrave;te mon gars, je coure environ 30 secondes avant de m&#039;&eacute;crouler comme la salope que je suis.</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Mekteub%C3%A9">Cdt. Mekteub&eacute;</a><br>Prestige de chroniqueur&nbsp;: 52<br /><br /><img src="/avatars/10637.png" style="width:128px;height:110px" alt="Avatar" /><br />13/05/1020 ETU 21:40<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274716')">Détails</a> <a href="javascript:warnpost(274716)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274716" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274716',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><strong>- Ah mais j&rsquo;croyais qu&rsquo;on allait faire &ccedil;a vite fait et qu&rsquo;j&rsquo;allais pouvoir&hellip; Bref. Pour la cargaison, t&rsquo;as qu&rsquo;&agrave; demander &agrave; tes larbins d&rsquo;la porter ! Mais gaffe, ce qu&rsquo;il y a &agrave; l&rsquo;int&eacute;rieur est inestimable okay ? Alors faudra bien leur dire de faire ultra attention sinon j&rsquo;les d&eacute;gomme avec mes poings ! </strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#eebb6a"># Ouais t&rsquo;as raison j&rsquo;vais bien trouver des gusses pour faire le sherpa yo ! En route mon gars car c&rsquo;est super loin o&ugrave; on va ! Pis c&rsquo;est chiant et surtout fatiguant ! Pis faut que j&rsquo;boive au moins 3 litres de flotte avant d&rsquo;partir parce que l&agrave; j&rsquo;ai une gueule de bois qui ferait passer Pinocchio pour un vrai p&rsquo;tit gar&ccedil;on genre !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>C&rsquo;est ainsi que les deux comp&egrave;res entam&egrave;rent un voyage aussi long que fastidieux <font size="1">(cmb ?)</font>. Je ne vais quand m&ecirc;me pas vous d&eacute;crire tout le voyage sinon je serai aussi fatigu&eacute; qu&rsquo;eux mais c&#039;&eacute;tait un truc assez &eacute;pique &agrave; la seigneur des anneaux. Enfin, pas tant que &ccedil;a parce qu&#039;ils ont par exemple pas affronter de Balrog, de trolls des cavernes ou d&#039;hordes d&#039;Urug-Hai. Bon en fait j&#039;ai menti c&#039;&eacute;tait juste long et chiant.&nbsp;Ils arriv&egrave;rent au bout d&#039;une longue journ&eacute;e de marche &agrave; l&#039;endroit indiqu&eacute; par le Roi Chirin. Le Roi de Ralbolie allait toquer &agrave; la porte...</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>- Attends mais c&#039;est l&agrave; qu&#039;elle habite ta fameuse sorci&egrave;re ? C&#039;est une vieille cabane de jardin ! En fait elle est pas sorci&egrave;re c&#039;est la dame pipi d&#039;la montagne okay ?</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#eebb6a"># Mais mek t&#039;es un ouf de parler d&#039;elle comme &ccedil;a ! En plus elle a une super ou&iuml;e fa&ccedil;on magique genre ! Une fois&nbsp;la meuf genre j&#039;&eacute;tais en train de dire que c&#039;&eacute;tait une folle t&#039;vois. Genre j&#039;&eacute;tais au fond du jardin, tout &agrave; l&#039;autre bout. impossible qu&#039;elle m&#039;entende la vieille et l&agrave; d&#039;un seul coup elle a d&eacute;barqu&eacute; et elle m&#039;a foutu une putain de torgnole derri&egrave;re la t&ecirc;te pour m&#039;inculquer les bonnes mani&egrave;re qu&#039;elle disait. Yo ! Elle m&#039;a fait tellement mal. Et askip la nana elle est super dangereuse, elle a peur de rien je te dis ! La derni&egrave;re fois elle a menac&eacute; Sokhar sans m&ecirc;me flipper sa race quand l&#039;autre l&#039;a r&eacute;pondu. C&#039;est terrifiant mon gros...</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il n&#039;eut pas le loisir de finir sa phrase que la porte s&#039;ouvra de l&#039;int&eacute;rieur, laissant &eacute;chapper une odeur naus&eacute;abonde. La Pr&ecirc;tresse se tenait devant eux, ses yeux lan&ccedil;aient des &eacute;clairs &agrave; Chirin.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Tu peux m&#039;expliquer ce que tu viens faire ici, Chirin Roi de Ralbolie ? Ta place est &agrave; l&#039;Assembl&eacute;e Galactique, &agrave; pr&eacute;sider les d&eacute;bats, non pas &agrave; charrier jusque ma retraite sylvestre tes d&eacute;chets m&eacute;talliques, avec ton nain de compagnie. Qui est-ce d&#039;ailleurs ? Une autre de tes rencontres alcoolis&eacute;es ? Un bouffon qui sert &agrave; divertir le Roi pendant que celui-ci d&eacute;laisse sa gouvernance ? Sortez de chez moi et retournez au travail, pour peu qu&#039;on peut ainsi qualifier la com&eacute;die que tu nourris chaque jour !</div><div class="post_line"></div><div class="post_line"></font><em>Le Roi Chirin tout penaud baissa la t&ecirc;te tel un enfant r&eacute;primand&eacute; par sa m&egrave;re. Mekteub&eacute;&nbsp;eut d&#039;abord l&#039;envie de protester mais le ton employ&eacute; n&#039;admettait aucune r&eacute;bellion. Il se contenta de serrer les dents.</em></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Chirin">Cdt. Chirin</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10534.jpg" style="width:128px;height:128px" alt="Avatar" /><br />17/05/1020 ETU 07:14<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D274949', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274948')">Détails</a> <a href="javascript:warnpost(274948)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274948" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274948',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#eebb6a"># Pr&ecirc;tresse, si ma place n&#039;&eacute;tait qu&#039;&agrave; l&#039;Assembl&eacute;e Galactique, j&#039;aurais plus vite fait de me pendre. Je ne suis pas que politicien, mais avant tout chef de civilisation et je me dois de faire prosp&eacute;rer la Ralbolie. C&#039;est pourquoi il me faut aussi veiller &agrave; entretenir des bonnes relations, &agrave; surveiller mes arm&eacute;es, &agrave; d&eacute;fendre mes plan&egrave;tes. Celui que tu qualifies de nain de compagnie, c&#039;est Mekteub&eacute; et c&#039;est peut-&ecirc;tre mon meilleur pote en fait. Pour faire simple, c&#039;est un autre commandant lui aussi, un gars super riche askip. Du coup il m&#039;a demand&eacute; de lui accorder une faveur, au nom de notre amiti&eacute; : ce que j&#039;ai fait.</div><div class="post_line"></div><div class="post_line">Voil&agrave; pourquoi je suis l&agrave;, c&#039;est pas parce que ta tronche de haricot me manquait et que je me suis demand&eacute; par quel moyen je pourrais le mieux te faire chier. Compris ? Donc voil&agrave;, je vais t&#039;expliquer pourquoi je suis ici. Le petit mek ici pr&eacute;sent, il ne croit pas vraiment au voodoo, mais il souhaiterait n&eacute;anmoins faire revenir les morts &agrave; la vie. Du coup, &agrave; d&eacute;faut de conna&icirc;tre personnellement Papa Legba, je te connais toi et comme tu m&#039;as r&eacute;p&eacute;t&eacute; au moins dix fois que tu &eacute;tais immortelle et que du coup, tu &eacute;tais ma&icirc;tresse de la mort ou je ne sais pas quelle connerie encore, je me suis dit que tu pouvais peut-&ecirc;tre ramener un mort &agrave; la vie. C&#039;est trop demander que d&#039;avoir un peu d&#039;aide de ta part, peut-&ecirc;tre ?</font></div><div class="post_line"></div><div class="post_line"><font color="#E7EBE0">Fait rare, Chirin semblait vraiment s&#039;&eacute;nerver. C&#039;&eacute;tait probablement d&ucirc; au fait que les deux clopins s&#039;&eacute;taient tap&eacute; une marche interminable avec un truc qui pesait son lot de dragibus. Du coup, il avait vraiment pas envie qu&#039;on le remballe de la mani&egrave;re, d&#039;autant plus que l&#039;attitude snob de l&#039;autre conne commen&ccedil;ait &agrave; lui courir sur le coquillon. Si elle voulait se la p&eacute;ter, bien, mais lui il n&#039;avait pas que &ccedil;a &agrave; faire en toute honn&ecirc;tet&eacute;. Donc les le&ccedil;ons de morale : non merci. &Agrave; un moment &ccedil;a va bien deux minutes d&#039;entendre &quot;Chirin, fallait faire-ci&quot; ou encore &quot;Chirin, t&#039;es trop con, arr&ecirc;te de jouer &agrave; l&#039;imb&eacute;cile&quot; mais bordel il &eacute;tait pas con ! Au contraire ! Tout ce qu&#039;il faisait, il savait pourquoi il le faisait, bien que &ccedil;a pouvait sembler erratique de l&#039;ext&eacute;rieur. Parce que sa nature c&#039;&eacute;tait de toujours surprendre les gens, pour ne pas &ecirc;tre encore un autre gars inint&eacute;ressant dont on a fait le tour en trois minutes. Non, Chirin c&#039;&eacute;tait suffisamment incongru comme pr&eacute;nom pour que le personnage le soit aussi. Bref ! La Pr&ecirc;tresse lui offrit la r&eacute;ponse qu&#039;il redoutait tant :</font></div><div class="post_line"></div><div class="post_line"><strong><font color="yellow">&laquo; D&eacute;j&agrave;, tu vas me parler sur un autre ton, parce que je suis pas ta pote. Depuis le d&eacute;but, je suis ton Ducros : je me d&eacute;carcasse pour toi. Donc je tiens au respect que tu me dois, car autrement je te jure que la prochaine fois que tu viens ici, tu seras accueilli &agrave; coup de blaster dans ton anneau, compris ? Et seconde chose, je suis d&eacute;sol&eacute; de te d&eacute;cevoir mais je suis Pr&ecirc;tresse, pas n&eacute;cromancienne. Les morts le restent et il n&#039;y a rien que je puisse faire pour les ramener &agrave; la vie. Ce qui est mort est vou&eacute; &agrave; la r&eacute;surrection, dans un autre corps et avec un nouveau karma. Je ne peux donc rien pour toi. Donc vous prenez vos clics et vos clacs et vous foutez le camp de chez moi fissa, je veux plus vous revoir avant un bon moment. Et &ccedil;a vaut aussi pour ton nain teub&eacute;. Allez oust ! Du balai ! &raquo;</font></strong></div><div class="post_line"></div><div class="post_line"><font color="#E7EBE0">Chirin essaya de protester, mais le regard noir de la Pr&ecirc;tresse lui fit comprendre qu&#039;elle n&#039;h&eacute;siterait pas &agrave; mettre ses menaces &agrave; ex&eacute;cution. Il tira le petit mek par le col de la chemise, car celui-ci comptait bien en decoudre. Il scandait haut et fort qu&#039;il voulait le pouvoir du lamacorne et qu&#039;il l&#039;aurait et puis pas mal d&#039;insanit&eacute;s - &agrave; moins que ce ne soit juste son chocolat qui bouillait dans ses veines. C&#039;&eacute;tait retour &agrave; la case d&eacute;part. Charg&eacute;s du frigo, ils entam&egrave;rent la descent pour rentrer &agrave; la Capitale de la Ralbolie, lorsque soudain, Chirin eut une id&eacute;e brillante. Tous deux allaient faire semblant de s&#039;en aller, mais en v&eacute;rit&eacute; ils allaient la jouer malin : en scred les deux se cacheraient dans les buissons et attendraient la nuit venue que l&#039;autre Pr&ecirc;tresse elle dorme pour se rendre dans son labo d&#039;alchimie o&ugrave; ils fabriqueraient une potion magique.</div><div class="post_line"></div><div class="post_line">Le seul putain de probl&egrave;me, c&#039;&eacute;tait que &agrave; 12 354,65 m&egrave;tres d&#039;altitude, il faisait super froid. Tellement froid que Chirin avait la micro-kikette. Et le nez rouge. Et les doigts gel&eacute;s. Putain, en fait c&#039;&eacute;tait une sacr&eacute;e id&eacute;e de merde, parce que ce qu&#039;ils comptaient faire, ils auraient pu l&#039;effectuer n&#039;importe o&ugrave; d&#039;autre, mais c&#039;&eacute;tait sur le principe quoi.</font></div><div class="post_line"></div><div class="post_line"><font color="#eebb6a"># N&#039;emp&ecirc;che t&#039;as vu comment elle m&#039;a trop mal parl&eacute; l&#039;autre l&agrave; ? J&#039;hallucine putain ! Non mais t&#039;imagines un instant qu&#039;on te parle comme &ccedil;a ? Mais comment j&#039;aimerais trop trop quoi. Direct j&#039;&eacute;tais oblig&eacute; de lui r&eacute;torquer quoi. Mais c&#039;est quoi ce manque de mani&egrave;re ? Putaaaaaaaaaain, mais je d&eacute;col&egrave;re pas, yo ! J&#039;te jure moi j&#039;aime pas l&#039;insolence comme &ccedil;a ? Elle s&#039;est prise pour qui l&#039;autre encore ? J&#039;vais lui en coller des baffes moi, tu vas voir. Putain de merde.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Mekteub%C3%A9">Cdt. Mekteub&eacute;</a><br>Prestige de chroniqueur&nbsp;: 52<br /><br /><img src="/avatars/10637.png" style="width:128px;height:110px" alt="Avatar" /><br />19/05/1020 ETU 20:36<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D275148', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal275146')">Détails</a> <a href="javascript:warnpost(275146)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal275146" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=275146',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em>Le Petit &ecirc;tre &ecirc;tait d&eacute;&ccedil;u par la tournure des&nbsp;&eacute;v&eacute;nements. La Grande Pr&ecirc;tresse les avait jet&eacute; dehors comme des moins que rien. Chirin ne d&eacute;col&eacute;rait pas. Et ce p&eacute;riple qu&#039;il pensait rapide et couronn&eacute; de succ&egrave;s &eacute;tait un total fiasco.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Bon Chirin. D&eacute;j&agrave;, j&#039;comprends pas comment &ccedil;a s&#039;fait qu&#039;en tant que Roi tu t&#039;fasses &eacute;clater comme &ccedil;a par cette femme ! Enfin, j&#039;dis femme, mais j&#039;ai rien contre les femmes d&#039;pouvoir okay ? J&#039;veux pas qu&#039;les f&eacute;ministes me prennent en grippe parce que j&#039;ai dit &ccedil;a et avec les hyst&eacute;riques qu&#039;on a &agrave; l&#039;Assembl&eacute;e vaut mieux pas dire de conneries trop fortes ! Haha !</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#eebb6a"># Mais gars t&#039;es cingl&eacute; j&#039;t&#039;ai dit qu&#039;elle avait une super ou&iuml;e de ouf donc critique l&agrave; pas trop fort yo !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Ouais, dans ce cas tu crois qu&#039;elle va pas </strong><strong>nous entendre faire une potion dans son propre labo qui est aussi sa maison ? J&#039;ai du respect pour toi mais l&agrave; j&#039;crois qu&#039;t&#039;es un peu con non ? Ecoute, on a qu&#039;&agrave; redescendre dans un laboratoire tout beau tout propre o&ugrave; des scientifiques </strong><strong>pourront nous aider plut&ocirc;t qu&#039;de faire &ccedil;a n&#039;importe comment en douce chez l&#039;autre tar&eacute;e okay ?</strong></div><div class="post_line"><em></div><div class="post_line">Apr&egrave;s un moment d&#039;h&eacute;sitation, le Roi de Ralbolie accepta l&#039;offre non sans rechigner. Ils redescendirent&nbsp;&agrave; la Capitale o&ugrave; ils prirent apr&egrave;s ce p&eacute;riple fatiguant une journ&eacute;e pour s&#039;en remettre. Le lendemain matin, le Roi Chirin emmena Mekteub&eacute; visiter un laboratoire P8 tout juste sorti de terre. Les &eacute;minents scientifiques &eacute;taient tous r&eacute;unis dans une grande salle de conf&eacute;rence. Apr&egrave;s les pr&eacute;sentations faites par le Roi, Mekteub&eacute; leur exposa son desiderata.</em></div><div class="post_line"></div><div class="post_line"><strong>Bonjour tout l&#039;monde. D&eacute;j&agrave; merci pour que vous soyez tous venus ici. J&#039;vous refais l&#039;film. J&#039;ai rencontr&eacute; un jour cette magnifique et adorable cr&eacute;ature, le&nbsp;<a href="https://www.apocalypsis.org/showuser?e_cap=malko+IV" target="_blank" rel="nofollow">lamacorne</a>. Malheureusement, il est mort avant qu&#039;j&#039;puisse le monter et en faire mon animal de compagnie. Ca m&#039;rend triste alors j&#039;ai d&eacute;cid&eacute; d&#039;le faire revivre gr&acirc;ce au pouvoir d&#039;votre Pr&ecirc;tresse okay ? sauf que cette derni&egrave;re elle nous a foutu dehors parce qu&#039;elle pouvait rien faire pour lui et qu&#039;personne pouvait rien faire pour lui car les morts restent morts.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Le lamacorne, il faisait des pets arc-en-ciel okay ? Ca c&#039;est la classe ! Alors pour honorer sa m&eacute;moire moi aussi j&#039;veux faire des pets arc-en-ciel !&nbsp;</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>A la fin de sa phrase, les &eacute;crans de la salle s&#039;allum&egrave;rent sur une formule savante que Chirin avait trouv&eacute; on ne sait o&ugrave;.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">________________________________________________________________________________________________________________________</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffa339"><font size="6">PARTIE I : PURIFICATIONS ET EXTRACTIONS</font></font></div><div class="post_line"><font color="#ffc95f"><font size="5">Chapitre 6 : Extraction des propri&eacute;t&eacute;s curatives des cr&eacute;atures par l&#039;usage de simples et de distillats</font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="4"><strong>INGR&Eacute;DIENTS :</strong> </div><div class="post_line"></div><div class="post_line">- 1 cuisse d&#039;ongul&eacute;</font> <font color="#eebb6a">(pas besoin de m&#039;insulter sale bouquin de merde)</font></div><div class="post_line"><font size="4">- 120 feuilles de thym</div><div class="post_line">- 1 ventr&egrave;che</div><div class="post_line">- 400g de saindoux</font></div><div class="post_line"><font size="4">- Une plume de serpent</div><div class="post_line">- Une clochette</div><div class="post_line">- Une fiole de bave de crapaud</div><div class="post_line">- Mille pattes de mille-pattes</font></div><div class="post_line"></div><div class="post_line"><font size="4"><strong>RECETTE :</strong></div><div class="post_line"></div><div class="post_line">- Dans un chaudron, versez un gallon d&#039;eau.</div><div class="post_line">- Ajoutez-y la plume de serpent et portez l&#039;eau &agrave; &eacute;bullition. Votre base sera purifi&eacute;e et pr&ecirc;te lorsque la plume s&#039;envolera. Si elle ne s&#039;envole pas, c&#039;est que vous travaillez avec de l&#039;eau b&eacute;nite fournie par Denior. Recommencez l&#039;op&eacute;ration depuis le d&eacute;but en ayant pris soin de laver votre chaudron.</div><div class="post_line">- Ajoutez les 120 feuilles de thym et la ventr&egrave;che, patientez jusqu&#039;&agrave; ce que la clochette tinte.</div><div class="post_line">- Mettez tout le reste sauf le saindoux et laissez r&eacute;duire.</div><div class="post_line">- Pendant ce temps, badigeonnez-vous de saindoux et engagez-vous dans un rituel tantrique sensuel.</font></div><div class="post_line"></div><div class="post_line"><font color="#eebb6a">Ja-mais-de-la-life. On la saute cette &eacute;tape. Allez go, suivant.</font></div><div class="post_line"></div><div class="post_line"><font size="4"><strong>PURIFICATION :</strong></div><div class="post_line"></div><div class="post_line">- R&eacute;duisez votre d&eacute;coction jusqu&#039;&agrave; obtenir une teinte verd&acirc;tre</div><div class="post_line">- Mettez le tout dans un alambic rempli au trait de jauge d&#039;eau-de-vie.</div><div class="post_line">- Distillez jusqu&#039;&agrave; ce que s&#039;arr&ecirc;te la premi&egrave;re &eacute;bullition. R&eacute;coltez le distillat.</div><div class="post_line"></div><div class="post_line"><strong>UTILISATION :</strong></div><div class="post_line"></div><div class="post_line">Placez une goutte dans votre oeil pour b&eacute;n&eacute;ficier temporairement des facult&eacute;s cognitives de l&#039;animal. Si vous en prenez en exc&egrave;s, les effets peuvent &ecirc;tre irr&eacute;versibles.</font></div><div class="post_line"></div></div><div class="post_line"><div align="justify">_______________________________________________________________________________________________________________________</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Voil&agrave;. Vous m&#039;faites cette recette avec les restes de mon lamacorne okay ? D&egrave;s qu&#039;c&#039;est fini j&#039;bois la potion magique et apr&egrave;s j&#039;vous enfume tous ! Haha ! </strong><em>Mekteub&eacute; avait le sentiment de toucher au but. Il allait enfin pouvoir communier avec feu l&#039;lamacorne trop choupinou. Lorsque les scientifiques furent satisfaits du r&eacute;sultat obtenus, ils pr&eacute;vinrent Mekteub&eacute; et leur Roi. Dans la salle de conf&eacute;rence, une fiole contenant un liquide multicolore tr&ocirc;nait sur un coussin en velou rouge. Il &eacute;tait temps.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>J&#039;voudrais vous remercier pour votre travail. Vous m&eacute;ritez bien votre salaire bande d&#039;enfoir&eacute;s ! C&#039;est vrai quoi vous nous demandez chaque cycle un peu plus de thunes et &ccedil;a choque personne ? Hmm...j&#039;sens qu&#039;j&#039;m&eacute;gare... Merci pour tout. Reste plus qu&#039;&agrave; go&ucirc;ter &ccedil;a !</strong><em> Il brandit la fiole devant lui, enleva le bouchon-pipette et avala d&#039;une traite le liquide sous le regard m&eacute;dus&eacute; de la foule.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#eebb6a"># Mais mek t&#039;es un ouf ! On avait dit une seule goutte dans l&#039;oeil pour vois si &ccedil;a marchait ! T&#039;es un grand malade mon gars si &ccedil;a s&#039;trouve tu vas exploser du cul yo !</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>C&#039;&eacute;tait d&eacute;gueulasse votre truc ! J&#039;sens rien pour l&#039;instant. </strong><em>Il contracta ses abdominaux pour pousser un pet.</em><em> <font size="5">Prout.</font>&nbsp;<strong><font color="#005DC2">E</font><font color="#44B8FF">t</font> <font color="#ffff00">m</font><font color="#0074d9">a</font><font color="#ff0000">i</font><font color="#f012be">s</font> <font color="#005DC2">&ccedil;</font><font color="#44B8FF">a</font> <font color="#ffff00">a</font> <font color="#ff0000">p</font><font color="#f012be">a</font><font color="#9a00b2">s</font> <font color="#44B8FF">m</font><font color="#72FF84">a</font><font color="#ffff00">r</font><font color="#0074d9">c</font><font color="#ff0000">h</font><font color="#f012be">&eacute;</font> <font color="#005DC2">v</font><font color="#44B8FF">o</font><font color="#72FF84">t</font><font color="#ffff00">r</font><font color="#0074d9">e</font> <font color="#f012be">t</font><font color="#9a00b2">r</font><font color="#005DC2">u</font><font color="#44B8FF">c</font> <font color="#ffff00">!</font><font color="#0074d9">.</font><font color="#ff0000">.</font><font color="#f012be">.</font> <font color="#005DC2">W</font><font color="#44B8FF">H</font><font color="#72FF84">O</font><font color="#ffff00">U</font><font color="#0074d9">A</font><font color="#ff0000">H</font> <font color="#9a00b2">!</font><font size="5"> <font color="#44B8FF">J</font><font color="#72FF84">&#039;</font><font color="#ffff00">a</font><font color="#0074d9">i</font> <font color="#f012be">r</font><font color="#9a00b2">i</font><font color="#005DC2">e</font><font color="#44B8FF">n</font> <font color="#ffff00">d</font><font color="#0074d9">i</font><font color="#ff0000">t</font> <font color="#9a00b2">c</font><font color="#005DC2">&#039;</font><font color="#44B8FF">e</font><font color="#72FF84">s</font><font color="#ffff00">t</font> <font color="#ff0000">g</font><font color="#f012be">&eacute;</font><font color="#9a00b2">n</font><font color="#005DC2">i</font><font color="#44B8FF">a</font><font color="#72FF84">l</font> <font color="#0074d9">!</font><font color="#ff0000">!</font><font color="#f012be">!</font> <font color="#005DC2">H</font><font color="#44B8FF">A</font><font color="#72FF84">H</font><font color="#ffff00">A</font><font color="#0074d9">H</font><font color="#ff0000">A</font><font color="#f012be">H</font><font color="#9a00b2">A</font><font color="#005DC2">H</font><font color="#44B8FF">A</font> <font color="#ffff00">!</font> <font color="#ff0000">C</font><font color="#f012be">h</font><font color="#9a00b2">i</font><font color="#005DC2">r</font><font color="#44B8FF">i</font><font color="#72FF84">n</font><font color="#ffff00">,</font> <font color="#ff0000">m</font><font color="#f012be">e</font><font color="#9a00b2">r</font><font color="#005DC2">c</font><font color="#44B8FF">i</font> <font color="#ffff00">!&nbsp;<strong><font color="#005DC2">C</font><font color="#44B8FF">a</font> <font color="#ffff00">v</font><font color="#0074d9">e</font><font color="#ff0000">u</font><font color="#f012be">t</font> <font color="#005DC2">d</font><font color="#44B8FF">i</font><font color="#72FF84">r</font><font color="#ffff00">e</font> <font color="#ff0000">q</font><font color="#f012be">u</font><font color="#9a00b2">e</font> <font color="#44B8FF">j</font><font color="#72FF84">&#039;</font><font color="#ffff00">v</font><font color="#0074d9">a</font><font color="#ff0000">i</font><font color="#f012be">s</font> <font color="#005DC2">p</font><font color="#44B8FF">a</font><font color="#72FF84">r</font><font color="#ffff00">l</font><font color="#0074d9">e</font><font color="#ff0000">r</font> <font color="#9a00b2">c</font><font color="#005DC2">o</font><font color="#44B8FF">m</font><font color="#72FF84">m</font><font color="#ffff00">e</font> <font color="#ff0000">&ccedil;</font><font color="#f012be">a</font> <font color="#005DC2">d</font><font color="#44B8FF">o</font><font color="#72FF84">r</font><font color="#ffff00">&eacute;</font><font color="#0074d9">n</font><font color="#ff0000">a</font><font color="#f012be">v</font><font color="#9a00b2">a</font><font color="#005DC2">n</font><font color="#44B8FF">t</font> <font color="#ffff00">?</font></strong></font></font></strong></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Fin de l&#039;histoire.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=14950&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=14950" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_14950" name="d_reply_14950" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_14950');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_14950'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Titre de Chronique</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

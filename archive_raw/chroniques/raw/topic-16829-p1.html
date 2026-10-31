@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16829 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>La naissance de John Reptile</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La naissance de John Reptile</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=John+Reptile">Cdt. John Reptile</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/12000.jpg" style="width:128px;height:128px" alt="Avatar" /><br />15/06/1023 ETU 07:38</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D300497', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal300496')">Détails</a> <a href="javascript:warnpost(300496)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300496" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 6</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300496',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffa339">John Snow, autrefois promis &agrave; un destin &eacute;tincelant en tant que roi du Nord, voit sa vie prendre un tournant inattendu lorsqu&#039;il est myst&eacute;rieusement projet&eacute; dans une r&eacute;alit&eacute; absurde. Cette r&eacute;alit&eacute; &eacute;trange a &eacute;t&eacute; cr&eacute;&eacute;e par des forces inconnues qui s&#039;amusent &agrave; m&eacute;langer diff&eacute;rents univers et personnages. Dans ce nouveau monde, John Snow subit une transformation radicale, fusionnant avec du sang r&eacute;ptilien.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>D&eacute;sormais connu sous le nom de John Reptile, il se retrouve avec une apparence mi-humaine, mi-reptilienne. Son corps est recouvert d&#039;&eacute;cailles et il poss&egrave;de des caract&eacute;ristiques reptiliennes, comme des griffes ac&eacute;r&eacute;es et une langue fourchue. Sa destin&eacute;e en tant que roi du Nord semble s&#039;&eacute;vanouir.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Perdu et confus, John Reptile se lance alors dans un voyage &agrave; travers cet univers &eacute;trange. Il d&eacute;couvre rapidement que les r&egrave;gles habituelles de la logique et de la coh&eacute;rence n&#039;existent pas ici. Des licornes multicolores qui parlent, des sorci&egrave;res disco et des chevaliers galactiques sont monnaie courante.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>John Reptile reste d&eacute;termin&eacute; &agrave; trouver un moyen de rentrer chez lui. Au cours de son p&eacute;riple, il rencontre d&#039;autres personnages excentriques, &eacute;galement victimes de l&#039;humour douteux des entit&eacute;s qui les ont fa&ccedil;onn&eacute;s. Parmi eux, il fait &eacute;quipe avec Melody, une acrobate pleine de ressources, et Puck, un lutin maladroit mais attachant.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>D&eacute;sorient&eacute;, d&eacute;termin&eacute; &agrave; trouver un moyen de rentrer chez lui, John Reptile se retrouve &agrave; bord d&#039;un vaisseau spatial. Il d&eacute;couvre en lui des talents de commandant inn&eacute;s, capable de diriger son &eacute;quipage avec charisme et expertise tactique. Cependant, sa nature reptilienne lui joue parfois des tours, comme lorsqu&#039;il ressent l&#039;envie irr&eacute;pressible de s&#039;accrocher aux murs du vaisseau.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Alors que leur qu&ecirc;te avance, John Reptile et son &eacute;quipe d&eacute;couvrent que cette univers est une cr&eacute;ation myst&eacute;rieuse. Ils r&eacute;alisent que chaque personnage est une pi&egrave;ce de ce jeu &eacute;trange, sans conna&icirc;tre les v&eacute;ritables intentions des forces qui tirent les ficelles en coulisses.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>L&#039;&eacute;quipage de John Reptile se lance alors dans une mission pour en percer les myst&egrave;res&nbsp;et trouver un moyen de s&#039;&eacute;chapper.&nbsp;</em></font></div><div class="post_line"><font color="#7fdbff"><em>John Reptile devra utiliser son intelligence, ses comp&eacute;tences de commandant et m&ecirc;me son sens de l&#039;humour pour guider son &eacute;quipage &agrave; travers les situations les plus absurdes. Au fil du temps, il commencera &agrave; se lier d&#039;amiti&eacute; avec ses compagnons d&#039;aventure, trouvant du r&eacute;confort et du soutien dans ce nouvelle univers...</em></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=John+Reptile">Cdt. John Reptile</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/12000.jpg" style="width:128px;height:128px" alt="Avatar" /><br />16/06/1023 ETU 03:16</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D300578', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal300577')">Détails</a> <a href="javascript:warnpost(300577)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300577" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300577',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#44b8ff">Morale de l&#039;histoire&nbsp;(pillule bleu) : Dans cet univers absurde et chaotique, John Reptile apprendra que la vraie force r&eacute;side dans l&#039;acceptation de soi et des circonstances. Malgr&eacute; sa transformation reptilienne et la perte de sa destin&eacute;e royale, il d&eacute;couvrira que sa v&eacute;ritable valeur ne r&eacute;side pas dans les apparences ou les titres, mais dans sa capacit&eacute; &agrave; s&#039;adapter et &agrave; faire preuve de r&eacute;silience. En embrassant sa nouvelle identit&eacute; et en trouvant sa place parmi les personnages excentriques qui l&#039;entourent, il apprendra que l&#039;unicit&eacute; de chaque individu est une force pr&eacute;cieuse, m&ecirc;me dans les mondes les plus &eacute;tranges et impr&eacute;visibles. Finalement, </font><font color="#ffc0cb">John Reptile r&eacute;alisera que le v&eacute;ritable voyage consiste &agrave; se d&eacute;couvrir soi-m&ecirc;me et &agrave; se connecter avec les autres, peu importe o&ugrave; l&#039;on se trouve.</font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff5f54"><em>Morale de l&#039;histoire&nbsp;(pillule rouge) :&nbsp;</em><em>Dans ce monde absurde et chaotique, John Reptile d&eacute;couvrira que parfois, les forces qui contr&ocirc;lent nos destins sont impitoyables et cruelles. Malgr&eacute; ses efforts pour trouver un moyen de rentrer chez lui, il se rendra compte que le concept de &quot;chez soi&quot; est une illusion inaccessible. Les entit&eacute;s qui manipulent cet univers &eacute;trange se jouent des vies des personnages, les condamnant &agrave; une existence d&eacute;nu&eacute;e de sens et de v&eacute;ritable libre arbitre.</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ff5f54">Au fur et &agrave; mesure de sa qu&ecirc;te pour percer les myst&egrave;res de cette cr&eacute;ation myst&eacute;rieuse, John Reptile constatera que l&#039;espoir est une illusion trompeuse ainsi que sa propre impuissance. Les rencontres avec d&#039;autres personnages excentriques ne lui apporteront que des amiti&eacute;s &eacute;ph&eacute;m&egrave;res et des pertes d&eacute;chirantes. Il se rendra compte que la camaraderie et la confiance ne sont que des concepts fugaces, vou&eacute;s &agrave; &ecirc;tre trahis ou d&eacute;truits par les forces sup&eacute;rieures qui les manipulent.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff5f54">Dans cette sombre r&eacute;alit&eacute;, John Reptile sera confront&eacute; &agrave; sa propre insignifiance et &agrave; l&#039;absurdit&eacute; de sa lutte. Son intelligence et ses comp&eacute;tences tactiques ne pourront rivaliser avec la volont&eacute; d&eacute;lib&eacute;r&eacute;e des forces inconnues qui tirent les ficelles. La notion de libert&eacute; sera sans cesse &eacute;cras&eacute;e par les r&egrave;gles arbitraires de cet univers &eacute;trange et sans piti&eacute;.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff5f54">Finalement, John Reptile sera condamn&eacute; &agrave; errer sans fin, prisonnier de ce jeu cruel et impitoyable. Il r&eacute;alisera que les r&eacute;ponses qu&#039;il cherche sont inaccessibles, que la v&eacute;rit&eacute; est une chim&egrave;re insaisissable. Sa qu&ecirc;te pour s&#039;&eacute;chapper et retrouver une vie normale se terminera dans un tourbillon de d&eacute;sespoir et de folie.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff5f54">Cette histoire sombre et noire nous rappelle la cruaut&eacute; du destin et la vanit&eacute; de nos efforts pour &eacute;chapper &agrave; des forces qui nous d&eacute;passent. Elle souligne la r&eacute;alit&eacute; incontournable de notre condition humaine, o&ugrave; la lutte peut &ecirc;tre vaine et o&ugrave; la finitude de notre existence est in&eacute;vitable.</font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font color="#9a00b2">Morale de l&#039;histoire&nbsp;Pilule noire&nbsp;: Dans ce monde absurde et chaotique, John Reptile sera confront&eacute; &agrave; l&#039;horreur ultime de son existence. Peu &agrave; peu, il r&eacute;alisera que son voyage &agrave; travers cet univers &eacute;trange n&#039;est qu&#039;un reflet d&eacute;form&eacute; de sa propre folie et de sa descente dans la d&eacute;mence.</div><div class="post_line"></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#9a00b2">&Agrave; mesure que John Reptile explore les recoins les plus sombres de cet univers, il d&eacute;couvrira des v&eacute;rit&eacute;s terrifiantes sur lui-m&ecirc;me et sur la nature humaine. Il se rendra compte que la cruaut&eacute;, la violence et la destruction sont les fondements m&ecirc;mes de cette r&eacute;alit&eacute; d&eacute;form&eacute;e. Son &eacute;quipe, ses compagnons d&#039;aventure, seront tous condamn&eacute;s &agrave; sombrer dans la d&eacute;solation et &agrave; se perdre dans l&#039;ab&icirc;me sans fin de la souffrance.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#9a00b2">Au lieu d&#039;un espoir de retourner chez lui, John Reptile sera entra&icirc;n&eacute; dans une spirale de d&eacute;sespoir et d&#039;obscurit&eacute; sans issue. Chaque pas en avant ne fera que le rapprocher davantage de sa propre destruction, et il comprendra que la seule &eacute;chappatoire possible r&eacute;side dans la mort.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#9a00b2">Cette histoire sans espoir nous rappelle la nature intrins&egrave;quement sombre et in&eacute;luctable de l&#039;existence. Elle souligne que, parfois, il n&#039;y a pas de r&eacute;demption possible, pas de lumi&egrave;re &agrave; la fin du tunnel. La r&eacute;alit&eacute; peut se r&eacute;v&eacute;ler &ecirc;tre un cauchemar sans fin, o&ugrave; les protagonistes sont condamn&eacute;s &agrave; errer dans un tourment &eacute;ternel. Elle nous pousse &agrave; r&eacute;fl&eacute;chir sur les limites de notre propre condition humaine et sur les profondeurs insoup&ccedil;onn&eacute;es de l&#039;horreur qui peuvent r&eacute;sider en nous.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#9a00b2">Finalement, John Reptile succombera &agrave; la noirceur de cet univers sans &eacute;chappatoire. Il perdra tout espoir, se noyant dans une folie profonde et d&eacute;vorante. Sa qu&ecirc;te pour rentrer chez lui se transformera en une obsession destructrice qui le consumera, le laissant bris&eacute; et irr&eacute;m&eacute;diablement perdu.</font></em></div><div class="post_line"><em><font color="#9a00b2">Cette histoire sombre et tragique nous confronte &agrave; la r&eacute;alit&eacute; d&#039;un univers sans piti&eacute;, o&ugrave; le destin est in&eacute;luctablement cruel et o&ugrave; les efforts et les aspirations sont condamn&eacute;s &agrave; l&#039;&eacute;chec. Elle nous invite &agrave; m&eacute;diter sur les limites de notre propre existence et sur la possibilit&eacute; que notre lutte contre les forces sup&eacute;rieures soit vou&eacute;e &agrave; l&#039;&eacute;chec et &agrave; la d&eacute;solation.</font></em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16829&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16829" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16829" name="d_reply_16829" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16829');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16829'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La naissance de John Reptile</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

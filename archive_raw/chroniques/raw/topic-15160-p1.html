@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15160 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>La taverne Blanche</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La taverne Blanche</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />29/07/1020 ETU 01:00</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal277693')">Détails</a> <a href="javascript:warnpost(277693)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal277693" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=277693',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Deux personnes entra dans la pi&egrave;ce. La salle semblait neuve, comme si elle avait &eacute;t&eacute; refaite pour l&#039;occasion, et c&#039;&eacute;tait bien le cas. La pi&egrave;ce semblait &ecirc;tre coup&eacute;e en trois parties, la premi&egrave;re &agrave; gauche ressemblait &agrave; un espace d&eacute;tente. Sur la droite se trouvaient des tables rondes qui semblaient pouvoir accueillir cinq dirigeants au maximum. Enfin, en face de la porte se trouvait un long bar qui s&#039;accouplait parfaitement avec le sol de ch&ecirc;ne. Les murs, eux, avaient &eacute;t&eacute; repeints en blanc pour donner une impression de profondeur. Dans chaque coin de la pi&egrave;ce avaient &eacute;t&eacute; ajout&eacute;es des banni&egrave;res formant un g&eacute;ant corbeau noir. Il &eacute;tait aussi tr&egrave;s facile de rep&eacute;rer les oiseaux qui &eacute;taient post&eacute;s au-dessus de fen&ecirc;tre.</div><div class="post_line">Il y avait trois personnes install&eacute;s&nbsp; au bar.</div><div class="post_line">Un homme, tout de bleu v&ecirc;tu, et une femme affubl&eacute;e d&#039;un manteau long dont la verdure respir&eacute; la non-vie.</div><div class="post_line">Elle se tourna en direction de la porte, deux personnes venaient de la franchir.</div><div class="post_line"><font color="#D900A7">Excusez-moi, je vous laisse avec Seth... Ne buvez pas trop !</font></div><div class="post_line">La femme pris la parole</div><div class="post_line"><font color="#FFFF44">Binyour, Y Lali Comindante d&egrave; L&#039;Itat Libro SVRA, Y vous prisente mo Tradicteur, Bill, Y va tlanscipre moy langua ver&egrave;s del langa Coumoune.</font></div><div class="post_line">l&#039;homme, d&#039;un pas s&#039;avan&ccedil;a.</div><div class="post_line"><font color="#005DC2">Bonjour, Je suis le traducteur de La Commandante Lali. La commandante vous dis :</font></div><div class="post_line"><font color="#005DC2">Bonjour, Je suis Lali, Commandante de l&#039;&eacute;tat libre du Svra, Je vous pr&eacute;sente mon traducteur : Bill, il va transcrire notre langue vers la langue commune.</font></div><div class="post_line">Lali prit la parole.</div><div class="post_line"><font color="#FFFF00">Y va din poul proyent&eacute; mos hommage , Elle e&ucirc;t fait un effort pour prononc&eacute; ce dernier mot dans la langue commune, Y din yot poul rencontle riprisitant del Sector m&ocirc;dit.</font></div><div class="post_line"><font color="#005DC2">Je suis ici pour pr&eacute;sent&eacute; mes hommages, Je suis aussi ici pour rencontr&eacute; les repr&eacute;sentait du Secteur Maudit.</font></div><div class="post_line"><font color="#FFFF00">Y cona&ccedil;e ynemnt di Enarque Sokhar, Y vous Bin,</font></div><div class="post_line"><font color="#005DC2">Je ne connais seulement que l&#039;Enarque Sokahr, Je vous salut.</font></div><div class="post_line">Sokhar fit un signe de t&ecirc;te appuy&eacute; &agrave; la vue de la commandante Lali, par respect.</div><div class="post_line">Ste&iuml;nneilla se leva et rejoignit les deux inconnus.</div><div class="post_line"><font color="#D900A7">Bonjour ! Bienvenue... Lali, c&#039;est bien &ccedil;a ? Nous avons beaucoup entendu parl&eacute; de vous... Mais nous n&#039;avons pas eu la chance de prendre contact avec vous, j&#039;en suis navr&eacute;... J&#039;&eacute;tais d&eacute;bord&eacute;.</font></div><div class="post_line">Elle fit un grand sourire au traducteur et reprit</div><div class="post_line"><font color="#D900A7">Pardonnez-moi... Je suis Ste&iuml;nneilla, native du Secteur Maudit. L&agrave;-bas... Assis au bar vous avez Seth, il est aussi d&#039;ici ! Je ne pense pas que vous aurez la chance de rencontrer Baliberne ou Armi ici... Ils sont plut&ocirc;t du genre discret... Enfin... G&eacute;n&eacute;ralement. Heu... Bill, c&#039;est bien &ccedil;a ?</font></div><div class="post_line">Le traducteur acquiesca </div><div class="post_line">Elle fixa le en lui montrant le bar.</div><div class="post_line"><font color="#D900A7">Vous et Lali souhaitez quelque chose ? Je ne sais pas si vous allez trouver votre bonheur... Nous ne sommes pas tr&egrave;s riches en alcool. Heureusement Sokoreff a l&#039;air d&#039;appr&eacute;cier...</font></div><div class="post_line">Elle se tourna vers Alexine.</div><div class="post_line"><font color="#D900A7">C&#039;est quoi d&eacute;j&agrave; ?</font></div><div class="post_line"><font color="#9DF9FF">De la Belladone !</font></div><div class="post_line"><font color="#D900A7">Oui voil&agrave; ! Belladone... Je ne sais absolument pas ce que c&#039;est... Mais si &ccedil;a pla&icirc;t, c&#039;est parfait !</font></div><div class="post_line">Le traducteur Bill regarda et sour&icirc;t a Ste&iuml;nneilla. Puis se tourna vers Lali</div><div class="post_line"><font color="#005DC2">Ste&iuml;nneilla Y soaite Bingoyour, Y diso to no com-x missive. Y oyerwarail.</font></div><div class="post_line">La commandante sourit amicalement a Ste&iuml;nneilla</div><div class="post_line"><font color="#FFFF00">Oy, Y comrpis. Co no proublime, Y missive no com-x din. </font>Lali e&ucirc;t un rire poli</div><div class="post_line"><font color="#005DC2">Ce n&#039;est pas un probl&egrave;me, elle n&#039;en ai pas envoyer aussi.</font></div><div class="post_line">Bill montra, de sa main, le bar</div><div class="post_line"><font color="#005DC2">Y ivite noy sit. Del mal, Y Seth, Del barservor Y Alexine. Y propose y glou Belladone. Y no bico alcool.</font></div><div class="post_line"><font color="#FFFF00">Oy, Y pris Bellabone, vous ?</font></div><div class="post_line"><font color="#005DC2">Y pris nou vodka.</font></div><div class="post_line">Bill se pivota vers leur h&ocirc;te</div><div class="post_line"><font color="#005DC2">La commandante Lali veut bien go&ucirc;ter la Bellabone et moi je vais prendre une vodka nature merci. </font></div><div class="post_line"><font color="#9DF9FF">Oui mademoiselle ! Alors, de la Belladone ! Et pour l&#039;humain ? Vodka, Tr&egrave;s bien... C&#039;est quoi &ccedil;a encore.</font></div><div class="post_line"><font color="#D900A7">Vous avez fait bon voyage ? J&#039;esp&egrave;re que vous &ecirc;tes arriv&eacute; sans trop de mal jusqu&#039;ici...</font></div><div class="post_line"><font color="#9DF9FF">Tenez ! </font>Alexina d&eacute;passa Ste&iuml;nneilla et tendit les deux verres aux jeunes dirigeants. <font color="#7FDBFF">Sokoreff a l&#039;air d&rsquo;appr&eacute;cier...M&ecirc;me si il est devenu anormalement p&acirc;le. &Ccedil;a doit s&ucirc;rement &ecirc;tre un effet secondaire ! Excusez moi ! Je dois rejoindre l&#039;homme dor&eacute; !</font></div><div class="post_line"><font color="#F012BE">L&#039;homme dor&eacute; ?</font></div><div class="post_line"><font color="#9DF9FF">Bah oui ! Sohkar ! Son armure...</font></div><div class="post_line"><font color="#F012BE">Oh... Tu sais, il a un pr&eacute;nom.</font></div><div class="post_line"></div><div class="post_line">Sokhar tira une longue bouff&eacute;e de son cigare. Puis l&#039;exhala avec lenteur, se donnant le temps de r&eacute;fl&eacute;chir &agrave; sa r&eacute;ponse, de puiser dans ses souvenirs mais &eacute;galement d&#039;observer les nouveaux venus. </div><div class="post_line"><font color="#FFA500">C&#039;est une divinit&eacute; importante dans notre panth&eacute;on. Il faut voir son action comme b&eacute;n&eacute;fique plus que destructrice. Pour que l&#039;ordre naisse, il a fallut le chaos, le d&eacute;sordre. Ce qu&#039;il fallait pour diss&eacute;miner les graines du vivant et ordonner les choses. Tout ce que nous connaissons est n&eacute; du chaos. C&#039;est l&agrave; le r&ocirc;le de Seth. Enfin de celui que nous prions. Nous avons de nombreuses, tr&egrave;s nombreuses devrais je dire, divinit&eacute;s. Certaines se confondent et se compl&egrave;tent, parfois de fa&ccedil;on tellement proche qu&#039;il est tr&egrave;s difficile de les distinguer. On peut dire que ce sont des divinit&eacute;s multiples. </font></div><div class="post_line"><font color="#FFA500">Pour n&#039;en citer qu&#039;une, je vous dirais La Puissante. La m&egrave;re des m&egrave;res, celle qui vous donne la vie mais qui peut &eacute;galement vous la reprendre avec la plus grande f&eacute;rocit&eacute;, notre D&eacute;esse Sekh&#039;Met. Elle est tant&ocirc;t repr&eacute;sent&eacute;e en tant que ce que vous appelez une lionne, plus f&eacute;roce que n&#039;importe qui, elle d&eacute;fend sa prog&eacute;niture co&ucirc;te que co&ucirc;te. Et &agrave; l&#039;inverse, lorsqu&#039;elle est apais&eacute;e, elle est repr&eacute;sent&eacute;e sous les doux traits d&#039;une chatte, une m&egrave;re attentive et attentionn&eacute;e. Il en existe de nombreuses facettes, chacune repr&eacute;sentant un aspect de celle ci. Leurs r&ocirc;les sont l&eacute;g&egrave;rement diff&eacute;rents, plus sp&eacute;cifiques mais leurs l&eacute;gendes se m&ecirc;lent et s&#039;entrem&ecirc;lent, cr&eacute;ant alors la confusion mais &eacute;galement la magie des mythes. Nous ne sommes pas particuli&egrave;rement religieux mais ces r&eacute;cits ont berc&eacute; nos enfances, forgeant en nous des d&eacute;sirs de voyages, d&#039;aventures et un go&ucirc;t, parfois immod&eacute;r&eacute;, pour la curiosit&eacute;. Ils nous apportent aussi des codes moraux et nous enseignent les choses les plus importantes : l&#039;honneur, la loyaut&eacute;, la t&eacute;nacit&eacute;, .. Des mythes pr&eacute;cis pourraient &ecirc;tre long &agrave; vous conter, nous pourrions y passer la nuit je le crains.</font></div><div class="post_line"></div><div class="post_line">Seth baissa respectueusement la t&ecirc;te</div><div class="post_line"></div><div class="post_line"><font color="#FF0000">Je vois... dans votre culture tout semble reposer sur un &eacute;quilibre c&#039;est &ccedil;a?</font></div><div class="post_line"><font color="#FF0000">Chaque entit&eacute; a son antonyme... Je pense comprendre quelque peu.</font></div><div class="post_line"><font color="#FF0000">Je vous remercie pour ses explications, de m&#039;en apprendre sur votre peuple, vos d&eacute;it&eacute;s et votre patrimoine.</font></div><div class="post_line"></div><div class="post_line">Il continua &agrave; siroter son verre... <em><font color="#FF0000">Alexe&iuml; &eacute;tait encore parmis eux physiquement mais son esprit semblait vagadonder sur plusieurs espace-temps diff&eacute;rents...</font></em></div><div class="post_line"><em><font color="#FF0000">Est-ce qu&#039;il va s&#039;en remettre? Et la Commandante Lali a pris la m&ecirc;me chose? Non non non..... je ne m&#039;y risquerai pas...</font></em></div><div class="post_line"></div><div class="post_line">Sokhar tira une nouvelle bouff&eacute;e de son cohiba puis fit suivre une gorg&eacute;e de rhum. Il arrivait &agrave; la fin de son verre et la bouteille lui faisait de l&#039;oeil. Il reposa son verre et s&#039;adressa &agrave; la barman.</div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Mademoiselle, pourriez vous me remettre la m&ecirc;me chose je vous prie? Je vous en remercie.</font></div><div class="post_line">Joignant le geste &agrave; la parole, il inclina doucement sa t&ecirc;te en guise de remerciement respectueux.</div><div class="post_line">Alexine leva les yeux au ciel et retourna derri&egrave;re le bar. Elle prit le verre de Sohkar et le remplit de nouveau.</div><div class="post_line"></div><div class="post_line"><font color="#9DF9FF">Sinon ! Vous travaillez dans quoi ! Vous &ecirc;tes quoi ? Votre armure est votre peau ? Si je vous plante une aiguille, vous saignez ?</font></div><div class="post_line">Pendant que Seth &eacute;tait perdu dans ses pens&eacute;es, une phrase vint le rappeler &agrave; la r&eacute;alit&eacute;.</div><div class="post_line">il avala difficilement la gorg&eacute;e de vin de paille qu&#039;il avait en bouche.</div><div class="post_line">La masse alcoolis&eacute;e peinait &agrave; descendre l&#039;oesophage... Lentement... petit &agrave; petit... Ainsi donc &eacute;tait faite l&#039;anatomie humaine...</div><div class="post_line">Il posa son verre brusquement sur le bar, heureusement il ne f&ucirc;t pas &eacute;br&eacute;ch&eacute;.</div><div class="post_line">Puis, tandis qu&#039;il tenait encore son verre, un frisson lui parcoura le bras droit... des picotements, des fourmillements puis quelques tremblements.</div><div class="post_line">Au bout de ses doigts, le verre commen&ccedil;ait &agrave; danser dangereusement. Pour se contr&ocirc;ler, il saisit son bras droit de sa main gauche.</div><div class="post_line"></div><div class="post_line">Pendant ce temps, Ste&iuml;nneilla invita Lali et Bill &agrave; venir s&#039;asseoir au bar.</div><div class="post_line"><font color="#F012BE">Alexine... Je pense que Sohkar aimerait bien boire en paix.</font></div><div class="post_line"><font color="#9DF9FF">Hum... Tr&egrave;s bien ! Et vous Seth ! Encore de la paille ?</font></div><div class="post_line">Seth tourna son regard vers Ste&iuml;nneilla, puis en souriant.</div><div class="post_line">il se retourna vers Alexine, visiblement devenu tr&egrave;s &agrave; l&#039;aise dans son r&ocirc;le de barmaid.P</div><div class="post_line"><font color="#FF0000">Qu&#039;est ce que vous me conseillerez? J&#039;aimerai un cocktail &agrave; base de fruit... Par contre rien avec cette &quot;Belladone&quot; le pauvre Andre&iuml; est partie en orbite...</font></div><div class="post_line"><font color="#FF0000">Je ne pense pas &ecirc;tre un aussi solide buveur que lui... et... hum... j&#039;aimerai encore profiter de ce lieu.</font></div><div class="post_line"></div><div class="post_line">Lali et Bill s&rsquo;intall&egrave;rent pr&egrave;s de l&rsquo;Enarque et elle &eacute;couta la conversation, pendant que Bill pianota sur un appareil.</div><div class="post_line">En entendant cet interrogatoire en r&egrave;gle, Sokhar se mit &agrave; rire et avala l&eacute;g&egrave;rement de travers. Il toussota doucement en continuant de rire.</div><div class="post_line"><font color="#FFA500">On peut dire que vous &ecirc;tes directe Alexine. Ne vous en faites pas commandante, &ccedil;a ne me d&eacute;range pas, je peux comprendre. Alors voyons, pour vous r&eacute;pondre dans l&#039;ordre.. Je suis un soldat avant tout, ma sp&eacute;cialit&eacute; ? Le probl&egrave;me brigand. </font></div><div class="post_line"><font color="#FFA500">Je suis un Cynos c&#039;est ainsi que se nomme mon peuple. Pour l&#039;armure,&nbsp; ce n&#039;est pas notre peau, plus une seconde peau si l&#039;on veut. Elles nous prot&egrave;gent et nous permettre de survivre en toutes conditions. Et non, si vous me plantez une aiguille et que je la porte, je ne saignerai pas. Et pour, peut &ecirc;tre, anticiper votre prochaine question : si un jour vous me voyez sans mon armure, je ne saignerai pas. Si ce jour arrive c&#039;est que vous &ecirc;tes ma proie, ce dont je doute fort, ou que la situation est vraiment, vraiment, vraaaiiiiment merdique, plus probable. Et dans les deux cas, me planter une aiguille dans le bras sera le cadet de vos soucis et de loin.</font></div><div class="post_line">Il se redressa et reprit une gorg&eacute;e de son rhum. La bouteille, encore sur le comptoir, ne payait pas de mine mais elle renfermait un nectar. Il la rapprocha et jeta un oeil furtif &agrave; l&#039;&eacute;tiquette rong&eacute;e par le temps.</div><div class="post_line">Seth &eacute;couta attentivement les explications de Sokhar quant &agrave; ses objectifs, son peuple, son armure: cette seconde peau.</div><div class="post_line">Il joua avec son verre vide, le faisant tournoyer... La t&ecirc;te baiss&eacute;e il marmonna quelques mots&nbsp; <font color="#FF0000"><font size="2">Pour le moment je vais calmer un peu l&#039;alcool je pense..</font></font><font size="2">.</font></div><div class="post_line"><font color="#FF0000"><font size="2">Vous savez... certaines aiguilles peuvent p&eacute;n&eacute;trer m&ecirc;me la plus solide des armures&hellip;</font></font></div><div class="post_line"><font color="#FFA500">Une aiguille de m&eacute;tal? Vous piquez ma curiosit&eacute;, si vous pouvez d&eacute;velopper je suis tout ou&iuml;e.</font></div><div class="post_line"><font color="#FFA500">J&#039;imagine que vous ne parlez pas d&#039;une aiguille en un quelconque m&eacute;tal ou m&ecirc;me d&#039;une aiguille physique, je me trompe? Pourriez vous &eacute;clairer ma lanterne, commandant ?Seth rigola &agrave; la remarque de Sokhar.</div><div class="post_line"></font></div><div class="post_line">Oh je parlais bien d&#039;une aiguille faite en m&eacute;tal...</div><div class="post_line"><font color="#FFA500">Une aiguille qui vous touche sans vraiment vous toucher physiquement... d&eacute;pourvu de chair, d&eacute;pourvu de sang, cette aiguille pourra quand m&ecirc;me vous titiller!</font></div><div class="post_line"><font color="#9DF9FF">Ah ! Donc j&#039;ai ma r&eacute;ponse ! Une aiguille peut vous piquer ! M&ecirc;me avec votre armure... Si vous voulez, je peux...</font></div><div class="post_line"><font color="#F012BE">Alexine.</font></div><div class="post_line"><font color="#9DF9FF">Ouais... Finalement, non.</font></div><div class="post_line">Ste&iuml;nneilla se tourna brusquement vers Seth qui venait de la faire sursauter, &eacute;tait-il devenu fou ? Elle porta la main &agrave; son c&oelig;ur et souffla.</div><div class="post_line"><font color="#FF30DC">Tu recommences et je te jure que je le ferai pendant ton sommeil... </font>Elle lui lan&ccedil;a un regard amus&eacute; et se servit un verre d&#039;eau. Pendant ce temps, Alexine chercha derri&egrave;re le bar quelque chose &agrave; la hauteur de l&#039;attente de Seth. Elle sortit une &eacute;trange bouteille ou &eacute;tait inscrit des lettres &eacute;tranges.</div><div class="post_line"><font color="#9DF9FF">&Ccedil;a ! C&#039;est la surprise du chef ! &Ccedil;a vient de chez nous... Normalement, les humains aiment aussi.</font></div><div class="post_line">Elle prit un nouveau verre en forme de ballon et le remplit. Elle glissa doucement &agrave; l&#039;int&eacute;rieur plusieurs gla&ccedil;ons et le tendit &agrave; Seth.</div><div class="post_line">Sokhar d&eacute;signa le verre et les mains de Seth d&#039;un mouvement de son cigare.</div><div class="post_line"><font color="#FFA500">Cela aurait il un lien? Un moment de votre pass&eacute; que vous souhaiteriez, peut &ecirc;tre, voir effacer? </font></div><div class="post_line">Il reprit une nouvelle gorg&eacute;e de son rhum, levant son verre &agrave; l&#039;attention d&#039;Alexine, pour la remercier encore pour son service.</div><div class="post_line"><font color="#FFA500">Pour ce qui est du principe d&#039;&eacute;quilibre, vous tapez dans le mille. L&#039;&eacute;quilibre est un &eacute;l&eacute;ment fondamental de notre civilisation, l&#039;harmonie avec ce qui nous entoure est ce qui &agrave; permis &agrave; la vie d&#039;&eacute;clore. Du chaos primordial est n&eacute;e cette harmonie. Nous en sommes tous les enfants et c&#039;est notre devoir de la pr&eacute;server.</font></div><div class="post_line">La r&eacute;action de Seth l&#039;intriguait, quels &eacute;v&eacute;nements avaient pu laisser une marque telle qu&#039;un simple mot puisse d&eacute;clencher cette r&eacute;action ?</div><div class="post_line">Seth baissa la t&ecirc;te en soupirant... il continuait de faire tournoyer son verre au bout de ses doigts.</div><div class="post_line"><font color="#FF0000">Le pass&eacute; ne pourra et ne devra jamais &ecirc;tre effacer...</font></div><div class="post_line"><font color="#FF0000">Apr&egrave;s tout, cela fait partie int&eacute;grante de notre &quot;vie&quot;. Bien que des &eacute;v&egrave;nements facheux se soient produits, d&#039;autres lumineux, agr&eacute;ables les feront passer au second plan.</font></div><div class="post_line"><font color="#FF0000">N&#039;est-ce pas le pass&eacute; qui a forg&eacute; les Hommes que nous sommes?</font></div><div class="post_line">Il porta son verre &agrave; ses l&egrave;vres.. mais celui-ci &eacute;tait vide.</div><div class="post_line"><font color="#FF0000">Zut...</font></div><div class="post_line">Lali s&#039;avan&ccedil;a en direction des deux commandants, son verre vide, titubante, et sous l&#039;&oelig;il surpris de son traducteur, son haleine sentait l&#039;alcool et la myrtille, alors que dans son regard,&nbsp; une lueur &eacute;trange flamb&eacute;e.</div><div class="post_line"><font color="#FFFF00">s&#039;cous Y del stopo vous, mas Y avo del religion non existenz. Y avo nou reprisentazion del povo&egrave;re, ynemnt mo Figour.</font></div><div class="post_line"><font color="#FFFF00">Y avo nou technoloyi avan&ccedil;a ...</font></div><div class="post_line">elle sortit un fusil de son blouson. En m&ecirc;me temps Bill arriva pr&eacute;cipitamment vers Lali.</div><div class="post_line">Du coin de l&#039;oeil, Seth vit la commandante Lali, titubante s&#039;approcher dans leur direction et sortir une arme de son veston.</div><div class="post_line">D&#039;un coup d&#039;un seul, Seth sauta de son si&egrave;ge, faisant tomber celui-ci &agrave; la renverse.</div><div class="post_line">Il tira Ste&iuml;nneilla vers lui et se pla&ccedil;a devant elle pour la prot&eacute;ger.</div><div class="post_line">Seth prot&eacute;geait Ste&iuml;nneilla et Sokhar, faisant &eacute;cran.</div><div class="post_line"><font color="#FF30DC">OH ! </font>Ste&iuml;nneilla fut tir&eacute; vers Seth en un seul mouvement. Elle manqua de tomber, mais r&eacute;ussit &agrave; maintenir son &eacute;quilibre tant bien que mal.</div><div class="post_line"><font color="#FF0000">Que faites vous?!</font></div><div class="post_line">Avait-elle loup&eacute; quelque chose ? Elle essaya de regarder par-dessus l&#039;&eacute;paule de l&#039;homme et remarqua l&#039;arme que tenait Lali entre ses mains. </div><div class="post_line"><font color="#005DC2">Stop Comindante, Y alle Diplomatic inzident ! Y no introduc del quevri !</font></div><div class="post_line"><font color="#FFFF00">Oy Oy Y savoie ...</font></div><div class="post_line">Elle garda son fusil en main en le tenant par le canon, et se tourna vers son traducteur.</div><div class="post_line"><font color="#FFFF00">Soy Y tradicti !</font></div><div class="post_line">Bras &eacute;cart&eacute;s pour faire barrage, il regardait attentivement les gestes de Lali...</div><div class="post_line">Mais qu&#039;est-ce que cet alcool peut encore provoquer?</div><div class="post_line">Lorsque celle-ci prit l&#039;arme par le canon, Seth ne rel&acirc;cha pas son attention. </div><div class="post_line"><font color="#FF0000">Je n&#039;ai compris que les mots &quot;Incident diplomatique&quot; et vous avez raison.</font></div><div class="post_line"><font color="#FF0000">Puis-je conna&icirc;tre la raison pour laquelle vous avez emmener une arme en ce lieu d&#039;&eacute;change, de partage et de convivialit&eacute;?</font></div><div class="post_line"><font color="#0074D9">Oy, En Svra, la religion existe pas, nous avons comme repr&eacute;sentation du pouvoir, de l&#039;espoir ainsi que du chaos la personne de Lali, nous poss&eacute;dons par cons&eacute;quent une avance technologique. Le fusil que la Commandante a sorti ...</font></div><div class="post_line">Sur ces mots, elle posa le fusil sur le comptoir</div><div class="post_line">Seth tourna la t&ecirc;te vers l&#039;arme pos&eacute;e sur le comptoir et rel&acirc;cha quelque peu ses muscles.</div><div class="post_line"><font color="#0074D9">Celui la donc, est le Fusil Ionique MK VII, Del Ionoquevri BK VII.</font></div><div class="post_line"><font color="#005DC2">Il a capacit&eacute; de d&eacute;truire un char en seulement nou coup. triacontakaitri (33) soldats peuvent r&eacute;duire nou ville en cendre.</font></div><div class="post_line"><font color="#0074D9">Nous pouvons vous le vendre afin, que dans la guerre, perdurent nos amiti&eacute;.</font></div><div class="post_line"><font color="#FF0000">Nous ne sommes pas friands de la guerre... Personnellement je pense que tout conflit peut se r&eacute;gler par le dialogue.</font></div><div class="post_line"><font color="#FF0000">Quant aux religions... nous ne pouvons pas soumettre des peuples &agrave; croire ce que l&#039;on veut.</font></div><div class="post_line"><font color="#FF0000">Chacun est libre de faire ce qu&#039;il veut, surtout en Secteur Maudit...</font></div><div class="post_line">Il r&eacute;ajusta sa veste et ramassa la chaise qu&#039;il avait fait tomber.</div><div class="post_line"><font color="#FFFF00">Oy, allo parlo vous Civilisition ?</font></div><div class="post_line"><font color="#0074D9">Oui, arr&ecirc;tons de parler de nous, parlons plut&ocirc;t de vos empire et de vos civilisation ?</font></div><div class="post_line">La commandante avait le regards d&#039;un vide profond, d&eacute;tournant d&#039;une rotation de t&ecirc;te, vers la barman t&eacute;tanis&eacute;e.</div><div class="post_line"><font color="#FFFF00">Nou Bellabone</font></div><div class="post_line">Alexine lui remplit son verre, que Lali b&ucirc;t d&#039;un traite.</div><div class="post_line">Cette derni&egrave;re fut prise de tremblement, qui se stopp&egrave;rent aussi rapidement qu&#039;il furent aparut.</div><div class="post_line"><font color="#FFFF00">Oy, Y parlo d&egrave; L&#039;Itat Libro SVRA</font>, dit-elle d&#039;une voix tremblotante,</div><div class="post_line"><font color="#005DC2">Commidante Y parlo del Civilisition no Y Civilisition</font></div><div class="post_line"><font color="#005DC2">Y doy savoie...</font></div><div class="post_line">La commandante pris une voix mena&ccedil;ante.</div><div class="post_line"><font color="#FFFF00">Parlo Y Civilisition</font></div><div class="post_line"><font color="#005DC2">Oy, Oy</font></div><div class="post_line">le traducteur pris une grande inspiration pendant que la commandante parti se rasseoir.</div><div class="post_line"><font color="#005DC2">L&#039;&Eacute;tat Libre du SVRA est une nation fonder il y a des cycles de l&agrave;, Depuis le d&eacute;but di (2) Lali se sont succ&eacute;d&eacute; et le peuple la crois &eacute;ternelle.</font></div><div class="post_line"><font color="#005DC2">Nous sommes d&eacute;sol&eacute;s si la pr&eacute;sence du Ionoquevri vous d&eacute;range mais cela est une forme de confiance.</font></div><div class="post_line">Il posa un revolver sur la table, repris un verre et continua son explication.</div><div class="post_line"><font color="#0074D9">Dans notre soci&eacute;t&eacute; les jeunes de plus de pent-agio (5 ans), sont form&eacute; a un art martial : le Zbra, du nom de la plan&egrave;te d&#039;origine de cette forme de combats, et ils apprennent le maniement des armes a feu d&egrave;s leur hexakaidec-agio (16 ans), puis &agrave; l&#039;age deicos-agio (20 ans), ils sont assez grands pour entr&eacute;s dans la soci&eacute;t&eacute;.</font></div><div class="post_line"><font color="#0074D9">Le fait de poser son arme sur la table permet de signaler &agrave; l&#039;autre que l&#039;on ne veut pas combattre.</font></div><div class="post_line"><font color="#0074D9">Vous comprenais donc que tout ces choses que vous semblez &eacute;viter, font partit de notre culture, mais soyez s&ucirc;r d&#039;une chose nous ne frappons pas nos amis mais nous les d&eacute;fendons</font></div><div class="post_line"><font color="#9DF9FF">Les humains disent tous &ccedil;a !</font></div><div class="post_line"><font color="#FF30DC">Ale..</font>. Ste&iuml;nneilla n&#039;eut pas le temps de terminer sa phrase qu&#039;Alexine partit de la pi&egrave;ce. <font color="#FF30DC">Bravo...</font> Elle fixa Seth et lui murmura quelque chose que les autres ne pouvaient pas entendre. J<font color="#FF30DC"><font size="2">e te l&#039;avais dit, mon peuple n&#039;aura jamais confiance aux humains... Et ce n&#039;est pas comme &ccedil;a qu&#039;ils vont pouvoir autoris&eacute; de nouveau des personnes &agrave; p&eacute;n&eacute;trer les villages.</font></font></div><div class="post_line">Sokhar prit son verre en main et le vida d&#039;une traite, tout en &eacute;coutant les explications du traducteur . Il avisa la bouteille sur le comptoir et, faisant fi des convenances, s&#039;en servit un d&#039;office. Cela ne lui faisait rien mais servait de palliatif. Il reprit ensuite son cohiba et en tira une longue bouff&eacute;e.</div><div class="post_line"><font color="#FFA500">Dans certaines cultures que nous avons crois&eacute;, le fait de tenir son arme ostensiblement est une marque de respect t&eacute;moign&eacute; aux invit&eacute;s de marque. Les porteurs sont conscients de leur r&ocirc;le et de leur rang et leur arme d&eacute;montre cela. Comme le fait de tenir sa main sur la garde de son &eacute;p&eacute;e en pr&eacute;sence d&#039;h&ocirc;tes importants, preuve que l&#039;on est investit dans notre r&ocirc;le et conscient de ce dernier.</font></div><div class="post_line"><font color="#FFA500">La formation de vos jeunes me fait penser &agrave; un pan de notre culture, notamment la pratique du Zbra, c&#039;est cela? C&#039;est &eacute;galement un point important de notre cursus militaire, tellement important que beaucoup de novices peuvent voir leurs espoirs de carri&egrave;re s&#039;&eacute;teindre lors des entra&icirc;nements. Une mauvaise ma&icirc;trise et une vie s&#039;&eacute;teint...</font></div><div class="post_line"><font color="#FFA500">Vous pratiquez &eacute;galement le maniement des armes blanches ou pas du tout?</font></div><div class="post_line"></div><div class="post_line">le traducteur sourit</div><div class="post_line"><font color="#0074D9">Nous consid&eacute;rons qu&#039;un corps seul, peut servir &agrave; la fois d&#039;arme et de bouclier, donc nos jeunes ne sont pas form&eacute;s au maniement des armes blanches, vous comprendrez rapidement que l&#039;utilisation, d&#039;une &eacute;p&eacute;e ou d&#039;un couteau est inutile. Un bon citoyen Svrayen doit pouvoir se battre pour sa Nation, de son icos-agio jusqu&#039;&agrave; son hexacontakaihex-agio (66 ans).</font></div><div class="post_line">Il montra les phalanges de sa main droite &agrave; Sokhar. Elle &eacute;tait blanch&acirc;tre, tirant sur le jaune, calleuse, elles semblaient impossibles &agrave; transpercer. Puis il montra sa paume qui &eacute;tait tout aussi rugueuse que ses phalanges. Il prit l&#039;aiguille de m&eacute;tal et se la planta dans la main.</div><div class="post_line">Elle traversa la main sans aucune goutte de sang ni aucune rougeur, rien.</div><div class="post_line"><font color="#0074D9">Voyez, nous sommes entra&icirc;n&eacute;s &agrave; pouvoir faire cela, mais ce n&#039;est qu&#039;une simple facette du Zbra...</font></div><div class="post_line">la commandante, soudait r&eacute;veill&eacute;e, s&#039;approcha du traducteur</div><div class="post_line"><font color="#FFFF00">Nou Zbra Y montro ?</font></div><div class="post_line">Bill, surpris, ce retourna vers sa sup&eacute;rieure,</div><div class="post_line"><font color="#0074D9">Oy, La commandante vous propose une d&eacute;monstration de ce que l&#039;art du Zbra a de mieux a offrir, qu&#039;en pensez-vous ?</font></div><div class="post_line">Sur ces mots, Lali commen&ccedil;a &agrave; pratiquer quelque menu &eacute;tirement des cervicales et des &eacute;paules. Puis enleva son blouson, d&eacute;voilant un corps sec et imposant et tous ces muscles &eacute;tait parfaitement dessin&eacute; le long de ses bras nus, macul&eacute;s de divers et longues cicatrices. La peau &eacute;tait irr&eacute;guli&egrave;re quasiment rocailleuse. On pouvait voir aussi, a certain, endroit du bras et du cou, des impacts de balles. Elle n&#039;&eacute;tait habill&eacute;e que d&#039;un simple t-shirt a manche courte de couleur kaki. Dans ses yeux flambaient une lueur froide, son regard &eacute;tait dirig&eacute; vers son traducteur.</div><div class="post_line">Se tenant les bras le long du corps, elle attendait que Bill se met en posture de combat.</div><div class="post_line"></div><div class="post_line"><font color="#FFA500">L&#039;utilisation d&#039;une arme blanche inutile? Hahaha c&#039;est l&agrave; une grande diff&eacute;rence culturelle entre nos peuples. Je peux vous assurer que cela ne l&#039;est pas. </font></div><div class="post_line">Il tapota doucement &agrave; sa ceinture, deux dagues y &eacute;taient log&eacute;es. </div><div class="post_line"><font color="#FFA500">Elles savent &ecirc;tre tr&egrave;s utiles correctement mani&eacute;es. La pratique et l&#039;approfondissement des armes blanches sont un pan important de notre culture militaire, en plus de la pratique du combat rapproch&eacute;. Les Katas de nos anc&ecirc;tres sont inculqu&eacute;s &agrave; nos soldats d&egrave;s leur plus jeune &acirc;ge, tout comme vous mais cet apprentissage est dangereux, il n&#039;est pas rare d&#039;avoir quelques accidents. Les ma&icirc;triser tous est l&#039;apanage de certains. Peut &ecirc;tre un jour aurez vous l&#039;occasion de les voir pratiqu&eacute;s, qui sait.</font></div><div class="post_line"><font color="#FFA500">Pour ma part, vous avez toute mon attention quant &agrave; la d&eacute;monstration que vous nous proposez.</font></div><div class="post_line">Il s&#039;accouda au comptoir, totalement attentif &agrave; ce qui allait suivre, conscient de l&#039;occasion que cela repr&eacute;sentait. Il sentait une l&eacute;g&egrave;re tension monter dans l&#039;air. Quelle douce sensation, enivrante...</div><div class="post_line">Le traducteur se leva d&#039;un saut formidable et vint se placer en face de sa commandante.</div><div class="post_line">Les deux lev&egrave;rent leur main gauche, puis se mirent en position de combats.</div><div class="post_line">D&#039;un bon, Lali l&#039;attaque en projetant ces pieds sur le torse du traducteur.</div><div class="post_line">L&#039;homme s&#039;esquiva l&#039;instant m&ecirc;me o&ugrave; l&#039;impact eu lieu puis mit un coup de son bras gauche.</div><div class="post_line">Son action eu pour effet, que la commandante se remette debout, puis commen&ccedil;a une s&eacute;rie de coup de poing qui virent tous se stopper &agrave; un centim&egrave;tre de la garde du traducteur.</div><div class="post_line">Son attaque eu pour effet que de seulement faire focaliser l&#039;attention, ainsi que les bras de Bill, vers les poings,</div><div class="post_line">Mais la vraie attaque eu lieu sur ses jambes.</div><div class="post_line">La femme fit envoya sa jambe gauche vers le pied droit de son subordonn&eacute; ce qui a pour effet de le d&eacute;stabiliser, il eut le malheur de regarder sa jambe droite et d&#039;amoindrir la concentration port&eacute;e sur sa garde.</div><div class="post_line">l&#039;instant d&#039;apr&egrave;s le pied gauche de Lali eut une rencontre brutale et pr&eacute;cise avec le plexus solaire du pauvre homme dont le choc le fit reculer.</div><div class="post_line">Elle s&#039;&eacute;lan&ccedil;a et vint accrocher ses jambes autour du cou du traducteur, puis dans la continuit&eacute; de son action, l&#039;amena &agrave; terre et posa ses mains sur sa gorge.</div><div class="post_line"></div><div class="post_line">Sokhar regarda l&#039;&eacute;change entre le traducteur et la commandante avec attention. Ce dernier fut assez bref et brutal, M&ecirc;me un simple &eacute;change amical &eacute;tait d&#039;une violence sans consid&eacute;ration pour son adversaire. En combat r&eacute;el, il le comprenait, dans un &eacute;change de d&eacute;monstration, c&#039;&eacute;tait une chose &eacute;trange pour lui. Les Cynos n&#039;avaient pas d&#039;&eacute;tat d&#039;&acirc;me pour leurs adversaires mais lorsqu&#039;ils &eacute;changeaient entre eux un respect naturel s&#039;imposait. Apr&egrave;s peut etre &eacute;tait ce une forme de respect que d&#039;agir tel qu&#039;ils l&#039;avaient fait.</div><div class="post_line"></div><div class="post_line"><font color="#FFFF00">Y vous mirt&egrave;.</font> Dit elle avec un soup&ccedil;on de moquerie.</div><div class="post_line"><font color="#0074D9">En temps de combats, la Commandante Lali m&#039;aurai d&eacute;j&agrave; arrach&eacute; la trach&eacute;e.</font></div><div class="post_line">I<font color="#FFFF00">n Capit&ocirc;l, Y vous entr&ecirc;ne, Y f&ocirc;ble. Mas di Enarque Sokhar parla Y pensa Zbra ?</font></div><div class="post_line"><font color="#0074D9">Mais laissons l&#039;Enarque Sokhar nous dire ce qu&#039;il a pens&eacute; du Zbra ?</font></div><div class="post_line"><font color="#0074D9">Ce n&#039;est pas vraiment un art qui se pr&ecirc;tent aux repr&eacute;sentations, j&#039;en conviens, mais plus directement &agrave; l&#039;attaque.</font></div><div class="post_line">La commandante lan&ccedil;a un regards noir et lourds du fait qu&#039;il n&#039;ait pas traduit ce qu&#039;elle lui a dit, en retour le Traducteur Bill avala sa salive</div><div class="post_line"><font color="#0074D9">La commandante me trouve faible et elle souhaite m&rsquo;entra&icirc;ner personnellement d&egrave;s notre retour sur Capit&ocirc;l, notre capital. </font>La commandante eu un sourire encore plus lourd de sens.</div><div class="post_line"><font color="#FFA500">C&#039;est ... int&eacute;ressant,&nbsp; assez impressionnant &eacute;galement. Vous n&#039;avez aucun &eacute;tat d&#039;&acirc;me m&ecirc;me si c&#039;&eacute;tait votre traducteur en face de vous commandante. Notre art martial est tr&egrave;s diff&eacute;rent du votre, c&#039;est ind&eacute;niable. Je dois &eacute;galement avouer que cela m&#039;a donner envie de me battre &eacute;galement. Quel meilleur sensation que de voir son adversaire souffrir et subir ses assauts ? Le point d&#039;orgue &eacute;tant de l&#039;entendre implorer sa mise &agrave; mort, c&#039;est l&agrave;, la vraie victoire...</font></div><div class="post_line"><font color="#FFA500">De l&agrave; &agrave; dire que vous &ecirc;tes faible,&nbsp; peut &ecirc;tre face &agrave; elle mais nombre d&#039;adversaires succomberaient j&#039;en suis s&ucirc;r. </font></div><div class="post_line">Le Cynos souriait sous son masque, il avait envie de s&#039;en d&eacute;barrasser et de rentrer dans l&#039;ar&egrave;ne &agrave; son tour mais il devait se contr&ocirc;ler.. r&eacute;sister &agrave; son instinct qui lui commandant l&#039;inverse.</div><div class="post_line">La commandante lib&eacute;ra son traducteur de son &eacute;treinte et se releva.</div><div class="post_line">Bill regarda pensivement l&#039;Enarque tout en se relevant avec facilit&eacute; malgr&eacute; le fait qu&#039;il se soit pris autant de coups.</div><div class="post_line"><font color="#0074D9">Vous savez d&#039;o&ugrave; provient cette faiblesse face a elle ? Il provient du nombre d&#039;ann&eacute;e d&#039;entra&icirc;nement de diff&eacute;rence. J&#039;ai triacontakaihept-agio (37 ans) et ma commandante a plus d&#039;octa (8) ann&eacute;e de diff&eacute;rence que moi, et tout autant d&#039;ann&eacute;e d&#039;entra&icirc;nement que moi.</font></div><div class="post_line">Lali le regarda avec un l&eacute;ger sourire</div><div class="post_line"><font color="#FFFF00">Y let parla, Y glouglou vodka</font>. dit-elle en le coupant et en se dirigeant vers le bar.</div><div class="post_line"><font color="#1E92F7">Oy Commindante. Bref, l&#039;art du Zbra est un art que l&#039;on ne ma&icirc;trise jamais totalement car notre plus vieux ma&icirc;tre du Zbra, Heyl, est mort &agrave; hecatontakaiicosikaioct-agio (128 ans)et a tout eu des lacunes. Mais celle qui ma&icirc;trise le mieux cette art est Arll, une sage qui vie recule dans le d&eacute;sert aride de la plan&egrave;te Zbra, d&#039;un coup de pied elle peut causer la mort mais elle est trop ag&eacute;e pour les champs de bataille, elle a hecto-agio (100 ans).</font></div><div class="post_line">Il d&eacute;couvrit son bras, tout aussi rugueux que sa main mais il y avait une bonne demi-douzain de cicatrice de couteau et 3 impacts de balles, la tendit vers l&#039;Enarque</div><div class="post_line"><font color="#0074D9">Une grande partie de la pratique du Zbra est la gestion de la douleur ainsi que le contr&ocirc;le du corps : regardez.</font></div><div class="post_line">Il montra les blessures fa&icirc;tes par balles</div><div class="post_line"><font color="#005DC2">la plaie est vide, la munition est ressortie naturellement sans aucune assistance m&eacute;dicale et h&eacute;morragie qui devrai suivre n&#039;est m&ecirc;me pas apparut.</font></div><div class="post_line">Remettant sa manche et s&#039;installant au comptoir</div><div class="post_line"><font color="#0074D9">Et aussi notre corps absorbes extr&ecirc;mement bien les alcool commun ce qui fait que l&#039;on ne subit jamais les effets de ce genre de boisson. Mais assez parl&eacute; du Zbra, en quoi consiste votre art martial ? Si vous d&eacute;sirez faire une d&eacute;mo ma commandante et moi sommes bien curieux de le voir.</font></div><div class="post_line">De sa place, Lali leva son verre et acquies&ccedil;a.</div><div class="post_line"><font color="#FFA500">Le sto&iuml;cisme dans son application totale. Vous faites preuve d&#039;une abn&eacute;gation absolue, c&#039;est une chose que les Cynos valorisent &eacute;galement. Il est int&eacute;ressant de voir ces rapprochements entre les cultures. </font></div><div class="post_line">Il reprit son verre et en bu une nouvelle gorg&eacute;e. Il sourit &agrave; la remarque sur l&#039;alcool.</div><div class="post_line"><font color="#FFA500">Hahaha, il en va de m&ecirc;me pour nous avec la boisson. Notre long&eacute;vit&eacute; y est peut &ecirc;tre pour beaucoup, il nous en fait beaucoup pour ressentir les effets. </font></div><div class="post_line">Il d&eacute;signa la bouteille d&#039;un geste nonchalant.</div><div class="post_line"><font color="#FFA500">Il faudrait 5/6 bouteilles de ce breuvage pour que cela puisse avoir un effet sur nous. Pour la d&eacute;monstration,&nbsp; ce serait avec plaisir mais je ne peux d&eacute;voiler cela ici. N&#039;y voyez aucune offense, c&#039;est en quelque sorte un privil&egrave;ge pour un vivant que d&#039;observer les Katas de nos anc&ecirc;tres. En g&eacute;n&eacute;ral, ceux qui on eu l&#039;occasion de les voir sont morts d&eacute;sormais, en combat nous ne laissons aucunes chances. Mais vous aurez ce privil&egrave;ge de votre vivant, je m&#039;y engage.</font></div><div class="post_line">Il mit sa main droite sur son coeur et inclina sa t&ecirc;te bien plus fortement qu&#039;&agrave; l&#039;accoutum&eacute;e. </div><div class="post_line"><font color="#FFA500">Ce sera m&ecirc;me un honneur que de vous en faire une d&eacute;monstration. </font></div><div class="post_line">Il prit la derni&egrave;re bouff&eacute;e de son cohiba et l&#039;&eacute;crasa dans le cendrier pr&eacute;sent sur le bar, qu&#039;Alexine avait eu la pr&eacute;voyance de disposer.</div><div class="post_line"><font color="#FFA500">Si je devais vous r&eacute;sumer &ccedil;a, cela s&#039;apparente &agrave; une forme de danse. C&#039;est le mot le plus juste, du moins c&#039;est ainsi que nous le d&eacute;crivons. Du moins, lorsque nous le pratiquons entre nous, pour nos ennemis c&#039;est plus comme si la mort entamait une danse macabre. Je sais que cela peut pr&ecirc;ter &agrave; sourir mais vous comprendrez ce que je veux dire lorsque vous le verrez. Je vous ferais parvenir le lieu o&ugrave; cela pourrait avoir lieu. De plus,&nbsp; pour vous, il sera plus ais&eacute; que mes soldats l&#039;ex&eacute;cutent sans leurs armures, ce qui est une chose exceptionnelle, je peux vous l&#039;assurer. Ce jour l&agrave;,&nbsp; je vous demanderais la plus extr&ecirc;me discr&eacute;tion sur ce que vous pourrez voir. </font></div><div class="post_line"><font color="#FFA500">Apr&egrave;s, peut &ecirc;tre que la commandante Ste&iuml;nneilla aurait une annexe, un dojo ou un jardin afin de pouvoir pratiquer. Commandante?</font></div><div class="post_line">&Agrave; la question de Sohkar, Ste&iuml;nneilla se retourna.</div><div class="post_line"><font color="#F012BE">Un jardin ? Oui, juste derri&egrave;re le b&acirc;timent... Mais vous avez aussi la foret... Mais &eacute;vitez d&#039;y aller.</font></div><div class="post_line">Sur la r&eacute;ponse de la maitresse des lieux, Lali se leva, pris son fusil et son manteau, et demanda une bouteille de vodka. Elle se v&eacute;tit de son manteau et y rangea son fusil</div><div class="post_line"><font color="#FFFF00">Nou, boukali vodka, Chiou</font></div><div class="post_line">Bill pris la parole,</div><div class="post_line"><font color="#0074D9">Merci Commandante Ste&iuml;nneilla, et nous prendrons 2 bouteilles de vodka. Les plus grande.</font></div><div class="post_line"><font color="#FFA500">Enarque Sokhar </font>La commandante lui tendit son bras,<font color="#FFA500">Y vous pripose den Y guide.</font></div><div class="post_line">La commandante vous propose de la guider vers le jardin</div><div class="post_line"><font color="#0074D9">Au non de l&#039;&Eacute;tat libre du Svra nous vous remercions de mettre a disposition votre jardin pour que nous puissions pratiquer notre art avec l&#039;Enarque</font></div><div class="post_line">Le petit groupe quitt&egrave;rent la salle pour en direction du Jardin Rouge.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15160&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15160" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15160" name="d_reply_15160" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15160');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15160'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La taverne Blanche</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17571 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Un Spectre dans la Brume</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Un Spectre dans la Brume</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />13/05/1025 ETU 14:16</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313608')">Détails</a> <a href="javascript:warnpost(313608)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313608" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313608',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Les proph&egrave;tes de ce temps sont les h&eacute;rauts d&rsquo;autrefois, porteurs des histoires que les po&egrave;tes ont &eacute;crites, ensevelies sous des temps oubli&eacute;s.</em></div><div class="post_line"><em>Leurs voyages nous emportent, nous dansons dans leurs r&ecirc;ves.</em></div><div class="post_line"></div><div class="post_line">Il fut un temps, au bord des sables br&ucirc;lants, o&ugrave; les hommes s&rsquo;affrontaient par le verbe et non l&rsquo;&eacute;p&eacute;e. Leurs mots &eacute;taient lances, jets d&rsquo;esprit, sortil&egrave;ges tiss&eacute;s de souffle fil&eacute;s au rythme des serments plus lourds que le fer. Ils dressaient les mots comme d&rsquo;autres dressent des campements, et chaque strophe pouvait faire plier un clan. Nous suspendions leurs vers &agrave; pierre sacr&eacute;e, comme l&rsquo;on suspend une offrande, ou une preuve, pour peut-&ecirc;tre accomplir.</div><div class="post_line"></div><div class="post_line">Leurs voix r&eacute;sonnent encore, l&agrave; o&ugrave; les caravanes ne passent plus, dans le silence des &eacute;critures.</div><div class="post_line"></div><div class="post_line">Plus loin encore, o&ugrave; le fleuve n&rsquo;a pas de source et se jette comme une encre &agrave; la mer, d&rsquo;autres gravaient leurs chants dans la pierre.</div><div class="post_line"></div><div class="post_line">Leurs po&egrave;mes ne s&#039;&eacute;coulaient pas, ils reposaient comme des pierres c&eacute;lestes, fig&eacute;es dans l&#039;or. Les mots ne cherchaient pas la rime, mais une demeure. Chaque signe &eacute;tait comme dieu assis, chaque silence, un royaume. Ils &eacute;crivaient pour que l&rsquo;oubli meure, que leurs&nbsp;&acirc;mes traverse l&rsquo;&eacute;ternit&eacute; comme une porte vers l&rsquo;inconnu.</div><div class="post_line"></div><div class="post_line">Le sable dansait et frissonnait, serpent ancien qui d&eacute;vore les plus beaux vers pour que nul jaloux ne les lui prenne.</div><div class="post_line"></div><div class="post_line">Ce n&rsquo;&eacute;tait plus le souffle, mais la patience des si&egrave;cles qui donnait forme &agrave; leurs chants. J&rsquo;y ai vu triste amour parler &agrave; la mort, l&rsquo;&eacute;veiller. Certains dieux &eacute;coutaient en secret.</div><div class="post_line"></div><div class="post_line">Les sarcophages s&rsquo;ouvraient comme sur des strophes, les tombeaux sur des psaumes. Et, en murmure, j&rsquo;ai entendu une voix qui disait : &laquo; Ce qui est beau deviendra vrai. &raquo;</div><div class="post_line"></div><div class="post_line"><em>Dans le silence profond des cryptes, certains disent que le serpent veille encore, gardien des st&egrave;les qu&rsquo;aucune lumi&egrave;re n&rsquo;ose troubler.</em></div><div class="post_line"></div><div class="post_line">Quelque part, j&rsquo;y suis encore...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />13/05/1025 ETU 14:47</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313610', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313609')">Détails</a> <a href="javascript:warnpost(313609)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313609" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313609',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Annexe, La Le&ccedil;on du Sable</div><div class="post_line"></div><div class="post_line">Toi qui sais manier la voix,</div><div class="post_line">tu peux commander&nbsp;sable mouvant.</div><div class="post_line"></div><div class="post_line">Alors &eacute;coute&nbsp;</div><div class="post_line">si elle devient voix,</div><div class="post_line">si elle prend souffle et forme</div><div class="post_line">dans ta bouche ou ton esprit,</div><div class="post_line">elle peut parler au sable.</div><div class="post_line"></div><div class="post_line">Non pour l&rsquo;asservir,</div><div class="post_line">mais pour inviter &agrave; danser.</div><div class="post_line"></div><div class="post_line">Le sable mouvant n&rsquo;ob&eacute;it qu&rsquo;&agrave; ceux</div><div class="post_line">qui ne commandent pas.</div><div class="post_line">Il glisse sous le poids des volont&eacute;s rigides,</div><div class="post_line">mais &eacute;pouse la trace des mots souples,</div><div class="post_line">des gestes sinc&egrave;res.</div><div class="post_line"></div><div class="post_line">Si tu veux demander au&nbsp;sable,</div><div class="post_line">parle-lui comme &agrave; un fr&egrave;re ancien.</div><div class="post_line">Offre-lui un vers, un silence, ou une larme.</div><div class="post_line">Il se peut alors qu&rsquo;il t&rsquo;ouvre un chemin&nbsp;</div><div class="post_line">ou qu&rsquo;il avale ton po&egrave;me</div><div class="post_line">pour le garder au chaud,</div><div class="post_line">loin des regards des dieux jaloux,</div><div class="post_line">bien trop mortels &agrave; nos &eacute;gards.</div><div class="post_line"></div><div class="post_line"><strong>Loin dans l&#039;Orient, le Vagabond, avant sa mort, demandait au Serpent d&#039;Or et de&nbsp;sable...</strong></div><div class="post_line"></div><div class="post_line">Chant au Sable Gardien</div><div class="post_line"></div><div class="post_line">Je viens sans arme,</div><div class="post_line">les paumes ouvertes,</div><div class="post_line">porteur d&rsquo;oubli et de souvenance.</div><div class="post_line"></div><div class="post_line">Je ne cherche pas &agrave; prendre,</div><div class="post_line">mais &agrave; m&rsquo;&ocirc;ter&nbsp;</div><div class="post_line">mes poids, mes noms,</div><div class="post_line">jusqu&rsquo;&agrave; ce que seuls restent</div><div class="post_line">les pas et le vent.</div><div class="post_line"></div><div class="post_line">&Ocirc; sable,</div><div class="post_line">toi qui portes les strophes oubli&eacute;es</div><div class="post_line">et les vers vivants qui attendent,</div><div class="post_line">toi qui danses pour engloutir</div><div class="post_line">ceux qui foulent sans foi,</div><div class="post_line">&eacute;coute-moi :</div><div class="post_line"></div><div class="post_line">Je ne suis ni roi, ni conqu&eacute;rant.</div><div class="post_line">Je suis marcheur,</div><div class="post_line">fr&egrave;re du silence,</div><div class="post_line">ami des mots et des vers anciens</div><div class="post_line">qui murmurent sous ta peau.</div><div class="post_line">Sinon des morts, si tu refuses.</div><div class="post_line"></div><div class="post_line">Fais de moi</div><div class="post_line">un souffle assez l&eacute;ger</div><div class="post_line">pour que tu ne me retiennes pas,</div><div class="post_line">mais assez grave</div><div class="post_line">pour que tu m&rsquo;entendes.</div><div class="post_line"></div><div class="post_line">Laisse-moi passer&nbsp;</div><div class="post_line">fais de moi ton passager,</div><div class="post_line">ou prends-moi tout entier,</div><div class="post_line">si mes mots ne valent pas</div><div class="post_line">le moindre de tes grains.</div><div class="post_line"></div><div class="post_line">Je jure sur l&rsquo;absence,</div><div class="post_line">je signe de poussi&egrave;re,</div><div class="post_line">je marche avec toi</div><div class="post_line">jusqu&rsquo;au tr&eacute;sor enseveli.</div><div class="post_line"></div><div class="post_line">Merveille innommable,</div><div class="post_line">de l&rsquo;esprit des artistes,</div><div class="post_line">garde-moi dans tes bras antiques,</div><div class="post_line">et sous ton ciel sans fronti&egrave;res.</div><div class="post_line"></div><div class="post_line">Porte-moi loin de ces terres,</div><div class="post_line">emm&egrave;ne-moi, secret,</div><div class="post_line">parmi tes tertres,</div><div class="post_line">o&ugrave; les vers vivent</div><div class="post_line">et les dieux se taisent.</div><div class="post_line"></div><div class="post_line">Prot&egrave;ge-moi, pour ces instants,</div><div class="post_line">du regard de la mort.</div><div class="post_line"></div><div class="post_line">Efface-moi,</div><div class="post_line">qu&rsquo;on ne m&rsquo;oublie pas,</div><div class="post_line">que mes traces s&rsquo;effondrent</div><div class="post_line">dans la douceur de ton sillons,</div><div class="post_line">et qu&rsquo;aucune m&eacute;moire ne me porte</div><div class="post_line">ailleurs que dans ce temple.</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />13/05/1025 ETU 22:19</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313623', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313620')">Détails</a> <a href="javascript:warnpost(313620)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313620" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313620',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">(Suite :</div><div class="post_line"><em>Les annexes sont des textes compl&egrave;tement bruts,</div><div class="post_line">des parenth&egrave;ses sans pertinence pour le moment</em>.)</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Encore ailleurs, l&agrave; o&ugrave; le fleuve est un dieu et la parole, le feu, ils chantaient l&rsquo;univers comme on r&eacute;cite un mantra</div><div class="post_line">non pour le dire, mais l&rsquo;entendre.</div><div class="post_line"></div><div class="post_line">Sous les figuiers immobiles, les sages attendaient que la pens&eacute;e s&rsquo;&eacute;vanouisse, car ce n&rsquo;est qu&rsquo;en elle, disaient-ils, que le r&eacute;el se voile.</div><div class="post_line"></div><div class="post_line">On racontait que le monde &eacute;tait&nbsp;son ;&nbsp;pur, primordial</div><div class="post_line">et que toute existence aspirait &agrave; s&rsquo;y fondre,</div><div class="post_line">comme la flamme retourne &agrave; sa source.</div><div class="post_line"></div><div class="post_line">J&rsquo;ai vu un enfant tracer une forme dans la terre,</div><div class="post_line">et les anciens s&rsquo;incliner non pour lui,</div><div class="post_line">mais devant la pr&eacute;sence d&rsquo;un &eacute;veil.</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17571&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17571" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17571" name="d_reply_17571" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17571');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17571'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Un Spectre dans la Brume</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

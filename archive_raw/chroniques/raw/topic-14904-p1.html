@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 14904 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Oeil pour &oelig;il</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Oeil pour &oelig;il</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Olor%C3%ACn...">Cdt. Olor&igrave;n...</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/9351.jpg" style="width:102px;height:128px" alt="Avatar" /><br />04/05/1020 ETU 19:24</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal273575')">Détails</a> <a href="javascript:warnpost(273575)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal273575" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=273575',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Une petite troupe de chasseurs furtifs atterrit sur le spatioport de la Capitale Galactique. Les sas s&rsquo;ouvrirent et une petite troupe de personnages hauts en couleur en sortit. Certains portaient des blousons de cuir fa&ccedil;on Hell&rsquo;s Angels d&rsquo;un autre temps, d&rsquo;autres d&eacute;ambulaient sur des monocycles dont le cadre avait &eacute;t&eacute; peint avec des flammes, d&rsquo;autres encore arboraient des maquillages de clowns outranciers. Des hommes, des femmes, des jongleurs et acrobates&hellip; Une vraie troupe de cirque. Repr&eacute;sentant une petite quinzaine de personnes en tout.</em></div><div class="post_line"><div align="justify"><em>La rampe du furtif principal se d&eacute;ploya, et Olor&igrave;n apparut en haut des marches, v&ecirc;tue d&rsquo;un tailleur mauve pour l&rsquo;occasion et une canne d&rsquo;apparat &agrave; la main. Un immense sourire accroch&eacute; aux l&egrave;vres, elle descendit sur le tarmac, prenant son temps et admirant le paysage alentours, sa canne tournant entre ses doigts agiles.</em></div></div><div class="post_line"><div align="justify"><em>Une fois au sol, la petite troupe h&eacute;t&eacute;roclite se mit en branle vers l&rsquo;Assembl&eacute;e, guid&eacute;e par la jeune femme.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">*&nbsp; &nbsp; *</div></div><div class="post_line"><div align="center">*</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Arriv&eacute;s devant le b&acirc;timent, un garde arr&ecirc;ta tout ce beau petit monde.</em></div></div><div class="post_line"><div align="justify"><font color="#2ecc40">&laquo;&nbsp;Je vais vous demander de bien vouloir circuler, je vous prie.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">- Nan, atta, t&rsquo;as pas compris. Je suis Olor&igrave;n, commandante du secteur 1, et j&rsquo;ai toutes les raisons du monde d&rsquo;&ecirc;tre ici.</font></div></div><div class="post_line"><div align="justify"><font color="#2ecc40">- Je sais qui vous &ecirc;tes, et je ne vous refuse pas l&rsquo;entr&eacute;e. Mais l&rsquo;Assembl&eacute;e Galactique n&rsquo;est pas une plaisanterie, ni un chapiteau. Vos... gens, vont donc devoir rester &agrave; l&rsquo;ext&eacute;rieur. Protocole oblige.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">- Maintenant, c&rsquo;est moi qui les mets en place, les protocoles.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Le garde ricana.</em></div></div><div class="post_line"><div align="justify"><font color="#2ecc40">&laquo;&nbsp;Avec tout le respect que je vous dois, je ne crois pas, madame, non.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">- Mademoiselle, d&rsquo;abord. Pis t&rsquo;es mignon, tu sais&nbsp;? T&rsquo;as pas encore eu l&rsquo;info, c&#039;est &ccedil;a ?...&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Au m&ecirc;me moment, le garde porta une main &agrave; son oreille, regarda la commandante d&rsquo;un air suspicieux et s&rsquo;&eacute;carta de quelques pas. Il sembla avoir une br&egrave;ve conversation tandis que la jeune femme admirait les sculptures ornant la fa&ccedil;ade. Puis le garde finit par revenir, l&rsquo;air contrit.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Bien, maintenant que t&rsquo;es au courant, j&rsquo;peux avancer&nbsp;? Avec mes gardes personnels&nbsp;?</font></div></div><div class="post_line"><div align="justify"><font color="#2ecc40">- Je suppose.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">- Faudra faire quelque chose pour ton costume, mon grand. Tout ce noir, c&rsquo;est d&rsquo;un aust&egrave;re&hellip; Allez, viendez les gens.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Et la commandante se mit en marche, suivie par ses quelques mercenaires.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">*&nbsp; &nbsp; *</div></div><div class="post_line"><div align="center">*</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle finit par arriver devant la salle de la statue.</em></div></div><div class="post_line"><div align="justify"><em>L&rsquo;engouement pour cette nouveaut&eacute; &eacute;tait pass&eacute; depuis longtemps et le nom de Cassandre n&rsquo;&eacute;tait plus sur beaucoup de l&egrave;vres. Sauf peut-&ecirc;tre sur celles du peuple d&rsquo;Oriande, toujours transi devant la repr&eacute;sentation divine, et dont le peuple patientait tranquillement et en bon ordre pour avoir la possibilit&eacute; de toucher, qui un bout de pied granitique, qui le socle de l&rsquo;imposante statue.</em></div></div><div class="post_line"><div align="justify"><em>Un circuit avait &eacute;t&eacute; am&eacute;nag&eacute; pour &eacute;viter les bouchons, et comme elle s&rsquo;y attendait, Olor&igrave;n n&rsquo;y vit presque que les sujets d&rsquo;&Eacute;l&eacute;onore.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>D&rsquo;un signe de la t&ecirc;te, elle indiqua &agrave; ses hommes de se d&eacute;ployer &agrave; travers la salle, ce qu&rsquo;ils firent sous le regard intrigu&eacute; et perplexe de quelques oriens occup&eacute;s &agrave; admirer les splendeurs de la salle.</em></div></div><div class="post_line"><div align="justify"><em>Une fois ceux-ci en place, la magicienne donna le signal. Et ce fut un concert de tirs de blasters au plafond. La foule paniqua et des cris retentirent.</em></div></div><div class="post_line"><div align="justify"><em>C&rsquo;est alors qu&rsquo;Olor&igrave;n fit un signe pour avoir le silence et prit la parole.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Ahi,&nbsp; trestoute la gent ! Je vos mant de issir. La feste en iert fenie...&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Les citoyens regard&egrave;rent, surpris, la jeune femme. &Eacute;l&eacute;onore se tourna &eacute;galement vers elle. Voyant le peu de r&eacute;action de la part des visiteurs, Olor&igrave;n haussa le ton.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2"><strong><font size="4">&laquo;&nbsp;Ne entendistes a moi ?!!! </font><font size="6">Fors de &ccedil;aenz !!!</font><font size="4">&nbsp;&raquo;</font></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La salle commen&ccedil;a &agrave; se vider doucement, tandis que la commandante s&rsquo;adressait &agrave; ses sbires.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Vous d&eacute;campez aussi. Vous restez &agrave; la porte et vous emp&ecirc;chez tout ce beau monde d&rsquo;entrer.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">J&rsquo;veux &ecirc;tre seule.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Puis, se tournant vers la reine, montrant d&rsquo;une main la porte&nbsp;:</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Dame &Eacute;l&eacute;onore...&nbsp;&raquo;</font></div></div><div class="post_line"><em>Et elle entreprit de la mener vers la sortie.</em></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Eleonore+d%27Oriande">Cdte. Eleonore d&#039;Oriande</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10547.jpg" style="width:128px;height:128px" alt="Avatar" /><br />07/05/1020 ETU 00:34<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal273922')">Détails</a> <a href="javascript:warnpost(273922)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal273922" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=273922',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Elle marchait dans la file, en pri&egrave;re, baign&eacute;e d&#039;une douce s&eacute;r&eacute;nit&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;arriv&eacute;e des Oriens sur la Capitale avait chaotique. Les p&egrave;lerins, rendus fous d&#039;enthousiasme et d&#039;attente, avaient &eacute;t&eacute; si incontr&ocirc;lables que les autorit&eacute;s narnes avaient cru &agrave; l&#039;&eacute;meute. Elles avaient cependant rapidement pris leurs dispositions, en collaboration avec la reine, pour mettre de l&#039;ordre dans tout &ccedil;a. Des trajets&nbsp;strictement balis&eacute;s jusqu&#039;&agrave; Cassandre et des horaires pr&eacute;cis, cal&eacute;es sur les p&eacute;riodes de faible affluence diplomatique, avaient vu le jour. Et surtout, <em>surtout,</em> la consigne de faire le moins de bruit possible. La menace de fermer l&#039;&eacute;difice si le d&eacute;sordre revenait tenait la foule en respect, et lui donnait la force de patienter dans les interminables files. C&#039;&eacute;tait un effort de gestion dont ils se seraient bien pass&eacute;s, mais, bien conscients qu&#039;endiguer ou bloquer le flux ne servirait qu&#039;&agrave; cr&eacute;er plus de probl&egrave;mes, ils s&#039;estimaient contents d&#039;&ecirc;tre arriv&eacute;s &agrave; le contr&ocirc;ler.</div></div><div class="post_line"><div align="justify">Quand les forces de Gionna Fox remplac&egrave;rent les Narns, soit qu&#039;ils s&#039;en moquaient, soit qu&#039;ils s&#039;&eacute;taient rendus &agrave; la m&ecirc;me &eacute;vidence, rien ne sembla changer dans cette belle organisation.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ainsi la Reine se trouvait-elle m&ecirc;l&eacute;e &agrave; une foule calme, dont les pri&egrave;res, doucement fredonn&eacute;es, formaient un bourdonnement continu et discret... et &eacute;trangement apaisant. Elle avait l&#039;impression d&#039;&ecirc;tre hors de son propre corps, de flotter dans un oc&eacute;an de d&eacute;votion collective. Elle n&#039;avait rien &agrave; qu&eacute;mander aupr&egrave;s de l&#039;Ange fait pierre, seulement de banales pri&egrave;res, des louanges et des remerciements ; le simple fait de se retrouver tendue dans le m&ecirc;me effort que des milliers de fid&egrave;les lui apportait assez. Et sa joie augmentait peu &agrave; peu, &agrave; mesure qu&#039;elle se rapprochait de Cassandre...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ce fut &agrave; ce moment que des hommes entr&egrave;rent et se mirent &agrave; tirer.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;&eacute;moi fut aussi g&eacute;n&eacute;ral qu&#039;imm&eacute;diat. Dans le m&ecirc;me geste de panique, la foule d&eacute;sarm&eacute;e&nbsp;se baissa et se couvrit la t&ecirc;te. Et elle hurla, bien s&ucirc;r. Les truands en armes semblaient y prendre un malin plaisir, espa&ccedil;ant expr&egrave;s les tirs pour provoquer des cris &agrave; chaque salve. Et ils riaient, aussi, d&#039;un rire gras de ces salauds d&#039;&eacute;lite que les chefs bandits trient sur le volet.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#B10DC9">&laquo; Ahi,&nbsp; trestoute la gent ! Je vos mant de issir. La feste en iert fenie... &raquo;</font></div><div class="post_line"></div><div class="post_line">La jeune reine fut frapp&eacute;e de stupeur. Une &eacute;trang&egrave;re parlait sa propre langue ? Au milieu d&#039;une troupe de forbans ?</div><div class="post_line">Elle profita du court instant d&#039;inertie g&eacute;n&eacute;rale pour d&eacute;tailler cette merveille. V&ecirc;tue d&#039;un tailleur mauve, le visage bariol&eacute; de blanc et les cheveux teints en vert, elle lui rappelait ces amuseurs de foires que les peuples du dehors appelaient <em>clowns</em>... mais les clowns n&#039;&eacute;taient-ils pas suppos&eacute;s &ecirc;tre amusants ? Celui-ci la mettait &eacute;trangement mal &agrave; l&#039;aise. Cela n&#039;avait rien &agrave; voir avec les hommes arm&eacute;s, non... c&#039;&eacute;tait plus profond, plus visc&eacute;ral. Plus <em>instinctif.</em> Une sorte de terreur cosmique et sourde encore &agrave; l&#039;&eacute;tat larvaire.</div><div class="post_line">Elle se rendit compte que tout &eacute;tait contenu dans ce sourire. <em><strong>Ce sourire.</strong></em></div><div class="post_line"><strong><font color="#B10DC9"><font size="3">&laquo; Ne entendistes a moi ?!!! <font size="6">Fors de &ccedil;aenz !!! &raquo;</font></font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;ordre claqua comme un coup de fouet sur la foule ahurie et un mouvement s&#039;enclencha vers la sortie, prudent. R&eacute;alisant qu&#039;il &eacute;tait impossible de se dresser face &agrave; cette situation, la reine Eleonore commen&ccedil;a &agrave; suivre la masse.</div></div><div class="post_line"><div align="justify">La chef se dirigea vers elle, prot&eacute;g&eacute;e du blaster de ses sbires, pour la mener vers la sortie, un air narquois sur son visage vicieux. Devant le triomphe de celle qui &eacute;tait devenue son ennemie mortelle, la jeune reine ne put avoir qu&#039;un mot. Et un regard charg&eacute; de reproches, et de questions.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#E8C500">&laquo;&nbsp;Traiteresse felone... &raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle avait d&eacute;sormais un souhait pour Sainte Cassandre.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Olor%C3%ACn...">Cdt. Olor&igrave;n...</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/9351.jpg" style="width:102px;height:128px" alt="Avatar" /><br />09/05/1020 ETU 01:05</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274287')">Détails</a> <a href="javascript:warnpost(274287)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274287" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274287',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em>La porte se referma, et la commandante s&rsquo;y adossa.</em></div></div><div class="post_line"><div align="justify"><em>Puis elle glissa le long du panneau, et se retrouva accroupie, les bras ballants entre les genoux, les yeux viss&eacute;s au sol.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2"><font size="1">&laquo;&nbsp;Enfin seules.&nbsp;&raquo;</font></font></div></div><div class="post_line"><div align="justify"><em>La phrase avait &eacute;t&eacute; prononc&eacute;e &agrave; haute voix, comme un murmure. Aucune &eacute;motion perceptible.</em></div></div><div class="post_line"><div align="justify"><em>L&rsquo;&eacute;nonciation d&rsquo;un simple fait.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;&Ccedil;a fait longtemps que j&rsquo;attendais cela. Tr&egrave;s longtemps, m&ecirc;me. Trop longtemps, en fait.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Sa t&ecirc;te se releva et son regard parcourut la salle vide.</em></div></div><div class="post_line"><div align="justify"><em>Olor&igrave;n se redressa, et avan&ccedil;a de quelques pas, ses talons r&eacute;sonnant dans le silence qui r&eacute;gnait &agrave; pr&eacute;sent.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Tu te pr&eacute;tends protectrice des peuples, guide bienveillant.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2"><font size="5"><strong>Conneries !!!</strong></font></font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">En r&eacute;alit&eacute; tu t&rsquo;fous bien de la gueule du monde, hein&nbsp;?&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Une col&egrave;re sous-jacente commen&ccedil;ait &agrave; percer dans le moindre de ses mots. Et une odeur d&rsquo;ozone, encore t&eacute;nue, mais perceptible, montait dans l&rsquo;air.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La commandante leva alors les yeux et les fixa sur la statue de Cassandre. Elle ricana.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Je ne pensais pas pouvoir me retrouver ici aussi rapidement. Je me voyais d&eacute;j&agrave; &ecirc;tre oblig&eacute;e de faire un coup d&rsquo;&eacute;tat, ou de le provoquer, pour venir te rendre cette petite visite que je te devais. Et voil&agrave; que la r&eacute;volution t&#039;a plac&eacute;e &agrave; ma disposition.&raquo;</font></div></div><div class="post_line"><div align="justify"><em>La statue resta muette.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Pourquoi&nbsp;? Mais parce qu&rsquo;il fallait qu&rsquo;on se voie, toi et moi. Mais sans t&eacute;moins, seules, tranquilles. Pour avoir une petite explication.</font></div></div><div class="post_line"><div align="justify"><em>- &hellip;</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">- Oh, pour &ccedil;a, le sujet de notre conversation est tr&egrave;s simple.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>La commandante marqua une pause. Et ses yeux mauves prirent une teinte &eacute;meraude l&rsquo;espace d&rsquo;un instant. Son visage se fit plus dur et sa voix plus grave tandis que l&rsquo;air devenait &eacute;lectrique.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo; Lyra.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Tu n&#039;as pas pu l&#039;oublier, n&#039;est-ce pas ?</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Tout s&#039;est pass&eacute; devant toi, &agrave; tes pieds. &raquo;</font></div></div><div class="post_line"><div align="justify">Une pause, le temps de contr&ocirc;ler sa voix.</div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo; Tu l&rsquo;as laiss&eacute;e mourir.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Toute la haine qu&#039;elle pouvait ressentir &agrave; ce moment pr&eacute;cis ressortait dans ces quelques mots.</em></div></div><div class="post_line"><div align="justify"><em>Ses mains s&rsquo;&eacute;levaient comme pour recevoir du ciel une b&eacute;n&eacute;diction qu&rsquo;elle rejetterait sans doute.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Tu es rest&eacute;e l&agrave;, les bras ballants, sans rien faire.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Quelques papiers commenc&egrave;rent &agrave; voleter dans la pi&egrave;ce tandis qu&rsquo;Olor&igrave;n vidait son sac &agrave; son interlocutrice de pierre.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Tortur&eacute;e, maltrait&eacute;e, puis ex&eacute;cut&eacute;e sans que tu ne l&egrave;ves le plus petit doigt depuis ton pi&eacute;destal.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Et tu pr&eacute;tends &ecirc;tre une envoy&eacute;e divine&nbsp;?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#9a00b2"><font size="7"><strong>&laquo;&nbsp;Tu l&rsquo;as laiss&eacute;e mourir&nbsp;!!!&nbsp;&raquo;</strong></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Cette derni&egrave;re phrase fut hurl&eacute;e, tandis qu&rsquo;un &eacute;clair frappait la statue de plein fouet, z&eacute;brant celle-ci d&rsquo;une balafre visible, tandis que l&rsquo;odeur d&rsquo;ozone devenait plus forte.</em></div></div><div class="post_line"><div align="justify"><em>Olor&igrave;n sembla surprise et regarda ses mains. Puis la marque sur la statue.</em></div></div><div class="post_line"><div align="justify"><em>Et un sourire &eacute;cartela ses l&egrave;vres tandis qu&rsquo;elle s&rsquo;approchait plus pr&egrave;s. Elle grimpa lestement sur le socle et se hissa &agrave; hauteur de sa t&ecirc;te.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Ainsi tu peux changer. Je me souviens t&rsquo;avoir vu bombard&eacute;e et t&rsquo;en sortir sans une &eacute;gratignure.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Mais pas toi. Pas cette occurrence de toi. T&rsquo;as moins de chances que tes s&oelig;urs jumelles, on dirait...&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>D&rsquo;un geste de la main, elle fit appara&icirc;tre un appareil &eacute;trange, ressemblant &eacute;trangement &agrave; une &eacute;p&eacute;e, mais dont la lame serait faite d&rsquo;&eacute;nergie pure.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Tu es inutile en fait. Incapable d&rsquo;agir. Incapable de tendre la main &agrave; ton prochain.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Il est donc inutile que tu gardes les tiennes.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Et d&rsquo;un geste vif elle abattit successivement son arme sur les poignets de Cassandre. Ses mains se d&eacute;tach&egrave;rent successivement lorsque la lame trancha net dans les fibres de la pierre. Et les deux moignons tomb&egrave;rent au sol, dans un choc sourd.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La jeune femme eut un sourire carnassier.</em></div></div><div class="post_line"><div align="justify"><em>Elle pla&ccedil;a une de ses mains sur la t&ecirc;te de la statue, assurant sa prise.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Tu l&rsquo;as regard&eacute;e se faire &eacute;ventrer, &eacute;carteler, on a tu&eacute; son &acirc;me, d&eacute;coup&eacute; sa chair, arrach&eacute;&nbsp;ses yeux&hellip; Et tu as regard&eacute; tout &ccedil;a, impassible.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Pas le moindre geste. Pas la moindre larme.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Tu sais ce qu&rsquo;on dit&nbsp;? &OElig;il&nbsp;pour &oelig;il...&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Et dans un geste vif, Olor&igrave;n transper&ccedil;a par deux fois&nbsp;la t&ecirc;te de la statue avec&nbsp;la pointe d&rsquo;&eacute;nergie, laissant deux trous b&eacute;ants &agrave; la place que ses yeux occupaient une seconde avant.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Dis-moi, on te dit messag&egrave;re de ton Dieu. Que tu fais sa volont&eacute; ici-bas et guide les hommes en ce sens&hellip;</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">J&rsquo;ai un message pour lui.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Dis-lui bien que j&rsquo;ai encore quelques petites affaires &agrave; r&eacute;gler dans les parages. Et qu&rsquo;ensuite, je lui rendrais une petite visite. Face &agrave; face. Et que je lui arracherai les tripes, lentement, centim&egrave;tre par centim&egrave;tre. Et que ce sera encore une mort trop douce pour Lui.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La jeune femme sauta &agrave; terre, remit de l&rsquo;ordre dans son costume, et se dirigea vers la sortie.</em></div></div><div class="post_line"><div align="justify"><em>Son sourire &eacute;tait revenu, ses yeux mauves aussi.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Tu bouges pas, hein, je reviens te voir tout &agrave; l&rsquo;heure, ma puce.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Et m&eacute;dite sur mes paroles.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Puis Olor&igrave;n sortit, refermant soigneusement la porte au regard des badauds curieux.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Laissiez la quiete, que se doit reposer&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Puis &agrave; ses gardes.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;J&rsquo;ai une petite d&eacute;claration officielle &agrave; faire, je reviens dans la soir&eacute;e ou demain. Jusque-l&agrave;, cette porte reste ferm&eacute;e. Herm&eacute;tiquement. Personne n&rsquo;entre. Je tranche personnellement la gorge de celui qui faillira &agrave; mes ordres.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Et la commandante partit faire son discours d&rsquo;intronisation temporaire dans l&rsquo;Assembl&eacute;e Galactique.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">~~~~~~~~~~</div></div><div class="post_line"><div align="center">~ <a href="https://www.apocalypsis.org/assemblee/viewtopic?c_topic=14905&amp;c_forum_page=1" target="_blank" rel="nofollow">Interm&egrave;de</a> ~</div></div><div class="post_line"><div align="center">~~~~~~~~~~</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Les ordres de transfert de la Capitale Galactique &eacute;taient pass&eacute;s, certains avaient refus&eacute; l&rsquo;offre, d&rsquo;autres l&rsquo;avaient accept&eacute;e, et Raynes ayant &eacute;t&eacute; le plus rapide, c&rsquo;est lui qui recevrait la boite de Pandore.</em></div></div><div class="post_line"><div align="justify"><em>Fort bien. La Capitale reviendrait donc &agrave; l&rsquo;un des candidats, elle-m&ecirc;me n&rsquo;aurait donc pas &agrave; l&rsquo;abandonner avant la fin du cycle politique.</em></div></div><div class="post_line"><div align="justify"><em>Dommage, remarque. Cela aurait pu &ecirc;tre dr&ocirc;le.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle revenait devant la salle de Cassandre, toujours ferm&eacute;e selon ses ordres, trois de ses gardes s&rsquo;occupant de garder les lieux.</em></div></div><div class="post_line"><div align="justify"><em>Un nombre assez impressionnant de fid&egrave;les &eacute;taient encore pr&eacute;sents. Incroyables le temps qu&rsquo;ils &eacute;taient capables de passer dans la simple attente de voir un morceau de pierre soi-disant divin.</em></div></div><div class="post_line"><div align="justify"><em>Olor&igrave;n arriva devant la porte, et se retourna pour adresser quelques paroles au peuple d&rsquo;Oriens.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Or sera overte la sale dusqu&#039;a petit, je vos mercie vostre pac&iuml;ence.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il y eut quelques soupirs soulag&eacute;s dans les rangs des croyants, tandis que la jeune femme p&eacute;n&eacute;trait &agrave; nouveau dans la salle, les portes se refermant derri&egrave;re elle.</em></div></div><div class="post_line"><div align="justify"><em>Elle se dirigea vers la statue et se hissa &agrave; nouveau &agrave; hauteur de sa t&ecirc;te.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Tu vas rigoler, j&rsquo;ai oubli&eacute; un truc, la derni&egrave;re fois qu&rsquo;on a discut&eacute;.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Mais dis-moi...</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">T&rsquo;as pas bronch&eacute; non plus quand tu l&rsquo;as entendue hurler ?&nbsp;Tandis que des griffes fouillaient ses entrailles et lui brisaient les os ?</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Dor&eacute;navant, tu n&rsquo;entendras plus non plus les pri&egrave;res de tes fid&egrave;les.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>En une seconde, Olor&igrave;n avait fait appara&icirc;tre de nouveau son arme, celle-ci tranchant comme dans du beurre les oreilles de Cassandre.</em></div></div><div class="post_line"><div align="justify"><em>Puis la jeune femme redescendit, un sourire aux l&egrave;vres, ramassa les deux morceaux qu&rsquo;elle venait de pr&eacute;lever, les fit sauter dans sa main d&rsquo;un air songeur&hellip; Puis elle relava ses yeux pleins de malice sur la statue. Elle parla &agrave; l&#039;une des oreilles se trouvant au creux de sa main.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;C&rsquo;est g&eacute;nial, en fait, ton concept de Loi du Talion. J&rsquo;adore.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Elle se retourna, r&eacute;cup&eacute;ra au passage les mains qu&rsquo;elle avait coup&eacute;, se fit appara&icirc;tre un sac et y pla&ccedil;a ses troph&eacute;es. Elle r&eacute;fl&eacute;chit un instant, puis ressortit une des mains qu&rsquo;elle garda entre ses doigts.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Arriv&eacute;e &agrave; la porte de la salle, elle se retourna et adressa encore quelques mots &agrave; la statue mutil&eacute;e.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Tu te souviendras, hein&nbsp;?</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Dis &agrave; ton Dieu que ses cycles sont compt&eacute;s.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Olor&igrave;n arrive.</font></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">Et elle vient pour Lui.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La jeune femme se retourna, franchit les portes, chercha du regard &Eacute;l&eacute;onore d&rsquo;Oriande. Elle finit par la trouver et se dirigea vers elle, un sourire chaleureux aux l&egrave;vres.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Je vos merci vostre pac&iuml;ence, bele Dame.&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Elle&nbsp;pla&ccedil;a la main de la statue dans celle de la pieuse dirigeante, les yeux toujours plant&eacute;s au fond des siens.</em></div></div><div class="post_line"><div align="justify"><font color="#9a00b2">&laquo;&nbsp;Or vos fis je devoir, si espere que m&#039;en mercirez. Dont vostre Dieu ne dist il : &quot;idle n&#039;oreras&quot; ?&nbsp;&raquo;</font></div></div><div class="post_line"><div align="justify"><em>Un immense sourire d&eacute;chira le visage d&rsquo;Olor&igrave;n tandis que la jeune femme s&rsquo;en allait dans un rire sonore, laissant &Eacute;l&eacute;onore tenir,&nbsp;sans le savoir encore, la main de Cassandre.</em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Eleonore+d%27Oriande">Cdte. Eleonore d&#039;Oriande</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10547.jpg" style="width:128px;height:128px" alt="Avatar" /><br />09/05/1020 ETU 22:35<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D274409', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274407')">Détails</a> <a href="javascript:warnpost(274407)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274407" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274407',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Quelques temps avaient pass&eacute; depuis les &eacute;v&eacute;nements.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Les &eacute;v&eacute;nements. </em>C&#039;&eacute;tait le nom que la reine donnait &agrave; son &eacute;viction forc&eacute;e, l&#039;arme &agrave; la main, de la salle de la statue tr&egrave;s sainte. Un euph&eacute;misme destin&eacute; &agrave; att&eacute;nuer la honte et la ranc&oelig;ur qui la rongeaient depuis lors.</div></div><div class="post_line"><div align="justify">Son r&ocirc;le d&#039;Avou&eacute;e lui intimait de reprendre la Capitale pour l&#039;arracher aux griffes malfaisantes d&#039;Olor&igrave;n... mais cela lui &eacute;tait impossible, pas sans provoquer un toll&eacute; qui pourrait la remettre entre des mains plus mauvaises encore. Elle n&#039;avait pas grand espoir de remporter les &eacute;lections, et encore moins de garanties que la gouverneuse de faits respecte vraiment le processus... Il ne lui restait plus que le marchandage. Eleonore d&#039;Oriande, protectrice des lieux saints, r&eacute;duite au marchandage. Cela la rendait folle.</div></div><div class="post_line"><div align="justify">Et pendant qu&#039;elle se morfondait, la salle de Cassandre restait r&eacute;solument close.&nbsp;Impossible de savoir ce qui s&#039;&eacute;tait pass&eacute; apr&egrave;s son d&eacute;part. Quelques &eacute;clats de voix &eacute;taient venus lui glacer le sang. La jeune reine craignait le pire.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Jusqu&#039;&agrave; ce qu&#039;elle apprenne que la salle, apr&egrave;s deux cycles, allait rouvrir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">⁂</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle attendait&nbsp;de nouveau au milieu d&#039;une foule, mais la ferveur avait laiss&eacute; place &agrave; l&#039;inqui&eacute;tude. Les conjectures les plus folles circulaient dans la masse ; la statue de Cassandre avait &eacute;t&eacute; enlev&eacute;e ; non, elle &eacute;tait toujours l&agrave;, mais elle avait &eacute;t&eacute; profan&eacute;e de mille mani&egrave;res ; elle avait servi &agrave; des rituels sorciers et ob&eacute;issait d&eacute;sormais aux diables...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le sang d&#039;Eleonore se gla&ccedil;a soudainement. La f&eacute;lone, la tra&icirc;tresse, le perfide serpent qui prenait Cassandre en otage venait de sortir et se dirigeait vers elle. La gorge nou&eacute;e de rage, elle ne put que serrer les dents lorsqu&#039;elle lui fourra un objet entre les mains.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#B10DC9">&laquo; Or vos fis je devoir, si espere que m&#039;en mercirez. Dont vostre Dieu ne dist il : &quot;idle n&#039;oreras&quot; ? &raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et tandis qu&#039;Olor&igrave;n s&#039;&eacute;loignait dans un &eacute;clat de rire, la reine baissa les yeux vers ce qu&#039;elle lui avait donn&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#E8C500"><font size="7">AAAAAAAAAAAAAAAAAAAAAAHHH !!</font></font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=14904&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=14904" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_14904" name="d_reply_14904" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_14904');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_14904'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Oeil pour &oelig;il</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

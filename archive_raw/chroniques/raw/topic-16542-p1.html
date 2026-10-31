@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16542 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Enigme dans la galaxie</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Enigme dans la galaxie</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />06/11/1022 ETU 07:39</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal296314')">Détails</a> <a href="javascript:warnpost(296314)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296314" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296314',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffff00"><font size="5">Sc&eacute;nario ouvert &agrave; tous !</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Montebourg, Plan&egrave;te D&eacute;sertique et chaude.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Rollo, une stature carr&eacute;, des poings carr&eacute;s, un visage carr&eacute;, d&#039;ailleurs tout &eacute;tait carr&eacute; chez cet homme aux cheveux en brosse et&nbsp;blonds, une casquette &agrave; courte visi&egrave;re rejet&eacute; en arri&egrave;re,&nbsp;et en marcel&nbsp;venait de poser son vaisseau, s&#039;&eacute;pongeant le front,&nbsp;il venait de livrer sa cargaison de nouvelles Machines robotiques de production, il d&eacute;cida de se prendre une pause.....Dans les docks rempli de monde, le brouhaha en r&eacute;sonnance, le bruit des r&eacute;acteurs des vaisseaux carg, comme un bruit d&#039;air comprim&eacute; a vous vriller les tympans mais qui ne durait pas heureusement, il &eacute;tait cependant recommand&eacute; de porter un casque &agrave; cause du bruit......</font></div><div class="post_line"><font color="#ffffff">Il reconnu la petite vagabonde qui trainait de temps en temps dans les Astroports&nbsp;en esp&eacute;rant &ecirc;tre embarqu&eacute;e car pour elle, l&#039;espace, c&#039;&eacute;tait l&#039;aventure, d&#039;apr&egrave;s le peu de renseignements qu&#039;il avait, elle vivait dans la rue, orpheline et trop jeune pour avoir une maison, comment &eacute;tait elle arriv&eacute;e ici ? En plein empire Moscovian ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Il s&#039;aper&ccedil;u vite fait qu&#039;elle avait &eacute;t&eacute; prise&nbsp;car visiblement, elle chargeait fi&egrave;rement des caisses avec .....Il le reconnu de suite, Shaldonn, un ex mercenaire reconverti en pilote de Vaisseau carg, celle ci, &acirc;g&eacute;e d&#039;a peu pr&egrave;s 17 ou 18 ans, une Jeune Mandorienne.....Il en &eacute;tait heureux pour elle, enfin, elle avait trouv&eacute;e quelqu&#039;un avec qui s&#039;associer, il connaissait Shaldonn, un type bien et r&eacute;glo, elle n&#039;aurait pas pu mieux tomber !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Rollo, se dirigea rapidement vers le bar des dock, s&#039;essuyant une &eacute;ni&egrave;me&nbsp;fois le front, par cette chaleur infernale, il rentra dans le bar et s&#039;installa, une fois assis, il senti le soulagement dans ses jambes, bon sang ! Que cela faisait du bien de s&#039;assoir, il commanda une gazeuse bleue......L&#039;instant d&#039;apr&egrave;s il d&eacute;gustait sa boisson tout en respirant et se laissant aller, en regardant ce qui se passait autour ......</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Son attention fut attir&eacute; par un Galarien qu&#039;il connaissait bien et qui se dirigeait vers lui, Il s&#039;appelait Grent, il lui &eacute;tait arriv&eacute; de former un convoi avec Drevs, les deux &eacute;taient des amis de longue date, ils se connaissaient par c&oelig;ur mais quelque chose clochait .....</font></div><div class="post_line"><font color="#ffffff">Grent avait la t&ecirc;te basse, regardant de tous cot&eacute;s, se d&eacute;pla&ccedil;ant rapidement et&nbsp;semblant craindre quelque chose......Si Rollo &eacute;tait large et bien b&acirc;ti, avec des muscles saillants, il &eacute;tait cependant de taille moyenne. Grent lui, &eacute;tait grand mais assez fluet, la barbe en collier noire sur sa peau immacul&eacute;e.</font></div><div class="post_line"><font color="#ffffff">Rollo leva un regard inquiet sur lui et lui adressa la parole dans le brouhaha de la musique et des gens install&eacute;s autour&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">H&eacute; ben ! t&#039;en fait une&nbsp;tronche dit moi qu&#039;est ce qui t&#039;arrive, t&#039;as aval&eacute; un truc de pas frais ou quoi ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Ha m&#039;en parle pas mon vieux ! Si tu savait ! </font><font color="#ffffff">R&eacute;pondit celui ci en murmurant la t&ecirc;te basse, sur le ton de la confidence</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Bah ! Vas y ! Sort le Dragon !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Ben voila ! L&#039;aut jour, je r&#039;venait de la lune de V&eacute;g&eacute;tia, bon tout s&#039;passait bien lorsque j&#039;allais passer a la deuxi&egrave;me livraison, lorsque j&#039;ai retrouv&eacute; le Santiana de Drevs !</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Oui et ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">.....Grent respira un grand coup laissant deviner une catastrophe a Rollo qui fron&ccedil;a les sourcils, Grent reprit&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Ben voil&agrave;, il &eacute;tait en train de d&eacute;river !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">L&agrave; , Rollo fron&ccedil;a vraiment les sourcils, connaissant Drevs, cela sortait vraiment de l&#039;ordinaire, jamais Drevs ne ferait une chose pareille, abandonner son vaisseau ? Impensable !!&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Hum .....Continue !</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Ben voila ! On a d&eacute;cid&eacute;s&nbsp;de l&#039;aborder tu pense bien !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Bin sur tiens j&#039;aurais fait la m&ecirc;me chose aussi, et ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Quand on est rentr&eacute;s &agrave; bord, il y avait plus personne nulle part, dans la cantine, les plats &eacute;taient servis, mais froids on a rien trouv&eacute; &agrave;&nbsp;part .........</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">A part ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Ben ....Je ...Je sait pas comment te dire &ccedil;a mon vieux mais faut que je t&#039;annonce un truc bien triste mais pas ordinaire ......Tu est pr&ecirc;t &agrave; tout entendre ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Rollo inspira un grand coup sachant au fond de lui m&ecirc;me qu&#039;une sinistre v&eacute;rit&eacute; allait venir mais refusant d&#039;y croire</font> .....<font color="#e86e04">Vas y j&#039;suis costaud !</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Y avait Drevs mort ! Mais c&#039;est ......Sinistre !! Il flottait &agrave; 2 m&egrave;tres du sol, la t&ecirc;te pench&eacute;e en avant, les yeux exorbit&eacute;s de terreur, les bras l&eacute;g&egrave;rement &eacute;cart&eacute;s et un peu tendus vers l&#039;avant&nbsp;comme les jambes, et il tournait lentement sur lui m&ecirc;me inlassablement.....Bon sang cette vision me quitteras plus ! j&#039;te jure ! Des qu&#039;on l&#039;a touch&eacute;, il est retomb&eacute; par terre, l&#039;effet d&#039;apesanteur &agrave; disparu compl&egrave;tement ....Y avait aucune trace de blessure nulle part, on s&#039;explique pas de quoi qu&#039;il est mort !!</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Rollo ferma la bouche, les yeux aussi, se rappelant de pleins de souvenirs pass&eacute;s, il sentit les larmes mais se retint ....</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Mais .....Aucune blessure ? Et les autres ? Tous les autres ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">J&#039;en sait rien ! tous disparus j&#039;te dit ! On sait pas ! Mais moi ! Ca m&#039;a foutu les chtons j&#039;te jure j&#039;veut plus aller la bas ! On a ramen&eacute;s l&#039;vaisseau, on a &eacute;t&eacute; tr&egrave;s longuement int&eacute;rrog&eacute; par la douane ........Pis j&#039;suis repartis mais c&#039;est pas tout !</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Quoi d&#039;autre ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Ben juste avant y a un truc qui s&#039;est pass&eacute; dans l&#039;m&ecirc;me coin mais avec moi l&agrave; ! Figure toi qu&#039;une semaine avant un type m&#039;appelle en Hologramme, pour une commande de minerais de Silicium, alors on parle affaire tout va bien, le type avait l&#039;air de bonne humeur tu voit .....Et vla qu&#039;il y a une coupure dans le hologramme.....Une sorte de blanc d&#039;&agrave; peu pr&egrave;s une vingtaine de secondes ....Puis l&#039;image revient mais je te jure que j&#039;avais l&#039;impression de ne plus avoir affaire au m&ecirc;me homme, l&agrave;, il tirait la tronche ! Mais on finis quand m&ecirc;me par se mettre d&#039;accord, l&agrave; il m&#039;indique ou livrer.....Le m&ecirc;me coin que ou on a retrouv&eacute; l&#039;vaisseau de Drevs une semaine apr&egrave;s.... Je vais livrer et impossible de retrouver sa compagnie ........Elle n&#039;avais jamais exist&eacute;e .... Alors moi je te le dit ! j&#039;ai une trouille d&#039;enfer ! J&#039;vais &agrave; notre cachette, j&#039;vais me mettre au vert pendant un temps&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Tu l&#039;as dit &agrave; la douane &ccedil;a ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Bien sur et j&#039;ai r&eacute;v&eacute;l&eacute; aussi l&#039;emplacement de c&#039;te cachette, j&#039;ai bien fait hein dit ? Rollo j&#039;ai bien fait dit ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Rollo r&eacute;fl&eacute;chissait &agrave; toute vitesse, bien sur, r&eacute;v&eacute;ler leurs planque &eacute;tait d&eacute;cevant, un charmant endroit sur une petite plan&egrave;te a flanc d&#039;une rocheuse bordant un lac et une for&ecirc;t majestueuse mais ......Pouvait il en vouloir a Grent, qu&#039;aurais t&#039;il fait lui ? sinon la m&ecirc;me chose, il lui fallait de la protection, ce qui venait de se passer &eacute;tait terrifiant et bien courageux celui ou celle qui n&#039;aurait pas peur ! Il laissa&nbsp; donc &eacute;chapper un ......</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Oui Grent ! Tu as eu probablement raison bien sur et j&#039;vais te rejoindre, faut qu&#039;on organise quelque chose pour Drews mais en attendant ....pas un mot de &ccedil;a &agrave; quiconque !</font></div><div class="post_line"></div><div class="post_line"> <font color="#ffffff">Il regarda autour de lui si ils avaient &eacute;t&eacute; &eacute;cout&eacute;s et reprit en se penchant en confidence.</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Ecoute on se rejoint tout a l&#039;heure et on fait &eacute;quipe, on va direct &agrave; notre endroit et on bouge plus jusqu&#039;&agrave; nouvel ordre d&#039;acc mon vieux ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Pas de probl&egrave;me !</font> <font color="#ffffff">fit Grent visiblement soulag&eacute;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Ils se lev&egrave;rent et se retir&egrave;rent chacun de leurs cot&eacute;, Rollo rentra dans son vaisseau ......En attendant le signal de Grent.....Il se laissa aller aux larmes .....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Quelques instants apr&egrave;s, les deux vaisseaux se dirigeaient vers leur refuge ..................</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Escort&eacute;s en protection&nbsp;par une grande flotte de la douane&nbsp;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />08/11/1022 ETU 03:30</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D296342', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal296339')">Détails</a> <a href="javascript:warnpost(296339)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296339" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296339',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff">Sokoreff &eacute;tudiait le rapport de douane de V&eacute;g&eacute;tovia lorsque un Traqueur arriva ......Il salua et fit&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Товарищ первый секретарь? Только что прибыл комиссар Валинов с профессором Стеффи. !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa339">(Camarade premier Secr&eacute;taire ? Le Commissaire Valinov vient d&#039;arriver avec le Professeur Steffey)</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Ладно, впусти их !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">(Tr&egrave;s bien faites les entrer ! )&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Le Commissaire Valinof entra en compagnie du Professeur Steffey</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Haa Camarade Premier Secr&eacute;taire ! Comment allez vous !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Tr&egrave;s bien, bien qu&#039;intrigu&eacute; par cette &eacute;trange histoire !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">L&#039;affaire de V&eacute;g&eacute;tovia ? .....Hmmm oui j&#039;ai lu le rapport en effet et j&#039;ai vu l&#039;entretien de la commande de ce pilote de vaisseau carg, ce Rollo en effet , A ce propos, ce qui est amusant c&#039;est qu&#039;il s&#039;est quelque peu tromp&eacute; sur le nom de la plan&egrave;te, au lieu de V&eacute;g&eacute;tovia, il a mentionn&eacute; V&eacute;g&eacute;tia comme son coll&egrave;gue Grent !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Hmmm ....Ces pilotes de Vaisseaux Carg ne s&#039;embarrasse pas en g&eacute;n&eacute;ral des noms des plan&egrave;tes......Mais Professeur, pouvez vous m&#039;en dire plus &agrave; ce sujet ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Hmmmm ....Comme je vous l&#039;ai dit surement, dans l&#039;espace, tout peut arriver, et d&#039;ailleurs, la disparition de cet &eacute;quipage, si vous vous souvenez bien, cela s&#039;est d&eacute;j&agrave; produit.</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Moi non mais mon grand p&egrave;re oui surement, il me semble qu&#039;il m&#039;en avait parl&eacute;, quand ils &eacute;taient rentr&eacute;s dans ce vaisseau, une sorte de clip passait en boucle sur un type qui dansait seul dans un h&ocirc;tel, mais de l&#039;&eacute;quipage, il n&#039;y en avait plus aucune trace...</font>.</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Oui mais ce qu&#039;il y avait de plus &eacute;trange c&#039;est que l&#039;atterrissage&nbsp;&eacute;tait automatique, qui l&#039;avait mis ? Personne n&#039;a jamais su quoi que ce soit&nbsp; sur cette affaire ! Mais j&#039;avoue que ici cela diff&egrave;re quelque peu, le vaisseau &agrave; &eacute;t&eacute; retrouv&eacute; d&eacute;rivant dans l&#039;espace et ce cadavre flottant en suspension dans l&#039;air, j&#039;avoue ne rien avoir vu de tel jusqu&#039;&agrave; maintenant, mais ....Grent a enregistr&eacute; son entretient avec cet &eacute;trange industriel regardez .....Il n&#039;y a pas les paroles mais c&#039;est assez &eacute;trange aussi !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Steffey introduisit un petit disque .....L&#039;enregistrement commen&ccedil;a sur l&#039;&eacute;change de Grent et son interlocuteur, l&#039;homme maigre de figure, d&eacute;garni des cheveux grisonnants et d&#039;un certain &agrave;ge semblait sourire et m&ecirc;me plaisantant avec Grent.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Et regardez bien, c&#039;est ici que cela se passe ! Il y a tout a coup une sorte de coupure nette, une sorte de blanc totalement impr&eacute;visible......Voil&agrave; ! Voyez ? J&#039;ai chronom&eacute;tr&eacute;, cela dure 25 secondes en tout ! Puis tout reprend normalement .....Enfin &agrave; un d&eacute;tail pr&egrave;s ......Regardez la physionomie de l&#039;homme !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Hmmm elle a chang&eacute;e, il &agrave; l&#039;air plus grave qu&#039;avant !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">En effet oui ! et il est all&eacute; livrer sa marchandise mais c&#039;&eacute;tait semble il un mirage ! Cette compagnie n&#039;existait pas !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Quelle Compagnie ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">La Zorlov, .....J&#039;ai v&eacute;rifi&eacute; moi m&ecirc;me !&nbsp; Elle n&#039;a jamais exist&eacute;e !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Dimitri r&eacute;flechissait et finit par murmurer ........</font>.<font color="#72ff84">25 secondes de blanc, .....Il peut se passer n&#039;importe quoi pendant ces 25 secondes, 25 secondes c&#039;est long quand on y pense !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Hmmm ...Oui ! Mais quel int&eacute;r&ecirc;t d&#039;attirer un vaisseau charg&eacute; de Silicium, et cela....pour rien ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Cela n&#039;est gu&egrave;re logique en effet et une semaine apr&egrave;s l&#039;&eacute;quipage du Santiana disparaissait myst&eacute;rieusement et ce dans le m&ecirc;me secteur !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Rien n&#039;est logique dans cette affaire ! J&#039;en ai bien peur ! Et notre marge de man&oelig;uvre est quasi inexistante et il est plut&ocirc;t risqu&eacute; d&#039;aller l&agrave; bas la lutte contre les pirates bat son plein, ils sont en pleine guerre en ce moment !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Dimitri r&eacute;fl&eacute;chit pendant un bon moment</font> .........<font color="#72ff84">Balthazar, ce fait avec mon grand p&egrave;re, il m&#039;avait rapport&eacute; que cela s&#039;&eacute;tait pass&eacute; la veille d&#039;une apocalypse .......</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ouiiii oui ! Bien sur j&#039;y ai pens&eacute; bien entendu mais ce n&#039;est pas pour cela qu&#039;il y a une forme de logique r&eacute;p&eacute;titive !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Balthazar, se pourrait il qu&#039;ils ai travers&eacute; une temp&ecirc;te ? une sorte de ma&euml;lstrom cosmique donnant une certaine forme de passage dimensionnel ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Steffey perdu dans ses pens&eacute;es, finit par lui r&eacute;pondre en hochant la t&ecirc;te tout en faisant une moue</font>........<font color="#ffff00">Il y a des ann&eacute;es, devant une telle supposition, je vous aurais rit au nez mais aujourd&#039;hui......Je ne serais plus aussi affirmatif, ....Il faudrait peut &ecirc;tre r&eacute;ussir &agrave; observer un tel ph&eacute;nom&egrave;ne mais c&#039;est pratiquement impossible et ....d&#039;ailleurs, nous l&#039;aurions d&eacute;tect&eacute;....</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Un enl&egrave;vement par une race inconnue ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Nous ne pouvons pour l&#039;instant &eacute;carter aucune hypoth&egrave;se, mais je penserais alors plut&ocirc;t &agrave; des monstres !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Hmm ......Vous pensez &agrave; l&#039;expression de ce Commandant en suspension ? .....Malheureusement je suis assez d&#039;accord oui ....Vous croyez que l&#039;entretien avec Grent &agrave; un lien !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">D&#039;ordinaire...Je vous aurais r&eacute;pondu non .....Maiiis .....Il y a le fait que la livraison devait se faire dans le m&ecirc;me secteur .....</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Moi de mon cot&eacute;, j&#039;ai relev&eacute; toutes les exp&eacute;ditions dans ce secteur.....j&#039;ai remont&eacute; a un mois avant la date de cet entretien des tas de vaisseaux sont pass&eacute;s au m&ecirc;me endroit&nbsp;et il n&#039;y a eu aucun accident.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Steffey hocha la t&ecirc;te .....</font><font color="#ffff00">Hmmm oui et c&#039;est justement cela qui est surprenant ! Aucune suite, aucune logique ! Cette anomalie s&#039;est brusquement produite puis plus rien !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Dimitri se tourna vers Valinov</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Et par rapport &agrave; la population, les gens ne savent rien ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ff851b">Absolument rien Camarade, l&#039;ordre du secret est pass&eacute;, rien ne fuitera Camarade ....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Hum je pourrais allez voir sur place ....</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Il n&#039;en est pas question ! Balthazar, admettons que vous disparaissiez aussi, ce serait une catastrophe pour nous tous ! Et vous le savez bien !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Steffey sourit,</font> <font color="#ffff00">Alors que faisons nous ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Dimitri r&eacute;fl&eacute;chit un moment puis reprit .....</font><font color="#72ff84">Je vais envoyer une exp&eacute;dition sur place, de toute fa&ccedil;on, il n&#039;y a pas grand chose a faire d&#039;autre, mais un ou plusieurs de vos coll&egrave;gues pourraient les accompagner ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Hmm hmm oui certainement, je vais organiser cela !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">H&eacute; bien ! Allons y, nous allons nous d&eacute;tendre et fixer les d&eacute;tails de cette op&eacute;ration autour d&#039;une bonne Vodka qu&#039;en pensez vous ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Valinov sourit et Steffey r&eacute;pondit,</font> <font color="#ffff00">Une petite alors , ne for&ccedil;ons pas la dose surtout !! ....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Ils sortirent, la pi&egrave;ce redevint silencieuse</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">&nbsp;</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16542&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16542" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16542" name="d_reply_16542" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16542');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16542'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Enigme dans la galaxie</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

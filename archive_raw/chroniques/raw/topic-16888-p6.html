@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 6 ;
+    var topic = 16888 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>A la recherche de Sarah</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche de Sarah</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=2">2</a>&nbsp;...&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=5">5</a>&nbsp;6&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />25/10/1023 ETU 02:02<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305089')">Détails</a> <a href="javascript:warnpost(305089)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305089" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305089',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Anudar avait vu, au cours de sa conversation avec Myah, que Jim semblait... perturb&eacute;. La consommation que le Marshall faisait de certaines substances psychotropes n&#039;&eacute;tait un myst&egrave;re pour personne - pas plus que son endurance &agrave; l&#039;&eacute;thanol et aux cannabino&iuml;des, sans nul doute acquise &agrave; forte d&#039;entra&icirc;nement... - mais la r&eacute;manence de leurs effets d&eacute;rangeait le Basileus.</em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">Et c&#039;est cet individu qui envisage d&#039;aller explorer une Galaxie abandonn&eacute;e ? Quels d&eacute;mons le silence qu&#039;il y trouvera va engendrer, alli&eacute; &agrave; la solitude qui se niche entre les os de son cr&acirc;ne ?</font></strong></em></div><div class="post_line"></div><div class="post_line"><em>Il se demanda s&#039;il serait pertinent de proposer au Marshall une cure de d&eacute;sintoxication - mais les protocoles, qui incluaient traitements chimiques et psychoth&eacute;rapie, restaient longs m&ecirc;me avec les moyens dont disposait l&#039;Ecoum&eacute;n&ecirc;. Or, le Marshall n&#039;aurait de toute &eacute;vidence pas la patience d&#039;attendre.</em></div><div class="post_line"></div><div class="post_line"><em>Si l&#039;on voulait &eacute;viter que la qu&ecirc;te sombre dans un d&eacute;sastre d&#039;envergure intergalactique, il allait donc falloir que Jim soit accompagn&eacute; par des alli&eacute;s solides et pr&eacute;par&eacute;s aux dangers que l&#039;homme apporterait avec lui dans les r&eacute;gions sauvages.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Eh bien</strong></font><em>, r&eacute;pondit Anudar, </em><font color="#2ecc40"><strong>je ne serai pas en mesure de vous fournir cette information... mais je peux vous raconter ce que je sais de son histoire, si vous le d&eacute;sirez.</strong></font><em>&quot;</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />25/10/1023 ETU 03:08</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305090')">Détails</a> <a href="javascript:warnpost(305090)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305090" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305090',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8">Mes amis, pardonnez-moi. Je... Je dois vous avouer que depuis quelques cycles, je ne me sens plus moi-m&ecirc;me.</font></div><div class="post_line"><font color="#68c4e8">J&#039;ai... J&#039;ai souvent la m&ecirc;me image dans la t&ecirc;te qui me revient.</font></div><div class="post_line"><font color="#68c4e8">Peut-&ecirc;tre... Peut-&ecirc;tre que je devrais me placer en stase.</font></div><div class="post_line"><font color="#68c4e8">Le professeur Egon Stetmann semble penser que mon &eacute;tat, aurait un lien avec une relique d&eacute;couvert en secteur 0.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Je vais tout, vous expliquez...</font></div><div class="post_line"></div><div class="post_line"><em>*Jim commen&ccedil;a alors ces explications...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Il y a une 100&eacute;ne de cycles, nous avons rep&eacute;r&eacute; un vaisseau abandonn&eacute; immatricul&eacute; Kere&iuml;-74.</font></div><div class="post_line"><font color="#68c4e8">&Agrave; son bord, aucune trace de vie. L&#039;&eacute;quipe d&#039;exploration a d&eacute;couvert un objet &eacute;trange enferm&eacute; dans la soute.</font></div><div class="post_line"><font color="#68c4e8">La relique semble mi-organique, mi-synth&eacute;tique et &eacute;mane des particules de Tachyon.</font></div><div class="post_line"><font color="#68c4e8">Apr&egrave;s plusieurs analyses, nous n&#039;avons pas pu d&eacute;terminer son origine.</font></div><div class="post_line"><font color="#68c4e8">Peut-&ecirc;tre devrions-nous retourner en secteur 1, le laboratoire se situe sur Minesta.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Quand pensez-vous ?</font></div><div class="post_line"><font color="#68c4e8">Myah ? Anudar ?</font></div><div class="post_line">&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />25/10/1023 ETU 03:24<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305091')">Détails</a> <a href="javascript:warnpost(305091)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305091" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305091',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Ami Jim</strong></font><em>, avertit Anudar, </em><font color="#2ecc40"><strong>vous avez appel&eacute; &agrave; l&#039;aide au d&eacute;part pour retrouver la jeune Sarah Kleptoman - que sans avoir tr&egrave;s bien connue, j&#039;ai c&ocirc;toy&eacute; par le pass&eacute;. Nos coutumes et mes principes m&#039;imposent de vous fournir les informations dont vous avez besoin - voire m&ecirc;me de vous accompagner sur place... mais je dois vous le dire, au moment o&ugrave; mon peuple r&eacute;clame avec passion que lui soit accord&eacute; son droit au p&egrave;lerinage et &agrave; la migration vers ses territoires ancestraux, je ne sais pas s&#039;il serait pour moi raisonnable de vous accompagner dans une qu&ecirc;te annexe.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Puis, r&eacute;alisant que ses propos pourraient &ecirc;tre consid&eacute;r&eacute;s comme froids et peu empathiques :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>J&#039;ignore quels sont les moyens dont dispose votre scientifique, mais je puis vous garantir que nos neuropsychologues sont capables de vous d&eacute;barrasser de vos... hallucinations... gr&acirc;ce &agrave; un traitement aussi confortable qu&#039;efficace et rapide. Qu&#039;en diriez-vous ?</strong></font><em>&quot;</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />25/10/1023 ETU 04:37<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D305097', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal305096')">Détails</a> <a href="javascript:warnpost(305096)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305096" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305096',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Myah, &eacute;bahie&nbsp;par le dialogue de ses pairs, regardait Jim et Anudar alternativement sans comprendre vraiment ce qui se tramait.</div><div class="post_line"><font color="#ffc95f"><em>Que se passe-il ? JJim est-il atteint par ses esc&egrave;s ? Je ne peux pas le croire ! Mais le Basileus a l&#039;air s&ucirc;r de lui et jelui fais confiance... Que nous arrive-t-il ? Non... non... non, pas Jim !</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Retourner en Secteur 1 ? Pour un objet &eacute;trange ??? Mais... Jim... on ne peut plus aller comme &ccedil;a &agrave; l&#039;aveuglette ! C&#039;est dangereux et peu porteur d&#039;espoir ? Jim, je crois qu&#039;il faut &ecirc;tre raisonnable... Anudar est r&eacute;clam&eacute; en urgence par son peuple et moi... mes enfants me manquent trop !</font></div><div class="post_line"></div><div class="post_line"><em>Elle s&#039;arr&ecirc;ta et ses yeux se mirent &agrave; couler sur ses joues. Elle &eacute;tait incapable de se contr&ocirc;ler. Entre la perte d&#039;Az&eacute;ran, la naissance de ses enfants qu&#039;elle &eacute;tait la seule &agrave; pouvoir prot&eacute;ger, la qu&ecirc;te amoureuse de son ami paraissait fade et sans espoir.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je suis vraiment d&eacute;sol&eacute;e, Jim.</font> <em>Elle ferma les yeux bri&egrave;vement.</em> <font color="#ffa500">Je vais abandonner, mon ami. Cette recherche me para&icirc;t vou&eacute;e &agrave; l&#039;&eacute;chec et j&#039;ai d&#039;autres priorit&eacute;s, maintenant... Pardonne-moi... Je rentre chez moi.</font></div><div class="post_line"></div><div class="post_line"><em>Elle alla vers lui et l&#039;enla&ccedil;a amicalement, puis lui murmura &agrave; l&#039;oreille</em> : <font color="#ffa500">Soigne-toi, tu es pr&eacute;cieux pour moi. Ton filleuil conna&icirc;tra le meilleur&nbsp;de toi, je m&#039;y engage, et il sera fier d&#039;avoir un tel h&eacute;ritage. </font><em>Myah enfon&ccedil;a son visage dans le cou de son ami, puis le l&acirc;cha doucement.</em></div><div class="post_line"></div><div class="post_line"><em>Le l&acirc;chant, elle accrocha le regard de Anudar, juste pour lui dire </em><font color="#ffa500">au revoir et merci...</font><em> et elle se dirigea vers son vaisseau.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />28/10/1023 ETU 21:23</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal305129')">Détails</a> <a href="javascript:warnpost(305129)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305129" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305129',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8">Pardonnez-moi mon ami... Je ne voulais pas, vous offensez vous, ou votre peuple. Vous avez s&ucirc;rement raison, votre peuple est peut-&ecirc;tre le plus am&egrave;ne de g&eacute;rer cette situation... Laissez-moi, vous montrez le rapport d&#039;examen...</font></div><div class="post_line"></div><div class="post_line">&quot;<font color="#17b529">Ici le professeur Egon Stetmann, responsable scientifique de la Nouvelle Conf&eacute;d&eacute;ration. Le sujet JT-000 semble souffrir de terribles maux de t&ecirc;te ainsi que d&#039;absence prolong&eacute;... Apr&egrave;s plusieurs analyses, scanner et IRM. Le sujet montre une augmentation d&#039;activit&eacute; c&eacute;r&eacute;brale ainsi que des Ondes th&ecirc;ta lors de ces absences... L&#039;agressivit&eacute;, ainsi qu&#039;un d&eacute;doublement de la personnalit&eacute;, semblent l&#039;affecter &eacute;galement. Je note &eacute;galement que ces blessures s&#039;infectent &eacute;galement, on dirait... On dirait que son corps se pr&eacute;pare &agrave; un changement. &Eacute;trange... Hum...&nbsp;Je suppose que JT-000 est &eacute;tait affect&eacute; par un contr&ocirc;le psychique, lors de son contact avec l&#039;Objet suite &agrave; son &eacute;vanouissement. Peut &ecirc;tre aussi une changement mol&eacute;culaire.&nbsp;Je ne sais pas encore comment couper le lien entre le sujet et l&#039;Objet, ni comment le gu&eacute;rir.&nbsp;C&#039;est bien la premi&egrave;re fois, que je rencontre ce genre de cas. Egon Stetmann termin&eacute;.</font>&quot;</div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Peut-&ecirc;tre que votre &eacute;quipe, sera quoi en faire !</font></div><div class="post_line"></div><div class="post_line"><em>*Jim tendit alors un holo-enregistrement vers le Basileus...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Pardonnez-moi encore une fois, je n&#039;ai plus trop toute ma t&ecirc;te ces temps-si.</font></div><div class="post_line"><font color="#68c4e8">Je...</font></div><div class="post_line"></div><div class="post_line"><em>*Myah &eacute;bahie par le dialogue, fit par a ces compagnons de son choix de quitter l&#039;aventure, et de retourner aupr&egrave;s de ces deux enfants. Apr&egrave;s un dialogue &eacute;mouvant, elle se dirigea vers TraineDehors puis l&#039;enla&ccedil;a.*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Merci pour tout Myah, je... Je ne pourrais jamais me pardonner, s&#039;il t&#039;arrivait quelque chose. Prends bien soin d&#039;AATHENEA et d&#039;ARWAAN. Je leur ferai des gros bisous &agrave; mon retour. Compte sur moi pour soutenir mon filleul pour toute sa vie.</font></div><div class="post_line"><font color="#68c4e8">Prends soin de toi ! Nous nous retrouverons mon amie.</font></div><div class="post_line"></div><div class="post_line"><em>*Alors que le marshal observa la dame quitter la pi&egrave;ce, il frotta discr&egrave;tement&nbsp;ces yeux, puis&nbsp;se retourna vers Anudar et reprit sa conversation...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Nous voila entre couilles, comment on dit. Bon et si nous allions voir ces m&eacute;decins ?</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />04/02/1024 ETU 17:51</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal306067')">Détails</a> <a href="javascript:warnpost(306067)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306067" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306067',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>*Bien des cycles, c&#039;&eacute;tait &eacute;coul&eacute;... L&#039;apocalypse avait emport&eacute; toute vie en Vindicte. Nul n&#039;avait eu de nouvelle des aventuriers. Jim restait non joignable, tout laisse penser &agrave; la disparition des Rebelles qui Trainedehors...</em></div><div class="post_line"></div><div class="post_line"><em>Tout du moins jusqu&#039;&agrave; la naissance d&#039;une nouvelle Galaxie... Harmonie !</em></div><div class="post_line"></div><div class="post_line"><em>Les &eacute;chos radars laissaient entendre que les Rebelles avaient surv&eacute;cu. Vivant, mais semble t&#039;il diff&eacute;rents...</em></div><div class="post_line"></div><div class="post_line"><em>Il ne s&#039;agissait plus d&#039;humain, mais de cr&eacute;ature corrompue par le mal. Des amas de chair, n&#039;&eacute;prouvant pas de peur, n&#039;y faim, n&#039;y douleur. Juste... Le d&eacute;sespoir ! La, quelque part sous ces formes disgracieuses, se trouvait ce qui s&#039;appelait... La vie.</em></div><div class="post_line"></div><div class="post_line"><em>&Agrave; la t&ecirc;te de ces r&eacute;pugnantes cr&eacute;atures, se trouvait &quot;<a href="https://ibb.co/Px78kR2" target="_blank" rel="nofollow"><u>Nayor</u></a>&quot;, autoproclam&eacute; &quot;Prince de la corruption&quot;. &Agrave; ses c&ocirc;t&eacute;s, toujours placer derri&egrave;re lui &quot;<a href="https://ibb.co/tJwVR29" target="_blank" rel="nofollow"><u>Rehon</u></a>&quot; le tout d&eacute;sign&eacute; &quot;Le Purulent&quot;. Ensemble, il guiderait la civilisation des &quot;<a href="https://ibb.co/vDXRwSd" target="_blank" rel="nofollow"><u>Corrompues</u></a>&quot; vers leurs destin&eacute;es...*</em></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Mon seigneur ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Qui a t&#039;il Rehon ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">La colonie a bien travers&eacute; sans encombre, nous sommes fin pr&eacute;s pour cette galaxie !</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Fort bien, nous allons voir ce que nous r&eacute;serve cette aventure ! Moua ha ha !</font></div><div class="post_line"></div><div class="post_line"><em>*Qu&#039;&eacute;tait-il advenue des rebelles ? Ou &eacute;tait passer Jim ? Et surtout... Avait-il retrouv&eacute; Sarah ?*</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />06/02/1024 ETU 04:22</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal306089')">Détails</a> <a href="javascript:warnpost(306089)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306089" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306089',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffc95f">Sir, tous se passent comme vous le souhaitez ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Parfaitement, nous avons r&eacute;ussi &agrave; &eacute;tablir des communications avec certains de nos voisins. Le sac a viande a r&eacute;ussi a dialoguer, mais nous avons r&eacute;ussi &agrave; le faire taire...</font></div><div class="post_line"><font color="#ff857a">Le canal nous a permis de venir dans ce monde. Maintenant, nous devons nous r&eacute;pandre...</font></div><div class="post_line"><font color="#ff857a">Avez-vous assez d&#039;h&ocirc;te ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Pour le moment, les chiffres sont plus que satisfaisant ! </font></div><div class="post_line"><font color="#ffc95f">Le charnier fonctionne a plein r&eacute;gime.</font></div><div class="post_line"><font color="#ffc95f">Ces mondes d&eacute;bordent de vie. D&#039;ici quelques cycles, nous serons des millions...</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">Et alors, plus rien ne se mettra en travers de notre route...</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />07/02/1024 ETU 04:45</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D306138', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal306137')">Détails</a> <a href="javascript:warnpost(306137)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306137" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306137',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8">....</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Ou ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Ou suis-je ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">L&#039;obscurit&eacute; ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Le silence ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="3">Sarah ?</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Que m&#039;est t&#039;il arriv&eacute; ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Je... Je ne comprend pas...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="3">Sarah ?</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Aide moi...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Je me souviens...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><strong>Myah...</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><strong>Anudar...</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><strong>Ex-000,&nbsp;Olivia,&nbsp;Tarik...</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Je...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Sarah ! Je... Je ne peut pas perdre !</font></div><div class="post_line"><font color="#68c4e8">Sarah !</font></div><div class="post_line"><font color="#68c4e8">Tiens bon !</font></div><div class="post_line"><font color="#68c4e8">Je... Je... Je suis <font size="5">JIM TRAINEDEHORS !</font></font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=2">2</a>&nbsp;...&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=5">5</a>&nbsp;6&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16888&amp;c_topic_page=6">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16888&c_forum_page=1&c_page=6" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16888" name="d_reply_16888" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16888');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16888'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche de Sarah</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

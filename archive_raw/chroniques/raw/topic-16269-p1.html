@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16269 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Conf&eacute;rence de Casablanca</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Conf&eacute;rence de Casablanca</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />12/04/1022 ETU 01:28<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293032')">Détails</a> <a href="javascript:warnpost(293032)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293032" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293032',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>-Une plan&egrave;te aride en Secteur II-</strong></div><div class="post_line"></div><div class="post_line"><font color="#ffa339">&quot;Tout doit &ecirc;tre parfait ! Recommencez !&quot;</font></div><div class="post_line"></div><div class="post_line"><em>Un ma&icirc;tre d&#039;h&ocirc;tel houspillait les serviteurs de la salle de banquet qui ouvrait la conf&eacute;rence. Rien ne valait plus qu&#039;un bon repas pour se mettre en condition. Il attendait tr&egrave;s prochainement deux chefs d&#039;Etats qui ne s&#039;&eacute;taient en r&eacute;alit&eacute; que peu rencontr&eacute;s jusque l&agrave;. Il v&eacute;rifia la table, la nappe blanche, l&#039;argenterie, les fleurs, la d&eacute;coration, les bougies dispos&eacute;es sur la table, les serviettes, l&#039;espacement des 24 couverts, 12 par d&eacute;l&eacute;gation. Les membres des d&eacute;l&eacute;gations &eacute;taient compos&eacute;s de 8 femmes et 16 hommes, 5 d&#039;entre elles venaient de Pieni Koira et l&#039;une d&#039;elles &eacute;tait la repr&eacute;sentante de la plan&egrave;te, il n&#039;avait donc pas le droit &agrave; l&#039;erreur. Et cela tombait bien, puisqu&#039;il &eacute;tait le meilleur ma&icirc;tre d&#039;h&ocirc;tel de la R&eacute;publique.</em></div><div class="post_line"></div><div class="post_line"><em>Une fois la salle valid&eacute;e, il descendit aux cuisines et y trouva une v&eacute;ritable fourmili&egrave;re. Le menu &eacute;tait double, l&#039;un v&eacute;g&eacute;tarien et l&#039;autre classique. La viande &eacute;tait la meilleure de la plan&egrave;te et provenait d&#039;un Derbus, animal bip&egrave;de herbivore avec une chair tendre. L&#039;accompagnement &eacute;tait compos&eacute; de tubercules et de l&eacute;gumes propres au climat aride de la plan&egrave;te. L&#039;entr&eacute;e &eacute;tait poissonni&egrave;re, du fromage de Versse suivait et l&#039;on finissait par des p&acirc;tisseries appel&eacute;es figues, sachant que l&#039;h&ocirc;te les appr&eacute;ciaient particuli&egrave;rement. Le tout se concluait sur un caf&eacute; qui permettrait de d&eacute;buter la conf&eacute;rence. Tout &eacute;tant pr&ecirc;t, ils n&#039;attendaient plus que les deux d&eacute;l&eacute;gations pr&eacute;vues pour dans un peu moins de trente minutes. Elles devaient d&#039;abord prendre des photos s&eacute;par&eacute;es sur le perron &agrave; l&#039;intention de journalistes et ensuite entraient dans la fraicheur de la maison.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Silla">Cdt. Silla</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/11436.jpg" style="width:128px;height:72px" alt="Avatar" /><br />12/04/1022 ETU 02:12<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293039')">Détails</a> <a href="javascript:warnpost(293039)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293039" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293039',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em>Le vaisseau &eacute;tait silencieux. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le voyage &eacute;tait long, le reste de la d&eacute;l&eacute;gation dormait. Des diplomates pour l&#039;essentiel m&ecirc;me si le l&eacute;gat Cassius &eacute;tait &eacute;galement du voyage. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Silla ne trouvait pas le sommeil. Certes, il &eacute;tait soulag&eacute; d&#039;avoir coup&eacute; les ponts avec l&#039;Assembl&eacute;e sectorielle. L&#039;ambiance y &eacute;tait trop lourde. Mais le d&eacute;roulement de la guerre le pr&eacute;occupait. Si les prochaine op&eacute;rations se d&eacute;roulaient bien, l&#039;adversaire aurait un nouvel acc&egrave;s de rage. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le voyage l&#039;enchantait donc au d&eacute;part, changement d&#039;air, changement d&#039;id&eacute;es. Mais les soucis &eacute;taient vite revenus. Peut-&ecirc;tre eut-il du laisser sa tablette au palais. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Oui mais comment aurait-il eu des nouvelles de l&#039;exp&eacute;dition ? Et si ils le retrouvait ? Si il &eacute;tait en vie. Aurait-il les m&ecirc;mes pr&eacute;rogatives sur son peuple ? </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Trop de questions sans r&eacute;ponses et au final peu de sommeil. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il se leva et se dirigea vers le poste de pilotage. Pilote automatique. L&#039;&eacute;quipage dans les bras de Morph&eacute;e. Mais il &eacute;tait le consul ! Il secoua doucement le pilote. Celui-ci &eacute;mergea lentement. Il vit le consul et se leva tant bien que mal. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Une question : combien de temps ? Le pilote fut vague... 12h, 14 peut-&ecirc;tre... Silla acquies&ccedil;a, remercia le pilote et revint s&#039;asseoir. Un coup d&rsquo;&oelig;il sur la tablette, un autre par le hublot. Le consul sombra de nouveau au plus loin de ses pens&eacute;es. </em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />12/04/1022 ETU 18:02<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293067')">Détails</a> <a href="javascript:warnpost(293067)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293067" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293067',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#fffa1e">&quot;Un vaisseau en approche mon capitaine, il s&#039;agit du convoi diplomatique portant la marque de la Res Publica.&quot;</font></div><div class="post_line"><font color="#4cea5e">&quot;Transmettez-lui les codes d&#039;approches&quot;</font></div><div class="post_line"></div><div class="post_line"><em>Apr&egrave;s quelques brefs &eacute;changes, le lien fut coup&eacute;.</em></div><div class="post_line"><em>Sur le tarmac officiel, le commandant de la base, Edwin Turh attendait. Il &eacute;tait accompagn&eacute; d&#039;une garde d&#039;honneur, des cavaliers mont&eacute;s avec des sabres d&#039;argent. Il devait amener la d&eacute;l&eacute;gation jusqu&#039;&agrave; l&#039;int&eacute;rieur d&#039;un court transporteur qui les transporterait ensuite jusqu&#039;&agrave; une vaste propri&eacute;t&eacute; o&ugrave; se tiendrait la conf&eacute;rence. Il abandonnerait la d&eacute;l&eacute;gation &agrave; l&#039;entr&eacute;e du parc o&ugrave; les diplomates prendraient le relais. Il &eacute;tait cependant pr&eacute;occup&eacute;, puisqu&#039;en effet, la d&eacute;l&eacute;gation de la Res Publica &eacute;tait arriv&eacute;e mais pas encore celle de Gome&iuml;sa.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Silla">Cdt. Silla</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/11436.jpg" style="width:128px;height:72px" alt="Avatar" /><br />13/04/1022 ETU 03:31<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293068')">Détails</a> <a href="javascript:warnpost(293068)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293068" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293068',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Silla avait r&eacute;ussi un trouver le sommeil. Un sommeil l&eacute;ger certes, mais suffisant tout de m&ecirc;me. </em></div><div class="post_line"></div><div class="post_line"><em>Une secousse le r&eacute;veilla brusquement. La navette avait manifestement atterri. </em></div><div class="post_line"></div><div class="post_line"><em>Il se leva rapidement et lissa les plis de sa toge tandis que sa suite se pr&eacute;parait. Deux ambassadeur quitt&egrave;rent la navette pour pr&eacute;parer la sortie du consul. </em></div><div class="post_line"></div><div class="post_line"><em>Ce dernier, se tenait droit dans le fonde de la navette. Il s&#039;adressa &agrave; son g&eacute;n&eacute;ral. </em></div><div class="post_line"></div><div class="post_line"><div align="justify"><strong><font color="#0074D9">&quot;Pourvu que la r&eacute;ception soit simple.&quot;</font></strong></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />13/04/1022 ETU 17:59<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293070')">Détails</a> <a href="javascript:warnpost(293070)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293070" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293070',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>L&#039;arriv&eacute;e des deux d&eacute;l&eacute;gations s&#039;&eacute;tait faite presque simultan&eacute;ment. En effet, au moment o&ugrave; la d&eacute;l&eacute;gation de la Res Publica arrivait, celle de la R&eacute;publique Koirienne avec Dame Gome&iuml;sa, Sir Edmund Burke et deux d&eacute;put&eacute;s arrivait &eacute;galement. Un passage en revue de la garde plus tard, et les deux d&eacute;l&eacute;gations entraient dans la salle o&ugrave; se tiendrait la conf&eacute;rence. Ils &eacute;taient &agrave; peine assis que deux serviteurs entr&egrave;rent, chacun portant un plateau en argent avec un pli pos&eacute; dessus. Il arriv&egrave;rent au niveau du consul Silla et de Dame Gome&iuml;sa qui prirent le papier en se regardant, interloqu&eacute;s. Les deux plis portaient l&#039;&eacute;criture de l&#039;Amiral Verinus.</em></div><div class="post_line"></div><div class="post_line"><strong><font color="#17b529">&quot;Le Pape Denior&#039;back a &eacute;t&eacute; renvers&eacute;, la guerre est finie, attendons ordres nouveaux.&quot;</font></strong></div><div class="post_line"></div><div class="post_line"><em>Ils se regard&egrave;rent dans les yeux et Gome&iuml;sa, plus prompte, ordonna &agrave; Edmund de repartir imm&eacute;diatement &agrave; l&#039;Assembl&eacute;e. Sit&ocirc;t sorti, les deux parties f&ecirc;t&egrave;rent la victoire. La conf&eacute;rence se terminait d&eacute;j&agrave;.</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16269&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16269" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16269" name="d_reply_16269" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16269');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16269'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Conf&eacute;rence de Casablanca</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

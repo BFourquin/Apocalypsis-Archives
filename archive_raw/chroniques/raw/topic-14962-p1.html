@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 14962 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>L&#039;Appel &Eacute;carlate</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;Appel &Eacute;carlate</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yulia+Ulan-Sternberg">Cdte. Yulia Ulan-Sternberg</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/10816.jpg" style="width:96px;height:128px" alt="Avatar" /><br />16/05/1020 ETU 00:50</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274854')">Détails</a> <a href="javascript:warnpost(274854)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274854" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274854',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="right">&quot;<a href="https://youtu.be/iByX1c6NKWM" target="_blank" rel="nofollow">Chantent, chantent les &eacute;ons</a>,</div></div><div class="post_line"><div align="right">Et voyez comme ils fuient !</div></div><div class="post_line"><div align="right">Les inconstants et les tra&icirc;tres,</div></div><div class="post_line"><div align="right">Ils courent, priez le Roi !&quot;</div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;&nbsp;<em>Il y a quelque-chose chez les peuples nomades, une mystique aux antipodes de notre mat&eacute;rialisme d&eacute;cadent. Nous devrions plus apprendre d&#039;eux. Je devrais plus apprendre d&#039;eux. C&#039;est mon souhait le plus cher. J&#039;ai demand&eacute; &agrave; ce que l&#039;on me transf&egrave;re &agrave; la fronti&egrave;re d&#039;Urghall, le plus haut lieu de ce qu&#039;ils appellent &quot;Mysticisme&quot;. Un monde de puret&eacute; sauvage et asc&eacute;tique. Grigory m&#039;assure que c&#039;est possible. Qu&#039;il serait tr&egrave;s heureux de m&#039;avoir sous son commandement. Il dit que ma connaissance des cultes, cultures et langues locales servirait plus l&agrave;-bas qu&#039;&agrave; Novoyevsk. Il pense aussi que je suis bonne cavali&egrave;re et pilote, que &ccedil;a les impressionnera. De l&#039;humour, venant de lui.&nbsp;</em>&raquo;</div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="justify">Des &eacute;crits de jeunesse. Na&iuml;fs, plein d&#039;un style pr&eacute;tentieux et immature, qui n&#039;avaient d&#039;autre usage que d&#039;&ecirc;tre relus par l&#039;auteur m&ecirc;me. Des mots qui ne tenaient ni de la po&eacute;sie noble et lyrique, ni du compte-rendu d&eacute;taill&eacute; des &eacute;v&eacute;nements. Du roman de gare pu&eacute;ril. Voil&agrave; ce qu&#039;en pensait Yulia. Pourtant elle ne pouvait s&#039;emp&ecirc;cher d&#039;&eacute;prouver une certaine tendresse pour celle qu&#039;elle avait &eacute;t&eacute;. Une enfant, oui. Mais une enfant s&#039;&eacute;tant fray&eacute;e un chemin jusqu&#039;&agrave; l&#039;&acirc;ge adulte, jusqu&#039;&agrave; Urghall. Une enfant consciente de la d&eacute;cadence, des risques du confort. Une enfant qui avait matur&eacute; sans s&#039;&eacute;garer. Qui avait appris le nom du Roi. Alors elle lui pardonnait son style, &agrave; cette enfant. Et souriait pour elle-m&ecirc;me en se rappelant des circonstances inattendues et proph&eacute;tiques qui l&rsquo;avaient amen&eacute; l&agrave; o&ugrave; elle en &eacute;tait. Un sourire d&#039;abord songeur&nbsp;: comme le temps passe, comme les choses changent, qui s&#039;entre-ouvrit pour laisser &eacute;chapper un souffle court, affam&eacute;, alors que les images claires comme un ciel d&#039;&eacute;t&eacute; lui revinrent en ordre de combat. De nouvelles visions proph&eacute;tiques ou pass&eacute;es, comme &agrave; chaque fois elle avait du mal &agrave; trancher. La lutte, les milliers d&rsquo;exorcistes dansant autour des buchers, la charge finale et les festins de chair&nbsp;!... La guerre et le sang. Tout ce sang&nbsp;! Si chaud, comme les entrailles d&#039;un cheval, l&#039;&eacute;treinte d&#039;un amant, vital et art&eacute;riel...</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle ouvrit les yeux. Revenu sur son si&egrave;ge de bois, au centre d&#039;une yourte &ndash; son QG de campagne. Autour d&#039;elle, des officiers en deel ou en vareuse selon leur ethnie. Il y avait aussi les hommes et femmes du Roi, qui tranchaient radicalement avec les autres, cach&eacute;s sous leurs capes et une succession de tissus sombres. Ils &eacute;taient tous occup&eacute;s &agrave; prier, chacun selon les us de leur culture. Malgr&eacute; la diversit&eacute; des gestes, des mots, l&#039;unit&eacute; dans la foi &eacute;tait un spectacle magnifique. Yulia sourit, car elle savait qu&#039;ils priaient pour elle. Aujourd&#039;hui &eacute;tait le jour de son mariage.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">A l&rsquo;ext&eacute;rieur de la yourte, on pouvait entendre le hurlement des r&eacute;acteurs, du vent et l&rsquo;&eacute;cho des tirs. Au sein m&ecirc;me du QG, les officiers &eacute;taient pench&eacute;s sur des &eacute;crans analogiques, distribuaient parfois des vol&eacute;es de consignes via des micros. Yulia attendait. Son esprit connect&eacute; aux interfaces de combat via des c&acirc;bles qui couraient au sol et remontaient dans son dos.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle avait &eacute;t&eacute; faite dirigeante militaire d&egrave;s son arriv&eacute;e sur la plan&egrave;te. Les urghans l&#039;avaient accept&eacute; comme l&#039;une des leurs et plus encore. Elle n&#039;&eacute;tait pas que l&#039;&eacute;trang&egrave;re qui, arm&eacute;e d&#039;une bande de soldats tout juste bon pour garder la fronti&egrave;re, avait chass&eacute;e l&#039;envahisseur. Elle &eacute;tait la Chef de Guerre, la femme plus pieuse et fanatique qu&#039;aucun prince combattant. Celle qui r&ecirc;vait de visions divines, celle qui incarnait la fureur du Roi. Celle d&eacute;sign&eacute;e, disait-on, par les esprits en personne. On la respectait beaucoup, et le temps passant, on lui donna de plus en plus de pouvoir. Avec l&#039;accord du Gourou Tharcin Khan, qui dirigeait tous les autres, elle avait pr&eacute;tendu au plein contr&ocirc;le de la plan&egrave;te, et &agrave; la r&eacute;novation de sa culture. Bien entendu tout le monde n&#039;avait pas directement accept&eacute; son autorit&eacute;. Bien entendu ses r&eacute;formes religieuses, dict&eacute;es par des visions et la traduction qu&#039;en faisaient les hommes du Roi, avaient parfois &eacute;t&eacute; accueillies avec peut-&ecirc;tre un peu de froideur par ceux et celles qui y perdaient en pouvoir. Peut-&ecirc;tre aussi que l&#039;asc&eacute;tisme, la justesse morale et la s&eacute;v&eacute;rit&eacute; de son dogme avait effray&eacute; les parasites engorg&eacute;s de richesses et encrass&eacute;s de d&eacute;cadence ou d&#039;&eacute;thique. Et ceux-l&agrave; apprirent le nom du Roi.</div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font color="#C3FFFF">&nbsp;Baronne. C&#039;est termin&eacute;</font>&nbsp;&raquo; Un homme venait d&#039;entrer. Vareuse. Novoyevskien, donc. Son pantalon et ses bottes &eacute;taient lustr&eacute;s de sang, il haletait comme s&#039;il avait couru.&nbsp; &laquo;<font color="#C3FFFF">&nbsp;Les princes, Sukhbataar et Yesunege, ils se sont rendus. Ils reconnaissent votre autorit&eacute;. Ils ont captur&eacute; Aydar et veulent vous le livrer.</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#FF5F54"> Le livrer&nbsp;?</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#9DF9FF"><font color="#C3FFFF"> Ils se rendent, Baronne.</font>&nbsp;</font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Il n&#039;osait pas sourire, m&ecirc;me si cela signifiait la fin d&rsquo;ann&eacute;es de conflit. C&#039;&eacute;tait un homme de la Division Folle, ceux qui avaient accompagn&eacute; la baronne Yulia Ulan-Sternberg de son service aupr&egrave;s de Grigory Pepelyayev jusqu&#039;&agrave; sa prise de la plan&egrave;te. Il la connaissait bien, pour autant qu&#039;on puisse la conna&icirc;tre. Il connaissait donc le regard qu&#039;elle lui rendait. Cette lueur dans ses yeux, ce reflet de feu. Cet &eacute;garement de toute humanit&eacute;. Ce vide b&eacute;ant.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">C&#039;&eacute;tait le regard qu&#039;il avait d&eacute;j&agrave; observ&eacute; chez elle lorsque, se promenant dans son camp, elle avait vu un bourreau fouetter jusqu&#039;&agrave; l&#039;os des soldats coupables de boire en service. Ce regard qu&#039;elle avait eu lorsque certains princes avaient refus&eacute; de se soumettre. Celui qui faisait que les natifs l&#039;appelaient la Fureur des esprits et les pr&ecirc;tres la Fureur du Roi. Elle r&eacute;pondit enfin, d&rsquo;un ton parfaitement neutre.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#FF5F54">Je ne leur ai pas propos&eacute; de se rendre.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#C3FFFF">Ils sont d&eacute;j&agrave; en chemin. Nos hommes ont p&eacute;n&eacute;tr&eacute; le camp. Toutes les troupes ont jet&eacute; leurs armes.</font>&nbsp;&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">L&#039;information sembla hautement perturber la baronne. Elle joignit les mains et resta silencieuse un moment. Sa peau laiteuse se para soudainement d&#039;un rouge sanguin.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#C3FFFF">Dois-je demander qu&#039;on vous am&egrave;ne les princes&nbsp;?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#FF5F54">&Eacute;tranglez-les. Disposez des corps.</font>&nbsp;&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Il s&#039;inclina pour se retourner. La s&eacute;v&eacute;rit&eacute; de l&rsquo;ordre n&rsquo;avait plus rien de surprenant. Yulia se leva aussit&ocirc;t. Peut-&ecirc;tre s&#039;&eacute;tait-elle rappel&eacute;e que l&#039;occasion &eacute;tait sp&eacute;ciale&nbsp;: c&#039;&eacute;tait son mariage, apr&egrave;s tout. Ainsi que le dernier jour d&#039;une &eacute;puisante guerre pour le plein contr&ocirc;le d&#039;Urghall. Elle pouvait faire une exception.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font color="#FF5F54">&nbsp;Attendez&nbsp;!...</font>&nbsp;&raquo; Le soldat s&#039;arr&ecirc;ta et pivota, ferma les yeux et inspira. On y &eacute;tait. Les traits de Yulia se charg&egrave;rent de bont&eacute;.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#FF5F54">Que les soldats s&#039;&eacute;tant rendu coupables d&#039;avoir tu&eacute; certains des n&ocirc;tres soient livr&eacute; en qualit&eacute; d&#039;esclaves aux familles des soldats morts ou bless&eacute;s. Que la cour des princes, les pr&eacute;tendants, chroniqueurs, palefreniers et cuisiniers rejoignent le rang des dons sacrificiels. Que les princes, leurs concubines, amants, parents, cousins, fils et filles, soient empal&eacute;s. Je veux que les princes eux-m&ecirc;mes polissent l&#039;extr&eacute;mit&eacute; des pieux destin&eacute;s &agrave; leurs enfants. Aujourd&#039;hui est un jour de liesse. Ils laveront leurs p&ecirc;ch&eacute;s dans ce monde plut&ocirc;t que le suivant. Puisqu&#039;ils ont refus&eacute; son r&egrave;gne, ils conna&icirc;tront le nom du Roi.</font>&nbsp;&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="center">________</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Le Mariage avait &eacute;t&eacute; organis&eacute; par les pr&ecirc;tres. Yulia s&#039;&eacute;tait entendue avec Tharcin Khan et ensemble ils avaient d&eacute;crypt&eacute; ses visions pour en arriver &agrave; des conclusions des plus perturbantes. Cependant la chef de guerre n&#039;avait pas peur et se sentait capable de suivre les demandes du Roi jusqu&#039;&agrave; leur accomplissement final. C&rsquo;&eacute;tait un rite initiatique d&rsquo;une &eacute;l&eacute;gance toute mystique, elle savait d&eacute;j&agrave; quoi faire. Le roi n&#039;avait fait que lui indiquer qu&#039;elle serait digne. Digne d&egrave;s la fin de la guerre. Et la fin de la guerre, elle y &eacute;tait.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La f&ecirc;te &eacute;tait un m&eacute;lange des traditions novoyevskiennes, honorant l&#039;Homme-J&eacute;sus et des f&ecirc;tes mystiques d&#039;Urghall, honorant les esprits. Une occasion o&ugrave; les soldats pourraient exceptionnellement boire, danser. O&ugrave; les femmes et les hommes seraient lib&eacute;r&eacute;s bri&egrave;vement des cha&icirc;nes de leurs mariages et alliances, o&ugrave; il serait donn&eacute; de d&eacute;cha&icirc;ner les passions humaines pour honorer la Victoire, la Chef et le Roi. On monta de grandes tables en plein c&oelig;ur du camp ennemi, dont le sol &eacute;tait encore embourb&eacute; de sang et pendant que les pr&ecirc;tres et esclaves pr&eacute;paraient la c&eacute;r&eacute;monie, on festoya. Des hommes et femmes s&#039;embrassaient sous les yourtes ou sur les tables, des jeux violents s&#039;organisaient tandis qu&#039;on incendiait des prisonniers ou livrait leurs corps aux chiens de guerre. Comme de tradition, les officiers d&eacute;filaient &agrave; la table centrale, grimpant entre les plats pour discourir longuement sur leur chef. Son parcours, sa foi, sa grandeur et, car l&#039;occasion s&#039;y pr&ecirc;tait, quelques anecdotes l&#039;humanisant un peu. Son amour des animaux, de la musique, la fois o&ugrave; elle avait gliss&eacute; sur du verglas &agrave; peine sortie de sa navette. Yulia, pour sa part, &eacute;tait taiseuse. Elle observait ses hommes profiter de la victoire, du butin de guerre, comme s&#039;il s&#039;agissait de la victoire de ses propres enfants. &Agrave; la demande de quelques-uns elle attrapa une balala&iuml;ka et chanta &agrave; la gloire des monarques et de la guerre. Il y eut des danses, auxquelles elle participa comme une autre, puis l&#039;heure vint de proc&eacute;der &agrave; la c&eacute;r&eacute;monie.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Les pr&ecirc;tres apparurent, pli&eacute;s et serviles, ils encadr&egrave;rent Yulia. Des enfants la saisir par que main et la guid&egrave;rent doucement, traversant le camp et quittant la colline o&ugrave; &eacute;taient install&eacute;es les yourtes pour descendre vers ce que l&#039;on nommait le Sanctuaire, dont l&rsquo;emplacement lui avait &eacute;t&eacute; donn&eacute; en vision. Et il sembla &agrave; la baronne qu&#039;elle devait &ecirc;tre morte tant la vision s&#039;offrant &agrave; elle tenait du paradis terrestre.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Une subversion totale de l&#039;&eacute;thique d&eacute;cadente. Un monument au Roi. Un avant-go&ucirc;t des b&eacute;n&eacute;dictions dont elle avait jur&eacute;e qu&#039;elle ferait cadeau au Monde. Quelque-chose qui, peut-&ecirc;tre, apaiserait sa faim.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">On avait &eacute;corch&eacute; vif les prisonniers et utilis&eacute; leur peau retourn&eacute;e pour former comme un tapis de chair couvrant le relief naturel. Les corps, d&eacute;coup&eacute;s au sabre ou bris&eacute;s &agrave; l&#039;aide de pierres, avaient &eacute;t&eacute; dispers&eacute;s, accroch&eacute;s &agrave; des piques ou maintenus en l&#039;air par des cha&icirc;nes. Ceux que l&#039;on avait jug&eacute; particuli&egrave;rement coupable avaient &eacute;t&eacute; crucifi&eacute;s. Un mandarin, particuli&egrave;rement ob&egrave;se, lui sauta imm&eacute;diatement aux yeux. Son ventre avait &eacute;t&eacute; explos&eacute; et ses graisses se d&eacute;versaient au sol dans une agonie sans fin. Des tubes, implants crus install&eacute;s pour l&#039;occasion, le maintenaient dans une semi-vie scabreuse.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Yulia sentit un plaisir coupable, d&#039;adolescente, dans ses entrailles. Comme des papillonnements d&#039;amoureuse. Tous ses sens &eacute;taient assaillis, en &eacute;tat de si&egrave;ge, pr&ecirc;ts &agrave; c&eacute;der. Les restes de son &eacute;ducation de noble s&rsquo;&eacute;vaporaient, souffl&eacute;s par ses visions d&eacute;g&eacute;n&eacute;r&eacute;es. Une terreur animale s&rsquo;emparait de son esprit. Le vent hurlant des steppes lui fouettait le visage, apportant dans son sillage des particules rouge&acirc;tres et une odeur de mort. Elle avait envie de vomir, d&rsquo;&ecirc;tre partout sauf ici. Elle &eacute;tait comme la fille qu&rsquo;elle avait &eacute;t&eacute;&nbsp;: terrifi&eacute;e, confront&eacute;e &agrave; une violence que son cerveau n&rsquo;&eacute;tait pas capable de concevoir, d&rsquo;accepter. Donnant des ordres plus violents encore que ce qu&rsquo;elle aurait &eacute;t&eacute; capable de faire ou de regarder. Tous ses membres tremblaient de r&eacute;volte, de d&eacute;go&ucirc;t, sa t&ecirc;te tournait, pr&ecirc;te &agrave; exploser. Un jaillissement acide lui remonta dans l&rsquo;&oelig;sophage et elle sentait chaque battement d&eacute;sordonn&eacute; de son c&oelig;ur. </div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle d&eacute;testait &ccedil;a. Elle adorait &ccedil;a.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Le sang des victimes s&#039;&eacute;coulait dans des sillons concentriques et se d&eacute;versait dans une cuvette o&ugrave; attendait le Gourou Tharcin Khan. On avait accroch&eacute; des animaux de ferme au-dessus de lui et des pr&ecirc;tres chantaient les hymnes du Roi. Une brume chaude commen&ccedil;ait &agrave; s&#039;&eacute;lever de larges encensoirs. On poussa Yulia en avant, lui faisant signe d&#039;avancer. Elle voulut acquiescer mais sa t&ecirc;te n&rsquo;en fit rien.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle marchait, comme dans un r&ecirc;ve. Ce n&#039;&eacute;tait pourtant pas une vision, elle en &eacute;tait s&ucirc;re. Mais tout &eacute;tait vague, att&eacute;nu&eacute;. Elle &eacute;tait comme enferm&eacute;e dans son corps, spectatrice d&#039;une autre elle qui progressait lentement, maladroite et pataude. Elle peinait &agrave; trouver ses appuis sur le tapis de chair et glissa sur la viande, sentant la peau se d&eacute;chirer lorsque le sol &eacute;tait trop dur, trop rocailleux. On scandait un chant guttural dont elle connaissait le sens. &laquo;&nbsp;&Eacute;l&egrave;ve-toi&nbsp;&raquo;.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Alors elle essayait de reprendre son &eacute;quilibre, luttait contre son corps. Il lui sembla qu&rsquo;elle pleurait, du moins des larmes coulaient sur ses joues. Yulia voulu s&rsquo;arr&ecirc;ter. Et quelque-chose lui heurta le cr&acirc;ne, arrachant un morceau de cuir chevelu. Une pierre.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Une autre lui ouvrit l&#039;&eacute;paule. La baronne se mit &agrave; ramper.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Autour d&#039;elle, la brume prenait des apparences de rouille. Elle devinait les figures d&#039;une ville aux formes anciennes, les murs &eacute;taient compos&eacute;s de milliers de corps sombres, allong&eacute;s et secs. Des g&eacute;n&eacute;rations enti&egrave;res l&#039;observaient.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle ne pouvait pas s&rsquo;arr&ecirc;ter.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Une pierre ricocha contre son bras droit, celui qui &eacute;tait une proth&egrave;se. Elle tourna la t&ecirc;te pour en foudroyer l&rsquo;origine. Comme si son regard pouvait tuer le lanceur. Un galet explosa son &oelig;il droit. Elle hurla, le sang lui coula dans la bouche. Elle hoqueta, s&rsquo;&eacute;touffa, recracha.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">C&#039;&eacute;tait une gr&ecirc;le, une douleur qu&rsquo;elle ne comprenait pas. Son corps hurlait, ses sens hurlaient. Sa chair, arrach&eacute;e &agrave; chaque impact, r&eacute;v&eacute;lant ses os. Une machine de viande &agrave; l&rsquo;agonie, nerfs litt&eacute;ralement &agrave; vif. Comme un insecte qui continuerait d&rsquo;avancer apr&egrave;s qu&rsquo;on lui ait arrach&eacute; la moiti&eacute; des pattes. Yulia rampait de son bras m&eacute;canique, l&rsquo;enfon&ccedil;ant profond&eacute;ment dans le tapis de chair, tirant tout son corps par &agrave;-coup. Elle hurlait, ne comprenait plus rien. Son corps se&nbsp; vidait, son sang giclait au sol au rythme de son c&oelig;ur.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Il n&rsquo;y avait plus de raison, elle &eacute;tait plant&eacute;e des milliards de dagues. Et elle avan&ccedil;ait, la faim &eacute;tait de retour. Elle avan&ccedil;ait car si elle mourrait ici la faim n&rsquo;en finirait pas.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Yulia &eacute;tait debout, nue au milieu du bassin. Il y avait du sang ici, mais pas le sien. Soudainement elle prit conscience que ses deux yeux &eacute;taient intacts, et sa peau bien &agrave; sa place. Elle s&rsquo;abaissa pour regarder son corps&nbsp;: pas de trace de lapidation. L&eacute;ger mal de cr&acirc;ne. Ses yeux &eacute;taient irrit&eacute;s, sa gorge br&ucirc;lait d&rsquo;une douleur risible. Elle releva les yeux. Tharcin Khan lui tendait une dague en forme de croix qu&#039;elle l&#039;attrapa sans une pens&eacute;e, il s&#039;inclina en avant.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#FFA339">Comme vous l&#039;aviez pr&eacute;vu, il y avait ici une &eacute;glise. Un lieu de culte.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#FF5F54">Les urghans ne b&acirc;tissent pas d&#039;&eacute;glises.&nbsp;</font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Il lui sourit et lui indiqua une st&egrave;le qui d&eacute;passait &agrave; peine du sang. Un &oelig;il &eacute;tait grav&eacute; &agrave; sa surface. Pas une &eacute;glise urghans. Quelque-chose de plus vieux.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#FFA339">Les princes se sont install&eacute;s ici, pour leur derni&egrave;re bataille. Mais ils n&#039;en savaient rien, nous venons de la d&eacute;terrer.</font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#FF5F54">Le Roi avait besoin de sacrifices. Je savais o&ugrave; guider son troupeau.</font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#FFA339">Oui, oui...&nbsp;</font>&raquo; Et il resta l&agrave;, semblant r&eacute;fl&eacute;chir. &laquo;<font color="#FFA339">&nbsp;Ce monde est &agrave; lui, maintenant. Vous lui avez offert.</font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#FF5F54">Je lui offrirai bien plus.</font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#FF5F54">Et il vous le rendra. Mais avant cela, baronne. Ouvrez-moi la gorge, gorgez-vous de mon sang. Par ma chair communiez avec le Roi, par le Roi, devenez ma femme.</font>&nbsp;&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle ferma les yeux. Toute h&eacute;sitation l&#039;avait quitt&eacute;e mais elle avait encore besoin de lui.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font color="#FF5F54">&nbsp;&Ocirc; Khan. J&rsquo;ai fait une derni&egrave;re vision.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#FFA339">Je t&rsquo;&eacute;coute, &Ocirc; ma&icirc;tresse de guerre.</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#FF5F54">&nbsp;Le Roi m&rsquo;a montr&eacute; des forces, des puissances oppos&eacute;es, une extr&ecirc;me vigueur et un extr&ecirc;me chaos. Le froid du m&eacute;tal et la chaleur du sang. Un festin monde et l&rsquo;Arche d&rsquo;Alliance. </font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#FFA339">Et tu as besoin de moi pour traduire ses desseins&nbsp;?&nbsp;</font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Yulia ne r&eacute;pondit pas. Le Gourou semblait apais&eacute;.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Lorsqu&#039;elle lui d&eacute;vora la gorge, elle n&#039;&eacute;tait pas s&ucirc;re d&#039;&ecirc;tre consciente. Elle savait cependant ce que cela voulait dire. C&#039;&eacute;tait comme l&#039;avait d&eacute;cid&eacute; le Roi, son acte de mariage. Mari&eacute;e et veuve, seule h&eacute;riti&egrave;re du pouvoir religieux. Elle &eacute;tait Khatan. Elle ne savait pas vraiment ce que cela pouvait bien signifier, mais elle &eacute;tait Khatan.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Quand il ne resta de Tharcin Khan qu&#039;un monceau de chair ind&eacute;finissable, Yulia approcha de la st&egrave;le, s&rsquo;essuyant la bouche d&rsquo;un revers de main. La brume &eacute;tait maintenant opaque et les contours de la ville bien visibles. Elle posa une main sur l&rsquo;&oelig;il, ferma les siens. Revint &agrave; elle et fut horrifi&eacute;e.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Un tremblement traversa la r&eacute;gion. Les soldats du camp, pris de panique, s&#039;enfuirent sans demander leur reste, bient&ocirc;t suivis par les pr&ecirc;tres, des animaux, de tout ce qui vivait. Et Yulia &eacute;clata d&#039;un rire hyst&eacute;rique et clair qui raisonna longtemps, tr&egrave;s longtemps, dans l&#039;immensit&eacute; de la plaine.</div><div class="post_line"></div></div><div class="post_line"><div align="center"><a href="https://66.media.tumblr.com/f1d056095bd3b8a45edce54bea560a37/tumblr_ntrnb9f9to1se5m4zo1_1280.jpg" target="_blank" rel="nofollow">Et elle connut le nom du Roi. </a></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=F.A.S.T.E.R">Cdt. F.A.S.T.E.R</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10817.jpg" style="width:85px;height:128px" alt="Avatar" /><br />16/05/1020 ETU 01:04</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D274861', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274856')">Détails</a> <a href="javascript:warnpost(274856)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274856" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274856',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>L&rsquo;ar&egrave;ne du d&eacute;fi, comme elle &eacute;tait appel&eacute;e, &eacute;tait constitu&eacute;e de gradins en verre renforc&eacute; de plusieurs centaines de m&egrave;tres de haut avec en leur centre, une table et des si&egrave;ges en verre aussi. 4 voies &eacute;troites, en verre elles aussi, faisaient le chemin entre l&rsquo;acc&egrave;s &agrave; l&rsquo;ar&egrave;ne et la table au milieu. En dessous de cette table, 300 m&egrave;tres de vide, avec &agrave; la cl&eacute; un &eacute;tang rempli de diverses saloperies carnivores, entre autres sangsues et grenouilles tout &agrave; fait innocentes mais avec une couleur bizarre tout de m&ecirc;me. </em></div><div class="post_line"></div><div class="post_line"><em>Les gradins &eacute;taient bond&eacute;s, souill&eacute;s par un m&eacute;lange indescriptible et changeant selon les endroits, et les diverses personnes composant le public, qui &eacute;taient compl&egrave;tement torch&eacute;es, vaquaient &agrave; leurs occupations diverses et vari&eacute;es allant de la bagarre &agrave; la fornication, en passant par le quasi-coma &eacute;thylique. Une minorit&eacute; de ceux qui &eacute;taient pr&eacute;sents avaient l&rsquo;esprit encore assez clair pour suivre ce qu&rsquo;ils &eacute;taient venus voir : l&rsquo;intronisation de leur nouveau patron (l&rsquo;ancien &eacute;tant mort d&rsquo;une overdose apr&egrave;s ingestion d&rsquo;un cocktail particuli&egrave;rement exotique) par la troisi&egrave;me &eacute;preuve qui d&eacute;partageait les candidats : la roulette russe. </em></div><div class="post_line"></div><div class="post_line"><em>Il restait autour de la table encore deux candidats au milieu des chaises ensanglant&eacute;es et des verres de whisky renvers&eacute;s, l&rsquo;un, la quarantaine, &eacute;tait affal&eacute; sur la table dans un &eacute;tat d&rsquo;ivresse visiblement assez avanc&eacute;. L&rsquo;homme &eacute;tait enti&egrave;rement nu et couvert de tatouages. Il avait une longue barbe tress&eacute;e qui lui tombait entre les jambes, et il utilisait un grand chapeau de capitaine pour cacher sa calvitie assez avanc&eacute;e. Il &eacute;tait inconnu du grand public, m&ecirc;me si, il fallait le dire, peu de gens &eacute;taient connus du grand public sur Le Soleil. Il se redressa quand l&rsquo;arbitre lui signala son tour, brutalisa le barillet pour le faire tourner dans les r&egrave;gles puis pressa la d&eacute;tente sur sa tempe. </em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">-Clic</font>,&nbsp; <em>fit le pistolet. Et le barbu lan&ccedil;a le pistolet &agrave; son homologue &agrave; l&rsquo;autre bout de la grande table en verre. </em></div><div class="post_line"></div><div class="post_line"><em>L&rsquo;autre candidat, Antonin Augier, &eacute;tait consid&eacute;r&eacute; comme l&rsquo;&eacute;lite des &eacute;lites artistiques de la plan&egrave;te. &Agrave; &agrave; peine 22 ans, on disait qu&rsquo;il avait tout fait, tout v&eacute;cu, tout essay&eacute;, de la contemplation des &oelig;uvres classiques &agrave; la crucifixion th&eacute;&acirc;trale, en passant par maintes exp&eacute;riences sensuelles de tous les horizons. Il avait &eacute;t&eacute; initi&eacute; tr&egrave;s t&ocirc;t dans son existence par son grand-oncle, qui lui-m&ecirc;me avait &eacute;t&eacute; patron avant d&rsquo;&ecirc;tre assassin&eacute; (artistiquement bien s&ucirc;r) par un rival m&eacute;content. Il &eacute;tait venu participer &agrave; ce concours pour pouvoir acc&eacute;der aux meilleures exp&eacute;riences artistiques, disait-on. La r&eacute;alit&eacute;, c&rsquo;est qu&rsquo;Antonin Augier plongeait dans une profonde d&eacute;pression due &agrave; un manque chronique de satisfaction. Quoiqu&rsquo;il tent&acirc;t de faire pour y pallier, cela l&rsquo;ennuyait de plus en plus, et les rares moments o&ugrave; il se sentait satisfait s&rsquo;espa&ccedil;aient et devenaient de plus en plus brefs. Il avait tent&eacute; le concours pour devenir patron en d&eacute;sespoir de cause, puisqu&rsquo;il semblait gagner toutes les comp&eacute;titions de roulette russe auxquelles il participait. Qui sait ? Peut-&ecirc;tre y trouverait-il quelque chose &agrave; faire.</em></div><div class="post_line"></div><div class="post_line"><em>Le jeune homme &eacute;tait raide comme un piquet sur sa chaise, le regard clair avec son &eacute;ternel manteau ouvert sur le torse et sa t&ecirc;te &agrave; l&rsquo;air. Avant de se livrer &agrave; l&rsquo;&eacute;preuve, il prit la bouteille de whisky aux trois quarts pleine sur la table, la vida, puis la jeta par-dessus son &eacute;paule. Personne n&rsquo;entendit le &laquo; plouf ! &raquo; qu&rsquo;elle fit dans le vacarme du public. Il se saisit de l&rsquo;arme, la pla&ccedil;a contre le c&ocirc;t&eacute; de sa t&ecirc;te, fit tourner le barillet de fa&ccedil;on r&eacute;glementaire, puis tira.</em></div><div class="post_line"></div><div class="post_line"><font size="4">-PAN !</font> <em>fit l&rsquo;arme tandis que la t&ecirc;te d&rsquo;Antonin partait sur le c&ocirc;t&eacute; avec le recul. Mais il s&rsquo;arr&ecirc;ta dans son mouvement. </em></div><div class="post_line"></div><div class="post_line"><em>Pendant ce temps, le futur patron avait &agrave; peine entendu la d&eacute;tonation de l&rsquo;arme ni senti la balle. Il avait plong&eacute; dans une esp&egrave;ce de monde rouge o&ugrave; se trouvait une entit&eacute; au-del&agrave; de sa compr&eacute;hension, que son cerveau interpr&eacute;tait comme une intersection de flux rouge sang. Dieux qu&rsquo;il se sentait bien, &ccedil;a faisait longtemps. Il lui sembla entendre des paroles inhumaines, des instructions peut-&ecirc;tre ? Et Surtout, deux mots, un nom qui resterait grav&eacute; dans sa m&eacute;moire. Il sortit de cette exp&eacute;rience exactement 2 secondes apr&egrave;s y &ecirc;tre entr&eacute; avec une certitude biblique, probablement une forme d&rsquo;art unique dans Le Soleil.</em></div><div class="post_line"></div><div class="post_line"><em>Il se redressa lentement &agrave; la surprise g&eacute;n&eacute;rale de ceux qui &eacute;taient en &eacute;tat d&rsquo;&ecirc;tre surpris, le visage macul&eacute; de sang. Bien peu de gens avaient tourn&eacute; la t&ecirc;te au coup de feu, mais ceux qui &eacute;taient attentifs avaient l&rsquo;air m&eacute;dus&eacute;s. Il pleurait tandis que le sang coulait le long de son visage et de son cou. Jamais il n&rsquo;avait v&eacute;cu quelque chose d&rsquo;aussi vrai et intense. Son adversaire tenta une parade d&rsquo;une voix avin&eacute;e :</em></div><div class="post_line"></div><div class="post_line"><font color="#FFFA1E">-Il a pas perdu, l&agrave; ?, il s&rsquo;est tir&eacute; une balle, non ? </font></div><div class="post_line"></div><div class="post_line"><em>Ce &agrave; quoi l&rsquo;arbitre r&eacute;pondit d&rsquo;une voix ferme en lui tendant un nouveau pistolet charg&eacute; :</em></div><div class="post_line"></div><div class="post_line"><font color="#F551FF">-N&rsquo;a perdu que celui qui est mort, monsieur Desc&oelig;udres, c&rsquo;est la deuxi&egrave;me r&egrave;gle du tournoi. Monsieur Augier n&rsquo;est manifestement pas mort.</font></div><div class="post_line"></div><div class="post_line"><em>L&rsquo;autre prit le pistolet d&rsquo;un geste rageur, tandis qu&rsquo;Augier s&rsquo;&eacute;tait mis &agrave; prier avec ses mains ensanglant&eacute;es, pris dans sa soudaine transe religieuse. Il tourna le barillet d&rsquo;un mouvement maladroit, d&eacute;concert&eacute; par l&rsquo;attitude de son adversaire. Puis il tira.</em></div><div class="post_line"></div><div class="post_line"><font size="4">-PAN !</font> <em>Et il ne s&rsquo;arr&ecirc;ta pas en route, lui. Plouf. Encore un &eacute;gar&eacute;, pensa Augier, sans songer qu&rsquo;il en &eacute;tait un aussi il y a moins d&rsquo;une minute. Il r&eacute;cup&eacute;ra le chapeau de capitaine de son adversaire qui &eacute;tait tomb&eacute; sur la table avec l&rsquo;impact, et malgr&eacute; qu&rsquo;il soit trop grand pour lui, le pla&ccedil;a sur sa t&ecirc;te pour masquer sa blessure. Il quitta l&rsquo;ar&egrave;ne avec un air de profonde satisfaction par un des chemins de verre, alors m&ecirc;me qu&rsquo;un ruisseau de sang coulait sur son torse, laissant ceux qui le regardaient encore &agrave; leur stup&eacute;faction. Il s&rsquo;effondra le sourire aux l&egrave;vres des suites de sa blessure &agrave; peine apr&egrave;s &ecirc;tre pass&eacute; hors de vue du public, mais cela n&rsquo;avait plus d&rsquo;importance pour lui, le patron. </em></div><div class="post_line"></div><div class="post_line"><div align="center"><strong>Il connaissait le nom du Roi.</strong></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Enok+Innokenti">Cdt. Enok Innokenti</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10814.jpg" style="width:128px;height:128px" alt="Avatar" /><br />16/05/1020 ETU 01:26</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274865')">Détails</a> <a href="javascript:warnpost(274865)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274865" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274865',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><em><font color="#b10dc9">&quot;Ce jour sera connu de tous comme le jour o&ugrave; nous avons triomph&eacute;. Ce jour historique sera connu comme celui o&ugrave; nous nous sommes &eacute;lev&eacute;s hors de la caverne et avons regard&eacute; le soleil de nos yeux ! Ce jour ne sera jamais oubli&eacute;, car c&#039;est le jour o&ugrave; nous avons d&eacute;fi&eacute; la nature elle-m&ecirc;me d&#039;appliquer ses lois sur nous et avons reni&eacute; ce qui nous encha&icirc;nait, choisissant nos propres chaines !&quot;</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em>Le temple palais est entour&eacute; d&#039;une foule en liesse, priant de toutes leurs forces, s&#039;abreuvant de ses paroles. Cette gigantesque tour de Hano&iuml;, tout en colonnades et surmont&eacute; d&#039;un d&ocirc;me ouvert en son centre, est tel une pupille, vue du ciel, et la foule en est l&#039;iris. Au centre de cette pupille, au sommet de cette tour et sous le grand d&ocirc;me perc&eacute;, il est l&agrave;, il scande &agrave; la foule et es retransmis dans tous les lieux connus.</em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">&quot;Nous n&#039;&eacute;tions alors que quelques-uns &agrave; croire, des parias, ils nous craignaient car ils ne comprenaient pas. Mais il a suffi de rencontrer les bonnes personnes, de leur ouvrir les yeux, de leur montrer la voie. Ce chemin est long et silloneux, mais il m&egrave;ne bel et bien au paradis des sensations, pour celui qui veut les chercher !&quot;</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em>Il retire sobrement son habit, r&eacute;v&eacute;lant son corps couvert de scarifications, plus ou moins vieilles, de tatouages rituels, grav&eacute;s &agrave; l&#039;encre ou directement dans la chair. Il sourit alors que deux bourreaux viennent et chacun lui plantent un grand crochet dans l&#039;omoplate, s&#039;assurant que la pointe ne lui cr&egrave;ve pas le poumon. Il sourit en criant de douleur, et les chaines sont lentement tendues, le soulevant de son pi&eacute;destal. La traction des crochets le fait naturellement ouvrir les bras dans une position christique alors qu&#039;il exulte de douleur.</em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">&quot;Voyez mes enfants ! Ils nous disaient fous ! Ils disaient que nous mourrions de nos propres rituels, qu&#039;ils devaient nous prot&eacute;ger de nous-m&ecirc;mes ! Ils disaient que personne ne nous rejoindrait et nous suivrait ! Ils disaient que notre dieu n&#039;&eacute;tait pas et ne r&eacute;pondrait jamais &agrave; nos appels ! Aujourd&#039;hui ils ne disent plus rien, ils crient, du plaisir que nous leur avons fait d&eacute;couvrir, des sensations que nous leur avons appris &agrave; aimer !&quot;</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em>Des structures sont dress&eacute;es autour de lui, et ils s&#039;affairent. Les chaires sont pr&eacute;cis&eacute;ment incis&eacute;es, retir&eacute;es par endroits afin de permettre aux graveurs d&#039;os d&#039;inscrire des runes. Les artistes de la chair sculptent, modelant la viande, les tisseurs de nerfs placent des crochets aux endroits strat&eacute;giques o&ugrave; la traction sera la plus douloureuse. Les prolongeurs de vie installent des appareils invasifs mais d&#039;une fiabilit&eacute; certaine qui emp&ecirc;cheront que le rituel soit g&acirc;ch&eacute;. De longues aiguilles sont plant&eacute;es &agrave; la mani&egrave;re d&#039;une acuponcture d&eacute;g&eacute;n&eacute;r&eacute;e, p&eacute;n&eacute;trant sa cage thoracique et son abdomen par des trajectoires pr&eacute;cises afin de percer ses organes internes de la bonne mani&egrave;re. Ne pas tuer, seulement torturer. Laisser l&#039;aiguille dans le foie pour qu&#039;il puisse continuer de fonctionner. De minuscules lames de haches sont plant&eacute;es au marteau entre chacune de ses vert&egrave;bres et dans ses articulations pour les &eacute;carter sans rompre la moelle &eacute;pini&egrave;re et les nerfs.</em></strong></div><div class="post_line"></div><div class="post_line"><strong><em>Il hurle, d&#039;une douleur rituelle que son esprit malade per&ccedil;oit comme un plaisir raffin&eacute;, comme la porte vers le septi&egrave;me ciel. Les artistes s&#039;&eacute;cartent un &agrave; un, admirant leur &oelig;uvre qui s&#039;&eacute;l&egrave;ve encore. Il observe la foule et leur fait un sourire bavant de sang.</em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">&quot;Nous n&#039;en avons &eacute;pargn&eacute; aucun, ceux qui ne purent voir ses dons &agrave; travers la douleur p&eacute;rirent de nos tortures. Ceux qui survivaient en &eacute;taient chang&eacute;s &agrave; jamais et rejoignaient notre peuple, car ils l&#039;avaient entraper&ccedil;u et savaient qu&#039;il &eacute;tait. Je vous ai enseign&eacute; que la douleur est un don, sous toutes ses formes, qu&#039;elle est &agrave; chercher en toute chose, car elle est un don en son nom, vous lui donnez ce que vous &ecirc;tes et il vous rend le plaisir ! Femmes, vieillards, enfants, tous doivent conna&icirc;tre ces sensations, tous doivent lui donner car il est notre roi ! Le roi qui se baigne dans le sang que nous versons pour lui avec bonheur ! Car il est le roi &eacute;carlate de nos cadeaux, et que nous sommes son peuple &eacute;lu ! GLOIRE AU ROI ECARLATTE !&quot;</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em>Et soudain toutes les chaines sont actionn&eacute;es, le tirant de toutes parts, et ce martyr volontaire put jouir d&#039;agonie, ses yeux r&eacute;vuls&eacute;s regardant le soleil dont l&#039;&eacute;clipse le fait rouge sang. Son corps &eacute;cartel&eacute; de toutes part est tant stimul&eacute; qu&#039;il ne peut plus crier, le souffle coup&eacute; il se d&eacute;lecte de sa douleur. Il regarde encore ce soleil rouge, puis sa t&ecirc;te tombe en avant. Il est mort de sa torture sous les liesses et les cris de douleurs de tous ses fid&egrave;les qui trempent le sable autour du temple palais de leur sang en s&#039;infligeant mille supplices entre eux.</em></strong></div><div class="post_line"></div><div class="post_line"><strong><em>Mais alors qu&#039;ils pensent que le sacrifice est termin&eacute;, au moment o&ugrave; l&#039;&eacute;clipse cessa, il rel&egrave;ve la t&ecirc;te, comme reprenant son souffle. Il est ressuscit&eacute;, par la gr&acirc;ce de leur roi. Au bout de quelques minutes, il meurt encore, puis revient. Il est hilare, riant d&#039;un rire d&eacute;ment et inhumain, car il est b&eacute;ni &agrave; savourer cette douleur supr&ecirc;me pour les si&egrave;cles des si&egrave;cles. Il sourit et crache du sang au soleil qui &eacute;merge de la p&eacute;nombre et rejaunit, sachant que rien n&#039;arr&ecirc;terait son peuple &eacute;lu.</em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font size="4">Il conna&icirc;t d&eacute;sormais le nom du roi.</font></em></strong></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Rhakham+le+Rouge">Cdte. Rhakham le Rouge</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10819.jpg" style="width:128px;height:95px" alt="Avatar" /><br />16/05/1020 ETU 01:37</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274867')">Détails</a> <a href="javascript:warnpost(274867)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274867" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274867',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb">Le langage Qualar&#039;en est fluide et m&eacute;lodieux &agrave; entendre, riche d&#039;un vocabulaire et d&#039;une syntaxe complexe. Ses mots poss&egrave;dent diff&eacute;rentes interpr&eacute;tations selon le contexte, l&#039;intonation ou les gestes.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Philosophie &eacute;lev&eacute;e quasiment au rang de religion, la notion de &quot;Bien Supr&ecirc;me&quot; fond&eacute; par les Avatars est au centre de la culture des Qualar&#039;ens et le ciment du syst&egrave;me des castes. Cette notion est comparable &agrave; celle du bien commun; l&#039;entraide de tous pour un bienfait sup&eacute;rieur profitant &agrave; toute la communaut&eacute;. Chaque Quala&#039;en poss&egrave;de un r&ocirc;le et un destin qui lui est propre et d&eacute;termin&eacute; par sa caste, assurant &agrave; la fois sa place dans la soci&eacute;t&eacute; mais &eacute;galement des r&eacute;compenses. La culture Tau rejette ainsi l&#039;individualisme et les d&eacute;sirs personnels en faveur du bien commun qui est &agrave; la fois celui du peuple, de l&#039;Empire, et du &quot;Bien Supr&ecirc;me&quot;.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Forts des avanc&eacute;es qu&#039;ils ont accompli par leur science, les Qualar&#039;ens ont une foi invincible en eux-m&ecirc;me et en leurs guides. Ils pensent sinc&egrave;rement pouvoir apporter la paix et la prosp&eacute;rit&eacute; &agrave; la galaxie comme ils l&#039;ont fait &agrave; leur propre race.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">La civilisation des Qualar&#039;ens repose enti&egrave;rement sur un syst&egrave;me de &#039;Castes&#039; bas&eacute; sur les quatre &eacute;l&eacute;ments naturels (l&#039;eau, le feu, l&#039;air et la terre) symbolisant &agrave; la fois un r&ocirc;le social, mais aussi des particularit&eacute;s et aptitudes physiologiques.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le leader du peuple Qualar&#039;en est normalement issu de membres &quot;hors caste&quot; qui sont les &quot;Avatars&quot; incarn&eacute;s des 4 castes r&eacute;unies en 1 seul &ecirc;tre.</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">[il y a 1 an]</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">......Arriv&eacute;e d&#039;un appareil spatial clandestin sur l&#039;exoplan&egrave;te Ch&#039;ass-l&auml;&auml;......</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">[il y a 9 mois]</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">....Disparitions myst&eacute;rieuse, des corps de Hors Castes retrouv&eacute;s sans vie dans la plaine de Kauis Mont&#039;yr, [plaine de la qualification sanglante en universel], plaine qui a vu d&#039;immenses batailles pr&eacute;unification Qualar&#039;en...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">_Le symbol est fort O&#039;Rhakh&auml;&auml;im, des rumeurs courent, le peuple commence &agrave; avoir peur, certains parlent de forces d&eacute;sunificatrices, nous devons pr&eacute;server la paix et l&#039;union de nos castes.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">_Por&#039;O&#039;Shvah, votre d&eacute;duction plus que pertinente, ne m&#039;am&egrave;ne aucune piste de reflexion.. Trouvez quelqu&#039;un d&#039;autre, je suis form&eacute;e au combat par ma caste et non pas aux postes de gouvernances des peuples, vous m&ecirc;me Ambassadeur vous &ecirc;tes plus &agrave; m&ecirc;me de g&eacute;rer efficacement ces sujets...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">_Ch&egrave;re amie, vous &ecirc;tes la plus brillante flamme de la caste du Feu, les autres Chass&#039;O peuvent se rhabiller devant vous, je ne vous demande pas d&#039;enqu&ecirc;ter mais de nous pr&eacute;parer &agrave; un changement.</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">[il y a 4 mois]</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">_O&#039;Rhakh&auml;&auml;im, nous venons de retrouver le dernier corps, vous devez &eacute;touffer l&#039;information &agrave; tout prix, si le peuple apprends que le dernier Hors Caste viens d&#039;&ecirc;tre sauvagement empal&eacute; et d&eacute;membr&eacute; sur une roue... et cet oeil /.../</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">_Por&#039;O&#039;Shvah ? O&#039;Shvah !!!! bon... d&eacute;ployons la caste du feu dans les rues pour rassurer, la caste de la terre va &eacute;riger des constructions destin&eacute;es &agrave; rappeler l&#039;unions des castes, la caste de l&#039;air tente de maintenir un commerce stable entre les colonies, la caste de l&#039;eau tente des techniques de d&eacute;magogies et de propagande... ca va bien se passer.... ca devrait bien se passer.</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">[il y a 1 mois]</font></div><div class="post_line"></div><div class="post_line">(Haut conseil des castes)</div><div class="post_line"><font color="#68c4e8">_les insultes et manques de tol&eacute;rances dues &agrave; la peur d&eacute;sunissent le conseil, des menaces ont &eacute;t&eacute; prof&eacute;r&eacute;es &agrave; l&#039;encontre du bien supr&ecirc;me et de l&rsquo;int&eacute;r&ecirc;t commun, si le bien commun est mis en danger, il appartient &agrave; la caste du Feu, de prot&eacute;ger cette unit&eacute;. Des actes de s&eacute;gr&eacute;gation de castes devenues &quot;inutiles&quot; selon certains sont intol&eacute;rables.</font></div><div class="post_line"><font color="#68c4e8">Alors, moi, Shas&#039;O Rhakh&auml;&auml;im Skether&#039;qan ordonne la loi martiale jusqu&#039;&agrave; nouvel ordre selon le rang et les devoirs qui me sont attribu&eacute;s.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Dans la soir&eacute;e O&#039;Rhakh&auml;&auml;im se rendit dans les plaines pour avoir un peu de paix, c&#039;&eacute;tait les seules plaines de la plan&egrave;te. Du sol sortait un brouillard bleuit par les lune tr&egrave;s hautes dans le ciel, dansant comme des langues flammes&nbsp; le long du corps de la jeune alien.</font></div><div class="post_line"><font color="#bbbbbb">les langues de brumes convergeaient vers un endroit, donnant un spectacle magnifique, elle entendit au loin les bruits de violence de son peuple mais fut ramen&eacute;e sur elle tr&egrave;s vite lorsque les langues de brumes, bouillonnantes commenc&egrave;rent &agrave; la br&ucirc;ler ... alors elle courut l&agrave; ou les flammes s&#039;&eacute;taient &eacute;cart&eacute;es, vers une for&ecirc;t claire et d&eacute;gag&eacute;e, mais se d&eacute;battant elle ne vit pas la fosse de sang dans laquelle et plonge&acirc;t, et bien que le temps soit clair et la for&ecirc;t aussi elle ne distingu&acirc;t aucunement le contenu sanguin de la fosse, et c&#039;&eacute;tait d&#039;ailleurs le dernier de ces soucis, l&#039;absence d&#039;oc&eacute;an et de d&#039;eau profonde sur la plan&egrave;te avait maintenu ce peuple dans l&#039;ignorance de la natation, ce qui lui faisait cruellement d&eacute;faut.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Ainsi, O&#039;Rhakh&auml;&auml;im se noyait dans un bain de sang, buvant des gorg&eacute;es enti&egrave;res. elle cr&ucirc; mourir d&#039;abord par manque d&#039;air, puis une fois accroch&eacute;e &agrave; un bord d&#039;Autel c&#039;est par hyperhydratation qu&#039;elle cr&ucirc; vivre ses derniers instants. Remontant sur de ce qui semblait &ecirc;tre une dalle de pierre immense elle r&eacute;gurgit&acirc;t une partie de ces liquides, tout en rampant sur cette longue avanc&eacute;e en pierre.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Ce supplice ne prit fin que lorsqu&#039;elle perdit connaissance, et qu&#039;elle fut r&eacute;veill&eacute;e par ce qui semblait &ecirc;tre un Avatar; ils &eacute;taient entour&eacute;s d&#039;une centaine de cadavres dont le sang ruisselant se rejoignait dans la fosse d&#039;o&ugrave; elle sortait.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">l&#039;Avatar avait une couleur de peau rouge, et des yeux bleus flamboyant:</font></div><div class="post_line"><font color="#68c4e8">_ Mon enfant, de grands troubles sont &agrave; venir. il lui prit la main,</font></div><div class="post_line"><font color="#68c4e8">Tu es l&#039;avenir de notre civilisation, mais les mots ne veulent rien dire, maintenant vois</font> :<font color="#bbbbbb"> il pla&ccedil;&acirc;t sa main sur son front et avant de sombrer dans un &eacute;tat second elle aper&ccedil;u le corps de O&#039;Shvah, et une profonde tristesse s&rsquo;empara d&#039;elle, qui s&rsquo;effa&ccedil;&acirc;t en entrant en transe, se transformant m&ecirc;me en joie.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">En sortant de la transe elle &eacute;tait assise en contrebas de l&#039;avatar qui semblait s&#039;&ecirc;tre &eacute;gorg&eacute; au dessus d&#039;elle, mais son sang &eacute;tait bleu, et sa bouche en &eacute;tait remplie, sang flamboyant du changement, elle l&#039;avala,et se br&ucirc;l&acirc;t. De douleur elle pouss&acirc;t un cri qui s&#039;impr&eacute;gn&acirc;t dans l&#039;essence m&ecirc;me de ce monde tant il fut profond.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Elle sais&icirc;t la lame port&eacute;e par l&#039;Avatar, la d&eacute;gain&acirc;t, et parcourue de flammes bleues la lame &eacute;tait &eacute;galement orn&eacute;e d&#039;un &oelig;il qui semblait bouger, la lame &eacute;tait fine et tranchante, se maniant &agrave; deux mains autant qu&#039;&agrave; une, elle serait brandi afin d&#039;unir toutes les castes en une seule, elle avait bu le sang des avatars, ils &eacute;taient en elle, faisant d&#039;elle spirituellement la plus proche d&#039;eux et de leur mission unificatrice.</font></div><div class="post_line"><font color="#bbbbbb">elle allait d&eacute;sormais s&#039;employer &agrave; unir son peuple sous une unique caste unie et ceux qui s&#039;y opposerait p&eacute;riraient dans les flammes du changement,</font></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#e86e04">Car d&eacute;sormais elle connaissait le nom du Roi</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Pr%C3%A9sident+Vault">Cdt. Pr&eacute;sident Vault</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10813.jpg" style="width:128px;height:128px" alt="Avatar" /><br />16/05/1020 ETU 02:40</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D274873', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274872')">Détails</a> <a href="javascript:warnpost(274872)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274872" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274872',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><div align="left">&laquo; <em>Oh Horn of Plenty</em></div></div><div class="post_line"><div align="left"><em>Oh Horn of Plenty for us all</em></div></div><div class="post_line"><div align="left"><em>And when you raise the cry</em></div></div><div class="post_line"><div align="left"><em>The brave shall heed the call</em></div></div><div class="post_line"><div align="left"><em>And we should never falther</em> &raquo;</div></div><div class="post_line"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Une <a href="https://www.youtube.com/watch?v=b8xM43jCfLw&amp;t=115s" target="_blank" rel="nofollow">musique</a> patriotique sortait des enceintes du t&eacute;l&eacute;viseur; l&#039;hymne national de Syndia.&nbsp;La repr&eacute;sentation m&ecirc;me son essence, de ce qui constituait ses valeurs, sous la forme d&#039;une musique qui r&eacute;veillait chez les vrais patriotes une volont&eacute; inou&iuml;e et un amour &eacute;ternel pour leur nation. Ainsi, la musique joua durant quelques secondes avant de laisser place &agrave; une personne bien habill&eacute;e; v&ecirc;tue d&#039;un costume noir, boutonn&eacute; de haut en bas, il avait un air hautain et froid, mais aussi fier. Sa barbe &eacute;tait parfaitement taill&eacute;e, de m&ecirc;me que ses cheveux noirs. Un parfait individu pour repr&eacute;senter Snydia. Assis derri&egrave;re une longue table, le pr&eacute;sentateur avait devant lui un micro install&eacute; sur un tr&eacute;pied. Derri&egrave;re lui &eacute;tait perch&eacute; sur un mur l&#039;embl&egrave;me de l&#039;Empire; un aigle d&#039;or d&eacute;ployant ses ailes, ses serres ac&eacute;r&eacute;es pr&ecirc;tes &agrave; se saisir des ennemis de Syndra. Il y eut un blanc de quelques secondes avant que l&#039;homme ne commence &agrave; parler.&nbsp;</em>&laquo; <font color="#5593bd">Peuple de Syndia, arr&ecirc;tez ce que vous &ecirc;tes en train de faire, et entendez les bonnes nouvelles. Aujourd&#039;hui est un grand jour. Les forces de Syndia ont &eacute;cras&eacute; les rebelles qui plongeaient le sud dans le chaos. Ces gens n&#039;ont pas su voire tout ce que Snydia leur avait apport&eacute;; s&eacute;curit&eacute;, logement, nourriture ... en somme, une bonne vie. Maintenant, voyez ; ils ont pay&eacute; de leur ingratitude par les mains m&ecirc;me de leurs anciens bienfaiteurs. Quelques rebelles sont encore en circulation. Ne vous inqui&eacute;tez, les fiers soldats de Syndia s&#039;en occupent. Pour ceux qui vivraient dans le sud, restez chez vous, et ne sortez qu&#039;en cas de grande n&eacute;cessit&eacute;. </font>&raquo; Bref sourire - froid - &agrave; la cam&eacute;ra. &laquo; <font color="#5593bd">Le Pr&eacute;sident Vault, notre bien-aim&eacute; leader, tient &agrave; vous rappeler de signaler aux autorit&eacute;s comp&eacute;tentes toutes personnes pouvant montrer des signes de d&eacute;g&eacute;n&eacute;rescences physiques. De m&ecirc;me que ceux que vous suspectez d&#039;&eacute;prouver des sentiments pour des individus du m&ecirc;me sexe que le leur. N&#039;oubliez pas, ces gens pourrissent de l&#039;int&eacute;rieur notre grand Empire, et le m&egrave;neront &agrave; sa perte si nous ne faisons rien. Ils ne pourrissent pas seulement notre grande partie, mais il nous rend aussi plus faible, instaurant dans nos g&ecirc;nes des choses qui n&#039;auraient rien &agrave; y faire. Des souillures. Les gens qui collaborent avec ces tra&icirc;tres se doivent aussi d&#039;&ecirc;tre report&eacute;s aux autorit&eacute;s comp&eacute;tentes.</font><font color="#5593bd">&nbsp;&raquo;</font> <em>Nouvelle pause. </em><font color="#5593bd">&laquo; Et maintenant, en images, la punition qu&#039;inflige notre glorieux empire aux rebelles.</font> &raquo; <em>L&#039;homme disparut soudainement, laissant place &agrave; une pi&egrave;ce en b&eacute;ton, &eacute;clair&eacute;e par de nombreux projecteurs. La cam&eacute;ra &eacute;tait dirig&eacute;e vers un mur, sur lequel &eacute;taient plac&eacute;s une dizaine d&#039;hommes, menott&eacute;s &agrave; des poteaux &agrave; c&ocirc;t&eacute; de chacun d&#039;entre eux. Une rang&eacute;e d&#039;hommes, fusil sur l&#039;&eacute;paule, attendaient devant eux dans un calme olympien, habill&eacute;s d&#039;armure de combat blanc. Le temps que les spectateurs comprennent ce qui se passait, les fusils s&#039;abaiss&egrave;rent en une synchronisation parfaite.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">---</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Archibald Venrer se demandait comment il avait fait pour terminer l&agrave;. Non, il le savait. Mais il essayait de se convaincre qu&#039;il n&#039;avait rien &agrave; faire l&agrave;. Les troubles avaient commenc&eacute; deux ans plus t&ocirc;t. Lui et sa famille vivait dans le sud, allant tous les jours travailler &agrave; l&#039;usine, o&ugrave; il fabriquait des armes et des obus pour Syndia. Les salaires avaient commenc&eacute; &agrave; baisser. De m&ecirc;me que les rationnements. Les usines fermaient. On se plaignait de plus en plus. Et ... et les r&eacute;pressions avaient d&eacute;but&eacute;. Tout cela avait rapidement d&eacute;bord&eacute;. Lui et quelques-uns de ses amis s&#039;&eacute;taient empar&eacute;s d&#039;armes dans leurs usines, armant au passage le reste des gens qui voulaient combattre pour d&eacute;fendre leurs int&eacute;r&ecirc;ts, et peut-&ecirc;tre, qui sait, r&eacute;ussir &agrave; faire tomber ce syst&egrave;me injuste ? Il savait que Syndia &eacute;tait contr&ocirc;l&eacute; par un grand manitou. Le Pr&eacute;sident Vault qui s&#039;appelait. Il ne l&#039;avait jamais vu. Trop pauvre pour s&#039;acheter un t&eacute;l&eacute;viseur. Mais tous les rebelles - non ! les lib&eacute;rateurs - savaient qu&#039;il &eacute;tait la personne &agrave; bl&acirc;mer. Bah. Ils avaient &eacute;t&eacute; inconscients. Na&iuml;fs. Stupides. Au d&eacute;but, ils s&#039;&eacute;taient bien d&eacute;brouill&eacute;s. Leur gu&eacute;rilla faisait son petit effet, mais bient&ocirc;t les soldats en armure de Snydia ont sorti l&#039;artillerie lourde. Chars blind&eacute;s. Vaisseaux de combat. Bombardements. Ils fauchaient tout le monde. Civils ou pas civils, la plupart y passaient. Archibald faisait partie des nombreux r&eacute;sistants &agrave; avoir &eacute;t&eacute; captur&eacute;s. Maintenant, il servait d&#039;exemple au reste de l&#039;Empire, alors que le reste de son mouvement tombait en miettes, plus loin dans le sud. Ah, qu&#039;elle &eacute;tait belle la vie. Il ne savait m&ecirc;me pas si ses enfants, sa femme, &eacute;taient en vie. Tout ce qu&#039;il savait, c&#039;est qu&#039;il allait mourir. Au moment m&ecirc;me o&ugrave; il se dit &ccedil;a, les fusils s&#039;abaiss&egrave;rent.</em> &laquo;<font color="#bbbbbb"> FEU !</font> &raquo; <em>Quelques secondes de flottement. Et il cessa d&#039;exister en un seul coup de tonnerre.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">---</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="right">Minuit : 52, troisi&egrave;me jour du mois d&#039;Appolum. </div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Henry Vault, pr&eacute;sident de son &eacute;tat, &eacute;tait install&eacute; confortablement dans la chaise de son bureau. Une chaise qui avait vu succ&eacute;der de nombreuses personnes avant lui avant qu&#039;il ne se fasse Pr&eacute;sident. Voil&agrave; quinze ans qu&#039;il assoyait son pouvoir. Cette soir&eacute;e-l&agrave;, le vieil homme consultait de nombreux documents que ses g&eacute;n&eacute;raux lui avaient rapport&eacute;s. La fin d&#039;une r&eacute;bellion n&#039;&eacute;tait pas de tout repos. Surtout au niveau administratif. Il devrait d&eacute;cr&eacute;ter le lendemain de nouvelles lois afin d&#039;&eacute;craser imm&eacute;diatement dans l&rsquo;&oelig;uf toutes nouvelles tentatives de r&eacute;sistance. Au moins esp&eacute;rait-il que &ccedil;a allait marcher. Plus que fatigu&eacute; de regarder ces feuilles, il se passera une main dans sa&nbsp;barbe avant de se relever, et de ranger en une pile les papiers dans un compartiment secret sous son bureau. Il appuiera sur un bouton dissimul&eacute;, et un l&eacute;ger &#039;&#039;clic&#039;&#039; se fera entendre, signe que le tout avait &eacute;t&eacute; verrouill&eacute;. Il s&#039;avancera dans les couloirs de sa demeure. Sa forteresse. B&acirc;ti que tr&egrave;s r&eacute;cemment, le projet &eacute;tait n&eacute; d&#039;une envie irr&eacute;pressible d&#039;avoir pour lui un immense palais, aussi imp&eacute;n&eacute;trable que magnifique. Vault passera devant de nombreux tableaux, peint par l&#039;artiste officiel du gouvernement, Olave Kintesky, jeune prodige qui avait aussit&ocirc;t attir&eacute; l&rsquo;&oelig;il du pr&eacute;sident lors de sa sortie de l&#039;acad&eacute;mie. Ces tableaux illustraient des hommes muscl&eacute;s, seulement v&ecirc;tu d&#039;un pagne, muscl&eacute;s et dot&eacute;s d&#039;une immense beaut&eacute;, illustrant &agrave; merveille ce que le pr&eacute;sident voulait voir parsem&eacute; la population. Peu importe leur sexe ou leur couleur de peau; il voulait avoir un peuple fort, beau,&nbsp;puissant, fier ! Les erreurs de la nature n&#039;avaient rien &agrave; y faire. Ils &eacute;taient des t&acirc;ches de moisissures parmi une fresque n&#039;attendant que d&#039;&ecirc;tre finie. Son oeuvre &agrave; lui.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Finalement, le vieil homme trouva le repos dans son immense lit qui aurait tr&egrave;s bien pu accueillir&nbsp;trois personnes de&nbsp;plus. Contrairement &agrave; ce que l&#039;on pourrait penser, Vault ne regrettait aucunes de ses actions pass&eacute;es. C&#039;est ainsi en paix qu&#039;il passait la plupart de ses nuits, parfois troubl&eacute; par de vagues r&ecirc;ves cryptiques, dont il ne se rappelait quasiment rien au r&eacute;veil. Comme tous les autres, cette nuit ne d&eacute;rogerait certainement pas &agrave; la r&egrave;gle. Le pr&eacute;sident retirera ses v&ecirc;tements avant de s&#039;allonger dans son lit, apr&egrave;s avoir pouss&eacute; un bref soupire, expression de tout le travail&nbsp;qu&#039;il avait&nbsp;accompli durant la journ&eacute;e. Lentement, les yeux se ferm&egrave;rent, &agrave; l&#039;instar de son esprit qui ouvrait grandes ses portes, pr&ecirc;te &agrave; accueillir les songes. N&eacute;anmoins, ce ne fut pas Morph&eacute;e qui vint cette fois-ci. Il y eut un intrus.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">---</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le noir. La solitude. Voil&agrave; des choses que Henry Vault ne connaissait pas, lui qui avait &eacute;t&eacute; si bien entour&eacute; durant toute sa vie, chouchout&eacute;s par ses parents, par ses nourrices, par sa cours. Il voguait dans un oc&eacute;an d&#039;encre. Oui. Il l&#039;avait senti cette chose. Cet intrus. Il savait qu&#039;il n&#039;&eacute;tait pas &eacute;veill&eacute;. Mais cela n&#039;avait rien d&#039;un r&ecirc;ve. Alors qu&#039;est-ce que c&#039;&eacute;tait ? Cette chose l&#039;avait arrach&eacute; &agrave; ses songes comme on arrache une poup&eacute;e &agrave; un enfant et l&#039;avait jet&eacute; dans cet endroit. Bizarrement, aucune peur ne venait. Aucun frisson apr&egrave;s une telle exp&eacute;rience. Vault se sentait comme chez soi, aupr&egrave;s d&#039;une personne qui l&#039;avait toujours compris. Une personne; mais qui ? Une r&eacute;v&eacute;lation parvint rapidement, tel un &eacute;cho &agrave; ses pens&eacute;es.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Un &eacute;clair rouge d&eacute;chira soudainement le voile noir devant lui. Ou du moins ce qu&#039;il semblait en &ecirc;tre un. Il ne disparut pas comme les autres &eacute;clairs. Alors m&ecirc;me que le bruit r&eacute;sonnait &agrave; ses oreilles, cet &eacute;clair resta en suspens, contrastant particuli&egrave;rement avec son environnement. Rapidement, il commen&ccedil;a &agrave; grossir, repoussant les t&eacute;n&egrave;bres au profit de sous couleur &eacute;carlate. Les contours de b&acirc;timents et de choses innommables commenc&egrave;rent &agrave; appara&icirc;tre. Une voix s&rsquo;&eacute;leva, aussi imposante que dix supernovas implosant en m&ecirc;me temps et aussi douce que le toucher d&#039;un &ecirc;tre cher.&nbsp;&laquo; <font color="#ff4136">Et tu conna&icirc;tras.</font> &raquo; Il &eacute;tait la perfection. &Agrave; cette vision, le vieil homme sourit de toutes ses dents. On lui rendit son sourire; enfin quelqu&#039;un&nbsp;qui appr&eacute;ciait son travail.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><em>Et il&nbsp;connut le nom du Roi.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=14962&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=14962" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_14962" name="d_reply_14962" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_14962');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_14962'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;Appel &Eacute;carlate</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

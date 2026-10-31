@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16281 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>A la recherche du temps perdu</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche du temps perdu</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />04/05/1022 ETU 16:10<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal293135')">Détails</a> <a href="javascript:warnpost(293135)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293135" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293135',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Sir Volith souriait, b&eacute;at. Il sortait du palais de la R&eacute;publique o&ugrave; il avait &eacute;t&eacute; nomm&eacute; Sir par la repr&eacute;sentante Gome&iuml;sa elle-m&ecirc;me. Il arpentait le boulevard orn&eacute; d&#039;une rambarde dor&eacute;e, admirant l&#039;oc&eacute;an qui se prolongeait jusqu&#039;au bout de la terre. Son sourire s&#039;effa&ccedil;a en pensant &agrave; ce qui l&#039;attendait. Il retourna &agrave; son h&ocirc;tel particulier, offert &agrave; sa famille en &eacute;change des services qu&#039;il acceptait de rendre &agrave; la R&eacute;publique. Il y retrouva sa s&oelig;ur, Fardya, et la prit dans ses bras, il l&#039;embrassa sur sa joue puis passa &agrave; son bureau, reprenant le travail qu&#039;il avait suspendu dans la matin&eacute;e. Dehors le soleil se couchait, faisant miroiter des lueurs orang&eacute;es dans la pi&egrave;ce.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />10/05/1022 ETU 21:19<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal293213')">Détails</a> <a href="javascript:warnpost(293213)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293213" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293213',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Voil&agrave; quelques cycles que Sir Voltih &eacute;tait arriv&eacute; sur place. L&rsquo;Amiral Verinus lui avait fait comprendre que sa mission &eacute;tait capitale, essentielle, et que de sa r&eacute;ussite pouvait arriver beaucoup d&rsquo;&eacute;v&eacute;nements. La galaxie 8 &eacute;tait apparue apr&egrave;s quelques &eacute;checs mais il avait finalement retrouv&eacute; Castel Black. Castel Black, c&rsquo;&eacute;tait cette plan&egrave;te qui avait vu la naissance de l&rsquo;Amiral mais surtout de son p&egrave;re, Verinus le Grand et de son seigneur, Lord Snow. C&rsquo;&eacute;tait cette plan&egrave;te par laquelle les Secteurs VIII et IX avaient &eacute;t&eacute; g&eacute;r&eacute;, par laquelle la r&eacute;sistance passive au tyran Flavius s&rsquo;&eacute;tait construite, par laquelle s&rsquo;&eacute;tait nou&eacute;e une histoire terrible.</em></div><div class="post_line"></div><div class="post_line"><em>Sir Voltih avait retrouv&eacute; des traces de b&acirc;timents, la plupart &agrave; l&rsquo;&eacute;tat de restes arch&eacute;ologiques. Il avait &eacute;galement retrouv&eacute; un vieux bunker &eacute;croul&eacute; sous son propre poids ainsi que quelques squelettes, certainement des humains qui s&rsquo;y &eacute;taient cach&eacute;s, attendant des secours qui jamais ne sont arriv&eacute;s.</em></div><div class="post_line"></div><div class="post_line"><font color="#008000">&quot;Jusqu&rsquo;&agrave; aujourd&rsquo;hui&quot;</font><em>, pensa le diplomate avec morosit&eacute;.</em></div><div class="post_line"></div><div class="post_line"><em>Il avait construit un petit b&acirc;timent &agrave; l&rsquo;endroit m&ecirc;me o&ugrave; avait &eacute;t&eacute; construit le palais du Lord Commandant, o&ugrave; il logeait avec les quelques autres diplomates qui &eacute;taient arriv&eacute;s avec lui. De l&agrave;, il avait une vue sur une large plaine o&ugrave; il imaginait ais&eacute;ment une vaste ville d&rsquo;une vingtaine de millions d&rsquo;habitants.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />12/05/1022 ETU 05:56<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293220')">Détails</a> <a href="javascript:warnpost(293220)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293220" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293220',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>La morne solitude qu&rsquo;il vivait avec ses compagnons lui plaisait finalement. Sir Volith avait re&ccedil;u quelques renforts de Pieni Koira, ce qui lui avait permis de nettoyer le syst&egrave;me o&ugrave; il se trouvait. Le travail r&eacute;alis&eacute; sur les plan&egrave;tes du PC se poursuivait, et bient&ocirc;t, il pourrait s&rsquo;attaquer au reste du syst&egrave;me. Ses recherches arch&eacute;ologiques avaient &eacute;galement avanc&eacute;, ils avaient retrouv&eacute; quelques manuscrits anciens qu&rsquo;ils avaient d&ucirc; d&eacute;chiffrer. Les plus importants mentionnaient des ventes de plan&egrave;tes pour des milliards de leems, des tractations diplomatiques entre des personnes qui &eacute;taient inconnus pour les archivistes qui d&eacute;chiffraient ces mots. Un papier cependant avait retenu l&rsquo;attention des archivistes. Ce dernier &eacute;tait cod&eacute;, mais ils avaient compris qu&rsquo;il s&rsquo;agissait d&rsquo;une communication venant d&rsquo;un certain <font color="#17b529">Gimli</font>, fils de Glo&iuml;n. Ils s&rsquo;&eacute;taient rendu compte qu&rsquo;il s&rsquo;agissait d&rsquo;un transfert d&rsquo;une ressource non-mentionn&eacute;e. Sir Volith en fut surpris, et leur fit comprendre que cela ne suffirait pas, qu&rsquo;il lui en fallait plus afin d&rsquo;en faire un rapport &agrave; la capitale. Il se promit &eacute;galement d&rsquo;en toucher un mot &agrave; l&rsquo;Amiral. Il se demandait quelle ressource en particulier &eacute;tait suffisamment importante, et rare, pour &ecirc;tre cod&eacute;e ?</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />17/05/1022 ETU 06:20<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal293234')">Détails</a> <a href="javascript:warnpost(293234)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293234" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293234',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Sir Volith s&rsquo;installa sur une chaise face au projecteur holographique de la station 1.1 et attendit. A 15h exactement, l&rsquo;hologramme gr&eacute;silla et l&rsquo;Amiral en chef Verinus apparut avec &agrave; ses c&ocirc;t&eacute;s dame Gome&iuml;sa, repr&eacute;sentante de l&rsquo;Institut. Apr&egrave;s l&rsquo;&eacute;change des politesses en usage dans la R&eacute;publique, Dame Gome&iuml;sa s&rsquo;enquit de sa sant&eacute; ainsi que de celle des autres koiriens sous son autorit&eacute;. Une fois rassur&eacute;e, elle lui dit :</em></div><div class="post_line"></div><div class="post_line"><font color="#005dc2"><strong>&quot;Vous vouliez vous enqu&eacute;rir d&rsquo;informations me semble-t-il, quelles sont-elles ?&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><em>Sir Volith afficha un l&eacute;ger sourire. <font color="#008000">D&eacute;cidemment</font> pensa-t-il, elle devinait tout avec une longueur d&rsquo;avance sur tout le monde. Il lui r&eacute;pondit :</em></div><div class="post_line"></div><div class="post_line"><font color="#008000">&quot;Ma Dame, la question que je me pose est &agrave; destination du fils de Verinus le grand, Amiral de Lord Snow, l&rsquo;ancien propri&eacute;taire de Castel Black, et dont vous &ecirc;tes le fils et h&eacute;ritier je crois. J&rsquo;ai d&eacute;couvert un certain nombre de documents, et quelques-uns d&rsquo;entre eux parlent de transferts r&eacute;guliers de Cernium entre le d&eacute;nomm&eacute; Snow, un certain Gimli ainsi qu&rsquo;un groupe appel&eacute; l&rsquo;Ordre. J&rsquo;ai bien une id&eacute;e sur ce que signifie Cernium qui est un mot cod&eacute;, mais je voudrais m&rsquo;en assurer si vous savez de quoi je parle, et pourquoi tout ces secrets.&quot;</font></div><div class="post_line"></div><div class="post_line"><em>L&rsquo;Amiral en chef Verinus le regarda profond&eacute;ment, et reprit :</em></div><div class="post_line"></div><div class="post_line"><font color="#17b529"><strong>&quot;Que pensez-vous que ce soit exactement Sir ? Parlez franchement.&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#008000">&quot;De l&rsquo;apotium&quot;</font></div><div class="post_line"></div><div class="post_line"><em>Verinus eut un sourire et reprit :</em></div><div class="post_line"></div><div class="post_line"><font color="#17b529"><strong>&quot;Et vous avez raison de le penser. Je vais vous parler d&rsquo;une &eacute;poque que j&rsquo;ai connue comme jeune homme, soldat, et jeune lieutenant puis capitaine. Il fut un temps lointain o&ugrave; une galaxie avait tourn&eacute;e &agrave; l&rsquo;autoritarisme. Le tyran, un certain Flavius, avait impos&eacute; avec une main de fer un pouvoir tyrannique qui s&rsquo;attaquait, sans toutefois les d&eacute;truire totalement, aux commandants pouvant &eacute;ventuellement lui faire de l&rsquo;ombre. Plusieurs furent emprisonn&eacute;s, certains limit&eacute;s &agrave; une faible emprise territoriale ne permettant pas d&rsquo;expansion rapide ni bien entendu de guerre au-del&agrave; de quelques cycles. Mais il n&rsquo;avait pas fait cesser toute r&eacute;sistance bien entendu. Quelques-uns, dans l&rsquo;ombre, discutaient des possibilit&eacute;s qu&rsquo;ils avaient. Cependant, tr&egrave;s peu &eacute;taient ceux qui disposaient de plan&egrave;tes apotiques, la quasi-totalit&eacute; &eacute;taient d&eacute;tenues par Flavius, et il avait dans ses proches au moins un alliantiste qui surveillait la galaxie pour lui.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#17b529"><strong>Lorsque le Secteur de la Garde et des nains ouvrirent, ils s&rsquo;arrang&egrave;rent pour se montrer tr&egrave;s amicaux avec le d&eacute;nomm&eacute; Flavius, le suivant dans la lutte contre une tentative de soul&egrave;vement malhabile, les r&eacute;volutionnaires, des commandants d&rsquo;anciennes galaxies pour la plupart, ayant cr&eacute;&eacute; un complot avec bien trop de commandants, et notamment un qui &eacute;tait un espion de Flavius. Ce complot &eacute;tait vou&eacute; &agrave; l&rsquo;&eacute;chec, et nous avons particip&eacute; activement &agrave; le m&acirc;ter afin de nous assurer de notre s&eacute;curit&eacute; par un arr&ecirc;t d&rsquo;une possible m&eacute;fiance vis-&agrave;-vis de nous. Nous avons alors prit la direction du Secteur VIII et interdit l&rsquo;acc&egrave;s &agrave; quiconque sauf &agrave; Flavius et une commandante amie. Nous savions donc que m&ecirc;me s&rsquo;il se baladait chez nous, il ne pouvait nous espionner dans le Secteur m&ecirc;me. On a r&eacute;ussi &agrave; obtenir la gestion totale du Secteur IX, d&eacute;sert&eacute; par ses natifs et nous y avons instaur&eacute; la m&ecirc;me r&egrave;gle bien entendu.</strong></font></div><div class="post_line"></div><div class="post_line"><strong><font color="#17b529">Bien entendu, Flavius pouvait nous faire espionner via nos plan&egrave;tes dans des secteurs libres de circulation, et donc nous avons mis en place une coalition centr&eacute;e sur les deux secteurs pr&eacute;c&eacute;demment cit&eacute;s afin de cacher toutes nos r&eacute;serves d&rsquo;apotium &agrave; l&rsquo;exception de ce qu&rsquo;il fallait pour endormir la conscience de Flavius en lui parlant de voyages extra-galactiques. Le seul souci a &eacute;t&eacute; la volont&eacute; de notre alli&eacute;e de d&eacute;clencher la guerre trop vite. Nous le refusions, sans lui dire pourquoi, puisque seuls les nains et la gardes avaient connaissance de ce m&eacute;nage, nul autre pas m&ecirc;me notre alli&eacute;s, et femme de Lord Snow. Je le voyais se maudire de ce qu&rsquo;il a d&ucirc; faire, pour le bien de la galaxie et de la libert&eacute;, il a d&ucirc; sacrifier son &eacute;pouse et son enfant. Voil&agrave; l&rsquo;histoire, toute l&rsquo;histoire.&quot;</font></strong></div><div class="post_line"></div><div class="post_line"><em>Un silence tomba, et plusieurs minutes durant pendant lequel&nbsp;nul ne dit mot. Finalement, Sir Volith d&eacute;clara :</em></div><div class="post_line"></div><div class="post_line"><strong><font color="#008000">&quot;Je vous en remercie Amiral. Cela &eacute;claire nos travaux.&quot;</font></strong></div><div class="post_line"></div><div class="post_line"><em>Et apr&egrave;s quelques autres sujets abord&eacute;s, ils arr&ecirc;t&egrave;rent la communication.</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16281&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16281" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16281" name="d_reply_16281" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16281');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16281'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche du temps perdu</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

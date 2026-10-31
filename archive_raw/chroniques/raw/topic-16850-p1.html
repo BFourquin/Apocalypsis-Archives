@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16850 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Une visite diplomatique &agrave; haut risque</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Une visite diplomatique &agrave; haut risque</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Daisaigai+no+Zero">Cdt. Daisaigai no Zero</a><br>Prestige de chroniqueur&nbsp;: 25<br /><br /><img src="/avatars/11973.jpg" style="width:128px;height:128px" alt="Avatar" /><br />20/06/1023 ETU 20:39<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D300891', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal300890')">Détails</a> <a href="javascript:warnpost(300890)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300890" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300890',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Alors que l&#039;Empereur &eacute;tait toujours reclus dans ses appartements du palais imp&eacute;rial, Rosetta Li Britania n&#039;avait, quant &agrave; elle, plus go&ucirc;t &agrave; rien. Elle se laissait d&eacute;p&eacute;rir, faisant &agrave; peine l&#039;effort de sortir profiter d&#039;un th&eacute; sur l&#039;une des terrasses du Palais en regardant les enfants jouer dans la cour.</div><div class="post_line">On pouvait entendre &ccedil;a et l&agrave; les envol&eacute;es tonitruantes de Martial Vi Britania, Vice-Chef des arm&eacute;es, s&#039;adressant, qui &agrave; ses coll&egrave;gues du gouvernement, qui &agrave; une machine quelconque, imprimante, hologramme, micro-onde... afin d&#039;assener de grandes v&eacute;rit&eacute;s sur le bon ordre des choses.</div><div class="post_line">Le gouvernement, lui, se d&eacute;sint&eacute;ressait des questions galactiques. Trop &eacute;loign&eacute; de ces r&eacute;alit&eacute;s pour les comprendre, il vaquaient &agrave; leurs mondanit&eacute;s et &agrave; leurs fonctions au sein de l&#039;Empire. La plupart n&#039;avaient &eacute;t&eacute; nomm&eacute; que pour acheter la paix sociale des familles nobles, encore trop influentes malgr&eacute; les mill&eacute;naires pour laisser l&#039;Empereur d&eacute;cider d&#039;abolir les privil&egrave;ges. Ils avaient de surcroit v&eacute;cu sans guerre, et toute leur lign&eacute;e avant eux, ce qui les rendaient parfaitement imperm&eacute;ables aux enjeux strat&eacute;giques et militaires. </div><div class="post_line">L&#039;Empereur s&#039;en &eacute;tait toujours bien d&eacute;brouill&eacute;, r&eacute;solvant chaque d&eacute;but de situation conflictuelle au fil du temps sans n&#039;avoir jamais besoin de plus qu&#039;une action mineure de soutient de la part de cette noblesse amorphe.</div><div class="post_line"></div><div class="post_line">La situation de Martial Vi Britania &eacute;tait toutefois l&eacute;g&egrave;rement diff&eacute;rente. S&#039;il avait lui aussi grandi dans un monde en Paix, sa lign&eacute;e s&#039;&eacute;tait toujours fait une fiert&eacute; de s&#039;occuper des questions de s&eacute;curit&eacute; et se revendiquait d&rsquo;anc&ecirc;tres guerriers, se pr&eacute;parant en toute circonstance au retour, &quot;in&eacute;luctable&quot; de la guerre.</div><div class="post_line">Martial avait baign&eacute; dans cet esprit de discipline et de sacrifice au service de l&#039;Empire, pour qu&#039;un jour, lorsque la guerre se pr&eacute;senterait, quelqu&#039;un puisse se dresser pour &quot;d&eacute;fendre Britania avec l&#039;ardeur du soleil et la droiture du canon&quot;.</div><div class="post_line">Il n&#039;avait cependant pour seules r&eacute;f&eacute;rences que de vielles archives, des documentaires, des souvenirs militaires transmis d&#039;une g&eacute;n&eacute;ration &agrave; une autres sur les exploits de leur lointaine anc&ecirc;tre, Nunnally vi Britannia, la derni&egrave;re combattante du monde Av.Zero qui avait fait, dit-on, des centaines de milliers de victimes sur le champ de bataille et dont l&#039;action avait men&eacute;e indirectement &agrave; l&#039;instauration de la Zero Pax Aeterna.</div><div class="post_line"></div><div class="post_line">Ce jour-l&agrave;, Martial devait imp&eacute;rativement voir l&#039;Empereur. Malheureusement, outre le refus probable qu&#039;il essuirait, il ignorait o&ugrave; se trouvaient les appartement de l&#039;Empereur. Seule la doyenne Rosetta en avait l&rsquo;accr&eacute;ditation et elle s&#039;&eacute;tait bien gard&eacute; de la transmettre.</div><div class="post_line">Il fallait donc la convaincre, pour avoir une chance d&#039;informer l&#039;Empereur de la prochaine visite diplomatique.</em></div><div class="post_line"></div><div class="post_line"><em><strong>On tambourine &agrave; la porte.</strong></em></div><div class="post_line"></div><div class="post_line"><font size="5"><font color="#FF857A">Doyenne ! Doyenne Li Britania ! C&#039;est Martial !</font></font></div><div class="post_line"></div><div class="post_line"><em><strong>On tambourine plus fort &agrave; la porte.</strong></em></div><div class="post_line"></div><div class="post_line"><font size="6"><font color="#FF857A">DOYENNE ! JE SAIS TR&Eacute;S BIEN QUE VOUS &Ecirc;TES L&Agrave; ! C&#039;EST D&#039;UNE IMPORTANCE CAPITALE !</font></font></div><div class="post_line"></div><div class="post_line"><em><strong>La porte blind&eacute;e vibre et fait de dr&ocirc;les de bruits...</strong></em></div><div class="post_line"></div><div class="post_line"><font size="5"><font color="#FF857A">C&#039;EST AU SUJET DE L&#039;EMPEREUR ! CONCERNANT SON &Eacute;TAT !</font></font></div><div class="post_line"></div><div class="post_line"><em>&Agrave; ces mots, Martial entendit les verrous de la porte qui se retiraient et vit la porte s&#039;ouvrir.</em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#44B8FF">Et bien? Parlez, maintenant !</font></font></div><div class="post_line"></div><div class="post_line"><font size="4"><font color="#FF857A">AH ! Content de vous voir, ch&egrave;re doyenne ! Oui, voil&agrave; ! Il se trouve que j&#039;aimerais savoir o&ugrave; se trouvent les appartements de l&#039;Empereur, je dois absolument lui annoncer la venue du Paladin Helliax ! d&#039;ailleurs il fallait que je vous parle des pr&eacute;parat...</font></font></div><div class="post_line"></div><div class="post_line"><font size="5"><font color="#005DC2">Le paladin ! Ici ?! Dans notre capitale ! Mais.. vous &ecirc;tes totalement fou mon pauvre ami ! Qu&#039;avez-vous fait ?</font></font></div><div class="post_line"></div><div class="post_line"><em>Martial s&#039;appr&ecirc;tait &agrave; faire un rapport d&eacute;taill&eacute;, capacit&eacute; propre &agrave; tout bon militaire, quand la doyenne posa son doigt sur sa bouche. Elle avait due se mettre sur la pointe des pieds pour accomplir cette acrobatie, mais elle sentait que si elle entendait encore un mot prononc&eacute; par ce grand tas de muscle, elle utiliserait son Geass pour le faire taire &agrave; jamais.</em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#44B8FF">Suivez-moi, et pas un mot ! Nous allons voir l&#039;Empereur !</font></font></div><div class="post_line"></div><div class="post_line"><em>Suivant un d&eacute;dale de couloir et d&#039;escaliers, empruntant un ascenseur un peu particulier qui n&#039;allait visiblement pas que de haut en bas, ils arriv&egrave;rent dans un ultime escalier en colima&ccedil;on, au bout duquel se trouvait une porte unique, dont la s&eacute;curit&eacute; &eacute;tait totale. Apr&egrave;s avoir pr&eacute;sent&eacute; ses empruntes, justifi&eacute; sa venue, effectu&eacute; une reconnaissance vocale, justifi&eacute; la pr&eacute;sence de Martial, justifi&eacute; l&#039;absence de rendez-vous, appos&eacute; ses empruntes, fait v&eacute;rifi&eacute; sa pupille et le Geass qu&#039;elle contenait, La porte s&#039;ouvrit.</div><div class="post_line"></div><div class="post_line">L&#039;empereur &eacute;tait seul, allong&eacute; sur le ventre... mais sans costume ni masque, et pour ainsi dire, compl&egrave;tement nu. D&#039;interminables cheveux verts recouvraient la quasi-int&eacute;gralit&eacute; de son corps, laissant &agrave; peine visibles ses coudes sur les c&ocirc;t&eacute;s et quelques orteils d&eacute;passant du lit.</div><div class="post_line">Rosetta lan&ccedil;a un regard noir &agrave; Martial, lui intimant par un geste de t&ecirc;te de se tourner. Puis, se dirigeant vers le lit, elle attrapa le costume et le masque gisant n&eacute;gligemment au sol pour les tendre &agrave; l&#039;Empereur.</em></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><font size="2">Majest&eacute;, tenez, habillez-vous, je vous en prie, je suis venue avec Martial. Vous ne voudriez pas que le premier &agrave; d&eacute;couvrir votre identit&eacute; en 18000 ans soit ce grand ben&ecirc;t? De quoi auriez-vous l&#039;air? Allez, un petit effort.</font></font></div><div class="post_line"></div><div class="post_line"><em>Martial, sans voir la sc&egrave;ne, devinait aux bruissements du lit que l&#039;Empereur se relevait et commen&ccedil;ait, lentement, &agrave; s&#039;habiller. Au bout d&#039;un bon quart d&#039;heure &agrave; se forcer &agrave; garder les yeux ferm&eacute;s recouverts par ses mains, comme pour prendre toutes les mesures de s&eacute;curit&eacute; n&eacute;cessaire pour lui &eacute;viter de trahir l&#039;Empire, m&ecirc;me par inadvertance, Martial senti la main fr&ecirc;le de Rosetta sur son &eacute;paule, lui faisant signe qu&#039;il pouvait se retourner.</div><div class="post_line">Faisant volte-face et voyant le costume imp&eacute;rial et sa grande symbolique face &agrave; lui, Martial mit un genoux en terre, ravis de retrouver la source de son engagement, intacte, pensait-il.</em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#FF857A">Majest&eacute;, pardonnez mon intrusion dans vos quartiers ! J&#039;ai une nouvelle &agrave; vous annoncer et j&#039;ai &eacute;t&eacute; contraint de faire revenir Rosetta malgr&eacute; son &eacute;tat de sant&eacute; pour vous en faire part !</font></font></div><div class="post_line"></div><div class="post_line"><em>L&#039;empereur tourna la t&ecirc;te en direction de la doyenne.</em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#B10DC9">どうしたのか、ロゼッタ、体が悪くなりましたか。</font></font></div><div class="post_line">[Que se passe-t-il, Rosetta, ton corps va mal?]</div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#44B8FF">Non, majest&eacute;, tout va pour le mi...</font></font></div><div class="post_line"></div><div class="post_line"><font size="4"><font color="#FF857A">Allons ! Doyenne ! Ce n&#039;est pas la peine de cacher ces choses &agrave; l&#039;EMpereur ! Majest&eacute;, la Doyenne a due quitter ses fonctions pour de graves probl&egrave;mes qui l&#039;emp&ecirc;chent de poursuivre sa t&acirc;che.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#CF2BE7"><font size="4">誠かロゼッタ、何があった。</font></font></div><div class="post_line">[Est-ce vrai Rosetta? que s&#039;est-il pass&eacute;?]</div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#44B8FF">Rien, rien, Majest&eacute; ! Absolum...</font></font></div><div class="post_line"></div><div class="post_line"><font size="4"><font color="#FF857A">Majest&eacute; ! Pardonnez mon impudence ! Mais c&#039;est de votre faute !</font></font></div><div class="post_line"></div><div class="post_line"><em>Rosetta et l&#039;Empereur sursaut&egrave;rent de concert et regard&egrave;rent le colosse qui commen&ccedil;ait &agrave; bouillonner face &agrave; tant de simagr&eacute;es.</em></div><div class="post_line"></div><div class="post_line"><font color="#FF857A"><font size="4">Depuis que sa Majest&eacute; s&#039;est retir&eacute;e des affaires, Madame La Doyenne a &eacute;t&eacute; terriblement affect&eacute;e, allant jusqu&#039;&agrave; commettre une erreur dont d&#039;ordinaire, seul un bougre de mon esp&egrave;ce est capable ! Incapable de surmonter le choc de son &eacute;tourderie, pourtant sans cons&eacute;quence grave, elle s&#039;est recluse, comme vous l&#039;avez fait ! Devant la couardise et l&#039;incomp&eacute;tence notoire de mes coll&egrave;gues, j&#039;ai &eacute;t&eacute; contrait de m&#039;occuper des affaires diplomatiques depuis lors ! C&#039;est d&#039;ailleurs l&#039;objet de ma visite, si cela int&eacute;resse encore quelqu&#039;un apr&egrave;s cette s&eacute;ance d&#039;embrassades !</font></font></div><div class="post_line"></div><div class="post_line"><em>Estomaqu&eacute;s par la justesse de l&#039;analyse du militaire et son aplomb inhabituel devant la hi&eacute;rarchie, la Doyenne et l&#039;Empereur restaient sans voix. Devant le silence qu&#039;il prit pour une invitation &agrave; d&eacute;velopper, Martial entreprit de faire son rapport.</em></div><div class="post_line"></div><div class="post_line"><font size="4"><font color="#FF857A">Bien, tout d&#039;abord, les affaires urgentes :</div><div class="post_line"></div><div class="post_line">Nous devons organiser d&#039;ici &agrave; cinq cycles des pr&eacute;paratifs pour la visite diplomatique du Paladinat ! Nous n&#039;avons pas plus de consigne que &quot;il faut que ce soit grandiose&quot; ! <font size="2">Tu parles d&#039;une consigne !</font> Nous avons donc entreprit de contacter les artistes et les hauts dignitaires les plus &eacute;minents ! <font size="2">On va tout m&ecirc;me pas passer pour des sans-le-sous devant le Paladin Helliax !</div><div class="post_line"></div><div class="post_line"></font>De plus, nous avons eu des nouvelles du Mandat Ste...</font></font></div><div class="post_line"></div><div class="post_line"><em>L&#039;empereur qui n&#039;avait pas fait le lien en entendant le mot &quot;paladinat&quot;, r&eacute;agissait en entendant le nom d&#039;Helliax.</em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#9A00B2">ヘリアックスだと&hellip;ヘリアックスがこのブリタニアに来る。何でそんなことをした。状況がどうであろうとそれは危険すぎる。</font></font></div><div class="post_line">[Helliax tu dis? Helliax va venir &agrave; Britania? Pourquoi as-tu fait &ccedil;a? Peu importe la situation, c&#039;est trop dangereux !]</div><div class="post_line"></div><div class="post_line"><font color="#FF857A"><font size="5">Voir la Doyenne du gouvernement et l&#039;Empereur de Britania se morfondre durant des dizaines de cycles, oubliant leur devoir sacr&eacute; au profit de petites larmichettes est bien plus dangereux pour l&#039;Empire ! S&#039;il faut la venue du Paladin le plus Craint de la Galaxie pour vous remettre d&#039;aplomb, &ccedil;a ne me fait pas peur, Majest&eacute; !</font></font></div><div class="post_line"></div><div class="post_line"><em>Quelque chose semblait s&#039;&ecirc;tre &eacute;veill&eacute; chez Martial. &Eacute;tait-ce le poids de ses nouvelles responsabilit&eacute;s, le fait qu&#039;il ait r&eacute;alis&eacute; ses propres faiblesses ou bien le fait qu&#039;il ait r&eacute;alis&eacute; que l&#039;Empereur &eacute;galement &eacute;tait humain, comme la doyenne, et que de ce fait ils &eacute;taient soumis aux &eacute;motions comme lui-m&ecirc;me pouvait les ressentir. Personne n&#039;arrivait &agrave; mettre le doigt dessus. La r&eacute;ponse &eacute;tait peut-&ecirc;tre plus simple. Peut-&ecirc;tre Martial &eacute;tait-il v&eacute;ritablement devenu le mod&egrave;le de chef militaire qu&#039;il avait toujours adul&eacute; au long de sa vie et peut-&ecirc;tre &eacute;tait-il en passe de laisser son nom dans l&#039;histoire &eacute;ternelle de Britania.</div><div class="post_line"></div><div class="post_line">Apr&egrave;s de longues discussions informatives. La doyenne, &eacute;puis&eacute;e, commenta.</em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#44B8FF">J&#039;avoue que ni moi, ni l&#039;Empereur, n&#039;aurions pu penser &agrave; aller jusqu&#039;&agrave; de telles extr&eacute;mit&eacute;s dans une strat&eacute;gie militaire... vous &ecirc;tes... surprenant.</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#CF2BE7">確かに、とんでもないことをするね、君は。だが、決めました。ロゼッタ、マルシアル、今日から二人は一生に行動し、ブリタニア帝国の指揮官となれ。二人の力を合わせれば、我がブリタニアは勝利に導くことが夢ではない。</font></font></div><div class="post_line">[En effet, tes d&eacute;cisions sont tr&egrave;s particuli&egrave;res ! Cependant, c&#039;est d&eacute;cid&eacute; ! Rosetta, Martial, &agrave; compt&eacute; d&#039;aujourd&#039;hui, je vous nomme tout deux &agrave; la t&ecirc;te du gouvernement de l&#039;Empire. Si vous li&eacute;s vos forces, mener notre Britania &agrave; la victoire n&#039;est certainement pas un r&ecirc;ve.]</div><div class="post_line"></div><div class="post_line"><font color="#CF2BE7"><font size="3">ここまで行動してくれて感謝しています。良くぞ耐えてくれた。我が子たちよ、今日をもって皇帝ゼロが復帰してまいる。</font></font></div><div class="post_line">[Je vous exprime ma gratitude pour vos actes jusque l&agrave;. Vous avez bien agit en tenant bon comme vous l&#039;avez fait ! Mes enfants ! &Agrave; partir d&#039;aujourd&#039;hui, l&#039;Empereur Zero effectue son retour !]</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16850&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16850" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16850" name="d_reply_16850" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16850');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16850'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Une visite diplomatique &agrave; haut risque</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17702 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Refus !!!</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Refus !!!</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />22/09/1025 ETU 05:49</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D316648', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal316645')">Détails</a> <a href="javascript:warnpost(316645)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316645" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316645',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#4cea5e"><font size="4">https://www.youtube.com/watch?v=prpdKVHt9Uw</font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#4cea5e"><font size="4">(Musique de Circonstance)</font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#4cea5e"><font size="4">https://img.xooimage.com/files111/c/8/9/l-orionis-56b23f2.jpg</font></font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#4cea5e"><font size="4">Vaisseau Amiral Aurora</font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#4cea5e"></div><div class="post_line">http://img.xooimage.com/files110/f/f/d/drapeau-kr-ne-4f24eec.png</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line">Le Vaisseau Amiral &eacute;tait en orbite ....</div><div class="post_line"></div><div class="post_line">Le premier Secr&eacute;taire G&eacute;n&eacute;ral R&eacute;ginald Vostro&iuml;eff se tenait droit sur la passerelle de Commandement, un Traqueur vint le voir !</div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Camarade Premier Secr&eacute;taire ? Des Visiteurs sont arriv&eacute;s sur le Vaisseau apr&egrave;s demande officielle !</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Qui sont ils ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Des dirigeants syndicalistes Camarade !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Un fin sourire en coin apparut sur le Visage de Vostro&iuml;eff ....</div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Et que veulent ils ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Ils voudraient s&#039;installer dans notre empire ! Afin de pouvoir Cr&eacute;er une monnaie et des Banques.</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">C&#039;est bien ce que je pensais ! Je vais les voir !</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Bien Camarade,</font> Le Traqueur Salua et commen&ccedil;a &agrave; repartir lorsque ...</div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Camarade Traqueur !</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Oui Camarade Premier Secr&eacute;taire ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Je vais mettre un peu de temps, si ils demandent quand est ce que j&#039;arrive, soyez &eacute;vasif surtout ! Et installez les, dans la salle de conf&eacute;rence, mais mettez deux traqueurs de chaque cot&eacute; de la porte et&nbsp;&agrave; l&#039;int&eacute;rieur,&nbsp;afin que nous ne soyons pas d&eacute;rang&eacute;s !</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Bien Camarade Premier Secr&eacute;taire !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Vostro&iuml;eff le vit partir, une fois qu&#039;il fut sorti, il fit signe a Katia Radenko de s&#039;approcher, cette agente sp&eacute;ciale pouvait ordonner n&#039;importe quoi a n&#039;importe quelle troupe de la R&eacute;publique Communiste D&eacute;mocratique Lib&eacute;rale; elle avait autant de pouvoir qu&#039;un G&eacute;n&eacute;ral !</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ffffff">https://i.pinimg.com/736x/79/06/b1/7906b15248b0ba57e4da137202af3f58.jpg</font></div></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Camarade ?&nbsp;</div><div class="post_line"></div><div class="post_line"></font><font color="#e86e04">Vous allez mettre dans le couloir, une bonne trentaine de Traqueurs au cas ou, et en armes</font></div><div class="post_line"></div><div class="post_line">Katia sourit et r&eacute;pondit Oui Camarade, je m&#039;en charge, elle partie d&#039;un pas athl&eacute;tique...&nbsp;</div><div class="post_line"></div><div class="post_line">L&#039;Amiral Varkov se tenait &agrave; ses cot&eacute;s, Vostro&iuml;eff fit en allumant un cigare ...</div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Voyez vous Camarade Varkov ? Il est bon ! De savoir ....Comment traiter ces ...Repr&eacute;sentants !</font></div><div class="post_line"></div><div class="post_line">Youri Varkov Amiral de son &eacute;tat, fixant pensivement le Camarade Premier Secr&eacute;taire, l&#039;admirant , a ces propos, un fin sourire illumina son visage ....il pensa juste &agrave; ce moment, &quot;<font color="#e8c500">Par les &eacute;toiles, il va y avoir bient&ocirc;t de l&#039;animation</font>&quot;&nbsp;</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />24/09/1025 ETU 07:31</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D316679', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal316677')">Détails</a> <a href="javascript:warnpost(316677)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316677" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316677',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff">Vostro&iuml;eff attendit 30 bonnes minutes avant de rentrer dans la salle&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Camarade ? Je me Pr&eacute;sente je suis le Camarade Genko Poussaraieff </font><font color="#ffffff">fit l&#039;un</font><font color="#ffa339">&nbsp;</font><font color="#5593bd">je suis ici pour pouvoir m&#039;installer et organiser la cr&eacute;ation d&#039;une monnaie et pouvoir reconstruire la soci&eacute;t&eacute; d&#039;avant afin que ...</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Non !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Pardon ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">J&#039;ai dit non !</font> <font color="#e86e04">vous n&#039;allez vous installer nulle part !</font>&nbsp;</div><div class="post_line"><font color="#e86e04">Autrefois l&#039;un de nos pr&eacute;c&eacute;dents Premier Secr&eacute;taire G&eacute;n&eacute;ral avait fait en sorte que les Banques et l&#039;argent soit abolies et fait en sorte que cette r&egrave;gle ne soit en aucun cas chang&eacute;e, c&#039;est un article &eacute;ternel dans l&#039;histoire de la R&eacute;publique Communiste D&eacute;mocratique Lib&eacute;ral Camarade, il ne saurait &ecirc;tre question de changer quoi que ce soit !</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Mais Camarade Premier Secr&eacute;taire, c&#039;est du pass&eacute; et&nbsp;ce Camarade n&#039;est plus l&agrave; et il y aurait des b&eacute;n&eacute;fices a faire et je suis persuad&eacute; que ...</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">GARDEZ VOTRE CORRUPTION POUR VOUS !!&nbsp;&nbsp;Je n&#039;en veut pas, d&#039;ailleurs aucun Moscovians ou Moscoviannes n&#039;en veulent non plus ! Je les connais vos m&eacute;thodes ! Quand quelque chose ne va pas vous faites des manifestations en promettant du r&ecirc;ve &agrave; vos adh&eacute;rents, du vent, des mirages, de la poudre aux yeux, vous ne voulez cr&eacute;er des banques et des syndicats que pour vous enrichirent sur le dos de pauvres gens.</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Vos manifestations ne servent &agrave; rien sinon &agrave; vous glorifier et vous enrichir,&nbsp;vous profitez pour vendre vos maudites cartes en m&ecirc;me temps !&nbsp; ...A des prix ! Exorbitants, pour ce que c&#039;est, en f&eacute;licitant celui ou celle qui en ach&egrave;te une, en lui souhaitant la bienvenue, en lui faisant croire qu&#039;il sera mieux d&eacute;fendu(e) Encore des Mirages, ! Vous &ecirc;tes des Illusionnistes, des Marchands de r&ecirc;ves, des escrocs de la pire esp&egrave;ce ! Et bien sur, rien ne change jamais pour eux !</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Passez votre chemin, je ne trahirais pas des lois pour que vous vous enrichissiez sur le dos de pauvres gens pour que vous reconstruisiez une soci&eacute;t&eacute; laide et corrompue, sinon ces pauvres gens &agrave; qui vous ferez croire je ne sait quoi sans qu&#039;ils n&#039;obtiennent jamais ce qu&#039;ils d&eacute;sirent, ou alors juste que quelques miettes que vous voudrez bien leurs laisser,&nbsp;qui croirons na&iuml;vement toutes vos fadaises</font>&nbsp; <font color="#e86e04">!!!</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Vous voulez que je vous disent ? Tous les leaders de tous les syndicats quels qu&#039;ils soient, ne&nbsp;sont que des Tiques suceurs d&#039;argent, une fois accroch&eacute;s, vous les sucez jusqu&#039;&agrave; ce qu&#039;ils n&#039;en peuvent plus !&nbsp;...Vous n&#039;&ecirc;tes tous que des CAFARDS PARLANTS&nbsp; ! ...</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Une sale Race de VAMPIRES ! VOILA CE QUE VOUS &Euml;TES !!</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">TRAQUEURS !! Veillez &agrave;&nbsp;m&#039;&eacute;jecter ...</font>.Il leva la main vers eux d&#039;un air de d&eacute;dain ....<font color="#e86e04">CA !</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#5593bd">C EST UNE HONTE ! ON NE NOUS A JAMAIS TRAITE DE LA SORTE COMME CA MAIS VOUS LE REGRETTEREZ FAITES ATTENTION !!</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Vostro&iuml;eff bascula la t&ecirc;te en arri&egrave;re en riant</font>&nbsp;<font color="#e86e04">Hhha ! Cela &agrave; du vous manquer surement !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Et me menacer moi ?&nbsp;De votre part ?...&nbsp;Non mais regardez vous !! Vous &ecirc;tes gros et gras ! Cela paye n&#039;est ce pas de truander les gens en permanence ?!&nbsp;Vous devez certainement vous payer de beaux gueuletons et sabler le champagne en vous moquant de ceux dont vous avez ignoblement profit&eacute;s,&nbsp;volant les gens honn&ecirc;tes et na&iuml;fs&nbsp;qui croient en vous,&nbsp;&agrave; travers le prix on&eacute;reux de&nbsp;vos cartes d&#039;adh&eacute;rents !</font></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Traqueurs ? Foutez moi &ccedil;a dehors ! Ils sont bannis &agrave; tous jamais mais avant identifiez les tous ! Afin qu&#039;ils ne reviennent jamais ici !</font> <font color="#ffffff">Siffla Vostro&iuml;eff entre ses dents&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Il s&#039;en alla, n sourire satisfait se dessinait sur son visage</font>&nbsp;</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17702&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17702" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17702" name="d_reply_17702" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17702');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17702'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Refus !!!</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15453 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Le blouse du Radin</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Le blouse du Radin</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Avarice">Cdt. Avarice</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/10830.gif" style="width:128px;height:116px" alt="Avatar" /><br />20/02/1021 ETU 21:09</td><td class="post_right"><div class="posthead">Score&nbsp;: 10 <a href="javascript:toggle_bloc('cal282841')">Détails</a> <a href="javascript:warnpost(282841)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal282841" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 8</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=282841',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><a href="https://www.youtube.com/watch?v=LlY90lG_Fuw" target="_blank" rel="nofollow">Ambiance musicale</a></div><div class="post_line"></div><div class="post_line"><em>Quelque part, dans la prison Gouvernementale de la Capitale Galactique...</em></div><div class="post_line"></div><div class="post_line"><em>Un endroit bien lugubre, ou les pires m&eacute;cr&eacute;ants galactique &eacute;tait enferm&eacute;.</em></div><div class="post_line"><em>La puanteur de l&#039;endroit &eacute;tait insupportable, les rats eux m&ecirc;me n&#039;y venaient pas.</em></div><div class="post_line"><em>Dans la plus sombre cellule, &eacute;tait enferm&eacute; celui que l&#039;on avait surnomm&eacute; autrefois, &quot;le Baron de l&#039;Arnaque&quot;.</em></div><div class="post_line"><em>Bien que faible strat&egrave;ge, il ne tarda pas &agrave; &eacute;tablir un nouveau commerce avec les autres d&eacute;tenus.</em></div><div class="post_line"><em>Il commen&ccedil;a par &eacute;changer son propre cale&ccedil;on et son drap contre un paquet de chewing-gum.</em></div><div class="post_line"><em>Puis les chewing-gums contre un paquet de cigarettes et les cigarettes contre un couteau de fortune.</em></div><div class="post_line"><em>Le bizness &eacute;tait lanc&eacute; ! </em></div><div class="post_line"><em>Apr&egrave;s avoir rendu quelques menus services aux autres captifs. Il ne tarda pas &agrave; devenir le nouveau meneur des d&eacute;tenues.</em></div><div class="post_line"><em>Il se fit alors appel&eacute; &quot;Avarice de Hutt&quot; ou &quot;Le contrebandier sans culotte&quot;.</em></div><div class="post_line"></div><div class="post_line"><em>Il n&#039;avait aucune nouvelle du monde ext&eacute;rieur, son jugement lui-m&ecirc;me se faisait attendre... </em></div><div class="post_line"><em>Aucune visite, aucun avocat.</em></div><div class="post_line"><em>L&#039;avait-on oubli&eacute; ???</em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Oswald">Cdt. Oswald</a><br>Prestige de chroniqueur&nbsp;: 80<br /><br /><img src="/avatars/11080.gif" style="width:128px;height:110px" alt="Avatar" /><br />24/02/1021 ETU 10:17<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D282987', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal282986')">Détails</a> <a href="javascript:warnpost(282986)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal282986" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=282986',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ffa500"><font size="5"><strong>╔══════════════════════════════════╗</strong></font></font></div></div><div class="post_line"><div align="center"><font color="#ffa500"><font size="5"><strong>Odinss&ouml;n</strong></font></font></div></div><div class="post_line"><div align="center"><font color="#ffa500"><font size="5"><strong><u>Prison gouvernementale de la Capitale Galactique</u></strong></font></font></div></div><div class="post_line"><div align="center"><font color="#ffa500"><font size="5"><strong><em>24/02/1021 ETU &ndash; 0:50</em></strong></font></font></div></div><div class="post_line"><div align="center"><font color="#ffa500"><font size="5"><strong><em>╚══════════════════════════════════╝</em></strong></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Bient&ocirc;t 4 minutes que Raoul &eacute;tait arriv&eacute; sur Odinss&ouml;n, anciennement Chocolalaland. 4 minutes de trop pour ce Ryzelien press&eacute;. V&ecirc;tu d&rsquo;un costume bleu, il avait conserv&eacute; les lunettes de soleil fum&eacute;es qui le caract&eacute;risait dans sa vie en soci&eacute;t&eacute;. Tout en marchant, il lui arrivait de passer sa main dans sa chevelure blonde, parfaitement plaqu&eacute;e par les meilleurs laques de Ryzel.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="center"><font color="#ffa500"><font size="3"><a href="https://www.cjoint.com/doc/21_02/KBxx7IqNZaa_rsz-1dgjm2xox0aahdju.png" target="_blank" rel="nofollow">Raoul Mendeiro</div><div class="post_line"></a></font></font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Depuis bient&ocirc;t 2 minutes 30, Raoul d&eacute;ambulait &agrave; vive allure dans les couloirs des ge&ocirc;les, traversant les couloirs de s&eacute;curit&eacute;, les sas, les postes de contr&ocirc;le et tout autre obstacle qui osait se dresser sur sa route. </font></font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Structurellement, la prison se composait d&rsquo;une succession de couloirs r&eacute;partis sur un nombre cons&eacute;quent d&rsquo;&eacute;tages souterrain. Chaque couloir se composait d&rsquo;un certain nombre de portes lat&eacute;rales donnant acc&egrave;s &agrave; des cellules en principe individuelles. Au bout des couloirs, un poste de s&eacute;curit&eacute;, des escaliers et un ascenseur permettant d&rsquo;acc&eacute;der aux &eacute;tages inf&eacute;rieurs. Particuli&egrave;rement s&eacute;curis&eacute;, chaque &eacute;tage &eacute;tait con&ccedil;u pour constituer en lui-m&ecirc;me un microcosme ind&eacute;pendant et limitant le plus possible les contacts entre d&eacute;tenus des &eacute;tages sup&eacute;rieurs ou inf&eacute;rieurs.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><div align="center"><a href="https://www.cjoint.com/doc/21_02/KByaC0FMDla_mqdefault.jpg" target="_blank" rel="nofollow"><font size="3">Sch&eacute;ma de la prison</font></a></div></div><div class="post_line"></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Au bout de 6 minutes, arrivant au 32e sous-sol, Raoul approcha un des gardes du poste de contr&ocirc;le de la prison.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Je viens voir l&rsquo;Avarice. Matricule 32&hellip;.</font></div><div class="post_line"></font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Il regarda&nbsp;quelques instants un appareil num&eacute;rique&nbsp;puis commen&ccedil;a &agrave; lire.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Matricule 32-62144. <strong>Mais combien vous gardez de gens dans cette prison !?</strong></div><div class="post_line"></font></font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Le soldat leva la t&ecirc;te, l&rsquo;air nonchalant.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#d9f4ff">Oh ben, environ 2 millions sur les diff&eacute;rents &eacute;tages m&rsquo;sieur.</div><div class="post_line"></font> </font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Raoul esquissa un large sourire puis s&rsquo;approcha du soldat.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">2 millions !? Ermh &hellip; Dites-moi, vous ne sauriez pas &agrave; qui <strong>je dois m&rsquo;adresser pour les acheter </strong>?</div><div class="post_line"></font> </font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Le soldat hocha n&eacute;gativement la t&ecirc;te.</div><div class="post_line"></font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#d9f4ff">Non m&rsquo;sieur, on ne conna&icirc;t pas notre employeur.</font></div><div class="post_line"> </font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Raoul commen&ccedil;a &agrave; s&rsquo;impatienter. Il regarda fr&eacute;n&eacute;tiquement sa montre puis r&eacute;pondit avec &eacute;nergie.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Nan mais vous n&rsquo;&ecirc;tes pas s&eacute;rieux !? <strong>Ils viennent d&rsquo;o&ugrave; les d&eacute;tenus ? Qui vous g&egrave;re ?</strong> Et y a combien de prison comme &ccedil;a sur la capitale ? Enfin, vous ne pouvez pas me dire qu&rsquo;un repr&eacute;sentant d&rsquo;une civilisation galactique est enferm&eacute; ici et que personne ne sait ni d&rsquo;o&ugrave; il vient, ni s&rsquo;il va sortir !?</font></div><div class="post_line"></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#d9f4ff">M&rsquo;sieur &hellip;</font></div><div class="post_line"></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Pas m&rsquo;sieur petit con, Monsieur. Reparle-moi encore comme si j&rsquo;&eacute;tais ton ami et je t&rsquo;ex&eacute;cute.</font></div><div class="post_line"> </font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Il caressa d&rsquo;un geste discret une &eacute;paisse bosse derri&egrave;re sa veste de costume.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#d9f4ff">Oh&hellip; Euh Monsieur, vous savez que c&rsquo;est une prison ici, vous ne pourriez pas sortir d&rsquo;ici vivant si vous faites &ccedil;a.&nbsp;</font></div><div class="post_line"></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Tu m&rsquo;as appel&eacute; Monsieur,<strong> c&rsquo;est que tu sais quelle parole &agrave; le plus de valeur ici</strong> &hellip;</font></div><div class="post_line"> </font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Le soldat baissa la t&ecirc;te et r&eacute;pondit aux questions.</div><div class="post_line"></font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#d9f4ff">Avarice il est arriv&eacute; il y a quelques cycles, quand Mekteub&eacute; &eacute;tait au pouvoir &hellip; Mais les autres d&eacute;tenus on ne sait pas vraiment qui les envoient, ce sont juste des brigands et c&rsquo;est tout &hellip; Et des prisons comme celle-ci il y en a surement d&rsquo;autres oui, mais bon on n&rsquo;en sait rien. Je suis qu&rsquo;un soldat moi !</font></div><div class="post_line"> </font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Raoul souffla bruyamment.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Pffff. Moi qui pensais profiter de ma venue pour trouver de la main-d&rsquo;&oelig;uvre pas ch&egrave;re &hellip; Je demanderais autour de moi si quelqu&rsquo;un ne g&egrave;re pas cette prison. Bon sinon <strong>esp&egrave;ce de flemmard,</strong> il est ici Avarice ou pas ?</font></div><div class="post_line"> </font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#d9f4ff">Oui Monsieur, il est dans les deux cellules justes au milieu du couloir. Vous savez qu&rsquo;il s&rsquo;est fait une petite r&eacute;putation dans la prison ?</font></div><div class="post_line"> </font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Deux cellules ? Ce n&rsquo;est pas une par personne &agrave; la base ? Et puis pour la r&eacute;putation, j&rsquo;aurais le temps de le d&eacute;couvrir.</font></div><div class="post_line"> </font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#d9f4ff">Vous ne l&rsquo;avez jamais vu je crois.</font></div><div class="post_line"> </font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Un son strident retentit, puis la porte du sas se d&eacute;verrouilla. Raoul p&eacute;n&eacute;tra le couloir puis avan&ccedil;a en direction de la cellule de l&rsquo;Avarice. Au fur et &agrave; mesure de sa courte travers&eacute;e, des d&eacute;tenus hurlait &agrave; travers leurs portes des injures et des messages en direction de Raoul :</font></font></div></div><div class="post_line"><div align="center"><font size="3"><em><font color="#ffa500">&laquo;</font><font color="#d9f4ff"> Oh petit salopard ! Tu viens faire quoi &agrave; Avarice le Hutt !? </font><font color="#ffa500">&raquo;</font></em></font></div></div><div class="post_line"><div align="center"><font size="3"><em><font color="#ffa500">&laquo;</font><font color="#d9f4ff"> Ohhhh le vieillard ? Laisse notre pote tranquille !! </font><font color="#ffa500">&raquo;</font></em></font></div></div><div class="post_line"><div align="center"><font size="3"><em><font color="#ffa500">&laquo;</font><font color="#d9f4ff"> Ne te laisse pas avoir le contrebandier sans culotte ! </font><font color="#ffa500">&raquo;</font></em></font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Ignorant les invectives, il arriva finalement devant une &eacute;paisse porte en m&eacute;tal sur laquelle &eacute;tait inscrite :</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="center"><u><strong><font color="#d9f4ff"><font size="5">&laquo; D&eacute;tenu 32-62144 &ndash; AVARICE &raquo;</font></font></strong></u></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="3">Raoul actionna un bouton adjacent &agrave; la porte. Aussit&ocirc;t, celle-ci devint transparente, permettant &agrave; Raoul de s&rsquo;entretenir avec sa grosseur.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Alors, on ne s&rsquo;ennuie pas trop ?</font></font></div></div><div class="post_line"><div align="justify"><font size="3"><em><font color="#5593bd">Wow bordel, il est super gros !</font></em><font color="#ffa500"> pensa Raoul.</div><div class="post_line"> </font></font></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><font size="3">Je suis Raoul Mendeiro, de l&rsquo;entreprise Filiale RN Justice&deg; ! On va dire qu&rsquo;on a entendu parler de ton histoire, et Ryzel n&rsquo;oublie jamais les commandants dans le besoin &hellip; On a moyen de te faire sortir, &ccedil;a t&rsquo;int&eacute;resse ?</div><div class="post_line"></font></font></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><font size="3">&Eacute;videmment, notre rapidit&eacute; d&rsquo;action va d&eacute;pendre de ce que tu peux nous offrir &hellip; Et de ce que tu vas faire de nos services ! </font></font></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><font size="3">Alors, int&eacute;ress&eacute; ?</font></font><font color="#ffa500"><font size="3"> Dit-il un sourire Colgate aux l&egrave;vres.</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Avarice">Cdt. Avarice</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/10830.gif" style="width:128px;height:116px" alt="Avatar" /><br />27/02/1021 ETU 04:08</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal283059')">Détails</a> <a href="javascript:warnpost(283059)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283059" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283059',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font size="2">Assis &agrave; m&ecirc;me le sol, sans&nbsp;aucun lit, aucune toilette dans sa cellule...</font></em></div><div class="post_line"><em><font size="2">L&#039;Avarice &eacute;tait v&ecirc;tu avec tous juste d&#039;un morceau de papier toilette, a l&#039;entre-jambe...</font></em></div><div class="post_line"><em><font size="2">Sa Grosseur&nbsp;mastiquait tranquillement les restes de son cod&eacute;tenu. Sans doute un bras ?</font></em></div><div class="post_line"><em><font size="2">Le &quot;Contrebandier sans culotte&quot;, vit alors un invit&eacute; entr&eacute; dans sa cellule...</font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Alors, on ne s&rsquo;ennuie pas trop ?</font></div><div class="post_line"><font color="#5593bd">Wow bordel, il est super gros ! </font><font color="#ffa500">pensa Raoul.</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Je suis Raoul Mendeiro, de l&rsquo;entreprise Filiale RN Justice&deg; ! On va dire qu&rsquo;on a entendu parler de ton histoire, et Ryzel n&rsquo;oublie jamais les commandants dans le besoin &hellip; On a moyen de te faire sortir, &ccedil;a t&rsquo;int&eacute;resse ?</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">&Eacute;videmment, notre rapidit&eacute; d&rsquo;action va d&eacute;pendre de ce que tu peux nous offrir &hellip; Et de ce que tu vas faire de nos services !</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Alors, int&eacute;ress&eacute; ? </font><font color="#ffa500">Dit-il un sourire Colgate aux l&egrave;vres.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em><font size="2">Le &quot;Creuvare&quot; &eacute;couta attentivement &quot;Raoul&quot; tous en terminant son repas.</font></em></font></div><div class="post_line"><font color="#ffffff"><em><font size="2">Apr&egrave;s avoir fini d&#039;avaler la chair, il cracha les os &agrave; sa droite contre le mur puis il expira un &eacute;norme rho.</font></em></font></div><div class="post_line"><font color="#ffffff"><em><font size="2">Il ce redressa, ce mis avec grande difficult&eacute; debout. Puis s&#039;approcha de &quot;Raoul&quot; et s&#039;inclina vers lui tous en le reniflant.</font></em></font></div><div class="post_line"><font color="#ffffff"><em><font size="2">La bave commen&ccedil;a a couler par sa bouche.</font></em></font></div><div class="post_line"></div><div class="post_line"><font size="3">Tu sens l&#039;argent Humain ! Tu sens d&eacute;licieusement bon !</font></div><div class="post_line"><font size="2"><em>La bave couler de plus en plus...</em></font></div><div class="post_line"><font size="3">Tu dit &ecirc;tre de <strong>Ryzel</strong> ? Comme ces maudits Robots qui m&#039;ont attaquer !</font></div><div class="post_line"><font size="3">Vous &ecirc;tes donc affilier au <strong>choco-minus</strong> ?</font></div><div class="post_line"></div><div class="post_line"><font size="3">Quelques choses a t&#039;offrir ? Tu m&#039;as bien regarder la ?</font></div><div class="post_line"><font size="3">Je n&#039;ai m&ecirc;me plus mon <strong>Artefact Eternel</strong> !</font></div><div class="post_line"><font size="3">Vous vous croyez &agrave; l&#039;abris... Vous ne savez m&ecirc;me pas la puissance de ces objets !</font></div><div class="post_line"></div><div class="post_line"><font size="3">Et le <strong>pygm&eacute;e des steppes</strong>, il est encore au pouvoir ?</font></div><div class="post_line"><font size="3">Et <strong>Pognon</strong>, il est encore ne vie ? Je compte bien l&#039;&eacute;carteler&nbsp;moi m&ecirc;me !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Oswald">Cdt. Oswald</a><br>Prestige de chroniqueur&nbsp;: 80<br /><br /><img src="/avatars/11080.gif" style="width:128px;height:110px" alt="Avatar" /><br />28/02/1021 ETU 20:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D283140', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal283139')">Détails</a> <a href="javascript:warnpost(283139)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283139" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283139',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#ffa500">Raoul fit la grimace lorsqu&#039;il&nbsp;sentit l&#039;&eacute;pais fumet corporel de l&#039;Avarice. Cependant, son d&eacute;gout ne fut que de courte dur&eacute;e lorsqu&#039;il eut connaissance du discours de son interlocuteur emprisonn&eacute;.&nbsp;</font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#ffa500">Il esquissa un sourire plein d&#039;avarice, peut-&ecirc;tre aimaient-ils tous deux l&#039;argent autant l&#039;un que l&#039;autre ? Quoi qu&#039;il en soit, chacun voulaient maintenant engranger le plus de profit possible, malgr&eacute; cette situation insolite et d&eacute;s&eacute;quilibr&eacute;e.&nbsp;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Alors tu aimes l&#039;argent, Avarice ? Tu parviens m&ecirc;me &agrave; sentir ma puce de paiement Premium &eacute;dition alors qu&#039;elle est rang&eacute;e dans son &eacute;tui antipiratage ... Tu aimes l&#039;argent ? Tu trouves cela d&eacute;licieusement bon ? Prends donc, Avarice, et &eacute;coutes moi !&nbsp;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#ffa500">Il fit mine de jeter de l&#039;argent en direction de l&#039;Avarice, qui re&ccedil;ut par l&agrave; m&ecirc;me <a href="https://prnt.sc/109a1vr" target="_blank" rel="nofollow">un virement d&#039;un milliard de Leems sur son compte personnel</a>.&nbsp;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Tu appr&eacute;cies cette fortune ? C&#039;est l&agrave; un simple centi&egrave;me de la fortune de Ryzel ! Prends donc, et consomme !</font></font></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Effectivement, ce sont nos robots qui vous ont arr&ecirc;t&eacute;, mais nous sommes des entrepreneurs, nous n&#039;avons fait que les vendre au service d&#039;utilisateurs qui en font ce qu&#039;ils souhaitent ! Moi, Raoul Meidero, je ne suis l&#039;alli&eacute; de personne si ce n&#039;est de mon porte-monnaie !&nbsp;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#ffa500">Il s&#039;arr&ecirc;ta quelques instants.&nbsp;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Sache que tu as quelque chose &agrave; m&#039;offrir. On a toujours quelque chose &agrave; offrir pour sortir de prison. Tu viens de me parler d&#039;un Artefact &Eacute;ternel ... Quel est -il ? Qu&#039;est-ce qu&#039;on peut en faire !? Si je t&#039;aide &agrave; le trouver, me l&#039;offrira tu ? Ou peut-&ecirc;tre que celui-ci peut cr&eacute;er de l&#039;argent ? Quoi qu&#039;il en soit je suis curieux de voir quel est son usage ...&nbsp;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#5593bd">Pognon est encore au pouvoir, et sache qu&#039;il aime se pavaner sur ton immense richesse !&nbsp;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><font color="#ffa500">Il guetta le moindre signe de col&egrave;re.&nbsp;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><font size="3">Ca t&#039;&eacute;nerves non ? De te retrouver ici pendant que ton sous-fifre te vole ta vie ! Je vais te faire une offre, que seul moi peut te faire. Tu ne sortiras pas de Prison sans moi, tu peux en &ecirc;tre&nbsp;sur. Personne ne sait o&ugrave; tu te trouves, d&#039;ailleurs personne ne t&#039;a cherch&eacute; si ce n&#039;est moi ! Accepte de travailler avec moi, et je t&#039;offrirais la libert&eacute; ! Que dis-tu de cela ?&nbsp;</font></font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Avarice">Cdt. Avarice</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/10830.gif" style="width:128px;height:116px" alt="Avatar" /><br />07/03/1021 ETU 06:09</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal283595')">Détails</a> <a href="javascript:warnpost(283595)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283595" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283595',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font size="2">L&#039;Avarice se redressa, ravala sa salive puis afficha un sourire au l&egrave;vre.</font></em></div><div class="post_line"></div><div class="post_line"><font size="3">Ha ha ha, nous allons bien nous entendre !</font></div><div class="post_line"><font size="3">L&#039;argent coule dans nos veines !</font></div><div class="post_line"></div><div class="post_line"><font size="3">Le Pr&eacute;cieux fait partie d&#039;un ensemble, il s&#039;agit de l&#039;Armure du P&eacute;ch&eacute; ou les 7 p&eacute;ch&eacute;s capitaux.</font></div><div class="post_line"><font size="3">Il existe 7 reliques repr&eacute;sentant chacune, un des 7 p&eacute;ch&eacute;s humains.</font></div><div class="post_line"><font size="3">Prenez donc ce datapad, il y contient toutes les donn&eacute;es que j&#039;ai pus recueillir...</font></div><div class="post_line"><a href="https://histoire.apocalypsis.org/index.php/Set_des_7_p&eacute;ch&eacute;s_capitaux" target="_blank" rel="nofollow">Datapad</a></div><div class="post_line"><font size="2"><em>Il donna le datapad &agrave; Raoul.</em></font></div><div class="post_line"></div><div class="post_line"><font size="2"><em>Puis il reprit ces explications...</em></font></div><div class="post_line"><font size="3">Voyez-vous l&#039;armure du P&eacute;ch&eacute; fut cr&eacute;er par le peuple des C&eacute;lestes.</font></div><div class="post_line"><font size="3">Apr&egrave;s leurs victoires sur le d&eacute;mon originel Tathamet, ils fa&ccedil;onn&egrave;rent l&#039;univers afin d&#039;y accueillir la vie. Puis des entrailles du monstre, ils forg&egrave;rent l&#039;armure du p&eacute;ch&eacute;. </font></div><div class="post_line"><font size="3">Chacune de ces reliques, et gardaient par un gardien, jusqu&#039;&agrave; pr&eacute;sent 4 des 7 ce sont r&eacute;v&eacute;l&eacute;, et 3 sont encore absents.</font></div><div class="post_line"><font size="3">Nous supposons depuis longtemps que Mekteuber serait le d&eacute;tenteur du Casque de l&#039;abondance.</font></div><div class="post_line"><font size="3">J&#039;ai &eacute;tait envoyer &agrave; sa rencontre pour v&eacute;rifier notre hypoth&egrave;se. Mais je n&#039;ai pas eu le temps et vous connaissez la suite...</font></div><div class="post_line"><font size="3">Les 4 reliques connues sont Le Glaive de l&#039;Enfer prot&eacute;g&eacute; par Astronema, La Cuirasse Adaptative prot&eacute;g&eacute; par Queen of borg, La Ceinture Pulsar prot&eacute;g&eacute; par Nexus et enfin Le Pr&eacute;cieux qui est au mains de Pognon a pr&eacute;sent.</font></div><div class="post_line"><font size="3">Ces 7 reliques ont chacun un pouvoir et une mal&eacute;diction bien distincts.</font></div><div class="post_line"></div><div class="post_line"><font size="3">Prenez le Glaive de l&#039;Enfer par exemple qui repr&eacute;sente la col&egrave;re, il offre a son d&eacute;tenteur une force Hercul&eacute;enne.</font></div><div class="post_line"><font size="3">Mais en contre partie a chaque utilisation, il plonge son porteur un peu plus dans la folie...</font></div><div class="post_line"><font size="3">Quant au Pr&eacute;cieux qui repr&eacute;sente l&#039;Avarice, il permet de g&eacute;n&eacute;rer des Leems a l&#039;infinie.</font></div><div class="post_line"><font size="3">Mais en contre partie notre dur&eacute;e de vie et raccourci de moiti&eacute;.</font></div><div class="post_line"><font size="3">Mais voyez-vous pour un d&eacute;mon, cela n&#039;a aucun effet ! HA HA HA...</font></div><div class="post_line"></div><div class="post_line"><font size="3">Ces 7 objets s&eacute;par&eacute;ment sont puissants et dangereux. Mais r&eacute;uni ensemble ils donnent &agrave; son porteur des pouvoirs similaire &agrave; un Dieu.</font></div><div class="post_line"><font size="3">Certains racontent qu&#039;ils donnent les coordonn&eacute;es d&#039;un fabuleux tr&eacute;sor, et d&#039;autres qu&#039;une fois r&eacute;unis, les 7 p&eacute;ch&eacute;s pourraient lib&eacute;rer le d&eacute;mon supr&ecirc;me Tathamet.</font></div><div class="post_line"></div><div class="post_line"><font size="3"><strong>Dis moi humain,&nbsp; es-tu sur de vouloirs cet objet ?</strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="3">C&#039;est tous ce qu&#039;il me reste , mais il faudra d&#039;abord le reprendre a Pognon !</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15453&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15453" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15453" name="d_reply_15453" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15453');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15453'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Le blouse du Radin</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

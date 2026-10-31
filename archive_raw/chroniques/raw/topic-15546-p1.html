@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15546 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Chapitre1: Marshall</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chapitre1: Marshall</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Cizdi">Cdte. Cizdi</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/11114.jpg" style="width:128px;height:105px" alt="Avatar" /><br />12/03/1021 ETU 05:27</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D283939', 544, 464)">version précédente</a> - Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal283934')">Détails</a> <a href="javascript:warnpost(283934)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283934" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283934',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><a href="https://www.youtube.com/watch?v=2tN875A3Bj8&amp;ab_channel=MrHavok2k" target="_blank" rel="nofollow">Th&eacute;me</a></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#FFA500"><font size="5"><u><strong>La loi Marshall</strong></u></font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><a href="https://www.youtube.com/watch?v=2tN875A3Bj8&amp;ab_channel=MrHavok2k" target="_blank" rel="nofollow"></a></div><div class="post_line"><font color="#5593BD"><em>Seigneur, tu as tout cr&eacute;&eacute; n&#039;est-ce pas?</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Le ciel, la terre, les &eacute;toiles et ces milliers de mondes habit&eacute; dont parlent les l&eacute;gendes.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Tu as cr&eacute;&eacute; les animaux, tu as cr&eacute;&eacute; les hommes...</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Mais les &agrave;-tu vraiment cr&eacute;&eacute;s &agrave; ton image?</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Je ne peux pas le croire.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Voleur, violeurs, tueurs.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Escroc, menteurs...</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>L&#039;homme que je m&#039;appr&ecirc;te &agrave; rencontrer ne m&eacute;rite pas de vivre.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>S&#039;il est comme toi, alors plus rien n&#039;a de sens.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Il s&#039;est cach&eacute; dans cette auberge.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Je le sais, car le patron s&#039;est mis &agrave; trembler en me voyant entrer.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Il m&#039;a tendu une cl&eacute; et s&#039;est enfui avec le reste de la client&egrave;le, me laissant seul dans la pi&egrave;ce d&eacute;labr&eacute;.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Et &ccedil;a se pr&eacute;tend homme...</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Des l&acirc;ches, des peureux.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Il n&#039;y a que quelques marches qui m&egrave;nent &agrave; un &eacute;tage encore moins reluisant que le reste du b&acirc;timent, un exploit.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Et les portes.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>A moiti&eacute; couvertes d&#039;&eacute;chardes, les charni&egrave;res rouill&eacute;es.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Un vrai trou &agrave; rat.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Pour un rat.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>J&#039;ouvre donc la seule porte qui m&#039;int&eacute;resse, l&#039;arme au poing.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Cet idiot prend un bain.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Il est cocasse, nu comme un vers , son arme sur la table trois m&egrave;tres plus loin.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Il arbore un air surpris, comme s&#039;il ne s&#039;y attendait pas.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Comme s&#039;il &eacute;tait innocent.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Il n&#039;a pas conscience du poids de ses p&eacute;ch&eacute;s, je crois que c&#039;est le pire &agrave; propos des gens de son genre: ils se croient plus malins.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Ils se croient au sommet, ils se croient les meilleurs.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Ils pensent que tout est &agrave; eux.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>De la vermine.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#FF5F54"><strong>&quot;M.m..marshall co comment tu..</strong></font></div><div class="post_line"><strong><font color="#FFA500">-Ta gueule&quot;</font></strong></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Je traverse les quelques pas qui nous s&eacute;parent et lui fourre mon six-coups dans la bouche.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500"><strong>&quot;Bill Kiddy, pour meurtre, vole, abus de confiance , assaut arm&eacute; et glandouillage sur la voie publique tu es reconnu coupable. La sentence ...Pour un rat comme toi: La Mort.&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Il r&eacute;ussit tant bien que mal &agrave; articuler sans s&#039;&eacute;touffer:</em></font></div><div class="post_line"></div><div class="post_line"><strong><font color="#FF4136">&quot;Fils de pute...</font></strong></div><div class="post_line"></div><div class="post_line"><font color="#FFA500"><strong>-Je sais&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF0000"><font size="7"><strong>BANG</strong></font></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Cizdi">Cdte. Cizdi</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/11114.jpg" style="width:128px;height:105px" alt="Avatar" /><br />19/03/1021 ETU 06:15</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D284470', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal284466')">Détails</a> <a href="javascript:warnpost(284466)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal284466" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=284466',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><a href="https://www.youtube.com/watch?v=g45Va0gCwQ4&amp;ab_channel=BluesSaraceno-Topic" target="_blank" rel="nofollow">Theme</a></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#FFA500"><strong><font size="4"><u>O.K. Corral</u></font></strong></font></div><div class="post_line"></div><div class="post_line"></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>L&rsquo;eau rougit petit &agrave; petit, l&rsquo;odeur de poudre est tr&egrave;s vite remplac&eacute; par celle du sang.</em></font></div><div class="post_line"><font color="#5593BD"><em>Ce dernier a gicl&eacute; sur le mur derri&egrave;re, dessinant des formes que pourraient peindre un de ces putains d&rsquo;artites cam&eacute; de la capitale.</em></font></div><div class="post_line"><font color="#5593BD"><em>Baaa ca commence &agrave; shlinguer ici va falloir d&eacute;camper.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><font color="#008000"><strong>&ldquo;MARSHALL!! Je sais ou tu te cache! Viens ici que j&rsquo;te bute encul&eacute;!&rdquo;</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Cette voix.</em></font></div><div class="post_line"><font color="#5593BD"><em>Qui viens troubler le silence.</em></font></div><div class="post_line"><font color="#5593BD"><em>Je la connais, bien sur que je la connais, mais qu&rsquo;est-ce qu&rsquo;ils foutent la?</em></font></div><div class="post_line"><font color="#5593BD"><em>Un pi&egrave;ge? Non non, ils ne sont pas assez malins pour &ccedil;a. Le hasard? </em></font></div><div class="post_line"><font color="#5593BD"><em>Ces enfoir&eacute;es &eacute;taient la par hasard n&rsquo;est-ce pas? </em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Putain la poisse.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Et c&rsquo;est reparti.</em></font></div><div class="post_line"><font color="#5593BD"><em>Le couloir.</em></font></div><div class="post_line"><font color="#5593BD"><em>L&rsquo;escalier pourri.</em></font></div><div class="post_line"><font color="#5593BD"><em>Les &eacute;perons qui r&eacute;sonnent sur les marches.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Et je me retrouve en bas.</em></font></div><div class="post_line"><font color="#5593BD"><em>Ils sont la , je les vois au travers de la fen&ecirc;tre.</em></font></div><div class="post_line"><font color="#5593BD"><em>Joel, Jacob, Willy et Avner&hellip;.les putains de frangins Denton, align&eacute;s au soleil comme des glands.</em></font></div><div class="post_line"><font color="#5593BD"><em>Ils observent l&rsquo;entr&eacute;e, la main sur leurs revolvers, pr&ecirc;t &agrave; d&eacute;gainer.</em></font></div><div class="post_line"><font color="#5593BD"><em>Ils sont cons ou quoi?</em></font></div><div class="post_line"><font color="#5593BD"><em>La meilleure solution serait de les flinguer depuis l&rsquo;int&eacute;rieur&hellip;</em></font></div><div class="post_line"><font color="#5593BD"><em>Mais ces cons sont trop loin bien s&ucirc;r.</em></font></div><div class="post_line"><font color="#5593BD"><em>Et ma carabine est rest&eacute;e sur ce foutu canasson&hellip;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Alors, ba...y &agrave; plus qu&rsquo;&agrave; sortir.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><font color="#008000"><strong>&ldquo;Enfin sorti d&rsquo;ton trou cow-boy? &Ccedil;a fait des jours qu&rsquo;on...&rdquo;</strong></font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Et le voila qui commence un monologue.</em></font></div><div class="post_line"><font color="#5593BD"><em>Un putain de monologue! Ils ont quoi ces cr&eacute;tins avec &ccedil;a?</em></font></div><div class="post_line"><font color="#5593BD"><em>Je n&rsquo;ai pas vraiment le courage de l&rsquo;&eacute;couter. Les fusillades, la guerre, les &eacute;preuves de survie ouais&hellip; mais piti&eacute;, pas le putain de monologue.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Ils sont quatre, ils causent.</em></font></div><div class="post_line"><font color="#5593BD"><em>Ils sont pas si con que &ccedil;a finalement, ils se sont &eacute;cart&eacute; petit a petit, &ccedil;a va &ecirc;tre dur d&rsquo;enchainer les autres tirs.</em></font></div><div class="post_line"><font color="#5593BD"><em>Il parle, il parle, il parle.</em></font></div><div class="post_line"><font color="#5593BD"><em>Et puis ,le moment, il l&egrave;ve les bras pour un effet th&eacute;&acirc;trale ou autre, une connerie.</em></font></div><div class="post_line"><font color="#5593BD"><em>Mais c&rsquo;est le moment.</em></font></div><div class="post_line"><font color="#5593BD"><em>Mon arme sors.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><font color="#FF0000"><font size="6"><strong>BANG</strong></font></font></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Une balle fille vers Avner.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em><font color="#FF0000"><font size="6"><strong>BANG</strong></font></font></em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Une deuxi&egrave;me balle fille un peu &agrave; droite, vers Willy, au m&ecirc;me moment Avner &agrave; un mouvement d&eacute;sordonn&eacute;, rapprochant les bras de son ventre.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><font color="#FF0000"><font size="6"><strong>BANG</strong></font></font></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Et un autre vers Jacob , alors que Joel se..</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><font color="#FF0000"><font size="6"><strong>BANG.</strong></font></font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Bang?...comment ca bang?</em></font></div><div class="post_line"><font color="#5593BD"><em>Je n&rsquo;ai pas encore tir&eacute; &hellip; </em></font></div><div class="post_line"><font color="#5593BD"><em>et...c&rsquo;est quoi cette douleur au dos.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Un sixi&egrave;me tireur?</em></font></div><div class="post_line"><font color="#5593BD"><em>&Eacute;videment un putain de sixi&egrave;me tireur, sur le toit surement.</em></font></div><div class="post_line"><font color="#5593BD"><em>Idiot Marshall idiot.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Mon visage rencontre brutalement le sol.</em></font></div><div class="post_line"><font color="#5593BD"><em>&Ccedil;a fait mal de crever.</em></font></div><div class="post_line"><font color="#5593BD"><em>.</em></font></div><div class="post_line"><font color="#5593BD"><em>.</em></font></div><div class="post_line"><font color="#5593BD"><em>.</em></font></div><div class="post_line"><font color="#5593BD"><em>Putain &ccedil;a fait chier.</em></font></div><div class="post_line"><font color="#5593BD"><em>.</em></font></div><div class="post_line"><font color="#5593BD"><em>.</em></font></div><div class="post_line"><font color="#5593BD"><em>.</em></font></div><div class="post_line"><font color="#5593BD"><em>Seigneur?</em></font></div><div class="post_line"><em><font color="#5593BD">Putain j&rsquo;esp&egrave;re que t&rsquo;as du Whisky.</font></div><div class="post_line"></em></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15546&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15546" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15546" name="d_reply_15546" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15546');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15546'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chapitre1: Marshall</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17498 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>La qu&ecirc;te</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La qu&ecirc;te</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Moghana">Cdte. Moghana</a><br>Prestige de chroniqueur&nbsp;: 4<br /><br /><img src="/avatars/12446.jpg" style="width:128px;height:96px" alt="Avatar" /><br />15/12/1024 ETU 14:11</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal312590')">Détails</a> <a href="javascript:warnpost(312590)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312590" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312590',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><em><font color="#b10dc9">Un jour, Moghana disparut sans laisser de traces. Mais alors que certains la pensaient morte ou emprisonn&eacute;e, d&#039;autres affirment qu&rsquo;elle avait volontairement orchestr&eacute; sa propre disparition, plongeant dans l&#039;ombre pour mieux rena&icirc;tre.</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">Pendant t&eacute;s longtemps, elle ne fut que rumeurs murmur&eacute;es dans les bas fonds de la galaxie. On dit qu&rsquo;elle avait abandonn&eacute; son armure de ren&eacute;gate pour adopter une vie asc&eacute;tique, parcourant seule les vestiges de civilisations perdues &agrave; la recherche de r&eacute;ponses... mais quelles r&eacute;ponses? Nul ne sait. Ces lieux, inhospitaliers pour la plupart, &eacute;taient des plan&egrave;tes d&eacute;sert&eacute;es, rendues inhabitables par les guerres ou les cataclysmes &eacute;cologiques.</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">Certains pr&eacute;tendent que Moghana a trouv&eacute; refuge dans de myst&eacute;rieux temples enfouis sous les sables de plan&egrave;tes mortes. Ces sanctuaires, orn&eacute;s de gravures et de machines d&rsquo;une complexit&eacute; presque magique, seraient des lieux de m&eacute;ditation o&ugrave; elle aurait approfondi sa ma&icirc;trise de l&rsquo;Ombre Astrale. On dit qu&rsquo;elle aurait appris &agrave; synchroniser son esprit avec les flux gravitationnels des plan&egrave;tes et les &eacute;chos des &eacute;toiles.</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">On dit aussi qu&rsquo;elle s&#039;est mise en chasse d&rsquo;artefacts, fouillant les &eacute;paves de vaisseaux antiques et explorant des bases de recherches oubli&eacute;es. Les objets qu&rsquo;elle ram&egrave;nerait &mdash; des fragments de donn&eacute;es corrompues, des modules &eacute;nerg&eacute;tiques &eacute;teints ou des armes primitives &mdash; n&rsquo;auraient pour beaucoup aucune utilit&eacute; visible. Pourtant, Moghana semblait convaincue qu&rsquo;ils contenaient les cl&eacute;s d&rsquo;un pouvoir ou d&rsquo;un savoir encore inexploit&eacute;.</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">Il est aussi murmur&eacute; que Moghana n&rsquo;&eacute;tait pas seule durant ce temps d&rsquo;errance, perdant meme la notion du temps, &eacute;tait elle partie pendant des mois? Des ann&eacute;es? Certains t&eacute;moignages parlent d&rsquo;un &ecirc;tre &eacute;nigmatique, un guide ou une entit&eacute; astrale qui lui apparaissait dans les lieux les plus d&eacute;sol&eacute;s. Ce compagnon spectral, qu&rsquo;elle appellerait le Gardien, l&rsquo;aurait aid&eacute;e &agrave; d&eacute;chiffrer les myst&egrave;res des ruines qu&rsquo;elle explorait.</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">Lorsque Moghana revint, personne ne savait exactement o&ugrave; elle &eacute;tait rest&eacute;e tout ce temps. Les quelques survivants qui pr&eacute;tendent l&rsquo;avoir crois&eacute;e dans ses errances racontent qu&rsquo;elle &eacute;tait m&eacute;connaissable : plus silencieuse, plus calculatrice, et peut-&ecirc;tre plus dangereuse. Elle portait maintenant un manteau long, orn&eacute; de fragments d&rsquo;artefacts brillants et de runes grav&eacute;es dans une langue ancienne, et un masque. </font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">Moghana ne r&eacute;v&eacute;la jamais l&rsquo;&eacute;tendue de ses d&eacute;couvertes, mais ses actions parlaient pour elle. Les technologies qu&rsquo;elle utilisait semblaient d&eacute;passer ce qui &eacute;tait commun&eacute;ment connu. Les factions qui cherchaient autrefois &agrave; l&rsquo;&eacute;liminer h&eacute;sitaient d&eacute;sormais &agrave; l&rsquo;affronter. On dit qu&rsquo;elle ne s&rsquo;exprimait plus que pour guider ceux qui croyaient encore en une renaissance de leur civilisation &mdash; ou pour r&eacute;duire ses ennemis en cendres.</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">Depuis son retour, Moghana semble avoir un objectif clair, connu sous le nom du Projet &Eacute;toile d&rsquo;Argent. Bien que ses intentions restent obscures, il est question d&rsquo;une relique gigantesque, une station spatiale perdue dont l&rsquo;&eacute;nergie pourrait redonner vie &agrave; la lune de son enfance ou, selon d&#039;autres versions, effacer toute vie restante pour repartir de z&eacute;ro.</font></em></strong></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Moghana">Cdte. Moghana</a><br>Prestige de chroniqueur&nbsp;: 4<br /><br /><img src="/avatars/12446.jpg" style="width:128px;height:96px" alt="Avatar" /><br />04/01/1025 ETU 08:41</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D312823', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal312822')">Détails</a> <a href="javascript:warnpost(312822)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312822" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312822',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#b10dc9"><em><strong>Moghana fit descendre sa corvette en douceur &agrave; travers la canop&eacute;e dense, guid&eacute;e par la boussole myst&eacute;rieuse qu&rsquo;elle tenait fermement. Les r&eacute;trofus&eacute;es ronronn&egrave;rent lorsqu&rsquo;elle trouva un d&eacute;gagement suffisant pour se poser : une clairi&egrave;re naturelle, envelopp&eacute;e d&rsquo;une brume tropicale. La coque sombre du vaisseau se confondait presque avec les ombres projet&eacute;es par les immenses arbres. Apr&egrave;s avoir s&eacute;curis&eacute; les syst&egrave;mes de vol, elle saisit son arme et descendit la rampe. Sans perdre de temps, elle s&rsquo;enfon&ccedil;a dans la for&ecirc;t &eacute;paisse, laissant derri&egrave;re elle le ronronnement tranquille de la corvette en veille.</strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><em><strong>En progressant &agrave; travers la v&eacute;g&eacute;tation luxuriante, elle finit par tomber sur une sc&egrave;ne inattendue : plusieurs transporteurs de troupes C-9979, arborant encore l&rsquo;embl&egrave;me de la F&eacute;d&eacute;ration du Commerce. Ils ne portaient aucune trace de combat, mais semblaient avoir &eacute;t&eacute; abandonn&eacute;s l&agrave; depuis des d&eacute;cennies, recouverts de mousse et de lianes. Des oiseaux y avaient m&ecirc;me fait leurs nids, preuve du temps &eacute;coul&eacute; depuis leur dernier vol. L&rsquo;un d&rsquo;entre eux, grand ouvert, laissait entrevoir des dro&iuml;des B1 rest&eacute;s inertes et silencieux.</strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><em><strong>Avec prudence, Moghana s&rsquo;approcha, l&rsquo;esprit en alerte. La v&eacute;g&eacute;tation enveloppait les coursives du transporteur, mais hormis les piaillements d&rsquo;oiseaux apeur&eacute;s, elle ne per&ccedil;ut aucune menace. Son objectif &eacute;tait ailleurs : un temple oubli&eacute; que sa boussole lui indiquait, nich&eacute; quelque part au c&oelig;ur de cette jungle imp&eacute;n&eacute;trable.</strong></em></font></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Le temple, &agrave; moiti&eacute; englouti sous les racines d&rsquo;immenses arbres, d&eacute;voilait peu &agrave; peu des vestiges de sculptures anciennes et de bas-reliefs couverts de mousse. Elle passa une arche effondr&eacute;e, progressant &agrave; pas feutr&eacute;s dans un long couloir muet. L&rsquo;air se rafra&icirc;chissait, laissant place &agrave; une atmosph&egrave;re quasi mystique. Se fiant aux indications de la boussole, Moghana s&rsquo;enfon&ccedil;a plus avant dans les entrailles du sanctuaire jusqu&rsquo;&agrave; une vaste salle circulaire aux colonnes effil&eacute;es.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Au centre, &eacute;clair&eacute;e par de faibles rais de lumi&egrave;re filtrant depuis le plafond &eacute;ventr&eacute;, se dressait une imposante statue de la d&eacute;esse Mystra, les bras tendus, portant une pierre d&rsquo;un rouge flamboyant dans le creux de ses mains. Le c&oelig;ur de Moghana se serra : cette pierre, si convoit&eacute;e, renfermait &mdash; selon les l&eacute;gendes &mdash; un pouvoir ancestral que nul ne semblait comprendre.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Elle s&rsquo;appr&ecirc;tait &agrave; s&rsquo;avancer lorsque son regard fut attir&eacute; par une silhouette anguleuse : un dro&iuml;de B1, &eacute;trangement actif, avan&ccedil;ait d&rsquo;un pas h&eacute;sitant vers la statue. Ses plaques d&rsquo;armure terreuses &eacute;taient us&eacute;es, et un fin tapis de v&eacute;g&eacute;tation avait commenc&eacute; &agrave; pousser dans ses articulations. Pourtant, il progressait comme s&rsquo;il suivait un appel silencieux. Hypnotis&eacute; par l&rsquo;&eacute;clat de la pierre, il laissa tomber son arme m&eacute;tallique dans un cliquetis clair, tendant ses bras vers la flamme cristalline.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Doucement, Moghana se glissa derri&egrave;re lui. Dans un geste souple, elle ramassa le fusil abandonn&eacute; et le braqua sur la nuque m&eacute;canique du dro&iuml;de. Il ne sembla pas la remarquer, ou ne s&rsquo;en souciait gu&egrave;re. Les yeux de Moghana restaient fix&eacute;s sur l&rsquo;orbe incandescente : cette relique, elle en &eacute;tait s&ucirc;re, &eacute;tait la cl&eacute; de sa qu&ecirc;te&hellip; et il &eacute;tait hors de question de laisser le dro&iuml;de ou quiconque d&rsquo;autre la lui ravir.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Elle s&rsquo;appr&ecirc;ta &agrave; l&rsquo;interpeller, sa voix r&eacute;sonnant dans la salle vide, tandis que le B1, toujours absorb&eacute;, fr&ocirc;lait presque la pierre sacr&eacute;e.</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Moghana maintenait son arme braqu&eacute;e sur le dro&iuml;de B1, toujours fig&eacute; devant la statue de la d&eacute;esse Mystra. Autour d&rsquo;eux, la salle du temple n&rsquo;&eacute;tait &eacute;clair&eacute;e que par la lueur rougeoyante de la pierre flamboyante, nich&eacute;e dans les mains de la statue. L&rsquo;ambiance &eacute;tait pesante, renforc&eacute;e par l&rsquo;humidit&eacute; tropicale qui s&rsquo;infiltrait dans les pierres anciennes.</font></strong></em></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Moghana &ndash; Ne bouge plus.</font></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Le dro&iuml;de B1 se retourna brusquement, surpris. Ses capteurs optiques clignot&egrave;rent comme s&rsquo;il tentait d&rsquo;analyser la situation.</font></strong></em></div><div class="post_line"></div><div class="post_line"><font color="#e8c500">B1&nbsp; &ndash; Euh&hellip; hein ? Qui va l&agrave; ? Oh, euh, ne me tirez pas dessus ! Je suis&hellip; euh&hellip; juste un dro&iuml;de !</font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><strong>Moghana raffermit sa prise sur l&rsquo;arme, en restant en retrait.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Mo &ndash; Pourquoi es-tu le seul actif ? Es-tu d&eacute;fectueux ? &Agrave; qui appartiens-tu ?</font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><em><strong>Le dro&iuml;de pencha la t&ecirc;te d&rsquo;un air perplexe, comme s&rsquo;il essayait de rassembler les informations fragment&eacute;es de sa base de donn&eacute;es.</strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#e8c500">B1 &ndash; Il semble que je sois op&eacute;rationnel&hellip; mais tout contact a &eacute;t&eacute; coup&eacute; avec notre bataillon il y a bien longtemps. L&rsquo;&eacute;nergie que d&eacute;gage cette pierre&hellip; euh&hellip; a perturb&eacute; notre syst&egrave;me et m&rsquo;a r&eacute;activ&eacute;, je crois</font>.</div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><em><strong>Moghana fron&ccedil;a les sourcils, peu convaincue.</strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Mo &ndash; Tu mens. As-tu &eacute;t&eacute; envoy&eacute; ici pour me tuer ?</font></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">Le B1 leva ses deux bras en signe d&rsquo;innocence, sa voix m&eacute;tallique r&eacute;sonnant sous les vo&ucirc;tes du temple.</font></em></strong></div><div class="post_line"></div><div class="post_line"><font color="#e8c500">B1 &ndash; N&rsquo;ayez aucune crainte ! Nous n&rsquo;avons re&ccedil;u aucun ordre depuis&hellip; voyons&hellip; cent cinq ans, dix mois et trois jours. Notre vaisseau-m&egrave;re a &eacute;t&eacute; d&eacute;truit, et personne n&rsquo;est venu nous r&eacute;cup&eacute;rer apr&egrave;s &ccedil;a. Euh&hellip; comment dire&hellip;</font></div><div class="post_line"><font color="#b10dc9"><em><strong>B1 marque une pause pour r&eacute;fl&eacute;chir</strong></em></font></div><div class="post_line"><font color="#e8c500">&hellip;on est un peu&hellip; abandonn&eacute;s ?</font></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Moghana l&rsquo;observa un instant, cherchant un indice de duplicit&eacute; dans son comportement maladroit. Les dro&iuml;des B1 n&rsquo;&eacute;taient pas r&eacute;put&eacute;s pour &ecirc;tre des menteurs sophistiqu&eacute;s, mais elle pr&eacute;f&eacute;rait rester sur ses gardes.</font></strong></em></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Moghana &ndash; Tu es donc sans propri&eacute;taire ?</font></div><div class="post_line"></div><div class="post_line"><font color="#e8c500">B1 &ndash; On peut dire &ccedil;a, oui. Plus de patron, plus de bataillon&hellip; plus de vaisseau&hellip; euh&hellip; c&rsquo;est un peu vide, tout &ccedil;a.</font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><em><strong>Moghana laissa &eacute;chapper un sourire en coin, l&rsquo;ombre d&rsquo;un plan se dessinant d&eacute;j&agrave; dans son esprit.</strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Mo &ndash; Parfait. Dans ce cas, je vais r&eacute;gler &ccedil;a</font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><em><strong>Sans laisser au B1 le temps de r&eacute;pliquer, Moghana pivota pour ass&eacute;ner un coup pr&eacute;cis derri&egrave;re la t&ecirc;te du dro&iuml;de. Son corps m&eacute;tallique se figea et s&rsquo;effondra dans un grincement sourd. Satisfaite, elle se tourna vers la statue de la d&eacute;esse Mystra. La pierre flamboyante scintillait comme si elle r&eacute;pondait &agrave; la pr&eacute;sence de Moghana. Elle la prit d&eacute;licatement, ressentant un frisson d&rsquo;&eacute;nergie vibrer dans tout son &ecirc;tre.</strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><em><strong>D&rsquo;un pas rapide, elle quitta la salle circulaire, longeant les couloirs d&eacute;sormais d&eacute;pourvus de toute menace. En quelques minutes, elle &eacute;mergea du temple et retrouva l&rsquo;air moite de la jungle tropicale. Au loin, sa corvette l&rsquo;attendait, pos&eacute;e &agrave; l&rsquo;abri du feuillage. Les propulseurs, en veille, ronronnaient faiblement.</strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9"><em><strong>Une fois install&eacute;e dans le cockpit, Moghana activa le syst&egrave;me de communication crypt&eacute;.</strong></em></font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Moghana &ndash; Ici Moghana, je suis sur la plan&egrave;te XH-23. Envoyez une &eacute;quipe d&rsquo;exploration et des vaisseaux de transport, j&rsquo;ai trouv&eacute; quelque chose d&rsquo;int&eacute;ressant : des transporteurs C-9979 en parfait &eacute;tat, remplis de dro&iuml;des B1 d&eacute;sactiv&eacute;s. On peut surement leur trouver une utilit&eacute;. L&#039;un deux s&#039;est activ&eacute; seul, j&#039;aimerais qu&#039;on me l&#039;emm&egrave;ne, j&#039;aimerais lui parler.</font></div><div class="post_line"><font color="#b10dc9"><em><strong>Elle jeta un coup d&rsquo;&oelig;il &agrave; la pierre flamboyante pos&eacute;e &agrave; c&ocirc;t&eacute; d&rsquo;elle.</strong></em></font></div><div class="post_line"><font color="#005dc2">&ndash; Et&hellip; nous avons un nouveau jouet &agrave; &eacute;tudier.</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17498&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17498" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17498" name="d_reply_17498" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17498');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17498'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La qu&ecirc;te</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

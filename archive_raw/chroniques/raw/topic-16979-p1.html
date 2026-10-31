@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16979 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Sauvetage et rencontre du 3&eacute;me types</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Sauvetage et rencontre du 3&eacute;me types</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />26/07/1023 ETU 02:58</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal303058')">Détails</a> <a href="javascript:warnpost(303058)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303058" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303058',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>* Hangar num&eacute;ro 2, base&nbsp;Base Om&eacute;ga... *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Timonier, nous sommes pr&egrave;s... <u>En route, vers notre destin&eacute;e !</u></font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">&Agrave; vos ordres, Marshal !</font></div><div class="post_line"></div><div class="post_line">-------------------------------------------------------------------------------------------------------------------------</div><div class="post_line"></div><div class="post_line"><em>* Quelques minutes plus tard, le corsaire matricule N3Xu5 arriva en syst&egrave;me 8, secteur 1. *</em></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Monsieur, la flotte brigande et en vue !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Moteur &agrave; 20%, diffus&eacute; le code brigand. Nous allons infiltrer la flotte.</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Code en cours de diffusion...</font></div><div class="post_line"><font color="#17b529">Marshal, nous avons l&#039;autorisation de rejoindre la flotte.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Lancez&nbsp;un scan, recherchez la cible !</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Analyse en cours...</font></div><div class="post_line"><font color="#17b529">Monsieur, nous venons de d&eacute;tecter&nbsp;le corsaire avec les otages.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bien, approchez vous tranquillement du vaisseau. Et gardez la m&ecirc;me allure que lui.</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Nous sommes en approche de la cible !</font></div><div class="post_line"><font color="#17b529">120 m&egrave;tres, 60 m&egrave;tres, 30 m&egrave;tres...</font></div><div class="post_line"><font color="#17b529">Marshal, nous sommes 10 m&egrave;tres de la cible. Le vaisseau se trouve a B&acirc;bord !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Parfait, qu&#039;on me pr&eacute;pare mon armure de combat et mon fusil&nbsp;MK3.</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Marshal une unit&eacute; de Marines vous attend en soute.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">N&eacute;gatif, j&#039;irai seul !</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Monsieur ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Si nous envoyons un groupe, ou m&ecirc;me un vaisseau, nous perdrons notre avantage en discr&eacute;tion.</font></div><div class="post_line"><font color="#68c4e8">Je vais utiliser mon jetpack, pour voler jusqu&#039;au vaisseau.</font></div><div class="post_line"><font color="#68c4e8">De la je prendrais le contr&ocirc;le du corsaire ennemis.</font></div><div class="post_line"><font color="#68c4e8">A mon signal, vous utiliserez les contre mesures pour faire diversion.</font></div><div class="post_line"><font color="#68c4e8">Puis nous &eacute;vacuerons vers les d&eacute;fenses de Braxis. Ils nous couvrirons !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Bon chance Marshal !</font></div><div class="post_line"></div><div class="post_line">-------------------------------------------------------------------------------------------------------------------------</div><div class="post_line"></div><div class="post_line"><em>* Jim, muni de son armure, ouvrit le sas de d&eacute;compression et s&#039;&eacute;lan&ccedil;a dans le vide spatial... *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bordel, j&#039;ai plus l&#039;&acirc;ge pour ces conneries !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />26/07/1023 ETU 04:13</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D303061', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal303060')">Détails</a> <a href="javascript:warnpost(303060)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303060" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303060',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>* Le Marshal s&#039;approcha du corsaire. Il coupa son r&eacute;acteur et se laissa d&eacute;river dans l&#039;obscurit&eacute;... *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Allez, si j&#039;arrive a &ecirc;tre&nbsp;assez proche et que j&#039;active mes bottes magn&eacute;tiques, &ccedil;a peut le faire !</font></div><div class="post_line"><font color="#68c4e8">Encore quelques m&egrave;tres...</font></div><div class="post_line"></div><div class="post_line">-------------------------------------------------------------------------------------------------------------------------</div><div class="post_line"></div><div class="post_line"><em>* Apr&egrave;s quelques secondes, qui paru une &eacute;ternit&eacute; pour Jimmy...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Allons y, activation des bottes magn&eacute;tiques !</font></div><div class="post_line"><font color="#68c4e8">Et voil&agrave;, &eacute;tape une termin&eacute;e. Ouf...</font></div><div class="post_line"><font color="#68c4e8">Le sas devrait &ecirc;tre quelque part par ici...</font></div><div class="post_line"><font color="#68c4e8">Oh, le voil&agrave; ! Bon voyons comment ouvrir ce bazar !</font></div><div class="post_line"></div><div class="post_line"><em>* L&#039;homme sorti alors de son paquetage un petit appareil... *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Avec ce&nbsp;Tricordeur, je vais pouvoir d&eacute;verrouiller le sas !</font></div><div class="post_line"></div><div class="post_line"><em>* Apr&egrave;s quelques secondes d&#039;attentes, le sas s&#039;ouvris ! *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bien, il semble que personne n&#039;a remarquer ma pr&eacute;sence !</font></div><div class="post_line"></div><div class="post_line"><em>* Jim s&#039;infiltra discr&egrave;tement dans le sas.*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Soyons prudent, je vais d&#039;abord observ&eacute; le nombre de garde. Et leurs positions exact !</font></div><div class="post_line"></div><div class="post_line"><em>* Le soldat utilisa un <a href="https://i.ytimg.com/vi/GtovdZWnfWg/maxresdefault.jpg" target="_blank" rel="nofollow">capteur de mouvement</a>.&nbsp;*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bon, sa va pas &ecirc;tre de la tarte !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />27/07/1023 ETU 03:55</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D303084', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal303083')">Détails</a> <a href="javascript:warnpost(303083)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303083" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303083',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><a href="https://youtu.be/66XcQWgKUDY?t=18" target="_blank" rel="nofollow">https://youtu.be/66XcQWgKUDY?t=18</a></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Eh bien, comme on dit chez moi...&nbsp;Que la f&ecirc;te commence !</font></div><div class="post_line"></div><div class="post_line"><em>* Le Marshal entra dans un long couloir, il poussa la t&ecirc;te. Un garde faisait des va-et-vient. Jim pris alors son couteau de combat et se faufila dans son dos... En l&#039;espace d&#039;un instant, il mit sa main gauche sur la bouche du soldat, puis l&#039;&eacute;gorgea de sa main droite.&nbsp;*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">&Ccedil;a, c&#039;&eacute;tait pour Braxis !</font></div><div class="post_line"></div><div class="post_line"><em>* Il tra&icirc;na le corps jusqu&#039;au sas o&ugrave; il avait pu rentrer. De l&agrave;, il expulsa le cadavre dans le vide... TraineDehors avan&ccedil;a dans le couloir sans trop de difficult&eacute;. Soudain devant une porte s&#039;ouvrit, deux brigands arm&eacute;s se pr&eacute;senter devant lui ! Le rebelle n&#039;a pas eu le temps de r&eacute;fl&eacute;chir. Il frappa de sa main gauche le premier, le coup fut si violent qu&#039;il arracha la m&acirc;choire de l&#039;homme. Puis il utilisa son revolver sur le second. Un tir en plein c&oelig;ur ! Dans le feu de l&#039;action Jim ne c&#039;&eacute;tait pas aper&ccedil;ut avoir re&ccedil;u un tir a l&#039;&eacute;paule gauche. *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Et merde... Heureusement, l&#039;armure a fait son job. La plaie ne semble pas profonde. Je vais prendre un stimulant et continuer !</font></div><div class="post_line"><font color="#68c4e8">Si je continue comme cela, je vais crever sur place !</font></div><div class="post_line"><font color="#68c4e8">Je doit trouver une meilleure id&eacute;e.</font></div><div class="post_line"></div><div class="post_line"><em>* L&#039;homme prit le temps de r&eacute;fl&eacute;chir, et observa une trappe d&#039;a&eacute;ration. *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Et si...&nbsp;</font></div><div class="post_line"><font color="#68c4e8">Je vais devoir prendre un risque, et enlever mon armure...</font></div><div class="post_line"></div><div class="post_line"><em>* Jimmy enleva son armure puis la cacha dans une r&eacute;serve, il se faufila dans le conduit d&#039;&eacute;vacuation. Le stimulant faisant effet, il ne ressentit pas la douleur &agrave; l&#039;&eacute;paule et continua d&#039;avancer... Au bout de quelques m&egrave;tres, il entendit des voix. Il se rapprocha d&#039;une &eacute;vacuation et observa la pi&egrave;ce au travers de la grille. Le conduit donn&eacute; sur&nbsp;le r&eacute;fectoire. De la ou il &eacute;tait TraineDehors aper&ccedil;u des jambes, apr&egrave;s constatation...&nbsp;Six brigands y &eacute;tait regroup&eacute;e.*</em></div><div class="post_line"></div><div class="post_line"><em>* C&#039;&eacute;tait la une opportunit&eacute; &agrave; ne pas manquer. Le Marshal recula de quelques m&egrave;tres puis ouvrit une autre grille et sortie devant le sas du r&eacute;fectoire. Il utilisa son couteau pour couper les c&acirc;bles de la commande de la porte. Le militaire chercha dans son sac une grenade toxique. *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Je d&eacute;teste ces choses, mais bon...&nbsp;C&#039;est sans doute le meilleur moyen...</font></div><div class="post_line"></div><div class="post_line"><em>*Jim entra &agrave; nouveau dans le conduit, il ouvrit d&eacute;licatement la trappe puis fit rouler doucement la grenade d&eacute;goupill&eacute;e... &Agrave; peine la grenade commen&ccedil;a &agrave; l&acirc;cher son gaz toxique, que les ennemis se mirent a paniquer. Les installations du vaisseau mirent la pi&egrave;ce en quarantaine. Le conduit d&#039;a&eacute;ration fut obstru&eacute;e et les criminels nu&egrave;rent nul par o&ugrave; fuir. Le petit groupe mourut dans d&#039;atroce souffrance... *</em></div><div class="post_line"></div><div class="post_line">-------------------------------------------------------------------------------------------------------------------------</div><div class="post_line"></div><div class="post_line"><em>*Le rebelle se retrouva dans un nouveau&nbsp;couloir, malheureusement&nbsp;le gaz avait activer&nbsp;l&#039;alarme du vaisseau. *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">On dirait que la discr&eacute;tion, c&#039;est pas mon fort !</font></div><div class="post_line"></div><div class="post_line"><em>*Jimmy descendit son fusil de son &eacute;paule droite puis le pris en main. C&#039;est alors que la porte devant lui s&#039;ouvrit laissant appara&icirc;tre trois nouveaux brigands. *</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />30/07/1023 ETU 07:52</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal303168')">Détails</a> <a href="javascript:warnpost(303168)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303168" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 2</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303168',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8">Oui, c&#039;est cela...&nbsp;Tu vas t&acirc;ter de mon gros calibre !</font></div><div class="post_line"></div><div class="post_line"><em>* &Agrave; peine avait-il fini sa phrase, que Jim ouvra le feu sur le brigand central. Le tir lui fit litt&eacute;ralement exploser le cr&acirc;ne... Les deux autres comp&egrave;res furent pris de vitesse. Le Marshal sauta se mettre &agrave; couvert derri&egrave;re une caisse... *</em></div><div class="post_line"></div><div class="post_line"><font color="#ff4136">Bobbbbbbbbbbbbbbbbbb, l&#039;enfoir&eacute;&nbsp;il a but&eacute; Bob !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Tiens, go&ucirc;te moi celle-l&agrave; !</font></div><div class="post_line"></div><div class="post_line"><em>* Jimmy ouvra de nouveau le feu, les brigands se plac&egrave;rent derri&egrave;re les parois de la porte du sas. Il manqua sa cible... La bataille fut difficile, mais TraineDehors ne manquait pas de ressource ! Le militaire&nbsp;remarqua une caisse de munition juste derri&egrave;re les bandits. L&#039;homme &eacute;paula de nouveau son fusil.&nbsp;*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Celle-l&agrave;, c&#039;est pour tous mon alcool que vous m&#039;avez siffl&eacute;...&nbsp;Bande d&#039;enfoirer !</font></div><div class="post_line"></div><div class="post_line"><em>* L&#039;explosion fut d&#039;une telle ampleur, que les zigomars vol&egrave;rent en morceau. Malheureusement, la coque du vaisseau fut endommag&eacute;e. L&#039;int&eacute;gralit&eacute; des objets pr&eacute;sents dans le couloir fut aspir&eacute;e dans le vide ! *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bordel de...</font></div><div class="post_line"><font color="#68c4e8">Je suis trop vieux, pour ces conneries !!!!</font></div><div class="post_line"></div><div class="post_line"><em>* Jimmy se tenait tant bien que mal a un c&acirc;ble d&#039;alimentation... *</em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />30/07/1023 ETU 18:24</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal303170')">Détails</a> <a href="javascript:warnpost(303170)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303170" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303170',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff56ff">*&nbsp;<a href="https://www.youtube.com/watch?v=ZfHYKSgTfr8" target="_blank" rel="nofollow">https://www.youtube.com/watch?v=ZfHYKSgTfr8</a>&nbsp;*</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Anomalie d&eacute;tect&eacute;e...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Br&egrave;che dans la coque...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Fermeture des sas d&#039;urgence... Activ&eacute;s !</font></div><div class="post_line"></div><div class="post_line"><em>* L&#039;IA du vaisseau referma aussi t&ocirc;t les sas d&#039;urgence du couloir afin d&#039;emp&ecirc;cher une d&eacute;pressurisation totale du corsaire. Jim retomba violemment par terre. En se relevant l&#039;homme mis sa main droite sur son &eacute;paule gauche. *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Aieeeeeeee, bon sang !</font></div><div class="post_line"><font color="#68c4e8">Ma blessure ! Les stimulants ne font plus effet...</font></div><div class="post_line"></div><div class="post_line"><em>* Du sang se mis a couler le long de son bras gauche. *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Je... Je crois, que j&#039;ai encore vu trop gros pour cette mission. Sarah... Sarah, je ne peux pas abandonner. Elle est l&agrave; ! Quelque part &agrave; m&#039;attendre ! Les enfants ! Je ne peux pas ! Je... Je dois les sauver !</font></div><div class="post_line"></div><div class="post_line"><em>* Sur ces quelques mots, Jimmy se releva. *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Ce n&#039;est pas tr&egrave;s malin, il va me falloir trouver un autre chemin jusqu&#039;&agrave; la passerelle ! Ce sas ne risque plus de s&#039;ouvrir...</div><div class="post_line">Cette &eacute;coutille peut-&ecirc;tre ? Elle devrait me mener &agrave; l&#039;&eacute;tage sup&eacute;rieur...</font></div><div class="post_line"></div><div class="post_line"><em>* Malgr&eacute; la douleur, il ouvrit l&#039;&eacute;coutille et grimpa &agrave; une &eacute;chelle qui sembla mener a l&#039;&eacute;tage. Le Marshal eut beaucoup de mal &agrave; se sortir de l&agrave;. TrainDehors &eacute;tait dor&eacute;navant dans le couloir principal menant &agrave; la passerelle de commandement ! *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bon, si je ne me suis pas tromp&eacute;, il doit rester 3 hommes. Le commandant et les deux sous-officiers...</font></div><div class="post_line"><font color="#68c4e8">Je n&#039;ai plus qu&#039;&agrave; leurs faire la peau, et le vaisseau est &agrave; moi !</font></div><div class="post_line"><font color="#68c4e8">Aieee... Avec mon bras, je ne vais plus pouvoir &eacute;pauler mon fusil.</font></div><div class="post_line"><font color="#68c4e8">Je vais devoir utiliser mon revolver.</font></div><div class="post_line"><font color="#68c4e8">Cette mission devient de plus en plus compliqu&eacute;e !</font></div><div class="post_line"><font color="#68c4e8">J&#039;esp&egrave;re que les autres vont bien...</font></div><div class="post_line"></div><div class="post_line"><em>* Jim d&eacute;posa son fusil au sol, puis sortit son revolver de son &eacute;tui. Il avan&ccedil;a lentement vers la derni&egrave;re porte... *</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />30/07/1023 ETU 21:17</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D303175', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal303174')">Détails</a> <a href="javascript:warnpost(303174)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303174" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303174',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">*&nbsp;<a href="https://www.youtube.com/watch?v=GI5Im52Jrxw" target="_blank" rel="nofollow">https://www.youtube.com/watch?v=GI5Im52Jrxw</a>&nbsp;*</div><div class="post_line"></div><div class="post_line"><em>* &Agrave; l&#039;ouverture de la porte, les deux sous-officiers tenaient en joue Jimmy. Le commandant brigand quand lui rester assis bien install&eacute; sur son fauteuil entre ces deux seconds. Au moindre aux pas, le Marshal &eacute;tait foutu... *</em></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Alors c&#039;est toi ! <font size="3">Toi</font> qui a endommag&eacute; mon vaisseau, et <font size="3">tuer mes hommes !</font></font></div><div class="post_line"><font color="#ff0000">Crois-moi, je vais te faire souffrir !</font></div><div class="post_line"><font color="#ff0000">Tu me supplieras de t&#039;achever, la mort sera une d&eacute;livrance pour ta pauvre carcasse !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Tu parles, ma biquette !</font></div><div class="post_line"><font color="#68c4e8">Des promesses, toujours des promesses...</font></div><div class="post_line"><font color="#68c4e8">Toi et tes deux danseuses, vous ferriez mieux de rel&acirc;cher les enfants avant que je ne me f&acirc;che, et que je vous mets une racl&eacute;e.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Et bien, tu as de la gueule, toi !</font></div><div class="post_line"><font color="#ff0000">Je vais vraiment prendre plaisir &agrave; t&#039;&eacute;triper comme un cochon !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Au fait, <font size="3">sac a bouse</font>, c&#039;est quoi ton ptit nom propre ? </font></div><div class="post_line"><font color="#68c4e8">Il faut vraiment &ecirc;tre un monstre, <u>pour s&#039;en prendre &agrave; un bar sans d&eacute;fense</u> !</font></div><div class="post_line"><font color="#68c4e8">Et, kidnapp&eacute;e des enfants...</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Mis&eacute;rable cloporte, je suis le commandant <a href="https://www.bing.com/images/create/commandant-pirate/64c63c3a20cd49b2abf887d94ae5f1ee?id=KSbLko8YQ0PKQjO1KGcS1Q%3d%3d&amp;view=detailv2&amp;idpp=genimg&amp;FORM=GCRIDP&amp;mode=overlay" target="_blank" rel="nofollow">Sir&#039;Narfros</a>&nbsp;!</font></div><div class="post_line"><font color="#ff0000">Commandant en chef de la flotte brigande du secteur 1.</font></div><div class="post_line"><font color="#ff0000">Terreur des secteurs et profanateur de tombe.</font></div><div class="post_line"><font color="#ff0000">Moua ha ha aaaaaaaaaaaaaaa...</font></div><div class="post_line"></div><div class="post_line"><em>* Il &eacute;tait clair que Jimmy gagn&eacute; du temps, pour observer la pi&egrave;ce, et trouver le moindre d&eacute;tail pouvant l&#039;aider... *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Ouai... En-tout-cas, tu pues &agrave; 15 m&egrave;tres !</div><div class="post_line">Ta maman, ne t&#039;a jamais appris &agrave; te laver ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Sale pouriture, je vais te crev&eacute; !</font></div><div class="post_line"></div><div class="post_line"><em>* Le Marshal observa alors un tuyau de refroidissement au gaz carbonique, traversants la pi&egrave;ce, et fix&eacute; au plafond. Il passait juste au-dessus des brigands. C&#039;&eacute;tait parfait...&nbsp;Il ne manquait qu&#039;une diversion... <u>Juste une petite diversion</u>...&nbsp;Les sous-officiers se pr&eacute;par&egrave;rent &agrave; tirer...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="4">La Capitale Galactique !</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">De quoi ?</font></div><div class="post_line"></div><div class="post_line"><em>*&nbsp;Sir&#039;Narfros donna l&#039;ordre, &agrave; ces officiers de ce retenir...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">La capitale galactique...&nbsp;Mon gouvernement d&eacute;tiens la Capitale Galactique. Vous autres Brigands, &ecirc;tes friands d&#039;Apotium, non ?</font></div><div class="post_line"><font color="#68c4e8">Que diriez-vous d&#039;un &eacute;change ?</font></div><div class="post_line"><font color="#68c4e8">Les enfants, contre la capitale galactique ?</font></div><div class="post_line"></div><div class="post_line"><em>* Le commandant r&eacute;fl&eacute;chit pendant quelques secondes... *</em></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">J&#039;ai mieux... A te proposer...</font></div><div class="post_line"><font color="#ff0000">Je te tue, et je prend la capitale de force !</font></div><div class="post_line"><font color="#ff0000">Moua ha ha...</font></div><div class="post_line"><font color="#ff0000">Flingu&eacute; moi...&nbsp;Ce connard !</font></div><div class="post_line"></div><div class="post_line"><em>* Alors que tous sembl&eacute; perdu... Le vaisseau se mit &agrave; trembler, une explosion venait de retentir. Jim en profita pour tirer sur le fameux tuyau. Sir&#039;Narfros et ces comparses hurl&egrave;rent de douleur. Les trois hommes furent congel&eacute;s vivants...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bordel, j&#039;ai eu chaud !</font></div><div class="post_line"><font color="#68c4e8">Qu&#039;est ce que ?</font></div><div class="post_line"></div><div class="post_line"><em>* Le Marshal avait gagn&eacute;, mais &agrave; quel prix ? Il avait &eacute;t&eacute; projet&eacute; contre les parois du mur de gauche. Jimmy observa sa main droite couverte de sang, il avait &eacute;t&eacute; empal&eacute; sur un tuyau en acier... La chose travers&eacute;e son estomac. Avant de perdre connaissance, il ouvra une derni&egrave;re fois la bouche.&nbsp;*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Voila, les enfants <font size="1">sont sauv&eacute;s</font>...</font></div><div class="post_line"><font color="#68c4e8">Je... <font size="1">Je t&#039;aime...</font></font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="1"><a href="https://www.youtube.com/watch?v=-gn3tsddLTI" target="_blank" rel="nofollow">*https://www.youtube.com/watch?v=-gn3tsddLTI*</a></font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />01/08/1023 ETU 03:48</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D303266', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal303265')">Détails</a> <a href="javascript:warnpost(303265)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303265" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303265',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>*&nbsp;<a href="https://www.youtube.com/watch?v=NBE-uBgtINg" target="_blank" rel="nofollow">https://www.youtube.com/watch?v=NBE-uBgtINg</a>*</em></div><div class="post_line"><em>* Le noir, l&#039;obscurit&eacute;, le silence total et le froid... *</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">O&ugrave; suis-je ?</font></div><div class="post_line"><font color="#68c4e8">Que met-il arrivait ?</font></div><div class="post_line"><font color="#68c4e8">Je me sens bizarre...</font></div><div class="post_line"></div><div class="post_line">...</div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Qu&#039;est-ce que ?</font></div><div class="post_line"><font color="#68c4e8">Des cheveux... Des cheveux cuivr&eacute;...</font></div><div class="post_line"><font color="#68c4e8">Cette silhouette, cette odeur...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Sa... Sa... Sarah ?</font></div><div class="post_line"><font color="#68c4e8">Sarah, c&#039;est bien toi ?</font></div><div class="post_line"><font color="#68c4e8">Sarah, r&eacute;pond moi...</font></div><div class="post_line"><font color="#68c4e8">Sarah ???</font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7">Jimmy ?</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Sarah, ou sommes nous ?</font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7">Jimmy, retrouve-moi...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Je... Mais Sarah, je ne comprends pas ?</font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7">Jimmy, ce n&#039;est pas fini...</font></div><div class="post_line"><font color="#d900a7">Trouve, tu dois trouver...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Sarah, pourquoi tu t&#039;&eacute;loignes ?</font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7">Jimmy...</font></div><div class="post_line"><font color="#d900a7">L&#039;Artefact... Trouve l&#039;artefact...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Quoi... Quel&nbsp;artefact ?</font></div><div class="post_line"><font color="#68c4e8">Sarah, reviens, parle moi !</font></div><div class="post_line"><font color="#d900a7">Je doit repartir, je n&#039;est...</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Sarah ?</font></div><div class="post_line"><font color="#68c4e8">Sar<font size="3">aaaaaaaaaaaaaaaah</font> ?</font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7">Marshal...</font></div><div class="post_line"><font color="#d900a7">Marshal...</font></div><div class="post_line"><font color="#008000">Marshal...</font></div><div class="post_line"></div><div class="post_line"><font color="#008000">Ah, vous revenez &agrave; vous !</font></div><div class="post_line"><font color="#008000">Marshal, je suis infirmier, je m&#039;appelle Samuel.</font></div><div class="post_line"><font color="#008000">D&eacute;tendez-vous, vous &ecirc;tre plong&eacute; dans une cuve &agrave; bacta. </font></div><div class="post_line"><font color="#008000">Votre corps a &eacute;t&eacute; fortement bless&eacute;...</font></div><div class="post_line"><font color="#008000">Marshal, vous &ecirc;tes actuellement sur le Vengefull Spirit.</font></div><div class="post_line"><font color="#008000">Un croiseur de classe Fregger, la commandante Hamilton nous l&#039;a gentiment vendu.</font></div><div class="post_line"><font color="#008000">Soyez rassur&eacute;, tous les enfants vont bien !</font></div><div class="post_line"><font color="#008000">Votre mission a &eacute;t&eacute; un grand succ&egrave;s !</font></div><div class="post_line"><font color="#008000">Reposez-vous, un d&eacute;briefing vous attend, &agrave; votre gu&eacute;rison.</font></div><div class="post_line"></div><div class="post_line"><font color="#008000">Une derni&egrave;re chose...</font></div><div class="post_line"><font color="#008000">Marshal, bon retour parmi nous !</font></div><div class="post_line"></div><div class="post_line"><em>*L&#039;infirmier salua Jim, avant de ce retourn&eacute; et s&#039;&eacute;loigner. L&#039;un de ces assistants l&#039;interpella...*</em></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Nous devrions lui dire !</font></div><div class="post_line"></div><div class="post_line"><font color="#008000">Lui dire quoi !</font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Mais monsieur, il doit s&#039;avoir !</font></div><div class="post_line"><font color="#005dc2">Il pourrait en mourir !</font></div><div class="post_line"></div><div class="post_line"><font color="#008000">Silence !</font></div><div class="post_line"><font color="#008000">Nous lui en parlerons &agrave; son r&eacute;veille, ce n&#039;est&nbsp;pas le moment...</font></div><div class="post_line"></div><div class="post_line">-------------------------------------------------------------------------------------------------------------------------</div><div class="post_line"></div><div class="post_line"><em>* Quelques cycles plus tard, le croiseur fut mis en &eacute;tat d&#039;alerte. Bien que Jim rest&eacute;e dans sa cuve, il put s&#039;apercevoir que la panique r&eacute;gner dans le vaisseau... *</em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />08/08/1023 ETU 02:34</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal303494')">Détails</a> <a href="javascript:warnpost(303494)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303494" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303494',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>* Le croiseur Fregger Vengefull Spirit &eacute;tait clairement en &eacute;tat d&#039;alerte maximum... Le personnel s&#039;affolait dans tous les sens, laissant Jim dans sa cuve, sans m&ecirc;me lui donner une explication. Apr&egrave;s quelques secondes, les infirmiers et m&eacute;decins de bord quitt&egrave;rent l&#039;infirmerie, le Marshal se retrouva alors seul dans la pi&egrave;ce. Soudain, l&#039;obscurit&eacute;, le r&eacute;acteur principal du Fregger sembla d&eacute;sactiv&eacute;s. Heureusement, les r&eacute;acteurs secondaires prirent le relais. L&#039;oxyg&eacute;nation de la cuve, ainsi que toutes les autres installations de survie en d&eacute;pendaient. Seul dans la p&eacute;nombre, l&#039;homme resta &agrave; observer la pi&egrave;ce oscill&eacute; sous les flashes de lumi&egrave;re rouge, de l&#039;&eacute;clairage de secours. Une &eacute;trange silhouette sembla se distinguer dans l&#039;ombre...*</em></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">TraineDehors...</font></div><div class="post_line"></div><div class="post_line"><em>* Deux lumi&egrave;res vertes, d&eacute;voila ainsi les yeux d&#039;une cr&eacute;ature de forme humano&iuml;de. D&#039;apparence semblable &agrave; un humain, la diff&eacute;rence se remarquait par un cr&acirc;ne rallonger, quatre doigts &agrave; chaque main, ainsi que deux orteils &agrave; chaque pied. La cr&eacute;ature n&#039;&eacute;tait habill&eacute;e que de quelques bouts de tissus dissimulant sa bouche et son entrejambe, ainsi que de quelques ornements dor&eacute;s sur les &eacute;paules et jambes... *</em></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">TraineDehors ?</font></div><div class="post_line"><font color="#e86e04">Je vous parle par t&eacute;l&eacute;pathie, je suis le Templier Grosplatdenouille. Un premier-n&eacute;, je suis un Pr&eacute;scoss... Dieu nous a donn&eacute; naissance avant les autres civilisations de l&#039;univers. Nous observons les autres enfants de la cr&eacute;ation depuis le commencement. </font></div><div class="post_line"><font color="#e86e04">TraineDehors, vous devez retrouver Kl&eacute;ptoman.</font></div><div class="post_line"><font color="#e86e04">Trouve le Basileus, trouve le chef de l&#039;Ecoum&eacute;n&ecirc; elladique...</font></div><div class="post_line"><font color="#e86e04">Prend garde TraineDehors, une entit&eacute; mal&eacute;fique arrive...</font></div><div class="post_line"><font color="#e86e04">Celui qui se fait appel&eacute; le grand D&eacute;voreur, il semble avoir des agents corrompus dans cette galaxie.</font></div><div class="post_line"><font color="#e86e04">Prend garde TraineDehors, prend gardeeeee...</font></div><div class="post_line"></div><div class="post_line"><em>* Apr&egrave;s ces derniers mots, l&#039;entit&eacute; disparue &agrave; nouveau dans les t&eacute;n&egrave;bres. La lumi&egrave;re&nbsp;revint dans la pi&egrave;ce.&nbsp;Jim resta perplexe, &eacute;tait-ce un r&ecirc;ve ? Ou la r&eacute;alit&eacute; ? *</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16979&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16979" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16979" name="d_reply_16979" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16979');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16979'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Sauvetage et rencontre du 3&eacute;me types</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17549 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Renaissance</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Renaissance</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Wolff">Cdt. Wolff</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/12374.jpg" style="width:73px;height:128px" alt="Avatar" /><br />30/04/1025 ETU 06:59</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313368')">Détails</a> <a href="javascript:warnpost(313368)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313368" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313368',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb">Eyrin entendant le l&eacute;ger tintement &agrave; l&rsquo;oreille, ouvrit son appareil de com interne.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">- Oui ?</font></div><div class="post_line"><font color="#ffff44">- Bonjour Dame Eyrin, la flotte doit partir au plus vite et&nbsp;nous ne pourrons pas &ecirc;tre pr&eacute;sent &agrave; temps.&nbsp;Prenez en le commandement et partez&nbsp;au plus vite. Vous savez ce que vous avez &agrave; faire.</font></div><div class="post_line"><font color="#c3ffff">- Mais Commandeur, et vous, et la Princesse, son peuple ne peut partir sans elle ?</font></div><div class="post_line"><font color="#ffff44">- Dame Eyrin, c&rsquo;est un ordre, nous ne seront pas l&agrave; &agrave; temps et il y a d&eacute;j&agrave; des mondes compl&egrave;tement an&eacute;antis, et cela s&rsquo;&eacute;tend rapidement &agrave; toute le Galaxie. Les nouvelles sont d&eacute;sastreuses, pires que ce que nous envisagions. A la t&ecirc;te des vaisseaux ruches, vous partirez avec l&rsquo;Arcadia et vous emm&egrave;nerez le Prince. Vous serez son Mentor. Vous devrez l&rsquo;&eacute;duquer en tout ce qu&rsquo;il se doit de connaitre pour diriger son peuple : Commandement, combat de tous niveaux, et bien d&rsquo;autres choses, nous en avons&nbsp;d&eacute;j&agrave; parl&eacute;.</font></div><div class="post_line"><font color="#c3ffff">- Je ne peux pas Eric, Ellen me tuerait.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Se mordant la langue, Eyrin s&rsquo;aper&ccedil;ue mais trop tard qu&rsquo;elle venait de nomm&eacute; le Commandeur par son pr&eacute;nom. Soudain, u</font><font color="#bbbbbb">ne petite voix se fit entendre.</font></div><div class="post_line"></div><div class="post_line"><font color="#c0f0c6">- Je vous entend&nbsp;Eyrin, nous en avons parl&eacute; avec Eric et nous sommes d&#039;accord. Faites ce qu&rsquo;il vous dit. Mon c&oelig;ur se d&eacute;chire de laisser partir notre fils mais c&rsquo;est la seule solution et j&rsquo;ai confiance en vous. Vous l&rsquo;&eacute;l&egrave;verez de tout votre amour. Qu&rsquo;il se souvienne de nous. Il poss&egrave;de le don des premiers Elfes comme moi, la m&eacute;moire h&eacute;r&eacute;ditaire de tous ces anc&ecirc;tres. Et puis, nous n&rsquo;avons pas encore dit notre&nbsp;dernier mot. A jamais, nous vous remercions.</font></div><div class="post_line"><font color="#ffff44">- Vous avez compris Eyrin, vous avez deux jours pour partir. Ah et prenez aussi l&rsquo;&eacute;p&eacute;e, elle revient de droit &agrave; notre enfant maintenant, une partie de son h&eacute;ritage avec son titre de Prince des Clans V&eacute;nusiens. Adieu Eyrin et merci. </font><font color="#bbbbbb">Ajouta Eric, coupant&nbsp;aussit&ocirc;t la com.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">La magnifique jeune femme r&eacute;fl&eacute;chit deux secondes. Un temps interminable pour une Cyborg Xydiane machine de guerre mi-humaine, et enfin se d&eacute;cidant, elle se connecta au vaisseau Arcadia.&nbsp;</font><font color="#bbbbbb">Une voix rauque lui r&eacute;pondit.</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">- Amiral Isam je vous &eacute;coute Dame Eyrin, </font></div><div class="post_line"><font color="#c3ffff">- Amiral, le Commandeur vient de me contacter. Il souhaite que la flotte soit pr&ecirc;te &agrave; partir sous deux jours.&nbsp;Je vous envoie les informations.</font></div><div class="post_line"><font color="#e8b6ef">- A vos ordres Dame Eyrin, cela va &ecirc;tre compliqu&eacute; mais nous serons pr&ecirc;ts.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Wolff">Cdt. Wolff</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/12374.jpg" style="width:73px;height:128px" alt="Avatar" /><br />03/05/1025 ETU 05:24</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313419')">Détails</a> <a href="javascript:warnpost(313419)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313419" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313419',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb">La jeune femme, face &agrave; la baie vitr&eacute;e du pont de Commandement de l&rsquo;Arcadia surveillait les op&eacute;rations de rassemblement des vaisseaux ruches pr&eacute;s. De ce point, la flotte acc&eacute;dera au tunnel temporel qui devrait leur permettre de sortir de la Galaxie. Ce passage fut d&eacute;couvert lors d&rsquo;une exp&eacute;dition d&rsquo;exploration par un vaisseau V&eacute;nusien.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Eyrin, o&ugrave; est-il, je ne voie rien ?</font></div><div class="post_line"><font color="#c3ffff">- Prince, les tunnels sont invisibles pour nos yeux d&rsquo;humains mais il est bien l&agrave;.</font></div><div class="post_line"><font color="#fff5b3">- Est-on s&ucirc;r qu&rsquo;il soit&nbsp;sans danger et nous emm&egrave;nera bien hors de la Galaxie ?</font></div><div class="post_line"><font color="#c3ffff">- D&eacute;sol&eacute; Prince, mais nous ne sommes certain de rien, seule des sondes &agrave; ce jour sont parties et &agrave; priori, nous ne savons pas ou elles sont mais&nbsp;elles continuent &agrave; &eacute;mettre.</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">- Dame Eyrin !</font><font color="#bbbbbb"> L&rsquo;appel venait de l&rsquo;op&eacute;rateur de la console com.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">- Oui Lieutenant ?</font></div><div class="post_line"><font color="#bbbbbb">-</font><font color="#e8b6ef"> Nous recevons des appels de d&eacute;tresse de vaisseaux et plan&egrave;tes proches de nous pris &agrave; partie par un gigantesque ouragan ! Un Vortex immense transportant des blocs de roches, des d&eacute;chets de plan&egrave;tes et se d&eacute;pla&ccedil;ant &agrave; une vitesse folle. Tous ce qui est sur son chemin est broy&eacute;, totalement r&eacute;duit en miettes.</font></div><div class="post_line"><font color="#c3ffff">- Vient-il vers nous Lieutenant ?</font></div><div class="post_line"><font color="#e8b6ef">- Nous affinons nos calculs mais &agrave; priori, oui, en ligne droi&hellip;</font></div><div class="post_line"><font color="#c3ffff">- Combien de temps ?</font></div><div class="post_line"><font color="#e8b6ef">- A cette vitesse, il nous reste un peu moins de 5 heures avant les premiers effets.</font></div><div class="post_line"><font color="#c3ffff">- Contr&ocirc;le Radar, combien de temps&nbsp;avant l&rsquo;arriv&eacute;e des derniers vaisseaux ruches ?</font></div><div class="post_line"><font color="#ffdbbb">- Normalement 5 heures 15 pour les derniers, Dame Eyrin, cela repr&eacute;sente onze vaisseaux, des centaines de milliers de personnes. Toutefois vous devez savoir.&nbsp;Ce n&rsquo;est pas affirm&eacute; mais possible,&nbsp;lorsque le Vortex touchera le tunnel cela pourrait d&eacute;placer son acc&egrave;s, voir le d&eacute;truire &agrave; jamais.</font></div><div class="post_line"><font color="#c3ffff">- Pilote, en combien de temps minimum chaque vaisseau peut-il plonger hors d&rsquo;atteinte dans le tunnel ?</font></div><div class="post_line"><font color="#ffc6c3">- Consid&eacute;rant les plus lents, les op&eacute;rations peuvent se faire en 12 minutes mini.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">La jeune femme se tournant alors vers la console de Commandement.</font></div><div class="post_line"><font color="#c3ffff">- Amiral, qu&rsquo;en pensez vous ?</font></div><div class="post_line"><font color="#ffa339">- Nous ne pouvons attendre sinon nous risquons de perdre toute la flotte, il faut que tous les vaisseaux qui le peuvent, se pr&eacute;parent et s&rsquo;engagent au plus vite.</font></div><div class="post_line"><font color="#c3ffff">- Ok Amiral, donnez l&rsquo;ordre de d&eacute;part imm&eacute;diat pour tous ceux qui sont pr&eacute;sents. Nous&nbsp;attendrons avec l&#039;Arcadia&nbsp;jusqu&rsquo;au dernier moment, les retardataires.</font></div><div class="post_line"><font color="#ffa339">- Bien.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Cinq heures plus tard, le vaisseau Amiral&nbsp;semblait &ecirc;tre sur des montagnes russes ou chevaucher un animal sauvage. l&rsquo;Amiral se retournant vers Eyrin.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa339">- Dame Eyrin il faut partir, nous sommes les derniers pr&eacute;sents sur le point, il faut partir imm&eacute;diatement.</font></div><div class="post_line"><font color="#c3ffff">- Combien de vaisseaux sont encore absents ?</font></div><div class="post_line"><font color="#ffa339">- Sept. L&rsquo;ordre leur est donn&eacute; de plonger d&egrave;s leur arriv&eacute;e, nous leur avons transmis toutes les informations dont ils ont besoin. Si nous attendons trop, nous risquons la destruction du vaisseau.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le Prince qui jusqu&rsquo;&agrave; maintenant avait discr&egrave;tement suivi les &eacute;changes, intervint.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Eyrin, nous ne pouvons les abandonner&hellip;</font></div><div class="post_line"><font color="#c3ffff">- Nous ne les abandonnons pas Roy, nous ne pouvons plus rien pour eux&hellip; Que dieu les garde. </font></div><div class="post_line"><font color="#c3ffff">- Pilote !&nbsp;Nous partons.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Aussit&ocirc;t, sur l&rsquo;&eacute;cran les &eacute;toiles sembl&egrave;rent bouger &agrave; une vitesse exponentielle puis un tunnel multicolore et sinueux commen&ccedil;a &agrave; apparaitre et le vaisseau plongea &agrave; l&rsquo;int&eacute;rieur&hellip;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Wolff">Cdt. Wolff</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/12374.jpg" style="width:73px;height:128px" alt="Avatar" /><br />12/05/1025 ETU 01:12</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313576')">Détails</a> <a href="javascript:warnpost(313576)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313576" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313576',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb">Le jeune Prince r&ecirc;vait dans son sommeil. Son regard admirait la paysage luxuriant et color&eacute;. Comme un oiseau survolant la terre, il voyait d&eacute;filer sous ces yeux, les for&ecirc;ts &agrave; perte de vue, s&eacute;par&eacute;es de plaines et de rivi&egrave;res, au&nbsp;loin les massifs montagneux. Puis, en y regardant de plus pr&egrave;s, quelques petits villages tapis en bordure de vall&eacute;es. Tout cela accompagn&eacute; par le gazouillement des oiseaux, les cris rauques, voir les rugissements d&rsquo;animaux probablement beaucoup plus imposants et dangereux..&nbsp; A l&rsquo;approche des habitations, ce sont les bruits d&rsquo;activit&eacute;s, interpellations, rires et voix.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Et soudain, une ombre plana au-dessous de lui occultant le soleil. Imm&eacute;diatement la faune qui gazouillait et musardait de ci de l&agrave;, se tue. A l&rsquo;instant o&ugrave; le silence commen&ccedil;ait &agrave; s&rsquo;installer,&nbsp; l&rsquo;enfer s&rsquo;invit&acirc;t. Le fracas de tirs laser et des bombardements ciblant les villages. Il vit les explosions, le feu, les &eacute;clairs, les morts tombant et jonchant le sol, l&rsquo;affolement des survivants courant en tous sens, les cris de d&eacute;sespoir&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3">- Prince, r&eacute;veillez-vous ! Aller, d&eacute;p&ecirc;chez vous, nous n&rsquo;avons pas toute la journ&eacute;e !</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">&quot;Quelle emmerdeuse !&quot;</font><font color="#bbbbbb">&nbsp;P</font><font color="#bbbbbb">ensa Roy, en entendant la voix artificielle de l&rsquo;IA du vaisseau. Et se redressant sur son lit, il se frotta les yeux repensant au cauchemar qu&rsquo;une nouvelle fois, il venait de faire. </font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le temps de passer sous la douche et de s&rsquo;habiller, il entrait dans la caf&eacute;t&eacute;ria. Le voyant arriver, aussit&ocirc;t les personnes pr&eacute;sentes se lev&egrave;rent, alors qu&#039;un grad&eacute; criait un ...</font></div><div class="post_line"><font color="#e8b6ef">- Garde &agrave; vous !</font><font color="#bbbbbb">&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">G&ecirc;n&eacute;, il leur fit un petit geste de la main, les incitants &agrave; reprendre leurs activit&eacute;s. Roy alla se servir et se dirigea vers une petite table&nbsp; dans un coin de la pi&egrave;ce. A celle-ci, Eyrin discutait avec le second de l&rsquo;exp&eacute;dition, l&rsquo;Amiral Isam.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">- Non , Jeff, je ne peux&hellip; </font><font color="#bbbbbb">Le voyant arriver, Eyrin se tue.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Bonjour, Eryn, bonjour Amiral.</font></div><div class="post_line"><font color="#ffa500">- Bonjour Prince.</font><font color="#bbbbbb"> R&eacute;pondit l&rsquo;Amiral en se levant.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">- Je suis sur la passerelle, mon tour de garde.</font><font color="#bbbbbb"> Et il s&rsquo;&eacute;loigna.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Roy s&rsquo;installa en face d&rsquo;Eyrin, le visage ferm&eacute; et commen&ccedil;a son repas&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">- Encore ces cauchemars Roy ?</font><font color="#bbbbbb"> Dit-elle en le fixant.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Oui, trois nuits tranquilles et ils sont revenus.</font></div><div class="post_line"><font color="#c3ffff">- Peut-&ecirc;tre est ce du &agrave; cette travers&eacute;e p&eacute;nible et longue dans l&rsquo;inconnue, que nous subissons. </font></div><div class="post_line"><font color="#fff5b3">- Peut-&ecirc;tre Eyrin. Croyez vous que nous en avons encore pour longtemps dans le heu&hellip; tunnel ?</font></div><div class="post_line"><font color="#d9f4ff">- Pour &ecirc;tre franche, nous ne savons pas Roy&hellip;</font><font color="#bbbbbb">&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">C&rsquo;est le moment que choisit le vaisseau pour faire un bond&nbsp;de cot&eacute;, puis un autre encore plus puissant. Plusieurs personnes furent projet&eacute;s vers les murs et les tables qui eux-m&ecirc;mes&nbsp;gliss&egrave;rent en tous sens. Aussit&ocirc;t, la sir&egrave;ne d&rsquo;alerte retentit. Les militaires se relev&egrave;rent et sortirent rapidement se dirigeant vers leurs postes. Eyrin et Roy firent de m&ecirc;me, courant vers la passerelle.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Arrivant sur place, ils virent l&rsquo;Amiral se relevant en se tenant la t&ecirc;te, un peu de sang sur les cheveux, les si&egrave;ges avaient vol&eacute; et deux techniciens terminaient d&rsquo;&eacute;teindre un d&eacute;but d&rsquo;incendie. L&rsquo;Amiral s&rsquo;adossant &agrave; la Console de commandement appuya sur un bouton et parla dans la com.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">- A tous le vaisseau, rapport imm&eacute;diat des bless&eacute;s et d&eacute;g&acirc;ts, nous passons&nbsp;en&nbsp;<font size="3"><em>STADE ORANGE</em></font>, tout le monde &agrave; son poste.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le vaisseau lui continuait &agrave; avoir de brusques soubresauts m&ecirc;me s&rsquo;ils &eacute;taient moins puissants que les deux premi&egrave;res secousses.</font></div><div class="post_line"><font color="#bbbbbb">Rapidement les rapports s&rsquo;&eacute;gren&egrave;rent&hellip; Eyrin et Roy se tenant fermement, &eacute;coutaient attentivement&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">- Que c&rsquo;est il pass&eacute; &agrave; votre avis,&nbsp;Amiral ?</font><font color="#bbbbbb">&nbsp;Demanda Eyrin.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">- Une chose que nous n&rsquo;avions pas pr&eacute;vu, Dame Eyrin. Le tunnel semble instable et malm&egrave;ne le vaisseau. Nous venons d&rsquo;activer les champs de force en esp&eacute;rant qu&rsquo;ils n&rsquo;aggravent pas l&rsquo;instabilit&eacute; du tunnel. Notre Galaxie d&rsquo;origine est probablement en train de disparaitre.</font><font color="#bbbbbb"> R&eacute;pondit-il se tenant fermement alors qu&rsquo;une nouvelle secousse se produisait. </font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Regardez !</font><font color="#bbbbbb"> Fit Roy montrant la baie.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le tunnel et ses lumi&egrave;res vives, apparentes au travers de la baie, commen&ccedil;aient &agrave; s&rsquo;estomper. Puis elles disparurent en m&ecirc;me temps que les vibrations et chocs inflig&eacute;s au vaisseau. Enfin l&rsquo;espace, de nouveau, emplit la baie. L&rsquo;officier de la Console radar se retourna.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">- Dame Eyrin, nous sommes sortit du tunnel !</font></div><div class="post_line"><font color="#c3ffff">-&nbsp; Je vois Lieutenant.</font><font color="#bbbbbb"> R&eacute;pondit-elle.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Roy qui regardait l&rsquo;espace dans lequel ils venaient d&rsquo;arriver,&nbsp; remarqua les vaisseaux Ruches immobiles autour d&rsquo;eux comme en suspension.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Console Radar !</font><font color="#bbbbbb"> Dit-il.&nbsp;</font></div><div class="post_line"><font color="#fff5b3">- Combien manque t-il de vaisseaux ruches &agrave; l&rsquo;appel ?</font><font color="#bbbbbb"> Eyrin, &eacute;tonn&eacute;e se retourna vers lui. C&rsquo;&eacute;tait la premi&egrave;re fois que le Prince intervenait.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">- Un quart de la flotte est absente Prince. </font></div><div class="post_line"><font color="#fff5b3">- C&rsquo;est une catastrophe Eyrin, tous ces gens disparus.</font></div><div class="post_line"><font color="#fff5b3">- Attendez, certains vont peut-&ecirc;tre arriver, d&rsquo;autres sortiront peut-&ecirc;tre dans d&rsquo;autres lieux.</font><font color="#bbbbbb"> R&eacute;pondit-elle.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">L&rsquo;amiral qui venait de d&eacute;marrer l&rsquo;HoloRad, regardait l&rsquo;image tridimensionnelle apparaitre au centre de la pi&egrave;ce. Elle repr&eacute;sentait l&rsquo;espace qui les entourait. </font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">- Regardez !</font><font color="#bbbbbb"> fit-il. </font><font color="#ffa500">Nous sommes en plein c&oelig;ur d&rsquo;un petit syst&egrave;me. Il semble qu&rsquo;il y ait plusieurs plan&egrave;tes terraformes&nbsp; et compatibles. Regardez ici, ce point, ces quatre plan&egrave;tes. L&rsquo;une d&rsquo;elle pourrait peut-&ecirc;tre&nbsp;nous accueillir ?</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17549&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17549" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17549" name="d_reply_17549" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17549');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17549'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Renaissance</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

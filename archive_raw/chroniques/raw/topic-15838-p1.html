@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15838 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Pieni Koira</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Pieni Koira</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />05/08/1021 ETU 00:45<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal286931')">Détails</a> <a href="javascript:warnpost(286931)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal286931" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=286931',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#005dc2"><strong>&quot;Quel bonheur !&quot;</strong></font> <strong>pensa Ma&iuml;line.</strong></div><div class="post_line"></div><div class="post_line"><strong>Se tournant sur le c&ocirc;t&eacute;, elle regarda le dos de l&rsquo;homme aux c&ocirc;t&eacute;s duquel elle avait pass&eacute; sa premi&egrave;re nuit d&rsquo;amour. Elle leva sa main gauche et effleura de son pouce l&rsquo;anneau qui avait pris sa place avec la bague sertie de lapis-lazuli. Mari&eacute;e, elle l&rsquo;&eacute;tait d&eacute;sormais depuis une dizaine d&rsquo;heures.</strong></div><div class="post_line"></div><div class="post_line"><strong>Sortant de son lit, Ma&iuml;line passa sa robe de chambre blanche satin&eacute;e et alla dans la salle d&rsquo;eau. L&agrave;, elle s&rsquo;observa dans la glace, passa la main droite dans ses cheveux, puis dans son cou jusque sur le haut de sa poitrine. Prenant une grande respiration, Ma&iuml;line repensa aux derniers mois intenses qu&rsquo;elle avait v&eacute;cus. Son p&egrave;re Onthios &eacute;tait tomb&eacute; gravement malade et la perte lors de l&rsquo;attentat de l&rsquo;ann&eacute;e pass&eacute;e qui avait tu&eacute; sa femme l&rsquo;avait consid&eacute;rablement affaibli. Il avait alors pris la d&eacute;cision de confier les reines du pouvoir dans le royaume suomiens. Depuis, Ma&iuml;line avait rencontr&eacute; l&rsquo;assembl&eacute;e, les conseillers, les chefs de clans, les chefs militaires et m&ecirc;me les rois alli&eacute;s de Suomi. Elle avait alors pris conscience de la fragilit&eacute; de sa couronne et avait travaill&eacute; avec son p&egrave;re &agrave; l&rsquo;affermir. Le choix du mari avait &eacute;t&eacute; d&eacute;licat entre tous. Il avait fallu trouver un homme suffisamment important permettant de servir les int&eacute;r&ecirc;ts de la couronne tout en n&rsquo;&eacute;tant pas trop influent sur la reine, et que la reine accept&acirc;t &eacute;galement. Tant bien que mal, les conseillers d&rsquo;Onthios avaient pr&eacute;sent&eacute; &agrave; Ma&iuml;line deux hommes, l&rsquo;un d&rsquo;Argios, second fils du roi, dangereux pour Suomi par sa pr&eacute;sence mais qui n&rsquo;avait encore jamais franchi le Rubicon. L&rsquo;autre &eacute;tait l&rsquo;h&eacute;ritier pr&eacute;somptif du tr&ocirc;ne d&rsquo;Alb&acirc;re, l&rsquo;un des deux alli&eacute;s de Suomi, aussi grand, mais moins habit&eacute; et moins riche que Suomi. Le roi, bien que fier et bon pour ses sujets, n&rsquo;avait pas d&rsquo;enfant et s&rsquo;inqui&eacute;tait de son avenir, multipliant ses &eacute;pouses afin d&rsquo;arriver &agrave; un r&eacute;sultat, sans succ&egrave;s. Son neveu &eacute;tait donc l&rsquo;h&eacute;ritier et portait l&rsquo;esp&eacute;rance d&rsquo;un peuple proche de Suomi.</strong></div><div class="post_line"></div><div class="post_line"><strong>Regardant son mari, Ma&iuml;line se prit &agrave; esquisser un sourire. C&rsquo;est qu&rsquo;elle n&rsquo;&eacute;tait pas ce qu&rsquo;elle repr&eacute;sentait, son choix en avait surpris plus d&rsquo;un, car lors de la pr&eacute;sentation des pr&eacute;tendants, le fr&egrave;re a&icirc;n&eacute; de Cratos, Anthos, s&rsquo;&eacute;tait soudain d&eacute;marqu&eacute; de son fr&egrave;re et des autres membres pr&eacute;sents par son regard, sa prestance. Elle avait cependant d&ucirc; choisir entre les deux pr&eacute;tendants et s&rsquo;&eacute;tait d&eacute;clar&eacute;e pour Cratos. Ce Cratos &eacute;tait cependant r&eacute;put&eacute;, et Ma&iuml;line s&rsquo;en aper&ccedil;u promptement, comme un homme col&eacute;rique, violent, et sans c&oelig;ur. Les conseillers d&rsquo;Onthios encourageaient cependant Ma&iuml;line &agrave; tenir bon et &agrave; accepter ce mariage dans l&rsquo;int&eacute;r&ecirc;t du royaume, et bien qu&rsquo;elle acceptait cet &eacute;tat de fait, elle d&eacute;sirait en secret Anthos qui &eacute;tait alors l&rsquo;exact oppos&eacute; de son cadet.</strong></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />05/08/1021 ETU 16:45<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal286945')">Détails</a> <a href="javascript:warnpost(286945)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal286945" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=286945',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>Au bout de trois mois &agrave; vivre avec la d&eacute;l&eacute;gation Argi&eacute;&egrave;nne, Ma&iuml;line avait d&eacute;clar&eacute; avoir accept&eacute; une demande en mariage d&rsquo;Anthos ce qui avait cr&eacute;&eacute; de nombreux troubles. En effet, les conseillers furent scandalis&eacute;s et proph&eacute;tis&egrave;rent la guerre civile, ce qui n&rsquo;arriva pas puisque les suomiens regardaient d&rsquo;un mauvais &oelig;il Cratos qui &eacute;tait r&eacute;put&eacute; pour ne faire aucun prisonnier sur les champs de bataille. En Argios cependant, bien que dans un premier temps le roi n&rsquo;en disait rien, Cratos d&eacute;cida de lever une arm&eacute;e personnelle contre son fr&egrave;re et une guerre s&rsquo;enclencha durant deux longues ann&eacute;es qui virent la mort de Cratos, mais &eacute;galement de son p&egrave;re ce qui amena Anthos au tr&ocirc;ne. Ma&iuml;line durant ce temps avait consolid&eacute; ses rapports avec ses alli&eacute;s, et avec quelques nouveaux conseillers, certains n&rsquo;ayant plus l&rsquo;&acirc;ge de diriger les affaires du royaume. L&rsquo;union des deux rois les plus puissants du continent augurait une &egrave;re de paix sur celui-ci, bien que certains diplomates commen&ccedil;aient &agrave; regarder de l&rsquo;autre c&ocirc;t&eacute; de l&rsquo;oc&eacute;an Valtameri, puisque l&rsquo;empire Mahtava commen&ccedil;ait &agrave; pr&eacute;parer la guerre.</div><div class="post_line"></div><div class="post_line">Ma&iuml;line se massa l&rsquo;&eacute;paule gauche. Cela faisait maintenant cinq ans qu&rsquo;elle avait pris ce coup de poignard d&rsquo;une femme de chambre mahtavienne, bien qu&rsquo;ils n&rsquo;aient appris cela qu&rsquo;apr&egrave;s la tentative d&rsquo;assassinat. Mahtava avait lanc&eacute; l&rsquo;invasion du continent en d&eacute;truisant le comt&eacute; ind&eacute;pendant d&rsquo;Hantford &agrave; l&rsquo;Ouest. Par la suite, l&rsquo;empereur avait fait des offres de paix et de commerce &agrave; Suomi et Argios en leur offrant ressources et esclaves. Ma&iuml;line avait eu la faiblesse, contrairement &agrave; Anthos, d&rsquo;accepter et elle prit une des esclaves &agrave; son service, l&rsquo;affranchissant afin de la lier &agrave; elle. Une semaine apr&egrave;s, la servante tenta de la tuer, sans succ&egrave;s, bien que la reine fut couch&eacute;e deux semaines durant, pendant lesquelles les forces mahtaviennes entraient sur le territoire suomien et Argien. Le continent s&rsquo;allia derri&egrave;re Anthos qui combattit vaillamment pendant trois longues ann&eacute;es contre les forces imp&eacute;riales. Apr&egrave;s une traitrise d&rsquo;un berger, il fut cependant pris au pi&egrave;ge, son arm&eacute;e massacr&eacute;e, et les rares survivants furent faits prisonniers, dont le roi. Ma&iuml;line prit alors la t&ecirc;te de la coalition et changea de tactique, privil&eacute;giant l&rsquo;attaque &agrave; revers. D&eacute;truisant la flotte imp&eacute;riale, Ma&iuml;line envoya ses meilleurs g&eacute;n&eacute;raux dans le territoire imp&eacute;rial, mena&ccedil;ant la capitale, ce qui for&ccedil;a les forces mahtaviennes sur le continent &agrave; rentrer au plus vite. La plupart furent tu&eacute;s au cours du voyage ce qui permit &agrave; Ma&iuml;line de s&rsquo;imposer. Elle fit lib&eacute;rer Anthos et proposa de r&eacute;gner conjointement sur l&rsquo;empire avec Anthos, ce qui permit de sauver la paix entre les deux royaumes qui louvoyaient d&eacute;j&agrave; sur ce territoire.</strong></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />05/08/1021 ETU 23:07<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal286948')">Détails</a> <a href="javascript:warnpost(286948)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal286948" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=286948',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>Ma&iuml;line laissa tomber sa robe de chambre et prit son bain, profitant de la douceur matinale avant le d&eacute;but des affaires gouvernementales non seulement de Suomi mais aussi de l&rsquo;empire avec son mari ; son mari, elle allait devoir s&rsquo;y faire. Sortant de son bain, elle passa dans la salle d&rsquo;habit et fit appeler deux servantes qui vinrent l&rsquo;habiller. Suivant la tradition du royaume, elle rev&ecirc;tit une robe blanche immacul&eacute;e, robe qu&rsquo;elle porterait ainsi sept jours durant afin de marquer son r&eacute;cent mariage. Elle la plissa et sortit de la salle afin d&rsquo;aller prendre son premier repas, ainsi que son premier rendez-vous avec son mari.</strong></div><div class="post_line"></div><div class="post_line"><strong><font color="#ff0000">&laquo; Bonjour ma femme &raquo;</font> dit une voix grave &agrave; proximit&eacute; de son oreille droite derri&egrave;re elle.</strong></div><div class="post_line"></div><div class="post_line"><strong><font color="#005dc2">&laquo; Bonjour mon mari &raquo;</font> r&eacute;pondit Ma&iuml;line &agrave; voix basse avec un petit sourire.</strong></div><div class="post_line"></div><div class="post_line"><strong>Anthos s&rsquo;assit &agrave; c&ocirc;t&eacute; d&rsquo;elle et commen&ccedil;a &agrave; manger tout en discutant avec elle des choses et autres qu&rsquo;ils feraient dans la journ&eacute;e.</strong></div><div class="post_line"><strong>Le brouillard se fit alors et la voix d&rsquo;Anthos commen&ccedil;a &agrave; se faire lointaine, brouill&eacute;e ainsi que son apparence, sa robe blanche se teinta de noir et la pi&egrave;ce changea. Ma&iuml;line se r&eacute;veilla alors en criant. Elle regarda de&nbsp;tous les c&ocirc;t&eacute;s et ne vit rien d&#039;autre qu&#039;elle, elle seule. S&rsquo;apercevant alors que cela n&rsquo;&eacute;tait qu&rsquo;un r&ecirc;ve, elle se mit &agrave; pleurer jusqu&rsquo;au matin.</strong></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />07/08/1021 ETU 00:46<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal286959')">Détails</a> <a href="javascript:warnpost(286959)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal286959" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=286959',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>En effet, alors que la guerre faisait rage entre les royaumes du continent men&eacute;s par Anthos et l&rsquo;empire mahtasien, Anthos &eacute;tait tomb&eacute; dans le pi&egrave;ge permis par un vieux berger d&rsquo;Alb&acirc;re. Anthos &eacute;tait mort avec sa garde, et les quelques hommes qui n&rsquo;&eacute;taient pas tomb&eacute;s avaient rapport&eacute; l&rsquo;histoire &agrave; Ma&iuml;line qui avait alors transcend&eacute; sa blessure pour reprendre le flambeau de son fianc&eacute;. Elle avait ainsi men&eacute; les arm&eacute;es &agrave; la victoire terrassant l&rsquo;arm&eacute;e mahtavienne et tuant le berger qui s&rsquo;&eacute;tait r&eacute;v&eacute;l&eacute; &ecirc;tre l&rsquo;h&eacute;ritier du tr&ocirc;ne d&rsquo;Alb&acirc;re qui avait pris parti pour l&rsquo;empire &agrave; la suite du d&eacute;sint&eacute;r&ecirc;t de Ma&iuml;line pour lui.</strong></div><div class="post_line"></div><div class="post_line"><strong>Elle dirigeait depuis non seulement l&rsquo;ensemble du continent mais &eacute;galement l&rsquo;empire ce qui en faisait la ma&icirc;tresse de pr&egrave;s de 90% des terres habit&eacute;es de la plan&egrave;te pieni koira. Elle avait conclu des trait&eacute;s avec le dernier roi ind&eacute;pendant et les quelques chefs de clans eux aussi ind&eacute;pendants permettant &agrave; cet ensemble de vivre en bonne intelligence et sagesse. Elle avait ainsi fond&eacute; L&rsquo;Institut Koirien subdivis&eacute; en plusieurs sous-assembl&eacute;es, L&rsquo;institut Koirien Politique (IKP), L&rsquo;Institut Koirien Economique et Administratif (IKEA), ou encore l&rsquo;Institut Koirien Galactique (IKG) et l&rsquo;Institut Koirien Religieux (IKR).</strong></div><div class="post_line"></div><div class="post_line"><strong>Si&eacute;geant comme repr&eacute;sentante et non comme pr&eacute;sidente de l&rsquo;Institut Koirien, Ma&iuml;line avait ainsi r&eacute;alis&eacute; le r&ecirc;ve de son grand-p&egrave;re, unir tous les peuples koiriens par un syst&egrave;me pacifi&eacute; et pacifiant. Et bien que le peuple koirien aimait Ma&iuml;line, celle-ci se sentait toujours plus triste et seule. Le centre capitalistique de l&rsquo;Institut &eacute;tait Argy, l&rsquo;antique capitale du royaume d&rsquo;Argios, proche du sanctuaire Kolminaisuus qui &eacute;tait le centre religieux principal koirien. La foi Kolminaisuienne faisait la promotion de la paix et soutenait ainsi l&rsquo;action de l&rsquo;Institut en pr&ecirc;chant aux populations fid&egrave;les, ce qui avait permis une assise confortable de l&rsquo;Institut en Pieni Koira.</strong></div><div class="post_line"></div><div class="post_line"><strong>Chaque samedi, elle si&eacute;geait au pied du d&ocirc;me de la justice et accueillait les magistrats afin de les conseiller et les soutenir dans leur charge de justice. Chaque dimanche, apr&egrave;s l&rsquo;office, elle prenait un temps de libert&eacute; avec les salari&eacute;s du palais, ce qui lui permettait de savoir ce que son peuple disait, pensait, tout en cr&eacute;ant un microcosme familial sur le lieu m&ecirc;me du travail. Elle ne pouvait cependant s&rsquo;arr&ecirc;ter de penser qu&rsquo;elle &eacute;tait seule, incroyablement seule.</strong></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />09/08/1021 ETU 18:32<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal286987')">Détails</a> <a href="javascript:warnpost(286987)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal286987" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=286987',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>--Assembl&eacute;e de l&#039;Institut Koirien--</em></div><div class="post_line"></div><div class="post_line"><strong>Le l&eacute;gat Arsos entra dans l&#039;h&eacute;micycle &agrave; l&#039;invitation du d&eacute;put&eacute; argien Th&eacute;rin. Il arriva &agrave; l&#039;ambon et prit la parole :</strong></div><div class="post_line"></div><div class="post_line"><font color="#e86e04">&quot;D&eacute;put&eacute; koirien, je reviens au moment o&ugrave; je vous parle de l&#039;espace stratosph&eacute;rique. stebu-9 a accept&eacute; notre domination.&quot;</font></div><div class="post_line"></div><div class="post_line"><strong>Un tonnerre d&#039;applaudissements r&eacute;pondit &agrave; cette annonce pendant le l&eacute;gat quittait l&#039;h&eacute;micycle. Aussit&ocirc;t termin&eacute;, un premier d&eacute;put&eacute; prit la parole :</strong></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">&quot;Nous devrions int&eacute;grer les habitants de cette plan&egrave;te &agrave; notre syst&egrave;me, appeler leurs repr&eacute;sentants &agrave; si&eacute;ger ici, et investir dans leur d&eacute;veloppement.&quot;</font></div><div class="post_line"></div><div class="post_line"><strong>Aussit&ocirc;t dit, aussit&ocirc;t d&eacute;cri&eacute;, cette d&eacute;claration fit na&icirc;tre les d&eacute;bats houleux de l&#039;assembl&eacute;e. Apr&egrave;s plusieurs heures de d&eacute;bats intenses et de travaux parall&egrave;les par les juristes de l&#039;Institut, le pr&eacute;sident de l&#039;assembl&eacute;e prit la parole :</strong></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">&quot;D&eacute;put&eacute;s de l&#039;Institut, voici la finalit&eacute; de notre travail, les plan&egrave;tes qui rejoindront notre Institut seront int&eacute;gr&eacute;es selon trois ordres, Siirtoma, puis Kunnat et enfin Viitattu. Les plan&egrave;tes pourront &eacute;voluer bien entendu suivant les r&egrave;gles. D&eacute;put&eacute;s, il convient d&#039;int&eacute;grer la nouvelle acquisition, temporairement, comme une Siirtoma.&quot;</font></div><div class="post_line"></div><div class="post_line"><strong>Les d&eacute;put&eacute;s vot&egrave;rent cette d&eacute;cision &agrave; 383 contre 112 et fut donc adopt&eacute;e. L&#039;acquisition fut d&egrave;s lors appel&eacute;e Siirtoma.</strong></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />09/08/1021 ETU 23:28<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal286988')">Détails</a> <a href="javascript:warnpost(286988)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal286988" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=286988',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>Le soir de la nouvelle acquisition plan&eacute;taire, certains d&eacute;put&eacute;s, travaillant en commission arriv&egrave;rent &agrave; l&#039;h&eacute;micycle et pr&eacute;sent&egrave;rent le texte de loi.</strong></div><div class="post_line"></div><div class="post_line"><font color="#9a00b2">&quot;Chers amis, d&eacute;put&eacute;s de Pieni Koira, repr&eacute;sentant de Siirtoma, voici le r&eacute;sultat des travaux de la commission au sujet du traitement des territoires rattach&eacute;s &agrave; l&#039;Institut. Nous avons d&eacute;cid&eacute; de suivre la proposition du pr&eacute;sident de cette assembl&eacute;e. En premier lieu, les Siirtoma. Les Siirtoma verront leur politique globale, financi&egrave;re, administrative, g&eacute;r&eacute;es par l&#039;Institut tandis que les aspects culturels et locaux seront g&eacute;r&eacute;s par les habitants des Siirtoma.</font></div><div class="post_line"><font color="#9a00b2">Ensuite viendront les Kunnat. Les Kunnat permettront aux &eacute;lites des habitants d&#039;assurer les charges politiques, administratives, financi&egrave;res et culturelles via un <em>cursus honorum. </em>A partir du moment o&ugrave; la personne aura r&eacute;alis&eacute; un minimum de cinq ann&eacute;es dans lesdites charges, elle recevra &agrave; sa sortie de charge la citoyennet&eacute; koirienne.</font></div><div class="post_line"><font color="#9a00b2">Enfin viendront les Viitattu. Lorsqu&#039;une plan&egrave;te obtient ce titre, la totalit&eacute; de la plan&egrave;te et de ses habitants seront consid&eacute;r&eacute;s comme faisant partie int&eacute;grante de Pieni Koira, de l&#039;Institut. Ils pourront &eacute;lire des d&eacute;put&eacute;s &agrave; l&#039;institut et tous auront le droit de citoyennet&eacute; selon le principe de droit du sang.&quot;</font></div><div class="post_line"></div><div class="post_line"><strong>S&#039;arr&ecirc;tant quelques instants, et apr&egrave;s un coup d&#039;&oelig;il vers le groupe n&eacute;o-&eacute;galitaire, il reprit :</strong></div><div class="post_line"></div><div class="post_line"><font color="#9a00b2">&quot;Et parce que la conqu&ecirc;te spatiale nous ouvre un chemin inconnu, nous n&#039;excluons pas la haine de dirigeants &eacute;trangers, ou de populations violentes et &eacute;cervel&eacute;es. Et dans le cas o&ugrave; nous devrions reprendre, ou prendre des plan&egrave;tes par la force arm&eacute;e, la plan&egrave;te subirait le titre d&#039;Hylki&ouml; durant le laps de temps d&eacute;termin&eacute; par l&#039;Assembl&eacute;e de l&#039;Institut. Aucun droit ne serait donn&eacute; aux habitants, la gouvernance serait assur&eacute;e conjointement par le gouverneur militaire et le gouverneur envoy&eacute; par l&#039;Institut. Nous avons cependant &eacute;mis la volont&eacute; qu&#039;un d&eacute;lai maximal soit appliqu&eacute;, soit deux semaines, le temps que les troubles soient calm&eacute;s et que le titre de Siirtomi soit ensuite donn&eacute; &agrave; cette plan&egrave;te.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><strong>A l&#039;issue de sa pr&eacute;sentation, le silence se fit, et le pr&eacute;sident passa au vote de la proposition qui fut adopt&eacute;e.</strong></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />02/12/1021 ETU 19:11<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal290662')">Détails</a> <a href="javascript:warnpost(290662)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal290662" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=290662',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Gome&iuml;sa revenait de rencontres diplomatiques &agrave; r&eacute;p&eacute;tition. La guerre, l&#039;ouverture sectorielle, tout avait concouru &agrave; ce qu&#039;elle allait faire. Elle entra dans l&#039;assembl&eacute;e koirienne et s&#039;installa sur le si&egrave;ge de la pr&eacute;sidence tandis que les d&eacute;put&eacute;s restaient debout. elle fit un signe de t&ecirc;te au c&eacute;r&eacute;moniaire de l&#039;assembl&eacute;e qui prit la parole :</em></div><div class="post_line"></div><div class="post_line"><font color="#e8c500">&quot;D&eacute;put&eacute;s, la s&eacute;ance&nbsp;est ouverte.&quot;</font></div><div class="post_line"></div><div class="post_line"><em>L&#039;ensemble des d&eacute;put&eacute;s s&#039;assirent. Gome&Iuml;sa prit un papier et le lut.</em></div><div class="post_line"></div><div class="post_line"><font color="#005dc2"><strong>&quot;En vertu de la constitution koirienne, moi, Gome&iuml;sa, repr&eacute;sentante et pr&eacute;sidente, reconna&icirc;t que la gestion gouvernementale requiert une plus grande organisation et d&eacute;cide de mettre en place une gestion gouvernementale. Ainsi, quatre secr&eacute;tairies d&#039;Etat sont cr&eacute;es. A ce titre, le titre de Lord est cr&eacute;&eacute;, permettant la formation d&#039;une &eacute;lite politique, militaire et intellectuelle autour du gouvernement.</strong></font></div><div class="post_line"><font color="#005dc2"><strong>La secr&eacute;tairie d&#039;Etat au Tr&eacute;sor et aux Finances sera occup&eacute;e par le Lord Anton.</strong></font></div><div class="post_line"><font color="#005dc2"><strong>La secr&eacute;tairie d&#039;Etat &agrave; l&#039;Amiraut&eacute; sera occup&eacute;e par le Lord G&eacute;n&eacute;ral Verinus.</strong></font></div><div class="post_line"><font color="#005dc2"><strong>La secr&eacute;tairie d&#039;Etat &agrave; la D&eacute;fense sera occup&eacute;e par le Lord Crassus.</strong></font></div><div class="post_line"><font color="#005dc2"><strong>La secr&eacute;tairie d&#039;Etat aux Affaires Internes sera occup&eacute;e par la Lord Jensis.</strong></font></div><div class="post_line"><font color="#005dc2"><strong>La secr&eacute;tairie d&#039;Etat &agrave; la Repr&eacute;sentation Nationale sera occup&eacute;e par le pr&eacute;sident de l&#039;Assembl&eacute;e, Lord Custhom.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2"><strong>J&#039;ajoute que vingt-quatre autres personnalit&eacute;s parmi les esprits les plus brillants de notre civilisation ont &eacute;t&eacute; &eacute;lev&eacute; au rang de Lord. J&#039;ai &eacute;galement cr&eacute;&eacute; l&#039;acad&eacute;mie des Sciences et des Belles Lettres afin de promouvoir l&#039;acc&egrave;s au savoir des sages. Ainsi, les meilleurs &eacute;l&egrave;ves des diff&eacute;rentes plan&egrave;tes que composent la R&eacute;publique Koirienne pourront &eacute;tudier plus en avant dans cette acad&eacute;mie avant de rejoindre les Instituts Sup&eacute;rieurs de Formation (ISF) cr&eacute;&eacute;s sur chaque plan&egrave;te de la R&eacute;publique. Nous esp&eacute;rons ainsi former par ruissellement l&#039;ensemble de la population afin qu&#039;elle puisse participer activement aux d&eacute;cisions de l&#039;Etat.&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><em>Ayant fini sa lecture, elle se leva, entra&icirc;nant avec elle les d&eacute;put&eacute;s qui se lev&egrave;rent, puis quitta la salle marquant la fin de la s&eacute;ance.</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15838&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15838" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15838" name="d_reply_15838" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15838');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15838'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Pieni Koira</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

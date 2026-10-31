@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17452 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Apocalypsis war</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Apocalypsis war</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=SPQR">Cdt. SPQR</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/12447.jpg" style="width:105px;height:128px" alt="Avatar" /><br />03/11/1024 ETU 08:59</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D311796', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal311792')">Détails</a> <a href="javascript:warnpost(311792)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal311792" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 6<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=311792',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><a href="https://youtu.be/EogE-kZ5OHM?si=bJtaHKiugNXEZ3xN" target="_blank" rel="nofollow">Ambiance</a></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div><div class="post_line"><font color="#44b8ff">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Il y a bien longtemps dans une galaxie lointaine tr&egrave;s lointaine&hellip;.</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div><div class="post_line"></div><div class="post_line"><font color="#ffff00"><font size="4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; APOCALYPSIS WAR</font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffff00">&Eacute;pisode I</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffff00">Un nouvel espoir </font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffff00">C&rsquo;est une &eacute;poque de guerre civil et d&rsquo;invasion sectorielle. A bord de vaisseaux spatiaux op&eacute;rant &agrave; partir d&rsquo;une plan&egrave;te cach&eacute;e, les vestiges d&rsquo;une l&eacute;gion de guerriers d&#039;un empire perdu refond surface. Les soldats ont remport&eacute; leurs premi&egrave;res batailles contre des brigands mal fam&eacute; et conquis leurs premi&egrave;res plan&egrave;tes renomm&eacute;es Imp&eacute;rium&nbsp; elle fera la gloire d&rsquo;une nation longtemps disparue.</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffff00">Au cours de cette bataille les soldats ont retrouv&eacute; une technologie datant d&rsquo;une &eacute;poque r&eacute;volue. Le d&eacute;placement intra-system ! </font></div></div><div class="post_line"><div align="center"><font color="#ffff00">Gr&acirc;ce &agrave; cette d&eacute;couverte, ils vont pouvoir explorer les &eacute;toiles sans murs face &agrave; eux et enfin libre d&rsquo;&eacute;voluer en paix. </font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffff00">Mais la paix ne dure que peu&hellip;</font></div></div><div class="post_line"><div align="center"><font color="#ffff00">a peine les sacs &agrave; terre que des fripouilles de brigand se d&eacute;placent partout dans le syst&egrave;me pillant scrupuleusement les honn&ecirc;tes gens !</font></div></div><div class="post_line"><div align="center"><font color="#ffff00">Nos l&eacute;gions se l&egrave;veront une fois de plus et combattront avec rage pour conna&icirc;tre enfin un endroit serein et calme. Jusqu&#039;au jour o&ugrave;...</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=SPQR">Cdt. SPQR</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/12447.jpg" style="width:105px;height:128px" alt="Avatar" /><br />11/11/1024 ETU 07:27</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D312072', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal312071')">Détails</a> <a href="javascript:warnpost(312071)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312071" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 5<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312071',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><a href="https://youtu.be/BIFYYAUPCp0?si=eNf8aa2Izwu4aohy" target="_blank" rel="nofollow">Ambiance</a>&nbsp;</div><div class="post_line"></div><div class="post_line">Un l&eacute;gionnaire cour &agrave; toute allure dans les couloirs du croiseur. Une agitation se fait sentir &agrave; bord, des groupe de combat monte &agrave; bord de chasseur, de bombardiers et des escadrons de kamikaze quitte les hangars &agrave; toute allure. Les artilleurs se mettent en position de tir alors que l&rsquo;alarme retenti partout &agrave; l&rsquo;int&eacute;rieur.</div><div class="post_line"></div><div class="post_line">L&rsquo;homme arrive devant la salle de commandement a pas de course et rentre pr&eacute;cipitamment.</div><div class="post_line"></div><div class="post_line"><font color="#ff5f54">AVE LEGAT !</font> Hurla-t-il en saluant son sup&eacute;rieur qui se trouvait face &agrave; lui le dos tourn&eacute;. Le l&eacute;gat observ&eacute; une n&eacute;buleuse rouge depuis les grandes vitres blind&eacute;e du poste de commandement les mains dans le dos calme.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Parle l&eacute;gionnaire.</font> Ordonna-t-il d&rsquo;un ton autoritaire sans se retourner.</div><div class="post_line"></div><div class="post_line"><font color="#ff5f54">Nos &eacute;claireurs on trouver leurs positions et leurs flottes approche. Ils viennent pour r&eacute;cup&eacute;rer leurs mondes. </font></div><div class="post_line"><font color="#ff5f54">Nous estimons une large force de guerre en approche.</font></div><div class="post_line"></div><div class="post_line">Le legat Soros Polus Quintus Romus ce dirigeant sans un mot au panel de communication.</div><div class="post_line"></div><div class="post_line"><font color="#e8c500">Attention &agrave; toute la flotte de la XVeme L&eacute;gions. Ici votre L&eacute;gat. </font></div><div class="post_line"><font color="#ffffff">La voix de SPQR r&eacute;sonna dans tout les syst&egrave;mes de communication et haut parleur de la flotte du plus petit chasseur au plus gros croiseur de combat.</font></div><div class="post_line"></div><div class="post_line"><font color="#e8c500">Voil&agrave; des mois que nous nous sommes battus pour gagner cette terre au p&eacute;ril de beaucoup de nos fr&egrave;res, mais la bataille n&rsquo;est pas fini !</font></div><div class="post_line"><font color="#e8c500">Une importante force ennemie approche du syst&egrave;me. Nous avons toujours dit que leurs assauts &eacute;taient des raids, des escarmouche. Mais ne vous m&eacute;prenez pas nous sommes en guerre ! </font></div><div class="post_line"><font color="#e8c500">Depuis maintenant trop longtemps, ils respirent et leurs pr&eacute;sences dans nos syst&egrave;mes sont maintenant fini. Qu&rsquo;il vienne nous affronter, nous les attendons pr&ecirc;t pour en d&eacute;coudre. Une fois cette bataille termin&eacute;e, nous les traquerons jusqu&rsquo;au dernier jusqu&rsquo;&agrave; leurs r&eacute;pugnants trous.</font></div><div class="post_line"></div><div class="post_line"><font color="#e8c500">Nous allons commencer une purification&hellip; L&eacute;gionnaire aux armes !</font></div><div class="post_line"></div><div class="post_line">Au loin proche de la n&eacute;buleuse que regarder pr&eacute;c&eacute;demment le l&eacute;gat plusieurs centaines de vaisseaux sorte d&rsquo;hyperespace. Les deux flottes &eacute;tais maintenant face &agrave; face et la premi&egrave;re guerre allez commencer.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=SPQR">Cdt. SPQR</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/12447.jpg" style="width:105px;height:128px" alt="Avatar" /><br />12/11/1024 ETU 01:22</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D312092', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal312091')">Détails</a> <a href="javascript:warnpost(312091)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312091" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312091',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">HRP: je vous invite &agrave; jouer &nbsp;ambiances ci dessous pour une meilleur exp&eacute;rience musicale et d&rsquo;ambiance.</div><div class="post_line">https://youtu.be/IRvfRBjnlys?si=8e4zTMhhpoeKer_c</div><div class="post_line"></div><div class="post_line">Les secondes ressemblaient &agrave; des heures interminables. Chacun des hommes et des femmes &agrave; bord se tenait pr&ecirc;t &agrave; d&eacute;buter le combat. Certains priaient une derni&egrave;re fois, d&rsquo;autres regardaient le spectacle offert par cet amas de croiseurs qui s&rsquo;approchaient petit &agrave; petit.</div><div class="post_line">Face &agrave; eux, les croiseurs ennemis ouvraient leurs hangars et crachaient des centaines de milliers de chasseurs. La gigantesque nu&eacute;e se dirigeait &agrave; toute allure vers la position des d&eacute;fenseurs.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Attendez mes ordres !</font></div><div class="post_line"></div><div class="post_line">Leurs l&eacute;gats observaient attentivement la situation pour analyser le plus vite possible les prochains coups &agrave; porter. Les chasseurs se rapprochaient de plus en plus, d&eacute;passant la ceinture d&rsquo;ast&eacute;ro&iuml;des de la plan&egrave;te. Plus que quelques centaines de kilom&egrave;tres avant le contact.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Attendez !</font></div><div class="post_line"></div><div class="post_line">Le moment est arriv&eacute; : voil&agrave; que les chasseurs adverses sont &agrave; port&eacute;e de tir.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Feu !</font></div><div class="post_line"></div><div class="post_line">Toute la flotte de la l&eacute;gion ouvrit le feu. Les canons laser retentirent, crachant le feu sans s&rsquo;arr&ecirc;ter, tandis que les chasseurs et bombardiers des d&eacute;fenseurs s&rsquo;&eacute;lan&ccedil;aient &agrave; la rencontre de leurs adversaires.</div><div class="post_line">Les explosions fus&egrave;rent : des centaines de chasseurs furent d&eacute;truits en quelques secondes. Le silence et la noirceur de l&rsquo;espace commenc&egrave;rent &agrave; s&rsquo;&eacute;clairer de milliers de tirs laser.</div><div class="post_line">Le combat faisait rage. Les croiseurs adverses se rapprochaient et ouvraient le feu &agrave; leur tour.</div><div class="post_line">Des fr&eacute;gates-b&eacute;liers s&rsquo;&eacute;lanc&egrave;rent pour enfoncer les croiseurs, tandis que des bombardements &eacute;taient effectu&eacute;s de part et d&rsquo;autre pour d&eacute;sactiver les boucliers magn&eacute;tiques des vaisseaux. Des escadrilles kamikazes se faufilaient entre les combats, terminant leur course sur les coques des vaisseaux capitaux ennemis, en en faisant sombrer plusieurs.</div><div class="post_line"></div><div class="post_line">Les &eacute;clats de lumi&egrave;re dansaient dans le vide de l&rsquo;espace alors que le combat faisait rage. La flotte de la l&eacute;gion, bien que nombreuse, commen&ccedil;ait &agrave; ressentir la pression des attaques ennemies. Les croiseurs adverses &eacute;taient plus nombreux et plus puissants, et leurs chasseurs semblaient se multiplier &agrave; l&rsquo;infini, couvrant le ciel stellaire comme une nu&eacute;e de frelons pr&ecirc;ts &agrave; piquer.</div><div class="post_line"></div><div class="post_line"><font color="#ff4136">&ldquo;Position de d&eacute;fense ! Tenez la ligne !&rdquo;</font> hurla un des commandants.</div><div class="post_line"></div><div class="post_line">Les fr&eacute;gates-b&eacute;liers, v&eacute;ritable rempart de la flotte, subissaient de lourdes pertes, mais continuaient de se pr&eacute;cipiter sur les croiseurs ennemis, leurs r&eacute;acteurs rugissant &agrave; plein r&eacute;gime. Les impacts des tirs laser faisaient vibrer leur coque, mais elles r&eacute;sistaient, abattant un par un les vaisseaux ennemis les plus proches. Leurs canons se d&eacute;cha&icirc;naient, balayant les chasseurs ennemis comme des f&eacute;tus de paille.</div><div class="post_line"></div><div class="post_line">Au centre de la bataille, les chasseurs de la l&eacute;gion formaient une vague irr&eacute;sistible, leurs pilotes concentr&eacute;s sur leur t&acirc;che, repoussant les vagues ennemies. Mais alors qu&rsquo;un escadron se pr&eacute;parait &agrave; lancer un assaut d&eacute;cisif, un vaisseau ennemi &eacute;mergea de l&rsquo;ombre de la bataille, gigantesque et mena&ccedil;ant : un cuirass&eacute; d&rsquo;une taille colossale, portant le pavillon de l&rsquo;ennemi supr&ecirc;me.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">&ldquo;Tous les vaisseaux, concentrez le feu sur ce cuirass&eacute; ! Ne le laissez pas s&rsquo;approcher !&rdquo;</font> ordonna le&nbsp;l&eacute;gat, la voix vibrante d&rsquo;urgence.</div><div class="post_line"></div><div class="post_line">Le cuirass&eacute; se dirigeait lentement vers le c&oelig;ur de la formation d&eacute;fensive, ses boucliers brillants et invincibles. Chaque tir qu&rsquo;il recevait semblait rebondir sur son armure renforc&eacute;e.</div><div class="post_line"></div><div class="post_line"><font color="#ff4136">&ldquo;Les boucliers sont inaccessibles ! Il faut frapper ses points faibles !&rdquo;</font> cria un pilote dans son micro, d&eacute;sesp&eacute;r&eacute;.</div><div class="post_line"></div><div class="post_line">Les explosions r&eacute;sonnaient partout autour de lui, mais il restait concentr&eacute;. Il se faufila entre les vaisseaux ennemis, &eacute;vitant de justesse un tir mortel avant de prendre un virage serr&eacute;, s&rsquo;&eacute;loignant du cuirass&eacute; pour se mettre en position id&eacute;ale.</div><div class="post_line"></div><div class="post_line"><font color="#ff4136">&ldquo;S&rsquo;il faut mourir pour la victoire, alors que ce soit ici !&rdquo;</font> murmura-t-il.</div><div class="post_line"></div><div class="post_line">&Agrave; l&rsquo;autre bout du champ de bataille, un autre escadron se frayait un chemin vers un croiseur ennemi, mais &agrave; chaque seconde qui passait, le nombre d&rsquo;ennemis augmentait. L&rsquo;espace autour d&rsquo;eux semblait se r&eacute;tr&eacute;cir, chaque man&oelig;uvre devenant plus difficile, plus d&eacute;sesp&eacute;r&eacute;e. Les pilotes se battaient avec la furie d&rsquo;animaux accul&eacute;s, pr&ecirc;ts &agrave; tout pour d&eacute;fendre leur monde.</div><div class="post_line"></div><div class="post_line">Et puis, au moment o&ugrave; tout semblait perdu, une nouvelle salve de lumi&egrave;re traversa le champ de bataille. D&rsquo;autres vaisseaux, non identifi&eacute;s, arriv&egrave;rent en renfort. Leur silhouette imposante se dessina dans l&rsquo;obscurit&eacute;. C&rsquo;&eacute;tait la flotte alli&eacute;e, arriv&eacute;e &agrave; la derni&egrave;re minute, l&rsquo;espoir renaissant dans le c&oelig;ur de chaque soldat de la l&eacute;gion.</div><div class="post_line"></div><div class="post_line"><font color="#ff4136">&ldquo;Renforts en approche ! Tenez bon !&rdquo;</font> hurla le commandant en voyant les nouveaux vaisseaux se d&eacute;ployer dans le ciel.</div><div class="post_line"></div><div class="post_line">Le moral des troupes se redressa instantan&eacute;ment. Le combat se poursuivit avec encore plus de violence, mais maintenant, la balance penchait en faveur des d&eacute;fenseurs. Les croiseurs ennemis reculaient, leurs lignes se brisant sous l&rsquo;assaut combin&eacute; des flottes alli&eacute;es. La bataille allait prendre un tournant d&eacute;cisif.</div><div class="post_line"></div><div class="post_line">Les renforts en approche n&rsquo;&eacute;taient pas un hasard, mais bien le fruit d&rsquo;une strat&eacute;gie de haut niveau. &Agrave; la t&ecirc;te de cette flotte de soutien se trouvait le l&eacute;gat Gaius fr&egrave;re de&nbsp;Soros Paulus Quintus Romus, un homme respect&eacute; pour sa ma&icirc;trise tactique et sa bravoure in&eacute;branlable. Depuis le pont de son vaisseau amiral, l&rsquo;Astre de la L&eacute;gion, il observait la bataille avec une froide intensit&eacute;. Ses yeux per&ccedil;aient l&rsquo;immensit&eacute; de l&rsquo;espace, scrutant la ligne de front, cherchant le moment pr&eacute;cis pour frapper.</div><div class="post_line"></div><div class="post_line">&ldquo;<font color="#ffdc00">Pr&eacute;parez-vous ! Nous attaquons maintenant,&rdquo;</font> ordonna-t-il d&rsquo;une voix calme, mais autoritaire, sa main serr&eacute;e sur le pupitre de commande. Il savait que chaque seconde comptait. &ldquo;Concentrez toute notre puissance de feu sur leur formation centrale. Ne laissez aucun vaisseau derri&egrave;re !&rdquo;</div><div class="post_line"></div><div class="post_line">Les vaisseaux alli&eacute;s r&eacute;pondirent instantan&eacute;ment &agrave; l&rsquo;ordre, se positionnant en formation serr&eacute;e, pr&ecirc;ts &agrave; lancer une offensive d&eacute;cisive. Les canons des croiseurs, des fr&eacute;gates et des destroyers crach&egrave;rent des salves mortelles, frappant de plein fouet les croiseurs ennemis qui se retrouvaient encercl&eacute;s. Les boucliers ennemis commenc&egrave;rent &agrave; fl&eacute;chir sous la pression des tirs incessants, et les croiseurs vacill&egrave;rent, certains explosant dans des &eacute;clats de lumi&egrave;re aveuglants.</div><div class="post_line"></div><div class="post_line">Cependant, ce n&rsquo;&eacute;tait pas suffisant. Le cuirass&eacute; ennemi, monstrueux dans sa taille et sa puissance, r&eacute;sistait toujours, repoussant les assauts de la l&eacute;gion. Les pilotes de chasseurs avaient d&eacute;j&agrave; subi de lourdes pertes, et malgr&eacute; les renforts, l&rsquo;issue de la bataille semblait encore incertaine.</div><div class="post_line"></div><div class="post_line">C&rsquo;est alors que Soros Paulus Quintus Romus, voyant la menace persister, prit une d&eacute;cision audacieuse. Il activa le code de lancement des escadrilles kamikazes.</div><div class="post_line"></div><div class="post_line">&ldquo;<font color="#ffdc00">Rassemblez toutes les escadrilles kamikazes disponibles. C&rsquo;est maintenant ou jamais. &Agrave; la mort, ou &agrave; la gloire !&rdquo;</font></div><div class="post_line"></div><div class="post_line">Un silence lourd r&eacute;gna sur la flotte, avant que les chasseurs kamikazes ne d&eacute;valent la passerelle comme un souffle de vent furieux. Des centaines de pilotes volontaires, pr&ecirc;ts &agrave; tout sacrifier pour la victoire, mont&egrave;rent dans leurs appareils. Leurs yeux br&ucirc;laient d&rsquo;une d&eacute;termination in&eacute;branlable.</div><div class="post_line"></div><div class="post_line">Les premiers chasseurs s&rsquo;&eacute;lanc&egrave;rent, se faufilant &agrave; travers les explosions et les tirs ennemis. Un flot de lumi&egrave;re verte et rouge illuminait l&rsquo;espace alors que les vaisseaux ennemis se retrouvaient engloutis dans la mer de destruction. Les kamikazes frapp&egrave;rent leurs cibles avec une pr&eacute;cision terrifiante, percutant les croiseurs et les vaisseaux capitaux avec une violence inou&iuml;e. Des explosions titanesques secouaient l&rsquo;espace, les g&eacute;ants m&eacute;talliques ennemis s&rsquo;effondrant sous la force des impacts.</div><div class="post_line"></div><div class="post_line">Les vaisseaux ennemis qui composaient la t&ecirc;te de la formation se bris&egrave;rent en morceaux. Des pans entiers de coques se d&eacute;tach&egrave;rent dans l&rsquo;espace, emportant avec eux une partie de la flotte ennemie. Le cuirass&eacute;, frapp&eacute; de plein fouet par plusieurs chasseurs kamikazes qui perc&egrave;rent ses boucliers, commen&ccedil;a &agrave; chanceler. Des incendies se d&eacute;clar&egrave;rent &agrave; bord, les syst&egrave;mes vitaux se d&eacute;sactivant les uns apr&egrave;s les autres.</div><div class="post_line"></div><div class="post_line"><font color="#ff4136">&ldquo;Le cuirass&eacute; est &agrave; nous ! Il tombe !&rdquo;</font> cria un officier dans la salle des communications.</div><div class="post_line"></div><div class="post_line">Mais Romus ne rel&acirc;cha pas sa vigilance. M&ecirc;me si la bataille semblait tourner en leur faveur, il savait que tant que le vaisseau amiral ennemi &eacute;tait en vie, la victoire ne serait pas assur&eacute;e. Il ordonna une derni&egrave;re salve de tirs concentr&eacute;s sur le vaisseau d&eacute;faillant. En quelques secondes, le cuirass&eacute; explosa dans une d&eacute;flagration gigantesque, engloutissant tout sur son passage.</div><div class="post_line"></div><div class="post_line"><font color="#ff4136">&ldquo;Victoire !&rdquo;</font> hurla-t-on &agrave; bord du l&rsquo;Astre de la L&eacute;gion, alors que les derniers ennemis &eacute;taient an&eacute;antis. Les quelques vaisseaux survivants se repli&egrave;rent, bris&eacute;s et d&eacute;sorganis&eacute;s, ne laissant derri&egrave;re eux qu&rsquo;un champ de d&eacute;bris.</div><div class="post_line"></div><div class="post_line">Le silence, lourd et solennel, s&rsquo;installa &agrave; nouveau dans l&rsquo;espace. Les pilotes de la l&eacute;gion, couverts de sueur et &eacute;puis&eacute;s par l&rsquo;intensit&eacute; du combat, se rassembl&egrave;rent autour de leur l&eacute;gat. Soros Paulus Quintus Romus, bien que satisfait, n&rsquo;afficha ni joie ni triomphe.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">&ldquo;Nous avons pay&eacute; un lourd tribut, mais cette victoire appartient &agrave; ceux qui ont sacrifi&eacute; leur vie pour la d&eacute;fense de notre peuple. Que leur sacrifice ne soit jamais oubli&eacute;.&rdquo;</font></div><div class="post_line"></div><div class="post_line">Il se tourna ensuite vers son pont, donnant des ordres pour la r&eacute;cup&eacute;ration des d&eacute;bris et l&rsquo;organisation des soins aux bless&eacute;s. La guerre n&rsquo;&eacute;tait pas encore finie, mais cette victoire marquait un tournant dans la lutte contre l&rsquo;envahisseur. La l&eacute;gion avait triomph&eacute;, mais &agrave; quel prix ?</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17452&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17452" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17452" name="d_reply_17452" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17452');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17452'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Apocalypsis war</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

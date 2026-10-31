@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17777 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Nouvelle &egrave;re</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouvelle &egrave;re</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ar%27anoak">Cdt. Ar&#039;anoak</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/12751.jpg" style="width:128px;height:73px" alt="Avatar" /><br />07/12/1025 ETU 05:59</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal317474')">Détails</a> <a href="javascript:warnpost(317474)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal317474" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=317474',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font size="5">Promotion&hellip;</font></strong></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Depuis le vaisseau Amiral en orbite de la plan&egrave;te <strong>Ma&iuml;t&eacute;a</strong>, il regardait par del&agrave; la baie.&nbsp;Loin dans ces pens&eacute;es, il revoyait pour la XI&egrave;me fois le tumulte des combats, l&#039;explosion des bombes fracassant le sol des plan&egrave;tes, les &eacute;clairs, les cris des bless&eacute;es et mourants, le sifflement des tirs laser, les corps &agrave; corps sabre &agrave; la main.&nbsp;</font></div><div class="post_line"><font color="#bbbbbb">Un bruit sur la passerelle le ramena au pr&eacute;sent. Ecoutant d&rsquo;une oreille distraite, les &eacute;changes entre le <strong>CONTROL</strong> et les vaisseaux en approche, son regard accrocha au loin&nbsp;l&rsquo;escadre de chasseurs&nbsp;qui apparaissaient.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Leader <strong>One TWIN SUNS</strong> &agrave; <strong>CONTROL</strong> pour demande autorisation appontage</font></div><div class="post_line"><font color="#e8b6ef">- <strong>CONTROL</strong> &agrave; <strong>TWIN SUNS</strong> demande accept&eacute;e, pr&eacute;sentez vous PORTE 5.</font></div><div class="post_line"><font color="#fff5b3">- Re&ccedil;u <strong>CONTROL</strong> on va faire un petit passage avant</font></div><div class="post_line"><font color="#e8b6ef">- <strong>CONTROL</strong> &agrave; Leader<strong> One TWIN SUN</strong> demande refus&eacute;e, je r&eacute;p&egrave;te demande refus&eacute;e</font></div><div class="post_line"><font color="#fff5b3">- <strong>CONTROL</strong>, BRZZZZ, BRZZZ,.....&nbsp;<strong>CONTROL....&nbsp; &nbsp;</strong>je BRZZZ re&ccedil;oit&hellip;..&nbsp; &nbsp; &hellip;..plus&hellip;&hellip;&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Et au m&ecirc;me instant, huit <strong>AilesX</strong> pass&egrave;rent &agrave; grande vitesse au ras de l&rsquo;avant du vaisseau surprenant les personnels pr&eacute;sents sur la passerelle.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le <strong>Commodore</strong> se retournant vers le Lieutenant de quart &agrave; la radio, lui dit.</font></div><div class="post_line"><font color="#d9f4ff">- Lieutenant, convoquez moi le <strong>Commandant Azken</strong> dans mon bureau.</font></div><div class="post_line"><font color="#e8b6ef">- Bien&nbsp; Commodore.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Et se levant, il sortit de la passerelle.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb"><strong>Corto</strong> se d&eacute;p&ecirc;chait. Son p&egrave;re n&rsquo;&eacute;tait gu&egrave;re patient. Il allait probablement se prendre une bonne souffl&eacute;e suite &agrave; son passage au ras du vaisseau Amiral. Un plaisir qu&rsquo;il ne pouvait s&rsquo;emp&ecirc;cher &agrave; chaque retour de mission, histoire de se d&eacute;tendre. Bon, apr&egrave;s tout ce ne serait qu&rsquo;une fois de plus, se dit-il.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le garde &agrave; la porte le voyant arriver, ouvrit celle-ci. <strong>Corto</strong> frappa sur la porte et entra aussit&ocirc;t.</font></div><div class="post_line"><font color="#bbbbbb">Son p&egrave;re assit &agrave; son bureau leva la t&ecirc;te et dit.</font></div><div class="post_line"><font color="#d9f4ff">- Entre <strong>Corto.</strong>&nbsp;Comment c&rsquo;est pass&eacute;e ta mission ?</font></div><div class="post_line"><font color="#fff5b3">- Agit&eacute;, nous &eacute;tions sur le point de destination pr&eacute;s de la barri&egrave;re d&rsquo;<strong>Ast&eacute;ro&iuml;de d&rsquo;Avar</strong> quand trois vaisseaux d&rsquo;origine inconnue nous sont tomb&eacute;s sur le dos. Heureusement pour nous, ils ne s&rsquo;attendaient &agrave; se retrouver face &agrave; nos AilesX si v&eacute;loce et maniable. Nous les avons repouss&eacute; et mit en fuite, en d&eacute;truisant un et mettant &agrave; mal un deuxi&egrave;me. Mais dis moi, P&egrave;re, tu avais quelque chose d&rsquo;important &agrave; me dire pour m&rsquo;avoir convoqu&eacute; ici ?</font></div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">- Oui et non, d&eacute;j&agrave; pour te voir, ce qui n&rsquo;est pas fr&eacute;quent depuis quelque temps.</font><font color="#bbbbbb"> &Eacute;tait&nbsp;ce le reproche qu&rsquo;il passait beaucoup de temps en mission et le reste &agrave; s&rsquo;amuser dans les bars, pensa <strong>Corto</strong>. Mais son p&egrave;re continuait...</font></div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">- Et puis aussi pour t&rsquo;annoncer que j&rsquo;ai donn&eacute; ma d&eacute;mission de mon poste de Commandement.</font></div><div class="post_line"><font color="#fff5b3">- Mais pourquoi ? Rien ne te presse !</font></div><div class="post_line"><font color="#d9f4ff">- J&rsquo;ai besoin de me reposer, mais l&agrave; n&rsquo;est pas la question. Suite &agrave; ma d&eacute;mission, le <strong>Pr&eacute;sident Beyria</strong> m&rsquo;a appel&eacute; et nous avons parl&eacute; d&#039;un&nbsp;rempla&ccedil;ant possible. Enfin, le <strong>Comit&eacute; des Cents</strong> a approuv&eacute; un nouveau Commodore pour prendre ma place. C&rsquo;est toi, ils t&rsquo;ont nomm&eacute; officiellement au poste. Mes f&eacute;licitations.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Mais enfin P&egrave;re, nous en avons d&eacute;j&agrave; parl&eacute; et tu sais que je ne suis pas int&eacute;ress&eacute;. Je ne souhaite pas&hellip;</font></div><div class="post_line"><font color="#d9f4ff">- Tes souhaits, mon fils n&rsquo;entre pas en compte l&agrave; dedans.</font><font color="#bbbbbb"> R&eacute;pondit son p&egrave;re montant le ton. </font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb"><strong>Corto</strong> qui &eacute;tait rest&eacute; debout, d&eacute;courag&eacute; s&rsquo;assit sur la chaise devant lui.</font></div><div class="post_line"><font color="#d9f4ff">- Et ce n&rsquo;est pas tout !</font><font color="#bbbbbb"> Continua son p&egrave;re.</font></div><div class="post_line"><font color="#fff5b3">- Vas-y, que pourrait-il y avoir de pire ?</font></div><div class="post_line"><font color="#d9f4ff">- Eh bien, le <strong>Pr&eacute;sident Beyria</strong> souhaite donner une r&eacute;ception en l&rsquo;honneur du rapprochement entre nos deux peuples. Les dirigeants de toutes les Familles Ar&rsquo;anoakiennes seront pr&eacute;sent et nous sommes invit&eacute;s.</font></div><div class="post_line"><font color="#fff5b3">- Ah la totale, tu sais ce que je pense de ces pinces fesses !!!</font></div><div class="post_line"><font color="#d9f4ff">-Oui je le sais que trop, mais c&rsquo;est comme &ccedil;a, tu mettras ton plus beau costume et ton meilleur sourire.</font></div><div class="post_line"><font color="#fff5b3">- Est-ce tout, p&egrave;re ?</font></div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">- Eh, une petite chose pour finir. Qu&rsquo;en est-il du t&eacute;l&eacute;pathe envoy&eacute; par le Pr&eacute;sident ?</font></div><div class="post_line"><font color="#fff5b3">- Eh bien, pour &ecirc;tre tout &agrave; faite honn&ecirc;te,</font><font color="#bbbbbb"> r&eacute;pondit <strong>Corto</strong> en souriant. </font><font color="#fff5b3">il m&#039;&eacute;tonne et m&ecirc;me&nbsp;m&rsquo;impressionne. Il m&rsquo;a enseign&eacute; des techniques de contr&ocirc;le me permettant de ressentir si un t&eacute;l&eacute;pathe cherche &agrave; lire mon esprit. Il dit que je suis tr&egrave;s r&eacute;ceptif. Cela pourrait venir de mon h&eacute;r&eacute;dit&eacute; g&eacute;nique.</font></div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">- Hum&hellip; Bien, c&rsquo;est parfait !</font><font color="#bbbbbb"> R&eacute;pondit vivement son p&egrave;re, il avait bien une id&eacute;e mais se tue.&nbsp;Se levant et faisant le tour de son bureau, il prit son fils, qui venait de se redresser, par l&rsquo;&eacute;paule et lui dit. </font></div><div class="post_line"><font color="#d9f4ff">- Allons au bar, nous avons besoin de nous d&eacute;tendre&hellip;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ar%27anoak">Cdt. Ar&#039;anoak</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/12751.jpg" style="width:128px;height:73px" alt="Avatar" /><br />24/12/1025 ETU 03:55</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal317701')">Détails</a> <a href="javascript:warnpost(317701)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal317701" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=317701',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff5f54"><strong><font size="5">Harri&nbsp;Gorriak&hellip;</font></strong></font></div><div class="post_line"><font color="#ff5f54">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font><font size="3"><strong><font color="#ff5f54">&nbsp;Les Brigands...</font></strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Corto accompagn&eacute; de son ami John suivait des yeux le balai des&nbsp; invit&eacute;s allant d&rsquo;un groupe &agrave; l&rsquo;autre dans la grande salle de r&eacute;ception du b&acirc;timent Pr&eacute;sidentiel. La soir&eacute;e se d&eacute;roulait dans une ambiance feutr&eacute;e.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">- Dites te moi Commodore, appr&eacute;ciez vous votre soir&eacute;e ?</font><font color="#bbbbbb"> demanda John un petit sourire au l&egrave;vres.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Arr&ecirc;te tes conneries John, tu sais bien ce que j&rsquo;en pense et ne m&rsquo;appelle pas par mon grade.</font></div><div class="post_line"><font color="#7fdbff">- Ok, ok , Corto, c&rsquo;est tout de m&ecirc;me une soir&eacute;e pour f&ecirc;ter ta nomination.</font></div><div class="post_line"><font color="#fff5b3">- Oui je sais et je leur en suis reconnaissant mais tu sais bien que je ne suis gu&egrave;re &agrave; l&rsquo;aise&hellip;</font><font color="#bbbbbb"> Une petite sonnerie discr&egrave;te se fit entendre. Prompt, Corto porta &agrave; l&rsquo;oreille son appareil de communication et r&eacute;pondit.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Corto, j&rsquo;&eacute;coute&hellip;</font></div><div class="post_line"><font color="#ff30dc">- &hellip;&hellip;&hellip;.</font></div><div class="post_line"><font color="#fff5b3">- Non Colonel, je ne suis pas sur le COBRA, je suis &agrave; la Pr&eacute;sidence sur Ma&iuml;t&eacute;a, laissez moi le temps d&rsquo;y retourner et je vous rappelle.</font><font color="#bbbbbb"> Et il raccrocha&hellip;</font></div><div class="post_line"><font color="#bbbbbb">John qui regardait son ami, vit le changement sur son visage qui venait de s&rsquo;assombrir.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Nous avons un gros souci John, il s&rsquo;agit de la plan&egrave;&hellip; </font><font color="#bbbbbb">Au m&ecirc;me instant le Pr&eacute;sident Beyria arrivait vers eux.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff30dc">- Commodore je peux vous parler ? </font><font color="#bbbbbb">D</font><font color="#bbbbbb">it-il d&#039;une voie plus faible.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Bien sur&nbsp;Pr&eacute;sident. </font><font color="#bbbbbb">Et se tournant vers son ami.</font><font color="#fff5b3"> Je vous pr&eacute;sente le Commandant John Bayle, ami et Chef de la flotte <strong>INDEPENDANCE</strong>.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">- Ah enchant&eacute; Commandant, Commodore, je viens d&rsquo;avoir un appel du syst&egrave;me Sagittarius. La plan&egrave;te Harri&rsquo;Gorriak qui a rejoint il y a quelques cycles notre r&eacute;publique a subi des attaques coordonn&eacute;es d&rsquo;importantes flottes de Brigands. Elle vient de tomber dans leur main. Nous avons re&ccedil;u un SOS&nbsp;</font><font color="#ff56ff">et&nbsp;</font><font color="#ff56ff">depuis deux heures&nbsp; nous sommes sans nouvelles d&rsquo;eux.</font><font color="#bbbbbb"> Corto intervint.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Je viens moi-m&ecirc;me&nbsp; de recevoir un appel de la flotte stationn&eacute;e dans ce syst&egrave;me. Qui vous a pr&eacute;venu Pr&eacute;sident si je puis me permettre ?</font></div><div class="post_line"><font color="#ff56ff">- L&rsquo;appel &eacute;manait de la Princesse Elise de MENDIETAN&rsquo;IBILI. Son p&egrave;re, Roi et dirigeant de la plan&egrave;te a malheureusement &eacute;t&eacute; tu&eacute; dans les combats et nous sommes sans nouvelles d&#039;eux depuis deux heures, je m&rsquo;inqui&egrave;te aussi pour elle.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Nous allons rejoindre rapidement le vaisseau Amiral Pr&eacute;sident, pour analyser la situation. Malheureusement nos forces d&rsquo;interventions sont trop petites pour tenir t&ecirc;te au flot de Brigands pr&eacute;sents dans ce syst&egrave;me. Je vous rappelle d&egrave;s que j&rsquo;en sais plus.</font></div><div class="post_line"><font color="#ff56ff">- Bonne chance &agrave; vous Commodore.</font><font color="#bbbbbb"> Lui r&eacute;pondit le Pr&eacute;sident.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Dans la cabine consacr&eacute;e aux r&eacute;unions et conf&eacute;rences, une table HoloAff tr&ocirc;nait au milieu. Plusieurs grad&eacute;s autour de celle-ci s&rsquo;entretenaient tout en &eacute;tudiant l&rsquo;image 3D du Syst&egrave;me Sagittarius &agrave; l&rsquo;int&eacute;rieur duquel apparaissait la plan&egrave;te Harri&rsquo;Gorriak. John&nbsp;Bayle r&eacute;pondait &agrave; Corto.</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">- Notre flotte de Corvette est encore&nbsp;faible pour s&rsquo;attaquer aux Brigands, Corto.&nbsp;</font></div><div class="post_line"><font color="#7fdbff">-&nbsp;Sur place, nous avons une Escadre de Chasseurs mais l&agrave; encore, ils sont en petit nombre, insuffisants pour prendre le contr&ocirc;le complet et chasser tous les Brigands. Ce serait une mission Kamikaze sans &ecirc;tre certain de gagner. Nous risquons de tout perdre.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Corto examinait la configuration du Syst&egrave;me, une autre plan&egrave;te de la R&eacute;publique &eacute;tait relativement proche.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Dis-moi John, as-tu envoy&eacute; des Sondes en reconnaissance&nbsp;autour de la plan&egrave;te ?</font></div><div class="post_line"><font color="#7fdbff">- Oui, nous devrions avoir les r&eacute;sultats sous peu.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- J&rsquo;ai peut-&ecirc;tre une id&eacute;e, avons-nous les Clans l&agrave;-bas ?</font></div><div class="post_line"><font color="#7fdbff">- Ils ne nous disent pas toujours o&ugrave; ils sont mais je crois qu&rsquo;il y a un regroupement pas tr&egrave;s loin, ils doivent chercher&nbsp;une cible.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Contacte les, John et dis leur que nous avons besoin d&rsquo;eux.</font></div><div class="post_line"><font color="#7fdbff">- Ok, &agrave; quoi pense tu ?</font></div><div class="post_line"><font color="#bbbbbb">-</font><font color="#fff5b3"> Ils peuvent se glisser au travers des Brigands et faire suffisamment de mal et de pagaille au moment de l&rsquo;invasion pour que nos chasseurs r&eacute;ussissent peut-&ecirc;tre &agrave; reprendre la plan&egrave;te.</font><font color="#bbbbbb"> Et aussit&ocirc;t, il appuya sur la ligne directe avec la passerelle. Une voix lui r&eacute;pondit.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa339">- Passerelle, je vous &eacute;coute.</font></div><div class="post_line"><font color="#bbbbbb">-</font><font color="#fff5b3"> Commandant, nous prenons la route, direction Sagittarius, faites au plus vite et arriv&eacute;e en mode furtif &agrave; 0.1 AU - Z&eacute;ro point un Unit&eacute; Astronomique...</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ar%27anoak">Cdt. Ar&#039;anoak</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/12751.jpg" style="width:128px;height:73px" alt="Avatar" /><br />29/12/1025 ETU 02:31</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal317770')">Détails</a> <a href="javascript:warnpost(317770)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal317770" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=317770',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff4136"><font size="6"><strong>Harri&nbsp;Gorriak&hellip;</strong></font></font></div><div class="post_line"><font color="#ff4136">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong><font size="3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font><font size="4">Lib&eacute;ration&hellip;</font></strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Deux cycles plus tard, l&rsquo;op&eacute;ration &eacute;tait en cours. L&rsquo;espace autour de la plan&egrave;te &eacute;tait stri&eacute; des tirs de&nbsp;Phasers ciblant les vaisseaux et des multitudes d&rsquo;explosions. Les Clans avaient tous r&eacute;pondu pr&eacute;sent. Ils faisaient un travail formidable, s&#039;infiltrant au milieu des&nbsp;</font><font color="#bbbbbb"><strong>Fr&eacute;gates Brigands</strong>, puis les</font><font color="#bbbbbb">&nbsp;d&eacute;truisant, celles-ci&nbsp;ne comprenaient pas ce qu&rsquo;il leur arrivait, au point de se d&eacute;truire m&ecirc;me entre elles.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Du <strong>COBRA</strong>, <strong>Corto</strong> avait pilot&eacute; les op&eacute;rations. Dans la confusion provoqu&eacute;e par les Clans, les Chasseurs &eacute;taient intervenus sur les points cl&eacute;s, bombardant les camps Brigands, pris &agrave; partis par une faible et d&eacute;sorganis&eacute;e&nbsp;d&eacute;fense sol-air.&nbsp; Puis ils avaient appuy&eacute;&nbsp;les troupes lors du d&eacute;barquement et les op&eacute;rations au sol. L&rsquo;effet de surprise &eacute;tait total, les soldats avaient trouv&eacute; des villes partiellement d&eacute;truites, un carnage. Les morts des combats pr&eacute;c&eacute;dents jonchaient encore les rues. Les Brigands dans des &eacute;tats d&rsquo;&eacute;bri&eacute;t&eacute;s avanc&eacute;s f&ecirc;taient leur victoire et&nbsp; continuaient leur &oelig;uvre de pillage, de meurtres et viols sur tout ce qui bougeait et r&eacute;sistait. </font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Corto ne pouvant se r&eacute;signer &agrave; rester sur le vaisseau Amiral, avait pris le commandement d&rsquo;une escadre d&rsquo;AileX et d&eacute;barqu&eacute; sur la Capitale. Celle-ci fortement d&eacute;truite &eacute;tait en feu. Les lasers sifflaient dans tous les sens, ponctuaient par les explosions, les cris des combattants, voir des bless&eacute;s. Aussit&ocirc;t atterri, un d&eacute;tachement des troupes d&rsquo;invasion l&rsquo;accueilli. Un capitaine s&rsquo;avan&ccedil;a vers lui, surpris. Il le salua.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">- Commodore, vou&hellip;</font></div><div class="post_line"><font color="#fff5b3">- O&ugrave; en &ecirc;tes-vous Capitaine ? le Palais du Roi est t-il lib&eacute;r&eacute; ?</font></div><div class="post_line"><font color="#c3ffff">- Il y a encore des poches de r&eacute;sistance mais globalement oui. Voulez vous y aller ? Nous y allions et pouvons vous accompagner.</font></div><div class="post_line"><font color="#fff5b3">- Bien Capitaine en route. </font><font color="#bbbbbb">et aussit&ocirc;t la petite troupe se dirigea vers le centre...</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Quelques vingtaines de minutes plus tard, progressant prudemment parfois sous le feu de tireurs isol&eacute;s, ils p&eacute;n&eacute;traient dans le palais. D&eacute;s l&rsquo;entr&eacute;e de celui-ci pass&eacute;, on acc&eacute;dait &agrave; une cour relativement grande. Un QG venait d&rsquo;y &ecirc;tre mis en place. Un Colonel, Chef du dispositif s&rsquo;avan&ccedil;a vers le Commodore le reconnaissant. Il salua d&rsquo;un geste rapide et dit.</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">- Mes respects Commodore.</font></div><div class="post_line"><font color="#fff5b3">- Bonjour Colonel, o&ugrave; en &ecirc;tes vous ?</font></div><div class="post_line"><font color="#e8b6ef">- La ville est entre nos mains, nous ratissons pour &eacute;liminer les poches de r&eacute;sistance. Notre probl&egrave;me actuellement est le tri des civiles.</font></div><div class="post_line"><font color="#fff5b3">- Pourquoi donc ?</font><font color="#bbbbbb"> Demanda Corto.</font></div><div class="post_line"><font color="#e8b6ef">- Beaucoup de Brigands se voyant pris se sont fondus dans la population.</font></div><div class="post_line"><font color="#fff5b3">- Ne perdez pas trop de temps l&agrave;-dessus Colonel, c&rsquo;est la population qui r&eacute;glera le probl&egrave;me vu ce qu&rsquo;ils ont subi.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Juste derri&egrave;re eux une troupe de soldats escortait des prisonniers enchain&eacute;s. Parmi ceux-ci, une jeune femme invectivait les soldats et se d&eacute;battait.</font></div><div class="post_line"><font color="#bbbbbb">Corto du coin de l&rsquo;&oelig;il, voyait passer le groupe dont la jeune femme continuait &agrave; se d&eacute;battre.</font></div><div class="post_line"><font color="#bbbbbb">Le Commodore se dirigeant vers le sergent responsable lui adressa la parole.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Sergent dites moi, d&rsquo;o&ugrave; viennent vos prisonniers ?</font></div><div class="post_line"><font color="#b3d5f4">- Des ge&ocirc;les du Palais, Commodore.</font></div><div class="post_line"><font color="#fff5b3">- Vous pensez que se sont des Brigands ?</font></div><div class="post_line"><font color="#b3d5f4">- Plut&ocirc;t des prisonniers de droit commun Commodore, mais il y a peut-&ecirc;tre parmi eux des Brigands.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Entendant le titre, la jeune &eacute;nerv&eacute;e, intervint aussit&ocirc;t, criant plus qu&rsquo;elle parlait.</font></div><div class="post_line"></div><div class="post_line"><font color="#c0f0c6">Commodore ? Commodore Azken ! </font><font color="#bbbbbb">Un soldat pr&eacute;s d&rsquo;elle lui donna un grand coup dans le dos la projetant &agrave; terre en disant.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">- Tais-toi train&eacute;e !</font><font color="#bbbbbb"> Corto bousculant le soldat lui dit.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Calmez vous ou je vous fais mettre aux arr&ecirc;ts soldat.</font><font color="#bbbbbb"> Et s&rsquo;adressant &agrave; la jeune femme.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Qui &ecirc;tes vous, comment connaissez-vous mon nom ?</font></div><div class="post_line"><font color="#c0f0c6">- Princesse Elise de MEND&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le Soldat qui voulait se rattraper, intervint. </font></div><div class="post_line"><font color="#ffdbbb">- Elle nous r&eacute;p&egrave;te cela en boucle et moi je suis Pr&eacute;sident de la&hellip;</font></div><div class="post_line"><font color="#fff5b3">- Vous, vous &ecirc;tes un &acirc;ne Soldat, d&eacute;tachez l&agrave; vite.</font><font color="#bbbbbb"> Corto venait difficilement mais tout de m&ecirc;me de reconnaitre la Princesse sous ces haillons. Il s&rsquo;avan&ccedil;ant vers elle, voulant l&rsquo;aider &agrave; se relever en la soutenant, mais d&rsquo;un geste brusque, elle s&rsquo;&eacute;carta et se redressa.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- D&eacute;sol&eacute; Demoiselle mais nos soldats ne vous connais&hellip;</font></div><div class="post_line"><font color="#c0f0c6">- Princesse Elise de MENDIETAN&rsquo;IBILI.</font><font color="#bbbbbb"> Interrompit celle-ci en terminant de se redresser. </font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Corto eut discr&egrave;tement un petit sourire. La Dame a encore du mordant, se dit-il.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Enchant&eacute; Princesse,</font><font color="#bbbbbb"> r&eacute;pondit-il et poursuivant.</font></div><div class="post_line"><font color="#fff5b3">- Si vous le souhaitez, je peux vous faire accompagner jusqu&rsquo;au vaisseau Amiral o&ugrave; vous pourrez vous reposer...</font></div><div class="post_line"><font color="#c0f0c6">- Il n&rsquo;est pas temps pour moi de me reposer, je d&eacute;sire retourner au palais et m&rsquo;occuper des bless&eacute;s &hellip;</font></div><div class="post_line"><font color="#fff5b3">- Bien, je donne des ordres pour que nos &eacute;quipes m&eacute;dicales se d&eacute;ploient sous vos ordres. Vous aurez aussi un Escadron complet de Soldats d&rsquo;&eacute;lites Ar&rsquo;anoakien pour vous prot&eacute;ger&hellip;</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17777&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17777" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17777" name="d_reply_17777" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17777');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17777'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouvelle &egrave;re</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

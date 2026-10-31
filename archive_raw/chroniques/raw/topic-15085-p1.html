@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15085 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Ailleurs.</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Ailleurs.</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Beeblewizz">Cdte. Beeblewizz</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10842.jpg" style="width:98px;height:128px" alt="Avatar" /><br />15/06/1020 ETU 17:39<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D276531', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal276528')">Détails</a> <a href="javascript:warnpost(276528)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal276528" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=276528',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Un soleil timor&eacute; vint percer la croute nuageuse de ce matin de Sibor. </strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>L&#039;&eacute;pais manteau gris, &eacute;tendu sur les plaines depuis plus d&#039;une semaine d&eacute;j&agrave;, entretenait une terre noire, en sommeil, qui attendait d&#039;endurer le rigoureux hiver continental pour rena&icirc;tre de plus belle dans un printemps encore trop lointain pour y penser. </strong></div></div><div class="post_line"><div align="justify"><strong>Depuis les collines de Dunwall s&#039;offrait une vue sur une mer sombre et terreuse taill&eacute;e pour le labour, le b&eacute;tail et les chants de paysans aujourd&#039;hui clo&icirc;tr&eacute;s dans leurs chaumi&egrave;res. En leur sein vivait un feu salvateur pour ces habitants, seul r&eacute;confort en ces lieux ou l&#039;Empire n&rsquo;&eacute;tait qu&#039;un terme vague au flou lointain. Au loin, flirtant avec le manteau laiteux transperc&eacute; hasardeusement par quelques rais solaires, un vol de corbeaux, retardataires des migrations annuelles, voletait avec bravoure dans le froid naissant de l&#039;automne. </strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Seule trace de vie embrassant le regard du voyageur, ce vol proph&eacute;tique, tant&ocirc;t charognard, tant&ocirc;t messager des Dieux, laissait-il entrevoir quelque funeste destin&eacute;e ou au contraire quelques proph&eacute;tique av&egrave;nement ? Nul ici ne pouvait le dire : la Capitale Imp&eacute;riale et leurs pr&ecirc;tres-oracles &eacute;taient trop loin pour percer les voiles de cette migration</strong><strong> d&#039;arri&egrave;re garde</strong><strong>, dont l&rsquo;&oelig;il embrassait toute l&#039;&eacute;tendue de ce territoire de Berendor.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>L&#039;un des corbeau, un jeune adulte, osa se poser sur la</strong><strong> branche de l&#039;un des h&ecirc;tres gardant Dunwall et ses collines. Affam&eacute;, il entama l&#039;un des derniers faines non tomb&eacute; de l&#039;arbre.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><u><strong>Une pierre vola dans les airs.</strong></u></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>L&#039;oiseau tomba sans un bruit, comme si la terre avait accueilli l&#039;h&ocirc;te du ciel en son sein avec b&eacute;n&eacute;diction. Un craquement de semelles sur des branches mortes se fit entendre de l&#039;un des buissons environnants et finalement, une jeune fille fit son apparition.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Elle portait l&#039;habit paysan, sans toutefois laisser voir une quelconque f&eacute;minit&eacute; dans son accoutrement : des braies venaient tenir des jambes robustes et taill&eacute;es pour l&#039;effort des champs, supportant une large taille propice &agrave; l&#039;enfantement, laissant entrevoir un indice quand &agrave; son &acirc;ge. Pas plus haute que le buisson dont elle s&rsquo;&eacute;tait extirp&eacute;e, elle avait les traits ronds et l&rsquo;&oelig;il bravache des gens de sa race. Une jeune poitrine mal dissimul&eacute;e par des habits se rapprochant de la guenille et malmen&eacute;e par des jours de disette venait conclure le portrait de la petite halfeline.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Arborant un sourire qui laissait transparaitre la fiert&eacute; de son tir, elle ramassa le volatile : celui-</strong><strong>ci battit encore trois fois des ailes avant qu&#039;un craquement sec ne vint mettre definitivement </strong><strong>un terme &agrave;</strong><strong> ses souffrances.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#F551FF"><em>&quot;Remerci&eacute;s la Terre et le Ciel pour ce repas. Remerci&eacute; l&#039;Empereur pour m&#039;accorder le droit de vivre. Hier, Aujourd&#039;hui, Demain.&quot;</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Elle accrocha son butin &agrave; sa ceinture et, voyant le jour d&eacute;cliner, elle reprit le chemin du retour en longeant le chemin de terre couvrant les collines, menant &agrave; la plaine et ses chaumi&egrave;res.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">-------</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Carotte, patates, choux, navet : la marmite faisait mijoter le tout dans un bouillon qu&#039;un morceau de lard avait graiss&eacute; avec force &eacute;conomie. Il allait manquer un peu de viande &agrave; table, mais ils avaient l&#039;habitude, et ce n&rsquo;&eacute;tait pas le paysan assis dans un bloc de bois taill&eacute; en fauteuil, pipe en main, qui allait se plaindre : l&#039;automne &eacute;tait ainsi, saison tant&ocirc;t </strong><strong>de braconnage, tant&ocirc;t</strong><strong> de rationnement. </strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Alors qu&#039;il m&eacute;ditait aux nombreux hivers qu&#039;il avait d&eacute;j&agrave; vu passer, le bonhomme entendit le bruit ami d&#039;un portail grin&ccedil;ant joyeusement, annonciateur du retour de la gamine. Sans bouger de son fauteuil situ&eacute; pr&egrave;s d&#039;un &acirc;tre au feu rationn&eacute;, il laissa poindre un sourire quand il entendit le bruit sourd d&#039;un volatile jet&eacute; sur la table :</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#E8C500">&quot;Lou&eacute; soient les Dieux ! Avec ton talent pour la chasse, nous rivaliserons avec les diners de l&#039;Empereur ce soir.</font></div></div><div class="post_line"><div align="justify"><strong>Il se leva, et vint poser une main affectueuse sur la t&ecirc;te de la </strong><strong>jeune enfant.</strong></div></div><div class="post_line"><div align="justify"><font color="#E8C500">- </font><font color="#E8C500">Bon travail ma fille.</font></div></div><div class="post_line"><div align="justify"><strong>Elle lui r&eacute;pondit d&#039;un sourire mi-g&ecirc;n&eacute;, mi-fier :</strong></div></div><div class="post_line"><div align="justify"><font color="#F551FF">- </font><font color="#F551FF">C&#039;est toi qui m&#039;a appris, je n&#039;ai fait que r&eacute;p&eacute;ter. Ou en est le reste du repas ?</font></div></div><div class="post_line"><div align="justify"><font color="#E8C500">- Il t&rsquo;attendait, le temps pour toi de plumer cet oiseau de bonheur, et nous pouvons passer &agrave; table. Je vais sortir les gobelets pour f&ecirc;ter ta chasse, allons !&quot;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">-----</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Le bruit des cuillers et des &eacute;cuelles faisait battre le rythme de la faim rassasi&eacute;e, </strong><strong>fut-ce pour un temps </strong><strong>du moins. La prise avait &eacute;t&eacute; belle : le corbeau &eacute;tait gras et sa chair encore tendre. Pas un morceau ne fut n&eacute;glig&eacute;, et alors que le repas touchait la fin, la gamine su&ccedil;ait encore les os pour ne pas perdre une miette de cette viande, sous le regard aimant de son p&egrave;re qui laissait la digestion l&#039;emmener vers les rivages de la somnolence repue. Jusqu&rsquo;&agrave; ce que :</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#F551FF">&quot;Voil&agrave; plus de quinze jours qu&#039;il est parti. On devrait en parler, Papa</font><font color="#F551FF">.</font></div></div><div class="post_line"><div align="justify"><strong>Le vieux paysan vit une mer de tristesse passer sur ses yeux. Il plissa les paupi&egrave;res, comme pour tenter d&#039;&eacute;chapper &agrave;</strong><strong> ce moment.</strong></div></div><div class="post_line"><div align="justify"><font color="#E8C500">- Je sais. </font></div></div><div class="post_line"><div align="justify"><font color="#F551FF">- D&#039;habitude il revient sous dix jours, ou quelqu&#039;un qui l&#039;a crois&eacute; nous donne de ses nouvelles.</font> </div></div><div class="post_line"><div align="justify"><strong>Un fagot craqua dans l&#039;&acirc;tre.</strong></div></div><div class="post_line"><div align="justify"><font color="#F551FF">- Et l&agrave;</font><font color="#F551FF">, pas de nouvelles, le march&eacute; de Baben Braben est termin&eacute; depuis trois jours. Je le sais car les cloches du temple ont sonn&eacute; trois fois au lieu des deux habituelles vendredi dernier.</font></div></div><div class="post_line"><div align="justify"><font color="#E8C500">- Je sais.</font></div></div><div class="post_line"><div align="justify"><font color="#F551FF">- Tu penses que..</font></div></div><div class="post_line"><div align="justify"><font color="#E8C500">- Je pense que tu te poses beaucoup trop de questions pour ton &acirc;ge, Fida.</font></div></div><div class="post_line"><div align="justify"><strong>Silence. Fida prit un os pr&eacute;lev&eacute; sur la carcasse </strong><strong>qu&#039;elle rompit dans un craquement significatif. Son petit doigt alla chercher une moelle inexistante</strong><strong>. Le vieux paysan resta l&agrave;, entre le feu de chemin&eacute;e et sa fille trop gourmande en r&eacute;ponses.</strong></div></div><div class="post_line"><div align="justify"><font color="#E8C500">- J&#039;irai demain voir la garde civile. Pour s</font><font color="#E8C500">avoir si des brigands s&eacute;vissent dans les parages. L&#039;automne est propice &agrave; la maraude.</font></div></div><div class="post_line"><div align="justify"><strong>L&#039;&eacute;cuelle de la gamine frappa la table en bois :</strong></div></div><div class="post_line"><div align="justify"><font color="#F551FF">- Je ne veux pas que ce soit &ccedil;a ! Papa Bee est trop malin pour se faire avoir par des brigands. Il dit toujours..</font></div></div><div class="post_line"><div align="justify"><font color="#E8C500">- ..Qu&#039;il n&#039;y a pas plus brigand que lui, oui. Mais tu connais ton p&egrave;re aussi bien que moi : il n&#039;a pas son pareil pour se mettre dans des situations impossibles. Les tavernes sont remplies des &quot;Histoire &agrave; la Bee&quot;, comme il les appelle. Ce genre de petit jeu ne dure jamais toute une vie.</font></div></div><div class="post_line"><div align="justify"><strong>Fida posa son os sans moelle, doublement d&eacute;&ccedil;ue tant par sa recherche infructueuse que par la r&eacute;ponse du paysan.</strong></div></div><div class="post_line"><div align="justify"><font color="#F551FF">- Il..</font> <strong>osa-t-elle</strong><em>,</em> <font color="#F551FF">Il te manque ?</font></div></div><div class="post_line"><div align="justify"><strong>Le vieil halfelin laissa son regard se perdre dans le feu domestique :</strong></div></div><div class="post_line"><div align="justify"><font color="#E8C500">- </font><font color="#E8C500">Surement autant qu&#039;il peut te manquer &agrave; toi. Ses caquets incessants avaient le m&eacute;rite de remplir la maison de bruit.</font></div></div><div class="post_line"><div align="justify"><strong>Fida resta l&agrave;, interdite, trop consciente de brasser des choses p&eacute;nibles &agrave; tout deux.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Soudain, une id&eacute;e lui vint. Elle se leva de table, elle se pla&ccedil;a devant la chemin&eacute;e, laissant porter une ombre sur l&#039;ensemble de la pi&egrave;ce. Dans une tentative d&rsquo;imitation, elle lan&ccedil;a d&#039;une voix bravache :</strong></div></div><div class="post_line"><div align="justify"><font color="#F551FF">- &Eacute;coutez donc l&#039;histoire de Beeblewizz le marchand et de sa rencontre avec un groupe d&rsquo;aventuriers constitu&eacute; d&#039;un troll, d&#039;un elfe, d&#039;un gnome et d&#039;un fantastique oreiller magique !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Un &eacute;clat de rire vint r&eacute;chauffer la maison, et la soir&eacute;e se passa ainsi, ponctu&eacute;e des rires et des imitations saugrenues d&#039;une enfant qui amusait l&#039;un de ses p&egrave;res en racontant les folles histoire de son autre p&egrave;re. La veill&eacute;e se fit tard, et le repas, le vin et la fatigue eurent raison du vieil halfelin qui se fit coucher doucement par Fida. Celle-ci veilla tard, observant, assise depuis sa fen&ecirc;tre, l&#039;horizon de terre&nbsp;noire que n&#039;&eacute;clairaient que quelques rayons de lune qui s&rsquo;&eacute;taient voulus aussi courageux que le soleil de la journ&eacute;e. </strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Alors que les Dieux de la nuit et du sommeil venaient &eacute;tendre leurs lois sur les vivants, une pens&eacute;e revint souvent dans l&#039;esprit de la gamine, alors que la fatigue l&#039;emportai vers d&#039;autres lieux :</strong></div></div><div class="post_line"><div align="justify"><font color="#F551FF"><em>&quot;Ou es tu, Papa.&quot;</em></font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Beeblewizz">Cdte. Beeblewizz</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10842.jpg" style="width:98px;height:128px" alt="Avatar" /><br />16/06/1020 ETU 19:01<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D276561', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal276557')">Détails</a> <a href="javascript:warnpost(276557)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal276557" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=276557',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em><strong><font size="1">..zz<font size="2">z</font>z<font size="3">zzz</font>zz<font size="3">z</font>zz</font></strong></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Beeblewizz tenta d&#039;ouvrir les yeux. Bien. Il avait encore des yeux, m&ecirc;me si ceux ci n&#039;avait pour l&#039;instant l&#039;air de fonctionner que comme si une gigantesque cuite lui avait arrach&eacute; la gueule. Dans les spectres kal&eacute;idoscopiques que voulait bien lui exposer sa vue, il distinguait de sombres formes mouvantes devant lui, pareilles &agrave; des ombres projet&eacute;es par un feu sur les parois d&#039;une caverne.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#F012BE">&quot;Des trolls&quot;</font></em> <strong>pensa-t-il,</strong><font color="#F012BE"> <em>&quot;Des trolls venus me capturer pour manger le pauvre Beeblewizz.&quot;</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em><font size="1">..zz<font size="2">z</font>z<font size="3">zzz</font>zz<font size="3">z</font>zz</font></em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Se rappelant les pr&eacute;cautions d&#039;usage, il leva une main et entreprit de palper son anatomie, histoire de voir si le repas n&rsquo;&eacute;tait pas d&eacute;j&agrave; entam&eacute; : pieds, ok, jambes, ok, t&ecirc;te, oreille, nez, bouche, ok,&nbsp; ok, ok, ok. Pourtant quelque chose le d&eacute;rangeait : il ressentait un poids &eacute;trange sur sa poitrine, et un mal de ventre lui cisaillait l&#039;abdomen. Craignant que le repas des ge&ocirc;liers n&#039;ai d&eacute;j&agrave; commenc&eacute; sur sa personne, il posa la main sur son abdomen pour sentir deux monticules d&#039;origine inconnue.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#F012BE">&quot;&Eacute;trange, si je vais &ecirc;tre mang&eacute;, il semblerait que ce soit avec cet assaisonnement inconnu qui m&#039;&eacute;crase la poitrine.&quot;</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><strong><font size="1">..zz<font size="2">z</font>z<font size="3">zzz</font>zz<font size="3">z</font>zz</font></strong></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Le bourdonnement tenace ne semblait finalement pas venir de son coup au cr&acirc;ne : quelqu&#039;un, non <em>plusieurs </em>personnes &eacute;taient en train de parler. </strong></div></div><div class="post_line"><div align="justify"><strong>Revenant peu &agrave; peu &agrave; lui, Beeblewizz reprit contr&ocirc;le de ses sens, et le bourdonnement se fit chuchotement, puis amas de parole, puis cris. La vue lui fut rendue, et les ombres mouvantes devinrent plus nettes, r&eacute;v&eacute;lant le tableau du lieu.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Il ne se trouvait pas dans une grotte, mais sur un dur sol de pierre dont la salet&eacute; se ressentait sous les doigts de l&#039;halfelin :&nbsp; une croute poisseuse</strong><strong> tentait de s&#039;insinuer sous ses ongles, et une odeur ferreur flottait dans l&#039;air, venant claquer jusque sous sa langue. Un soleil puissant venait br&ucirc;ler le regard, ajoutait au terrible de la sc&egrave;ne.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>C&#039;est alors qu&#039;une forme vout&eacute;e vint s&#039;approcher de lui.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">&quot;La... voici..</font> <strong>dit-elle dans un relent de vin et de bile&nbsp;</strong></div></div><div class="post_line"><div align="justify"><font color="#F012BE">- Uh ?</font></div></div><div class="post_line"><div align="justify"><font color="#008000">-La... voici ! Je vou<font size="2">uuu</font>us l&#039;avai<font size="2">i</font>iit di<font size="1">ii</font>it !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Hurlement de foule, si puissant que Bee sursauta au point d&#039;instantan&eacute;ment se relever.</strong></div></div><div class="post_line"><div align="justify"><strong>L&#039;honn&ecirc;te marchand ne se trouvait effectivement&nbsp; pas dans une caverne, mais sur un autel de pierre sur&eacute;lev&eacute; duquel coulait encore le sang d&#039;un... d&#039;une... chose, trop abim&eacute;e d&eacute;sormais pour en d&eacute;terminer la nature. En contrebas, une foule massive scandait ce qui semblait &ecirc;tre des vivats &agrave; son encontre. A ses cot&eacute;s, un vieillard qui n&#039;en finissait plus de moisir le regardait comme un b&eacute;b&eacute; regarde le sein de sa m&egrave;re.</strong></div></div><div class="post_line"><div align="justify"><strong>Le d&eacute;bris &eacute;dent&eacute; fit un pas peu assur&eacute; en direction de Bee :</strong></div></div><div class="post_line"><div align="justify"><font color="#008000">&quot;Baptise nous, Messag&egrave;re des Dieux.</font></div></div><div class="post_line"><div align="justify"><font color="#F012BE">-..Heu..</font></div></div><div class="post_line"><div align="justify"><strong>Le vieil homme se tourna alors vers la foule :</strong></div></div><div class="post_line"><div align="justify"><font color="#008000">- Heu ! </font><strong>cria-t-il.</strong></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb">- Heu </font>! <strong>r&eacute;p&eacute;ta la masse en d&eacute;lire.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Un corps sacrifi&eacute; gisant a deux m&egrave;tres de lui, un fou proph&egrave;te l&#039;annon&ccedil;ant comme un h&eacute;raut divin, une population en d&eacute;lire. Face &agrave; tout ces &eacute;l&eacute;ments, Beeblewizz ne prit pas longtemps pour r&eacute;fl&eacute;chir :</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#F012BE">- HEU !</font> <strong>lan&ccedil;a-t-il a la foule, bras lev&eacute; en signe de victoire.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Alors qu&#039;un monde venait litt&eacute;ralement de se prosterner &agrave; ses pieds, Beeblewizz ne cessait de se r&eacute;p&eacute;ter :</strong></div></div><div class="post_line"><div align="justify"><em><font color="#F012BE">&quot;Par la sainte culotte d&#039;Intima, ou est-ce que je suis ?&quot;</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>Il n&#039;allait pas tarder &agrave; d&eacute;couvrir que cette question serait suivie de beaucoup d&#039;autres. </strong></div></div><div class="post_line"><div align="justify"><strong>Et que porter un soutien-gorge en &eacute;t&eacute; comportait un lot de probl&egrave;mes qu&#039;il ne se douterait jamais d&#039;entrevoir.</strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><a href="https://www.apocalypsis.org/assemblee/viewtopic?c_topic=14997&amp;c_forum_page=2" target="_blank" rel="nofollow">(Suite de l&#039;histoire ici)</a></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15085&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15085" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15085" name="d_reply_15085" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15085');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15085'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Ailleurs.</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

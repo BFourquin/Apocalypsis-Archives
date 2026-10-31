@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17209 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>&Acirc;ge de la D&eacute;couverte</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > &Acirc;ge de la D&eacute;couverte</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Conseil+Idrak">Cdt. Conseil Idrak</a><br>Prestige de chroniqueur&nbsp;: 7<br /><br /><img src="/avatars/12228.jpg" style="width:128px;height:128px" alt="Avatar" /><br />14/03/1024 ETU 17:30</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal307595')">Détails</a> <a href="javascript:warnpost(307595)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307595" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307595',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><strong>&laquo; Et lorsque Nous avons fait des vents les inspirations de vos vers, n&#039;&eacute;tiez-vous pas reconnaissants ? Certes, chaque temp&ecirc;te est un bienfait, et chaque grain de sable souffl&eacute; une nouvelle connaissance. &raquo;</strong> <em><font color="#008000">&Eacute;p&icirc;tre d&#039;Abu Hubal, chapitre II, vers 18.</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>***</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les caravaniers venaient de faire halte &agrave; l&rsquo;oasis d&rsquo;Al-Bara, alors que le soleil faisait fondre ses rayons ravageurs sur les visages enturban&eacute;s des B&eacute;douins de Shura. </div></div><div class="post_line"><div align="justify">Amir ibn Meso s&rsquo;&eacute;loigna du groupe un instant, pour aller chercher l&rsquo;ombre des monolithes en contrebas de l&rsquo;oasis. Il entendait les chants liturgiques de ses confr&egrave;res, et les jeux de tambour de quelques-unes des femmes qui les accompagnaient.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><em><font color="#008000">Gloire &agrave; Nezra, en qui dort la voie</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Des campements abandonn&eacute;s, ruines du d&eacute;sert</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Terriers d&rsquo;au-del&agrave;, route de la soie</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Tapis et cach&eacute;s, d&rsquo;un &oelig;il ouvert</font></em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><em><font color="#008000">Une ombre passe, celle de l&rsquo;esprit</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Souffle le vent, le c&oelig;ur affirm&eacute;</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Sans trace, hormis veilleurs d&rsquo;ici</font></em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><em><font color="#008000">Grands po&egrave;tes, si bien inspir&eacute;s</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Gloire &agrave; Nezra, qui, dissimul&eacute;,</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Offre sa voix,</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Tapi dans l&rsquo;ombre,</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Murmure, rafale</font></em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><em><font color="#008000">Gloire &agrave; Nezra</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Gloire &agrave; Nezra.</font></em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><em><font color="#008000">Dans l&rsquo;ombre, voil&eacute;,</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Appara&icirc;tra.</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La voix de Meso al-Abdanazra portait haut &agrave; travers les sifflements jouant sur les sables. Amir s&rsquo;en enqu&eacute;rait autant que la bienfaisance de cette pointe d&rsquo;obscurit&eacute; qui calmait son ardeur. C&rsquo;&eacute;tait seulement la cinqui&egrave;me fois qu&rsquo;il se joignait &agrave; la caravane d&rsquo;al-Abdanazra, son p&egrave;re, depuis qu&rsquo;il avait atteint l&rsquo;&acirc;ge de la maturit&eacute;. Nul droit aux excuses d&eacute;sormais, car il s&rsquo;agissait d&rsquo;une tradition de sa fasila les Bani Anazrayi : au lendemain de chaque solstice d&rsquo;&eacute;t&eacute;, la presqu&rsquo;enti&egrave;ret&eacute; des troupeaux chameliers du clan se lan&ccedil;ait dans la travers&eacute;e compl&egrave;te de Rub al-Sahra, le plus grand d&eacute;sert de Shura, &agrave; la fois comme rite initiatique pour les jeunes de l&rsquo;escorte, comme sacrifice &agrave; Nezra, g&eacute;nie v&eacute;n&eacute;r&eacute;, mais aussi dans le but lucratif d&rsquo;aller &eacute;changer des biens au centre n&eacute;vralgique de la soci&eacute;t&eacute; de leur qabila ; une soci&eacute;t&eacute; semi-nomade s&rsquo;&eacute;tant partiellement install&eacute;e le long des c&ocirc;tes de Bahr as-Sahrayn.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Quelque chose avait chang&eacute; cependant.</div></div><div class="post_line"><div align="justify">Amir avait d&eacute;velopp&eacute; en d&eacute;pit de son jeune &acirc;ge une r&eacute;silience respectable lors des derniers voyages. Le z&eacute;nith lui tiraillait toujours la peau et &eacute;tait pr&egrave;s de lui faire &eacute;clater les vaisseaux sanguins, mais les d&eacute;sillusions caus&eacute;es par la chaleur s&rsquo;&eacute;taient dissip&eacute;es il y a deux ans.</div></div><div class="post_line"><div align="justify">Alors pourquoi diable une sorte de scintillement bleu&acirc;tre ne cessait d&rsquo;&eacute;maner de la pointe sud du site de monolithes o&ugrave; il se tenait ? Cette fois-ci, les chants semblaient s&rsquo;&ecirc;tre dissip&eacute;s, le souffle du vent tu, et les tambours adoucis. Seul un bip strident, un bruit qu&rsquo;il n&rsquo;avait jamais entendu d&rsquo;ailleurs, continuait &agrave; se jouer de lui, encore et encore, et encore.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Fallait-il s&rsquo;en approcher ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong>&laquo; Toi qui ne vois pas, regarde. Toi qui n&rsquo;entends pas, &eacute;coute. Toi qui ne sens pas, inspire. C&rsquo;est ainsi que Nous te dispensons Nos Bienfaits, et c&rsquo;est Nous qui donnons &agrave; tes sens leur r&eacute;alit&eacute;. &raquo;</strong> <em><font color="#008000">Mythe d&rsquo;an-Nezra, sourate de l&rsquo;Oracle, n&deg;7.</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La structure n&rsquo;avait aucune coh&eacute;rence physique.</div></div><div class="post_line"><div align="justify">Entre les deux derniers monolithes de la zone, une pente l&eacute;g&egrave;rement descendante s&rsquo;affaissait sous les poids de quelques morceaux de roches, et au milieu encore, une sorte de fissure longiligne parfaitement droite s&rsquo;&eacute;tait ouverte. La lumi&egrave;re bleut&eacute;e venait de l&agrave;. Mais Amir n&rsquo;avait jamais rien vu de tel : le trac&eacute; dans la terre semblait avoir &eacute;t&eacute; fait avec la m&ecirc;me facilit&eacute; qu&rsquo;un dessin dans le sable avec un b&acirc;ton. Et cette lumi&egrave;re, il avait beau se tourner le cerveau si fort qu&rsquo;il ne comprenait pas de quelle source pouvait-elle venir.</div></div><div class="post_line"><div align="justify"><em>Les Jinns ne se manifestent jamais dans les rayons.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">En s&rsquo;approchant de la fissure, Amir se trouva port&eacute; dans une sorte de salle. En fait, non. Il &eacute;tait toujours au m&ecirc;me endroit, mais des murs s&rsquo;&eacute;taient dress&eacute;s &agrave; au moins dix coud&eacute;es de diam&egrave;tre autour de lui. Une salle dont les dimensions fluctuaient constamment : une seconde le plafond lui frottait le turban, l&rsquo;instant d&rsquo;apr&egrave;s il semblait toucher le ciel. Des r&eacute;seaux de glyphes s&rsquo;&eacute;tendaient de tous les coins sur cette surface dont il ne reconnaissait pas le mat&eacute;riau. La comparaison la plus proche qu&rsquo;il put en faire &eacute;tait le fer utilis&eacute; pour les &eacute;p&eacute;es, bien que plus sombre, d&rsquo;une couleur si nocturne que m&ecirc;me les tissus les plus noirs, comme celui des voiles des femmes endeuill&eacute;es, ne savaient rivaliser.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le seul pilier qui ne se muait pas se trouvait parfaitement au centre de cet endroit. Une sorte d&rsquo;autel aux bords savamment taill&eacute;s sur lequel &eacute;tait ouvert un &laquo; parchemin de lumi&egrave;re &raquo; o&ugrave; le texte changeait en &eacute;mettant des sons toujours moins naturels que ce qu&rsquo;Amir connaissait. Le jeune homme s&rsquo;en approcha davantage en priant ses dieux de le guider. Mais aucun coin d&rsquo;ombre, aucune rafale n&rsquo;apportait la pr&eacute;sence raffermissante de Nezra.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La tentation d&rsquo;apposer la main dessus, de t&acirc;ter ce document &agrave; la longueur si risible, &eacute;tait plus forte que lui.</div></div><div class="post_line"><div align="justify">Une fois le geste op&eacute;r&eacute;, les &eacute;critures du parchemin disparurent.</div></div><div class="post_line"><div align="justify">Un son aigu saccad&eacute; retentit.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">&laquo; వ⎤⎤వ┆⎤</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">వ⎤⎤వ┆⎤</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">వ⎤⎤వ┆⎤</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">వᘉ♨⎤వỘಶᵙవ ಶใಶ ⎤వӾใಶಶ┆వ</font></strong></div></div><div class="post_line"><div align="justify"><strong><font size="4">≜ӾᵙỘᣒ≜ᵙỘใಶ ๆ┆ ᔤುᔤᵙవᘉవ ๆవ ᔤవӾ┆⎤Ộᵙవ ᘉỘಶỘᘉ≜ษవ &raquo;</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&mdash; Par Hubal et par Nezra, qui es-tu ?</div></div><div class="post_line"><div align="justify">La voix &eacute;tait &eacute;trange.</div></div><div class="post_line"><div align="justify">&mdash; Toi qui parles, montre-toi !</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">&laquo; ษ≜ಶᦎ┆వ ಶใಶ ⎤వӾใಶಶ┆వ</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">వᵙ≜⚀ษỘᔤᔤవᘉవಶᵙ ๆ&#039;┆ಶవ ᵙ⎤≜ๆ┆ӾᵙỘใಶ ⎤┆ๆỘᘉవಶᵙ≜Ộ⎤వ వಶ Ӿใ┆⎤ᔤ... &raquo;</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&mdash; Je ne comprends pas, o&ugrave; es-tu ? Qui parle ? Montre-toi !</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">&laquo; Traduction rudimentaire ⎤వ┆ᔤᔤỘవ</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">ಶవӾవᔤᔤỘᵙవ d&rsquo;optimisation</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">En cours&hellip;</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">Traduction r&eacute;ussie. </font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">Forme de vie reconnue : humaine.</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font size="4">Affiliation : peuple pr&eacute;-&eacute;veil &raquo;</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>&Eacute;veil.</em></div></div><div class="post_line"><div align="justify">Le mot choisi par la voix inconnue dans sa langue natale avait un sens qui r&eacute;sonna diff&eacute;remment en Amir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><font size="5"><strong>إِدْرَاك</strong></font></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><font size="5"><strong><em>Idrak</em></strong></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alors que la voix s&rsquo;&eacute;tait tue, et que le silence r&eacute;gnait totalement o&ugrave; il &eacute;tait, Amir prit les jambes &agrave; son cou.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Conseil+Idrak">Cdt. Conseil Idrak</a><br>Prestige de chroniqueur&nbsp;: 7<br /><br /><img src="/avatars/12228.jpg" style="width:128px;height:128px" alt="Avatar" /><br />16/03/1024 ETU 20:36</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal307671')">Détails</a> <a href="javascript:warnpost(307671)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307671" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307671',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Au son d&rsquo;un `oud accord&eacute; &agrave; ses pas, le po&egrave;te Bashir Abu Jahal de la qabila Bani Hamid marchait d&rsquo;une allure d&eacute;cid&eacute;e le long des colonnes de marbre bleu se dressant de part et d&rsquo;autre du grand corridor du palais d&rsquo;al-Hayy al-Kabir. Les rayons du soleil couchant furetaient sous les bords des arcades en accolade. Les bas longs de son qamis relevaient &agrave; chaque enjamb&eacute;e la poussi&egrave;re de sable que le vent avait souffl&eacute; sur les dalles carrel&eacute;es. Bashir toussa, r&eacute;ajusta le pourtour de son turban pour s&rsquo;en prot&eacute;ger.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un tel spectacle architectural n&rsquo;&eacute;tait pas commun dans son clan. &Agrave; vrai dire, tr&egrave;s peu de clans b&eacute;douins jouissaient de la s&eacute;dentarit&eacute;, et pour la plupart d&rsquo;entre eux, c&rsquo;&eacute;tait mieux ainsi. Les murs des quelques cit&eacute;s qui s&rsquo;&eacute;taient dress&eacute;es &agrave; divers endroits de Shura paraient &eacute;go&iuml;stement la bonne circulation des vents, la bonne r&eacute;gulation des dunes, au profit d&rsquo;une fra&icirc;cheur et d&rsquo;un ombrage artificiels. Comment donc les Djinns pouvaient inspirer les po&egrave;tes s&rsquo;ils ne pouvaient m&ecirc;me pas les atteindre, si ce n&rsquo;est que par des bribes, des poussi&egrave;res de sable &eacute;tal&eacute;es le long d&rsquo;un couloir construit.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et quid des vers insuffl&eacute;s ?</div></div><div class="post_line"><div align="justify">Les gens de ces villes s&rsquo;affairaient trop aux occupations mondaines, aux grands repas opulents, aux banquets et aux f&ecirc;tes. Il n&rsquo;y avait l&agrave; plus la place pour r&eacute;citer des vers, cette m&eacute;lodie spirituelle qui donnait aux po&egrave;tes toute la l&eacute;gitimit&eacute; de leur place parmi les leurs. Le l&eacute;gendaire `Imru al-Qays se serait mis &agrave; chanter l&rsquo;abandon d&rsquo;un quartier citadin pour r&eacute;v&eacute;rer l&rsquo;amour id&eacute;al et se rem&eacute;morer les siens ? Les B&eacute;douins &eacute;taient des &ecirc;tres du d&eacute;sert, non pas des cr&eacute;atures claquemur&eacute;es sous des toits.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><em><font color="#008000">Au d&eacute;clin de la dune entre Dakho&ucirc;l et Hawmal,</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">To&ucirc;dih et Miqr&acirc;t, dont la trace ne s&rsquo;efface</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Gr&acirc;ce &agrave; la navette des vents, du sud, du nord</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Mollement sur ses bords le vent afflue; la brise</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">L&rsquo;a v&ecirc;tue du frou-frou d&rsquo;une robe tra&icirc;nante.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">On voit des crottes de gazelles sur ses places,</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Et dans ses flaques : on dirait des graines de poivre.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Le matin du d&eacute;part, le jour o&ugrave; ils charg&egrave;rent,</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Pr&egrave;s des &eacute;pineux, je broyais la coloquinte.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Mes amis, arr&ecirc;tant l&agrave; sur moi leurs montures,</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Diront : &laquo;De chagrin point ne te consume ! Assume !</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Laisse aller loin de toi le pass&eacute; son chemin</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">A l&rsquo;&eacute;preuve du jour, impr&eacute;vue, fais donc face !&raquo;</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Je m&rsquo;y suis arr&ecirc;t&eacute;, attendant que r&eacute;gresse</font></em></div></div><div class="post_line"><div align="center"><em><font color="#008000">Ma triste c&eacute;cit&eacute;, &agrave; son d&eacute;sir commise.</font></em></div></div><div class="post_line"></div><div class="post_line"><div align="justify">Mais peut-&ecirc;tre que cette convocation rev&ecirc;tait une importance capitale. Peut-&ecirc;tre la trivialit&eacute; du lieu se pr&ecirc;tait-elle bien mieux &agrave; la discussion de cette nouvelle murmur&eacute;e au fil des caravanes marchandes et des escortes guerri&egrave;res.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Au bout du corridor, Bashir rencontra son confr&egrave;re des Bani Yahoud, le po&egrave;te Mohammad al-Lama`, qui allait dans la m&ecirc;me direction.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&mdash; Que les gr&acirc;ces d&rsquo;Aliham t&rsquo;accompagnent, sidi Mohammad, lan&ccedil;a respectueusement Bashir.</div></div><div class="post_line"><div align="justify">&mdash; Et que le vent de Yafat &eacute;treigne les dunes pour que ton voyage soit facile, Bashir Abu Jahal ibn Ghafil. Es-tu l&agrave; pour la trouvaille ?</div></div><div class="post_line"><div align="justify">&mdash; Na`am, sidi. Que sont ces divagations h&eacute;r&eacute;tiques que prof&egrave;rent les fils des Bani Anazrayi ? Veulent-ils porter la voix de leur Djinn par-del&agrave; celle des n&ocirc;tres ? Comme ce proph&egrave;te, du temps de nos p&egrave;res&hellip;</div></div><div class="post_line"><div align="justify">&mdash; Je n&rsquo;en sais pas plus que toi, ya akhi. Cette affaire m&rsquo;inqui&egrave;te cependant. On dit que c&rsquo;est l&rsquo;un des jeunes initi&eacute;s du sentier de Rub al-Sahra qui a rapport&eacute; cette nouvelle : penses-tu qu&rsquo;un enfant soit capable d&rsquo;une telle propagande ?</div></div><div class="post_line"><div align="justify">&mdash; La adri, ya sidi. Je ne sais pas. Je ne veux pas me charger le c&oelig;ur d&rsquo;une accusation trop grande, faute de preuves. Mais si c&rsquo;&eacute;tait le cas&hellip;</div></div><div class="post_line"><div align="justify">&mdash; Allons voir. D&rsquo;autres sont d&eacute;j&agrave; l&agrave;.</div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#008000"><strong>***</strong></font></div><div class="post_line"></div><div class="post_line"><div align="justify">Dans la grande salle ovale o&ugrave; se jetaient les sept corridors de marbre, se trouvaient cinq des autres po&egrave;tes de diff&eacute;rentes qabila : les Bani Faysal, les Bani Umayr, les Bani Hattar, les Bani Jabil et les Bani Dawud. Il y avait aussi Abd al-Kadir al-Akbar, le grand sayyid du Hayy al-Kabir, l&rsquo;h&ocirc;te des lieux et de la s&eacute;ance actuelle. Chacun d&rsquo;eux &eacute;taient reconnaissables par la couleur de ses apparats.</div></div><div class="post_line"><div align="justify">La tradition b&eacute;douine de Shura estimait gravement le respect du code : chaque couleur d&eacute;signait un <strong><font color="#008000">hayy</font></strong>, <em>la nation</em>, puis chaque nuance de couleur d&eacute;signait une <strong><font color="#008000">qabila</font></strong>, <em>le clan</em>, puis chaque de nuance de nuance d&eacute;signait une <strong><font color="#008000">fasila</font></strong>, <em>la tribu</em>, et ce jusqu&rsquo;&agrave; la plus infime diff&eacute;rence par <strong><font color="#008000">batn</font></strong>, <em>famille proche</em>. Seul le <strong><font color="#008000">fahidh</font></strong>, <em>le campagnonnage</em>, n&rsquo;&eacute;tait pas repr&eacute;sent&eacute;. Dans cette pi&egrave;ce se tenaient cinq hayy diff&eacute;rents, sans compter celui de l&rsquo;h&ocirc;te, celui de Mohammad al-Lama` et celui de Bashir Abu Jahal.</div></div><div class="post_line"><div align="justify">Si t&ocirc;t les deux arrivistes entr&eacute;s, qu&rsquo;ils purent remarquer le choix des invit&eacute;s : les qabilat les plus &eacute;minentes de chaque hayy &eacute;taient pr&eacute;sentes.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&mdash; Assalamu `alaykum, chers confr&egrave;res, tonna Abd al-Kadir d&rsquo;une voix si forte qu&rsquo;il coupa court aux discussions. Je vous en prie, approchez. Nous allons commencer.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les diff&eacute;rents invit&eacute;s se salu&egrave;rent les uns les autres, dans une n&eacute;buleuse de formules ampoul&eacute;es plus spirituelles les unes que les autres. Un brouhaha mystique qui donnait au lieu une aura religieuse si forte, que si &eacute;cout&eacute; &agrave; bonne distance, on aurait pens&eacute; distinguer des chants liturgiques psalmodi&eacute;s.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&mdash; Ya ikhwani, remarquez par vous-m&ecirc;mes l&rsquo;importance des membres de cette assembl&eacute;e. Il y a parmi vous les anachor&egrave;tes les plus &eacute;loquents de vos clans, bien qu&rsquo;il manque, certes, quatre des autres po&egrave;tes de votre stature. Veuillez m&rsquo;accorder votre pardon, chers h&ocirc;tes, car ces derniers ont &eacute;t&eacute; retard&eacute;s. Nous commencerons sans eux.</div></div><div class="post_line"><div align="justify">&mdash; Que se passe-t-il, ya sidi ?</div></div><div class="post_line"><div align="justify">Malik al-Chawwali, l&rsquo;homme qui venait de poser la question, aurait pu &ecirc;tre bl&acirc;m&eacute; d&rsquo;irrespect s&rsquo;il n&rsquo;avait pas &eacute;t&eacute; le doyen de l&rsquo;assembl&eacute;e, la personne la plus &acirc;g&eacute;e ci-pr&eacute;sente. Abd al-Kadir le toisa, le sourire r&eacute;siliant.</div></div><div class="post_line"><div align="justify">&mdash; Je comprends votre confusion. &Agrave; tous. Mais l&rsquo;heure est la plus grave. Vous n&rsquo;&ecirc;tes sans doute pas &eacute;trangers &agrave; ce que le jeune Amir ibn Meso a rapport&eacute;. Nombre d&rsquo;entre vous pourrait crier &agrave; la superstition, mais son t&eacute;moignage est si fiable qu&rsquo;il a &eacute;t&eacute; confirm&eacute; par son p&egrave;re Meso al-Abdanazra. Et aucun d&rsquo;entre vous n&rsquo;&eacute;mettrait le moindre doute quant &agrave; ses paroles. Il est un homme qui ne prononce pas mot en vain, comme vous tous, ya ikhwani.</div></div><div class="post_line"><div align="justify">&raquo; Amir ibn Meso a d&eacute;couvert, lors d&rsquo;une halte, une grotte diaphane d&rsquo;o&ugrave; un parchemin de lumi&egrave;re, en v&eacute;rit&eacute; une sorte de tablette rectangulaire faite ni en pierre ni en argile, prof&eacute;rait des paroles incompr&eacute;hensibles tant&ocirc;t en langue b&eacute;douine, tant&ocirc;t en un charabia intangible.</div></div><div class="post_line"><div align="justify">&raquo; &Agrave; la suite de cette d&eacute;couverte, les Bani Anazrayi se sont d&eacute;p&ecirc;ch&eacute;s de me la faire parvenir, et j&rsquo;ai personnellement envoy&eacute; des savants &agrave; l&rsquo;oasis d&rsquo;Al-Bara afin d&rsquo;&eacute;tudier le myst&egrave;re. Si je vous convoque aujourd&rsquo;hui, c&rsquo;est parce que les premiers rapports sont arriv&eacute;s.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&rsquo;assembl&eacute;e &eacute;carquillait les yeux, hoqueta d&rsquo;une seule voix tant leur attention fondait sur l&rsquo;h&ocirc;te.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&mdash; La tablette trouv&eacute;e d&eacute;gagerait une sorte de lumi&egrave;re, comme des flammes emprisonn&eacute;es dans une bo&icirc;te &agrave; moiti&eacute; opaque sur les faces desquelles sont inscrits des lettres changeantes. Si les premi&egrave;res lettres nous &eacute;taient inconnues, des caract&egrave;res familiers les ont supplant&eacute;s lorsque l&rsquo;un de nos savants a touch&eacute; la tablette. Y &eacute;tait &eacute;crit : <strong><font color="#008000">&laquo; Erreur : Fr&eacute;gate 1-2b-Y endommag&eacute;e, 7&egrave;me flottille du bataillon corsaire BRIGANDS, coordonn&eacute;e 21.4.7.5. Tentative de localisation en cours&hellip; Communication impossible. &raquo;</font></strong>. Je con&ccedil;ois que ces r&eacute;v&eacute;lations provoquent en vous une stupeur grandissante, mais ce n&rsquo;est pas tout. Une sorte d&rsquo;ob&eacute;lisque minuscule &agrave; l&rsquo;arri&egrave;re de la grotte ne cessait de r&eacute;p&eacute;ter, avec un timbre de voix similaire au tintement des &eacute;p&eacute;es, un appel &agrave; la classification de notre peuple, avec comme ultime but : &laquo; prise de contact &raquo;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&mdash; Qu&rsquo;est-ce que sont ces inepties, par Hubal ! s&rsquo;exclama Malik. Allons-nous croire &agrave; cette histoire ? O&ugrave; sont ces tablettes et ces ob&eacute;lisques dont vous parlez, Abd al-Kadir ?</div></div><div class="post_line"><div align="justify">&mdash; Du calme, Malik. Ces objets sont toujours en cours d&rsquo;&eacute;tude. Nos savants sont d&eacute;termin&eacute;s &agrave; aller au bout de cette enqu&ecirc;te. Mais il y a une r&eacute;alit&eacute; &agrave; comprendre&hellip;</div></div><div class="post_line"><div align="justify">&mdash; Et quelle r&eacute;alit&eacute; ? pouffa Tariq, des Bani Jabil.</div></div><div class="post_line"><div align="justify">&mdash; Vont-ils nous dire maintenant que Nezra s&rsquo;est mis &agrave; leur parler de vive voix ? se scandalisa Bashir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Cette remarque provoqua un vacarme dans l&rsquo;assembl&eacute;e. Les uns parlaient au-dessus des autres, et bien qu&rsquo;aucune main ne f&ucirc;t lev&eacute;e, ils se hurlaient &agrave; visage rapproch&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&mdash; Assez ! Calmez-vous ! <strong><font color="#008000">&laquo; Et ne faites pas de vos fr&egrave;res des adversaires. Car Hubal n&rsquo;aime point la discorde, de m&ecirc;me que ses filles Allat et Manat. Vous avez &eacute;t&eacute; s&eacute;par&eacute;s de sorte que les liens du sang vous renforcent, mais la dispute n&rsquo;est pas permise entre tribus. &raquo;</font></strong> Calmez-vous !</div></div><div class="post_line"><div align="justify">Ils ob&eacute;iss&egrave;rent.</div></div><div class="post_line"><div align="justify">&mdash; La r&eacute;alit&eacute; &agrave; prendre en compte, d&eacute;sormais, est peut-&ecirc;tre la pr&eacute;sence d&rsquo;un autre peuple ici. Peut-&ecirc;tre cach&eacute; dans des grottes, communiquant par des moyens que nous ne comprenons pas&hellip; C&rsquo;est pourquoi je vous ai appel&eacute;. Nous devons nous organiser. Le nomadisme de nos clans ne nous pr&eacute;pare pas &agrave; cela. Si un peuple s&rsquo;appelant lui-m&ecirc;me Brigands se trouve sur nos terres, ou en-dessous, alors nous devons nous r&eacute;gir. Et qui parmi nous est plus &agrave; m&ecirc;me d&rsquo;accomplir cela ? Par Hubal, c&rsquo;est la r&eacute;union de nos clans ! Vous, illustres po&egrave;tes, &ecirc;tes la voix sacr&eacute;e de vos familles. Qui d&rsquo;autre que vous pour porter la voix de notre cha&rsquo;b tout entier ?</div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17209&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17209" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17209" name="d_reply_17209" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17209');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17209'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > &Acirc;ge de la D&eacute;couverte</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

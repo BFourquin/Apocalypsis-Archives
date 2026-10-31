@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 15365 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>FUN-Z1000</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > FUN-Z1000</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=15365&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Heinrich+von+Kessler">Cdt. Heinrich von Kessler</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/11041.jpg" style="width:128px;height:128px" alt="Avatar" /><br />30/01/1021 ETU 21:31<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280972')">Détails</a> <a href="javascript:warnpost(280972)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280972" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280972',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FFC95F"><strong>Devant l&#039;orbe translucide reposant sur son piedestale, Heinrich von Kessler, suivait la retransmission en cours. La chose technologique lui &eacute;tait peu famili&egrave;re, mais elle lui &eacute;tait relativement simple &agrave; adapter &agrave; son art.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FFC95F"><strong>&Agrave; la r&eacute;v&eacute;lation du myst&egrave;re, un sourcil lev&eacute; vivement sur ce sombre visage fut la seul r&eacute;action visible.</strong></font></div><div class="post_line"><font color="#FFC95F"><strong>Puis il cessa de diriger son flux vers la palantir. Heinrich se retourna brusquement, faisant virvolter sa cape bleu-nuit et rouge.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FFC95F"><strong>La mine sombre, il se mit &agrave; repenser &eacute;tape par &eacute;tape ses effforts de divination.</strong></font></div><div class="post_line"></div><div class="post_line"><strong>&quot;Hmm... etwas stimmt nicht da drinn... Was habe ich falsch gemacht? ... Wo ist die fehler ?&quot;</strong></div><div class="post_line"><strong><font color="#FFC95F">Le roi-sorcier cong&eacute;dia les serviteurs et se mit recenser les diff&eacute;rents aspects ayant prit par &agrave; ces efforts.</font></strong></div><div class="post_line"></div><div class="post_line"><font color="#FFC95F"><strong>Trois heures plus tard, le nez dans ses grimmoires, Heinrich </strong></font><font color="#FFC95F"><strong>il s&#039;arr&ecirc;ta net, se releva,</strong></font><font color="#FFC95F"><strong> et s&#039;&eacute;cria <font color="#ffffff">&quot;</font></strong></font><font color="#ffffff"><strong>Gottverdamt! Ich habe die wachteleiern weggelasst!&quot;</strong></font></div><div class="post_line"><font color="#FFC95F"><strong>Il &eacute;tait &agrave; la fois soulag&eacute; et passablement &eacute;nerv&eacute;. Q</strong></font><font color="#FFC95F"><strong>uelques remarques d&eacute;sobligeantes envers les lutins furent alors </strong></font><font color="#FFC95F"><strong>lanc&eacute;es, ces esprit-farceurs responsables de disparition de nombre de cl&eacute;s et de t&eacute;l&eacute;commandes dans l&#039;univers. Ils &eacute;taient &eacute;galement connus pour &ecirc;tre </strong></font><font color="#FFC95F"><strong>capable de faire oublier tr&egrave;s bri&egrave;vement quelque chose &agrave; un vivant. Riant et s&#039;esclaffant des cons&eacute;quences, souvent b&eacute;nignes.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FFC95F"><strong>Le roi-sorcier s&#039;approcha alors de la palantir. </strong></font></div><div class="post_line"><font color="#FFC95F"><strong>Devait-il le faire? Il avait confiance en l&#039;annonce officielle, mais il devait en &ecirc;tre certain.</strong></font></div><div class="post_line"><font color="#FFC95F"><strong>Et &agrave; bien y r&eacute;fl&eacute;chir, </strong></font><font color="#FFC95F"><strong>l&#039;exp&eacute;rience ne devait pas &ecirc;tre d&eacute;plaisante...</strong></font></div><div class="post_line"><font color="#FFC95F"><strong>Un l&eacute;ger sourire associ&eacute; &agrave; un regard de braise contenu</strong></font><font color="#FFC95F"><strong>, il renvoya son flux &agrave; travers l&#039;orbe enchant&eacute;e.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FFC95F"><strong>Une retransmission s&#039;ins&eacute;ra dans le flux de donn&eacute;es du service de retransmission qui coordonnait le tout.</strong></font></div><div class="post_line"><strong>&quot;Fort bien, ce fut un myst&egrave;re des plus difficile &agrave; p&eacute;n&eacute;trer. Mes f&eacute;licitations &agrave; l&#039;honorable Iricsson pour sa victoire. N&eacute;anmoins, et pour des raisons &eacute;videntes de droit commun et priv&eacute; mais &eacute;galement d&#039;&eacute;thique mystique, il nous faut en avoir la preuve vivante et ind&eacute;niable!&quot;</strong></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fujiyama">Cdte. Fujiyama</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/11135.jpg" style="width:128px;height:72px" alt="Avatar" /><br />31/01/1021 ETU 01:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal280994')">Détails</a> <a href="javascript:warnpost(280994)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal280994" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=280994',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font size="3">Les deux annonceurs se mirent &agrave; transpirer abondamment. Ils n&#039;avaient pas eu le temps d&#039;&eacute;tudier le volet &quot;r&eacute;clamation&quot; de la strat&eacute;gie Ramouflon. Fujiyama nota qu&#039;ils ne s&#039;&eacute;taient pas pr&eacute;cipit&eacute;s pour r&eacute;pondre &agrave;&nbsp;Heinrich von Kessler. &quot;Heureusement qu&#039;ils sont moins stupides que les deux autres&quot; pensa t-elle. Elle se rend alors dans le local en faisant signe aux deux annonceurs de quitter la salle. </font></div></div><div class="post_line"></div><div class="post_line"><div align="justify">&nbsp;- <font color="#CF2BE7"><font size="4">Quel plaisir de vous revoir Zaubererk&ouml;nig ! Comme il a &eacute;t&eacute; dit par les deux annonceurs pr&eacute;c&eacute;dent les arcanes sont tr&egrave;s probablement brouill&eacute;es dans ce <strong><u>trou perdu</u></strong>. Ne vous triturez pas trop l&#039;esprit ! (c&#039;&eacute;tait trop demand&eacute; a un ma&icirc;tre arcaniste pensa t-elle) Concernant votre requ&ecirc;te nous vous invitions &agrave; regarder &quot;<strong>Place au Direct!</strong>&quot; section &quot;<strong>Assembl&eacute;e Galactique</strong>&quot;. Ma petite robe de tulle blanc/beige est quasiment transparente. Vous pourrez donc m&#039;admirer sans soucis que ce soit dans ma navette personnelle pour les plans-rapproch&eacute;s et lors de notre arriv&eacute;e sur le toit de FUN-Z1000 pour les plans larges !<strong> Vous vous rendrez compte par vous m&ecirc;me qu&#039;il ne fait aucun doute que je suis nue sous mes v&ecirc;tements</strong> ! Si jamais cela ne suffit pas il faudra vous d&eacute;placez au <strong>FUN-Z1000</strong> ! Malheureusement pour nous, <u><strong>mon tr&egrave;s cher Heinrich von Kessler</strong></u>, <strong>une f&ecirc;te bat son plein</strong> et je dois m&#039;y rendre incessamment ! </font></font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Asgrim+Iricsson">Cdt. Asgrim Iricsson</a><br>Prestige de chroniqueur&nbsp;: 17<br /><br /><img src="/avatars/11105.jpg" style="width:90px;height:128px" alt="Avatar" /><br />31/01/1021 ETU 12:15</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal281080')">Détails</a> <a href="javascript:warnpost(281080)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal281080" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=281080',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FFA500">Quelque part, dans un bar d&#039;une plan&egrave;te lointaine, un barman tendit une choppe &agrave;</font> <font color="#FF0000">Asgrim</font>.</div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Ce dernier buvait son hydromel, particuli&egrave;rement amus&eacute; par l&#039;&eacute;mission qu&#039;il avait capt&eacute; et encore plus hilare par la r&eacute;ponse qu&#039;il avait miraculeusement r&eacute;ussi &agrave; envoyer, sans trop savoir ce que ce petit jeu allait donner. Mais bah... il n&#039;avait rien &agrave; perdre apr&egrave;s tout. </font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Aussi ne fut-il qu&#039;&agrave; moiti&eacute; surpris quand le barman lui montra ce que la sonde avait re&ccedil;u &agrave; nouveau.</font></div><div class="post_line"></div><div class="post_line"><font color="#FF0000"><font size="5">AH ! J&#039;LE SAVAIS ! </font></font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Il activa son transmetteur et reprit &agrave; voix basse :</font></div><div class="post_line"></div><div class="post_line">&quot;<em><font color="#FF0000">Mookie, branche-moi sur le canal de la sonde &quot;Culotte&quot;. Oui, maintenant !</font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Et ainsi, relay&eacute; par les prodiges d&#039;une technologie qu&#039;aucun lecteur ici ne comprendrais de toutes fa&ccedil;ons, le message d&#039;</font><font color="#FF0000">Asgrim </font><font color="#FFA500">retourna au studio :</font></div><div class="post_line"></div><div class="post_line"><font size="3"><em><font color="#FF0000">&quot;Hey, j&#039;adore votre &eacute;mission ! Alors, c&#039;est o&ugrave; vot&#039; parc d&#039;attraction ? </font></em></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fujiyama">Cdte. Fujiyama</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/11135.jpg" style="width:128px;height:72px" alt="Avatar" /><br />31/01/1021 ETU 23:16</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal281121')">Détails</a> <a href="javascript:warnpost(281121)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal281121" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 2</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=281121',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font size="3">Fujiyama peaufine sa prochaine campagne publicitaire, des <font color="#FF56FF">TOUTA2LEEMS</font> ont ouverts sur les plan&egrave;tes o&ugrave; s&#039;exerce son influence. Elle en &eacute;tait &agrave; l&agrave; de ses r&eacute;flexions quand elle re&ccedil;ut un message &eacute;mis par la sonde &quot;Culotte&quot;. Un C-T-I n&#039;attend pas ! </font></font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#FF56FF"><font size="4">Salutations &agrave; notre <strong>Grand Gagnant</strong>, nous avons tous tr&egrave;s h&acirc;te de vous voir ici ! (d&#039;autant plus que la pr&eacute;sence de flottes inconnus dans le syst&egrave;me l&#039;inqui&egrave;te un peu.) Nos coordonn&eacute;es sont les suivantes : G.17 S.4 S.13 S.5. Nous assurons la s&eacute;curit&eacute; au sein de notre point de coordonn&eacute; mais pas en dehors ! <font color="#ffffff"><font size="3">dit-elle sur un ton amical</font></font>. Pr&eacute;venez nous de votre arriv&eacute;e que nous puissions nous organiser ! Ah ! Et si vous pouviez ramener des m&eacute;taux avec vous, n&#039;importe lesquels, ce serait chouette ! A tr&egrave;s bient&ocirc;t ! </font></font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fujiyama">Cdte. Fujiyama</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/11135.jpg" style="width:128px;height:72px" alt="Avatar" /><br />03/02/1021 ETU 04:58</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal281429')">Détails</a> <a href="javascript:warnpost(281429)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal281429" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=281429',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font size="3"><em>Erwoll, le vieux mod&egrave;le CAK40, avait trouv&eacute; dans ses &laquo;&nbsp;sous-dossiers&nbsp;&raquo; le moyen de nous sortir du p&eacute;trin. La population est m&eacute;contente, il faut agir vite. Il appelle &ccedil;a un </em>[Syst&egrave;me &Eacute;conomique Int&eacute;gr&eacute;]<em>. Fujiyama a donn&eacute; le plan aux BA.L &laquo;&nbsp;Bataillons de Lib&eacute;ration&nbsp;&raquo; avant leur d&eacute;part. Ils ont tous l&rsquo;air vraiment motiv&eacute;, l&rsquo;inactivit&eacute; leur nuit et puis elle a fait des promesses. </em><font color="#FF56FF">Quelle place vont-ils prendre&nbsp;?</font> se demande t-elle quelque peu inqui&egrave;te. </font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font size="3"><em>Des </em><font color="#FF56FF">TOUTA2LEEMS</font><em> sont ouverts, il faut nourrir la population avec un <font color="#FF56FF">&laquo;&nbsp;petit plaisir quotidien&nbsp;&raquo;</font> comme le diffuse les ondes. </em><font color="#FF56FF">La majorit&eacute; n&rsquo;aura pas les moyens pour plus, au d&eacute;but.</font><em> L&rsquo;&eacute;quipe de tournage est pr&ecirc;te, Fujiyama les rejoint depuis son palais. Elles vont en direction du tout nouveau </em><font color="#FF56FF">TOUTA2LEEMS</font><em> de la capitale qui a remplac&eacute; un des &laquo;&nbsp;trous&nbsp;&raquo; pr&eacute;sent dans le tissu urbain. Une foule nombreuse s&rsquo;y presse et attend avec impatience la possibilit&eacute; d&rsquo;acheter le strict minimum. </em></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font size="3">Elle monte sur l&rsquo;estrade et va faire un discours, elle est dans une tenue de combat bien trop grande pour elle. <font color="#FF56FF">Sexy&hellip; </font>pensa t-elle en souriant. </font></font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#FF56FF"><font size="4">- Habitants et habitantes de la capitale&nbsp;! Les temps sont durs mais nous croyons que les BA.L vont nous permettre de rattraper cette situation rapidement&nbsp;! Des O.P.A &laquo;&nbsp;Op&eacute;rations de Pacification Amicale&nbsp;&raquo; vont &ecirc;tre lanc&eacute;es. Le but est double&nbsp;: cr&eacute;er de nouveaux &laquo;&nbsp;trous&nbsp;&raquo; pour nos futurs projets et permettre la redistribution de <em>leurs</em> biens au profit de<em> tous</em>&nbsp;! </font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#44B8FF"><font size="3">On voit alors les BA.L (&quot;les soldats en guenilles&quot;) d&eacute;truire des d&eacute;fenses plan&eacute;taires et se tenir, fi&egrave;rement, a proximit&eacute; des lieux de pouvoirs politiques et &eacute;conomiques des potentats locaux.</font></font></div></div><div class="post_line"></div><div class="post_line"><font color="#FF56FF"><font size="4">- &laquo;&nbsp;Ne vivons plus &agrave; moiti&eacute;&nbsp;&raquo;. Ce syst&egrave;me &eacute;conomique int&eacute;gr&eacute; doit permettre d&rsquo;assurer l&rsquo;approvisionnement n&eacute;cessaire &agrave; nos unit&eacute;s de production&nbsp;! Les chantiers sont en cours&nbsp;! R&eacute;mun&eacute;ration et toit-d&eacute;cent &agrave; la cl&eacute;&nbsp;! Nos unit&eacute;s de productions fourniront les biens aux rayons des TOUTA2LEEMS&nbsp;!</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><font color="#44B8FF">La foule applaudit &agrave; tout rompre. </font></font></font></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#FF56FF"><font size="4">- Nous comptons &eacute;norm&eacute;ment sur les BA.L ils vont devoir porter la lourde responsabilit&eacute; d&rsquo;assurer les d&eacute;buts de l<strong>&rsquo;&egrave;re de prosp&eacute;rit&eacute;</strong> qui s&rsquo;ouvre devant nous&nbsp;!</font></font></div></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><font size="3">On voit alors un extrait du discours du discours qu&rsquo;elle a donn&eacute; aux BA.L. Elle a l&rsquo;air s&ucirc;re d&rsquo;elle mais personne ne l&rsquo;&eacute;coute. <font size="2">(Les images ne montrent pas les BA.L : ils discutent bruyamment entre eux, ils ont d&eacute;j&agrave; &eacute;t&eacute; brief&eacute;.)&nbsp;</font> </font></font></div><div class="post_line"></div><div class="post_line"><font color="#FF56FF"><font size="4">- Sponsoris&eacute; par Yama&nbsp;! Avec Yama, par&eacute; au combat&nbsp;!</font></font></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#44B8FF"><font size="3">Les&nbsp; images montrent ensuite Fujiyama arpenter les rayons du <font color="#FF56FF">TOUTA2LEEMS</font>, tout est tr&egrave;s color&eacute; et de la musique est diffus&eacute;e &agrave; un volume supportable. Elle prend de nombreux produits, les jauge, en repose certains. Sa sortie marquera l&rsquo;ouverture des magasins. Elle doit montrer l&rsquo;exemple et rester suffisamment longtemps. <font color="#FF56FF"><font color="#44B8FF">Les rayons ne sont pas tr&egrave;s fournit de toute fa&ccedil;on.</font></font></font></font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#ffffff"><font size="3"><em>Elle avait promis la prosp&eacute;rit&eacute; &agrave; la population... Elle songe alors &agrave; sa discussion avec Erwoll, d&rsquo;apr&egrave;s lui c&rsquo;&eacute;tait la meilleure solution, &eacute;tait-ce vraiment le cas&nbsp;? Elle est nouvelle ici et ne conna&icirc;t pas tout. Ce syst&egrave;me pr&eacute;dateur et archa&iuml;que avait fait ses preuves,</em> [ou&eacute;ni.ou&eacute;di.wouiki], avait dit Erwoll. <em>Une convention interplan&eacute;taire semble avoir li&eacute; une sorte de conf&eacute;d&eacute;ration sous domination des brigands. Cette derni&egrave;re &agrave; disparu et cela permet l&rsquo;attaque, que s&rsquo;est-il pass&eacute;&nbsp;? Y avait-il un lien avec la prise de la capitale et la mise en place du nouveau gouvernement ? </em></font></font></div></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><font size="3">Elle sort du tout nouveau magasin. </font></font></div><div class="post_line"></div><div class="post_line"><font color="#FF56FF"><font size="4">- Nous d&eacute;clarons ouvert les TOUTA2LEEMS&nbsp;! Avec TOUTA2LEEMS &laquo;&nbsp;en cendres tout devient possible&nbsp;!&nbsp;&raquo;</font></font> <font color="#ffffff"><font size="3">d&eacute;clare t-elle devant les objectifs. </font></font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><font size="3">Les images d&rsquo;un homme se succ&egrave;dent rapidement, on le voit se rendre au <font color="#FF56FF">TOUTA2LEEMS</font> pendant un nombre ind&eacute;termin&eacute; de cycle. A la suite de quoi le rythme des images ralentit, on suit alors cet homme se pr&eacute;lasser dans l&rsquo;un des magnifiques ressorts de &quot; chez Fun&#039;Co&deg; Ryzel Resorts ! &quot;</font></font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=15365&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15365&amp;c_topic_page=2">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15365&c_forum_page=1&c_page=2" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15365" name="d_reply_15365" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15365');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15365'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > FUN-Z1000</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

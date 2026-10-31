@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17119 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>L&#039;exode</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;exode</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />16/01/1024 ETU 06:37</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal305914')">Détails</a> <a href="javascript:warnpost(305914)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305914" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305914',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Depuis la passerelle du croiseur Amiral, deux hommes s&#039;entretiennent&nbsp;tout en regardant le vide sid&eacute;ral au travers du grand panneau vitr&eacute;. Le terme vide est dans ce cas inappropri&eacute;, car des milliers de vaisseaux sont stationn&eacute;s autour deux, sans compter toutes les navettes circulant des uns aux autres.</div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Allan, vous savez tout le bien que nous pensons de vous, vous devez absolument nous accompagner.</font></div><div class="post_line"><font color="#ffff00">- Amiral, nous avons d&eacute;j&agrave; discut&eacute; de tout cela, la flotte Alph&eacute;rasienne est maintenant pr&ecirc;te. Tous les vaisseaux compatibles ont &eacute;t&eacute; transform&eacute;s en ruche pour transporter tous ceux parmi la R&eacute;publique qui souhaitaient partir. Ce fut compliqu&eacute; au vu du temps impartit mais c&#039;est fait, vous n&#039;avez plus besoin de moi.</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Je vois que je ne pourrais pas vous faire changer d&#039;avis. Mais qu&#039;allez vous faire alors ?</font></div><div class="post_line"><font color="#ffff00">- J&#039;ai r&eacute;quisitionn&eacute; mon vieux croiseur Amiral, de toute fa&ccedil;on incompatible &agrave; devenir un vaisseau ruche. Je l&#039;ai rebaptis&eacute; du nom du premier vaisseau &agrave; se poser sur notre plan&egrave;te capitale&nbsp; :&nbsp;<strong>&quot;Le Galactica&quot;</strong>. Une poign&eacute;e de mes soldats et amis les plus proches se sont port&eacute;s volontaires pour me suivre. Nous partons vers le berceau suppos&eacute; de notre civilisation dans une Galaxie perdue sur la plan&egrave;te <strong>Aria Prime</strong>. C&#039;est un voyage &agrave; grand risque mais celui que la flotte Alph&eacute;rasienne va entamer,&nbsp;l&#039;est tout autant. Nous allons tous emprunter les multivers vers d&#039;autres Galaxies et notre technologie n&#039;en est qu&#039;&agrave; ces balbutiements.&nbsp;Souhaitons nous donc bonne chance.</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Bonne chance Allan, r&eacute;pondit l&#039;Amiral. Que dieu nous garde !</font></div><div class="post_line"></div><div class="post_line">Le Commandeur Thory serra la main tendue de&nbsp;l&#039;Amiral puis se d&eacute;tourna et partit d&#039;un pas r&eacute;solu vers la sortie. Ces hommes l&#039;attendaient, le d&eacute;part &eacute;tait pr&eacute;vu pour dans deux heures.</div><div class="post_line">L&#039;Amiral le suivit du regard. Il pensa bri&egrave;vement qu&#039;il voyait cet homme pour la derni&egrave;re fois. Puis se tournant vers l&#039;officier des com, il lui dit :&nbsp;</div><div class="post_line"><font color="#f551ff">- Lieutenant, Message &agrave; tous les vaisseaux, d&eacute;part du compte &agrave; rebours r&eacute;gl&eacute; sur huit heures &agrave; partir de cet instant, chaque groupe se dirigera vers le multivers qui lui a &eacute;t&eacute; attribu&eacute;. Les chefs de groupe ont maintenant tout pouvoir pour prendre les d&eacute;cisions qui leur sembleront les plus appropri&eacute;es. Termin&eacute; et bon vent &agrave; tous.</font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />04/02/1024 ETU 23:22</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal306071')">Détails</a> <a href="javascript:warnpost(306071)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306071" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306071',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font color="#ffff00"><font size="5"><em>Nouvelle &egrave;re,</em></font></font></strong></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Le jeune enfant jouait, il semblait flotter dans le pi&egrave;ce. Un chasseur stellaire miniature dans chaque main, il simulait un combat a&eacute;rien. L&eacute;g&egrave;rement en retrait dans la pi&egrave;ce, un homme lisait, assis &agrave; un bureau. Par la baie de la pi&egrave;ce, on distinguait l&rsquo;&eacute;trange balai d&rsquo;une multitude de poissons tous plus color&eacute;s les uns que les autres. </font></div><div class="post_line"><font color="#c3ffff">Nous pourrions penser &agrave; un tr&egrave;s grand aquarium accroch&eacute; au mur, mais la pi&egrave;ce o&ugrave; jouait l&rsquo;enfant &eacute;tait dans l&rsquo;eau et faisait partie d&rsquo;une riche demeure dans une m&eacute;gapole situ&eacute;e elle-m&ecirc;me dans une des plus grandes fosses marines de la plan&egrave;te.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Maitre !</font><font color="#c3ffff"> Commen&ccedil;a le jeune enfant en s&rsquo;adressant &agrave; l&rsquo;autre personne. </font></div><div class="post_line"><font color="#f551ff">- Oui Luke,</font><font color="#c3ffff"> r&eacute;pondit l&rsquo;homme.</font></div><div class="post_line"><font color="#ffff00">- Maitre, pourriez vous me raconter l&rsquo;histoire de notre peuple ?</font></div><div class="post_line"><font color="#f551ff">- Luke, tu la connais d&eacute;j&agrave; par c&oelig;ur.</font></div><div class="post_line"><font color="#ffff00">- Oui mais je veux l&rsquo;entendre de nouveau.</font></div><div class="post_line"><font color="#f551ff">- Ok, ok, tu as gagn&eacute;&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Le pr&eacute;cepteur de Luke se leva comme pour un tour de chant et s&rsquo;&eacute;leva doucement dans la pi&egrave;ce, se stabilisant &agrave; mi hauteur. Il commen&ccedil;a...</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Voil&agrave;, notre plan&egrave;te <strong>Alpharas</strong> est &agrave; 80% recouverte d&#039;oc&eacute;an et les 20% restants des terres sont &eacute;merg&eacute;es et&nbsp;recouvertes d&rsquo;une inextricable for&ecirc;t vierge. Au cours des si&egrave;cles et de l&rsquo;&eacute;volution, plusieurs races ont &eacute;volu&eacute;es, certaines&nbsp; de forme humano&iuml;des d&rsquo;autres non. Sont-elles r&eacute;ellement originaires de la plan&egrave;te, l&rsquo;information s&rsquo;est perdue dans les replis du temps. Il y a 500 ans environ, quatre races plus ou moins &eacute;volu&eacute;es cohabitaient pacifiquement...</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Quatre ? dit Luke interrompant l&rsquo;homme, je pensais cinq !</font></div><div class="post_line"><font color="#f551ff">- Ecoutez ! Jeune homme et ne m&rsquo;interrompez pas ! Je dis bien quatre. </font></div><div class="post_line"><font color="#f551ff">- Il y avait les <strong>Killics</strong>, une esp&egrave;ce &eacute;volu&eacute;e insectoide vivant en mer aux abords des terres et capable de se d&eacute;placer hors de l&rsquo;eau. </font></div><div class="post_line"><font color="#f551ff">- Les <strong>Lumiens</strong>, de forme humano&iuml;de fluorescente, ce sont les habitants des profondeurs les plus importantes, incapables de survivre longtemps &agrave; l&rsquo;air libre. </font></div><div class="post_line"><font color="#f551ff">- Les <strong>Eoles</strong>, mi&nbsp;humano&iuml;des, mi oiseaux dot&eacute;s d&rsquo;ailes puissantes leur permettant de voler et le corps recouvert de plumes. Les seules &agrave; habiter hors de l&rsquo;eau dans la canop&eacute;e des jungles tropicales. </font></div><div class="post_line"><font color="#f551ff">- Et enfin&nbsp;il y a nous, les <strong>Atlantes</strong>, peuple des profondeurs marines capable de vivre dans et hors de l&rsquo;eau.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Le pr&eacute;cepteur marqua une pause, puis repris...</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Donc, Il y a cinq cents ans environ, un appareil volant gigantesque&nbsp;, &agrave; priori un vaisseau Nef venant de l&rsquo;espace et transportant des entit&eacute;s vivantes, s&rsquo;est &eacute;cras&eacute; sur la plan&egrave;te dans la jungle &eacute;quatoriale. Une partie de ces cr&eacute;atures&nbsp;a r&eacute;ussit &agrave; survivre &agrave; l&#039;impact. Ces humano&iuml;des ou humains comme ils se qualifient ne pouvaient respirer sous l&rsquo;eau. Ils se sont donc installer pr&eacute;s de l&rsquo;&eacute;pave de leur vaisseau pas tr&egrave;s loin de la mer et ont fond&eacute; une petite ville. Tr&egrave;s vite, des frictions ont eu lieux avec les <strong>Eoles</strong> plut&ocirc;t belliqueux lorsque l&rsquo;on empi&egrave;te sur leur domaine. La bataille fut rude et fit de nombreuses victimes des deux bords. Les humains se battaient&nbsp; furieusement.&nbsp; L&rsquo;armement sauv&eacute; du vaisseau &eacute;tait un point majeur mais les <strong>Eoles</strong> &eacute;taient sur leur terrain.</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Ceux-ci voyant leurs pertes augmenter ont demand&eacute; aux <strong>Atlantes</strong> avec qui ils entretenaient des &eacute;changes commerciaux, d&rsquo;engager des n&eacute;gociations. Le Roi&nbsp; <strong>Atlante</strong>&nbsp;<strong>Crao IV</strong> r&eacute;ussi le coup de force de rassembler les cinq peuples et&nbsp;ramener une paix qui dure depuis. Les &eacute;changes technologiques avec les nouveaux arrivants ont permis &agrave; tous de progresser et rapidement&nbsp;de r&eacute;aliser des vaisseaux stellaires sommaires au d&eacute;but , puis de plus en plus sophistiqu&eacute;. C&rsquo;est ainsi que les voyages dans l&rsquo;espace ont commenc&eacute;. Et dans le m&ecirc;me temps,&nbsp;le gouvernement plan&eacute;taire sous la forme d&rsquo;une <strong>R&eacute;publique des Nations Unies</strong> de la civilisation <strong>Alphar</strong>.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">De nouveau le pr&eacute;cepteur s&rsquo;interrompit regardant l&rsquo;enfant puis en flottant il vint s&rsquo;assoir d&eacute;licatement sur le bord du bureau.</font></div><div class="post_line"><font color="#c3ffff">Luke en profita pour reprendre la parole.</font></div><div class="post_line"><font color="#ffff00">- Dites moi Maitre, pourquoi les autres enfants me traitent-ils de mutant ?</font></div><div class="post_line"><font color="#f551ff">- Si jamais cela perdure Luke, parles-en &agrave; ta m&egrave;re.</font></div><div class="post_line"><font color="#ffff00">- J&lsquo;ai r&eacute;gl&eacute; le probl&egrave;me.</font><font color="#c3ffff"> R&eacute;pondit Luke d&rsquo;une petite voix. </font></div><div class="post_line"><font color="#f551ff">- Luke, tu ne dois pas te battre en dehors des entrainements au combat !</font><font color="#c3ffff"> Lui dit le pr&eacute;cepteur d&rsquo;un ton qui se voulait un peu plus s&eacute;v&egrave;re.</font></div><div class="post_line"><font color="#c3ffff">Luke baissa la t&ecirc;te.</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Ecoute Petit, </font><font color="#c3ffff">recommen&ccedil;a doucement son interlocuteur.&nbsp;</font></div><div class="post_line"><font color="#f551ff">- Tu as une chance inou&iuml;, ta m&egrave;re, la&nbsp; <strong>Princesse Atlante El&eacute;nia</strong> a sauv&eacute; de la noyade un des humains venant des &eacute;toiles. Ton p&egrave;re <strong>Kal Thory</strong>, est issu de la lign&eacute;e d&rsquo;un de leur prestigieux dirigeant dans la Galaxie d&rsquo;o&ugrave; ils viennent. Il s&rsquo;agirait du <strong>Commandeur Allan Thory</strong>, disparu lors de l&rsquo;exode. Ils sont tomb&eacute;s follement amoureux et malgr&eacute; les r&eacute;ticences des pairs des deux bords, ils se sont unis. Tu es n&eacute; de cette union et tu poss&egrave;de le mieux de chacune des deux races. Tu respire hors et sous l&rsquo;eau sans diff&eacute;rence, tu es dot&eacute; d&rsquo;une vitesse de d&eacute;placement et d&rsquo;une force inou&iuml;e. Ton p&egrave;re dit que les <strong>Thory</strong> ont du sang <strong>Elfique</strong>. Dans quelque ann&eacute;e, tu auras un r&ocirc;le important &agrave; jouer dans la nouvelle R&eacute;publique.</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Voil&agrave; Luke tu sais tout ! Maintenant file &agrave; ton entrainement.</font><font color="#c3ffff"> Un courant d&rsquo;eau se produit dans la pi&egrave;ce, l&rsquo;enfant avait disparu...</font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />07/02/1024 ETU 08:00</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D306141', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal306140')">Détails</a> <a href="javascript:warnpost(306140)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306140" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306140',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font color="#ffff00"><font size="5"><em>L&rsquo;Acad&eacute;mie,</em></font></font></strong></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Luke assit sur un banc au milieu du grand amphith&eacute;&acirc;tre &eacute;coutait au m&ecirc;me titre que tous les autres &eacute;l&egrave;ves Aspirant, les r&eacute;sultats &eacute;gren&eacute;s par l&rsquo;Amiral Orus concernant la fin de leur formation. Celui-ci en imposait &agrave; l&rsquo;assistance. C&rsquo;&eacute;tait un Eole de grande taille amplifi&eacute;e par ses deux majestueuses ailes repli&eacute;es&nbsp;dans son dos, directeur de la prestigieuse &eacute;cole de formation des futurs navigants pour la flotte interstellaire de la R&eacute;publique.&nbsp;</font></div><div class="post_line"><font color="#c3ffff">Les notes de chacun, bien sur, &eacute;taient suivies d&rsquo;une affectation en d&eacute;coulant directement. Toutes les sp&eacute;cialit&eacute;s employ&eacute;es dans la Flotte&nbsp;&eacute;taient pr&eacute;sentes et la liste &eacute;tait longue. </font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">La jeune fille sur sa droite lui souffla.</font></div><div class="post_line"><font color="#ffc0cb">- Ouf, cela va enfin &ecirc;tre &agrave; nous, les pilotes.</font></div><div class="post_line"><font color="#ffc95f">- Oui.</font><font color="#c3ffff"> R&eacute;pondit son coll&egrave;gue et ami sur sa gauche. </font><font color="#ffc95f">Et j&rsquo;esp&egrave;re que nous aurons nos choix.</font></div><div class="post_line"><font color="#ffff00">- Je pense que nous sommes parmi les premiers pour la sp&eacute;. pilotes.</font><font color="#c3ffff"> Dit Luke. </font><font color="#ffff00">Cela devrait aider.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">L&rsquo;amiral continuait son monologue&hellip;</font></div><div class="post_line"><font color="#f551ff">- Lieutenant Ania Ateline mut&eacute; dans l&rsquo;escadron ONE FULL co-pilote sur corvette l&eacute;g&egrave;re.</font></div><div class="post_line"><font color="#ffc0cb">- Super !</font><font color="#c3ffff"> Ne put s&rsquo;emp&ecirc;cher de dire Ania.</font></div><div class="post_line"><font color="#f551ff">- Lieutenant Igor Aviat-mee mut&eacute; dans l&rsquo;escadron ROGUE ONE pilote chasseur X800.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Les noms continuaient &agrave; s&rsquo;&eacute;grener&hellip;</font></div><div class="post_line"><font color="#f551ff">- Lieutenant Luke Thory mut&eacute; dans l&rsquo;escadron ROGUE ONE pilote chasseur X800.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">L&rsquo;Amiral s&rsquo;arr&ecirc;ta et termina par</font></div><div class="post_line"><font color="#f551ff">- Mesdames, messieurs, c&rsquo;est termin&eacute;, je vous souhaite un bon d&eacute;but dans vos nouvelles affectations. Soyez efficace, la R&eacute;publique compte sur vous.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Un tonnerre d&rsquo;applaudissement cl&ocirc;tura son discours.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Igor se tourna vers Luke. </font></div><div class="post_line"><font color="#ffc95f">- F&eacute;licitation Luke, tu termines majeur de promo.</font></div><div class="post_line"><font color="#ffff00">- Bah, coup de peau et au final nos deux chasseurs sont identiques. </font><font color="#c3ffff">R&eacute;pondit Luke.</font></div><div class="post_line"><font color="#ffc0cb">- Oh et modeste en plus !</font><font color="#c3ffff">&nbsp;Compl&eacute;ta Ania en souriant.</font></div><div class="post_line"><font color="#ffff00">- Ok, j&rsquo;ai compris. Aller, je vous emm&egrave;ne au bar, on va arroser cela !</font></div><div class="post_line"><font color="#ffc0cb">- Yes,</font><font color="#c3ffff"> cri&egrave;rent ensemble Ania et Igor en suivant Luke&hellip;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />12/02/1024 ETU 05:48</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal306280')">Détails</a> <a href="javascript:warnpost(306280)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306280" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306280',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font color="#ffff00"><font size="5"><em>Le raid,</em></font></font></strong></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff"><font size="3">21H30 Heure Alphar, <strong>Centre des Op&eacute;rations Spatiales</strong>, plan&egrave;te <strong>Alph&eacute;ras</strong>.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Dans la pi&egrave;ce&nbsp;plong&eacute;e dans une l&eacute;g&egrave;re p&eacute;nombre et le ronronnement discret des appareils informatiques et des climatiseurs, des &ecirc;tres&nbsp;&eacute;voluaient entre les rang&eacute;es de consoles Visu.&nbsp;Celle-ci permettent de contr&ocirc;ler l&rsquo;espace environnant du syst&egrave;me aux alentours&nbsp;des plan&egrave;tes unies de la R&eacute;publique. Quatre rang&eacute;es centr&eacute;es dans la pi&egrave;ce avec &agrave; l&rsquo;entr&eacute;e un espace occup&eacute; par un grand bureau en arrondi et sur la surface duquel sont int&eacute;gr&eacute; l&eacute;g&egrave;rement pench&eacute;s des Vitres-&eacute;crans g&eacute;ants.&nbsp; Assis &agrave; cet endroit, trois hommes discutent tout en surveillant les donn&eacute;es qui s&rsquo;affichent et d&eacute;filent. </font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Une sonnerie retentit, l&rsquo;un des trois hommes d&eacute;crocha et r&eacute;pondit. Puis se tournant vers les deux autres.</font></div><div class="post_line"><font color="#e8b6ef">- Amiral, la console Transpatiale vient de recevoir un message. Il s&rsquo;agit d&rsquo;un SOS &eacute;mit &agrave; priori de la plan&egrave;te <strong>Eltair</strong>.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Le Capitaine situ&eacute; &agrave; la droite de l&rsquo;Amiral les interrompit. </font></div><div class="post_line"><font color="#ffc95f">- Amiral, un des satellites de surveillance en rotation sur l&rsquo;Equateur d&rsquo;Eltair vient de disparaitre.</font></div><div class="post_line"><font color="#f551ff">- Seigneur, il y a fort &agrave; parier que les Brigands sont revenus. Qui assure la P.O.</font></div><div class="post_line"><font color="#ffc95f">- La Permanence Op&eacute;rationnelle est assur&eacute; par l&#039;escadron&nbsp;Rogue One&nbsp;Amiral. </font></div><div class="post_line"><font color="#f551ff">- Envoyez-les sur le champ et essayez de contacter les autorit&eacute;s l&agrave;-bas !</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff"><font size="3">21H35 Heure Alphar, <strong>Centre Spatiale de la Flotte Alphar</strong>, <strong>bureau des Op&eacute;rations</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Dans la salle de permanence, une sonnerie intense et aigue retentit. Aussit&ocirc;t les personnels pr&eacute;sents se dirig&egrave;rent en courant&nbsp;vers les armoires vestiaires, y prenant leur casque puis vers la porte. </font></div><div class="post_line"><font color="#c3ffff">Sur le Tarmac, les m&eacute;canos &eacute;taient occup&eacute;s autour des chasseurs X800 rang&eacute;s en rang d&rsquo;oignons. Toujours courant avec leur casque, les pilotes arrivaient, montaient dans leur engins respectifs et commen&ccedil;aient la mise en route de leur vaisseau pendant que leurs m&eacute;canos respectifs les aidait &agrave; sangler casque et ceinture puis verrouiller la verri&egrave;re. Le Chien jaune, Directeur de piste agitait d&eacute;j&agrave; le drapeau annon&ccedil;ant l&rsquo;autorisation de d&eacute;collage. </font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Trois minutes chrono et les puissants X800 s&#039;arrachaient du sol et partait group&eacute;s plein pot, petit roulis de salut&nbsp;en passant devant la tour de contr&ocirc;le de l&rsquo;astroport. Et Rogue One filait vers l&#039;espace.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />13/02/1024 ETU 06:22</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal306334')">Détails</a> <a href="javascript:warnpost(306334)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306334" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306334',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font color="#ffff00"><font size="5"><em>Le raid (suite),</em></font></font></strong></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Aux commandes de son vaisseau, le Commandant Eole Nathaniel termine de prendre connaissance de la mission. R&eacute;glant son micro de casque, il annon&ccedil;e.</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Leader One ROGUE &agrave; Tour Alpha, sortis zone atmosph&egrave;re, nous dirigeons vers cible, termin&eacute;.</font></div><div class="post_line"><font color="#ff857a">- Tour Alpha &agrave; ROGUE, bonne chance &agrave; vous, termin&eacute;.</font></div><div class="post_line"><font color="#f551ff">- Leader One &agrave; Gu&eacute;pards, changement sur fr&eacute;quence intervention 7, direction cible et passage en vitesse supraluminique 3.8.5 &agrave; trois, deux, un, feux.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">De son vaisseau Luke surveillait les syst&egrave;mes de bord tout en pilotant. La radio gr&eacute;silla. </font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- Luke, c&rsquo;est parti pour notre bapt&ecirc;me, sens tu l&rsquo;adr&eacute;naline mont&eacute;e ?</font></div><div class="post_line"><font color="#ffff44">- Tais toi, Igor et concentre toi, nous arrivons dans quelques minutes&hellip;</font></div><div class="post_line"><font color="#f551ff">- Leader One &agrave; Gu&eacute;pards. Arriv&eacute;e dans deux minutes sur th&eacute;&acirc;tre d&rsquo;op&eacute;ration. Gu&eacute;pard six et sept, vous restez en surveillance en orbite haute. Pour les autres, vous me suivez, nous rentrons en atmosph&eacute;rique.</font></div><div class="post_line"><font color="#72ff84">- Ah pas cool, les boules !</font><font color="#c3ffff"> G&eacute;mit Igor.&nbsp;</font><font color="#72ff84">Pourquoi nous !</font></div><div class="post_line"><font color="#f551ff">- On se tait Les cadets et ouvrez&nbsp;l&rsquo;&oelig;il !</font><font color="#c3ffff"> Intervint Nathaneil un petit sourire aux l&egrave;vres. </font></div><div class="post_line"><font color="#f551ff">- Pour Tous, nous passons sur les casques &agrave; commande neuronal. Suivez-moi.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Les vaisseaux plong&egrave;rent vers la plan&egrave;te hormis les deux charg&eacute;s de la surveillance. Luke et son ami ralentirent la vitesse et commenc&egrave;rent les hippodromes d&rsquo;attente.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Au <strong>Centre des Op&eacute;rations Spatiales</strong>, Les trois hommes suivaient les images et le son retransmis du Leader One. Les vaisseaux apr&eacute;s avoir plong&eacute;, suivaient le d&eacute;nivel&eacute; terrestre en rase motte.&nbsp;Ils arrivaient &agrave; proximit&eacute; de la zone des combats. On commen&ccedil;ait &agrave; distinguer les &eacute;changes entre natifs et brigands, les sifflements caract&eacute;ristiques des tirs Laser, les explosions des roquettes et d&#039;immenses incendies sur les b&acirc;timents. Des dizaines de cadavres jonchaient le sol.&nbsp; Au travers du&nbsp;vacarme des combats, la voix de Leader One s&rsquo;&eacute;leva.</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- A Tous, ouvrez le feu sur ces fumiers et nettoyez moi tout. </font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Les flashes de tir des vaisseaux commenc&egrave;rent &agrave; envahir l&rsquo;espace avec leur lumi&egrave;re blanche froide mais aussi la r&eacute;plique des blasters des bellig&eacute;rants.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">- Non de non, pensa tout haut l&rsquo;Amiral. Quel carnage !</font></div><div class="post_line"></div><div class="post_line"><font color="#f551ff">- Leader One &agrave; Gu&eacute;pard Trois, qu&#039;est ce que tu fous,&nbsp;redescend tu fais une superbe cible&hellip;</font></div><div class="post_line"><font color="#ffc95f">- Gu&eacute;pard Cinq &agrave; Leader One, je suis touch&eacute;, je m&rsquo;&eacute;loigne&hellip;</font></div><div class="post_line"><font color="#f551ff">- Ok Cinq, allez les autres, on refait un passage. Gu&eacute;pard Trois et Quatre, occupez vous des trois vaisseaux Fr&eacute;gates sur le tarmac qu&rsquo;ils ne puissent pas red&eacute;coll&eacute;s, bombardez moi ces cafards. Les autres pas de quartier&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Au-dessus de la plan&egrave;te, dans l&rsquo;espace. Luke et Igor &eacute;coutent avec attention les &eacute;changes des combats au sol. Un bip se fait entendre dans le casque de Luke. Regardant son &eacute;cran radar&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">-Igor, attention, nous avons de la visite. Ce sont des Fr&eacute;gates Corsaires, &ccedil;a va chauffer pour nous.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Leader One qui avait entendu intervint. </font><font color="#f551ff">D&eacute;sol&eacute; tous les deux mais nous ne pouvons pas encore remonter, occupez les, je vous envoie quelqu&rsquo;un d&egrave;s que possible&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- C&rsquo;est parti.</font><font color="#c3ffff"> dit Igor et les deux vaisseaux sur un virage serr&eacute; se dirigent vers les arrivants.</font></div><div class="post_line"><font color="#72ff84">- Luke, allez on file&nbsp;droit dessus.</font><font color="#c3ffff">&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Les deux X800 foncent vers les Fr&eacute;gates et ouvrent le feu. Aussit&ocirc;t le groupe de s&rsquo;&eacute;clate. Igor r&eacute;ussit &agrave; en toucher une qui s&#039;&eacute;loigne en louvoyant.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Je suis les deux &agrave; droite.</font><font color="#c3ffff"> Dit Luke.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Les Fr&eacute;gates sont rapides mais moins maniables et Luke r&eacute;ussit &agrave; en toucher une. Puis cela devient le jeu du chat et de la souris avec la deuxi&egrave;me, esquive, virage, poursuite...</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- Mince, elles sont derri&egrave;re moi et je n&rsquo;arrive pas &agrave; les larguer.</font><font color="#c3ffff"> Crie Igor en cabrant son chasseur.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Tiens bon, je vais pouvoir venir.</font><font color="#c3ffff">&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Son syst&egrave;me de vis&eacute;e clignote, la cible est accroch&eacute;e. Sifflement du tir, le vaisseau brigands explose entour&eacute; de flammes. Luke vire et se dirige vers son ami toujours poursuivit par les fr&eacute;gates.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Je suis derri&egrave;re Igor vire serr&eacute; &agrave; z&eacute;ro.</font><font color="#c3ffff">&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Les Fr&eacute;gates suivent,&nbsp; le syst&egrave;me double vis&eacute;e clignote, les cibles sont accroch&eacute;es. Luke l&acirc;che les deux missiles <strong>Tomdeer</strong>. Dans sa t&ecirc;te, il &eacute;gr&egrave;ne les secondes. A cinq les fr&eacute;gates explosent.</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- Yes !!!</font><font color="#c3ffff">&nbsp;crie Igor. </font></div><div class="post_line"><font color="#72ff84">- super tir, merci Luke. </font></div><div class="post_line"><font color="#ffff44">- Coup de chance !</font><font color="#c3ffff">&nbsp;Lui r&eacute;pond son ami. </font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">A la radio&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Gu&eacute;pard Sept &agrave; Leader One, espace nettoy&eacute;. Termin&eacute;.</font></div><div class="post_line"><font color="#f551ff">- Leader One &agrave; Gu&eacute;pard Six et Sept. Super, bon travail les gamins. On a fini, les forces au sol ont repris l&rsquo;avantage. A Tous,&nbsp;on rentre&hellip;</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17119&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17119" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17119" name="d_reply_17119" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17119');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17119'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;exode</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

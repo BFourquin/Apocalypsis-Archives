@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16858 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Les rayons de soleil</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Les rayons de soleil</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />22/06/1023 ETU 06:03</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal300975')">Détails</a> <a href="javascript:warnpost(300975)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300975" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300975',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font size="4"><u>Baronnie de Reil</u></font></div></div><div class="post_line"></div><div class="post_line"><div align="center"><font size="4">Heure et lieu ind&eacute;terminable</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="justify"><font size="3">Le soleil br&ucirc;lant du d&eacute;sert baignait la vaste &eacute;tendue de sable, lui conf&eacute;rant une aura dor&eacute;e&nbsp; surnaturelle. Les dunes ondulaient gracieusement, sculpt&eacute;es par le vent myst&eacute;rieux qui semblait murmurer des secrets anciens. Chaque grain de sable scintillait telle une &eacute;toile miniature, cr&eacute;ant un spectacle scintillant &agrave; perte de vue.</font></div></div><div class="post_line"><div align="justify"><font size="3"></div><div class="post_line">Soudain, surgissant de nulle part, une piste d&#039;atterrissage se mat&eacute;rialisa. Elle &eacute;mergea avec une fluidit&eacute; presque magique, rompant l&#039;horizon infini du d&eacute;sert de mani&egrave;re parfaitement rectiligne. Cette piste, d&eacute;pourvue du moindre d&eacute;faut, elle tra&ccedil;ait un chemin rectiligne a travers les dunes.</div><div class="post_line">Sa surface lisse, d&#039;un noir profond, s&#039;&eacute;tendait sans fin, se perdant dans les horizons lointains. Pas le moindre caillou ne g&ecirc;nait sa surface sans faille, cr&eacute;ant ainsi une voie impeccable pour ceux qui oseraient s&#039;y aventurer.</div><div class="post_line"></div><div class="post_line">Aucune installation n&#039;&eacute;tait visible aux alentours. Il n&#039;y avait que la piste, majestueuse et myst&eacute;rieuse, qui ne semblait ni avoir de d&eacute;but ni de fin. Elle s&#039;&eacute;tendait &agrave; perte de vue, s&#039;enfon&ccedil;ant vers le nord avec une allure &agrave; la fois grandiose et intimidante. Dans cet endroit, un silence absolu r&eacute;gnait, seulement interrompu par le murmure du vent dans les dunes et le doux sifflement du sable se d&eacute;pla&ccedil;ant sous ses caresses. La chaleur du soleil semblait amplifi&eacute;e, embrassant la piste d&#039;un &eacute;clat br&ucirc;lant, mais &eacute;trangement accueillant.</div><div class="post_line"></div><div class="post_line">Brutalement les bruits familiers de r&eacute;acteurs d&#039;un engin brise calme serein du d&eacute;sert. </font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />22/06/1023 ETU 21:26<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal301015')">Détails</a> <a href="javascript:warnpost(301015)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301015" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301015',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffa500">Cap sur &ldquo;Baronnie de Reil&rdquo; ! Coordonn&eacute;es </font><em><font color="#ffffff">(censur&eacute;)</font></em><font color="#ffa500">... Et mets la gomme parce que j&rsquo;ai h&acirc;te d&rsquo;arriver.</font> </div><div class="post_line"></div><div class="post_line"><em>Myah avait embarqu&eacute; sans escorte, avec son pilote pr&eacute;f&eacute;r&eacute;. Le petit vaisseau &eacute;tait suffisamment confortable pour deux et avait l&rsquo;avantage d&#039;&ecirc;tre v&eacute;loce. M&ecirc;me si elle savait piloter, elle avait besoin de dormir et, comme une enfant, elle se laissait bercer par le vrombissement doux de la Corvette.</em></div><div class="post_line"></div><div class="post_line"><em>Proches de l&rsquo;arriv&eacute;e, elle regarda par le hublot la plan&egrave;te qui allait les accueillir. Elle avait une couleur blonde, elle avait certainement un climat aride&hellip; La Duchesse l&rsquo;avait avertie qu&rsquo;il y faisait chaud, lors de son invitation. Elle avait donc pr&eacute;vu des tenues claires pour l&rsquo;ext&eacute;rieur et des sombres pour l&rsquo;int&eacute;rieur qui seyaient mieux &agrave; son teint diaphane.</em></div><div class="post_line"></div><div class="post_line"><em>La piste d&rsquo;atterrissage apparut soudainement, juste &agrave; temps au moment o&ugrave; ils allaient remonter en urgence pour ne pas se planter dans le sable.</em></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Ouh ! Il &eacute;tait temps, <strong>Guide du peuple</strong>, &ccedil;a c&rsquo;est du timing ! Un peu angoissant, mais bon&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Ouais, je suis bluff&eacute;e&hellip; Mais j&rsquo;ai confiance en toi, tu t&rsquo;es toujours sorti des situations d&eacute;sesp&eacute;r&eacute;es. Mais&hellip; heu&hellip; Tu vois des b&acirc;timents, toi ? Ils sont enterr&eacute;s ??? &Eacute;coute, roule encore un peu et je descendrai. Je verrai peut-&ecirc;tre un Comit&eacute; d&rsquo;accueil surgir de quelque part ?</font></div><div class="post_line"></div><div class="post_line"><em>Ce qu&rsquo;elle fit, en combinaison blanche et le visage couvert d&rsquo;un onguent&nbsp; protecteur.</em></div><div class="post_line"></div><div class="post_line"><em>Elle se planta devant son vaisseau et cria :</em> <font color="#ffa500"><font size="3">HOUHOU&hellip; Ya quelqu&rsquo;un ?</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1023 ETU 04:43</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal301032')">Détails</a> <a href="javascript:warnpost(301032)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301032" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301032',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Le silence br&ucirc;lant du d&eacute;sert r&eacute;pondit &agrave; l&#039;appel de Myah. Aucun &eacute;cho ne vint troubler le calme apparent de la Baronnie de Reil. Les dunes de sable blond s&#039;&eacute;tendaient &agrave; perte de vue, immobiles et majestueuses. Les rayons du soleil dardaient impitoyablement sur la plaine aride, faisant onduler l&#039;air de mirages fugaces.</em></div><div class="post_line"></div><div class="post_line"><em>Soudain, un l&eacute;ger brouhaha &eacute;manant de derri&egrave;re les deux acolytes attira leur attention. Ils se retourn&egrave;rent, stup&eacute;faits, et d&eacute;couvrirent un spectacle incroyable. &Eacute;mergeant de l&#039;horizon, un immense b&acirc;timent se r&eacute;v&eacute;la &agrave; leurs yeux &eacute;bahis. Les dimensions de cette construction d&eacute;fiaient toute logique et d&eacute;passaient les limites de la r&eacute;alit&eacute; elle-m&ecirc;me. Ses contours semblaient se flouter, comme si les lois de la physique se pliaient &agrave; sa volont&eacute;. L&#039;extr&eacute;mit&eacute; du b&acirc;timent &eacute;tait visible, mais elle semblait inatteignable, comme si elle s&#039;&eacute;tendait &agrave; l&#039;infini.</em></div><div class="post_line"></div><div class="post_line"><em>Ce palais &eacute;tait une &oelig;uvre d&eacute;fiant toute logique et toute compr&eacute;hension. Ses proportions &eacute;taient tellement extravagantes qu&#039;elles se dissolvais dans les limites du r&eacute;el, jouant avec les perspectives et les perceptions des spectateurs. Les dimensions habituelles semblaient n&#039;&ecirc;tre qu&#039;un lointain souvenir en pr&eacute;sence de cette structure imp&eacute;n&eacute;trable.</em></div><div class="post_line"><em>Les contours du b&acirc;timent &eacute;taient ind&eacute;finis, se fondant dans l&#039;environnement avec une fluidit&eacute; d&eacute;routante. Il &eacute;manait une aura comme si les pierres et les mat&eacute;riaux qui le composaient &eacute;taient vivants, en constante transformation. Ses murs se fondais avec l&#039;air, cr&eacute;ant une troublante illusion de transparence.</em></div><div class="post_line"></div><div class="post_line"><em>L&#039;architecture du b&acirc;timent ne semblait suivre aucune r&egrave;gle connue. Les lignes droites et les angles droits &eacute;taient absents, remplac&eacute;s par des formes organiques et sinueuses qui dansais au gr&eacute; du vent. Les surfaces &eacute;taient orn&eacute;es de motifs complexes et intriqu&eacute;s, formant des arabesques et des symboles inconnu.</em></div><div class="post_line"><em>Les mat&eacute;riaux utilis&eacute;s &eacute;taient d&#039;une nature inconnue, leur texture et leur couleur changeant constamment. Des reflets iris&eacute;s dansaient sur les murs, cr&eacute;ant des jeux de lumi&egrave;re hypnotisant. Des cristaux &eacute;tranges &eacute;mergeaient de certaines parties du b&acirc;timent, scintillant de mille feux sous le soleil de Reil, &eacute;mettant une lueur donnant de la vie au b&acirc;timent. </em></div><div class="post_line"></div><div class="post_line"><em>La cours de la Baronnie qui &eacute;tait rassembl&eacute;e pr&egrave;s du b&acirc;timent. Des personnes aux tenues flamboyantes se m&ecirc;laient les unes aux autres, cr&eacute;ant un kal&eacute;idoscope de couleurs vives. Il &eacute;tait impossible de fixer un visage ou de distinguer une parole dans ce conglom&eacute;rat humain. La cacophonie des murmures et des rires joyeux cr&eacute;ait une ambiance surr&eacute;aliste, comme si le temps et l&#039;espace se diluaient dans ce lieu &eacute;nigmatique.</em></div><div class="post_line"></div><div class="post_line"><em>Puis, au milieu de cette foule indescriptible, la D</em><em>uchesse fit son apparition. Elle &eacute;manait une aura de gr&acirc;ce et de puissance, v&ecirc;tue d&#039;une robe resplendissante aux nuances bleues et magenta. Sa coiffure &eacute;tait une &oelig;uvre d&#039;art en soi, un assemblage complexe et &eacute;l&eacute;gant de tresses et de bijoux. Contempler la duchesse &eacute;tait comme se plonger dans un r&ecirc;ve &eacute;ph&eacute;m&egrave;re, une vision fugace d&#039;une perfection inatteignable. Elle &eacute;tait le reflet d&#039;une beaut&eacute; stellaire.</em></div><div class="post_line"></div><div class="post_line"><em>&Agrave; ses c&ocirc;t&eacute;s, une personne indescriptible se tient. Son apparence d&eacute;fie toute description pr&eacute;cise. Les traits de cette personne semblent d&eacute;rober toute tentative de les saisir. Elle est habill&eacute;e d&#039;un habit moulant et ample a la fois.</em></div><div class="post_line"></div><div class="post_line"><em>Un sourire &eacute;clatant &eacute;claira le visage de la duchesse lorsqu&#039;elle s&#039;approcha de Myah et de son pilote. La foule se tut instantan&eacute;ment et se prosterna respectueusement devant elle. La myst&eacute;rieuse personne suivait la Duchesse, elle semblait se d&eacute;placer sans bouger. </em></div><div class="post_line"></div><div class="post_line"><em>Les yeux &eacute;tincelants de la duchesse fix&egrave;rent ceux de Myah, transmettant une chaleur bienveillante.</em></div><div class="post_line">&quot;<font color="#ff56ff">Dame D&#039;Allow, bienvenue sur la Baronnie de Reil.</font>&quot;<em>, d&eacute;clara-t-elle d&#039;une voix douce mais porteuse d&#039;une autorit&eacute; ind&eacute;niable. </em>&quot;<font color="#ff56ff">J&#039;esp&egrave;re que vous avez fait bon voyage. Messire, je vous souhaite &eacute;galement la bienvenue dans notre Duch&eacute;. Venez ne tra&icirc;nons pas, le soleil est dangereux ici</font>.&quot;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1023 ETU 18:01<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D301059', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal301055')">Détails</a> <a href="javascript:warnpost(301055)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301055" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301055',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Le vent chaud seul r&eacute;pondait &agrave; Myah en ass&eacute;chant dangereusement sa peau. Le pilote descendit du vaisseau &agrave; son tour et se posta &agrave; ses c&ocirc;t&eacute;s. Un grondement sourd les fit sursauter et se retourner vers la source&hellip; en position de combat et pr&ecirc;ts &agrave; remonter dans le vaisseau. Elle crut voir le sable se soulever en une temp&ecirc;te gigantesque &agrave; l&rsquo;horizon, puis elle pensa &agrave; une arm&eacute;e fon&ccedil;ant sur eux&hellip;</em></div><div class="post_line"><font color="#ffc95f"><em>Elle aurait pu nous pr&eacute;venir, la Duchesse !</em></font></div><div class="post_line"></div><div class="post_line"><em>Et l&agrave;, elle n&rsquo;en crut pas ses yeux&hellip; C&rsquo;&eacute;tait une esp&egrave;ce de b&acirc;timent &eacute;norme qui semblait danser dans l&rsquo;air surchauff&eacute;. Elle pin&ccedil;a violemment le bras du pilote &agrave; travers sa combinaison de vol.</em></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Mais&hellip; A&iuml;euuu ! &ccedil;a ne va pas ?</font></div><div class="post_line"><font color="#ffa500">Morgan, tu vois toujours ce truc ? Et un peu de respect, s&rsquo;il te pla&icirc;t !</font></div><div class="post_line"><font color="#17b529">Heu&hellip; oui, pis &ccedil;a grossit vite, &ccedil;a avance, non ?</font></div><div class="post_line"><font color="#ffa500">Je voulais savoir si on voyait la m&ecirc;me chose ou si je r&ecirc;vais&hellip;</font></div><div class="post_line"><font color="#17b529">Quand on veut savoir &ccedil;a, on se pince soi-m&ecirc;me, pas les autres !</font> <em>bougonna t-il.</em></div><div class="post_line"><font color="#ffa500">Non, &ccedil;a fait mal et je marque vite&hellip;</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>Le mirage mouvant se pr&eacute;cisa au fur et &agrave; mesure qu&rsquo;il approchait, comme un travelling avant invers&eacute;&hellip; Le b&acirc;timent s&rsquo;av&eacute;rait &ecirc;tre curieusement d&eacute;cor&eacute; et son architecture restait floue. </em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">D&eacute;routant ! Je n&#039;avais jamais vu ce style &ldquo;baroque&rdquo; autre part dans la Galaxie, malgr&eacute; le nombre de peuples visit&eacute;s !</font></div><div class="post_line"></div><div class="post_line"><em>Un grognement lui r&eacute;pondit. Le pilote avait l&rsquo;air renfrogn&eacute; et stup&eacute;fait &agrave; la fois.</em></div><div class="post_line"></div><div class="post_line"><em>L&rsquo;image se rapprocha encore et Myah distingua bient&ocirc;t un peuple chamarr&eacute;, joyeux et bruyant qui se pr&eacute;cisa de plus en plus. Bient&ocirc;t, elle aper&ccedil;ut la Duchesse Ad&eacute;la&iuml;de, accompagn&eacute;e d&rsquo;une cr&eacute;ature &eacute;trange qu&rsquo;elle identifia comme &eacute;tant une I.A. ou un &ecirc;tre&nbsp; du m&ecirc;me genre.</em></div><div class="post_line"></div><div class="post_line"><em>Elle fut impressionn&eacute;e par le salut respectueux de toute la cour et inclina la t&ecirc;te vers eux tandis que Morgan s&rsquo;&eacute;tait carr&eacute;ment pli&eacute; en deux. L&rsquo;accueil de la Duchesse &eacute;tait tr&egrave;s amical. Myah y r&eacute;pondit.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Duchesse Ad&eacute;la&iuml;de, votre arriv&eacute;e et votre accueil vaut tous les spectacles du monde ! Mon pilote en est tout retourn&eacute;, n&rsquo;est-ce pas Morgan ?</font> </div><div class="post_line"><em>Le pilote grima&ccedil;a un sourire en voyant la lueur d&rsquo;humour dans les yeux de Myah. Il ne pouvait pas dire que son Guide avait eu autant peur que lui&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Oui, allons &agrave; l&rsquo;ombre ! Ma peau ne supporte pas encore bien le soleil et celui de Reil est vraiment&hellip; rayonnant !</font></div><div class="post_line"></div><div class="post_line"><em>Ils suivirent Ad&eacute;la&iuml;de vers le palais, leurs yeux grands ouverts sur les d&eacute;tails du b&acirc;timent et craignant un peu que le sol n&rsquo;ondule sous leurs pieds. Le mal de mer n&rsquo;&eacute;tait pas loin&hellip; Il leur faudrait un verre d&rsquo;eau fra&icirc;che rapidement. Myah sursauta encore quand les verres se mat&eacute;rialis&egrave;rent devant elle, offerts par la cr&eacute;ature androgyne.</em></div><div class="post_line"><font color="#ffa500"><font size="1">Morgan, mes nerfs sont &agrave; vif, je crois&hellip;</font></font> <font size="1"><em>chuchota-elle &agrave; son pilote en portant le verre &agrave; ses l&egrave;vres s&egrave;ches.</em> <font color="#ffa500">Et mes yeux n&rsquo;en peuvent d&eacute;j&agrave; plus de ces &eacute;clats trop brillants sur les parois&hellip; Tu vas, toi ?</font></font></div><div class="post_line"><font size="1"><font color="#17b529">Mmmgrouffff.</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />27/06/1023 ETU 02:56</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal301215')">Détails</a> <a href="javascript:warnpost(301215)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301215" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301215',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Leur verres, une fois finis disparurent de leurs main, et ils furent guid&eacute;s vers l&rsquo;int&eacute;rieur par l&#039;&eacute;trange personne. Le groupe franchirent les portes, laissant cette ind&eacute;terminable foule dehors, et p&eacute;n&eacute;tr&egrave;rent dans le hall d&#039;entr&eacute;e, un espace dont les dimensions d&eacute;passait celles de l&#039;ext&eacute;rieur du b&acirc;timent. Une atmosph&egrave;re de grandeur les enveloppa instantan&eacute;ment. Une vision saisissante les accueillit alors : un immense escalier s&#039;&eacute;levait majestueusement devant eux, drap&eacute; d&#039;un tapis rouge luxueux qui se d&eacute;roulait jusqu&#039;&agrave; l&#039;horizon visuel. L&#039;escalier red&eacute;finissait les lois de la perspective et de la perception. Chaque marche se fondais harmonieusement dans la suivante, cr&eacute;ant un escalier sans fin.</div><div class="post_line"></div><div class="post_line">Les rampes de l&#039;escalier &eacute;taient d&#039;une richesse in&eacute;gal&eacute;e, leur surface parcourue de motifs complexes et de d&eacute;tails exquis. Des feuilles d&#039;or et d&#039;argent se m&ecirc;laient &agrave; des incrustations de pierres pr&eacute;cieuses &eacute;tincelantes, cr&eacute;ant un jeu de couleurs et de reflets qui donnait l&#039;impression que l&#039;escalier &eacute;tait vivant, vibrant d&#039;une &eacute;nergie magique. Les balustrades courbes semblaient se transformer en branches entrelac&eacute;es, &eacute;voquant un bosquet enchant&eacute; o&ugrave; se raconte des histoire mystiques.</div><div class="post_line"></div><div class="post_line">Le tapis rouge qui se d&eacute;roulait le long de l&#039;escalier &eacute;tait d&#039;une &eacute;paisseur somptueuse et d&#039;une douceur incroyable sous les pas. Il &eacute;tait orn&eacute; de motifs complexes tiss&eacute;s dans des fils d&#039;or et de soie, formant des arabesques et des symboles myst&eacute;rieux. Chaque pas qu&#039;ils faisaient sur ce tapis semblait &ecirc;tre accompagn&eacute; d&#039;un l&eacute;ger murmure, comme si le sol lui-m&ecirc;me chantait leur arriv&eacute;e.</div><div class="post_line"></div><div class="post_line">Les fen&ecirc;tres qui bordaient le hall d&#039;entr&eacute;e &eacute;taient d&#039;une taille impressionnante, atteignant des hauteurs vertigineuses. Les vitraux color&eacute;s s&#039;&eacute;tendaient du sol au plafond, laissant p&eacute;n&eacute;trer des faisceaux de lumi&egrave;re multicolores dans l&#039;espace. Des motifs complexes et des sc&egrave;nes &eacute;nigmatiques &eacute;taient repr&eacute;sent&eacute;s dans les vitraux, racontant des histoires anciennes qui compl&eacute;taient celles des balustrades. La lumi&egrave;re qui filtrait &agrave; travers les vitraux se r&eacute;pandait dans le hall, cr&eacute;ant une ambiance magique, o&ugrave; les couleurs se m&eacute;langeaient et dansaient sur les murs et les sols, projetant des ombres mouvantes et des reflets enchanteurs.</div><div class="post_line"></div><div class="post_line">La Duchesse, d&#039;une voix empreinte de respect et de myst&egrave;re, pr&eacute;senta l&#039;individu &eacute;nigmatique aux noms de Dame D&#039;Allow et Sieur Morgan. &quot;<font color="#ff56ff">Permettez-moi de vous pr&eacute;senter le Guide</font>&quot;, dit-elle solennellement. &quot;<font color="#ff56ff">Il est l&#039;incarnation vivante des secrets de ce lieu . Il conna&icirc;t le pass&eacute; et le futur, et son essence m&ecirc;me transcende la r&eacute;alit&eacute; telle que nous la connaissons.</font>&quot;</div><div class="post_line">Le Guide se tenait devant eux, une figure d&#039;une beaut&eacute; insondable, comme s&#039;il &eacute;tait fa&ccedil;onn&eacute; par les r&ecirc;ves les plus profonds et les plus &eacute;th&eacute;r&eacute;s. Ses traits se transformaient sans cesse, comme s&#039;ils &eacute;taient sculpt&eacute;s par les ombres dansantes et la lumi&egrave;re qui l&#039;entourait. Son visage repr&eacute;sentait les histoires des &eacute;poques r&eacute;volues et les promesses des &egrave;res &agrave; venir.</div><div class="post_line">Son regard per&ccedil;ant, qui connaissait les secrets les plus profonds de l&#039;univers, &eacute;tait d&#039;une couleur envo&ucirc;tante et inconnu. Il &eacute;tait impossible de le fixer du regard, car ce dernier se dissolvait dans les horizons inexplor&eacute;s de l&#039;infini. Son apparence &eacute;tait fluide et insaisissable. Elle d&eacute;fiait toute tentative de compr&eacute;hension ou de cat&eacute;gorisation.</div><div class="post_line">Alors que le groupe commen&ccedil;ait &agrave; monter les marches de l&#039;escalier majestueux, ils pouvaient sentir une pr&eacute;sence vibrante et mystique &eacute;maner du Guide. </div><div class="post_line">La voix de la duchesse r&eacute;sonna avec une solennit&eacute; teint&eacute;e d&#039;excitation. &quot;<font color="#ff56ff">Cet endroit est une des plus grandes merveilles de mon Duch&eacute;</font>&quot;, d&eacute;clara-t-elle. &quot;<font color="#ff56ff">Ici, les lois de la r&eacute;alit&eacute; se plient et se tordent, cr&eacute;ant un paysage qui d&eacute;passe l&#039;imagination m&ecirc;me des plus grands artistes. C&#039;est un immense honneur et une solide fiert&eacute; de vous accueillir en ces lieux o&ugrave; les fronti&egrave;res de l&#039;espace et du temps s&#039;effacent. Je vois vous pr&eacute;senter l&#039;une de mes salles pr&eacute;f&eacute;r&eacute;es.</font>&quot;</div><div class="post_line"></div><div class="post_line">Le groupe fit un pas sur l&#039;une des innombrables marches, et le monde qui les entourait se transforma. Ils se retrouv&egrave;rent devant une imposante porte en bois noble, dont chaque centim&egrave;tre &eacute;tait minutieusement orn&eacute; de d&eacute;tails fascinants. Les histoires grav&eacute;es &agrave; sa surface &eacute;taient si nombreuses et complexes qu&#039;aucun regard humain ne pouvait les absorber dans leur int&eacute;gralit&eacute;. Les r&eacute;cits mythiques et les l&eacute;gendes anciennes semblaient prendre vie sous leurs yeux, d&eacute;voilant des univers fantastiques et des h&eacute;ros l&eacute;gendaires.</div><div class="post_line"></div><div class="post_line">Avec une gr&acirc;ce fantastique, le Guide ouvrit lentement la porte, r&eacute;v&eacute;lant une salle d&#039;une beaut&eacute; in&eacute;gal&eacute;e. Les murs &eacute;taient par&eacute;s de fresques d&eacute;licates, o&ugrave; des sc&egrave;nes magiques et des paysages enchanteurs s&#039;entrela&ccedil;aient dans une symphonie de couleurs et de formes. La lumi&egrave;re qui inondait la pi&egrave;ce semblait se diffuser de sources invisibles, cr&eacute;ant une atmosph&egrave;re o&ugrave; les teintes dansantes se m&eacute;langeaient dans un ballet envo&ucirc;tant.</div><div class="post_line"></div><div class="post_line">Au centre de la salle, une table extraordinaire s&#039;y tenait. Sculpt&eacute;e dans un mat&eacute;riau inconnu, elle une aura f&eacute;erique s&#039;en d&eacute;gageait. Les ornements complexes et mouvants qui la d&eacute;coraient &eacute;taient d&#039;une finesse in&eacute;gal&eacute;e, comme si des esprits invisibles les animaient. Des gemmes &eacute;tincelantes &eacute;taient incrust&eacute;es dans la surface, formant des motifs scintillants qui captivaient les yeux de tous ceux qui s&#039;en approchaient.</div><div class="post_line">De chaque c&ocirc;t&eacute; de la table, trois chaises majestueuses attendaient patiemment leurs invit&eacute;s. Leur bois noble &eacute;tait d&#039;une qualit&eacute; rare, poli avec soin et sculpt&eacute; de motifs hypnotiques et insaisissables. Ces chaise racont&egrave;rent des histoires plus intime et moins &eacute;pique. </div><div class="post_line"></div><div class="post_line">&Agrave; proximit&eacute; de la table, une desserte orn&eacute;e attirait l&#039;attention. Une carafe en cristal d&#039;une beaut&eacute; surnaturelle y reposait, semblant briller de sa propre lumi&egrave;re int&eacute;rieure. Les d&eacute;tails finement grav&eacute;s &agrave; sa surface semblaient prendre vie, cr&eacute;ant une illusion d&#039;un &eacute;ternel mouvement. Chaque motif d&eacute;licat semblait se mouvoir sous les yeux &eacute;merveill&eacute;s, dansant et tourbillonnant avec gr&acirc;ce. Pourtant, malgr&eacute; son apparence &eacute;blouissante, la carafe demeurait &eacute;trangement vide, d&eacute;pourvue du liquide qu&#039;elle aurait pu contenir. Une sensation troublante de vide&nbsp; &eacute;manait de cet objet.</div><div class="post_line">&Agrave; c&ocirc;t&eacute; de la carafe, trois verres translucides &eacute;taient soigneusement dispos&eacute;s, pr&ecirc;ts &agrave; &ecirc;tre utilis&eacute;s. Leur clart&eacute; cristalline refl&eacute;tait la lumi&egrave;re ambiante, ajoutant une touche bienvenue de normalit&eacute;.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ff56ff">Je suis heureuse de vous compter parmi mes invit&eacute;s. Nos &eacute;changes &eacute;pistolaires &eacute;taient bien trop frugaux a mon go&ucirc;t et je serai honor&eacute;e d&#039;en conna&icirc;tre davantage sur vous et votre civilisation ? D&eacute;sirez-vous une autre boisson ?</font>&quot;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />28/06/1023 ETU 07:11<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal301317')">Détails</a> <a href="javascript:warnpost(301317)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301317" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301317',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Myah et Morgan suivirent l&rsquo;&eacute;trange cr&eacute;ature de la Duchesse jusqu&rsquo;&agrave; l&rsquo;int&eacute;rieur du Palais. Elle eut tout &agrave; coup le vertige et dut se ctramponner au bras de Morgan. C&rsquo;&eacute;tait tellement gigantesque qu&rsquo;elle avait l&rsquo;impression d&rsquo;&ecirc;tre une fourmi dans un univers de g&eacute;ants. Elle ne pouvait plus regarder en l&rsquo;air sous peine d&rsquo;avoir un malaise. Devant, ce n&rsquo;&eacute;tait pas beaucoup mieux&hellip; Du cliquant, du brillant, du faste, une qualit&eacute; de mati&egrave;res, de myst&egrave;res, de cabalistique&hellip; d&rsquo;imposant, tellement oppressant qu&rsquo;elle regarda le bout de ses chaussures pour continuer &agrave; avancer. </div><div class="post_line"></div><div class="post_line">Malgr&eacute; toute l&rsquo;admiration et la fiert&eacute; sans borne qu&rsquo;affichait la Duchesse Ad&eacute;la&iuml;de, Myah avait du mal &agrave; adh&eacute;rer &agrave; ces motifs changeants, &agrave; ces courbes vivantes, &agrave; ces lueurs kal&eacute;idoscopiques. Malgr&eacute; le volume des pi&egrave;ces, elle se mit &agrave; manquer d&rsquo;air, une angoisse lui &eacute;treignait la poitrine, elle ne savait pas pourquoi&hellip;</div><div class="post_line"></div><div class="post_line">A ses c&ocirc;t&eacute;s, Morgan la soutenait fermement. Comment faisait-il ? Myah tourna la t&ecirc;te vers son pilote et constata qu&rsquo;il &eacute;tait d&rsquo;une p&acirc;leur inhabituelle. Lui aussi devait se sentir mal.</div><div class="post_line"></div><div class="post_line">L&rsquo;escalier franchi avec beaucoup de difficult&eacute;s pour eux, alors que le Guide glissait toujours de l&rsquo;avant sans faillir, ils arriv&egrave;rent dans la salle pr&eacute;f&eacute;r&eacute;e de la Duchesse&hellip; Myah eut un haut-le-coeur qu&rsquo;elle dissimula derri&egrave;re une main tremblante sur sa bouche. Cela pouvait passer pour de l&rsquo;&eacute;bahissement. Heureusement&hellip;</div><div class="post_line">La Duchesse ayant exprim&eacute; ses souhaits, un sourire fier sur le visage, Myah se lan&ccedil;a : </div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Ch&egrave;re amie, pardonnez-moi, je pense que notre voyage a &eacute;t&eacute; plus &eacute;prouvant que nous ne le pensions et&hellip; nous ne sommes pas en &eacute;tat d&rsquo;appr&eacute;cier toutes ces splendeurs. Ne nous en veuillez pas, mais nous aimerions nous reposer un peu dans nos chambres avant ce soir, nous changer et nous rafra&icirc;chir. N&rsquo;est-ce pas, Morgan ?</font></div><div class="post_line"><font color="#ffa500">Je crois que le soleil de Reil a d&ucirc; nous faire plus d&rsquo;effet que nous le pr&eacute;voyions. Voyez-vous, Duchesse, mon amie, tout cela d&rsquo;un coup est trop pour nous&hellip; Chez nous, c&rsquo;est beaucoup moins&hellip; &eacute;poustouflant ! Trop d&rsquo;&eacute;motions en si peu de temps, c&rsquo;est inhumain&hellip;</font></div><div class="post_line"></div><div class="post_line">Elle &eacute;clata de rire pour att&eacute;nuer ses paroles. Puis se tourna vers le Guide, et tendant la main vers lui dans une supplique, elle fr&ocirc;la la sienne. Elle ressentit imm&eacute;diatement un courant &eacute;trange lui parcourir le cerveau, la nuque et toute la moelle &eacute;pini&egrave;re avant d&rsquo;avoir un flash&hellip; <font color="#ffc95f">Elle se voyait avec un enfant dans les bras, heureuse et tendre, le b&eacute;b&eacute; &eacute;tait beau, avec des yeux sombres, un regard&nbsp; profond qu&rsquo;elle connaissait si bien&hellip;</font> Elle tenta de se raccrocher &agrave; autre chose, &agrave; un meuble qui se trouvait l&agrave;&hellip; &eacute;mit comme un g&eacute;missement&hellip; Son pilote la retint de tomber et la soutint jusqu&rsquo;&agrave; sa chambre, tr&egrave;s inquiet.</div><div class="post_line"></div><div class="post_line">Dans sa chambre, sa suite, sa maison aurait-on dit, tellement c&rsquo;&eacute;tait grand et spacieux, elle demanda &agrave; Morgan de lui donner un verre d&rsquo;eau fra&icirc;che et se sentit un peu mieux.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tu vas bien, toi ?</font></div><div class="post_line"><font color="#17b529">Oui, pas de souci, mais vous m&rsquo;avez fait peur, Commandante ! Que vous arrive-t-il ?</font></div><div class="post_line"><font color="#ffa500">Ce n&rsquo;est rien, Morgan, un petit malaise qui va passer avec une bonne douche et un peu de sommeil&hellip; Dis, ne touche jamais le Guide de la Duchesse, je ne sais pas de quoi il est capable, mais j&rsquo;ai ressenti de dr&ocirc;les de choses &agrave; son contact ! Il vaut mieux l&rsquo;&eacute;viter.</font></div><div class="post_line"><font color="#17b529">Heu&hellip; on va rester longtemps ici ? Parce que&hellip;</font></div><div class="post_line"><font color="#ffa500">Nous ne pouvons pas faire moins que de passer la nuit et la journ&eacute;e de demain chez la Duchesse, mais je vais demander &agrave; la S&eacute;curit&eacute; Dysmorphique de nous appeler en d&eacute;but de soir&eacute;e pour avoir un argument pour rentrer.</font></div><div class="post_line"><font color="#17b529">Arf&hellip; demain soir ?... Pfffff&hellip;</font></div><div class="post_line"><font color="#ffa500">Va te reposer, profite pour te d&eacute;tendre, je vais mieux.</font></div><div class="post_line"></div><div class="post_line"><em>Morgan parti vers ses p&eacute;nates, elle se leva et alla vers la salle d&rsquo;eau. Ce qu&rsquo;elle d&eacute;couvrit &eacute;tait plus qu&rsquo;elle ne pouvait accepter et elle se cramponna au sas d&rsquo;entr&eacute;e&hellip; C&rsquo;&eacute;tait une salle fastueuse de thermes avec divers bains du plus chaud au plus froid, des bancs de massages, des jeunes femmes la saluant avec le sourire, pr&ecirc;tes &agrave; s&rsquo;occuper d&rsquo;elle selon ses d&eacute;sirs, un parfum agr&eacute;able et des lumi&egrave;res tamis&eacute;es.</em></div><div class="post_line"></div><div class="post_line"><em>Elle se laissa d&eacute;shabiller, d&eacute;coiffer et, n&rsquo;en pouvant plus, elle leur intima l&rsquo;ordre de la laisser se baigner quelques minutes seule. Elle choisit le bain frais et y plongea avec un d&eacute;lice extraordinaire.</em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">J&rsquo;ai des plaisirs simples&hellip; trop simples pour elle. C&rsquo;est vrai qu&rsquo;elle regrettait que, dans ma civilisation, nous soyions &eacute;gaux, pas de naissance noble&hellip;&nbsp; Elle me l&rsquo;avait &eacute;crit, mais je n&rsquo;avais pas compris &agrave; quel point elle y tenait.</font></em></div><div class="post_line"><em><font color="#ffc95f">Oh que cette eau me fait du bien, rafra&icirc;chissante et pure ! C&rsquo;est un bonheur.</font></em></div><div class="post_line"></div><div class="post_line"><em>Elle ressortit du bassin, et aussit&ocirc;t les servantes lui pr&eacute;sent&egrave;rent un linge absorbant et doux pour se s&eacute;cher. Puis, elle l&#039;accompagn&egrave;rent vers un banc pour lui proposer plusieurs massages. Elle choisit le relaxant, sachant qu&rsquo;elle aurait peut-&ecirc;tre du mal &agrave; s&rsquo;assoupir avant l&rsquo;&eacute;preuve du soir.</em></div><div class="post_line"></div><div class="post_line"><em>Puis elle alla se coucher, d&eacute;tendue, avec un verre d&rsquo;alcool qu&rsquo;elle avait choisi au hasard d&rsquo;apr&egrave;s son parfum. Apr&egrave;s avoir tremp&eacute; ses l&egrave;vres au bord du verre, elle le reposa et s&rsquo;assoupit. Aucun r&ecirc;ve, seulement un sommeil profond et r&eacute;parateur qui ne dura pas tr&egrave;s longtemps. A son r&eacute;veil, elle consulta son bo&icirc;tier de cheville pour avoir des nouvelles de ses cong&eacute;n&egrave;res, mais tout allait bien et elle s&rsquo;&eacute;tira voluptueusement. Puis elle se pr&eacute;para pour la soir&eacute;e : une toge parfum&eacute;e et drap&eacute;e sur une &eacute;paule, de couleur changeante entre le rouge sombre et le dor&eacute;, au moindre geste, peu de bijoux, mais elle releva ses cheveux elle-m&ecirc;me en un chignon l&acirc;che et d&eacute;sinvolte. Juste une pointe de maquillage sur ses cils et ses l&egrave;vres, elle &eacute;tait pr&ecirc;te.</em></div><div class="post_line"></div><div class="post_line"><em>Elle attendit une heure d&eacute;cente pour appeler Morgan et descendre avec lui.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />04/07/1023 ETU 03:58</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D301874', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal301869')">Détails</a> <a href="javascript:warnpost(301869)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301869" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301869',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">La Duchesse Ad&eacute;la&iuml;de les accueillit &agrave; nouveau avec une chaleur feutr&eacute;e, sans la moindre expression de surprise quant &agrave; leur besoin de repos ant&eacute;rieur. La salle de repas avait subi une transformation myst&eacute;rieuse, acqu&eacute;rant une aura encore plus sobre et enchanteresse. Les proportions de la pi&egrave;ce semblaient s&#039;&ecirc;tre ajust&eacute;es, les plafonds &eacute;taient orn&eacute;s de fresques c&eacute;lestes fig&eacute;es dans le temps. Pourtant, lorsque l&#039;on fixait attentivement ces peintures, on pouvait discerner de minuscules mouvements imperceptibles &agrave; l&#039;&oelig;il nu, donnant vie &agrave; ces sc&egrave;nes c&eacute;lestes fig&eacute;es.</div><div class="post_line"></div><div class="post_line">Trois couverts majestueux &eacute;taient dispos&eacute;s sur une table proportionn&eacute;e &agrave; la dimension humaine. Leurs assiettes resplendissaient, serties d&#039;un or pur qui refl&eacute;tait la lueur vacillante d&#039;une &eacute;nigmatique lumi&egrave;re ambiante. Les reflets dansants semblaient &eacute;maner de nulle part et de partout &agrave; la fois, cr&eacute;ant une apaisante ambiance irr&eacute;elle qui enveloppait la salle.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ff30dc">J&#039;esp&egrave;re que vous avez fait un bon repos, chers amis</font>&quot;, d&eacute;clara Ad&eacute;la&iuml;de d&#039;une voix m&eacute;lodieuse, r&eacute;sonnant comme une douce harmonie. Son regard azur&eacute; se posa tour &agrave; tour sur Myah et Morgan, d&eacute;gageant une bienveillance sinc&egrave;re. &quot;<font color="#ff56ff">Je comprends que cet endroit puisse &ecirc;tre... d&eacute;concertant pour une personne de votre nature, Myah. Vous m&#039;en voyez navr&eacute;e si cela vous a mis mal &agrave; l&#039;aise. Pour ce soir, je vous propose un d&icirc;ner l&eacute;ger. Je sais que ces &eacute;motions peuvent alt&eacute;rer l&#039;app&eacute;tit, mais laissez-vous guider par les saveurs qui vous seront offertes.</font>&quot;</div><div class="post_line"></div><div class="post_line">La soir&eacute;e se d&eacute;roula dans une ambiance suspendue, o&ugrave; le temps se pliait aux volont&eacute;s de la Duchesse. Tout du moins c&#039;est ce qu&#039;il semblais appara&icirc;tre. Le repas, d&#039;une finesse rare, &eacute;tait servi par des &ecirc;tres &eacute;th&eacute;r&eacute;s &eacute;voluant en harmonie avec une&nbsp;<a href="https://www.youtube.com/watch?v=80ORhp05Iig" target="_blank" rel="nofollow">musique c&eacute;leste</a> qui emplissait la pi&egrave;ce. Les silhouettes mouvantes semblaient &agrave; la fois pr&eacute;sentes et absentes, glissant sans bruit autour des convives. Leurs gestes gracieux &eacute;taient empreints d&#039;une douceur irr&eacute;elle, r&eacute;v&eacute;lant leur aptitude &agrave; lire les d&eacute;sirs les plus intimes des invit&eacute;s.</div><div class="post_line"></div><div class="post_line">Aucun mot n&#039;&eacute;tait prononc&eacute;, aucun regard n&#039;&eacute;tait &eacute;chang&eacute;. Les ombres anticipaient chaque besoin, remplissant les verres de chacun d&#039;un liquide myst&eacute;rieux qui s&#039;accordait avec les d&eacute;sirs profonds de la personne qui le bois. Les breuvages, d&#039;une couleur envo&ucirc;tante, semblaient changer de teinte en fonction des &eacute;motions ressenties par celui qui les contemplait. Une symphonie de go&ucirc;ts d&eacute;licats se d&eacute;ployait sur les papilles de Myah et Morgan, &eacute;veillant leurs sens et les transportant vers un &eacute;tat de b&eacute;atitude inexplicable.</div><div class="post_line"></div><div class="post_line">Alors que le repas se d&eacute;roulait, la Duchesse partagea avec ses invit&eacute;s l&#039;histoire de sa vie ant&eacute;rieure &agrave; sa transformation. Jadis, elle avait &eacute;t&eacute; une &eacute;minente juriste, gravissant les &eacute;chelons de la soci&eacute;t&eacute; avec une finesse et une perspicacit&eacute; sans &eacute;gales. Cependant, lorsque sa m&egrave;re trouva la mort, Ad&eacute;la&iuml;de se vit contrainte d&#039;assumer le tr&ocirc;ne de Matrum, succ&eacute;dant ainsi &agrave; sa lign&eacute;e ducale.</div><div class="post_line"></div><div class="post_line">Son r&egrave;gne naissant fut marqu&eacute; par une ambition d&eacute;vorante, et elle &eacute;tendit les fronti&egrave;res de son duch&eacute; pour englober les plan&egrave;tes avoisinantes. Mais malgr&eacute; ses succ&egrave;s, la Duchesse ressentait un profond regret. Elle confessait humblement &agrave; ses convives ne pas avoir accord&eacute; une attention suffisante &agrave; la strat&eacute;gie militaire. Une lacune qui, r&eacute;trospectivement, aurait pu apporter une dimension suppl&eacute;mentaire &agrave; sa conqu&ecirc;te et &agrave; sa gouvernance. Ses mots, prononc&eacute;s avec une pointe de m&eacute;lancolie, d&eacute;voilaient une part d&#039;elle-m&ecirc;me que peu de personnes connaissaient.</div><div class="post_line"></div><div class="post_line">Alors que le dernier morceau de dessert fut savour&eacute;, une s&eacute;r&eacute;nit&eacute; s&#039;installa dans la salle de repas, empreinte d&#039;une profonde reconnaissance. La Duchesse Ad&eacute;la&iuml;de regarda ses invit&eacute;s avec bienveillance, leurs yeux se rencontrant dans un &eacute;change muet empreint de compr&eacute;hension<font color="#ff56ff">. &quot;Mes amis, je suis heureuse d&#039;avoir partager ces moments avec vous. Cette soir&eacute;e &eacute;tait magique. J&#039;esp&egrave;re que vous vous portez mieux. Malheureusement, le devoir m&#039;appelle, je dois me retirer pour la soir&eacute;e. Le Guide pourra vous ... bah vous guidez... Ce palais vous r&eacute;v&egrave;lera des secrets insoup&ccedil;onn&eacute;s, mais seulement si vous vous laissez guider par votre intuition et votre c&oelig;ur. Soyez ouverts &agrave; l&#039;inconnu, et il vous r&eacute;compensera par sa beaut&eacute; &eacute;ternelle.</font>&quot;</div><div class="post_line"></div><div class="post_line">La duchesse s&#039;&eacute;clipsa par la grande porte, sa silhouette &eacute;l&eacute;gante se fondant dans les ombres qui l&#039;entouraient. Myah et Morgan &eacute;chang&egrave;rent un regard empreint d&#039;appr&eacute;hension. Le Guide, quant &agrave; lui, se tenait toujours dans un coin de la pi&egrave;ce, son regard neutre pos&eacute; sur Myah et Morgan, t&eacute;moignant de sa bienveillante. Il demeurait immobile, une pr&eacute;sence discr&egrave;te mais omnipr&eacute;sente. </div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />07/07/1023 ETU 01:33<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal302084')">Détails</a> <a href="javascript:warnpost(302084)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302084" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302084',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Myah se sentait &agrave; l&#039;aise, enjou&eacute;e et sereine, ce qu&#039;elle n&#039;avait pas &eacute;prouv&eacute; depuis tr&egrave;s longtemps. Morgan, quand &agrave; lui fredonnait les yeux ferm&eacute;s... il ne pouvait pas &ecirc;tre mieux. Ils avaient excellemment soup&eacute;, berc&eacute;s par un fond sonore musical agr&eacute;able et elle avait donn&eacute; la r&eacute;plique &agrave; la Duchesse Ad&eacute;la&iuml;de avec ce qu&#039;elle d&eacute;sirait entendre de l&#039;histoire du peuple Dysmorphique qu&#039;elle appelait maintenant &quot;le Peuple R&eacute;surgent&quot;.</em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">*Oooooh... je suis trop bien !... Je n&#039;ai aucune pens&eacute;e n&eacute;gative et nous partons demain... Que du bonheur !*</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je vais te laisser &agrave; tes d&eacute;lices, Morgan, </font><em>dit-elle au jeune pilote qui ne broncha pas des paupi&egrave;res.</em></div><div class="post_line"></div><div class="post_line"><em>Elle se leva, toute lassitude envol&eacute;e et se dirigea vers la porte menant &agrave; sa chambre. Au passage, elle vit Le Guide et ne put s&#039;emp&ecirc;cher de le regarder dans les yeux pour lui souhaiter une bonne nuit...</em></div><div class="post_line"><em>Elle fut instantan&eacute;ment envahie par la vision d&#039;une rue tr&egrave;s peupl&eacute;e, elle ne savait pas o&ugrave;, mais il &eacute;tait s&ucirc;r qu&#039;elle &eacute;tait r&eacute;elle et qu&#039;elle la reconna&icirc;trait si elle s&#039;y trouvait physiquement.</em></div><div class="post_line"><em>Comme quand on est &eacute;lectrocut&eacute; par les doigts dans une prise que l&#039;on met plusieurs secondes &agrave; penser &agrave; enlever les doigts, elle baissa les paupi&egrave;res et rompit le contact avec le Guide. Son coeur, surpris, battait vite, mais elle n&#039;&eacute;prouvait que des questionnements, aucune peur.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Bo...Bonne nuit, Guide ! Veuillez encore sur Morgan, je vous prie.</font></div><div class="post_line"></div><div class="post_line"><em>Elle partit d&#039;un pas h&eacute;sitant pour rejoindre la porte qu&#039;elle ouvrit... sur cette maudite rue ! Apr&egrave;s une l&eacute;g&egrave;re h&eacute;sitation, toujours port&eacute;e par l&#039;esp&egrave;ce d&#039;euphorie de la soir&eacute;e, elle fit un pas et se m&ecirc;la &agrave; la foule.</em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">*Tous me bousculaient au passage, semblant plus press&eacute;s que moi, bavardant gaiement avec leurs compagnons ou plus galamment avec les femmes. Ils marchaient tous dans le m&ecirc;me sens comme un fleuve qui coule toujours d&#039;amont en aval et je me laissais porter. Tout &agrave; coup, je vis au loin un &eacute;clair rouge feu et malgr&eacute; moi, j&#039;acc&eacute;l&eacute;rais le pas, jouant des coudes vers un but incertain. A mon tour, je bousculais, je poussais, je repoussais, je jouais de la t&ecirc;te comme un b&eacute;lier, j&#039;avan&ccedil;ais.</font></em></div><div class="post_line"><em><font color="#ffc95f">Peu apr&egrave;s, je vis un homme de dos, un homme blond, peu soign&eacute;, qui tendait sa main... et puis une t&ecirc;te rousse tourn&eacute;e vers nous, mais encore loin... les yeux d&eacute;sesp&eacute;r&eacute;s, la bouche criant des mots inaudibles, une femme &eacute;chevel&eacute;e... C&#039;&eacute;tait Sarah, j&#039;en &eacute;tait s&ucirc;re ! Je redoublais d&#039;effort pour la rejoindre tant elle semblait m&#039;attendre... mais elle disparut &agrave; ce moment l&agrave;... L&#039;homme blond fut remplac&eacute; par un brun et en l&#039;atteignant, lui, je m&#039;aper&ccedil;ut que je ne le connaissais pas...*</font></em></div><div class="post_line"></div><div class="post_line"><em>Le trou noir.</em></div><div class="post_line"><em>A son r&eacute;veil, Myah &eacute;tait&nbsp;au seuil de sa chambre, couch&eacute;e de tout mon long sur le tapis et secou&eacute;e de naus&eacute;es terribles qu&#039;elle&nbsp;ne m&#039;expliquait pas. Elle se souvenait de son aventure onirique, d&eacute;sol&eacute;e de n&#039;&ecirc;tre pas parvenue &agrave; son but... mais elle reprit espoir. Elle se releva p&eacute;niblement en se tenant l&#039;estomac, secou&eacute;e par des hauts-le-coeur d&eacute;sagr&eacute;ables mais qui s&#039;estompaient, et se colla sous la douche pour s&#039;apaiser les nerfs.</em></div><div class="post_line"></div><div class="post_line"><em>Cette nuit-l&agrave;, elle dormit profond&eacute;ment et ne se souvenait pas de ses r&ecirc;ves au r&eacute;veil.</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16858&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16858" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16858" name="d_reply_16858" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16858');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16858'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Les rayons de soleil</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

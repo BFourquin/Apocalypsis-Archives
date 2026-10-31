@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17321 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Echo de l&#039;UNION C.S</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Echo de l&#039;UNION C.S</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nogis">Cdt. Nogis</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12325.jpg" style="width:128px;height:111px" alt="Avatar" /><br />07/09/1024 ETU 07:10</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D309901', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal309899')">Détails</a> <a href="javascript:warnpost(309899)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309899" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 5<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309899',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><em>Mes Amis...</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffa500">Nogis venait d&#039;arriver sous sa forme de renard blanc. Il brillait bien plus que d&#039;habitude et avait pris un air bien trop&nbsp;solennel.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><em>D&#039;abord, au sujet de la commandante silencieuse. J&#039;ai une nouvelle hypoth&egrave;se pour expliquer&nbsp;son absence,&nbsp;c&#039;est qu&#039;elle ne serait tout simplement...&nbsp;plus ici... Voyant cette &quot;Apocalypse&quot; arriver, la Peur, l&#039;Angoisse. Le D&eacute;sir de Fuir l&#039;a enivr&eacute;e. &Agrave; tout prix, elle a souhait&eacute;&nbsp;s&#039;&eacute;chapper. Poussant son peuple &agrave; miner de plus en plus de plan&egrave;tes... Poussant ses scientifiques &agrave; travailler de plus en&nbsp;plus et au plus&nbsp;vite... Enfin,&nbsp; cela expliquerait sa motivation &agrave; prendre la Contrebande. Elle&nbsp;cherchait alors peut-&ecirc;tre une &eacute;chappatoire&nbsp;!&nbsp;</em></font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><em>... Mais le Secteur n&#039;a pas ouvert. Alors, je pense qu&#039;elle a d&ucirc; r&eacute;ussir &agrave; dispara&icirc;tre.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#ffa500">Alors qu&#039;il parla, l&#039;Inari prit graduellement un air plus sombre et malicieux...</font></em></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><em><strong>Tristement </strong>! Son peuple, lui, est bien <strong>vivant </strong>! Comme toutes vos observations le prouve.&nbsp;Nous avons donc affaire &agrave; une&nbsp;dirigeante qui a <strong>abandonn&eacute; </strong>son <strong>peuple</strong>... <strong>Abandonn&eacute; &agrave; la <font color="#777777">Mort</font>.&nbsp;</strong>&nbsp;</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffa500">Il eu&nbsp;alors un petit ricanement.</font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><em>Maintenant, il y a,&nbsp;vous, commandants, <strong>que d&eacute;sirez vous</strong> ? Que vous soyez les seuls &agrave; partir ? Ou tendrez-vous la main &agrave; votre peuple, quitte &agrave; tout risquer ?&nbsp;</em></font></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><em>...</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffa500">Apr&egrave;s un certain silence. Le Renard Blanc&nbsp;avait retrouv&eacute; un air calme et solennel,&nbsp;presque bienveillant.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#bbbbbb">Non. Je ne le pense pas, rassurez vous ! Je suis certain que vous ferez tout en votre possible pour les sauver.</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><em>Mais si j&#039;&eacute;voque ce sujet, c&#039;est parce que les Inaris vont faire un souhait diff&eacute;rent du votre.&nbsp;</em></font><em><font color="#bbbbbb">Ces derniers jours, depuis que nous avons capt&eacute; les signaux de l&#039;Assembl&eacute;e Galactique alors&nbsp;que les hypoth&egrave;ses de nos astronomes se d&eacute;gradaient de plus en plus. Vous avez remarqu&eacute; que&nbsp;je me suis beaucoup absent&eacute;, c&#039;est parce que&nbsp;les Princes-Esprits et tous&nbsp;les autres Inaris ont beaucoup&nbsp;discut&eacute;s&nbsp;au sujet du mauvais destin qui pouvait nous frapper...</font></em></div></div><div class="post_line"><div align="justify"><em><font color="#bbbbbb">S&#039;il y a bien une apocalypse, une grande Catastrophe, qui comme le dit le commandant Baert, va d&eacute;vaster notre plan&egrave;te&nbsp;de naissance... A l&#039;inverse de la commandante, nous avons ultimement&nbsp;d&eacute;cid&eacute; que nous aiderons du mieux que nous le pourrons&nbsp;tout nos humains qui d&eacute;sirent partir. Mais les Inaris demeureront !&nbsp;</font></em><em><font color="#bbbbbb">Car les Esprits Inaris vivent depuis une &eacute;ternit&eacute;, dans les for&ecirc;ts, ces longues rivi&egrave;res&nbsp;et sur les rives&nbsp;de ses grands lacs... Si certains d&#039;entre nous ont beaucoup aim&eacute; voyager&nbsp;pour rencontrer et essayer de satisfaire&nbsp;les d&eacute;sirs des autres peuples. Tous, sommes &eacute;ternellement li&eacute;s &agrave; notre foyer, que nous ne d&eacute;sirons&nbsp;pas quitter.&nbsp;</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><em>Quel que soit l&#039;endroit o&ugrave; vous serez exil&eacute;. Je ne serais donc malheureusement plus l&agrave; pour vous aider...</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Mais les Esprits sont difficiles &agrave; vaincre.&nbsp;Alors pensez toujours &agrave; nous et nous tacherons de faire exhausser vos v&oelig;ux. Peut-&ecirc;tre m&ecirc;me pourrions, nous un jour discuter &agrave; nouveau. R&eacute;ussirais-je &agrave; garder cette forme ? En-tout-cas si vous en avez l&#039;occasion, je d&eacute;sire que vous reveniez visiter la plan&egrave;tes aux lacs secrets.&nbsp;</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Adieu ?</em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Koushtar">Cdt. Koushtar</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12324.jpg" style="width:128px;height:128px" alt="Avatar" /><br />17/09/1024 ETU 21:57</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D310127', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal310124')">Détails</a> <a href="javascript:warnpost(310124)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal310124" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=310124',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font size="7"><font color="#ffa500">Adieu ?</font></font></div><div class="post_line"></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="6">Adieu ?</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="5">Adieu ?</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="4">Adieu ?</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="3">Adieu ?</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="2">Adieu ?</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp;A&iquest;ieu?</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @&iquest;ieu ?</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;..@&iquest;ieu ?...&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;...... @&ordm;#&iquest;i3eu ?....___</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;______....&ordf;#&iquest;eu.________</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;_________.eu?___________</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _____________&iquest; e _____________________</font></font></div></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></font><font size="2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</font><font size="1"><font size="1">___________________________&iquest;________________________</font></font></font></div></div><div class="post_line"></div></div><div class="post_line"><div align="left"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _____________________________________________________________</font></font></div></div><div class="post_line"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;___________________________________________________________________________________&nbsp; &nbsp; &nbsp;</font></font></div></div><div class="post_line"><div align="left"><font color="#1e92f7"><font size="1">&nbsp;___________________________________</font></div><div class="post_line"></font></div><div class="post_line"><div align="center"><font color="#1e92f7"><font size="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;__________________________________________________&nbsp;</div><div class="post_line"></font></div><div class="post_line"></font></div><div class="post_line"></div><div class="post_line"><div align="right"><div align="left"><font color="#0074d9">&nbsp; &nbsp; &nbsp;____________________________________________________</font></div></div><div class="post_line"><div align="left"><font color="#0074d9">&nbsp; &nbsp;&nbsp;</font></div></div><div class="post_line"><div align="center"><font color="#0074d9">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ____________________</font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#0074d9">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;___________________________________</font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#0074d9">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; _____________________</font></div></div><div class="post_line"><div align="left"><font color="#0074d9">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ______________________________________________________________________</font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#0074d9">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</font><font color="#9a00b2">______________________________</font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#9a00b2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;______________________________</font></div></div><div class="post_line"><div align="left"><font color="#d900a7">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; ________________________________</font></div></div><div class="post_line"><div align="left"><font color="#9a00b2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</font><font color="#cf2be7">____________________________</font></div></div><div class="post_line"><div align="left"><font color="#9a00b2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</font><font color="#ff56ff">___________________</font></div></div><div class="post_line"><div align="left"><font color="#9a00b2">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</font><font color="#f012be">_______________&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></div></div><div class="post_line"><div align="left">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color="#ff56ff">______________</font></div></div><div class="post_line"><div align="left"><font color="#d900a7">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</font><font color="#e86e04">_____________</font></div></div><div class="post_line"><div align="left"><font size="5"><font color="#ff0000"><strong>&iexcl;&iexcl;&iexcl;&iexcl;NAAAAN!!!!!</strong></font><font color="#ff0000">______</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Koushtar se redressa&nbsp;en sursaut. Il transpirait.&nbsp;</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="center"><em><strong>Nogis</strong>...</em></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Le Prince Nogis n&#039;&eacute;tait pas mort !&nbsp;Ce r&ecirc;ve n&#039;&eacute;tait pas un r&ecirc;ve ordinaire, son ami tentait de communiquer avec lui, il le sentait. D&#039;une fa&ccedil;on&nbsp;ou d&#039;une autre, son esprit &eacute;tait encore l&agrave;, quelque part, d&#039;une mani&egrave;re&nbsp;diff&eacute;rente, mais bien vivant !</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"></div></div><div class="post_line"></div></div><div class="post_line"></div></div><div class="post_line"><div align="center"></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Koushtar">Cdt. Koushtar</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12324.jpg" style="width:128px;height:128px" alt="Avatar" /><br />20/09/1024 ETU 03:06</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal310205')">Détails</a> <a href="javascript:warnpost(310205)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal310205" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=310205',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font size="2">Bien des jours apr&egrave;s son exil d&rsquo;Harmonie, Le G&eacute;n&eacute;ral Koushtar finit par sortir de la dimension inconnue dans laquelle il &eacute;tait pr&eacute;cipit&eacute; depuis tant de cycles. Bien des choses avaient d&ucirc; se passer dans l&rsquo;immensit&eacute; de l&rsquo;univers. Combien de temps s&rsquo;&eacute;tait &eacute;coul&eacute;&hellip;? Dans un &eacute;clair de lumi&egrave;re silencieux, le Condor, vaisseau du G&eacute;n&eacute;ral Koushtar, sortit du bleu opaque dans lequel il &eacute;voluait, et se mit &agrave; tourbillonner de mani&egrave;re chaotique, &agrave; la d&eacute;rive dans un ciel noir parsem&eacute; d&rsquo;&eacute;toiles scintillantes. Koushtar fut projet&eacute; contre la paroi de sa cabine et se mit &agrave; flotter au-dessus de sa table tandis qu&rsquo;il prenait conscience de la situation en apercevant le noir de l&rsquo;espace &agrave; travers le hublot.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>Nous sommes sortis !</em> S&rsquo;&eacute;cria-t-il en appuyant sur le bouton d&rsquo;alerte qui par chance &eacute;tait assez proche de lui<em>.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">S&rsquo;agrippant aux barres de maintien, il sortit dans le couloir et fila tant bien que mal en direction du pont. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font color="#e8c500"><em><font size="1">(&hellip;Philippe&nbsp;&hellip; !)</font></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">Une fois sur place il prit l&rsquo;intercom et le r&eacute;gla sur la fr&eacute;quence g&eacute;n&eacute;rale.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>Branle-bas de combat ! Tout le monde &agrave; son poste ! Nous sommes sortis du trou de ver !!!!!</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">Posant le com, il s&rsquo;adressa aux membres du pont qui arrivaient en courant pour relayer l&rsquo;&eacute;quipe de quart :</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>Pilote ! R&eacute;trofus&eacute;es, moteurs lat&eacute;raux, enclenchez la man&oelig;uvre de stabilisation, sortez nous de la d&eacute;rive bon sang !! Ing&eacute;nieurs, pr&eacute;parez la proc&eacute;dure de gravit&eacute; artificielle, faites les calculs n&eacute;cessaires pour nous donner la bonne valeur de propulsion. Qu&rsquo;on puisse mettre un pied devant l&rsquo;autre ! </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">Lentement, le Condor se stabilisa. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>Pas de d&eacute;gats&hellip; Bien et maintenant o&ugrave; sommes-nous ? </em>Pensa Koushtar</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><em><font color="#e8c500"><font size="2">(&hellip;Philippe&hellip; !)</font></font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>-Mon G&eacute;n&eacute;ral, les radars nous signalent une plan&egrave;te temp&eacute;r&eacute;e &agrave; proximit&eacute;, elle semble habit&eacute;e. </em>Notifia l&rsquo;officier de d&eacute;tection.</font></div></div><div class="post_line"><div align="justify"><font size="2"><em>-Cap sur cette plan&egrave;te pilote ! Capitaine Fielto, faites pr&eacute;parer une navette d&rsquo;exploration, choisissez quatre hommes, nous partons en rep&eacute;rage.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">Peu apr&egrave;s avoir repris le contr&ocirc;le du vaisseau, Koushtar et son &eacute;quipage arriv&egrave;rent &agrave; proximit&eacute; de la plan&egrave;te Peyresca et mirent le Condor en orbite autour d&rsquo;elle. La petite navette ne tarda pas &agrave; partir avec &agrave; son bord le G&eacute;n&eacute;ral et son &eacute;quipe d&rsquo;exploration. Ils atterrirent dans une &eacute;paisse f&ocirc;ret.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><em><font color="#e8c500"><font size="3">(&hellip;Philippe&hellip; !)</font></font></em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="justify"><font size="2"><em>-Deux&nbsp;hommes pour garder la navette, trois autres en rep&eacute;rage Sud, Est, Ouest, je prends le Nord. Rendez-vous ici-m&ecirc;me dans une heure pour les rapports.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>-A vos ordres, mon G&eacute;n&eacute;ral ! Scand&egrave;rent les hommes.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">Koushtar, s&rsquo;enfon&ccedil;a seul entre les grands arbres. Cette plan&egrave;te avait quelque chose de familier.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font color="#e8c500"><em><font size="4">(&hellip;Philippe&hellip; !)</font></em></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="justify"><font size="2">Cette fois, il &eacute;tait certain d&rsquo;avoir entendu une voix l&rsquo;appeler par son pr&eacute;nom. Avait-il r&ecirc;v&eacute; ?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">Il arriva pr&egrave;s d&rsquo;un lac dont l&rsquo;eau pure refl&eacute;tait le bleu du ciel nuageux entre la cime des arbres. Cette vision lui rappela la Plan&egrave;te aux Lacs Secrets de la galaxie Harmonie.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font size="5"><font color="#e8c500"><strong>P h i l i p p e !</strong></font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="justify"><font size="2">Il se retourna et fut frapp&eacute; par une vision : un renard d&rsquo;or se tenait entre l&rsquo;eau du lac et un arbre majestueux. Une aura lumineuse &eacute;manait de la cr&eacute;ature, aveuglant presque le g&eacute;n&eacute;ral, et des feuilles vertes scintillaient en virevoltant autour de l&rsquo;apparition.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>-</em></font><strong><em><font color="#9a00b2"><font size="3">Prince </font></font></em></strong><strong><em><font color="#9a00b2"><font size="3">Nogis</font></font>&nbsp;<font color="#9a00b2">!</font></em></strong><font size="2"><em><font color="#9a00b2">&nbsp;</font></em>S&rsquo;&eacute;cria-t-il en tombant &agrave; genoux,<em> c&rsquo;est impossible&hellip;</em></font></div></div><div class="post_line"><div align="justify"><font size="2"><em><font color="#ffa500">-Qui peut dire ce qui est possible, ne t&rsquo;ai-je pas appel&eacute; ? Ne suis-je pas en train de te parler ?</font></em></font></div></div><div class="post_line"><div align="justify"><font size="2"><em>-Mais comment&hellip; ?</em></font></div></div><div class="post_line"><div align="justify"><font size="2"><em><font color="#ffa500">-Saches mon ami que je ne suis pas vraiment l&agrave;, seul l&rsquo;esprit du Prince que tu as connu subsiste &agrave; travers la mati&egrave;re et le temps. Je suis venu te parler de l&rsquo;Union des Civilisations Souveraines, sa chute &eacute;tait une n&eacute;cessit&eacute;. Rel&egrave;ve-toi. &Eacute;coute-moi.</font></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">Sa voix semblait r&eacute;sonner sur la plan&egrave;te enti&egrave;re avec une solennit&eacute; nouvelle, une gravit&eacute; qui conf&eacute;rait au Prince une prestance d&eacute;cupl&eacute;e. Philippe Koushtar se releva humblement, ouvrant les bras et les paumes en direction du Prince Esprit. Ce dernier reprit :</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em><font color="#ffa500">-La galaxie o&ugrave; nous nous sommes rencontr&eacute;s se nommait Harmonie. Toi et moi, ainsi que le commandant Baert, avions su cr&eacute;er cette harmonie que Dieu d&eacute;sirait pour tous. L&rsquo;Union C.S &eacute;tait destin&eacute;e &agrave; &ecirc;tre la garante de cette harmonie, elle l&rsquo;est toujours. Mais en attaquant le c&oelig;ur du secteur 8, nous aurions d&eacute;clench&eacute; une guerre, et nous aurions d&eacute;truit cette harmonie. C&rsquo;est pour cela qu&rsquo;a eu lieu l&rsquo;Apocalypse, pour que demeure l&rsquo;harmonie, pour que l&rsquo;Union puisse rena&icirc;tre et jouer son v&eacute;ritable r&ocirc;le de paix. Philippe, tu dois refonder l&rsquo;Union des Civilisations Souveraines ! Notre ami le valeureux Jean Baert n&rsquo;est plus l&agrave;, toi seul peut accomplir cette t&acirc;che. Mais ce ne sera pas facile, d&rsquo;autres tenteront de t&rsquo;en emp&ecirc;cher. </font></em></font></div></div><div class="post_line"><div align="justify"><font size="2"><font color="#ffffff"><em>-Comment dois-je faire mon Prince ? </em>Koushtar &eacute;tait d&eacute;sempar&eacute;.</font></font></div></div><div class="post_line"><div align="justify"><font size="2"><em><font color="#ffa500">-La force de l&#039;Union viendra du nombre, tu dois rallier un maximum de chefs souverains.&nbsp;Suis&nbsp;la voix de l&rsquo;harmonie, je serai l&agrave; pour t&rsquo;aider. Saches que Dieu a nomm&eacute; la galaxie dans laquelle tu te trouves &quot;D&eacute;livrance&quot;. L&rsquo;alliance doit rena&icirc;tre aussit&ocirc;t que possible et suivre le pr&eacute;cepte suivant : </font></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font size="6"><strong><font color="#ffff00">LA D&Eacute;LIVRANCE MARCHE SUR LE CHEMIN DE&nbsp;L&rsquo;HARMONIE</font></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2"><em>-Je ferai de mon mieux ami. Mais je dois savoir&hellip; Si d&rsquo;autres tentent de s&rsquo;opposer &agrave; cela, comment &eacute;viterons nous le conflit ?</em></font></div></div><div class="post_line"><div align="left"><font color="#ffa500"><em><font size="2">-Cela sera r&eacute;v&eacute;l&eacute; en temps voulu. En attendant va r&eacute;pandre cette parole, va accomplir ta t&acirc;che. Le temps est compt&eacute;&hellip; compt&eacute;&hellip;&hellip;.</font><font size="1">compt&eacute;</font><font size="2">&hellip;&hellip;&hellip;</font><font size="1">compt&eacute;</font><font size="2">&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;</font><font size="1">compt&eacute;</font><font size="2">&hellip;&hellip;&hellip;&hellip;&hellip;.</font></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="2">Sur ces derniers mots, l&rsquo;aura&nbsp;du Prince vacilla et il disparu dans un nuage de poussi&egrave;re dor&eacute;e.</div><div class="post_line"></font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17321&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17321" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17321" name="d_reply_17321" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17321');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17321'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Echo de l&#039;UNION C.S</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15388 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>5 comme les rois mages !</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > 5 comme les rois mages !</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Louise+Parcimonia">Cdte. Louise Parcimonia</a><br>Prestige de chroniqueur&nbsp;: 53<br /><br /><img src="/avatars/9196.png" style="width:128px;height:121px" alt="Avatar" /><br />05/02/1021 ETU 04:06<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 14 <a href="javascript:toggle_bloc('cal281591')">Détails</a> <a href="javascript:warnpost(281591)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal281591" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 8<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=281591',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Vous savez quoi ? Les apocalypses, &ccedil;a craint toujours autant.</div><div class="post_line">Pourtant, j&rsquo;avais tout mis de mon cot&eacute; pour &ecirc;tre tranquille cette fois, pour en finir une bonne fois pour toute, parce que, Dieu m&rsquo;avait d&eacute;j&agrave; rat&eacute;e trop de fois ce loser. J&rsquo;avais donc pris les choses en main : alcool, drogue, couteau, j&rsquo;avais 0 risque d&rsquo;en r&eacute;chapper, mon destin &eacute;tait entre mes mains. Un vrai soulagement.</div><div class="post_line"></div><div class="post_line">Du coup, quand j&rsquo;ai rouvert les yeux sur une obscurit&eacute; totale, attach&eacute;e sur une table, j&rsquo;me suis dit : hourra, j&rsquo;ai r&eacute;ussi ! J&rsquo;&eacute;tais bien un peu d&eacute;&ccedil;ue. Je n&rsquo;avais &eacute;videmment que peu d&rsquo;espoir d&rsquo;atterrir au paradis, avec le soleil, les petits oiseaux et une nu&eacute;e d&rsquo;anges tous plus beaux les uns que les autres pour m&rsquo;accueillir &agrave; bras ouverts, mais, se r&eacute;veiller dans cette situation, &ccedil;a fait un choc, m&ecirc;me si on s&rsquo;y &eacute;tait pr&eacute;par&eacute;e psychologiquement.</div><div class="post_line">Dieu merci, je ressentais aucune douleur pour l&rsquo;instant, les s&eacute;ances de torture n&rsquo;avaient pas encore commenc&eacute;. Quoique, seule, dans le noir, attach&eacute;e, c&rsquo;est quand m&ecirc;me une forme de torture ? Surtout quand on a peur du noir parce que l&rsquo;on sait tr&egrave;s bien ce dont sont capables les cr&eacute;atures qui s&rsquo;y cachent.</div><div class="post_line">Vous vous doutez bien que j&rsquo;ai tir&eacute; tant et tant sur mes liens pour essayer de me d&eacute;tacher, tendant l&rsquo;oreille &agrave; l&rsquo;aff&ucirc;t du moindre cri, du moindre hurlement de douleur. Mais tout ce que j&rsquo;ai r&eacute;ussi &agrave; faire c&rsquo;est resserrer mes liens (oui, bon, je dormais pendant le cours &laquo; Comment s&rsquo;&eacute;chapper de l&rsquo;enfer &raquo;) et tout ce que j&rsquo;ai pu entendre, c&rsquo;est un esp&egrave;ce de ronronnement d&rsquo;une machine quelconque. SU-PER.</div><div class="post_line"></div><div class="post_line">Apr&egrave;s &ecirc;tre rest&eacute;e des heures comme &ccedil;a (ou peut-&ecirc;tre des minutes, ou des secondes, c&rsquo;est difficile &agrave; dire avec ma patience l&eacute;gendaire), j&rsquo;ai commenc&eacute; &agrave; trouver le temps vraiment vraiment vraiment long, puis j&rsquo;avais hyper soif et faim. S&eacute;rieux, on a encore soif et faim quand on est mort ? Les gargouillement de mon ventre semblaient bien indiquer que oui. Je sens que j&rsquo;vais d&eacute;tester la mort et l&rsquo;enfer.</div><div class="post_line"></div><div class="post_line">Apr&egrave;s une &eacute;ternit&eacute; donc, j&rsquo;entends enfin un bruit de pas qui se rapprochent, le bruit d&rsquo;une porte qui s&rsquo;ouvre et une lumi&egrave;re beaucup trop lumineuse m&rsquo;aveugle &agrave; en pleurer. Je m&rsquo;exclame d&rsquo;un ton beaucoup plus bravache que je ne le suis :</div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Ay&eacute; c&rsquo;est enfin l&rsquo;heure de la s&eacute;ance de torture ? j&rsquo;ai failli attendre ! </font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500">J&rsquo;aurai du m&rsquo;en douter, la drogue a fini de ravager ton cerveau.</font></div><div class="post_line"></div><div class="post_line">Cette voix&hellip; au fur et &agrave; mesure que ses yeux s&rsquo;habituent &agrave; la lumi&egrave;re et que l&rsquo;image gagne en nettet&eacute;, elle reconna&icirc;t celui qui vient d&rsquo;entrer, Charles, son fid&egrave;le assistant. Finalement, elle n&rsquo;est pas dans une cave glaciale et froide comme elle s&rsquo;y attendait, mais dans une pi&egrave;ce glaciale et froide qui ressemble &agrave; un laboratoire. Tout ce que sa vision limit&eacute;e lui permet de voir est d&#039;une propret&eacute; immacul&eacute;e, glaciale, flippante.</div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Ho bah merde, toi aussi t&rsquo;as atterri en enfer ?? Tu vois, j&rsquo;t&#039;avais bien dit que &ccedil;a servait &agrave; rien d&rsquo;&ecirc;tre gentil !</font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><font color="#ffffff">Il secoue la t&ecirc;te, d&eacute;sesp&eacute;r&eacute;.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Arr&ecirc;te tes conneries, t&rsquo;es pas en enfer Louise&hellip; </font></div><div class="post_line"></div><div class="post_line">Et l&agrave;, l&agrave;, en plongeant mes yeux dans son regard intense, fi&eacute;vreux, j&rsquo;ai compris. C&rsquo;est pas vrai. Pourquoi moi ? J&rsquo;ai ferm&eacute; les yeux, d&eacute;pit&eacute;e, et je me suis mise &agrave; parler avec une petite voix qui n&rsquo;avait plus rien de guilleret. </div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Mais.. je&hellip; pourquoi ? Comment ?</font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500">T&rsquo;as vraiment besoin de poser cette question ? Tu sais tr&egrave;s bien pourquoi... et comment, disons que j&#039;ai eu de la chance d&#039;arriver &agrave; temps.</font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">La chance ? </font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Je pfffte d&eacute;daigneusement.</font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">T&rsquo;avais pas le droit, c&rsquo;&eacute;tait mon choix, ma d&eacute;cision. Enfin, &ccedil;a l&rsquo;est toujours, de toute fa&ccedil;on, tu pourras rien faire pour l&rsquo;emp&ecirc;cher. </font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Je t&rsquo;ai sauv&eacute;e une fois, je te garderai ici en s&eacute;curit&eacute; jusqu&rsquo;&agrave; ce que tu retrouves tes esprits. </font></div><div class="post_line"></div><div class="post_line">Je rouvre les yeux en lui lan&ccedil;ant mon meilleur regard de tueuse.</div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Mais t&rsquo;es vraiment trop d&eacute;bile tu sais ? Pour que je vive tu comptes faire quoi exactement ? M&rsquo;enfermer &agrave; vie dans le noir dans ton labo flippant o&ugrave; je ne vivrai pas vraiment du coup ? Me droguer pour me changer en quelqu&rsquo;un d&rsquo;autre ? T&rsquo;as souvent eu des id&eacute;es stupides, mais alors, celle-l&agrave;, elle bat tous les records vraiment ! </font></div><div class="post_line"></div><div class="post_line">Je vois un &eacute;clair de col&egrave;re traverser son regard, j&rsquo;ai peur un instant qu&rsquo;il me frappe. Mais, il reprend le contr&ocirc;le et r&eacute;pond calmement.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">C&rsquo;est un plaisir de t&rsquo;avoir sauv&eacute; la vie et de recevoir autant de reconnaissance en retour. Je n&rsquo;en attendais pas moins de toi. Un jour, tu changeras d&rsquo;avis sur moi et tu appr&eacute;cieras mon geste &agrave; sa juste valeur. En attendant&hellip; Je repasserai plus tard quand tu seras devenue plus&hellip; moins&hellip;. </font></div><div class="post_line"></div><div class="post_line">Mon regard se fait glacial, r&ecirc;vant de congeler sur place ce cr&eacute;tin. </div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Je suis telle que j&rsquo;ai toujours &eacute;t&eacute; et je vais s&ucirc;rement pas changer parce que tu me retiens prisonni&egrave;re d&rsquo;une vie que j&rsquo;ai choisi de quitter. </font></div><div class="post_line"><font color="#44B8FF">Alors rends-nous un service &agrave; tous les deux, ne reviens jamais et oublie moi dans ton labo de savant fou. </font></div><div class="post_line"></div><div class="post_line">Il secoue la t&ecirc;te et se d&eacute;tourne pour partir. En tournant la t&ecirc;te je le vois appuyer sur le bouton d&rsquo;une t&eacute;l&eacute;commande, puis Il &eacute;teint la lumi&egrave;re&nbsp; et ferme la porte &agrave; cl&eacute; en sortant. J&rsquo;entends ses pas qui s&rsquo;&eacute;loignent rapidement. </div><div class="post_line">Alors que Je laisse enfin sortir le hurlement de frustration que j&rsquo;avais retenu pendant toute notre conversation, je sombre &agrave; nouveau dans l&rsquo;inconscience. </div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Louise+Parcimonia">Cdte. Louise Parcimonia</a><br>Prestige de chroniqueur&nbsp;: 53<br /><br /><img src="/avatars/9196.png" style="width:128px;height:121px" alt="Avatar" /><br />07/02/1021 ETU 20:23<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal281737')">Détails</a> <a href="javascript:warnpost(281737)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal281737" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=281737',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Ho putain je d&eacute;teste quand il fait &ccedil;a. Ok, je sais pas ce que &laquo; &ccedil;a &raquo; c&rsquo;est, mais c&rsquo;est absolument insupportable.</div><div class="post_line">Je sais que je me suis d&eacute;j&agrave; &laquo; r&eacute;veill&eacute;e &raquo; plusieurs fois. J&rsquo;ai aucune id&eacute;e de combien de temps je &laquo; dors &raquo; entre chaque. Ni de ce qui peut m&rsquo;arriver lorsque je suis inconsciente. Mais je sais que chaque r&eacute;veil est pire que le pr&eacute;c&eacute;dent, je suis assaillie de migraines de plus en plus violentes. </div><div class="post_line">Avec un peu de bol, ce cr&eacute;tin va r&eacute;ussir &agrave; me tuer avec ses conneries, &ccedil;a serait tellement marrant s&rsquo;il r&eacute;ussissait finalement ce qu&rsquo;il &eacute;tait si fier d&rsquo;avoir emp&ecirc;ch&eacute; ! <font color="#44B8FF">Hahaha&iuml;e...</font> non rigoler dans mon &eacute;tat, c&rsquo;est pas une bonne id&eacute;e.</div><div class="post_line"></div><div class="post_line">Comment un type aussi gentil et patient que Charles a pu virer psychopathe comme &ccedil;a ? On m&rsquo;a souvent fait remarquer que j&rsquo;avais tendance &agrave; faire ressortir le pire chez les gens mais quand m&ecirc;me&hellip;. L&rsquo;amour, &ccedil;a rend vraiment vraiment totalement idiot. Dieu me pr&eacute;serve d&rsquo;&eacute;prouver un jour un tel sentiment d&eacute;bile. Ca s&rsquo;trouve, il va me d&eacute;pecer et faire double de moi avec ma peau ? Ou m&rsquo;empailler pour me garder toujours pr&egrave;s de lui ? Ou me d&eacute;couper en petits morceaux pour me manger ? Ou&hellip; Stop. Je n&rsquo;ai que peu de temps de conscience, faut que j&rsquo;arr&ecirc;te de le gaspiller en pensant &agrave; des conneries, je ferai mieux de r&eacute;fl&eacute;chir &agrave; quelque chose d&rsquo;intelligent pour me sortir de cette gal&egrave;re. Aussit&ocirc;t d&eacute;filent dans ma t&ecirc;te mille et une fa&ccedil;ons de tuer Charles en le faisant souffrir le plus longtemps possible. Lorsque je sombre &agrave; nouveau dans l&rsquo;inconscience, c&rsquo;est le sourire aux l&egrave;vres.</div><div class="post_line"></div><div class="post_line">Au r&eacute;veil suivant, j&#039;ai l&#039;impression qu&#039;un camion de 36 tonnes vient de me rouler dessus. Comme chaque fois, mon premier r&eacute;flexe est de tenter de me redresser mais, ho, surprise, cette fois je ne suis pas bloqu&eacute;e par des liens. Malgr&eacute; tout, je retombe aussi vite sur le matelas, la t&ecirc;te qui tourne et la migraine m&#039;expliquent gentiment que j&#039;ai voulu aller trop vite. A la deuxi&egrave;me tentative, je prends le temps d&#039;aller doucement en m&#039;appuyant sur les coudes et ouvre les yeux en grand pour regarder autour de moi, on m&rsquo;a d&eacute;plac&eacute;e.</div><div class="post_line">Au lieu de la solitude et l&rsquo;obscurit&eacute; du labo du savant fou, je suis dans la solitude d&rsquo;une pi&egrave;ce quasiment vide, mais l&eacute;g&egrave;rement &eacute;clair&eacute;e : un lit, une table, une chaise, un lavabo, un miroir. Je tente de me lever mais mes jambes refusent de me porter et je tombe lourdement au sol. </div><div class="post_line">Je me traine &agrave; 4 pattes jusqu&rsquo;au lavabo et m&rsquo;y accroche pour me redresser et m&rsquo;asperger le visage d&rsquo;eau glac&eacute;e, tentative mis&eacute;rable et vaine de clarifier mes pens&eacute;es, d&rsquo;effacer la migraine. </div><div class="post_line">En levant la t&ecirc;te, je croise un regard que je ne reconnais pas dans le miroir, dire que j&rsquo;ai mauvaise mine serait l&rsquo;euph&eacute;misme du si&egrave;cle.</div><div class="post_line">Je me laisse retomber par terre &agrave; c&ocirc;t&eacute; du lavabo, le dos contre le mur, &eacute;puis&eacute;e par tant d&rsquo;efforts.</div><div class="post_line"></div><div class="post_line">Plusieurs choses se produisent alors. Mon regard croise celui d&rsquo;une &eacute;trange cr&eacute;ature poilue (tiens, je suis pas seule dans la pi&egrave;ce finalement), la cl&eacute; tourne dans la serrure, la porte s&rsquo;ouvre et la cr&eacute;ature crache aussit&ocirc;t un puissant jet de feu, qui semble tout droit sorti de l&rsquo;enfer, en direction de la porte. Le cri de douleur qui provient de l&rsquo;entr&eacute;e m&rsquo;arrache un sourire mauvais et un murmure.</div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><font size="1">Bien fait !</font></font></div><div class="post_line"></div><div class="post_line">Mon regard qui avait suivi la train&eacute;e de feu, revient sur la cr&eacute;ature qui sourit d&#039;un air satisfait, montrant quatre adorables petits crocs pr&ecirc;ts &agrave; d&eacute;chiqueter quiconque entrera. Je n&#039;ai pas le temps d&#039;avoir peur de finir &agrave; mon tour en barbecue, une violente migraine fait disjoncter mon cerveau et je m&#039;&eacute;croule.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Louise+Parcimonia">Cdte. Louise Parcimonia</a><br>Prestige de chroniqueur&nbsp;: 53<br /><br /><img src="/avatars/9196.png" style="width:128px;height:121px" alt="Avatar" /><br />11/02/1021 ETU 23:26<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D282224', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal282222')">Détails</a> <a href="javascript:warnpost(282222)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal282222" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=282222',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Je suis r&eacute;veill&eacute;e par une ignoble puanteur d&rsquo;&eacute;gout et un contact rapeux bavouilleux sur ma joue. Beurk, d&eacute;gueu. Des flashs d&rsquo;images incompr&eacute;hensibles courcircuitent mon cerveau.</div><div class="post_line">Faut vraiment que je perde cette habitude de m&rsquo;&eacute;vanouir tout le temps. C&rsquo;est pas que les r&eacute;veils compliqu&eacute;s soient une nouveaut&eacute; pour moi, mais, l&agrave;, y&rsquo;a m&ecirc;me pas le plaisir d&rsquo;une f&ecirc;te, d&rsquo;une bonne soir&eacute;e alcoolis&eacute;e avant, juste les d&eacute;sagr&eacute;ments du r&eacute;veil pourri.</div><div class="post_line">J&rsquo;ouvre un &oelig;il et me redresse pour me trouver nez &agrave; nez avec la cr&eacute;ature poilue. Elle a l&rsquo;air choupinette j&rsquo;dis pas, malgr&eacute; ses crocs, ses cornes diaboliques et ses talents de cracheuse de feu, mais si on doit se croiser comme &ccedil;a le matin au r&eacute;veil, va falloir am&eacute;liorer son hygi&egrave;ne bucco-dentaire. </div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Je vois que tu as fait connaissance avec la faune locale.</font></div><div class="post_line"></div><div class="post_line">Je me laisse retomber et referme les yeux, &ccedil;a y est la migraine me revient. Si je ronfle il croira p&rsquo;t&rsquo;&ecirc;tre que je me suis rendormie et partira ?</div><div class="post_line"><em><font color="#17B529">Pas dormir, jouer, manger !</font></em></div><div class="post_line">Hein ? J&rsquo;entends des voix dans ma t&ecirc;te maintenant, et sans avoir bu ? Piti&eacute;, achevez-moi.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Ne te fatigue pas &agrave; faire semblant de dormir. Je sais que tu es r&eacute;veill&eacute;e. </font></div><div class="post_line"></div><div class="post_line">Je continue &agrave; l&rsquo;ignorer.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Alors, il te pla&icirc;t ? Il s&rsquo;appelle Bloufseorsa. Il para&icirc;t qu&rsquo;il peut communiquer par t&eacute;l&eacute;pathie. Les gens d&rsquo;ici et leurs croyances bizarres... </font></div><div class="post_line"></div><div class="post_line">Je reste silencieuse.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Allez ! Dis quelque chose !</font></div><div class="post_line"></div><div class="post_line">J&rsquo;ouvre les yeux et lui lance un regard blas&eacute;.</div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Je sors quand d&rsquo;ici ? Je suis s&ucirc;re que tout le monde doit me chercher.</font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500">&Ccedil;a va faire mal &agrave; ton estime de toi mais curieusement non. J&rsquo;ai dit &agrave; tout le monde que tu &eacute;tais gravement bless&eacute;e et personne n&rsquo;a cherch&eacute; &agrave; en savoir plus, &agrave; venir te voir, rien, nada. Tout le monde s&#039;en fiche.</font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Tu sais, je suis pas psy hein, mais, je suis pas convaincue que &ccedil;a soit le genre de truc qui mette du baume au c&oelig;ur &agrave; quelqu&rsquo;un qui a d&eacute;cid&eacute; d&rsquo;en finir avec la vie...</font></div><div class="post_line"></div><div class="post_line">Il perd son calme.</div><div class="post_line"><font color="#E8C500">Mais on s&rsquo;en fiche des autres, on n&#039;a pas besoin d&#039;eux. Je suis l&agrave;, je vais prendre bien soin de toi. Tu auras tout ce que tu voudras. Demande et je te ferai apporter tout ce dont tu as besoin pour te sentir bien. </font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Mais t&rsquo;es pas s&eacute;rieux ? C&rsquo;est quoi ton probl&egrave;me ? Tu comptes vraiment me garder enferm&eacute;e ici avec le monstre d&eacute;moniaque ?&nbsp;</font></div><div class="post_line"><em><font color="#17B529">Bloufseorsa gentil.</font></em></div><div class="post_line">C&#039;est quoi ce d&eacute;lire ?</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Hooo d&eacute;moniaque, tout de suite les grands mots...</font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Fais gaffe t&#039;es en train de virer psychopathe. Si &ccedil;a continue tu vas me tuer toi-m&ecirc;me pour &quot;mon bien&quot;.</font></div><div class="post_line"></div><div class="post_line">Il parle d&#039;un ton profond&eacute;ment &eacute;nerv&eacute;.<font color="#E8C500">.</font></div><div class="post_line"><font color="#E8C500">Dis pas n&#039;importe quoi, tu es en s&eacute;curit&eacute; avec moi. Il ne t&rsquo;arrivera rien !</font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Oui, c&rsquo;est bien le probl&egrave;me&hellip;. </font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><font color="#ffffff">Elle l&egrave;ve la main pour lui faire signe de se taire et fait semblant de r&eacute;fl&eacute;chir intens&eacute;ment. </font></font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">En fait, je sais ce que je voudrais. Que tu partes loin d&rsquo;ici pour ne jamais revenir. Je dis &ccedil;a pour ton bien moi aussi tu vois. Parce que, d&egrave;s que j&rsquo;irai mieux, &ccedil;a sera mon tour de t&rsquo;attacher sur une table et je te torturerai longuement jusqu&rsquo;&agrave; la mort.</font></div><div class="post_line"></div><div class="post_line">Il &eacute;clate de rire. Cette fois c&rsquo;est s&ucirc;r, il est fou.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">C&rsquo;est g&eacute;nial ! J&rsquo;ai r&eacute;ussi, je t&rsquo;ai redonn&eacute; le go&ucirc;t de la vie et t&rsquo;as d&eacute;j&agrave; des projets ! Pense &agrave; manger pour reprendre des forces si tu veux m&#039;attraper et m&#039;attacher par contre. </font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><font color="#ffffff">Il d&eacute;signe un plateau pos&eacute; sur la table, me fait un clin d&#039;oeil et sort en continuant &agrave; se marrer. </font></font></div><div class="post_line">Mais qui m&#039;a foutu un d&eacute;bile cr&eacute;tin pareil dans les pattes ? </div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Louise+Parcimonia">Cdte. Louise Parcimonia</a><br>Prestige de chroniqueur&nbsp;: 53<br /><br /><img src="/avatars/9196.png" style="width:128px;height:121px" alt="Avatar" /><br />12/02/1021 ETU 17:38<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal282265')">Détails</a> <a href="javascript:warnpost(282265)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal282265" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=282265',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Les cycles passent et une certaine routine s&rsquo;est install&eacute;e dans ma chambre sans fen&ecirc;tre. Charles y a fait installer un canap&eacute;, une biblioth&egrave;que, un &eacute;cran qui diffuse films, musiques, mais d&eacute;connect&eacute; du r&eacute;seau de communications bien s&ucirc;r. Aucune information ne parvient jusqu&rsquo;&agrave; moi.</div><div class="post_line"></div><div class="post_line">A la visite suivante de Charles, comme je tenais sur mes pieds, j&rsquo;ai essay&eacute; de le frapper et de m&rsquo;&eacute;chapper. Echec critique. Il a beaucoup rigol&eacute;. Je le hais. Pour me punir il a emmen&eacute; Bloufseorsa. Mais la solitude est pour moi une amie de longue date, r&eacute;confortante, alors peu importe.</div><div class="post_line"></div><div class="post_line">3 fois par jour on m&rsquo;apporte de la nourriture, en veillant &agrave; ne pas me fournir d&rsquo;objet coupant ou contondant, m&ecirc;me si, vu la taille des livreurs, il faudrait un objet sacr&eacute;ment gros et sacr&eacute;ment contondant pour en venir &agrave; bout. Ils sont &eacute;galement incorruptibles, j&rsquo;ai essay&eacute;,&nbsp; ils ne parlent pas ma langue. </div><div class="post_line"></div><div class="post_line">Je suis le conseil de Charles et je reprends des forces. Je me suis astreinte &agrave; une gymnastique quotidienne, cela ne fera pas de moi une guerri&egrave;re, mais je serai au moins en bonne forme physique pour saisir l&rsquo;opportunit&eacute; de m&rsquo;&eacute;chapper lorsqu&rsquo;elle se pr&eacute;sentera. Aujourd&rsquo;hui je regrette d&rsquo;avoir s&eacute;ch&eacute; les cours de sport de combats pendant toutes ces ann&eacute;es pour aller &agrave; la plage. </div><div class="post_line"></div><div class="post_line">Je n&rsquo;ai plus adress&eacute; la parole &agrave; Charles depuis ma tentative d&rsquo;&eacute;vasion ridicule. Ses visites s&rsquo;espacent de plus en plus. Je crois que je me suis tromp&eacute;e. Il n&rsquo;est pas amoureux de moi, il est amoureux du pouvoir, du pouvoir qu&rsquo;il a sur moi, pouvoir de vie ou de mort, du pouvoir qu&rsquo;il a en dirigeant notre peuple. Il aime me voir impuissante et se sentir fort. Qu&rsquo;il profite bien, &ccedil;a ne durera pas.</div><div class="post_line">Je joue le r&ocirc;le qu&rsquo;il m&rsquo;a donn&eacute; &agrave; la perfection : docile et impuissante demoiselle en d&eacute;tresse, m&ecirc;me si &ccedil;a me donne envie de hurler rien que d&rsquo;y penser. </div><div class="post_line"></div><div class="post_line">Force m&rsquo;est de reconna&icirc;tre qu&rsquo;il a gagn&eacute; cette bataille, je n&rsquo;ai plus envie de mourir, j&rsquo;ai envie de me venger.</div><div class="post_line">Alors j&rsquo;attends mon heure, dans l&rsquo;ombre, patiemment, calmement. </div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Louise+Parcimonia">Cdte. Louise Parcimonia</a><br>Prestige de chroniqueur&nbsp;: 53<br /><br /><img src="/avatars/9196.png" style="width:128px;height:121px" alt="Avatar" /><br />14/03/1021 ETU 18:36<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal284163')">Détails</a> <a href="javascript:warnpost(284163)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal284163" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=284163',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">J&rsquo;avance p&eacute;niblement &agrave; t&acirc;tons dans un souterrain sombre et d&eacute;sert. Du moins, il semble d&eacute;sert, mais je ne suis pas &agrave; l&#039;abri de tomber sur un troupeau de rats affam&eacute;s ou d&#039;araign&eacute;e g&eacute;antes au d&eacute;tour d&#039;un couloir. Je r&eacute;prime un frisson. Non mais, je m&#039;en fiche, je suis LIBRE. D&#039;accord, je n&rsquo;ai pas la moindre id&eacute;e de l&rsquo;endroit o&ugrave; je suis, ni d&rsquo;o&ugrave; je vais et si &ccedil;a se trouve, je tourne en rond depuis des heures. Mais, je m&#039;en fiche, je suis LIBRE !</div><div class="post_line"></div><div class="post_line">Tout en avan&ccedil;ant, je me dis qu&rsquo;il faut absolument que je trouve une bonne version pour raconter ma lib&eacute;ration. Par exemple, qu&rsquo;&agrave; force de regarder des vid&eacute;os de ninjas&nbsp;pour passer le temps, je suis devenue une pro des combats et j&rsquo;ai d&eacute;fonc&eacute; Charles lorsqu&rsquo;il est entr&eacute; dans ma chambre ? Ou bien, j&rsquo;aurais pu crocheter la serrure de ma porte &agrave; l&rsquo;aide d&rsquo;une &eacute;pingle &agrave; cheveux comme dans les films d&#039;espionnage ? Ou, encore mieux, j&rsquo;aurai pu d&eacute;velopper des supers pouvoirs me permettant de faire plier les gens &agrave; ma volont&eacute;, haaaaa, le pied ! Tout serait tellement plus simple.</div><div class="post_line">Non parce que, on n&rsquo;va pas se mentir, sur l&#039;&eacute;chelle de notation des lib&eacute;rations, la mienne fr&ocirc;le le 0. Jamais j&#039;arriverai &agrave; gagner des leems en &eacute;crivant un bouquin avec la v&eacute;rit&eacute; : alors voil&agrave;, un jour, je me suis r&eacute;veill&eacute;e, et puis la porte &eacute;tait ouverte et je me suis mise &agrave; marcher dans un couloir sombre ! </div><div class="post_line">Oui, non, jamais &ccedil;a ne suscitera l&rsquo;enthousiasme de la foule en d&eacute;lire. <font color="#E8C500"><font color="#ffffff">Et puis, si j&#039;y ajoute sa lettre, on va carr&eacute;ment passer en dessous de 0.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><em>Ch&egrave;re Louise,</em></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><em>Quand tu liras ces lignes, je serai d&eacute;j&agrave; tr&egrave;s loin et je doute que nous nous revoyions jamais (ou alors peut-&ecirc;tre en enfer ?).</em></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><em>Pendant tous ces cycles j&rsquo;ai essay&eacute; de faire au mieux pour toi, pour notre peuple. Je les ai sauv&eacute;s, je t&rsquo;ai sauv&eacute;e. J&rsquo;ai pass&eacute; un nombre incalculable d&rsquo;heures &agrave; trouver un endroit s&ucirc;r pour installer les survivants, nous d&eacute;velopper, nous enrichir, pouvoir t&rsquo;offrir le monde quand tu retrouverais enfin tes esprits. Je n&rsquo;ai pas re&ccedil;u le moindre merci, la moindre gratitude en retour, juste leur indiff&eacute;rence et ta haine. </em></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><em>Et je te parle m&ecirc;me pas des &eacute;changes en comx que j&rsquo;ai d&ucirc; me taper avec des gens plus ou moins sympathiques, plus ou moins int&eacute;ressants, certains carr&eacute;ment soulants. Bon courage si tu d&eacute;cides de renouer contact avec eux, surtout que je pense que certains ont maintenant des envies de meurtre envers moi et notre peuple par extension. C&#039;est pour cette raison que je dois partir de fa&ccedil;on quelque peu pr&eacute;cipit&eacute;e.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><em>Je t&rsquo;ai vraiment aim&eacute;e tu sais ? Et j&rsquo;&eacute;tais pr&ecirc;t &agrave; tout pour toi. On dit que l&rsquo;amour est proche de la haine, chez moi, il s&rsquo;est transform&eacute; en indiff&eacute;rence. Alors vis, meurs, je m&#039;en fiche totalement. Si tu veux mourir, je te laisse m&ecirc;me une arme &agrave; port&eacute;e de main pour te rendre un dernier service. Pas la peine de me remercier !</em></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><em>D&rsquo;ailleurs, comme tu ne voulais plus vivre, je me suis permis de vider ton compte en banque, et prendre tes ressources et deux trois babioles de valeur.&nbsp; Tu n&rsquo;en auras plus l&rsquo;utilit&eacute; de toute fa&ccedil;on vu que tu n&rsquo;aimes plus la vie blablablabla, et moi j&rsquo;en ai besoin pour rendre la mienne la plus agr&eacute;able possible.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><em>Crois-moi, j&rsquo;aurais aim&eacute; que les choses soient diff&eacute;rentes, mais il est trop tard maintenant. </em></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><em>Adieu,</em></font></div><div class="post_line"><em><font color="#E8C500">Charles</font></em></div><div class="post_line"></div><div class="post_line">Non mais franchement, vous y croyez vous qu&rsquo;il puisse &ecirc;tre aussi stupide ? Et courageux avec &ccedil;a, &agrave; fuir au lieu d&#039;assumer ses conneries... </div><div class="post_line">Je pousse un long soupir et continue d&#039;avancer. Avec ma chance l&eacute;gendaire, pour achever la lib&eacute;ration la plus pourrie de toute l&#039;histoire des lib&eacute;rations, je vais peut-&ecirc;tre me retrouver &agrave; errer dans un labyrinthe sans fin jusqu&#039;&agrave; la mort. </div><div class="post_line">Je glisse la main dans ma poche pour y sentir le contact r&eacute;confortant de l&#039;arme qu&#039;il m&#039;a laiss&eacute;e et imaginer avec d&eacute;lectation la fa&ccedil;on dont je vais m&#039;en servir sur lui.</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15388&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15388" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15388" name="d_reply_15388" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15388');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15388'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > 5 comme les rois mages !</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

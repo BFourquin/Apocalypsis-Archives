@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17462 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Dans l&#039;Arche de l&rsquo;Omnim&egrave;re [SPQR - Omnim&egrave;re]</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Dans l&#039;Arche de l&rsquo;Omnim&egrave;re [SPQR - Omnim&egrave;re]</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=L%27Omnim%C3%A8re">Cdte. L&#039;Omnim&egrave;re</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12449.jpg" style="width:82px;height:128px" alt="Avatar" /><br />06/11/1024 ETU 06:21</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D311916', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal311904')">Détails</a> <a href="javascript:warnpost(311904)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal311904" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=311904',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="right"><em>&quot;J&#039;ai tout le temps froid. C&#039;est physiologique, peut-&ecirc;tre. La chaleur ne m&#039;atteint pas.&quot;</em></div></div><div class="post_line"></div><div class="post_line"><div align="justify">Les couloirs de l&#039;Arche &eacute;taient froids. Temp&eacute;rature moyenne ? 14 degr&eacute;s. Lorsque les portes du sas s&#039;&eacute;taient ouvertes sur elle, la Guerri&egrave;re ayant r&eacute;cup&eacute;r&eacute; le cadeau diplomatique et Minska Lesk, Cao l&#039;Avant-Moisson avait expliqu&eacute;e en termes simples que le vaisseau g&eacute;n&eacute;rationnel manquait de tout, et que d&#039;importants efforts avaient &eacute;t&eacute; faits pour r&eacute;duire la consommation d&#039;&eacute;nergie. Plus sp&eacute;cifiquement, les zones de vies &ndash; des cit&eacute;s d&#039;avant la fin reproduite &agrave; l&#039;identique pour les besoins de l&#039;&eacute;quipage d&#039;origine &ndash; avaient toujours &eacute;t&eacute; chauff&eacute;es, et les couloirs, eux, jamais. C&#039;est que pendant des si&egrave;cles ils n&#039;avaient &eacute;t&eacute; parcourus que par les lointains &eacute;chos d&#039;une humanit&eacute; perdue.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Pas &quot;&eacute;chos&quot;. Fant&ocirc;mes. Elle avait employ&eacute; ce mot avec un s&eacute;rieux qui laissait pr&eacute;sager que ceux-l&agrave; &eacute;taient peut-&ecirc;tre plus que de simples souvenirs m&eacute;lancoliques.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&quot;<font color="#bbbbbb">Qu&rsquo;est-ce que c&rsquo;&eacute;tait que cette personne, qui vous accompagnait&nbsp;?</font>&quot; Elle posa la question apr&egrave;s l&rsquo;avoir amen&eacute;e &agrave; bord d&rsquo;une petite cabine comparable &agrave; celle d&rsquo;un m&eacute;tro, filant d&eacute;sormais &agrave; pleine vitesse &agrave; travers un ensemble de tunnels et de d&ocirc;mes d&rsquo;habitation vide. &quot;<font color="#bbbbbb">Il n&rsquo;avait pas de poitrine. C&rsquo;est curieux, non&nbsp;? Une d&eacute;formation&nbsp;? Certaines des n&ocirc;tres sont aussi imparfaites. Nous ne les laissons pas se d&eacute;velopper.</font>&quot;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle rit. Son rire avait la qualit&eacute; na&iuml;ve de l&#039;innocente parfaite. La cabine s&#039;arr&ecirc;ta. D&eacute;sormais ses baies vitr&eacute;es donnaient sur une esp&egrave;ce de cit&eacute; jardin circulaire, des mezzanines en &eacute;tages allant du sol jusqu&#039;&agrave; un plafond reproduisant parfaitement le ciel. Celui-l&agrave; &eacute;tait bleu, pur, contrairement &agrave; celui de la plan&egrave;te en surface. Des affichages holographiques donnaient l&rsquo;heure et diffusaient des messages d&rsquo;information g&eacute;n&eacute;rale concernant des r&eacute;unions au sein de diff&eacute;rents commissariats.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Les portes du m&eacute;tro s&rsquo;ouvrirent. Ici, il faisait bon. Une chaleur estivale. Et l&rsquo;air sentait bon les fleurs, la nature et&hellip; Quelque chose d&rsquo;autre. D&rsquo;artificiel. Un groupe de gardes en armures blanches formaient une haie d&rsquo;honneur sur le quai. Il y avait d&rsquo;&eacute;tranges symboles circulaires peints en rouge sur leur poitrine et leurs &eacute;pauli&egrave;res. Toutes des femmes, toutes de la m&ecirc;me taille. Cao s&rsquo;avan&ccedil;a, baissant un peu les yeux, accompagn&eacute;e de la militaire portant le glaive. Elle indiqua &agrave; Minska de lui embo&icirc;ter le pas. Elles pass&egrave;rent &agrave; travers un portail de s&eacute;curit&eacute; derri&egrave;re lequel une immense affiche repr&eacute;sentait le visage tranquille d&rsquo;une jeune adulte en long uniforme noir &eacute;tait strat&eacute;giquement plac&eacute;e. La femme de l&rsquo;affiche avait un air s&eacute;rieux, s&eacute;v&egrave;re, et le regard orient&eacute; vers la droite dans un air de profonde r&eacute;flexion. Les caract&egrave;res chang&egrave;rent sous les yeux de Minska pour s&rsquo;adapter &agrave; son langage.</div></div><div class="post_line"></div><div class="post_line"><div align="center">&laquo;&nbsp;<strong><font color="#ffc6c3">LE DIRECTOIRE ET SA GLORIEUSE EX&Eacute;CUTRICE CONSTRUISENT UN MONDE MEILLEUR</font></strong>&nbsp;&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La Cao murmura un bref &laquo;&nbsp;<font color="#bbbbbb">Heikki Omnim,</font>&nbsp;&raquo; puis porta une main &agrave; son front. Apr&egrave;s quelques pas, le petit groupe d&eacute;passa un chemin longeant un balcon donnant sur les jardins en contre-bas amenant &agrave; une simple porte blanche &agrave; double battant, laquelle s&rsquo;ouvrit automatiquement sur leur passage. La Cao resta sur le palier, ce fut la garde qui amena la diplomate jusqu&rsquo;au centre de la pi&egrave;ce.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La salle &eacute;tait blanche, d&rsquo;architecture moderne et &eacute;l&eacute;gante, elle s&rsquo;&eacute;tendait en plusieurs sous-parties semblant comprendre un bureau, une biblioth&egrave;que, une salle &eacute;trange au centre de la quelle se trouvait un petit promontoire circulaire. Une femme ressemblant &agrave; s&rsquo;y m&eacute;prendre &agrave; celle de l&rsquo;affiche holographique inclina la t&ecirc;te &agrave; l&rsquo;adresse des invit&eacute;s.</div></div><div class="post_line"></div><div class="post_line">&quot;<font color="#e8b6ef">Laisse-nous, Cao.</font>&quot;</div><div class="post_line"></div><div class="post_line">La servante acquies&ccedil;a et recula, disparaissant par la porte par laquelle le groupe &eacute;tait entr&eacute;.</div><div class="post_line"></div><div class="post_line"><div align="justify">L&rsquo;Ex&eacute;cutrice Souveraine &eacute;tait plut&ocirc;t belle femme. De taille moyenne &ndash; plus grande que Cao &ndash; elle arborait un air tr&egrave;s calme et un long uniforme m&eacute;langeant les aspects d&rsquo;une tenue d&rsquo;officier militaire et d&rsquo;une robe. Ses cheveux, mi-longs, &eacute;taient d&rsquo;un noir d&rsquo;encre. Elle indiqua &agrave; son invit&eacute; un fauteuil blanc, install&eacute; face &agrave; une table basse. Elle s&rsquo;installa elle-m&ecirc;me sur le fauteuil situ&eacute; directement en face. La garde approcha.</div></div><div class="post_line"></div><div class="post_line">&quot;<font color="#ffc6c3">C&rsquo;est un cadeau des &eacute;trangers.</font>&quot;</div><div class="post_line"></div><div class="post_line">Il y avait quelque chose de presque ironique, dans son ton. Sa cheffe fixa un instant le glaive orn&eacute;, et acquies&ccedil;a poliment en direction de son invit&eacute;e.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#e8b6ef">Je vous remercie.</font>&quot; Elle fit un signe &agrave; la militaire. &quot;<font color="#e8b6ef">Tu peux le poser sur mon bureau.</font>&quot;</div><div class="post_line"></div><div class="post_line"><div align="justify">La garde s&rsquo;&eacute;loigna pour poser l&rsquo;arm&eacute;e c&eacute;r&eacute;monielle sur le bureau de sa sup&eacute;rieure. Se faisant, son casque se replia dans son armure. Quand elle se retourna vers le centre de la pi&egrave;ce pour aller se placer derri&egrave;re le fauteuil o&ugrave; s&rsquo;&eacute;tait install&eacute;e sa cheffe, Minska pu constater d&rsquo;une chose.</div></div><div class="post_line"></div><div class="post_line">Les deux femmes avaient exactement les m&ecirc;mes traits.</div><div class="post_line"></div><div class="post_line"><div align="justify">Oui leurs cheveux n&#039;&eacute;taient pas coiff&eacute;s de la m&ecirc;me mani&egrave;re, et l&rsquo;Ex&eacute;cutrice portait des lunettes, mais pour tous les autres aspects, elles &eacute;taient les m&ecirc;mes. Apr&egrave;s un long silence, la cheffe du gouvernement d&#039;Orphanes engagea les discussions.</div></div><div class="post_line"></div><div class="post_line">&quot;<font color="#e8b6ef">L&#039;humanit&eacute; a surv&eacute;cu en dehors d&#039;Orphanes. C&#039;est bien. L&#039;Omnim&egrave;re soit lou&eacute;e.</font>&quot;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=SPQR">Cdt. SPQR</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/12447.jpg" style="width:105px;height:128px" alt="Avatar" /><br />06/11/1024 ETU 07:13</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal311917')">Détails</a> <a href="javascript:warnpost(311917)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal311917" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=311917',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>La l&eacute;gionnaire remarqua bien la ressemblance entre les deux femmes, des jumelles ? Ce dit t&rsquo;elle dans sa t&ecirc;te. Mais par politesse elle se r&eacute;serva d&#039;en faire un commentaire.</div><div class="post_line"></em></div><div class="post_line"><em>Elle s&rsquo;assit sur le si&egrave;ge que L&rsquo;Ex&eacute;cutrice Souveraine lui indiqua et r&eacute;torqua :</em></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">&laquo;&nbsp;Oui c&rsquo;est exact, L&#039;humanit&eacute; a surv&eacute;cu. &raquo;</font></div><div class="post_line"><em>Une petit trape s&rsquo;ouvr&icirc;t aux soles proches d&rsquo;elle et un plateau de nourriture exotique &eacute;tait pos&eacute; dessus ainsi que du vin. Elle prit un verre et remercie la grande ex&eacute;cutrice d&rsquo;un hochement de t&ecirc;te avant de reprendre.</em></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">&laquo; Nous en sommes bien la preuve r&eacute;unie ici et voir d&rsquo;autres de nos semblables fait chaud au c&oelig;ur. Nous pensions &ecirc;tre les derniers survivants jusqu&rsquo;&agrave; aujourd&rsquo;hui.&nbsp;&raquo;</font></div><div class="post_line"></div><div class="post_line"><em>Minska observa la beaut&eacute; de la grande Ex&eacute;cutrice, cela fait longtemps qu&rsquo;elle n&rsquo;avait pu voir une aussi belle femme. Malgr&eacute; son imposante pr&eacute;sence, elle lui donnait un sentiment de confiance. Elle cligna des yeux deux fois comme si elle reprenait, c&rsquo;est esprit puis se concentra sur le pourquoi elle fut envoy&eacute; ici.</em></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Je suis miska je viens de loin pour vous rencontrer.</font></div><div class="post_line"><font color="#ff0000">Mon legat m&rsquo;envoie ici pour vous faire savoir que nous n&rsquo;avons aucune intention de faire du mal &agrave; votre peuple.</font></div><div class="post_line"></div><div class="post_line"><em>Elle fixa le sole en fron&ccedil;ant les sourcils.</em></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Nous cherchons notre Terre-Natale suite &agrave; une catastrophe naturelle, une temp&ecirc;te magn&eacute;tique nous a fait perdre notre cap pendant un d&eacute;placement et nous voil&agrave; bloqu&eacute; pour le moment non loin de votre plan&egrave;te &agrave; quelques syst&egrave;mes d&rsquo;ici.</font></div><div class="post_line"><font color="#ff0000">Nous avons d&ucirc; nous battre contre des abominations&nbsp;pour avoir un monde o&ugrave; vivre pour le moment.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Elle prit une petite&nbsp;gorg&eacute;e de vin et reposa le verre sur la petite table sorti du sole.&nbsp;</em></font></div><div class="post_line"><font color="#ff0000">Beaucoup d&rsquo;hommes et de femmes de nos l&eacute;gions sont tomb&eacute;s pour que nous puissions avoir la chance d&rsquo;&ecirc;tre la en ce moment. Mais la guerre ne nous laisse pas de repi nous somme constamment face &agrave; des &laquo; obstacles &raquo; nous ralentissent dans nos recherche de notre lieux sacr&eacute;.</font></div><div class="post_line"><em>Elle ferma les yeux un petit instant, prit une petite respiration puis releva la t&ecirc;te vers son h&ocirc;te.</em></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">J&rsquo;ai cru comprendre que vous avez vous aussi votre lot de difficult&eacute;s ici&hellip;. Nous pourrions peut-&ecirc;tre vous aider afin de vous montrer notre sinc&eacute;rit&eacute;&nbsp;?</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=L%27Omnim%C3%A8re">Cdte. L&#039;Omnim&egrave;re</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12449.jpg" style="width:82px;height:128px" alt="Avatar" /><br />06/11/1024 ETU 21:14</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal311921')">Détails</a> <a href="javascript:warnpost(311921)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal311921" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=311921',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffc6c3">C&rsquo;est vrai, nous sommes semblables. Pas aux yeux de mes s&oelig;urs, mais cela compte pour peu. J&#039;ai beaucoup pens&eacute; &agrave; cette question, vous savez ? Dois-je apprendre aux habitants d&#039;Orphanes que nous sommes humaines ? Ce mot n&#039;a aucun sens pour elles. Nous sommes les filles de l&#039;Omnim&egrave;re, c&#039;est tout/</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffc6c3">Il y avait plusieurs aspects &agrave; prendre en compte : note but a toujours &eacute;t&eacute;&nbsp;lib&eacute;rer la plan&egrave;te. Ce point est r&eacute;gl&eacute;, ce qui veut dire que nous devons nous r&eacute;organiser, nous trouver d&#039;autres objectifs. Or, s&#039;il s&#039;av&egrave;re que nous sommes humaines, que notre esp&egrave;ce a surv&eacute;cu au-del&agrave; de notre syst&egrave;me, alors certaines pourraient remettre en cause notre filiation &agrave; l&#039;Omnim&egrave;re, le gouvernement provisoire, s&#039;opposer &agrave; tout les efforts que nous menons collectivement pour passer d&#039;une arm&eacute;e au service de notre m&egrave;re &agrave; une entit&eacute; ind&eacute;pendante.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffc6c3">Une &eacute;ventualit&eacute; que la Principale consid&eacute;r&eacute;e peu souhaitable. Je la comprends. Je dois encore trouver une solution adapt&eacute;e &agrave; ce probl&egrave;me.</font>&quot; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;Ex&eacute;cutrice joignit ses mains devant elle et pencha l&eacute;g&egrave;rement la t&ecirc;te en avant. Le petit r&eacute;cit que lui avait fait l&#039;ambassadrice ne semblait pas la surprendre, cependant il &eacute;tait clair qu&#039;elle &eacute;prouvait une certaine curiosit&eacute;. Une curiosit&eacute; qu&#039;elle n&#039;exprima pas. Derri&egrave;re elle, la soldate restait parfaitement impassible.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffc6c3">Nous avons un pass&eacute; proche, je crois. Mais si la catastrophe qui a heurt&eacute; notre monde n&#039;avait rien de naturel. Elle a &eacute;t&eacute; con&ccedil;ue par une autre esp&egrave;ce, a extermin&eacute; tout ceux ne prenant pas la fuite. Et l&#039;Omnim&egrave;re, gr&acirc;ce soit lui soit rendue, a vaillamment combattue les envahisseurs avec quelques s&oelig;urs choisit parmi les meilleures d&#039;entre nous. Maintenant la surface est libre, nous pouvons la recoloniser, et reconstruire tous ce qui a &eacute;t&eacute; d&eacute;truit.</font>&quot;&nbsp;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle cligna des yeux, et fron&ccedil;a imperceptiblement les sourcils.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffc6c3">Oui nous avons d&eacute;tect&eacute;s de nombreux signaux alarmant dans l&#039;espace. Sans l&#039;Omnim&egrave;re et puisque la Principale s&#039;est mise en retrait, c&#039;est &agrave; mon gouvernement de traiter la question. Vous &ecirc;tes humaines, vous &ecirc;tes respectueuses, </font><font color="#ffc6c3">votre L&eacute;gat a raison : nous devons collaborer, &eacute;liminer ce qui se dresse devant nous. Vous pour retrouver votre terre sacr&eacute;e, nous pour retrouver l&#039;Omnim&egrave;re et... Voir ce que nous pouvons devenir, maintenant que les envahisseurs sont repouss&eacute;s.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle tapota le rebord de son fauteuil puis se redressa, son visage s&#039;&eacute;claira.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffc6c3">Dites-moi ! En dehors de votre L&eacute;gion et de notre Directoire, y a-t-il qui que ce soit, dans l&#039;espace ? D&#039;autres peuples aupr&egrave;s desquels vous avez des ambassade</font><font color="#ffc6c3">s ? Je vous en prie. J&#039;adorerai savoir.</font>&quot;</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=SPQR">Cdt. SPQR</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/12447.jpg" style="width:105px;height:128px" alt="Avatar" /><br />07/11/1024 ETU 05:15</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal311935')">Détails</a> <a href="javascript:warnpost(311935)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal311935" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=311935',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Minska se releva du si&egrave;ge s&rsquo;approcha de la femme de quelques pas. Elle glissa sa main droite dans sa toge et en sortit une petite boule m&eacute;tallique qu&rsquo;elle posa au sol.</em></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Oh oui, il y en a&hellip;</font> <em>Dit t&rsquo;elle.</em></div><div class="post_line"><em>La boule tremblante s&rsquo;allume et la carte partielle du secteur s&rsquo;afficha en hologramme dans toute la pi&egrave;ce.</em></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Nous avons quelques autres peuples dans le secteur, mais les explorations continue. Pour le moment, vous &ecirc;tes les seuls avec qui un vrai &eacute;change, c&rsquo;est fait. Regardez ici ! </font></div><div class="post_line"></div><div class="post_line"><em>Elle pointa son doigt sur un astre et l&rsquo;hologramme zooma puis plusieurs plan&egrave;tes s&rsquo;affiche.</em></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Regardez, je vous pr&eacute;sente pour commencer le syst&egrave;me 7. Il y a 2 cycles une navette telle que la mienne, c&rsquo;est pr&eacute;sent&eacute; en orbite de la plan&egrave;te. Nous avons eux un contact&hellip; Insulte, menace et comportement tr&egrave;s &eacute;trange aucun visuel des personnes concern&eacute;es impossible de savoir si la voix &eacute;tait un m&acirc;le ou une femelle. Notre vaisseau a re&ccedil;u l&rsquo;ordre de quitter l&rsquo;orbite et de maintenir la surveillance de cette esp&egrave;ce qui d&rsquo;ailleurs se repend dans plusieurs syst&egrave;mes. Vous pourriez essayez vous verrez.</font></div><div class="post_line"></div><div class="post_line"><em>Elle choisit une autre position sur la carte en d&eacute;filant les &eacute;toiles.</em></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Maintenant le syst&egrave;me 5, moins d&eacute;velopp&eacute; d&rsquo;apparence, nous avons envoy&eacute; une navette pour communiquer et avoir un visuel sur l&rsquo;esp&egrave;ce de cette zone. Pour le moment, cette op&eacute;ration est en attente, nous verrons bien, je vous en tiendrai inform&eacute; de tout comportement amical ou belliqueux.</font></div><div class="post_line"></div><div class="post_line"><em>Miska &eacute;carta les bras et des centaines de monde s&rsquo;alluma en couleur rouge.</em></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Puis il y a les pirates, brigands et mutants qui regroupe un &eacute;norme lot de plan&egrave;tes. Aucune discussion possible l&rsquo;extermination es conseiller&hellip; Des plus grand au plus petit aucun ne doit survivre croyez moi nous somme humain tous les deux, mais certains humains et mutant doivent br&ucirc;ler.</font></div><div class="post_line"></div><div class="post_line"><em>L&rsquo;hologramme dispara&icirc;t dans la petit sph&egrave;re miska ce retourne et regarde la femme les sourcils fronc&eacute;s.</em></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Je vous propose une alliance. Nous cherchons toutes les deux quelque chose, Votre Omnimere et nous notre Sainte Terra. Si vous l&rsquo;acceptez, je serai pr&ecirc;te &agrave; demander &agrave; mon Legat de fournir des flottes de chasseur et d&rsquo;envoyer des L&eacute;gions enti&egrave;res dans les recoins les plus sombres pour vous aider. </font></div><div class="post_line"><font color="#e82a1f">Mais je pr&eacute;viens une alliance avec nous es une promesse, un pacte des plus important et chez nous la trahison es puni de mort. </font></div><div class="post_line"><font color="#e82a1f">Vous pouvez &eacute;galement refuser notre offre, rien ne vous sera fait &agrave; vous et v&agrave; vos filles. Vous resterez juste une nation de commerce &agrave; nos yeux.</font></div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Quand dite vous ?&nbsp;Nous serions le glaive et vous avec nous vous seriez&hellip; ?&nbsp;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=L%27Omnim%C3%A8re">Cdte. L&#039;Omnim&egrave;re</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12449.jpg" style="width:82px;height:128px" alt="Avatar" /><br />07/11/1024 ETU 10:45</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D311944', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal311940')">Détails</a> <a href="javascript:warnpost(311940)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal311940" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=311940',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font size="1">Je me suis tromp&eacute; sur la couleur des dialogues du dernier message, c&#039;&eacute;tait bien l&#039;Ex&eacute;cutrice qui parlait, m&ecirc;me si le texte &eacute;tait rouge !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La garde, qui fixait le plan du secteur comme sa cheffe, pivota soudainement la t&ecirc;te vers Miska lorsqu&#039;elle fit r&eacute;f&eacute;rence &agrave; la n&eacute;cessit&eacute; de br&ucirc;ler certains adversaires. Elle eut une inspiration un peu plus bruyante que les autres, mais ne dit rien, restant pour le reste parfaitement &agrave; sa place.</div><div class="post_line"></div><div class="post_line">L&#039;Ex&eacute;cutrice Souveraine, elle, se passa de tout commentaire. Elle fit ce qui pouvait passer pour un acquiescement. Ou peut-&ecirc;tre que ce n&#039;&eacute;tait rien, qu&#039;un simple geste de t&ecirc;te, sans signification particuli&egrave;re. Il &eacute;tait impossible de savoir ce qu&#039;elle pensait, car elle ne laissait rien para&icirc;tre sinon une certaine curiosit&eacute;. Le projecteur holographique, notamment, avait retenu son attention. Quand Miska eut termin&eacute;e ses explications, elle se redressa sur son si&egrave;ge et joignit &agrave; nouveau ses mains devant elle.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#e8b6ef">Je vous remercie de nous avoir partag&eacute; ces informations. Oui nous avons remarqu&eacute;s que le secteur regorgeait de choses &eacute;tranges et regrettables. D&#039;o&ugrave; la forme actuelle de notre Directoire provisoire. Les choses sont si compliqu&eacute;es, dehors. Nous adapter, trouver un sens &agrave; notre existence, s&eacute;curiser celle-l&agrave;, toutes ces t&acirc;ches demandent de la fermet&eacute; de notre part. Heureusement mes <em>s&oelig;urs...</em></font>&quot; Elle marqua un temps, comme pour signaler qu&#039;elle ne pr&eacute;tendait pas au r&ocirc;le de m&egrave;re. &quot;<font color="#e8b6ef">Mes s&oelig;urs sont disciplin&eacute;es. Ce sont des guerri&egrave;res. L&#039;Omnim&egrave;re nous a donn&eacute;e la vie pour chasser les Autres, et reprendre notre monde. Je d&eacute;couvre maintenant que le secteur entier aurait besoin d&#039;une telle purge : peut-&ecirc;tre que notre t&acirc;che n&#039;est pas finie.</font>&quot; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;Ex&eacute;cutrice se leva et plaqua un poing contre sa poitrine, levant l&#039;autre bras devant elle, main tendue. Le visage de la garde derri&egrave;re elle s&#039;&eacute;claircit d&#039;un sourire cruel. Elle l&#039;imita, levant le bras &agrave; son tour. L&#039;Ex&eacute;cutrice repris.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#e8b6ef">Je dois obtenir l&#039;accord de la Principale mais je suis partisane de cette alliance. Si elle le juge utile nous serons donc deux glaives. Nous nous battrons ensemble, et nous exterminerons chaque danger se dressant face &agrave; nous !</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle rabaissa le bras. La garde ne bougea pas.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffc6c3">Je br&ucirc;lerai tout ce que vous voulez.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Presque un murmure. Une promesse de violence. L&#039;Ex&eacute;cutrice se laissa retomber dans son si&egrave;ge, sans relever le ton extatique de sa comparse. Elle lui adressa un vague geste de qui lui fit baisser le bras. La garde s&#039;&eacute;carta d&#039;un pas et sa cheffe continua d&#039;un ton neutre.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#e8b6ef">Je vais demander &agrave; une Cao de vous amener &agrave; vos logements. J&#039;ai demand&eacute; &agrave; ce qu&#039;ils soient pr&eacute;par&eacute;s apr&egrave;s votre arriv&eacute;. C&#039;est l&#039;appartement de l&#039;ancienne B&acirc;tisseuse... Hm.</font>&quot; Elle sembla soudain pensive. Derri&egrave;re elle, la garde sembla presque surprise d&#039;entendre ce terme. L&#039;Ex&eacute;cutrice secoua la t&ecirc;te, doucement. &quot;<font color="#fbb8ec">Cela ne vous dira rien. C&#039;est... C&#039;est un endroit qui pourra vous servir d&#039;ambassade.</font>&quot; Un temps. Elle repris avec plus d&#039;entrain. &quot;<font color="#fbb8ec">Maintenant que nous savons d&#039;o&ugrave; vous venez nous &eacute;tablirons aussi une liaison directe et des vols commerciaux, cela vous permettra de rentrer si vous avez le mal du pays, et cela nous permettra d&#039;envoyer nos propres ambassadeurs, si votre l&eacute;gat le juge utile.</div><div class="post_line"></div><div class="post_line">D&#039;ailleurs...</font>&quot; Elle sembla h&eacute;siter puis sourit. L&#039;expression semblait perdue sur ce visage d&#039;habitude aust&egrave;re. &quot;<font color="#fbb8ec">vous avez utilis&eacute; le mot &quot;nation&quot;, pour nous d&eacute;signer. Je n&#039;avais jamais envisag&eacute;e que nous soyons une nation. En fait, je crois que nous n&#039;avons jamais &eacute;t&eacute; une nation. J&#039;aime bien ce mot. Merci.</font>&quot;</div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17462&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17462" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17462" name="d_reply_17462" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17462');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17462'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Dans l&#039;Arche de l&rsquo;Omnim&egrave;re [SPQR - Omnim&egrave;re]</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16303 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Look Up !</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Look Up !</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astery">Cdte. Astery</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11417.jpg" style="width:123px;height:128px" alt="Avatar" /><br />14/07/1022 ETU 09:18</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal293460')">Détails</a> <a href="javascript:warnpost(293460)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293460" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293460',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="right"><em><font color="#bbbbbb">&nbsp;</font></em></div></div><div class="post_line"><div align="right"><em><font color="#bbbbbb">&nbsp;</font></em></div></div><div class="post_line"><div align="right"><em><font color="#bbbbbb">Look Up !</font></em></div></div><div class="post_line"><div align="right"><em><font color="#bbbbbb">Trouble&#039;s always gonna be there ;</font></em></div></div><div class="post_line"><div align="right"><em><font color="#bbbbbb">Look up !</font></em></div></div><div class="post_line"><div align="right"><em><font color="#bbbbbb">Don&#039;t let it bring you to your knees, look up !</font></em></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#bbbbbb"><em><font size="1">- Joy Oladokun</font></em></font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="justify"><em>La pi&egrave;ce est plong&eacute;e dans la p&eacute;nombre. Seules quelques lampes d&#039;appoint &eacute;clairent faiblement les bureaux, petits ilots surmont&eacute;s de piles de dossiers &agrave; l&#039;&eacute;quilibre pr&eacute;caire. Des feuilles volantes jonchent le sol, &eacute;chapp&eacute;es d&#039;un dossier que personne n&#039;a pris la peine de ramasser. </em></div></div><div class="post_line"><div align="justify"><em>Les tasses de caf&eacute; s&#039;empilent. </em></div></div><div class="post_line"><div align="justify"><em>Les poubelles d&eacute;bordent.&nbsp; </em></div></div><div class="post_line"><div align="justify"><em>Les yeux sont fatigu&eacute;s et les regards pr&eacute;occup&eacute;s. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>De temps en temps, un rai de lumi&egrave;re perce l&#039;atmosph&egrave;re pesante de la pi&egrave;ce, lorsqu&#039;une jeune femme post&eacute;e &agrave; c&ocirc;t&eacute; de la fen&ecirc;tre &eacute;carte les lattes du store de ses doigts f&eacute;briles. Un regard nerveux pos&eacute; sur l&#039;ext&eacute;rieur, puis le store est rel&acirc;ch&eacute;. Le rayon lumineux s&#039;&eacute;vanouit. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb">- On va pas y arriver, Astery...</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Pour toute r&eacute;ponse, un silence &eacute;tourdissant.</em> </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb"><font size="4">- Astery !</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Cette fois, c&#039;est une boulette de papier froiss&eacute;e qui survole un bureau, pour rebondir sur une poubelle d&eacute;j&agrave; ensevelie. La boulette roule sur la moquette, ajoutant sa petite contribution au chaos ambiant. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Sans quitter son papier des yeux, Astery remonte ses lunettes sur son nez. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffa500">- On ne l&acirc;che rien, ok ? Tant qu&#039;on est l&agrave;, qu&#039;ils ne nous ont pas trouv&eacute;, on continue. </font><em>Elle n&#039;entend plus le soupir de sa coll&egrave;gue post&eacute;e &agrave; la fen&ecirc;tre. Claquement du store, nouveau rai de lumi&egrave;re. </em></div></div><div class="post_line"><div align="justify"><em>Astery fait pivoter sa chaise pour se tourner vers le bureau derri&egrave;re elle. </em></div></div><div class="post_line"><div align="justify"><font color="#ffa500">Iris, tu as les derni&egrave;res estimations des experts ?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#44b8ff">- J&#039;chuis d&#039;chus. </font><em>Iris, grande brune au visage enfantin, m&acirc;chouille nerveusement une touillette &agrave; caf&eacute; en fixant son &eacute;cran. </em><font color="#44b8ff">Mais avec chette m&eacute;chagerie crypt&eacute;e, cha prend un temps fou...</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Astery pianote bri&egrave;vement sur le bord du bureau, semble sur le point de dire quelque chose - puis se ravise et acquiesce avant de rejoindre son poste de travail. Son regard glisse sur la maquette d&#039;une couverture de magazine pos&eacute; devant elle. Les 5 lettres blanches du titre dansent devant ses yeux fatigu&eacute;s, et elle attrape machinalement le mug le plus proche pour le porter &agrave; ses l&egrave;vres. Vide. C&#039;est vrai, &ccedil;a fait d&eacute;j&agrave; quelques fois qu&#039;elle fait le m&ecirc;me mouvement, en pensant &agrave; la pause n&eacute;cessaire &agrave; la machine &agrave; caf&eacute;. Le mug est repos&eacute; dans un claquement de langue agac&eacute;. La pause attendra. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il y a encore quatre mois, elle n&#039;aurait jamais cru se retrouver dans une telle situation ; il y a quatre mois, pour &ecirc;tre honn&ecirc;te, elle n&#039;aurait jamais pens&eacute; &agrave; nouveau &eacute;crire quoi que ce soit. Il faut dire qu&#039;il y a quatre mois, elle vivait au milieu des yacks et passait la majeure partie de son temps &agrave; crapahuter sur des cailloux avec un sac &agrave; dos plus gros qu&#039;elle. Ca avait &eacute;t&eacute; tout sauf une promenade de sant&eacute;, mais les r&eacute;v&eacute;lations qu&#039;elle avait obtenues de son p&eacute;riple lui avaient ouvert les yeux. D&eacute;finitivement. Mais visiblement, ce qu&#039;elle avait &agrave; partager avec le reste de la Galaxie n&#039;&eacute;tait pas du go&ucirc;t de sa hi&eacute;rarchie... Apr&egrave;s des semaines de tension, de menaces et de pression, elle avait pris la plus grosse d&eacute;cision de sa vie. Qui l&#039;avait men&eacute;e, avec une petite &eacute;quipe soud&eacute;e, &agrave; se retrancher dans un bureau cach&eacute; pour &eacute;diter un magazine pirate. Enfin - s&#039;il arrivait &agrave; voir le jour... </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Astery secoue la t&ecirc;te pour chasser ses pens&eacute;es. Chaque minute perdue est une chance de moins d&#039;atteindre son but. </em></div></div><div class="post_line"><div align="justify"><em>La jeune reporter remonte ses lunettes sur son nez et prend une profonde respiration pour se concentrer. Elle tend la main vers son mug pour une gorg&eacute;e r&eacute;confortante et ne rencontre qu&#039;un fond de tasse s&eacute;ch&eacute;. Bordel.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb">- Astery !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La voix angoiss&eacute;e en provenance de la fen&ecirc;tre augmente encore d&#039;un cran l&#039;irritation de la journaliste. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb">- Astery, &ccedil;a bouge dehors...</font> </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Cette fois, Astery suspend le mouvement de son stylo et l&egrave;ve la t&ecirc;te, tous les sens aux aguets. Un bruit de pas &eacute;touff&eacute; lui parvient depuis le couloir et toutes les t&ecirc;tes se tournent vers la porte. Porte qui s&#039;ouvre sur un homme essouffl&eacute;, le visage encore rougi par sa cavalcade. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#e82a1f"><font size="4">- C&#039;est eux, ils arrivent. On a &eacute;t&eacute; balanc&eacute;, faut se tirer !</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Astery &eacute;crase un poing rageur sur son bureau. Le mug sursaute avant de basculer et de se renverser sur la couverture du magazine en pr&eacute;paration. La jeune femme &eacute;chappe un juron avant de se rappeler - et de constater une nouvelle fois - que de toute fa&ccedil;on, il &eacute;tait vide... </em></div></div><div class="post_line"><div align="justify"><em>D&eacute;j&agrave; au loin, des &eacute;clats de voix et des bruits de course lui parviennent. Elle n&#039;aura pas le temps d&#039;emporter ses documents ni d&#039;effacer les donn&eacute;es sur les holopads. Cette fois, c&#039;est un v&eacute;ritable flot de jurons qui s&#039;&eacute;chappe de la jeune femme alors qu&#039;elle se l&egrave;ve pr&eacute;cipitamment pour suivre ses coll&egrave;gues vers une porte secondaire.</div><div class="post_line"></em></div><div class="post_line"><div align="center"><em><a href="https://youtu.be/-Goz_ut5_RQ?t=8" target="_blank" rel="nofollow"><font color="#c3ffff">♫</font></a></em></div></div><div class="post_line"></div></div><div class="post_line"><div align="justify"><em>Elle marque un temps d&#039;arr&ecirc;t avant de s&#039;engouffrer dans le petit couloir d&eacute;rob&eacute;, et balaie une derni&egrave;re fois la pi&egrave;ce du regard. Cette pi&egrave;ce qui n&#039;avait plus grand chose d&#039;un bureau ces derni&egrave;res semaines, mais qui tenait plus du refuge - de la tani&egrave;re, m&ecirc;me. Elle avait l&#039;impression de ne vivre que &ccedil;a depuis quelques temps, &ecirc;tre arrach&eacute;e &agrave; ses rep&egrave;res pour se retrouver projet&eacute;e dans l&#039;inconnu. Et apr&egrave;s ce grand, ce vertigineux saut dans le vide qui l&#039;attend &agrave; pr&eacute;sent, trouvera-t-elle quelque chose de l&#039;autre c&ocirc;t&eacute; ? </em></div></div><div class="post_line"><div align="justify"><em>Une main vigoureusement pos&eacute;e sur son bras la tire de ses r&eacute;flexions, et elle se laisse tirer dans le couloir. La porte est claqu&eacute;e derri&egrave;re eux. Maintenant, il faut courir.&nbsp; </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Quelques minutes plus tard, c&#039;est un escadron d&#039;une dizaine de bonhommes solidement arm&eacute;s jusqu&#039;aux dents qui enfoncent la porte et d&eacute;gringolent presque dans le bureau. Bin oui, la porte n&#039;&eacute;tait pas verrouill&eacute;e. Qu&#039;est-ce qu&#039;ils croyaient traquer exactement ? Des terroristes, ou une poign&eacute;e de journalistes parias ?</em></div></div><div class="post_line"><div align="justify"><em>Reprenant rapidement contenance, les militaires quadrillent la pi&egrave;ce, oblig&eacute;s de constater l&#039;absence de leurs cibles. Trop tard... </em></div></div><div class="post_line"><div align="justify"><em>L&#039;un d&#039;eux s&#039;approche d&#039;un bureau o&ugrave; tr&ocirc;ne la maquette d&#039;une couverture de magazine. En grosses lettres blanches sur fond rouge, il reconnait le logo de SCOOP. Il ramasse un mug renvers&eacute; sur le bureau et jette un &oelig;il &agrave; l&#039;int&eacute;rieur. A en juger par le fond de caf&eacute; sec, les journalistes sont d&eacute;j&agrave; partis depuis un bout de temps. Le soldat grommelle&nbsp;et repose le mug d&#039;un geste sec. </em></div></div><div class="post_line"><div align="justify"><em>De l&#039;autre c&ocirc;t&eacute; du bureau, un de ses coll&egrave;gues a trouv&eacute; ce qui semble &ecirc;tre une issue de secours, et ils sont d&eacute;j&agrave; plusieurs &agrave; s&#039;y engouffrer. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Avec une mine circonspecte, le militaire baisse &agrave; nouveau les yeux sur la maquette et la survole du regard.</div><div class="post_line"></div><div class="post_line"></em></div><div class="post_line"><div align="center"><em><strong><a href="https://imgur.com/a/saUNZfC" target="_blank" rel="nofollow">[couverture]</a></strong></em></div></div><div class="post_line"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>&quot; Qu&#039;est-ce que c&#039;est que ces conneries...&quot;</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16303&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16303" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16303" name="d_reply_16303" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16303');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16303'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Look Up !</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

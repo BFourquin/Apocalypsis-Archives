@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 17068 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Intrusion</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Intrusion</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=17068&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=17068&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />31/10/1023 ETU 07:10<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305185')">Détails</a> <a href="javascript:warnpost(305185)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305185" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305185',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Vallya &eacute;couta attentivement les paroles de Myah, bien qu&#039;elle n&#039;arrivait pas &agrave; en saisir totalement le sens. Lorsqu&#039;elle parlait d&#039;h&eacute;riter de sa charge, faisait-elle r&eacute;f&eacute;rence &agrave; sa mort ? Elle l&#039;ignorait. </div><div class="post_line"></div><div class="post_line">Elle remarqua facilement la distance que prenait la femme avec ses enfants. Peut-&ecirc;tre jouait-elle uniquement avec le sens de ses mots pour l&#039;induire en erreur. Ce qui ne l&#039;&eacute;tonnerait pas, connaissant le sp&eacute;cimen. </div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Donc, tu ignores la raison de la couleur de peau de ta fille. As-tu d&eacute;j&agrave; constat&eacute; une naissance r&eacute;cente ayant eu ce ph&eacute;nom&egrave;ne ? Peux-&ecirc;tre, pourrais-tu en apprendre davantage si dans ta civilisation, tu poss&egrave;de une personne qui est pr&eacute;sente depuis fort longtemps. Ton coup de c&oelig;ur &eacute;ph&eacute;m&egrave;re galactique, &eacute;tait-il humain ?</font> Laissa-t-elle entendre en comprenant apr&egrave;s coup son erreur. Myah d&eacute;testait parler de cet homme, mais pourquoi ?</div><div class="post_line"></div><div class="post_line">Quand Myah lui proposa de rester la nuit, Vallya regarda autour d&#039;elle, inqui&egrave;te. Si elle s&#039;absentait trop longtemps, cela risquait d&#039;&ecirc;tre compliqu&eacute; d&#039;expliquer son absence &agrave; Tania. Elle ne pouvait pas encore pr&eacute;tendre &ecirc;tre dans une soir&eacute;e, comme la nuit pr&eacute;c&eacute;dente, celle d&#039;avant et encore celle d&#039;avant...</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tr&egrave;s bien, mais je ne vais pas pouvoir rester entre ces murs &eacute;ternellement. Les Alfein n&#039;aiment pas &ecirc;tre enferm&eacute;s entre quatre murs, nous avons l&#039;habitude de vivre &agrave; l&#039;ext&eacute;rieur.</font></div><div class="post_line"></div><div class="post_line">Vallya inclina l&eacute;g&egrave;rement la t&ecirc;te face &agrave; Myah avant de suivre une servante qui l&#039;attendait. Une fois arriv&eacute; dans une chambre qui ressemblait au reste de la b&acirc;tisse, c&#039;est-&agrave;-dire, luxueuse. Elle s&#039;installa sur le canap&eacute; en face de la chemin&eacute; et sorti une montre &agrave; gousset dor&eacute;e. Elle l&#039;ouvrit et regarda les aiguilles d&eacute;fil&eacute;es pendant plusieurs minutes avant de porter son regard sur l&#039;inscription. Un &quot;<font color="#68c4e8">T</font>&quot; majuscule y &eacute;tait grav&eacute;.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Finalement, tu es peut-&ecirc;tre mort...</font> Dit-elle en soupirant avant de refermer la montre.</div><div class="post_line"></div><div class="post_line">Elle fit glisser la cha&icirc;ne autour de son doigt avant d&#039;empoigner l&#039;objet &agrave; pleine main et de la balancer dans le feu. Elle regarda les flammes l&eacute;cher le m&eacute;tal en se souvenant des mots de l&#039;homme : <font color="#68c4e8">Nous n&#039;avons jamais eu la moindre once de confiance en Myah. Cette femme a d&eacute;j&agrave; vendu son &acirc;me. Elle est m&ecirc;me nuisible &agrave; la vie politique.</font></div><div class="post_line"></div><div class="post_line">Tuntiak d&eacute;testait Myah et pour cette unique raison, Vallya l&#039;avait attaqu&eacute; apr&egrave;s son d&eacute;part. Combien de victime avait-elle fait pour le prot&eacute;ger ou seulement pour le retrouver ? Elle avait d&eacute;truit des plan&egrave;tes enti&egrave;res dans l&#039;espoir de r&eacute;colter le moindre indice apr&egrave;s sa disparition. Pourtant, apr&egrave;s des cycles de recherches, elle n&#039;avait rien trouv&eacute;. Aucune trace n&#039;indiquait que l&#039;homme &eacute;tait encore en vie.</div><div class="post_line"></div><div class="post_line">Quand le m&eacute;tal fondit compl&egrave;tement, Vallya se releva et rejoignit la salle de bain. Elle se pr&eacute;para pour cette longue nuit qui l&#039;attendait et alla se coucher.</div><div class="post_line"></div><div class="post_line">Au petit matin, elle fixa le plafond. La nuit avait &eacute;t&eacute; interminable et elle n&#039;avait pas r&eacute;ussi &agrave; s&#039;endormir. Elle d&eacute;cida finalement de se lever et de s&#039;habiller avant de suivre la servante &agrave; travers la demeure. Lorsqu&#039;elle rejoignit Myah, Vallya s&#039;assit sur l&#039;une des chaises en la regardant de la t&ecirc;te au pied. Elle essayait de jauger son humeur, mais elle tenait quand m&ecirc;me &agrave; s&#039;assurer d&#039;une chose: </div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Pourtant... Excuse-moi si je te parais cru, mais... aimes-tu r&eacute;ellement tes enfants ? </font>Vallya s&#039;arr&ecirc;ta un instant en voyant le regard de Myah changer. <font color="#ffa500">Ce que je veux dire, est que tu laisses tes domestiques s&#039;occuper de tes propres enfants. Si un dirigeant mal intentionn&eacute; &eacute;tait venu &agrave; ma place, il n&#039;aurait eu aucun mal &agrave; les tuer. Tu ne crois pas ?</font> Demanda-t-elle sans vraiment attendre une r&eacute;ponse.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />01/11/1023 ETU 23:08<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305209')">Détails</a> <a href="javascript:warnpost(305209)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305209" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305209',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><em>Myah resta sourde aux propos de Vallya se questionnant sur les autres enfants de son Peuple et sur la nature de leur p&egrave;re&hellip; La tension qu&rsquo;elle vivait depuis l&rsquo;apparition de la Princesse &ldquo;en sabots&rdquo; avait raison d&rsquo;elle et l&rsquo;&eacute;puisement ressenti la submergeait.</em> <em><font color="#ffc95f">Quelle insistance, quelle lourdeur&hellip;</font></em></div><div class="post_line"><em><font color="#ffc95f">Mais que veut-elle exactement ?</font></em></div><div class="post_line"></div><div class="post_line"><em>Elle la regarda partir &agrave; la suite de sa servante, personne de confiance &agrave; laquelle elle avait envoy&eacute; le code &ldquo;vigilance accrue&rdquo;, puis se tra&icirc;na jusqu&rsquo;&agrave; sa suite, o&ugrave; elle se laissa tomber sur le grand lit moelleux. </em></div><div class="post_line"><em>Apr&egrave;s avoir scrut&eacute; son visage dans un miroir et remarqu&eacute; les ridules de fatigue autour de ses yeux, son teint terne, elle r&ecirc;va d&rsquo;un bain relaxant qu&rsquo;elle se pr&eacute;para elle-m&ecirc;me.</em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">Tuntiak&hellip; Tuntiak&hellip; A vrai dire, je ne m&rsquo;en souviens que rarement. Ce n&rsquo;est pas un Commandant avec lequel j&rsquo;ai d&ucirc; nouer de gros liens diplomatiques&hellip; Il ne me dit franchement rien !</font></em></div><div class="post_line"></div><div class="post_line"><em>Elle soupira profond&eacute;ment avant de se plonger enti&egrave;rement dans son bain avec d&eacute;lice. Sous l&rsquo;eau, le silence teint&eacute; d&rsquo;&eacute;chos de ses mouvements lents pour ressentir toujours la chaleur fr&ocirc;ler sa peau faisait une musique l&eacute;nifiante. C&rsquo;&eacute;tait bon et rassurant.</em></div><div class="post_line"><em>Au bout d&rsquo;un long moment de d&eacute;lassement, elle en sortit et s&rsquo;enveloppa d&rsquo;une tenue confortable et se dirigea vers la nurserie pour embrasser ses enfants et dormir aupr&egrave;s d&rsquo;eux.</em></div><div class="post_line"><font color="#ffa500">Dormez bien mes Anges !</font></div><div class="post_line"></div><div class="post_line"><em>Le lendemain, elle passa encore un moment avec ses enfants avant de les laisser &agrave; leur nurse. Elle se pr&eacute;para rapidement, donna ses ordres pour le premier repas de la journ&eacute;e et monta &agrave; son QG. Elle travailla jusqu&rsquo;&agrave; recevoir l&rsquo;annonce que son invit&eacute;e allait arriver dans quelques minutes.</em></div><div class="post_line"></div><div class="post_line"><em>Le buffet &eacute;tait copieux et soign&eacute; : viennoiseries diverses, fruits coup&eacute;s, de nombreux plats variant des &oelig;ufs brouill&eacute;s aux pur&eacute;es et compotes, boissons appropri&eacute;es et de l&rsquo;eau fra&icirc;che, comme toujours. Elle s&rsquo;installa en attendant Vallya qui l&rsquo;attaqua aussit&ocirc;t.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je n&rsquo;aime pas mes enfants, dis-tu ?</font> <em>Elle &eacute;clata de rire pour ne pas se mettre en col&egrave;re.</em> <font color="#ffa500">Mes enfants sont vou&eacute;s &agrave; servir notre Communaut&eacute;. Ils ne m&rsquo;appartiennent que durant leurs cinq premi&egrave;res ann&eacute;es. Ensuite, je souhaite garder des relations tendres avec eux, mais ils seront &eacute;duqu&eacute;s hors d&rsquo;ici.</font></div><div class="post_line"><font color="#ffa500">Dis-toi, ma ch&egrave;re Vallya, que si ton statut au sein de l&rsquo;Arbre M&egrave;re comporte des contraintes, le mien, celui de Guide du Peuple, en comporte aussi.</font></div><div class="post_line"><font color="#ffa500">Ma charge ne me conf&egrave;re pas le temps de les avoir &agrave; port&eacute;e de bras toute la journ&eacute;e et le fait qu&rsquo;ils aient des nurses n&rsquo;est pas &eacute;tonnant. Moi-m&ecirc;me ai &eacute;t&eacute; &eacute;lev&eacute;e par un couple d&#039;adoption. Aucun enfant n&rsquo;est abandonn&eacute; chez nous. Ce qui est con&ccedil;u est con&ccedil;u !</font></div><div class="post_line"></div><div class="post_line"><em>Une remarque de Vallya la blessait au plus haut point, celle que les petits auraient pu &ecirc;tre tu&eacute;s sans surveillance. C&rsquo;&eacute;tait en effet une grave erreur de la nurse en service.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tu sais, s&rsquo;ils avaient d&ucirc; mourir, ils le seraient d&eacute;j&agrave;&hellip; C&rsquo;est la vie ! Elle va de pair avec la mort. Crois-moi, elle ne t&rsquo;aurait pas &eacute;pargn&eacute;e non plus.</font></div><div class="post_line"></div><div class="post_line"><em>Cela dit d&rsquo;un ton calme mais le regard vague, elle se tourna vers la Princesse, son sourire ayant disparu.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je te remercie de ta visite impromtue. Aurais-tu par hasard d&rsquo;autres questions au sujet de mes enfants ? J&rsquo;avoue que je ne comprends pas ce qui te fascine dans cette histoire !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />06/11/1023 ETU 06:49<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal305272')">Détails</a> <a href="javascript:warnpost(305272)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305272" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305272',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Vallya prit une grappe de raison et un verre d&#039;eau, qu&#039;elle place devant elle. Elle jaugea rapidement Myah pour voir son humeur du jour et se d&eacute;tendit. Lorsqu&#039;elle s&#039;attaqua &agrave; son fruit, Vallya faillit avaler de travers en entendant la r&eacute;ponse de la dirigeante.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Pardon ? Tu comptes les laisser sans leur m&egrave;re ? </font>Elle prit son verre et bu une gorg&eacute;e avant de reprendre.<font color="#ffa500"> Tu dis que ton statut te contraint, mais tu n&#039;imagines pas ma situation... Jamais je ne pourrai avoir d&#039;enfant, jamais je ne pourrai prendre d&#039;alli&eacute;s, d&#039;amis ou d&#039;amants. Je suis condamn&eacute; &agrave; rester seule durant ces quelques derniers cycles qu&#039;il me reste &agrave; vivre.</font></div><div class="post_line"></div><div class="post_line">Vallya s&#039;affala au fond de sa chaise en soufflant. Le visage neutre qu&#039;elle arborait d&#039;habitude s&#039;&eacute;tait transform&eacute;. Plus inqui&egrave;te que jamais, la blonde regardait son assiette &agrave; la recherche de ses mots.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Il me reste encore 192 cycles avant de donner &agrave; Tania la possibilit&eacute; de tous vous d&eacute;truire. J&#039;avais en ma possession, un moyen de pression... Mais c&#039;est maintenant trop tard. Une fois le d&eacute;lai pass&eacute;, je mourrai. Nous savons tous que nous allons mourir, mais le plus horrible est de conna&icirc;tre la date exacte.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">C&#039;est pour cette raison que j&#039;ai fait en sorte de d&eacute;truire nos technologies de guerre. Ainsi, il lui faudra un certain temps avant de pouvoir tuer les civilisations qu&#039;elle d&eacute;sire. Mais il &eacute;tait &eacute;vident que je ne reste pas que sur un seul monde pour le plaisir.</font></div><div class="post_line"></div><div class="post_line">Vallya frissonna &agrave; cette id&eacute;e. Ses yeux bleus, plant&eacute;s dans le regard argent&eacute; de la femme et sourit faussement.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Nous n&#039;avons pas le choix. Si les m&egrave;res font na&icirc;tre un fils, elles savent qu&#039;elles vont devoir les sacrifier. Nous ne suivons que les lois de l&#039;Arbre M&egrave;re. Je peux t&#039;assurer, que si jamais je faisais na&icirc;tre un enfant, que ce soit une fille ou un gar&ccedil;on, jamais je ne l&#039;abandonnerais. Je suis d&eacute;j&agrave; la paria de mon propre peuple, alors &ccedil;a ne serait qu&#039;une goutte d&#039;eau de plus dans le vase d&eacute;j&agrave; bien remplit. Tu l&#039;as s&#039;en doute remarqu&eacute;, mais je d&eacute;teste les femmes. Toi y compris.</font> Vallya sourit amus&eacute; avant d&#039;expliquer plus clairement. <font color="#ffa500">J&#039;ai toujours v&eacute;cu entour&eacute; d&#039;hommes, contrairement au reste des Alfein. Je vais donc vers eux, plus naturellement. La totalit&eacute; de mes Partenaires sont des hommes et les femmes sont radi&eacute;es automatiquement. Je n&#039;ai aucune confiance en vous toutes. La plupart s&#039;acharnent &agrave; faire des courbettes pour ensuite te planter un couteau dans le dos.</font></div><div class="post_line"></div><div class="post_line">Elle souffla un instant avant de se relever de sa chaise. Les cris qui r&eacute;sonnaient dans le couloir l&#039;alarm&egrave;rent. Rapidement, elle fit un signe &agrave; Myah pour ne pas qu&#039;elle s&#039;inqui&egrave;te et s&#039;&eacute;clipsa. Vallya entra dans la nurserie, d&#039;o&ugrave; pr&eacute;venaient les pleurs et regarda la nurse tenter de calmer le petit.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Mais non ! Vous allez le tuer si vous continuez &agrave; vous occuper de cet enfant comme &ccedil;a ! </font>Cracha-t-elle en d&eacute;visageant la femme qui n&#039;avait rien demand&eacute;. <font color="#ffa500">Donnez-le-moi !</font> S&#039;impatienta-t-elle en prenant Arwaan de ses bras.</div><div class="post_line"></div><div class="post_line">Vallya tra&ccedil;a jusqu&#039;&agrave; la pr&eacute;c&eacute;dente salle pour rejoindre Myah et soupira en passant la porte.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tu devrais penser &agrave; former tes nounous ! Si &ccedil;a continue, l&#039;un d&#039;eux va perdre la vie ! </font>Vallya n&#039;&eacute;tait pas en col&egrave;re, au contraire, elle s&#039;inqui&eacute;tait.</div><div class="post_line"></div><div class="post_line">Elle ber&ccedil;a doucement le petit gar&ccedil;on et reprit sa place en le maintenant confortablement dans ses bras.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Nan... Tu as vu, la dame, elle n&#039;est pas gentille..</font>. Chuchota-t-elle en fixant le bonhomme, le sourire aux l&egrave;vres. Ses petites mimiques faciales firent cesser les pleurs du gar&ccedil;on qui regarda d&#039;un air curieux le visage de la blonde.</div><div class="post_line"></div><div class="post_line">Depuis son plus jeune &acirc;ge, Vallya s&#039;occupait des enfants rejet&eacute;s par leur m&egrave;re. Elle connaissait chaque d&eacute;tail et chaque secret pour faire cesser les g&eacute;missements de plainte.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je peux le garder encore un peu ?</font> Demanda enfin Vallya en se tournant vers Myah d&#039;un air enfantin. <font color="#ffa500">Je te promets que je ne lui ferai jamais de mal. Si jamais quelqu&#039;un venait &agrave; s&#039;attaquer &agrave; ce petit bout, dis-le-moi. Je prendrai toutes les mesures n&eacute;cessaires pour le r&eacute;duire en cendres.</font> Finit-elle plus s&eacute;v&egrave;rement. <font color="#ffa500">A-t-il un parrain ou une marraine ?</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />08/11/1023 ETU 04:27<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D305294', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305293')">Détails</a> <a href="javascript:warnpost(305293)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305293" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305293',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Myah regarda la Princesse d&rsquo;un air s&eacute;v&egrave;re.</em></div><div class="post_line"><font color="#ffa500">Chez nous, toutes les femmes sont des m&egrave;res ! Ils seront toujours choy&eacute;s et &eacute;lev&eacute;s correctement. Je n&rsquo;ai pas eu d&rsquo;autre destin, et pourtant, &eacute;lev&eacute;e par des parents autres que les miens, je n&rsquo;ai manqu&eacute; de rien et, au contraire, j&rsquo;ai appris &agrave; donner &agrave; mon tour et &agrave; partager. Je serais une personne accultur&eacute;e ou mauvaise, &agrave; ton avis ?</font></div><div class="post_line"></div><div class="post_line"><em>Elle baissa la t&ecirc;te et ferma les yeux en essayant d&rsquo;encaisser le manque de ses parents et l&rsquo;injustice qu&rsquo;elle avait subie. Elle ne pouvait pas dire que ses parents lui avaient beaucoup manqu&eacute; tant ceux qui s&rsquo;&eacute;taient occup&eacute; d&rsquo;elle et de beaucoup d&rsquo;autres avaient &eacute;t&eacute; pr&eacute;sents, affectueux et pr&eacute;cieux. Elle entendit les paroles de Vallya comme dans un brouillard&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tu vas mourir ? Moi aussi, sans doute. La vie n&rsquo;existe pas sans la mort et nous le savons tous. Que tu en connaisses la date est cruel, mais nous la connaissons tous plus ou moins avec la d&eacute;cr&eacute;pitude de notre Galaxie, non ?</font></div><div class="post_line"><font color="#ffa500">J&rsquo;aimerais que mes enfants y survivent et aient un avenir diff&eacute;rent du mien&hellip;</font></div><div class="post_line"></div><div class="post_line"><em>Elle ne put s&rsquo;emp&ecirc;cher de sourire &agrave; l&rsquo;&eacute;vocation de la haine de son invit&eacute;e pour les femmes - traditionnellement sournoises et jalouses - et pour elle par la m&ecirc;me occasion.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Ha ha ha&hellip; j&rsquo;aime bien la mani&egrave;re que tu as de me ha&iuml;r ! Saches que j&rsquo;en avais autant &agrave; ton service, il y a &agrave; peine un jour !</font> </div><div class="post_line"></div><div class="post_line"><em>Elle regarda Vallya sortir pr&eacute;cipitamment de la pi&egrave;ce en direction des pleurs d&rsquo;un b&eacute;b&eacute; en saluant l&rsquo;opportunit&eacute; qu&rsquo;elle avait saisie pour couper court &agrave; la conversation. Elle r&eacute;primait encore son rire quand la jeune blonde r&eacute;apparut avec le petit Arwaan dans les bras.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Si ce petit s&rsquo;attache trop &agrave; toi, tu seras oblig&eacute;e de l&rsquo;&eacute;lever toi-m&ecirc;me, mais tu connais la date de ta mort&hellip;&nbsp; Alors est-ce bien raisonnable de l&#039;impr&eacute;gner de ton odeur rassurante et de ta voix douce ?</font></div><div class="post_line"><font color="#ffa500">Arwaan et Aath&eacute;n&eacute;a ont chacun un parrain. Ils n&rsquo;ont pas de marraine&hellip; te proposerais-tu ? C&rsquo;est un lourd fardeau chez nous, tu sais ? Il ne faut pas prendre ce r&ocirc;le &agrave; la l&eacute;g&egrave;re&hellip; Sans enfant, ton (ou ta) filleul fera partie de ta succession. Y as-tu pens&eacute; ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Marraine n&rsquo;est pas un titre honorifique, nous devrons le rendre public dans nos civilisations. Gros risque pour toi, non ? Sauf que mon fils, personne n&rsquo;y touchera ! Pour ma fille, c&rsquo;est pareil. Peut-&ecirc;tre qu&rsquo;Aath&eacute;n&eacute;a poserait&nbsp; moins de probl&egrave;me, malgr&eacute; ton penchant avou&eacute; pour mon gar&ccedil;on ?</font></div><div class="post_line"></div><div class="post_line"><em>Myah ne cherchait pas &agrave; prendre la jeune blonde en d&eacute;faut, ni de la frustrer, mais faire courir un seul risque &agrave; son fils n&rsquo;&eacute;tait pas envisageable. Elle savait que Vallya aurait &eacute;t&eacute; une &ldquo;bonne f&eacute;e&rdquo; parfaite pour ce petit gar&ccedil;on qu&rsquo;elle avait pris en affection, mais&hellip; la r&eacute;alit&eacute;&hellip; Enfin !</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />08/11/1023 ETU 06:50<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305296')">Détails</a> <a href="javascript:warnpost(305296)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305296" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305296',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Vallya parut d&eacute;&ccedil;u pendant un instant. Si jamais elle venait &agrave; annoncer &agrave; Tania qu&#039;Arwaan ou Aath&eacute;n&eacute;a lui succ&eacute;derait, elle se pr&eacute;cipiterait pour tuer les Dysmorphiques.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Alors pourquoi ne pas faire quelque chose de plus discret ? L&#039;annoncer &agrave; ta civilisation ne me d&eacute;range aucunement, mais Tania risquerai de venir te tuer si jamais elle l&#039;apprenait.</font> Elle laissa un petit sourire triste appara&icirc;tre et continua de cajoler l&#039;enfant d&eacute;j&agrave; endormi. <font color="#ffa500">Mais, m&ecirc;me s&#039;il faisait partie de ma succession, jamais il n&#039;irait sur le tr&ocirc;ne de l&#039;Arbre M&egrave;re. Seules les femmes peuvent y acc&eacute;der, donc, en soit, &ccedil;a ne risque pas grand-chose.</font></div><div class="post_line"></div><div class="post_line">Vallya releva la t&ecirc;te vers Myah. Elle pencha l&eacute;g&egrave;rement la t&ecirc;te sur le c&ocirc;t&eacute; en haussant des &eacute;paules.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">La seule chose que je peux te promettre, est qu&#039;il ne lui arrivera jamais rien. Je pourrai m&ecirc;me lui apprendre &agrave; se servir des VMEs !</font> Vallya s&#039;arr&ecirc;ta de nouveau en regardant dans le vide. Bien &eacute;videmment, elle ne pourrait jamais le lui apprendre. <font color="#ffa500">M&ecirc;me s&#039;il ne me conna&icirc;tra pas longtemps, je te promets que je ferai tout pour lui.</font> Comme s&#039;il s&#039;agissait de son propre enfant, Vallya glissa ses doigts sur les joues d&#039;Arwaan.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">J&#039;imagine que tu connaissais Tuntiak du groupe TAMAS ?</font> Dit-elle en changeant d&#039;attitude et en se montrant plus distante.<font color="#ffa500"> Il a &eacute;t&eacute; mon seul et unique alli&eacute;... Nous &oelig;uvrions pour la paix, avant qu&#039;il ne s&#039;attaque aux autres civilisations. Pour r&eacute;pondre &agrave; ta question, car je sens que tu vas me la poser, non. Il ne s&#039;est jamais rien pass&eacute; entre nous. S&#039;il n&#039;avait pas subitement disparu, peut-&ecirc;tre que notre relation aurait encore franchi une &eacute;tape, mais &ccedil;a, je ne le saurais jamais. Je n&#039;ai jamais arr&ecirc;t&eacute; de le chercher, je retourne chaque monde dans l&#039;espoir de le retrouver. Mais toi aussi, tu as perdu quelqu&#039;un que tu aimais... Comment le p&egrave;re de tes enfants &agrave; quitt&eacute; cette Galaxie ?</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />13/11/1023 ETU 01:33<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305335')">Détails</a> <a href="javascript:warnpost(305335)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305335" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305335',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><em>Myah s&rsquo;approcha de Vallya et lui prit d&eacute;licatement son fils des bras pour aller le reposer dans son berceau, puis revint vers elle en fermant doucement la porte de la nurserie.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Bien s&ucirc;r que, m&ecirc;me sans 300 cycles, il ne se souviendra pas de toi, mais je ne voudrais pas qu&rsquo;il ressente un manque diffus de ton absence&hellip; Tu sais ? Un malaise, une angoisse que l&rsquo;on ne s&rsquo;explique pas. Ne le c&acirc;line plus autant, je ne voudrais pas qu&rsquo;il en soit traumatis&eacute; quand tu lui manqueras.</font></div><div class="post_line"></div><div class="post_line"><em>Elle avait dit cela d&rsquo;une voix douce, mais elle &eacute;tait aussi secr&egrave;tement touch&eacute;e par le fait que Vallya ne se soit jamais int&eacute;ress&eacute;e &agrave; la petite fille. Elle savait qu&rsquo;Aath&eacute;n&eacute;a ne serait jamais consid&eacute;r&eacute;e &agrave; l&rsquo;&eacute;gale de son fr&egrave;re jumeau hors de son Peuple. Il fallait vraiment qu&rsquo;elle les pr&eacute;sente rapidement &agrave; l&rsquo;Assembl&eacute;e G&eacute;n&eacute;rale pour leur donner une chance &agrave; tous les deux de prendre sa suite. Elle devait d&rsquo;abord convoquer le Haut Conseil du Peuple des Dysmorphiques.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je vais les introniser bient&ocirc;t tous les deux en pr&eacute;sence de leurs parrains. Ton nom ne sera pas &eacute;voqu&eacute; : inutile d&rsquo;attirer les foudres de Tania sur eux et toi !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tuntiak ? Oui, tu m&rsquo;en as d&eacute;j&agrave; parl&eacute;, mais je n&rsquo;&eacute;tais pas proche de lui. Je comprends que tu l&rsquo;aies cherch&eacute; et que tu regrettes que votre relation n&rsquo;ait pas &eacute;volu&eacute;&hellip;</font></div><div class="post_line"></div><div class="post_line"><em>Elle s&rsquo;abima dans les souvenirs de ces 24 heures d&rsquo;intimit&eacute; avec Azeran. Elle voyait son sourire, ses yeux moqueurs parfois et son visage sombre &agrave; certains moments&hellip; Elle entendait leurs &eacute;clats de rire, elle sentait encore ses mains sur ses hanches, sa bouche sur la sienne&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je ne sais pas comment mon compagnon est mort. Nous nous sommes dit <em>&ldquo;&agrave; bient&ocirc;t&rdquo; </em>et je ne l&rsquo;ai plus revu ni re&ccedil;u de nouvelles. Peu apr&egrave;s, son nom &eacute;tait grav&eacute; sur la st&egrave;le fun&eacute;raire de la Galaxie. Voil&agrave; ! J&rsquo;ai souffert, bien s&ucirc;r, mais &agrave; l&rsquo;annonce de mon &eacute;tat, j&rsquo;ai report&eacute; tout mon amour sur ses futurs enfants en remerciant le destin de m&rsquo;offrir ce cadeau posthume&hellip;</font></div><div class="post_line"></div><div class="post_line"><em>Myah soupira et se leva comme pour s&rsquo;&eacute;brouer et sortir de ses pens&eacute;es.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Vallya, que comptes-tu faire, maintenant ? Comment vois-tu les quelques mois prochains ?</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />16/11/1023 ETU 22:07<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305345')">Détails</a> <a href="javascript:warnpost(305345)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305345" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305345',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Une fois les mains libres, Vallya chercha les pli de sa robe pour s&#039;occuper d&#039;une fa&ccedil;on ou d&#039;une autre. Lorsque Myah la rejoignit, elle se releva et piqua une nouvelle grappe de raison avant de reprendre.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Il est vrai qu&#039;il est compliqu&eacute; d&#039;oublier quelqu&#039;un, surtout quand ceux qui nous sont proches disparaissent sans aucune explication. Mais en ce moment, je suis en contact avec quelqu&#039;un que j&#039;appr&eacute;cie bien...</font> Vallya s&#039;interrompue en buvant un grand verre d&#039;eau. <font color="#ffa500">Et toi, alors ? Trouves-tu quelqu&#039;un &agrave; ton go&ucirc;t ?</font> Plaisanta-t-elle en s&#039;asseyant.</div><div class="post_line"></div><div class="post_line">Quand Myah lui demanda ce qu&#039;elle envisageait pour le futur, Vallya r&eacute;fl&eacute;chit un instant. Chacun de ses projets &eacute;tait minutieusement pr&eacute;par&eacute;. Sauf un.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Amener la paix, </font>finit-elle par prononcer. Jamais un jour, elle ne pensait dire cela. Elle avait financ&eacute; la totalit&eacute; des guerres jusqu&#039;&agrave; pr&eacute;sent et cette envie particuli&egrave;re lui venait d&#039;ailleurs. <font color="#ffa500">Pourquoi ne pas tester une paix durable &agrave; long terme ? Tu ne penses pas que &ccedil;a serait bien pour toutes les civilisations de cette petite Galaxie ?</font></div><div class="post_line"></div><div class="post_line">Vallya soutenu Myah du regard sans jamais d&eacute;vier de ses yeux. Comme elle, la femme avait particip&eacute; &agrave; beaucoup de guerres et elle souhaitait savoir ce qu&#039;elle en pensait.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">D&#039;ailleurs ! Pourquoi me d&eacute;testes-tu ?</font></div><div class="post_line"></div><div class="post_line">Pendant un instant, r&ecirc;veuse, Vallya perdit le fil de la discussion.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Et toi ? Quel son tes projets en dehors de tes enfants ?&nbsp;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />17/11/1023 ETU 02:36<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D305347', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305346')">Détails</a> <a href="javascript:warnpost(305346)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305346" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305346',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Myah regardait Vallya, les bras ballants sans le b&eacute;b&eacute;... Oui, elle savait qu&#039;un enfant pouvait combler un vide, elle l&#039;avait tellement v&eacute;cu. Ses enfants l&#039;avaient sauv&eacute;e d&#039;un deuil &eacute;ternel. Son regard per&ccedil;ant en fut adouci et elle pr&ecirc;ta attention &agrave; ce que cette femme lui disait.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Oh, il y a quelqu&#039;un que tu appr&eacute;cies dans cette Galaxie ? C&#039;est enthousiasmant, non ? Je le connais ? Tu vas me dire son nom, hein ?</font></div><div class="post_line"></div><div class="post_line"><em>Elle la contempla avec le sourire. Voil&agrave; bien un c&ocirc;t&eacute; de sa personnalit&eacute; qu&#039;elle d&eacute;couvrait avec plaisir. Si Vallya &eacute;tait capable d&#039;appr&eacute;cier un Commandant, alors rien n&#039;&eacute;tait totalement perdu.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Moi aussi, il y a un Commandant, enfin un &quot;Grand Amiral&quot; comme il se donne le titre dont&nbsp;je commence &agrave; appr&eacute;cier la correspondance... Juste les &eacute;crits parce qu&#039;il est dans le Secteur 9, ferm&eacute; pour l&#039;instant. J&#039;esp&egrave;re avoir l&#039;opportunit&eacute; de le rencontrer quand il s&#039;ouvrira. Figure-toi qu&#039;il d&eacute;sire, avec ses co-sectoriels, de garder le Secteur pour eux seuls... J&#039;ai bien peur qu&#039;il d&eacute;chante tr&egrave;s vite ! Enfin, j&#039;ai tr&egrave;s envie de faire de l&#039;exploration sous-marine chez lui. Apparemment, il a des fonds oc&eacute;aniques riches et paradisiaques... Et je me dis que si son peuple &eacute;tait compatible avec le mien, nous&nbsp;pourrions initier une nouvelle mixit&eacute; entre nos deux Peuples ! Tu te rends compte, la chance !!!</font></div><div class="post_line"></div><div class="post_line"><em>Elle ne remarqua pas le froncement de sourcils de la Princesse, tant elle &eacute;tait toute &agrave; ce petit miracle proche dans le temps. Mais elle rebondit sur les projets de celle-ci.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Amener la Paix ? Toi ???</font> <em>Elle faillit &eacute;clater de rire mais se retint devant sa mine &agrave; la fois ferm&eacute;e et m&eacute;lancolique. Elle la savait aussi tr&egrave;s col&eacute;rique et ne voulait pas du tout la provoquer.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je te crois capable de tout, Vallya et ne crois pas que je te d&eacute;teste... C&#039;&eacute;tait pour ne pas te mettre mal &agrave; l&#039;aise que j&#039;ai dit &ccedil;a. Crois-tu que j&#039;aurais confi&eacute; mon fils &agrave; des bras d&eacute;test&eacute;s ? Non... J&#039;attendais que tu changes d&#039;avis &agrave; mon sujet et que tu commences &agrave; changer d&#039;attitude &agrave; mon endroit.</font></div><div class="post_line"></div><div class="post_line"><em>Elle vit alors que Vallya s&#039;&eacute;tait r&eacute;fugi&eacute;e dans sa bulle vitale, peu pr&eacute;sente &agrave; la r&eacute;alit&eacute; et &agrave; ses paroles. Elle la laissa tranquille pendant un moment, puis alla s&#039;asseoir pr&egrave;s d&#039;elle pour l&#039;enlacer l&eacute;g&egrave;rement d&#039;un bras pour la ramener vers elle. Sa voix se fit douce.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Mes projets d&eacute;pendent des &eacute;v&eacute;nements, des autres, de tout ce qui est &agrave; l&#039;ext&eacute;rieur de ma personne et sur lesquels je n&#039;ai aucun contr&ocirc;le. Ce qui est confortable dans un sens, puisque je ne peux rien pr&eacute;voir... Allez, reviens vers moi, dans ce salon, et allons manger, c&#039;est d&#039;un grand r&eacute;confort quelquefois.</font></div><div class="post_line"><font color="#ffa500">Ensuite, tu viendras m&#039;aider &agrave; changer et &agrave; nourir les b&eacute;b&eacute;s. Tu verras, on va s&#039;amuser et faire le plein de bonne humeur !</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />17/11/1023 ETU 03:46<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305348')">Détails</a> <a href="javascript:warnpost(305348)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305348" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305348',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Vallya sourit faiblement &agrave; sa voisine lorsqu&#039;elle lui demanda de nommer un dirigeant. Elle haussa simplement des &eacute;paules et prit un nouveau verre d&#039;eau.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tu sais tr&egrave;s bien ma f&acirc;cheuse habitude &agrave; tout dissimuler. Tu n&#039;es pas une de mes Partenaires et ce, m&ecirc;me si tu l&#039;&eacute;tais, tu n&#039;aurais pas l&#039;information. </font>Ria-t-elle. <font color="#ffa500">Mais j&#039;appr&eacute;cie beaucoup de civilisations. Les dirigeants que j&#039;appr&eacute;cies ne risquent aucune attaque.</font></div><div class="post_line"></div><div class="post_line">Lorsqu&#039;elle porta le verre &agrave; ses l&egrave;vres, Vallya recracha automatiquement l&#039;eau en l&#039;entendant parler du Secteur 9. Elle toussa plusieurs fois, histoire de reprendre ses esprits. La Princesse d&eacute;visagea Myah de haut en bas et fit un petit sourire crisp&eacute; pour lui indiquer que tout allait bien.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">J&#039;imagine que Durazine t&#039;a parl&eacute; du Secteur 9 r&eacute;cemment ? Je suis garante des dirigeants qui l&#039;occupent, donc, s&#039;ils font une seule connerie, &ccedil;a me retombera dessus. J&#039;ai autoris&eacute; les dirigeants &agrave; s&#039;attaquer &agrave; Alfa 0 si quelqu&#039;un en son sein s&#039;attaquait &agrave; une civilisation d&#039;ici...</font> Elle reprit une gorg&eacute;e en &eacute;touffant un rire. <font color="#ffa500">Ce n&#039;&eacute;tait pas ma meilleure id&eacute;e, je te l&#039;accorde</font>.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Mais concernant le Grand Amiral, j&#039;en ai entendu parl&eacute;. </font>R&eacute;pondit-elle en se remettant droite sur sa chaise, comme si elle &eacute;tait g&ecirc;n&eacute;e par quelque chose. <font color="#ffa500">Donc, il te pla&icirc;t ?</font></div><div class="post_line"></div><div class="post_line">Automatiquement, Vallya serra ses doigts autour des plis de sa robe. Apr&egrave;s quelques secondes, elle s&#039;&eacute;tira et posa ses coudes sur la table, les mains jointes.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tu m&#039;intrigues ! De quoi peut-il bien te parler pour que tu d&eacute;cides de t&#039;agripper &agrave; lui ainsi ? Je ne t&#039;ai jamais vue autant excit&eacute; en parlant d&#039;un dirigeant. Qu&#039;est-ce qui peut mettre la fameuse Mademoiselle Myah d&#039;Allow dans cet &eacute;tat ? </font>R&eacute;priment ses propres &eacute;motions, Vallya secoua la t&ecirc;te. <font color="#ffa500">J&#039;esp&egrave;re que lorsque le Secteur 9 ouvrira, tu pourras faire sa rencontre. Je suis certaine que ce serait b&eacute;n&eacute;fique pour tes enfants d&#039;avoir un compagnon &agrave; tes c&ocirc;t&eacute;s.</font></div><div class="post_line"></div><div class="post_line">Pour le moment, ce qui importait &agrave; Vallya, &eacute;tait de voir les enfants de Myah en s&eacute;curit&eacute;. Quitte &agrave; mettre ses propres projets en suspens. Apr&egrave;s tout, il ne lui restait que quelques mois &agrave; vivre. Elle savait que perdre un &ecirc;tre proche &eacute;tait horrible et elle ne voulait pas faire subir ce sort &agrave; une autre personne.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">En revanche, le Secteur 9 est sous ma protection. Si je vois une seule personne coloniser les mondes sans l&#039;accord des habitants, tu sais ce qu&#039;il adviendra. Alors, je ne pense pas que les autres civilisations iront se risquer &agrave; coloniser pour accroitre leurs puissances. Je crois, avoir fait un peu peur &agrave; Durazine &agrave; ce sujet... Ce n&#039;&eacute;tait pas mon intention premi&egrave;re, mais au moins, le message est pass&eacute;. Pour une fois que je ne compte pas financer des meurtriers en puissance !</font> Dit-elle en explosant de rire.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Mais pour en revenir &agrave; ce Grand Amiral, t&#039;a t-il &eacute;g...Enfin, il t&#039;a propos&eacute; de venir sur son monde ? </font>Rectifia-t-elle rapidement. <font color="#ffa500">Moi, je ne connais pas l&#039;oc&eacute;an. Sur Alfa 0, nous n&#039;avons pas d&#039;eau. Les Ouvri&egrave;res se chargent d&#039;irriguer nos r&eacute;coltes, nous n&#039;avons pas m&ecirc;me un lac. Malheureusement, tu sais qu&#039;il est impossible pour moi de visiter les mondes des autres dirigeants. Sinon, je ne me serai pas empress&eacute; de sauter dans une navette Dysmorphique ! Enfin, sauf si tu veux faire face &agrave; Tania,</font> ironisa-t-elle.</div><div class="post_line"></div><div class="post_line">Vallya remarqua l&#039;hilarit&eacute; de la dirigeante. Amus&eacute;e, elle sourit. Elle-m&ecirc;me, savait que les dirigeants n&#039;allaient jamais la prendre au s&eacute;rieux.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tu connais mon aversion pour les mensonges. Donc, oui, je parierai bien sur la paix. Je ne suis qu&#039;une commer&ccedil;ante, je finance mes Partenaires et ils sont bien plus nombreux &agrave; vouloir partir en guerre plut&ocirc;t que de cr&eacute;er une paix durable. Je ne suis dans aucun camp, bon but es uniquement de prot&eacute;ger les Alfein. Je ne peux utiliser que des Navettes et des VMEs, alors je ne peux coloniser ni me d&eacute;fendre en cas d&#039;attaque. Je n&#039;ai donc pas le choix, parfois, de cr&eacute;er des Partenariats avec des civilisations qui veulent d&eacute;truire le monde. </font></div><div class="post_line"></div><div class="post_line">Perplexe, Vallya pencha la t&ecirc;te. Ressemblait-elle vraiment &agrave; un monstre pour que Myah pense cela d&#039;elle ?</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je suis capable de tout ?</font> Intrigu&eacute;e, la blonde leva un sourcil. <font color="#ffa500">Non, jamais je ne d&eacute;truirais une civilisation. Jamais je n&#039;attaquerai quelqu&#039;un pour de simples paroles prononc&eacute;. Je ne comprend pas moi-m&ecirc;me, pourquoi vous avez tous autant peur des Alfein... Bien que &ccedil;a doit &ecirc;tre en rapport avec la Nu&eacute;e. Je suis autant inoffensive qu&#039;une mouche. La seule probabilit&eacute; pour que j&#039;attaque un dirigeant, est qu&#039;il attaque Alfa 0. Sinon, personne ne risque rien. La preuve, depuis un mois bient&ocirc;t, je laisse un Ren&eacute;gat piller mes mondes ! J&#039;ai autoris&eacute; cette loi d&egrave;s mon arriv&eacute; sur Vindicte, si &ccedil;a peut lui permettre de g&eacute;n&eacute;rer des Leems, &ccedil;a me va. Bien que &ccedil;a serait plus simple de m&#039;en demander directement. Je produis 15Ma de Leems par cycle et j&#039;ach&egrave;te le maximum de vaisseau &agrave; la Contrebande tellement je ne sais pas quoi en faire. </font>Ria-t-elle. <font color="#ffa500">Alors, j&#039;ai une arm&eacute;e de vaisseaux que je ne peux pas utiliser.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Pour te r&eacute;pondre, je ne peux changer d&#039;avis.</font> Encore moins avec ce qu&#039;elle venait de lui annoncer.<font color="#ffa500"> Comme tu le sais, j&#039;aime les choses concr&egrave;tes. Ici, tu peux &ecirc;tre mielleuse et dans mon dos, pr&eacute;parer ma mort. C&#039;est pour cette raison que personne n&#039;a ma confiance. Partenaire ou pas.</font></div><div class="post_line"></div><div class="post_line">Vallya retrouva enfin un semblant de sourire et fit un mouvement de recul lorsque Myah la serra dans ses bras. Le sourire pinc&eacute;, elle fixa la jeune femme.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Non, d&eacute;sol&eacute; de te d&eacute;cevoir, mais j&#039;aime les hommes. </font>Hurla-t-elle de rire en se relevant. <font color="#ffa500">Enfin, fa&ccedil;on de parler puisque je ne connais rien &agrave; l&#039;amour.</font> Termina-t-elle en plaisantant moins.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Tr&egrave;s bien, je te suis ! </font>R&eacute;pondit Vallya, en suivant Myah jusqu&#039;au canap&eacute;. <font color="#ffa500">Je suis d&#039;accord pour t&#039;aider avec les petits monstres, mais je prends ton fils !</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />18/11/1023 ETU 22:11<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal305350')">Détails</a> <a href="javascript:warnpost(305350)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305350" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305350',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><em>La riposte de Myah refl&eacute;ta son agacement.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Non non, nous ne sommes ni alli&eacute;es, ni partenaires, encore moins amies ! Mais tu es venue jusqu&rsquo;ici en secret, tu manges et discutes avec moi et tu c&acirc;lines mon fils&hellip; Alors, arr&ecirc;te de te r&eacute;fugier derri&egrave;re des mots creux et des clich&eacute;s, veux-tu ? Tu me mets en col&egrave;re, l&agrave;, par ta mauvaise foi.</font></div><div class="post_line"></div><div class="post_line"><em>Elle &eacute;couta patiemment sa diatribe sur le Secteur 9, Durazine, l&rsquo;Amiral et les rapports qu&rsquo;elle aurait avec lui, au moins en pens&eacute;es impures, sinon en intention&hellip; Son &eacute;nervement montait &agrave; chaque phrase de cette <strong>&ldquo;Princesse Tordue&rdquo;.</strong>&nbsp;</em> </div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Vallya, <strong>&ldquo;ma non-amie&rdquo;</strong>... tu me d&eacute;sesp&egrave;res ! Non pas parce que tu prot&egrave;ges le Secteur 9, c&rsquo;est tout &agrave; ton honneur ! Ce Secteur n&rsquo;a aucun int&eacute;r&ecirc;t pour moi, je n&rsquo;y demanderai m&ecirc;me pas une Ambassade. Je ne suis pas &acirc;pre au gain, comme tes commanditaires ou partenaires, comme tu les nommes. Ce qui m&rsquo;int&eacute;resse, c&rsquo;est le Peuple, la Civilisation et le fait que les Thalwas soient compatibles g&eacute;n&eacute;tiquement avec nous, ce qui reste &agrave; d&eacute;montrer.</font></div><div class="post_line"><font color="#ffa500">Ce n&rsquo;est pas </font><font color="#e86e04">Durazine</font><font color="#ffa500"> qui m&rsquo;en a parl&eacute; mais l&rsquo;</font><font color="#e86e04">Amiral Jace Ryzo</font><font color="#ffa500"> lui-m&ecirc;me&hellip; Il m&rsquo;a contact&eacute;e, je n&rsquo;ai rien demand&eacute;. Alors pourquoi m&rsquo;attribues-tu des pens&eacute;es obtuses ? Je ne compte pas le s&eacute;duire en tant que femme et je n&rsquo;ai aucune vue particuli&egrave;re au sujet de sa personne. </font></div><div class="post_line"><font color="#ffa500">C&rsquo;est un &ecirc;tre qui me para&icirc;t convivial et curieux des autres, c&rsquo;est un d&eacute;fenseur de la Paix, comme moi et&hellip; toi si on en croit tes dires. Un homme d&eacute;sirant prot&eacute;ger son Peuple tout en acceptant le danger, j&rsquo;avoue que je l&rsquo;admire&hellip; C&rsquo;est tout !</font></div><div class="post_line"></div><div class="post_line"><em>Myah se servit un verre de rhum ambr&eacute; qu&rsquo;elle but comme un shot, cul sec. Elle attendit que la chaleur se r&eacute;pande dans ses veines et que la br&ucirc;lure de l&rsquo;alcool fort quitte sa bouche pour respirer profond&eacute;ment et sentir ses nerfs se d&eacute;nouer un peu.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Oui, tu es riche, tr&egrave;s riche ! Pourtant, je n&rsquo;ai jamais rien qu&eacute;mand&eacute; &agrave; ta porte, si ? Pourquoi n&rsquo;offres-tu pas quelques Ma de Leems &agrave; ces populations qui pourraient ainsi faire travailler leurs laboratoires et s&rsquo;armer plus rapidement ? Te souviens-tu de nos d&eacute;buts, comme les Leems nous manquaient pour avancer ? Je crois que les virements sont possibles en secteur ferm&eacute;, mais je me trompe peut-&ecirc;tre ? Et puis&nbsp;peut-&ecirc;tre tiens-tu &agrave; les tenir sous ta coupe ? Humm&hellip;</font></div><div class="post_line"></div><div class="post_line"><em>Elle nota douloureusement que Vallya n&rsquo;acceptait pas de moment de pure affection venant d&rsquo;elle et elle se retira rapidement loin du canap&eacute;.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Alors, viens, nous allons nous occuper des enfants, toi d&rsquo;Arwaan, &eacute;videmment, et moi d&rsquo;Aath&eacute;n&eacute;a. Mais profites-en bien&hellip; parce qu&#039;apr&egrave;s, tu devras partir.</font> </div><div class="post_line"></div><div class="post_line">Myah suspendit ses pas vers la porte de la Nursery et se retourna vers Vallya. Quitte &agrave; ce que ce soit leur derni&egrave;re entrevue, elle avait encore quelque chose sur le coeur.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Ce que je ne peux pardonner et qui participe &agrave; mon soulagement de te voir partir, c&rsquo;est </font><strong><font color="#ffa500">ta l&acirc;chet&eacute;</font></strong><font color="#ffa500"> vis &agrave; vis de </font><font color="#e86e04">Tania</font><font color="#ffa500"> et de l&rsquo;</font><font color="#e86e04">Arbre M&egrave;re </font><font color="#ffa500">que tu ne peux pas affronter, m&ecirc;me pour l&rsquo;amour d&rsquo;un enfant. En fait, <strong>c&rsquo;est toi qui figes ces lois abjectes</strong>, non les autres ! Si ta civilisation n&rsquo;&eacute;volue pas, ce n&rsquo;est que de ton fait et de ta couardise ! Tout est dit maintenant.</font></div><div class="post_line"></div><div class="post_line"><em>Elle repartit vers la nursery, son regard dur et per&ccedil;ant d&#039;adoucissant peu &agrave; peu &agrave; mesure qu&rsquo;elle approchait des berceaux. Elle se pencha sur les b&eacute;b&eacute;s pour leur faire une caresse et un sourire. Avant de prendre sa fille dans les bras, elle s&rsquo;adressa &agrave; son fils&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Profites toi aussi une derni&egrave;re fois de ta <strong>&ldquo;fausse marraine&rdquo;</strong>. Il n&rsquo;y a qu&rsquo;avec toi qu&rsquo;elle peut exprimer le peu d&rsquo;amour dont elle est capable&hellip; Je serai toujours l&agrave;, mon fils.</font></div><div class="post_line"></div><div class="post_line"><em>Elle s&rsquo;&eacute;loigna pour aller changer et baigner sa fille avec des gestes d&rsquo;autant plus tendres et ludiques, qu&rsquo;Aath&eacute;n&eacute;a &eacute;tait moins aim&eacute;e que son fr&egrave;re &agrave; cause de sa peau d&rsquo;un bleu p&acirc;le.</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=17068&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=17068&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Intrusion</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

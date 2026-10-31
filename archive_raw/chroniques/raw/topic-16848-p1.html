@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16848 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Le Khanat Immortel</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Le Khanat Immortel</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Rhea+Na%27Serrt">Cdte. Rhea Na&#039;Serrt</a><br>Prestige de chroniqueur&nbsp;: 69<br /><br /><img src="/avatars/11914.jpg" style="width:128px;height:128px" alt="Avatar" /><br />20/06/1023 ETU 10:32</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D300857', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal300856')">Détails</a> <a href="javascript:warnpost(300856)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300856" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300856',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font size="6"><strong>Des ann&eacute;es plus t&ocirc;t</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&Agrave; l&rsquo;&eacute;poque, Aruktai Na&#039;Serrt avait encore le droit de porter son patronyme. Il avait aussi le droit de fouler le sol de Shambalha. C&rsquo;est que la plan&egrave;te &eacute;tait la fronti&egrave;re de l&rsquo;empire, et qu&rsquo;au lieu d&rsquo;un Khanat, il s&rsquo;y trouvait plusieurs hordes rivales, men&eacute;es par autant d&rsquo;h&eacute;ritiers et de princes. En tant qu&rsquo;a&icirc;n&eacute;e de celles et ceux qui descendaient en ligne directe du dernier khan interstellaire, Aruktai avait une mission envers sa famille et son peuple, et n&rsquo;avait jamais dout&eacute; de la victoire finale des Na&rsquo;Serrt sur leurs rivaux. Son fr&egrave;re, que l&rsquo;on appelait d&eacute;j&agrave; le Khan, consid&eacute;rait aussi la question r&eacute;gl&eacute;e. C&rsquo;&eacute;tait dans l&rsquo;ordre des choses.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">En g&eacute;n&eacute;ral, le Khan parlait peu. C&rsquo;&eacute;tait un homme laconique, et intelligent. Un homme que les grandes maisons avaient d&eacute;cid&eacute; de suivre, car il avait su passer pour un &ecirc;tre inoffensif, tout en s&rsquo;aur&eacute;olant de succ&egrave;s. Quant &agrave; ceux qui ne le suivaient pas, ou parce qu&rsquo;ils n&rsquo;&eacute;taient pas dupes, ou parce qu&rsquo;ils croyaient &agrave; la possibilit&eacute; de leur propre victoire sur les autres hordes...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ff4136">Des r&eacute;fractaires. M&ecirc;me maintenant ils s&rsquo;obstinent &agrave; nous r&eacute;sister.&nbsp;</font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ils n&rsquo;&eacute;taient plus tr&egrave;s nombreux, &agrave; vrai dire. Les cit&eacute;s mobiles du clan Na&rsquo;Makkai avaient &eacute;t&eacute; immobilis&eacute;es lors d&rsquo;un raid de chasseurs suborbitaux, et les forteresses du sud, d&eacute;limitant les fronti&egrave;res de l&rsquo;Alliance Australe, tomberaient bient&ocirc;t. Cela faisait d&eacute;j&agrave; douze semaines que les bombardements rasaient leurs villes-forteresses, r&eacute;duisant les stratifications de blindage en cendre, annihilant la volont&eacute; de cette premi&egrave;re et derni&egrave;re ligne de d&eacute;fense. Le Khan avait les yeux riv&eacute;s sur un grand &eacute;cran de chair, o&ugrave; se dessinait l&rsquo;incessant spectacle des bombardements. Ils ne se rendaient pas. Son regard pensif exprimait quelque-chose.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">De l&rsquo;admiration.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il soupira enfin, et se tourna vers son fr&egrave;re.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ff4136">Les grandes familles sont hypocrites. Elles font de moi leur Khan, car elles te trouvent trop extr&ecirc;me, mais ne s&rsquo;opposent pas &agrave; tes m&eacute;thodes lorsqu&rsquo;elles me sont utiles.</font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#ffc6c3">Le peuple seelie respecte ses Brasiers</font>, d&eacute;clara simplement Aruktai avant de joindre ses mains dans son dos. Sous le regard insistant de son fr&egrave;re, il jugea utile d&rsquo;ajouter une touche personnelle &agrave; ce lieu commun. &laquo;&nbsp;<font color="#ffc6c3">Je pr&eacute;f&egrave;re r&eacute;gner sur la troupe que sur le s&eacute;nat et la noblesse. Et au moins je te r&eacute;ponds directement.</font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#ff4136">En es-tu bien s&ucirc;r&nbsp;?&nbsp;</font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aruktai n&rsquo;a jamais &eacute;t&eacute; un mauvais homme. Mais il a &eacute;t&eacute;, des ann&eacute;es durant, un seelie exemplaire. Violant, cruel, bravache et d&rsquo;un cynisme politique rare. Son fr&egrave;re aussi, mais il le cachait avec un soin tout particulier. C&rsquo;&eacute;tait peut-&ecirc;tre li&eacute; &agrave; son statut de fils cadet. Il n&rsquo;avait pas &eacute;t&eacute; &eacute;duqu&eacute; dans le but d&rsquo;une lointaine reconqu&ecirc;te plan&eacute;taire. C&rsquo;&eacute;tait un politicien intelligent, g&eacute;nial, m&ecirc;me. On l&rsquo;avait moins nomm&eacute; Khan pour ses grands accomplissements que pour ses r&eacute;seaux au sein des clans et des familles. Pour le reste, pour les affaires militaires, il profitait simplement de sa position dominante &agrave; l&rsquo;&eacute;chelle plan&eacute;taire. Ses jeux politiques lui avaient attir&eacute; les faveurs et la suj&eacute;tion d&rsquo;assez de clans industriels, miniers, militaires, pour former une grande horde qu&rsquo;il pouvait envoyer sans g&eacute;nie particulier s&rsquo;&eacute;craser sur les clans rivaux. Il &eacute;tait tout simplement plus riche que ses opposants. Cela &eacute;tant, on devait au moins lui reconna&icirc;tre qu&rsquo;il avait unifi&eacute; plus de clan qu&rsquo;aucun de ses pr&eacute;d&eacute;cesseurs. C&rsquo;&eacute;tait, en soit, une preuve remarquable de comp&eacute;tence.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le Khan sourit sans afficher la moindre &eacute;motion. Une mimique m&eacute;canique et froide. Il fixa son regard sur le grand &eacute;cran de contr&ocirc;le, puis d&eacute;tacha ses mains de l&rsquo;interface qui le connectait aux syst&egrave;mes de commandement du grand char solaire. D&rsquo;une voix pr&eacute;cise et calme, il adressa un constat &agrave; son fr&egrave;re.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ff4136">Je suis heureux que nous menions cette guerre ensemble, Aruktai.&nbsp;</font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Puis ce fut tout. Son regard se voila. L&rsquo;hologramme organique se dissipa dans un nuage de sang. Aruktai et son fils &eacute;taient &agrave; nouveau seuls dans le poste de commandement. Le g&eacute;n&eacute;ral ignora le regard de son h&eacute;ritier, pr&eacute;f&eacute;rant ne pas y lire les questions qu&rsquo;il y devinait.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Fut un temps o&ugrave; le Khan et lui &eacute;taient tr&egrave;s proches. De jeunes fr&egrave;res seuls dans un palais immense. Fils d&rsquo;une m&ecirc;me imp&eacute;ratrice. Leur p&egrave;re n&rsquo;avait pas de concubine.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Puis, comme dans toute famille noble, une certaine rivalit&eacute; s&eacute;para les deux h&eacute;ritiers potentiels. Chez les seelies tout &eacute;tait &eacute;lectif, il n&rsquo;y avait pas de primog&eacute;niture. Si Aruktai &eacute;tait l&rsquo;a&icirc;n&eacute;, traditionnellement nomm&eacute; par la noblesse, son fr&egrave;re pouvait encore repr&eacute;senter un danger. Et inversement, son fr&egrave;re, le futur Khan, savait qu&rsquo;il allait devoir &eacute;craser son a&icirc;n&eacute; s&rsquo;il souhaitait obtenir le pouvoir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">On avait soigneusement &eacute;vit&eacute; que la rivalit&eacute; n&rsquo;aille &agrave; son terme en exilant les deux princes dans deux r&eacute;gions diff&eacute;rentes, en qualit&eacute; de gouverneurs. Ils y men&egrave;rent quelques guerres de conqu&ecirc;tes ou op&eacute;rations politiques, dans une saine &eacute;mulation qui profita &agrave; la Horde. Finalement, le Khan fut favoris&eacute; par la Khuriltai. L&rsquo;efficacit&eacute; redoutable de son fr&egrave;re, Aruktai, qui avait &eacute;cras&eacute; clan barbare sur clan barbare, avait profond&eacute;ment inqui&eacute;t&eacute; les familles nobles, qui derri&egrave;re leurs r&ecirc;ves de grandeur et leur nationalisme, se m&eacute;fiaient toujours de la r&eacute;alisation concr&egrave;te des objectifs du peuple seelie. En d&rsquo;autres termes, Aruktai aurait fait un khan trop fort. Aussi nomm&egrave;rent-ils, ironiquement, un seelie qui avait en fait toutes les comp&eacute;tences n&eacute;cessaires pour h&eacute;riger un v&eacute;ritable empire. Aruktai, qui connaissait bien son fr&egrave;re, savait que c&rsquo;&eacute;tait un risque. Ils avaient le m&ecirc;me sang. Les m&ecirc;mes m&eacute;thodes. Au fond, ils &eacute;taient l&rsquo;un comme l&rsquo;autre sans piti&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pourtant, la premi&egrave;re d&eacute;cision du jeune Khan fut de rappeler son fr&egrave;re &agrave; lui. On pensa bri&egrave;vement qu&rsquo;il souhaitait l&rsquo;ex&eacute;cuter. Espoirs d&eacute;&ccedil;us&nbsp;: Aruktai s&rsquo;&eacute;tait prostern&eacute; devant ce tr&ocirc;ne qui aurait pu &ecirc;tre le sien, sous les immenses coupoles du palais imp&eacute;rial, et avait &eacute;cout&eacute; celui qui avait &eacute;t&eacute; son fr&egrave;re, et qui &eacute;tait maintenant son seigneur.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ff4136">Brasier, relevez-vous.&nbsp;</font>&raquo; Puis, d&rsquo;un ton &eacute;gal, et se levant &agrave; son tour, le Khan exprima toute l&rsquo;&eacute;tendue de son plan. &laquo;&nbsp;<font color="#ff4136">Nous allons unifier ce monde, nous &eacute;lever au-del&agrave; des &eacute;toiles. R&eacute;parer le Mandat qui a &eacute;t&eacute; bris&eacute;.&nbsp;</font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aruktai appris plus tard que son fr&egrave;re avait obtenu, lorsqu&rsquo;il &eacute;tait gouverneur, les d&eacute;bris d&rsquo;anciens croiseurs de combat, et recompos&eacute; une technologie hyperspatiale. Un secret qui, r&eacute;v&eacute;l&eacute; au bon moment, lui attirerait la fid&eacute;lit&eacute; d&rsquo;une majorit&eacute; des clans r&eacute;fractaires.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ff4136">Mais il nous faut une arm&eacute;e,&nbsp;</font>&raquo; lui expliqua-t-il d&rsquo;un ton froid. &laquo;&nbsp;<font color="#ff4136">Sans quoi on nous volera cette technologie avant que nous puissions la d&eacute;ployer. La relique doit &ecirc;tre le couronnement de notre sup&eacute;riorit&eacute;, et non son pilier. R&eacute;v&eacute;l&eacute;e trop t&ocirc;t elle pourrait unifier tous nos opposants.</font>&nbsp;&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Puis il avait gard&eacute; Aruktai au palais, pour &eacute;viter que le g&eacute;n&eacute;ral victorieux ne pr&eacute;pare un quelconque coup &agrave; son &eacute;gard, ou ne diffuse les secrets de sa prochaine victoire. C&rsquo;&eacute;tait intelligent. Car Aruktai connaissait son devoir, et savait qu&rsquo;il serait attendu de lui qu&rsquo;il prenne le pouvoir, par la force si n&eacute;cessaire. Pourtant, il servait le peuple seelie. Le Khan, son fr&egrave;re, le faisait aussi &agrave; sa fa&ccedil;on. Ils iraient plus loin ensemble que seuls, aussi le coup devrait &ecirc;tre men&eacute; au moment opportun. Pas avant.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Enfin, Aruktai devait se l&rsquo;admettre, il avait appr&eacute;ci&eacute; ces ann&eacute;es loin du front. S&rsquo;il avait combattu car c&rsquo;&eacute;tait son r&ocirc;le, et s&rsquo;il avait appr&eacute;ci&eacute; les victoires et la gloire, c&rsquo;&eacute;tait un go&ucirc;t acquis par sens du devoir. Dans le palais il put se rapprocher des milieux culturels et artistiques qui correspondaient plus &agrave; son naturel. Il devint, aussi, un proche de l&rsquo;imp&eacute;ratrice. Une femme admirable, vraiment. Qui compl&eacute;tait en douceur et en empathie ce que son fr&egrave;re avait en efficacit&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alors lui et le Khan collabor&egrave;rent et d&eacute;velopp&egrave;rent un respect mutuel,&nbsp; une forme sinc&egrave;re d&rsquo;amiti&eacute;, de celle que peuvent avoir un g&eacute;n&eacute;ral et un roi, menant mille campagnes c&ocirc;te &agrave; c&ocirc;te.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">Honorable g&eacute;n&eacute;ral&nbsp;?</font>&nbsp;&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aruktai quitta ses pens&eacute;es, se tourna vers son fils. Il tirait plus de sa m&egrave;re, Cirina, ce qui &eacute;tait sans doute une bonne chose, mais rappelait &agrave; Aruktai les circonstances cruelles de sa mort. Captur&eacute;e par les Khudukhas. Pass&eacute;e dans l&rsquo;une de leurs machines de torture, qui &eacute;tirait votre corps, vos veines, jours apr&egrave;s jours, jusqu&rsquo;&agrave; ce que le battement de votre c&oelig;ur ne soit plus suffisant pour alimenter vos organes si &eacute;loign&eacute;s les uns des autres.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">C&rsquo;&eacute;tait une guerri&egrave;re. Elle aurait m&eacute;rit&eacute; de mourir au combat. Mais son h&eacute;ritage vivait. Et si Aruktai avait des traits ronds et des os &eacute;pais, son fils &eacute;tait d&rsquo;un physique &eacute;l&eacute;gant, &eacute;lanc&eacute;. En fait il ressemblait m&ecirc;me au Khan. Il ferait un prince remarquable, lorsque les circonstances le permettraient. Soumis &agrave; l&rsquo;&eacute;ducation dure de son p&egrave;re militaire, Khadan Na&#039;Serrt &eacute;tait d&eacute;j&agrave; brillant &agrave; tout point de vue.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ffc6c3">Qu&rsquo;y a-t-il, Khadan&nbsp;?</font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#ffdbbb">Le mur.</font>&nbsp;&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il plongea un regard dur dans les yeux de son p&egrave;re, plein de la gravit&eacute; du moment, puis indiqua sans rien dire les &eacute;crans du poste de commandement. C&rsquo;&eacute;tait la premi&egrave;re fois en trois si&egrave;cles que les murs du sud &eacute;taient bris&eacute;s.&nbsp;Apr&egrave;s cette bataille, l&#039;Alliance Australe s&#039;effondrerait. Il pourrait rentrer &agrave; la Cit&eacute; Imp&eacute;riale, informer les clans de la renaissance du Khanat, et peut-&ecirc;tre aussi prendre le pouvoir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div><div class="post_line">Un regard en direction de son fils, puis Aruktai acquies&ccedil;a. Il donna l&rsquo;ordre de l&rsquo;assaut.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Rhea+Na%27Serrt">Cdte. Rhea Na&#039;Serrt</a><br>Prestige de chroniqueur&nbsp;: 69<br /><br /><img src="/avatars/11914.jpg" style="width:128px;height:128px" alt="Avatar" /><br />20/06/1023 ETU 11:11</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D300859', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal300858')">Détails</a> <a href="javascript:warnpost(300858)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300858" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300858',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Tout &eacute;tait mort. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les batailles modernes ne donnaient pas syst&eacute;matiquement des charniers, mais l&rsquo;Alliance Australe avait conscience, et intimement, qu&rsquo;elle &eacute;tait le dernier rempart s&eacute;parant les hordes de Na&rsquo;Serrt d&rsquo;une domination plan&eacute;taire totale. C&rsquo;&eacute;tait dans cet esprit que ses hommes se battaient, se battaient jusqu&rsquo;&agrave; la mort. Pour &eacute;viter que le Khanat ne r&eacute;&eacute;merge sous la lign&eacute;e d&rsquo;un autre prince que le leur.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Martyr futile, mais brutale. On trouvait un plaisir sinc&egrave;re dans ces tueries. On croyait que le sang vers&eacute; &eacute;quivalait &agrave; l&rsquo;honneur, et qu&rsquo;il y avait une noblesse intrins&egrave;que dans la tuerie, pour autant qu&rsquo;elle se fasse sous le drapeau des clans, et se pare de la noblesse des guerres.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aruktai y avait aussi cru, et sinc&egrave;rement. Jusqu&rsquo;&agrave; ce jour.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Que restait-il d&rsquo;autre qu&rsquo;un charnier&nbsp;? La question lui revenait encore et encore, lorsque les fossoyeurs rassemblaient les corps des morts. Ceux du Khanat rejoindraient les grandes n&eacute;cropoles d&rsquo;honneurs. Ceux de leurs ennemis, les festins de la victoire, o&ugrave; on les d&eacute;vorerait dans un immense rituel anthropophage.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aruktai marchait dans un mar&eacute;cage de sang et de viande calcin&eacute;e. L&rsquo;odeur du fer et de l&rsquo;ozone emplissait l&rsquo;atmosph&egrave;re jusqu&rsquo;&agrave; le rendre irrespirable. Tout &eacute;tait rouge, jusqu&rsquo;&agrave; l&rsquo;aube qui se levait difficilement derri&egrave;re les montagnes bris&eacute;es par l&rsquo;artillerie. Les murs de la r&eacute;gion, hauts de plusieurs centaines de m&egrave;tres, ressemblaient aux portes d&rsquo;un enfer promis. Les processions militaires et religieuses, aux &acirc;mes damn&eacute;es et aux esprits qui les tra&icirc;neraient vers le n&eacute;ant.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Mais aussi terrible qu&rsquo;elle fut, cette victoire &eacute;tait sa victoire. Il avait man&oelig;uvr&eacute; pendant six jours, branch&eacute; aux commandes du Char solaire, distribuant ordres et consignes, manipulant ses hordes et t&uuml;mets comme autant de pi&egrave;ces sur un plateau de jeu l&rsquo;opposant aux plus brillants esprits de l&rsquo;Alliance. Puis, quand une frappe orbitale cin&eacute;tique l&acirc;ch&eacute;e depuis un satellite furtif avait ravag&eacute; la r&eacute;gion et chang&eacute; des kilom&egrave;tres de collines en crat&egrave;re fumant, quand la barge de commandement avait &eacute;t&eacute; &eacute;ventr&eacute;e et d&eacute;chir&eacute;e, il avait particip&eacute; &agrave; la m&ecirc;l&eacute;e, et g&eacute;rer la semaine suivante depuis un poste mobile, fuyant sans cesse l&rsquo;artillerie ennemie, priv&eacute; du confort du vaisseau depuis lequel il avait men&eacute; toute sa campagne.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Maintenant les forces de l&rsquo;Alliance reculaient. Enfin. Restait &agrave; avancer et &agrave; capturer les villes. D&eacute;j&agrave; il offrait quelques jours de r&eacute;pit &agrave; ses hommes. Il fallait compter les morts, reformer des unit&eacute;s, r&eacute;parer et remplacer le mat&eacute;riel, attendre que les divisions logistiques n&rsquo;ouvrent de nouvelles routes.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il s&rsquo;arr&ecirc;ta de marcher. Il &eacute;tait arriv&eacute; au sommet d&rsquo;une petite colline, &agrave; l&rsquo;ombre fumante d&rsquo;une barge a&eacute;roglisseur de l&rsquo;alliance. L&rsquo;immense poste de commandement avait &eacute;t&eacute; poursuivie sur plusieurs kilom&egrave;tres, apr&egrave;s la chute des murs. Des bombardements fr&eacute;quents avaient permis de l&rsquo;immobiliser assez longtemps pour qu&rsquo;une &eacute;quipe d&rsquo;assaut entre &agrave; son bord, et massacre l&rsquo;&eacute;quipage. Quelque-part dans cette &eacute;pave devait se trouver le corps, mut&eacute; et incrust&eacute; dans sa cuve de contr&ocirc;le, du g&eacute;n&eacute;ral de l&rsquo;Alliance. Une chose brillante, mais qui n&rsquo;avait plus rien de seelie.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aruktai fixa l&rsquo;immensit&eacute; m&eacute;tallique. Dans le lointain il entendait encore l&rsquo;artillerie tonner. Une formation de chasseurs passa dans le ciel, un globe de plasma traversa l&rsquo;air pour faire &eacute;clater, &agrave; des kilom&egrave;tres de l&agrave;, une tourelle antia&eacute;rienne.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La guerre &eacute;tait immense. Les cadavres, cette &eacute;tendue sans fin de troupiers morts, ou agonisants aux pieds de leurs montures, &eacute;taient des hordes de fourmis, face aux titans de la guerre m&eacute;canique. Des fourmis h&eacute;ro&iuml;ques, dont on oublierait les noms, oui, mais pas les accomplissements. En tant que g&eacute;n&eacute;ral, Aruktai savait qu&rsquo;il serait le seul visage de cette victoire. Un sentiment qui le laissait parfois amer.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Une voix l&rsquo;interpella. Il se retourna, son pied heurta le cr&acirc;ne d&rsquo;un mort. La voix &eacute;tait celle d&rsquo;une jeune f&eacute;e en armure de combat. Car une de ses ailes &eacute;tait d&eacute;chir&eacute;e, elle marchait, pataugeant elle aussi dans les corps et la boue rouge. Son uniforme noir de messag&egrave;re &eacute;tait d&eacute;chir&eacute; par endroit, un patch de stimulant ornait sa nuque.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ffffff">Excellence&nbsp;! Ma&icirc;tre de guerre&nbsp;!</font></div></div><div class="post_line"><div align="justify">&ndash;&nbsp;<font color="#ffc6c3">Qu&rsquo;y a-t-il&nbsp;?&nbsp;</font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Enfin arriv&eacute; devant lui, elle se laissa tomber &agrave; genoux et, comme le voulait la coutume, se prosterna. Ses beaux cheveux iris&eacute;s plong&egrave;rent dans le m&eacute;lange de sang et de chair liqu&eacute;fi&eacute;e.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffffff">C&rsquo;est votre fils, ma&icirc;tre de guerre&nbsp;!</font>&nbsp;&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il sourit. Khadan&nbsp;avait quitt&eacute; la barge apr&egrave;s son bombardement. Car Aruktai avait besoin d&rsquo;hommes de confiance pour guider les assauts a&eacute;roport&eacute;s, il avait donn&eacute; sa b&eacute;n&eacute;diction &agrave; son meilleur officier pour mener les op&eacute;rations. Il attrapa la f&eacute;e par l&rsquo;&eacute;paule, et l&rsquo;aida &agrave; se relever.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffc6c3">Ah ! Que veut-il me faire savoir&nbsp;?</font>&nbsp;&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La f&eacute;e entrouvrit la bouche, et h&eacute;sita. Puis elle parla, brisant par la m&ecirc;me le monde d&rsquo;Aruktai.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Tout &eacute;tait mort.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Rhea+Na%27Serrt">Cdte. Rhea Na&#039;Serrt</a><br>Prestige de chroniqueur&nbsp;: 69<br /><br /><img src="/avatars/11914.jpg" style="width:128px;height:128px" alt="Avatar" /><br />20/06/1023 ETU 12:15</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D300865', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal300860')">Détails</a> <a href="javascript:warnpost(300860)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300860" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300860',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Le reste avait &eacute;t&eacute; comme un mauvais r&ecirc;ve, dont il gardait en m&eacute;moire chaque d&eacute;tail, et arrivait globalement &agrave; recomposer la fresque, tout en ressentant, &agrave; chaque fois qu&rsquo;il se prenait &agrave; y penser, une &eacute;trange sensation. Celle qu&rsquo;il n&rsquo;avait pas vraiment v&eacute;cu ces moments. Il les avait travers&eacute;s, peut-&ecirc;tre. Mais ce qu&rsquo;il avait pu dire, ce qu&rsquo;il avait pu faire, n&rsquo;&eacute;tait pas de son fait. Une force ext&eacute;rieure avait saisi son existence, lui imposant un rythme qui n&rsquo;&eacute;tait pas le sien. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il avait quitt&eacute; le front.&nbsp; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ainsi, quand l&rsquo;Alliance Australe se regroupa pour offrir trois ann&eacute;es de r&eacute;sistances aux forces du futur Khanat, on d&eacute;cr&eacute;ta que cela &eacute;tait de son fait. De la m&ecirc;me fa&ccedil;on, ses critiques de plus en plus acerbes de la culture guerri&egrave;re seelie ne lui apport&egrave;rent pas beaucoup d&rsquo;amis. Il pouvait expliquer, tant qu&rsquo;il le voulait, que le Mandat Stellaire avait r&eacute;gn&eacute; par l&rsquo;usage parcimonieux de sa force, des si&egrave;cles de guerre civile brutale avaient irr&eacute;m&eacute;diablement transform&eacute;e Shambalha en horde. Dans le sens le moins noble, le moins strictement seelie, que l&rsquo;on pouvait associer au mot. M&ecirc;me lorsque bien plus tard, il fut question de s&rsquo;ouvrir &agrave; la galaxie, de relancer, enfin, l&rsquo;exploration spatiale, on garda en t&ecirc;te l&rsquo;id&eacute;e que la guerre &eacute;tait intrins&egrave;quement noble. Shambalha, pacifi&eacute;e, fantasmait sans cesse les massacres qui l&rsquo;avaient maintenu dans le chaos. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il n&rsquo;y avait pas eu de coup d&rsquo;&Eacute;tat. Aruktai n&rsquo;avait pas pris le pouvoir. Au moins on l&rsquo;avait laiss&eacute; enterrer son fils. Puis quand il avait quitt&eacute; la plan&egrave;te m&egrave;re pour explorer l&rsquo;espace lointain, sous couvert d&rsquo;apprendre &agrave; conna&icirc;tre les cultures ext&eacute;rieures pour pr&eacute;parer le retour promis du Mandat Stellaire, on l&rsquo;avait laiss&eacute; faire. Le fr&egrave;re d&eacute;chu, le g&eacute;n&eacute;ral qui avait recul&eacute;, celui qui avait &eacute;t&eacute; bris&eacute; par la guerre, s&rsquo;&eacute;loignait. Quelle faiblesse, vraiment. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Certains, pourtant, voyaient encore en lui un grand homme de guerre. Et il savait que ses opposants les plus vocaux &eacute;taient ses ennemis politiques. Il ne doutait pas une seule seconde que sa voix pouvait porter chez certains nobles, chez certains artistes, chez une part importante de la population. Du reste, le mythe noir de sa d&eacute;sertion avait finalement &eacute;t&eacute; censur&eacute;, pour &eacute;viter de salir le sang du Khan, il &eacute;tait, apr&egrave;s tout, son fr&egrave;re. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alors s&rsquo;il l&rsquo;avait souhait&eacute;, il aurait peut-&ecirc;tre pu prendre le pouvoir comme il l&rsquo;envisageait &agrave; une &eacute;poque. Seulement il n&rsquo;en ressentait plus le d&eacute;sir. Et se rendait compte qu&rsquo;en fait, il n&rsquo;en avait jamais voulu. C&rsquo;&eacute;tait sa mission, en tant que fils a&icirc;n&eacute; de son p&egrave;re. Mais la guerre avait aussi &eacute;t&eacute; sa mission. Et c&rsquo;&eacute;tait en remplissant la sienne que Khadan &eacute;tait mort. L&rsquo;opportunit&eacute; se pr&eacute;senta, plusieurs fois, de comploter. De faire de la politique. Il n&rsquo;en fit rien. Pr&eacute;f&eacute;ra &ecirc;tre l&rsquo;&eacute;minence grise, le conseiller, la conscience de son fr&egrave;re. </div></div><div class="post_line"><div align="justify">&nbsp; </div></div><div class="post_line"><div align="justify">Cela, au moins, aurait &eacute;t&eacute; possible si le Khan avait &eacute;t&eacute; dispos&eacute; &agrave; l&rsquo;&eacute;couter. Cela n&rsquo;&eacute;tait pas le cas. Peut-&ecirc;tre qu&#039;il ne pardonna jamais &agrave; Aruktai d&rsquo;avoir quitt&eacute; le front. La guerre prolong&eacute;e contre l&rsquo;Alliance Australe avait &eacute;t&eacute; une guerre de mouvement et de violences. Elle avait co&ucirc;t&eacute; de nombreux proches &agrave; de nombreux seelies. Le Khan lui-m&ecirc;me y avait laiss&eacute; les m&egrave;res de ses enfants, l&#039;imp&eacute;ratrice, des fils, des conseillers et, aussi, une part importante de son esprit. Et parce que sa victoire finale avait &eacute;t&eacute; permise par l&rsquo;utilisation des reliques technologiques, le d&eacute;veloppement de vaisseaux interstellaires, il s&rsquo;&eacute;tait enferm&eacute; dans une &eacute;trange fascination pour la haute technologie. Lui et Aruktai ne se revirent jamais, apr&egrave;s la guerre.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Car l&#039;homme avait peu &agrave; peu disparu derri&egrave;re son r&ocirc;le. Il &eacute;tait, effectivement, le Khan. Le bombardement chimique prolong&eacute; de la cit&eacute; imp&eacute;riale, celui qui lui avait vol&eacute; sa famille et peut-&ecirc;tre aussi certains de ses r&ecirc;ves, l&rsquo;avait chang&eacute; en profondeur. Il y avait &agrave; nouveau une faille entre lui et son fr&egrave;re. Aruktai n&#039;&eacute;tait plus admit dans les hautes sph&egrave;res du pouvoir.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alors un beau jour, il fut convoqu&eacute; par la khuriltai, dont les s&eacute;nateurs lui annonc&egrave;rent qu&rsquo;il irait dans l&rsquo;espace en qualit&eacute; de g&eacute;n&eacute;ral, et ne saurait revenir sur Shambalha sous peine de ne plus jamais quitter son sol. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ffc6c3">Suis-je envoy&eacute; en qualit&eacute; de Brasier</font>, avait-il demand&eacute; sans cacher sa lassitude, puis la r&eacute;ponse l&rsquo;avait surpris. </div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffffff">Vous seconderez celle-l&agrave;.</font> &raquo; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Quelques heures plus tard il rencontra cette bien &eacute;trange jeune fille, qu&rsquo;il avait vu grandir dans la cit&eacute; imp&eacute;riale, et qui &agrave; quelques occasions avait voulu le questionner sur la guerre. Il se souvient comme elle sembla d&eacute;&ccedil;ue en voyant le vieil homme en surpoids qu&rsquo;il &eacute;tait devenu, puis comme elle s&rsquo;&eacute;tait inclin&eacute;e, dans les formes de respect, et s&rsquo;&eacute;tait adress&eacute;e &agrave; lui dans le parler respectueux que l&rsquo;on doit employer pour parler &agrave; celui qui nous est sup&eacute;rieur dans la hi&eacute;rarchie du sang. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#ff857a">Mon honorable oncle, vous vous souvenez peut-&ecirc;tre de moi. On m&rsquo;a inform&eacute; que vous m&rsquo;aiderez dans la grande mission qu&rsquo;est la n&ocirc;tre. Je suis heureuse de pouvoir compter sur celui qui a &eacute;t&eacute;, des ann&eacute;es durant, le plus grand officier de l&rsquo;arm&eacute;e de mon p&egrave;re, le Khan. Immense soit les c&eacute;l&eacute;brations de sa sagesse philosophique. </font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffc6c3">Je me souviens bien de toi, ma ni&egrave;ce. Ou peut-&ecirc;tre devrais-je dire excellence et Braise du Khanat seelie ?</font> &raquo; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et elle s&rsquo;&eacute;tait inclin&eacute;e, r&eacute;pondant que la reconstruction du Mandat Stellaire ne tol&eacute;rerait pas d&rsquo;ironie, et qu&rsquo;elle comptait sur son expertise et sa grande sagesse pour l&rsquo;aider &agrave; orienter ses futures d&eacute;cisions. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Depuis, Rhea avait m&ucirc;rie. &Agrave; ses c&ocirc;t&eacute;s, l&rsquo;exil s&rsquo;&eacute;tait av&eacute;r&eacute; plut&ocirc;t agr&eacute;able, et Aruktai s&rsquo;&eacute;china &agrave; lui inculquer la prudence, la tol&eacute;rance, la mesure. Parfois il s&rsquo;en voulait. Elle n&rsquo;&eacute;tait pas sa fille. Elle &eacute;tait la fille de son fr&egrave;re, le Khan. Elle devrait &ecirc;tre &agrave; ses c&ocirc;t&eacute;s, sans doute. En l&rsquo;&eacute;duquant comme il le faisait, en la conseillant, en veillant sur elle, ne trahissait-il pas son propre fils, la m&eacute;moire de sa mort ? Quel aurait &eacute;t&eacute; la vie de Rhea, s&#039;il avait men&eacute; son coup &agrave; bien, si Khadan n&#039;&eacute;tait pas mort ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">C&rsquo;&eacute;tait une pens&eacute;e imb&eacute;cile, et il le savait. D&#039;ailleurs, avec le temps elle avait cess&eacute; de lui venir. Car il savait aussi que son fr&egrave;re n&rsquo;aurait sans doute pas couv&eacute; sa fille. A vrai dire sa propre mission ressemblait &agrave; un exil. Reformer le Mandat Stellaire ? Pensaient-ils vraiment qu&rsquo;une jeune <em>g&uuml;nj</em>, &eacute;duqu&eacute;e dans le secret d&rsquo;un palais qui n&rsquo;avait pas connu l&rsquo;espace depuis des si&egrave;cles, pourrait y arriver ? Ou bien on attendait effectivement qu&rsquo;il m&egrave;ne cette mission &agrave; sa place, et qu&rsquo;elle profite de ses succ&egrave;s ? Ind&eacute;pendamment de la politique sous-jacente &agrave; la situation, Aruktai d&eacute;cida que Rhea &eacute;tait le sang de sa famille, et surtout une brave jeune femme. Qu&#039;il ferait de son mieux pour l&rsquo;assister. Elle ne serait jamais sa fille, mais il restait son oncle.</div><div class="post_line"></div></div><div class="post_line"><div align="justify">Elle-m&ecirc;me semblait tol&eacute;rer sa pr&eacute;sence. Avec le temps elle sembla m&ecirc;me commencer &agrave; l&rsquo;appr&eacute;cier. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Lorsqu&rsquo;elle repassait sur Shambalha, elle ne manquait pas une occasion de se rendre sur la tombe de Khadan, et d&rsquo;y prier pour son oncle. Lui attendait en orbite. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;<font color="#ffc6c3"> Un jour, Khadan</font>, se disait-il.&nbsp;<font color="#ffc6c3">Un jour je reviendrais te voir.</font> &raquo; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Sans savoir si cela signifierait sa mort, ou celle du Khanat. </div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16848&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16848" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16848" name="d_reply_16848" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16848');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16848'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Le Khanat Immortel</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

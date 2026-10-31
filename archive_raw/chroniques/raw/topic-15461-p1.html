@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15461 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Augures et Destin&eacute;e</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Augures et Destin&eacute;e</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Heinrich+von+Kessler">Cdt. Heinrich von Kessler</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/11041.jpg" style="width:128px;height:128px" alt="Avatar" /><br />24/02/1021 ETU 03:58<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal282966')">Détails</a> <a href="javascript:warnpost(282966)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal282966" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=282966',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><a href="https://youtu.be/o81A31hlgEA" target="_blank" rel="nofollow"><font color="#FFA500"><font size="1">https://youtu.be/o81A31hlgEA</font></font></a></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Les adeptes psalmodiaient tandis que les &eacute;nergies &eacute;sot&eacute;riques se d&eacute;versaient &agrave; travers les &eacute;tranges glyphes de craie sanctifi&eacute;e trac&eacute;s au sol. La salle, faite de vieilles pierre et d&rsquo;une architecture rappelant le gothique, &eacute;tait immense. Plusieurs centaines d&rsquo;adeptes de toute classes et de tout niveaux s&rsquo;&eacute;tait rassembl&eacute;s dans l&rsquo;Alc&ocirc;ve du Destin..</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Le <em>Himmelschloss</em> avait &eacute;t&eacute; depuis longtemps ancr&eacute; sur le sol de ce monde, sur la petite montagne qui surplombait la capitale. Cet &eacute;difice &eacute;trange et gigantesque, n&rsquo;avait quitt&eacute; ce lieu qu&rsquo;une seule fois depuis&nbsp;: lorsque le nuage des cr&eacute;atures Zwiie avait assaillit ce monde.</font></div><div class="post_line"><font color="#FFA500">Mais il s&rsquo;agissait d&eacute;sormais d&rsquo;une histoire ancienne.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">En l&rsquo;instant, Heinrich dirigeaient le rituel avec son esprit et la ma&icirc;trise du flux. De par ses yeux il voyait les significations mystiques de chaque choses, chaque &eacute;l&eacute;ment pr&eacute;sent sur les pi&eacute;destaux. Divers ingr&eacute;dients permettant d&rsquo;alimenter de leurs essences le complexe dispositif astral.</font></div><div class="post_line"><font color="#FFA500">Celui-ci, nourrit par les ingr&eacute;dient, r&eacute;veill&eacute; et dirig&eacute; par le roi-sorcier, finit par s&rsquo;activer pleinement et &agrave; pourvoir les attentes de von Kessler.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Tandis que psalmodies et flux guid&eacute;s r&eacute;veillaient les profondeurs de l&rsquo;Astral, Heinrich entama les antiques paroles de l&rsquo;&eacute;vocation du Destin et de l&rsquo;Oubli.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Les voix des psalmodies autour de lui continuant inlassablement la m&eacute;lop&eacute;e, le roi-sorcier tendit alors, th&eacute;&acirc;tralement, son b&acirc;ton vers un des plus grand glyphe trac&eacute; au sol et dont le pi&eacute;destal portait une coupe en cristal remplie d&rsquo;une eau pure, scintillante sous les lueurs des nombreuses bougies alentours.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Les derniers mots du rituel furent prononc&eacute;s avec une vigueur toute propre &agrave; impressionner l&rsquo;astral, presque chant&eacute;s.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">C&rsquo;est alors que quelque chose se passa.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Les adeptes de bas &eacute;tages ne virent rien, cependant les adeptes plus avanc&eacute;s, eux, per&ccedil;urent que les barri&egrave;res entre les plans se r&eacute;duisaient, lentement, subrepticement, comme de la glace fondant sous un soleil de plomb. Certains purent m&ecirc;me distinguer quelques images qu&rsquo;Heinrich c&ocirc;toyait. Cela ressemblait bien aux descriptions du plan astral par excellence. Vision de la r&eacute;alit&eacute; tronqu&eacute;e, comme sous un angle impossible &agrave; imaginer, comme lorsque l&rsquo;on observe un reflet dans&nbsp; une eau l&eacute;g&egrave;rement agit&eacute;e. Mais ces visions disparaissaient aussi vite que les mages en r&eacute;alisaient la substance.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Seul le roi-sorcier, de sa longue pratique et de sa science obscure et oubli&eacute;e de tous, pouvait en atteindre l&rsquo;essence et en ma&icirc;triser les tenants.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Apr&egrave;s l&rsquo;&eacute;vocation d&rsquo;un longue formule en un antique latin modifi&eacute;, Heinrich ouvrit ses paupi&egrave;res, d&eacute;couvrant ainsi ses terribles yeux. Fixant le vide il semblait &ecirc;tre en conversation avec lui-m&ecirc;me. </font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Pour ceux qui le voyaient, un &ecirc;tre immat&eacute;riel, glorieux, immense et informe, semblant parfois &eacute;vanescent, se tenait devant le roi-sorcier, si petit en comparaison.</font></div><div class="post_line"></div><div class="post_line"><font color="#FF0000"><font size="5">...</font></font></div><div class="post_line"><strong><font color="#FF0000"><font size="5">Heinrich&hellip; Heinrich&hellip; n&rsquo;oublie pas les lois du multivers&hellip; les lois que tu connais tant&hellip;</font></font></strong></div><div class="post_line"><strong><font color="#FF0000"><font size="5">Le Don et le Retour&hellip; le Don et le Retour&hellip; Ton impasse actuelle rel&egrave;ve de cette loi&hellip;</font></font></strong></div><div class="post_line"><font color="#FF0000"><font size="5"><strong>&hellip; Ton impasse est ton Don&hellip; Le Don et le Retour&hellip;</strong></font></font></div><div class="post_line"><font color="#FF0000"><font size="5">&hellip;</font></font></div><div class="post_line"><font color="#FFA500">De nombreuses images atteignirent le magiste-monarque, elles se fix&egrave;rent dans son esprit et se rappelleront &agrave; lui lors de ses prochaines m&eacute;ditations. Un antique et puissant Ma&icirc;tre-esprit lui avait fait l&rsquo;honneur de lui transmettre un enseignement mystique. Heinrich allait devoir s&rsquo;y pencher, mais les paroles, elles, signalaient autre chose.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Von Kessler, saisit le message et en r&eacute;alisa la signification profonde.</font></div><div class="post_line"></div><div class="post_line"><strong>&laquo;&nbsp;Soyez-en &eacute;ternellement remerci&eacute;s, &Ocirc; Ma&icirc;tre-esprit des eaux sanctifi&eacute;es du Destin et de l&rsquo;Oubli, que notre alliance se manifeste en tout temps et que brillent les mille feu de la b&eacute;n&eacute;diction de&hellip;&nbsp;&raquo;</strong></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Et il continua ainsi de suite les rites de fin d&rsquo;invocation des ma&icirc;tre-esprit d&rsquo;Alar-Cathal, anciennement souverains c&eacute;lestes durant plusieurs &eacute;ternit&eacute;s, et aujourd&rsquo;hui oubli&eacute;s depuis des lustres de leur univers d&rsquo;origine.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Le roi-sorcier avait sa r&eacute;ponse.</font></div><div class="post_line"><font color="#FFA500">Et il &eacute;tait bien emb&ecirc;t&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">... </font></div><div class="post_line"></div><div class="post_line"><strong>&laquo;&nbsp;Ainsi il ne suffit pas que j&rsquo;abreuve une populace de mes savoirs, que je les organise en ordre mystique, il faut &agrave; pr&eacute;sent que je diffuse une fraction de mon savoir aupr&egrave;s des puissants qui m&rsquo;entourent.</strong></div><div class="post_line"></div><div class="post_line"><strong>Me comprenez-vous chambellan&nbsp;? Si je veux que les courant &eacute;sot&eacute;riques me soient favorables, la loi du Don doit &ecirc;tre respect&eacute;e, ainsi il me faut donner une partie de mon savoir, pour en d&eacute;couvrir un autre.</strong></div><div class="post_line"></div><div class="post_line"><strong>Cela ne sera pas facile.&nbsp;&raquo;</strong></div><div class="post_line"></div><div class="post_line"><font color="#FFA500">Le chambellan du palais des arcanes, sans r&eacute;ellement saisir l&rsquo;&eacute;tendue des paroles de son ma&icirc;tre, se tenait pr&ecirc;t &agrave; noter sur un parchemin les ordres qui allaient suivre en vue de ce projet.</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15461&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15461" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15461" name="d_reply_15461" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15461');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15461'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Augures et Destin&eacute;e</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

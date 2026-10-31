@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16022 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Exil et errance</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Exil et errance</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Silla">Cdt. Silla</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/11436.jpg" style="width:128px;height:72px" alt="Avatar" /><br />04/11/1021 ETU 23:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D289146', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal289138')">Détails</a> <a href="javascript:warnpost(289138)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289138" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289138',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#C3FFFF"><em>Le grand chevalier leva son &eacute;p&eacute;e. Un &eacute;clair de lumi&egrave;re blanche jaillit au moment o&ugrave; le paladin abaissa sa lame. Puis l&#039;obscurit&eacute; compl&egrave;te. Une multitude de vaisseaux quitt&egrave;rent la plan&egrave;te, puis une autre vague et encore une autre. Tous disparurent &agrave; l&#039;horizon. L&agrave; une lumi&egrave;re intense fit son apparition, une explosion immense sembla remplir le ciel dans son int&eacute;gralit&eacute;. La terre se mit &agrave; trembler, des b&acirc;timents s&#039;&eacute;croul&egrave;rent, puis le noir de nouveau. </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il se r&eacute;veilla en sursaut et jeta un rapide coup d&rsquo;&oelig;il tout autour de lui. Il se trouvait toujours allong&eacute; sur un matelas crasseux pr&egrave;s de l&#039;&acirc;tre de l&#039;auberge o&ugrave; il avait trouv&eacute; un refuge pour la nuit. Cela faisait des cycles et des cycles qu&#039;il errait &agrave; travers les galaxies sans jamais trouv&eacute; un point de chute. Et ce cauchemar, le m&ecirc;me depuis son exil, souvenirs mauvais de R&eacute;volution et de Catharsis. Catharsis, l&agrave; o&ugrave; son roi, le Grand roi, p&eacute;ri lors d&#039;une guerre perdue. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Depuis il vivait d&#039;aum&ocirc;nes allant de plan&egrave;tes en plan&egrave;tes. Plusieurs fois il fut tent&eacute; de rejoindre ceux qui avaient d&eacute;j&agrave; fait le voyage vers l&#039;au-del&agrave;, mais cela lui &eacute;tait impossible, il le savait. Hant&eacute; par son pass&eacute;, seul, il se r&eacute;signait &agrave; vivre ainsi &agrave; jamais. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il reposa la t&ecirc;te sur son vieux sac de voyage, qui lui servait d&#039;appui t&ecirc;te dans ses rares moments de sommeil, mais le sommeil ne revint pas. Il se leva donc. Remis son long manteau noir et vint s&#039;asseoir &agrave; une table. Il ne lui restait que quelques pi&egrave;ces. Il commanda un peu d&#039;hydromel bon march&eacute; lorsque entr&egrave;rent deux hommes &agrave; l&#039;allure particuli&egrave;rement joviale. Les deux comp&egrave;res avaient l&#039;air d&#039;avoir un &eacute;v&egrave;nement &agrave; f&ecirc;ter. Ils command&egrave;rent une tourn&eacute;e pour tout le monde. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Une v&eacute;ritable aubaine car l&#039;hydromel le d&eacute;go&ucirc;tait. Il prit donc sa boisson pr&eacute;f&eacute;r&eacute;e. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Tr&egrave;s vite l&#039;un des deux hommes s&#039;effondra saoul sur sa table sous les &eacute;clats de rire de son comp&egrave;re. Ce dernier vint s&#039;asseoir &agrave; sa table toujours en riant. Il le d&eacute;visagea. L&#039;homme devait bien avoir une quarantaine d&#039;ann&eacute;e. D&eacute;cid&eacute;ment il l&#039;importunait. ne pouvait-il pas rester vers son comp&egrave;re ? </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>L&#039;homme lui adressa la parole</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#0074D9"><strong>&quot;Sacr&eacute; Marius, voyez-vous, il ne tient pas l&#039;alcool ! Voici pourquoi il ne sera jamais un v&eacute;ritable dirigeant.&quot;</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Puis dans un &eacute;clat de rire il commanda un festin auquel il le convia. </em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Silla">Cdt. Silla</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/11436.jpg" style="width:128px;height:72px" alt="Avatar" /><br />05/11/1021 ETU 00:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D289159', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal289158')">Détails</a> <a href="javascript:warnpost(289158)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289158" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289158',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em>Le vaisseau se posa les portes s&#039;ouvrir. Il remit son capuchon, dissimulant son visage. Il laissa les deux hommes sortir en premier. Ils &eacute;taient le consul et le co-consul de la Res Publica. Les deux dirigeants descendirent de la navette sous les acclamations et se dirig&egrave;rent vers la sortie de la plate-forme d&rsquo;atterrissage, en direction de la Curie. </em></div></div><div class="post_line"><div align="justify"><em>Il descendit enfin. La place se vidait. Il admira la ville. Vraiment Urbe est vraiment une plan&egrave;te int&eacute;ressante. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le voyage avait &eacute;t&eacute; paisible. Depuis le d&icirc;n&eacute; o&ugrave; il avait sympathis&eacute; avec l&#039;homme, ils ne s&#039;&eacute;taient plus quitt&eacute;. Il avait appr&eacute;ci&eacute; son comp&egrave;re &eacute;galement. Tous deux &eacute;taient consul et co-consul d&#039;une plan&egrave;te sur laquelle ils venaient de r&eacute;ussir &agrave; installer leur peuple jusque-l&agrave; en exil. Il leur avait compt&eacute; son histoire, depuis le d&eacute;but. Impressionn&eacute;s, ils l&#039;avaient invit&eacute; &agrave; venir sur l&#039;Urbe et &agrave; occuper des fonctions diplomatique aupr&egrave;s d&#039;eux. Il avait accept&eacute; &agrave; condition de latiniser la signification de son nom et d&#039;occuper des fonctions o&ugrave; il n&#039;aurait pas &agrave; venir dans les assembl&eacute;es. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il erra seul sur la place, profitant du soleil et de la l&eacute;g&egrave;re brise qui la balayait. Un serviteur sorti de la Curie et se dirigea vers lui. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#0074D9"><strong>&quot;Vous &ecirc;tes Frondibus Veridibus ? &quot;</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il le regarda incr&eacute;dule puis se souvint</em> <font color="#9DF9FF">&quot;<em>Ah oui mon nouveau nom</em>&quot;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#0074D9">&quot;Je le suis</font></div></div><div class="post_line"><div align="justify"><strong><font color="#0074D9">- Suivez-moi je vous pris que je vous conduise dans vos quartiers.&quot;</font></strong></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Silla">Cdt. Silla</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/11436.jpg" style="width:128px;height:72px" alt="Avatar" /><br />05/11/1021 ETU 01:27<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal289167')">Détails</a> <a href="javascript:warnpost(289167)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289167" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289167',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#9DF9FF"><em>L&#039;explosion encore puis le noir. Une clart&eacute; se fit. Le long du rayon lumineux des choppes de bi&egrave;re descendaient en dansant. Sur les choppes l&#039;image d&#039;une ch&egrave;vre. Puis tout se fige. Les choppes firent place &agrave; l&#039;image d&#039;un loup et d&#039;une fleur qu&#039;une &eacute;p&eacute;e vint couper. </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Nouveau r&eacute;veil en sursaut. D&eacute;cid&eacute;ment, il aurait du mal &agrave; se d&eacute;barrasser de ses cauchemars. Il se leva et vint au poste de pilotage. Il prit un si&egrave;ge. &Eacute;tions-nous bient&ocirc;t arriv&eacute; ? Le pilote fit signe que la plan&egrave;te &eacute;tait en vue. </em></div></div><div class="post_line"><div align="justify"><em>Enfin. Il allait pouvoir commencer la premi&egrave;re mission qui lui &eacute;tait confi&eacute;, tisser des liens d&#039;amiti&eacute; avec les commandants du secteur. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>L&#039;Atterrissage se fit en douceur. Antiqua avait d&eacute;cid&eacute;ment de bons pilotes. Des serviteurs vinrent l&rsquo;accueillir et le conduire &agrave; ses quartiers. Une fois pr&ecirc;t, il fut introduit aupr&egrave;s de son h&ocirc;te. </em></div></div><div class="post_line"><div align="justify"><em>Il entra dans la salle et s&#039;avan&ccedil;a vers l&#039;endroit o&ugrave; son h&ocirc;te &eacute;tait. Il semblait converser avec un homme d&#039;un certain &acirc;ge. Lorsque ce dernier leva la t&ecirc;te. Il fut fig&eacute; sur place. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>C&#039;&eacute;tait son ami. Un ami tr&egrave;s cher, rencontr&eacute; sur Catharsis. Il le croyait perdu &agrave; jamais. Il ne serait donc plus jamais seul. Il prit sa respiration et avan&ccedil;a. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#0074D9">Je suis l&#039;envoy&eacute; de la Res Publica. Ambassadeur de confiance du s&eacute;nat et des consuls, je suis charg&eacute; des nouer des liens,&nbsp; j&#039;ai une tr&egrave;s longue exp&eacute;rience dans le domaine.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><em>Il marqua une pause et se tourna lentement vers l&#039;homme &acirc;g&eacute;</em></div><div class="post_line"></div><div class="post_line"><font color="#0074D9">On m&#039;appelle Frondibus Viridibus</font></div><div class="post_line"></div><div class="post_line"><em>Il porta ses mains &agrave; sa capuche</em></div><div class="post_line"></div><div class="post_line"><font color="#0074D9">Ce n&#039;est qu&#039;une traduction latine de mon nom, Feuillage Vert c&#039;est-&agrave; dire dans ma langue natale</font></div><div class="post_line"></div><div class="post_line"><em>Otant sa capuche</em></div><div class="post_line"></div><div class="post_line"><font color="#0074D9">L... </font></div><div class="post_line"></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Son nom se perdit dans le bruit que fit la chute de la coupe que tenait le vieil homme. Il l&#039;avait reconnu lui aussi. </em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />06/11/1021 ETU 20:12<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal289442')">Détails</a> <a href="javascript:warnpost(289442)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289442" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289442',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>Le verre au sol ne l&#039;avait m&ecirc;me pas fait r&eacute;agir, et le g&eacute;n&eacute;ral restait stup&eacute;fait de ce qu&#039;il voyait. Voil&agrave; d&eacute;j&agrave; de longs moments qu&#039;il imaginait &ecirc;tre seul. Savoir qu&#039;Hamilton existait encore &eacute;tait une chose, vert feuillage en &eacute;tait une autre. Il lui tomba dans les bras pendant quelques instants, puis se reprenant, il lui demanda :</strong></div><div class="post_line"></div><div class="post_line"><strong><font color="#17B529">&quot;Comment est-ce possible ? Je te croyais mort...&quot;</font></strong></div><div class="post_line"></div><div class="post_line"><strong>La repr&eacute;sentante Gome&iuml;sa, aux c&ocirc;t&eacute;s de ces deux personnages, les regardait &agrave; tour de r&ocirc;le, ne comprenant rien &agrave; ce langage sans parole qu&#039;ils &eacute;changeaient par leurs yeux.</strong></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Silla">Cdt. Silla</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/11436.jpg" style="width:128px;height:72px" alt="Avatar" /><br />06/11/1021 ETU 20:21<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal289444')">Détails</a> <a href="javascript:warnpost(289444)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289444" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289444',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em>S&#039;en &eacute;tait presque trop. Jusque-l&agrave; il n&#039;avait jamais ressenti de pareils &eacute;motions. Non. D&#039;habitude il &eacute;tait peu chaleureux et pragmatique. C&#039;est cela qui en avait fait un grand diplomate &agrave; l&#039;instar de son autre d&eacute;funt ami dont il &eacute;tait le serviteur le plus fid&egrave;le. Ce dernier s&#039;emportait souvent plus que de raison ce qui avait gravement nuit dans les &eacute;changes diplomatiques. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Mais pour la premi&egrave;re fois il eu comme un vertige. Cet ami vivant et retrouv&eacute;, Hamilton toujours-l&agrave;, c&#039;&eacute;tait presque trop beau. Jamais durant ce long exil il n&#039;avait eu l&#039;espoir de retrouver tout cela. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Il dut s&#039;asseoir . Une fois install&eacute; il entrepris de compter son p&eacute;riple &agrave; travers les galaxies jusqu&#039;&agrave; cette taverne o&ugrave; il avait &eacute;t&eacute; pris d&#039;amiti&eacute; pour cette civilisation qui renaissait de ses cendres bien loin en temps et en lieu de ses origines. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Puis il interrogea le vieil homme. D&#039;autres commandant &eacute;taient-ils l&agrave; ? Avait-il des nouvelles de la fleur ? Il savait le loup mort depuis longtemps, mais leur enfant ? </em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />06/11/1021 ETU 20:48<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal289447')">Détails</a> <a href="javascript:warnpost(289447)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289447" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289447',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>Revivre ces ann&eacute;es &eacute;tait difficile, mais Verinus narra en d&eacute;tail les suites de son histoire. Il avait r&eacute;ussi &agrave; cacher le fils du loup et de la fleur pendant de nombreuses ann&eacute;es, m&ecirc;me apr&egrave;s la mort du pr&eacute;cepteur, mais l&#039;enfant &eacute;tait mort &agrave; l&#039;apocalypse suivant. S&#039;en &eacute;tait suivi des guerres notamment contre Ma&euml;l avec l&#039;aide de Leomiuss, et d&#039;autres encore, mais les personnalit&eacute;s politiques avec qui il &eacute;tait li&eacute; s&#039;&eacute;taient dissoutes dans les m&eacute;andres de l&#039;histoire. Il avait alors subsist&eacute; en dirigeant des groupes de mercenaires se mettant au service dans les Contrebandes des diverses galaxies jusqu&#039;&agrave; &ecirc;tre recrut&eacute; par un homme qui lui avait fait rencontrer Gome&iuml;sa. Depuis, il lui &eacute;tait attach&eacute; et restait ici.</strong></div><div class="post_line"></div><div class="post_line"><strong>Il lui demanda alors ce qu&#039;il en &eacute;tait de lui depuis tout ce temps.</strong></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Silla">Cdt. Silla</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/11436.jpg" style="width:128px;height:72px" alt="Avatar" /><br />06/11/1021 ETU 20:59<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D289451', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal289450')">Détails</a> <a href="javascript:warnpost(289450)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289450" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289450',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em>La guerre contre Ma&euml;l. C&#039;est ce qui avait caus&eacute; la perte de son ami, du peuple qu&#039;il suivait alors. Tout lui revint &agrave; l&#039;esprit. Le nom L&eacute;omiuss... L&eacute;omiuss... L&eacute;omiuss... N&#039;y avait-il pas un L&eacute;omiuss en secteur 2 ? Etait-ce lui ? Comment s&#039;en &eacute;tait-il tir&eacute; ? </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Flavius, Ma&euml;l, Ma&euml;l, Flavius... A chaque galaxie il avait &eacute;t&eacute; confront&eacute; &agrave; des commandants imp&eacute;rialiste, ivres de puissance. Serait-ce de nouveau le cas ici ? Toutefois, il n&#039;vait pas eu &agrave; combattre le paladin. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le fils du loup et de la fleur mort... peut-&ecirc;tre le savait-il en r&eacute;alit&eacute;... La m&eacute;moire commen&ccedil;ait &agrave; revenir. La sensation n&#039;&eacute;tait pas des moins douloureuses. </em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Silla">Cdt. Silla</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/11436.jpg" style="width:128px;height:72px" alt="Avatar" /><br />29/11/1021 ETU 06:38<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal290478')">Détails</a> <a href="javascript:warnpost(290478)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal290478" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=290478',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em><font color="#C3FFFF">Mael, <font size="3">Mael</font>, <font size="4">Mael</font>, <font size="5">Mael,</font> <font size="6">Mael</font>... Noir. Puis le feu des bombe, l&#039;apotium. la Mort. Fin. </font></em></div></div><div class="post_line"></div><div class="post_line"><em>Toujours ce cauchemar </em></div><div class="post_line"><em>Il avait &eacute;t&eacute; tr&egrave;s marqu&eacute; par ce conflit qui avait vu la fin de son peuple. </em></div><div class="post_line"></div><div class="post_line"><em>Lui, toujours lui, le destructeur avec ses deux acolytes. Ils avaient pris le contr&ocirc;le de l&#039;entr&eacute;e du secteur II. Ils avaient m&eacute;thodiquement &eacute;limin&eacute;s quasiment tous les commandant s&#039;y trouvant. Puis ils avaient ouvert. Ils avaient provoqu&eacute; les autres dirigeant par tous les moyens. Ils avaient voulu la guerre, l&#039;avaient eu, et l&#039;avaient remport&eacute;e, sans piti&eacute;, sans compassion, froidement. </em></div><div class="post_line"></div><div class="post_line"><em>Il avait surv&eacute;cu. Il ne pouvait pas mourir. Mais tous les autres. Fini, disparu. l&#039;exil, l&#039;errance.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gome%C3%AFsa">Cdte. Gome&iuml;sa</a><br>Prestige de chroniqueur&nbsp;: 66<br /><br /><img src="/avatars/11320.jpg" style="width:91px;height:128px" alt="Avatar" /><br />07/12/1021 ETU 18:29<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal290972')">Détails</a> <a href="javascript:warnpost(290972)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal290972" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=290972',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Verinus &eacute;tait choqu&eacute; par le retour de son ami, la joie reprit le dessus, et il proposa &agrave; son ami de visiter la baie dans laquelle ils se trouvaient. Acquies&ccedil;ant &agrave; sa proposition, il se laissa conduire &agrave; l&#039;ext&eacute;rieur du b&acirc;timent. Verinus le conduisit jusqu&#039;&agrave; un vaisseau de parade, destin&eacute; aux voyages plan&eacute;taires. Derri&egrave;re le poste de pilotage o&ugrave; avaient pris place le conducteur ainsi qu&#039;un membre du service SPHPK (Service de Protection des Hautes Personnalit&eacute;s Koiriennes) se trouvait un &eacute;l&eacute;gant poste de voyage en arc-de-cercle vitr&eacute; compos&eacute; d&#039;un canap&eacute; circulaire, d&#039;un frigo, et d&#039;une petite table pos&eacute;e &agrave; c&ocirc;t&eacute; d&#039;un meuble vitr&eacute; dans lequel on pouvait voir quelques verres et tasses diverses ainsi que des coupelles rang&eacute;es impeccablement.</em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>Le vaisseau d&eacute;colla doucement et s&#039;envola au-dessus des montagnes &agrave; proximit&eacute; du lieu de leur rencontre. Remontant la ligne de cr&ecirc;te, il permit aux deux passagers d&#039;embrasser d&#039;un regard les deux c&ocirc;t&eacute;s de la cr&ecirc;te. C&ocirc;t&eacute; ouest, ils virent la ville baln&eacute;aire avec sa marina, ses plages, ses for&ecirc;ts en arri&egrave;re, et le domaine quitt&eacute; pr&eacute;c&eacute;demment, mais aussi la route magn&eacute;tique passant &agrave; travers la montagne et arrivant au m&ecirc;me endroit. De l&#039;autre c&ocirc;t&eacute;, &agrave; l&#039;est, une vaste for&ecirc;t s&#039;&eacute;tendait sur plusieurs centaines d&#039;hectares, et foisonnait de milliers d&#039;oiseaux, promesse d&#039;une vie f&eacute;conde en son sein.</em></div><div class="post_line"><em>Montrant le c&ocirc;t&eacute; ouest, Verinus prit la parole :</em></div><div class="post_line"></div><div class="post_line"><font color="#17b529"><strong>&quot;Cher ami, vous avez par ici une nouveaut&eacute; koirienne, la ville test &eacute;cologiquement viable. Toute personne y entrant, qu&#039;elle soit la plus riche ou la plus pauvre, s&#039;engage &agrave; certaines r&egrave;gles qui permettent de trouver un ratio positif sur la balance &eacute;cologique. Les seuls moyens d&#039;y acc&eacute;der le sont par les voiliers, le chemin de ligne hydraulique ou CHLY, ou encore la route magn&eacute;tique qui permet d&#039;&eacute;viter une quelconque &eacute;mission dans l&#039;air. A l&#039;int&eacute;rieur de la baie, tous les d&eacute;placements sont g&eacute;r&eacute;s par des r&eacute;seaux magn&eacute;tiques. Des locations de bicyclettes et de chevaux permettent &eacute;galement de profiter du temps, mais il est possible de les attacher &agrave; des carrioles plus ou moins lourdes, ce qui, entre nous, fut une aubine, car cela nous a permis de cr&eacute;er beaucoup d&#039;emplois &agrave;faible qualification ce qui a permis d&#039;&eacute;viter de faire de cette ville un repaire de riches pour les riches.&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><em>Le passager appr&eacute;cia &agrave; sa juste mesure les informations donn&eacute;es, et suivit ensuite du regard Verinus qui lui pr&eacute;sentait l&#039;est.</em></div><div class="post_line"></div><div class="post_line"><font color="#17b529"><strong>&quot;Et voici la grande for&ecirc;t de Pieni Koira, que l&#039;on appelle le bois des mages. Il compte une bonne dizaine de l&eacute;gendes, certaines dr&ocirc;les, d&#039;autres propres &agrave; terrifier les enfants qui ne finissent pas leur assiette. L&#039;une&nbsp; des plus dr&ocirc;les et profondes est celle des lapins de Rhosgobell et je m&#039;en vais te la raconter. Il est dit qu&#039;un jour, un rince d&#039;une grande beaut&eacute;, dou&eacute; d&#039;une grande intelligence et disposant d&#039;une grande richesse voulu &eacute;pouser la plus belle femme que le monde eut donn&eacute;, et lui faisant une cour effr&eacute;n&eacute;e, cette femme l&#039;&eacute;conduisit arguant n&#039;avoir aucun sentiment pour lui. Cependant, il s&#039;acharna et la belle eut l&#039;id&eacute;e d&#039;un acte h&eacute;ro&iuml;que qui le d&eacute;barrasserait de son pr&eacute;tendant un peu trop collant. Elle lui demanda de lui rapporter un lapin de Rhosgobell du bois des mages. La croyance populaire, qui n&#039;a gu&egrave;re chang&eacute; dans une partie de la population, attribuait &agrave; ce bois des propri&eacute;t&eacute;s magiques, et beaucoup croyaient qu&#039;en respectant et prot&eacute;geant la for&ecirc;t, les mages leurs apporteraient des b&eacute;n&eacute;dictions, et inversement en cas de violation de leur territoire, non pas quand ils s&#039;y promenaient ou cueillaient des champignons, mais plut&ocirc;t lorsqu&#039;ils coupaient des arbres. Les lapins, quant &agrave; eux, &eacute;taient r&eacute;put&eacute;s insaisissables et seuls quelques rares voyageurs avaient eu la chance de les approcher. Ainsi, lorsque le prince arriva en vue de la for&ecirc;t, et qu&#039;il annon&ccedil;a aux habitants ce qu&#039;il comptait faire, ceux-ci, hilares, le laiss&egrave;rent aller.</strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#17b529"><strong>Le prince essaya maintes et maintes fois d&#039;en attraper un sans succ&egrave;s. Les pi&egrave;ges, la malice, la patience et toutes les techniques apprises par ses pairs lors des ann&eacute;es pass&eacute;es, rien ne fonctionna. Les lapins vinrent m&ecirc;me le narguer jusqu&#039;&agrave; le renifler dans son sommeil, laissant d&#039;innombrables traces autour de lui, le faisant ainsi enrager &agrave; chacun de ses r&eacute;veils.&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><em>Verinus s&#039;arr&ecirc;ta un moment, laissant &agrave; son ami le soin d&#039;appr&eacute;cier l&#039;ironie de cette histoire et reprit :</em></div><div class="post_line"></div><div class="post_line"><font color="#17b529"><strong>&quot;Bien entendu, il y est toujours d&#039;apr&egrave;s la l&eacute;gende, courant apr&egrave;s les lapins de Rhsogobell afin de satisfaire sa bien-aim&eacute;e. Elle-m&ecirc;me fut atteinte d&#039;une maladie de peau quelques ann&eacute;es apr&egrave;s l&#039;envoi en mission du jeune prince et mourut dans la souffrance. J&#039;aime beaucoup cette l&eacute;gende, car elle permet de faire passer de beaux messages &agrave; nos jeunes. D&#039;une part, il est inutile de courir apr&egrave;s ce qui ne veut pas &ecirc;tre rattraper, nous ne l&#039;obtiendrons jamais vraiment si seulement on y arrive quand m&ecirc;me. D&#039;autre part, demander l&#039;impossible &agrave; son prochain entra&icirc;ne une corruption de l&#039;&acirc;me, et vivre avec une &acirc;me mutil&eacute;e entra&icirc;ne la d&eacute;liquescence du corps.&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><em>Verinus s&#039;arr&ecirc;ta ainsi de parler, tandis que le vaisseau poursuivait lentement sa route, arrivant au bout de la cr&ecirc;te. Par un effet myst&eacute;rieux, il s&#039;arr&ecirc;ta &agrave; la verticale de la limite terre/eau et tourna en direction de la baie. Verinus profita du silence pour servir du th&eacute; dans deux tasses et en donna une &agrave; son ami avant de tremper ses l&egrave;vres dans la sienne, guettant sa r&eacute;action.</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16022&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16022" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16022" name="d_reply_16022" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16022');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16022'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Exil et errance</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

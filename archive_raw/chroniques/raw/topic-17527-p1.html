@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17527 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>D.C</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > D.C</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />10/02/1025 ETU 03:56</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313117', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal313115')">Détails</a> <a href="javascript:warnpost(313115)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313115" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313115',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Secteur 2 : Quelque part dans le Syst&egrave;me 9</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Un vaisseau noir et gris sort du sub Espace, un Croiseur Xydian le rep&eacute;rant aussit&ocirc;t, le croiseur s&#039;en approche.</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Etrange, je ne savait pas que les Galariens avait la connaissance de rentrer dans le Sub-Espace !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Ce n&#039;est pas un vaisseau Galarien Commandant ! il n&#039;est d&#039;aucun type connu !</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Etrange ! Pourtant un vaisseau noir et gris, cela leurs ressemblent pourtant bien non ? </font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Commandant ! Vous remarquerez que ....Le sigle n&#039;est pas Galarien et ... Ceci dit, je ne comprend pas ce Sigle, il s&#039;agit de deux grosses lettres blanches... D.C ? </font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">J&#039;avoue que je ne comprend gu&egrave;re non plus, Steffey est l&agrave; pour notre recherche non ? Alors allez le chercher, il saura surement ce qu&#039;est que ce vaisseau !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Possible oui, je le fait appeler Commandant !</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">En attendant, il est immobile, tentez de savoir si il a une avarie ou un probl&egrave;me...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Bien Commandant... </font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Vaisseau D.C ici Croiseur Xydian Cristalis767 : Avez vous besoin d&#039;aide ?</font> <font color="#ffffff">(Crachotis)...&nbsp; ...&nbsp; ...&nbsp; ...&nbsp; ... ...</font></div><div class="post_line"></div><div class="post_line">L&#039;ing&egrave;ne changea de de canal... <font color="#ffa500">Vaisseau D.C ici Croiseur Xydian Cristalis767 : Avez vous besoin d&#039;aide ?</font> <font color="#ffffff">(Craachotis)...&nbsp; ...&nbsp; ...&nbsp; ..</font></div><div class="post_line"></div><div class="post_line">Il passa en multi canaux.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Vaisseau D.C ici Croiseur Xydian Cristalis767 : Avez vous besoin d&#039;aide ?</font> <font color="#ffffff">(Crachotis)...&nbsp; ...&nbsp; ...&nbsp; ..&nbsp;</font><font color="#ffa500">Il n&#039;y a aucune r&eacute;ponse Commandant ! </font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Passez le Scanner juste pour voir !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Bien Commandant !</font> <font color="#ffdbbb">Scan</font> ... ... ... ... ... ... ... ... ... <font color="#ffa500">Commandant ? il semblerait qu&#039;il n&#039;y ai plus personne &agrave; bord ! Pas le moindre &ecirc;tre vivant nulle part, de la salle de Commandement aux salles&nbsp;de l&#039;ing&eacute;nierie mais ...Quelque chose me frappe Commandant !</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Quoi donc ?</font> </div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Il semblerait que ce vaisseau est incontestablement neuf Cependant, sa Machinerie, son syst&egrave;me de propulsion. son Ordinateur central est totalement ...Obsol&egrave;te, il n&#039;a m&ecirc;me pas de bouclier...</font></div><div class="post_line"></div><div class="post_line">La dessus Arrivant avec ses quatre amis, Jade la Kr&ouml;ne, Drake le Daldare, Noella, Skay et Rekkord, Balthazar Steffey en t&ecirc;te entra sans pr&ecirc;ter attention Ni au Commandant ni au Lieutenant et pas plus aux Ing&egrave;nes qui les entouraient </div><div class="post_line"></div><div class="post_line">...<font color="#ffff00">Et vous savez ce qu&#039;il m&#039;a r&eacute;pondu ? Il &eacute;tait totalement confus en me r&eacute;pondant que si il marchait pas, c&#039;est parce que il avait oubli&eacute; de le brancher ...HAHAHA... il avait oubli&eacute; simplement de le brancher alors que je m&#039;appr&ecirc;tais &agrave; d&eacute;monter l&#039;appareil pour voir ce qui ne fonctionnait pas</font> ...Le groupe de bonne humeur, riait en retour... </div><div class="post_line"></div><div class="post_line">Les rires ne dur&egrave;rent pas, </div><div class="post_line"></div><div class="post_line">Steffey interrogeant du regard le Commandant qui lui fit un&nbsp;signe de t&ecirc;te vers le vaisseau noir...Steffey l&#039;observa alors, son sourire se figea, &eacute;carquilla les yeux en murmurant&nbsp;</div><div class="post_line"></div><div class="post_line">... <font color="#ffff00">Ce</font>...<font color="#ffff00">Ce n&#039;est pas possible ? C&#039;est</font> ...<font color="#ffff00">Un Cauchemar, Une mauvaise blague !!</font></div><div class="post_line"></div><div class="post_line">Mais il n&#039;&eacute;tait pas le seul a &ecirc;tre effar&eacute;, Jade, la Kr&ouml;ne s&#039;avan&ccedil;a h&eacute;b&eacute;t&eacute;e... <font color="#e8b6ef">C&#039;est impossible ! Cela ne peut pas &ecirc;tre vrai ! ...</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />10/02/1025 ETU 22:08</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313122')">Détails</a> <a href="javascript:warnpost(313122)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313122" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313122',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#1e92f7">Vous reconnaissez cet engin Professeur ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Steffey ne r&eacute;pondit pas de suite...</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Professeur ?!!</font>&nbsp;</div><div class="post_line"></div><div class="post_line">...<font color="#ffff00">Il viens du fond des &acirc;ges Commandant.....Du fond des &acirc;ges et il remet en surface, des souvenirs que l&#039;on auraient certainement pr&eacute;f&eacute;r&eacute; oublier !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Pilote Jade, vous aussi ? vous semblez ...Le reconnaitre non ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Si ! Oui bien sur !...</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Est ce que quelqu&#039;un peut m&#039;expliquer ? Ce qu&#039;est que ce vaisseau, ce qu&#039;il fait ici ? que veut dire D.C ? Comment est il arriv&eacute; l&agrave; ? Et a quoi il servait et ...</font></div><div class="post_line"><font color="#ffff00">Stop ! ... je vais r&eacute;pondre &agrave; toutes ces questions mais ...</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Mais ? ...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Il y a des membres d&#039;&eacute;quipage qui y sont encore ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Non Professeur ! D&#039;apr&egrave;s le scanner, il n&#039;y a plus &acirc;me qui vive &agrave; l&#039;int&eacute;rieur !</font></div><div class="post_line"></div><div class="post_line">Le Professeur s&#039;arr&ecirc;ta et r&eacute;fl&eacute;chit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Je vois oui, j&#039;aimerais beaucoup y aller voir !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Mais Professeur, vous ne ....Risquez rien ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Dans la mesure ou il n&#039;y a plus personne, je ne pense pas risquer quoi que ce soit !</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Hum bon d&#039;accord mais je vais vous adjoindre quand m&ecirc;me une escorte, on ne sait jamais ! Pilote Jade ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Je l&#039;accompagne oui !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Quatre Soldats Xydians, Steffey et Jade se dirig&egrave;rent donc vers les navettes...</div><div class="post_line"></div><div class="post_line">La navette s&#039;arrimant au Sas, Ils se lev&egrave;rent tandis que le pilote activait un Scanner... <font color="#c0f0c6">Hum, en tout les cas, le syst&egrave;me d&#039;oxyg&egrave;ne fonctionne, de l&#039;autre cot&eacute;, l&#039;air est parfaitement respirable !&nbsp; pas de trace d&#039;agent contaminant... Et pas de trace de radiations quelconque, vous pouvez donc y aller Prof ! Soyez quand m&ecirc;me prudent, on ne sait jamais !</font></div><div class="post_line"></div><div class="post_line">Steffey ouvrit donc le Sas et un silence de mort les accueillit des la premi&egrave;re seconde, la premi&egrave;re seconde seulement car un coup s&#039;entendit quelque part, suivi d&#039;un autre et un autre encore et encore et encore suivant un rythme r&eacute;gulier, une sorte de mart&egrave;lement continuel...</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">D&#039;ou cela vient il ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Nous allons vite le savoir !</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Professeur ? comment cela est il possible ? le Scanner n&#039;a pourtant pas d&eacute;cel&eacute; de vie dans le vaisseau, le scanner ce serait il tromp&eacute; ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Impossible mon amie, ce scanner est de ma fabrication, croyez moi, il faudrait de sacr&eacute;es capacit&eacute;s pour tromper un scanner de ce niveau !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">C&#039;est peut &ecirc;tre le cas non ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">C&#039;est peut &ecirc;tre une m&eacute;canique qui s&#039;est bris&eacute;e&nbsp;&nbsp;et par effet de ...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">D&#039;&eacute;quilibre !... Il ne s&#039;arr&ecirc;terais pas de tambouriner Soldat ? C&#039;est plut&ocirc;t tir&eacute; par les cheveux vous ne trouvez pas ? Mais qui sait !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Et si c&#039;&eacute;tait un &ecirc;tre vivant ? Cela ne me parait pas possible mais ...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Mais sait on jamais, nous ne pourrons le savoir qu&#039;en y allant voir ! Ce n&#039;est pas en restant ici que nous le saurons !</font></div><div class="post_line"></div><div class="post_line">Steffey observa les parois de la coursive avec appr&eacute;hension, un petit moment, mais il se mit en marche a la recher des coups qui continuaient de mani&egrave;re r&eacute;guli&egrave;re ! ...</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />12/02/1025 ETU 07:53</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313135', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313130')">Détails</a> <a href="javascript:warnpost(313130)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313130" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313130',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Steffey se dirigeait vers la s&eacute;rie de coup donn&eacute;s sur la paroi, ils arriv&egrave;rent devant un Sas, cette pi&egrave;ce devait servir de cellule car elle ne pouvait s&#039;ouvrir que de l&#039;ext&eacute;rieur...</div><div class="post_line"></div><div class="post_line">Une fois ouvert, ils firent face &agrave; ...</div><div class="post_line"></div><div class="post_line"><div align="center"><strong><font color="#bbbbbb"><font size="4">https://i.pinimg.com/736x/18/9b/02/189b0247778dc262e97503474048dd7f.jpg</font></font></strong></div><div class="post_line"></div></div><div class="post_line"><div align="left"><font color="#ffa500">Bon sang, mais qu&#039;est ce que c&#039;est que cet engin ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Un Robot de toute premi&egrave;re g&eacute;n&eacute;ration semble il !</font></div><div class="post_line"></div><div class="post_line">Le Robot se tourna vers Jade et fit d&#039;une voix monocorde </div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb"><font size="4">C&#039;est exact Madame, je me nomme Svell 162 le 1 correspond a la premi&egrave;re usine ou j&#039;ai &eacute;t&eacute; cr&eacute;&eacute;, le 6 est la 6eme&nbsp;chaine de montage et&nbsp; le 2 c&#039;est le 2eme poste de fabrication. je suis la depuis que j&#039;y &eacute;tait enferm&eacute; en attente d&#039;une nouvelle programmation, plus guerri&egrave;re semble il, je donnais des coups dans l&#039;espoir qu&#039;un jour ce vaisseau soit enfin trouv&eacute;, selon mes calculs, j&#039;en suis &agrave; 56. 768.651eme coup donn&eacute; !</font></font></div><div class="post_line"></div><div class="post_line">L&#039;un des soldats plissa les yeux, haussa les sourcils en soupirant, <font color="#ffa500">Voila pourquoi le scanner ne l&#039;a pas d&eacute;tect&eacute;, c&#039;est... un Robot !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Qu&#039;est il arriv&eacute; &agrave; ce vaisseau Svell ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb"><font size="4">Je n&#039;en ai aucune id&eacute;e Monsieur, tout ce que je sait, c&#039;est que mes senseurs ont d&eacute;tect&eacute;s nettement qu&#039;une &eacute;nergie ph&eacute;nom&eacute;nale &agrave; fait son apparition, puis mes senseurs auditifs ont capt&eacute; des sortes de hurlements de panique et plus rien ensuite, malgr&eacute; des appels ....En grand nombre...Les. coups donn&eacute;s ...</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Hmm je comprend, venez Svell, suivez nous nous allons essayer de comprendre ce qui se passe ou s&#039;est pass&eacute; ..&nbsp;</font></div></div><div class="post_line"></div><div class="post_line">Ils d&eacute;ambul&egrave;rent dans les coursives pour se retrouver dans la salle de pilotage, l&#039;enregistrement de la derni&egrave;re image semblait montrer que tout l&#039;&eacute;quipage, se pr&eacute;parait a une nouvelle attaque, Steffey et Jade ne reconnurent que trop bien les uniformes noirs, lorsque tout a coup, une illumination tres vive cela dura pr&egrave;s de dix secondes mais juste avant, l&#039;un des hommes eu le temps de d&eacute;connecter&nbsp;et&nbsp;puis ....plus rien,&nbsp;plus personne nul part !! la seconde d&#039;apr&egrave;s&nbsp;l&#039;ordinateur s&#039;&eacute;teignit a ce moment l&agrave;...</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Il y a eu donc d&eacute;connection ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Il semblerait, je pense que le vaisseau est a ce moment, rentr&eacute; en Sub espace mais par accident !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Par accident ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Oui c&#039;est un ph&eacute;nom&egrave;ne rare mais cela peut arriver en effet ! Rappelez vous Jade ! rappelez vous ! lors d&#039;une pr&eacute;c&eacute;dente&nbsp;&nbsp;Apocalypse ! Un vaisseau s&#039;&eacute;tait pos&eacute; en pilotage automatique mais quand nous sommes mont&eacute;s a bord il n&#039;y avait plus personne, juste une musique qui passait en boucle, un clip vid&eacute;o qui montrait un homme danser dans un h&ocirc;tel et qui se rasseyait ensuite, nous nous &eacute;tions perdus dans nos hypoth&egrave;ses innombrables sans trouver la moindre solution a cette &eacute;nigme !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Oui je m&#039;en souviens, tout a...&nbsp;Avait &eacute;t&eacute; abandonn&eacute; sur place !...</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Professeur ! Croyez vous que c&#039;est ce m&ecirc;me ph&eacute;nom&egrave;ne qui s&#039;est produit ici ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">J&#039;en suis persuad&eacute; ma ch&egrave;re ! j&#039;en suis persuad&eacute; mais au moment ou cela se passe, et j&#039;ignore pourquoi, il y a comme une distorsion dans l&#039;espace, quand je dit dans l&#039;espace, ce n&#039;est pas les &eacute;toiles ou la galaxie mais je parle de la distorsion de l&#039;espace ambiant, celui qui nous entoure ! De ce fait, tous le monde disparait comme par enchantement, comme aspir&eacute;s autre part ...</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Professeur ! C&#039;est illogique ! Nous sommes dans la cabine de pilotage, Svell &eacute;tait enferm&eacute;, et l&agrave; nous l&#039;avons tous vu , l&#039;ordinateur &eacute;tait d&eacute;connect&eacute; ! ....Sans doute un r&eacute;flexe de l&#039;Ing&egrave;ne quand il a vu ce qui se passait ....Oui mais alors ...L&agrave; ! ce m&ecirc;me Ordinateur l&#039;est !! IL EST CONNECTE&nbsp; !! Mais qui donc l&#039;a connect&eacute; dans ce cas ?? Et comment ce vaisseau apparait soudain ? Comment est il sorti du Sub Espace tout seul ??&nbsp;</font></div><div class="post_line"></div><div class="post_line">Steffey tourna brutalement la t&ecirc;te en la penchant&nbsp;vers Jade levant un sourcil, baissant l&#039;autre&nbsp;...<font color="#ffff00">VOILA d&#039;excellentes questions ! ....Mais m&ecirc;me moi ! Je ne peut y r&eacute;pondre ! C&#039;est une &eacute;nigme ! Un v&eacute;ritable myst&egrave;re !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Professeur ! Ne ...N&#039;avez vous pas la nette impression que depuis tout ce temps, quelque chose nous suit d&#039;apocalypse en apocalypse ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Steffey la regarda pensif pendant un moment, les Soldats &eacute;taient tendus, cette conversation entre les deux les d&eacute;passants compl&egrave;tement, ils attendaient sa r&eacute;ponse anxieusement car l&#039;atmosph&egrave;re de ce vaisseau, cette conversation, Svell, l&#039;ordinateur central, tout &eacute;tait tout a coup inqui&eacute;tant ...</div><div class="post_line"></div><div class="post_line">Steffey r&eacute;pondit lentement, presque en murmurant ... <font color="#ffff00">Si ! Et cela fait longtemps que j&#039;ai cette impression l&agrave; !</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Un grand silence s&#039;ensuivit mais Steffey reprit, <font color="#ffff00">Venez, nous nous devons d&#039;aller dans la salle de l&#039;artillerie principale et tout de suite !</font>&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />14/02/1025 ETU 06:43</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313137')">Détails</a> <a href="javascript:warnpost(313137)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313137" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313137',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Ils y &eacute;taient, l&#039;arme en question se pr&eacute;sentait devant eux, une partie &agrave; l&#039;ext&eacute;rieur ...</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Une belle r&eacute;alisation, ....Impressionnante, magnifique.</font></div><div class="post_line"></div><div class="post_line">Steffey observa l&#039;arme en question, mesurant pr&egrave;s de 3 m&egrave;tres de long, un canon fantastique mais ...</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ce que vous appelez une belle r&eacute;alisation...Si impressionnante et si magnifique, est en fait le pire cauchemar de bien des populations, des g&eacute;nocides entiers, une arme infernale, ceci... Ce que vous avez devant vous...Est le pouvoir &agrave; l&#039;&eacute;tat pur ! Et c&#039;est une chance que nous l&#039;ayons trouv&eacute;s en premier, je peut vous le dire !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Hum ! Que d&eacute;sirez vous faire Professeur ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">La d&eacute;truire ! Il n&#039;y a pas d&#039;autres solutions ! Avant que quelqu&#039;un d&#039;autre ne la r&eacute;cup&egrave;re, sinon...Sinon, ce serait dramatique pour toute la galaxie enti&egrave;re sil elle venait entre les mains mal intentionn&eacute;es...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Mais pourquoi ne pas la r&eacute;cup&eacute;rer, ou ...M&ecirc;me mieux ! L&#039;utiliser ?&nbsp;</font></div><div class="post_line"></div><div class="post_line">Cette fois l&agrave;, il &eacute;tait rare que le Professeur se mette hors de lui,&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Est ce que vous comprenez ce que je dit ? M&#039;avez vous seulement &eacute;cout&eacute; ? Vous tous ? savez vous ce qu&#039;est un Fondeur ? Ce qu&#039;il repr&eacute;sente ? Le fondeur &eacute;quipe maintenant tous les Soldats Moscovians, tous les soldats Kr&ocirc;nes et maintenant les Xydians commencent aussi &agrave; en &ecirc;tre &eacute;quip&eacute;s !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">C EST MOI&nbsp; ! ET MOI SEUL QUI L AI CONCUE&nbsp; ! Apr&egrave;s bien des accidents en laboratoire, quelques morts aussi, nous avons eu du mal &agrave; en contenir son rayon, j&#039;en suis coupable, OUI&nbsp; j&#039;en suis coupable ! J&#039;aurais du prendre plus de pr&eacute;cautions, j&#039;ai ma part d&#039;ombre, je l&#039;avoue, mais au final, ce fut d&#039;abord un armement lourd, impossible a porter pour un soldat, les Maitres Primat, ces cyborgs Krones de pr&egrave;s de trois m&egrave;tres, sous forme de marcheur robotique de combat, jusqu&#039;au jour ou ...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Le Professeur Stevens adapta un boitier plus l&eacute;ger, plu ais&eacute;ment transportable en quartz noir...Je le salut respectueusement pour cela, lui aussi sera un grand scientifique !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Le Professeur Steffey, marchait en faisant les cent pas tout en expliquant</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">D&eacute;sormais, le fondeur &eacute;quipe l&#039;arm&eacute;e pour chaque soldat, ce fondeur est une arme redoutable, il peut faire fondre instantan&eacute;ment toute mati&egrave;re solide, on pourraient m&ecirc;me se frayer un chemin dans la coque d&#039;un croiseur avec plusieurs salves de cette arme ....ALORS !! Q&#039;UEST CE QUE CELA A AVOIR AVEC CE QUE NOUS AVONS DEVANT NOUS ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">H&eacute; bien, cette arme ...Est un milliard de fois plus puissante que tout ce que nous avons connus, c&#039;est un disrupteur sonique, une fois le rayon tir&eacute; sur une plan&egrave;te, ce rayon en p&eacute;n&egrave;tre la terre, va jusqu&#039;au noyau et fait tout exploser, la plan&egrave;te enti&egrave;re explose en des milliards de d&eacute;bris. En conclusion, ce que vous avez devant vous est ce que l&#039;on appelait alors, un CASSE MONDE&nbsp; !&nbsp;</font></div><div class="post_line"></div><div class="post_line">I<font color="#ffff00">maginez alors une flotte enti&egrave;re de vaisseaux comme celui l&agrave; avec chacun une arme de ce type !&nbsp; &nbsp;UN seul tir ! ...Des milliards de victimes !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">JE NE PERMETTRAIT JAMAIS QU UNE TELLE CHOSE SE REPRODUISE ! Jamais ! M&#039;entendez vous ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Mais ? Professeur !! Est vous qui l&#039;avez con&ccedil;ue ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Steffey se retourna vers le Lieutenant les mains dans le dos...</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Non ! j&#039;&eacute;tais trop occup&eacute; encore, je n&#039;&eacute;tait pas encore ...Pr&ecirc;t pour cela !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Qu&#039;allons nous faire Professeur ? D&eacute;truire le vaisseau ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">NOOOooon ! Nous allons ramener le vaisseau, il n&#039;est pas besoin de le d&eacute;truire, seulement cette abomination que nous allons d&eacute;monter et ...Recycler !</font></div><div class="post_line"><font color="#ffff00">Le Vaisseau je m&#039;en charge !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Bon allons y, je vais prendre le commandement de ce vaisseau, direction l&#039;astroport de la Capitale !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Tr&egrave;s bien Jade allons y !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />19/02/1025 ETU 02:35</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal313141')">Détails</a> <a href="javascript:warnpost(313141)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313141" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313141',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">De retour sur le Cristalis767</div><div class="post_line"></div><div class="post_line">Le croiseur revenait lentement sur la plan&egrave;te, suivi par le vaisseau pilot&eacute; par Jade...Steffey observait la man&oelig;uvre pensif !</div><div class="post_line"></div><div class="post_line">Le Commandant s&#039;approcha&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Maintenant, allez vous me r&eacute;v&eacute;ler ce que veut dire ces deux lettres Professeur ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Steffey tout en fixant le vaisseau semblait perdu dans ses souvenirs mais il r&eacute;pondit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">D.C ?... Destruction Compl&egrave;te !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Nous les appelions ainsi, j&#039;&eacute;tait ado &agrave; l&#039;&eacute;poque, nous avons commenc&eacute;s par voir partir ces vaisseaux dans l&#039;espace, alors que j&#039;&eacute;tais encore &agrave; l&#039;Universit&eacute;, nous &eacute;tions tous fiers car nous &eacute;tions en guerre, nous ne nous rendions pas encore compte de se qui se pr&eacute;parait, nous les appelions les Chevaliers noirs.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ho nous n&#039;avons pas tard&eacute; &agrave; voir notre victoire, cela me semblait d&#039;ailleurs &eacute;trangement rapide et facile, et pour cause, la r&eacute;sistance d&#039;en face n&#039;existait tout simplement plus du tout, mais fort de leurs g&eacute;nocides a cause de&nbsp; leurs armes infernales, ceux ci continu&egrave;rent et an&eacute;antirent purement et simplement toute la race enti&egrave;re ! Un seul tir, et des milliards de morts, les plan&egrave;tes furent d&eacute;truites les unes apr&egrave;s les autres.</font></div><div class="post_line"><font color="#ffff00">Tandis que le pouvoir en place se r&eacute;jouissait, nous nous &eacute;tions marqu&eacute;s, choqu&eacute;s m&ecirc;mes...Fini l&#039;appellation des Chevaliers Noirs, les D.C &eacute;taient n&eacute;s, &agrave; nos yeux, d&#039;horribles barbares sanguinaires, totalement inhumains.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Bien sur il&nbsp;Commen&ccedil;a &agrave; y avoir des troubles, des manifestations, des contestations, devant cet horrible carnage, moi en t&ecirc;te d&#039;ailleurs, on exigeaient que les D.C&nbsp; soient tous d&eacute;mantel&eacute;s....Maiiiis, c&#039;&eacute;tait mal connaitre le Roi Lear V ! V&eacute;ritable tyran !</font></div><div class="post_line"></div><div class="post_line">I<font color="#ffff00">l fit charger, et m&ecirc;me tirer sur nous alors que lui, comme nous, ne savions pas encore la triste suite de l&#039;histoire !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Les D.C conscients&nbsp;de leur formidable puissance se rebell&egrave;rent contre nous&nbsp;&nbsp;! Contre le Roi ! Qui, r&eacute;alisant soudainement le danger qu&#039;ils repr&eacute;sentaient, rassembla sa flotte.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Une formidable bataille eue lieue...J&#039;&eacute;tais sur l&#039;un des vaisseaux, nous faisions maintenant &eacute;quipe avec les forces royales, nous y &eacute;tions bien oblig&eacute;s !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Mais malgr&eacute; tout nos efforts, et la destruction&nbsp; totale des D.C, nous n&#039;avons pas cependant pu, emp&ecirc;cher la destruction de notre plan&egrave;te, ce fut d&#039;ailleurs, le dernier acte, de cette bataille. le dernier vaisseau&nbsp;D.C &eacute;tant d&eacute;truit juste apr&egrave;s !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Alors ...L&#039;exode commen&ccedil;a, nous avions tout perdus et il fallait bien retrouver une nouvelle galaxie, une nouvelle plan&egrave;te vivable, et bien du temps apr&egrave;s...Nous avons finis par la&nbsp;trouver.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Nous avons commenc&eacute;s a reconstruire ...H&eacute;las, le Roi L&eacute;ar &eacute;tait toujours avec nous, il reprit ses habitudes de tyran, gros et gras, passant ses journ&eacute;es a rester allong&eacute; sur un lit et &agrave; donner des ordres sanguinaires, se fichant &eacute;perdument du peuple, C&#039;est l&agrave; qu&#039;un jeune militaire se dressa enfin, un Reptilien qui savait parler, il rassembla une partie de l&#039;arm&eacute;e, lui qui commen&ccedil;ait dans la politique...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Il &eacute;tait devenu S&eacute;nateur...C&#039;&eacute;tait ...Le S&eacute;nateur Crantell !!</font></div><div class="post_line"></div><div class="post_line">I<font color="#ffff00">l organisa la r&eacute;bellion mais cette fois nous &eacute;tions les vainqueurs ! Lear fut banni plut&ocirc;t que de l&#039;ex&eacute;cuter, Crantell ne voulait pas en faire un martyre..Mais IL NE VOULAIT SURTOUT PAS provoquer une tache de sang ind&eacute;l&eacute;bile qui nous marquerais &agrave; jamais dans notre histoire ! Je l&#039;ai toujours respect&eacute; pour cela !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">L&eacute;ar quitta la plan&egrave;te a bord de son vaisseau royal, avec une somme d&#039;argent consid&eacute;rable,&nbsp;on ne le revit jamais !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">La suite .... Vous la connaissez ! Les apocalypses, encore et encore !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Mais Alors ? Ce vaisseau, il y en a un qui a r&eacute;chapp&eacute; ? Comment est il rentr&eacute; en Sub Espace ? Et comment en est il sorti Professeur ? Que fait il ici ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Steffey plissa les yeux et fini par dire, <font color="#ffff00">L&agrave; est justement toute la question, et la question de mon amie Jade reste &eacute;galement en suspend, y a il vraiment quelque chose qui nous suit !?</font></div><div class="post_line"><font color="#ffff00">En attendant, je vais moderniser ce vaisseau apr&egrave;s avoir d&eacute;truit cette arme abominable une bonne fois pour toute !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Le Commandant hocha la t&ecirc;te observant l&#039;espace et les &eacute;toiles &agrave; cot&eacute; de Steffey...<font color="#1e92f7">Le saurons nous un jour Steffey ?</font></div><div class="post_line"></div><div class="post_line">...<font color="#ffff00">Seul le temps nous le dira Commandant ! ... Seul le temps nous le dira...</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17527&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17527" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17527" name="d_reply_17527" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17527');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17527'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > D.C</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

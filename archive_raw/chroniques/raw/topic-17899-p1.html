@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17899 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Chroniques d&#039;une Immortelle</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chroniques d&#039;une Immortelle</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />17/10/1026 ETU 23:42<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal319736')">Détails</a> <a href="javascript:warnpost(319736)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319736" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319736',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>Chapitre 1 &mdash; La peau de loup</strong></div><div class="post_line">Utopie, juillet &ndash; octobre 1014</div><div class="post_line"></div><div class="post_line"><strong>Prologue. La salle</strong></div><div class="post_line">On ne construit pas une salle comme celle-l&agrave; pour y tenir des r&eacute;unions. On la construit pour que chacun, en y entrant, se sente petit.</div><div class="post_line">Les gradins montaient en spirale sous une verri&egrave;re de trois cents m&egrave;tres d&#039;envergure, o&ugrave; une n&eacute;buleuse d&eacute;rivait au ralenti, couleur de cuivre et de lait, et teintait de rose l&#039;&eacute;paule des statues. Des colonnes de cristal noir portaient des vo&ucirc;tes que personne n&#039;avait jamais vues enti&egrave;rement &eacute;clair&eacute;es. Au centre, un disque de marbre p&acirc;le, assez grand pour qu&#039;une flotte de maquettes y man&oelig;uvre, et tout autour, par milliers, les loges des commandants. Ceux qui avaient fait le voyage en personne s&#039;asseyaient &agrave; leur place, la main sur l&#039;accoudoir de m&eacute;tal froid. Les autres &eacute;taient l&agrave; quand m&ecirc;me, en hologramme : des silhouettes bleut&eacute;es, un peu trop grandes, qui gr&eacute;sillaient quand l&#039;une d&#039;elles se retournait trop vite, et dont les voix arrivaient avec un quart de seconde de retard, comme si la salle les traduisait avant de les laisser parler.</div><div class="post_line">Des drones-interpr&egrave;tes glissaient entre les rang&eacute;es, minuscules, d&#039;un gris de perle. Les commandants qui ne partageaient pas la m&ecirc;me langue leur parlaient sans les regarder. Les archivistes, eux, ne parlaient jamais : ils enregistraient. Tout ce qui se disait ici &eacute;tait conserv&eacute;, class&eacute;, dat&eacute; &agrave; la minute, et ce fait, qu&#039;on oubliait en g&eacute;n&eacute;ral au bout d&#039;une heure de s&eacute;ance, finissait toujours par revenir.</div><div class="post_line">On y avait vu passer des rois, des machines, des orks, des oracles, des peuples entiers qui ne parlaient que par la bouche d&#039;un seul. On y avait entendu des ultimatums, des d&eacute;clarations d&#039;amour, des ench&egrave;res et des oraisons fun&egrave;bres. La salle avait tout encaiss&eacute;. Elle ne s&#039;&eacute;tait jamais tue pour quelqu&#039;un qu&#039;on ne connaissait pas.</div><div class="post_line">Il y avait, au quatri&egrave;me rang c&ocirc;t&eacute; nord, un si&egrave;ge que personne ne regardait. Il portait le blason de la Technocratie Valpasseanne. Le ma&icirc;tre de ce si&egrave;ge n&#039;y avait pas laiss&eacute; plus de traces qu&#039;une poussi&egrave;re d&#039;&eacute;toiles.</div><div class="post_line"></div><div class="post_line"><strong>I. Une salle en feu</strong></div><div class="post_line">Le 2 juillet de l&#039;an 1014, au matin, une silhouette se forma &agrave; la tribune, et ce fut le d&eacute;but de la plus longue querelle de l&#039;&eacute;t&eacute;.</div><div class="post_line">Elle s&#039;appelait Alisa Dragunova, premi&egrave;re conf&eacute;d&eacute;r&eacute;e de la Conf&eacute;d&eacute;ration Rouge, et elle ne savait rien faire discr&egrave;tement. Elle annon&ccedil;ait la guerre au chancelier Joachim Hoepner, de Libria, avec des drapeaux, des uniformes et un th&egrave;me sonore dont elle recommandait l&#039;&eacute;coute aux spectateurs, de sorte que les premi&egrave;res mesures d&#039;un hymne parvinrent &agrave; des commandants qui dormaient encore. La salle se remplit par vagues. Il &eacute;tait &agrave; peine neuf heures, et d&eacute;j&agrave; personne ne parlait d&#039;autre chose.</div><div class="post_line">Hoepner r&eacute;pondit &agrave; midi trente. Un cri avait pr&eacute;c&eacute;d&eacute; son image et travers&eacute; l&#039;h&eacute;micycle comme un coup de feu : &laquo; Sale garce ! &raquo; Puis le chancelier se mat&eacute;rialisa, par une transmission de mauvaise qualit&eacute; qui hachait ses contours, un c&ocirc;t&eacute; du visage en sang, un bras en piteux &eacute;tat qu&#039;il tenait de la main oppos&eacute;e. Il ne cherchait pas &agrave; cacher qu&#039;il avait &eacute;t&eacute; touch&eacute;. Il tenait &agrave; ce qu&#039;on le voie.</div><div class="post_line">Le roi Harald Temp&ecirc;te, lui, fit lire un communiqu&eacute; de sa maison, sur le ton des textes qu&#039;on rel&egrave;ve avec des gants. Un pacte de d&eacute;fense liait la maison Temp&ecirc;te &agrave; Libria ; elle invitait la Conf&eacute;d&eacute;ration &agrave; restituer les mondes pris et &agrave; s&#039;asseoir &agrave; une table de paix, o&ugrave; le roi tiendrait lieu de m&eacute;diateur. Kaitan Avery, du Peuple Perdu, r&eacute;pondit que son peuple avait d&eacute;j&agrave; fait plus de pas vers la paix que tout le secteur r&eacute;uni. T.W., ravi de l&#039;audience, d&eacute;voila la salle de l&#039;assembl&eacute;e sectorielle du secteur 3, un caf&eacute;-concert aux n&eacute;ons violets baptis&eacute; le Spiders Caf&eacute;, o&ugrave; Bon Clay, &laquo; physiquement &raquo; cette fois, lan&ccedil;a un &laquo; Coucou &agrave; tous, mes choupinets &raquo; que personne ne releva. Le Pourpre, qui disait avoir mis la main sur des archives, d&eacute;clara que Libria avait toujours &eacute;t&eacute;, et serait toujours, &laquo; un cancer pour la galaxie qui l&#039;abrite &raquo;. Ramius Marko prit la parole en larmes. Il annon&ccedil;a qu&#039;il ne r&eacute;pondrait plus &agrave; l&#039;agression dont il se disait victime ; il parlait de son fils. Ultima, enfin, prit une communication prioritaire, et sa voix tomba sur la salle comme une dalle : &laquo; L&#039;heure est grave. &raquo;</div><div class="post_line">Adrastee attendit que la dalle cesse de r&eacute;sonner. Elle n&#039;avait ni cri ni larmes. Elle &eacute;num&eacute;ra, d&#039;une voix qu&#039;on aurait pu croire lue, les insultes que, selon elle, Hoepner avait prononc&eacute;es puis r&eacute;p&eacute;t&eacute;es : ethniques, transphobes, robophobes. La liste prit un temps. Hoepner l&#039;&eacute;couta, ou parut le faire. Puis, tr&egrave;s bas, dans la nuit du 2 au 3 juillet, il l&acirc;cha :</div><div class="post_line">&mdash; Des mots ? Qui justifient un holocauste ?</div><div class="post_line">Il y eut un silence d&#039;une seconde, de ceux qu&#039;on retient avant de comprendre. Au fond de la salle, L&#039;Aplacophore fron&ccedil;a les sourcils : l&#039;altercation sortait des rails, et c&#039;&eacute;tait disgracieux. Avery rel&egrave;verait plus tard que le chancelier confondait un g&eacute;nocide et un conflit arm&eacute;. Mais pour l&#039;instant, personne ne r&eacute;pondit, parce que la porte de l&#039;h&eacute;micycle venait de claquer.</div><div class="post_line">Il &eacute;tait une heure du matin. L&#039;ork Beurk entra en hurlant, pour couvrir un vacarme qu&#039;il avait cru entendre de loin. Il avait cru comprendre qu&#039;on se disputait. Il avait aussi cru comprendre qu&#039;il y avait &laquo; le chandelier qui donne mal &raquo;. Personne ne sut jamais de quoi il parlait. On le laissa s&#039;asseoir.</div><div class="post_line">Vers quatre heures, un hologramme quitta enfin le si&egrave;ge de la Technocratie Valpasseanne. Quelques ambassadeurs voisins tourn&egrave;rent la t&ecirc;te. Paullus Beneradane monta &agrave; la tribune sans h&acirc;te, et la salle, &agrave; cette heure, ne comptait plus que les insomniaques et ceux qui, d&eacute;j&agrave;, calculaient. Hoepner le reconnut avant qu&#039;il ait ouvert la bouche. Il le salua d&#039;une phrase : il y avait quelques heures encore, cet homme appartenait &agrave; la coalition nationaliste et la soutenait financi&egrave;rement.</div><div class="post_line">Paullus ne se d&eacute;fendit pas. Il n&#039;avait pas l&#039;air d&#039;un homme qu&#039;on atteint par ce genre de coups.</div><div class="post_line">Quand Alisa revint, vers treize heures, si elle avait eu un corps organique, elle aurait eu des poches noires sous les yeux : la r&eacute;union de ses g&eacute;n&eacute;raux avait dur&eacute; toute la nuit, et ses g&eacute;n&eacute;raux refusaient d&#039;analyser la situation. Hoepner r&eacute;appara&icirc;trait &agrave; treize heures trente-quatre, flanqu&eacute; de l&#039;hologramme d&#039;un amiral de la flotte r&eacute;publicaine, une croix librianne brod&eacute;e sur le col.</div><div class="post_line">Il &eacute;tait treize heures trente-sept lorsque l&#039;air se troubla au centre du marbre.</div><div class="post_line"></div><div class="post_line"><strong>II. L&#039;inconnue</strong></div><div class="post_line">Ce qui se forma n&#039;avait rien de spectaculaire, et pourtant les conversations s&#039;&eacute;teignirent par plaques, de gradin en gradin, comme des lampes qu&#039;on &eacute;teint une &agrave; une dans un couloir. Une image scintillante, d&#039;abord, un grain de lumi&egrave;re ; puis une jeune femme athl&eacute;tique, en uniforme sans grade. Sur ses &eacute;paules, une peau de loup, drap&eacute;e sans soin apparent. Elle ne salua personne. Elle attendit que le silence soit plus complet que le bruit.</div><div class="post_line">&mdash; Commandants, commandantes. Je prends la parole pour t&eacute;moigner. Sur la vie au sein de la coalition nationaliste.</div><div class="post_line">Personne ne la connaissait. Elle n&#039;avait jamais parl&eacute; &agrave; cette assembl&eacute;e. Aucun des drones-interpr&egrave;tes ne savait quel titre lui donner. Elle expliqua en peu de mots que son peuple s&#039;&eacute;tait install&eacute; dans la galaxie &laquo; il y a quelques cycles &raquo; ; qu&#039;il avait &eacute;t&eacute; aid&eacute; par le chancelier d&egrave;s son arriv&eacute;e en Utopie, par des plan&egrave;tes, de l&#039;argent, des conseils techniques ; et qu&#039;il n&#039;y avait eu, en retour, aucune grosse contrepartie. Une seule : l&#039;adh&eacute;sion &agrave; la coalition nationaliste.</div><div class="post_line">Un murmure monta des gradins. Elle l&#039;attendait, visiblement, car elle ne leva pas la voix. Elle la fit simplement plus s&egrave;che.</div><div class="post_line">&mdash; Ne nous croyez pas na&iuml;fs. Le chancelier avait besoin d&#039;alli&eacute;s. Nous aider faisait de nous ses alli&eacute;s. Ce genre de transaction se passe tous les jours en Utopie. Quand d&#039;autres la pratiquent, on dit diplomatie. Quand c&#039;est lui, asservissement ?</div><div class="post_line">Elle laissa la question flotter. Dans une loge, un commandant se pencha vers son voisin.</div><div class="post_line">&mdash; On l&#039;accuse d&#039;avoir sap&eacute; le secteur 3. Il n&#039;a pas sap&eacute; ses alli&eacute;s. La moiti&eacute; des commandants du secteur, non ? Il a essay&eacute; d&#039;imposer son point de vue. De fa&ccedil;on d&eacute;mocratique. Sans armes. Aujourd&#039;hui, Hoepner paye les agissements de Wurzel, son pr&eacute;d&eacute;cesseur.</div><div class="post_line">Elle posa alors une borne, comme on plante un pieu dans un terrain mouvant : ses anc&ecirc;tres ne partageaient pas l&#039;id&eacute;ologie de Libria ; elle-m&ecirc;me n&#039;en partageait pas la moiti&eacute; dans la &laquo; nouvelle Libria &raquo;. Mais il y avait le mot nouvelle, et la phrase ne disait rien d&#039;autre. Elle r&eacute;clama ensuite la restitution des mondes pris au chancelier. La galaxie ne pouvait cautionner &laquo; une telle spoliation sur la base de soup&ccedil;ons divers et vari&eacute;s &raquo;, et &laquo; des fantasmes de certains sur les doctrines des autres &raquo;.</div><div class="post_line">Puis l&#039;image s&#039;&eacute;teignit. Sur le marbre, une tache de lumi&egrave;re mit un long moment &agrave; dispara&icirc;tre.</div><div class="post_line">La salle ne savait pas quoi en faire. Cette inconnue venait de d&eacute;fendre un homme que la moiti&eacute; des gradins voulait voir tomber, et elle l&#039;avait fait sans cacher qu&#039;elle ne l&#039;aimait qu&#039;&agrave; moiti&eacute;. On ne pouvait pas la ranger. Elle n&#039;&eacute;tait ni des siens ni des leurs.</div><div class="post_line">Adrastee r&eacute;pondit au milieu de l&#039;apr&egrave;s-midi, avec la politesse glac&eacute;e qu&#039;on lui connaissait : le raisonnement &eacute;tait juste, conc&eacute;da-t-elle, mais les faits qu&#039;il pr&eacute;supposait &eacute;taient &laquo; erron&eacute;s et incomplets &raquo;, et les injures reproch&eacute;es au chancelier n&#039;avaient pas commenc&eacute; avec les noms d&#039;oiseaux lanc&eacute;s apr&egrave;s la prise de son empire. Hoepner, &agrave; dix-sept heures dix-huit, ne trouva qu&#039;une phrase pour tout le monde : &laquo; Que du bla-bla inutile et creux. &raquo; Plus pr&egrave;s des loges du fond, batick leva un gobelet. Il n&#039;&eacute;tait pas un sp&eacute;cialiste de la diplomatie, dit-il, les courbettes ne le concernaient pas, et il pr&eacute;f&eacute;rait la gnole au th&eacute;. Quelques rires. Le soir, la cr&eacute;ature bleue qui r&eacute;pondait au nom de Zhyl, et qui n&#039;&eacute;tait ni tout &agrave; fait un homme ni tout &agrave; fait une femme, prit la parole pour la deuxi&egrave;me fois de la journ&eacute;e et s&#039;adressa conjointement &agrave; la commandante Hamilton et au commandant batick.</div><div class="post_line">Ce fut la premi&egrave;re fois qu&#039;on pronon&ccedil;a son nom dans cette salle. Hamilton avait d&eacute;j&agrave; quitt&eacute; la sc&egrave;ne. Elle n&#039;&eacute;tait plus qu&#039;un nom, et on le r&eacute;p&eacute;tait.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />18/10/1026 ETU 00:58<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal319737')">Détails</a> <a href="javascript:warnpost(319737)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319737" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319737',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>III. Des bouchers</strong></div><div class="post_line">Le lendemain, 4 juillet, quelqu&#039;un lui r&eacute;pondit, et ce fut Avery.</div><div class="post_line">Il avait d&eacute;clar&eacute;, dans la matin&eacute;e, que si la diplomatie ne lui donnait pas ce qu&#039;il voulait, il utiliserait la force. L&#039;hologramme de la veille se reforma &agrave; midi, au milieu de l&#039;h&eacute;micycle. La peau de loup bougea sur les &eacute;paules, comme si elle avait senti un courant d&#039;air.</div><div class="post_line">&mdash; Commandant Avery. Si vous n&#039;obtenez rien par la diplomatie, vous prenez la force ? Vu vos talents de diplomate, vous serez en guerre perp&eacute;tuelle.</div><div class="post_line">C&#039;&eacute;tait court, et ce fut mal pris. Dans la salle, on y vit une pique, et elle en convint elle-m&ecirc;me. Elle revint &agrave; treize heures trente-huit, pour la troisi&egrave;me fois en deux jours. Elle ne s&#039;excusa pas. Elle reconnut ce qui devait l&#039;&ecirc;tre.</div><div class="post_line">&mdash; Ma derni&egrave;re intervention n&#039;&eacute;tait pas brillante. Vous avez raison. Sur le fond, la question restait pos&eacute;e.</div><div class="post_line">Elle tourna lentement sur elle-m&ecirc;me, pour que chaque gradin ait son tour.</div><div class="post_line">&mdash; Mais j&#039;en ai assez. D&#039;un c&ocirc;t&eacute;, un chancelier qui demande quels actes justifient la prise de ses plan&egrave;tes. De l&#039;autre, ses ennemis, h&eacute;r&eacute;ditaires surtout, qui r&eacute;pondent que ses propos prouvent qu&#039;il allait agir. Personne ne cede. Personne ne tranche.</div><div class="post_line">Elle laissa passer un temps, assez long pour que le soupir de la salle revienne.</div><div class="post_line">&mdash; Alors finissons-en. La Conf&eacute;d&eacute;ration Rouge a montr&eacute; sa puissance. Elle a mis le chancelier &agrave; genoux. Il l&#039;a compris. Mais il ne pliera pas si on l&#039;y force : il est de Libria, et Libria ne plie pas. Rendez-lui ses plan&egrave;tes. Montrez &agrave; la galaxie que vous n&#039;&ecirc;tes pas des barbares, que ce n&#039;&eacute;tait qu&#039;un coup de semonce. Puis n&eacute;gociez une charte du secteur 3.</div><div class="post_line">Elle regarda, un &agrave; un, ceux qui se tenaient du c&ocirc;t&eacute; des vainqueurs.</div><div class="post_line">&mdash; Sinon, achevez-le. Ne faites pas durer le supplice, le sien, et celui de la galaxie qui assiste &agrave; ce simulacre de n&eacute;gociation. Mais alors, assumez vos r&ocirc;les de bouchers.</div><div class="post_line">Le mot tomba sous la verri&egrave;re comme une pierre dans un puits. Personne ne r&eacute;pondit tout de suite. Dans le silence, Hoepner la regarda, et on vit sur son visage ensanglant&eacute; passer quelque chose qui n&#039;&eacute;tait pas de la gratitude, mais qui y ressemblait. Plus tard, il l&#039;appela &laquo; Ira &raquo;. Elle ne le reprit pas. Le surnom resta.</div><div class="post_line">IV. Pendant ce temps, &agrave; l&#039;assembl&eacute;e</div><div class="post_line">Elle disparut pour une quinzaine de jours. La salle, elle, ne dormit pas.</div><div class="post_line">Du 7 au 11 juillet, on y vendit aux ench&egrave;res un logiciel dont la valeur technologique et strat&eacute;gique inqui&eacute;tait l&#039;amiral Dagmar, de la maison Temp&ecirc;te. Pers&eacute;phone, animatrice improvis&eacute;e de la cha&icirc;ne Public-Assembl&eacute;e, retransmettait la vente aux rares spectateurs qui somnolaient devant leurs projecteurs de salon, d&#039;une voix de pr&eacute;sentatrice de t&eacute;l&eacute;-r&eacute;alit&eacute; gal&aacute;ctique. Au centre du marbre, un vieil homme &agrave; l&#039;&eacute;corce craquel&eacute;e, emball&eacute; dans des bandes sombres, attendait entre dix drones de s&eacute;curit&eacute; et les gardes de la maison Temp&ecirc;te. Alisa, dans un costume &agrave; col Mao que d&eacute;corait une &eacute;pingle &agrave; son embl&egrave;me, lan&ccedil;a d&#039;une voix claire : &laquo; Cent millions, en &pound;eems. &raquo; Pers&eacute;phone releva la mise : un milliard. Paullus, par la bouche d&#039;un fonctionnaire en chemise banale, monta &agrave; douze milliards, sans que son visage ait chang&eacute; de couleur. Dans la nuit du 10 au 11, une fonctionnaire fut assassin&eacute;e. L&#039;amiral Dagmar saisit un bracelet comme pi&egrave;ce &agrave; conviction, et l&#039;assemblatrice de la Ligue des ombres quitta le centre de la salle d&#039;un air impuissant. Pers&eacute;phone, devant sa cam&eacute;ra, parla de &laquo; l&#039;action en direct &raquo; que les spectateurs attendaient depuis des d&eacute;cennies.</div><div class="post_line">Le 10, Hoepner tendit la main en secteur 4. Il avait la voix plus rauque qu&#039;une semaine plus t&ocirc;t, et il parla de cinq ambassades install&eacute;es &agrave; la demande du commandant Kelings, comme quelqu&#039;un qui d&eacute;pose des pi&egrave;ces dans un tiroir. Il fit lire, pour sa part, la liste de ce qu&#039;on disait de lui : dominateur, m&eacute;prisant, insultant. &laquo; Je n&#039;invente rien, Utopie. &raquo; Paullus lui r&eacute;pondit que Libria avait rompu elle-m&ecirc;me toute relation. L&#039;Unit&eacute;, qui ne parlait jamais que par &laquo; nous &raquo;, lui demanda de convaincre ses nouveaux amis de cesser les hostilit&eacute;s.</div><div class="post_line">Le 12, &agrave; trois heures du matin, la Matriarche Arckangel s&#039;en prit au chancelier.</div><div class="post_line">&mdash; Mensonge ! Chancelier, vous &ecirc;tes un menteur et un assassin ! Nous, Angelis, sommes un peuple pacifique, qui n&#039;a rien &agrave; voir dans vos combats, et qu&#039;avez-vous fait ? Vous avez extermin&eacute; des flottes Angelis qui &eacute;taient inoffensives !</div><div class="post_line">Hoepner lui demanda s&egrave;chement ce qu&#039;il avait donc d&eacute;truit. Elle r&eacute;pondit : des navettes d&#039;exploration, et alors ? La question n&#039;&eacute;tait pas l&agrave;, la question &eacute;tait qu&#039;il avait port&eacute; la main sur des vies innocentes. Zoa pr&eacute;cisa, d&#039;une voix pos&eacute;e, que pour une Angelis une navette d&#039;exploration n&#039;&eacute;tait pas qu&#039;un outil. Le 13, Alisa posa ses conditions de paix : retour des possessions d&#039;avant-guerre, plus aucune attaque. Hoepner &eacute;clata de rire. Un rire sec, sans joie, qui rebondit contre les cristaux noirs et mit fin &agrave; la discussion.</div><div class="post_line">Le 14, un sommet de paix s&#039;ouvrit en secteur IV, organis&eacute; par L&#039;Unit&eacute;. Beurk haussa les &eacute;paules devant ce qui s&#039;annon&ccedil;ait : &laquo; Des n&eacute;gociations, alors que la waaagh elle avance bien ? &raquo; Oswald Cobblepot, lui, trouva le moyen de rendre la sc&egrave;ne &laquo; romantiquement diabolique &raquo;. Gabryelle &eacute;tait venue de loin, en robe blanche, avec son aide Clara, assise &agrave; un poste de commande d&#039;o&ugrave; elle voyait toute la tribune. Elle regardait Paullus Beneradane parler de la table. Elle ne souriait pas. &Agrave; vingt-deux heures dix-neuf, elle se pencha vers Clara et murmura de ne jamais, jamais, avoir affaire &agrave; cet homme, qui d&eacute;gageait &laquo; comme un je ne sais quoi d&#039;&eacute;trange &raquo;.</div><div class="post_line">La phrase se perdit dans le brouhaha. Il y avait des milliers de phrases comme celle-l&agrave; dans l&#039;h&eacute;micycle, de celles qu&#039;on dit &agrave; mi-voix, qu&#039;on oublie et qui reviennent.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />19/10/1026 ETU 16:20<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal319744')">Votez&nbsp;!</a> <a href="javascript:warnpost(319744)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319744" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319744%26e_mode%3Dplus%26c_choice%3D1', 544, 464)"><img src="/images/plus2.png" alt="chronique passionante" /></a><br />conteur formidable : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319744%26e_mode%3Dplus%26c_choice%3D2', 544, 464)"><img src="/images/plus3.png" alt="conteur formidable" /></a><br />humour décapant : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319744%26e_mode%3Dplus%26c_choice%3D3', 544, 464)"><img src="/images/plus1.png" alt="humour décapant" /></a></td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319744',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>IV. Pendant ce temps, &agrave; l&#039;assembl&eacute;e</strong></div><div class="post_line"></div><div class="post_line">Elle disparut pour une quinzaine de jours. La salle, elle, ne dormit pas.</div><div class="post_line"></div><div class="post_line">Du 7 au 11 juillet, on y vendit aux ench&egrave;res un logiciel dont la valeur technologique et strat&eacute;gique inqui&eacute;tait l&#039;amiral Dagmar, de la maison Temp&ecirc;te. Pers&eacute;phone, animatrice improvis&eacute;e de la cha&icirc;ne Public-Assembl&eacute;e, retransmettait la vente aux rares spectateurs qui somnolaient devant leurs projecteurs de salon, d&#039;une voix de pr&eacute;sentatrice de t&eacute;l&eacute;-r&eacute;alit&eacute; gal&aacute;ctique. Au centre du marbre, un vieil homme &agrave; l&#039;&eacute;corce craquel&eacute;e, emball&eacute; dans des bandes sombres, attendait entre dix drones de s&eacute;curit&eacute; et les gardes de la maison Temp&ecirc;te. Alisa, dans un costume &agrave; col Mao que d&eacute;corait une &eacute;pingle &agrave; son embl&egrave;me, lan&ccedil;a d&#039;une voix claire : &laquo; Cent millions, en &pound;eems. &raquo; Pers&eacute;phone releva la mise : un milliard. Paullus, par la bouche d&#039;un fonctionnaire en chemise banale, monta &agrave; douze milliards, sans que son visage ait chang&eacute; de couleur. Dans la nuit du 10 au 11, une fonctionnaire fut assassin&eacute;e. L&#039;amiral Dagmar saisit un bracelet comme pi&egrave;ce &agrave; conviction, et l&#039;assemblatrice de la Ligue des ombres quitta le centre de la salle d&#039;un air impuissant. Pers&eacute;phone, devant sa cam&eacute;ra, parla de &laquo; l&#039;action en direct &raquo; que les spectateurs attendaient depuis des d&eacute;cennies.</div><div class="post_line"></div><div class="post_line">Le 10, Hoepner tendit la main en secteur 4. Il avait la voix plus rauque qu&#039;une semaine plus t&ocirc;t, et il parla de cinq ambassades install&eacute;es &agrave; la demande du commandant Kelings, comme quelqu&#039;un qui d&eacute;pose des pi&egrave;ces dans un tiroir. Il fit lire, pour sa part, la liste de ce qu&#039;on disait de lui : dominateur, m&eacute;prisant, insultant. &laquo; Je n&#039;invente rien, Utopie. &raquo; Paullus lui r&eacute;pondit que Libria avait rompu elle-m&ecirc;me toute relation. L&#039;Unit&eacute;, qui ne parlait jamais que par &laquo; nous &raquo;, lui demanda de convaincre ses nouveaux amis de cesser les hostilit&eacute;s.</div><div class="post_line"></div><div class="post_line">Le 12, &agrave; trois heures du matin, la Matriarche Arckangel s&#039;en prit au chancelier.</div><div class="post_line">&mdash; Mensonge ! Chancelier, vous &ecirc;tes un menteur et un assassin ! Nous, Angelis, sommes un peuple pacifique, qui n&#039;a rien &agrave; voir dans vos combats, et qu&#039;avez-vous fait ? Vous avez extermin&eacute; des flottes Angelis qui &eacute;taient inoffensives !</div><div class="post_line">Hoepner lui demanda s&egrave;chement ce qu&#039;il avait donc d&eacute;truit. Elle r&eacute;pondit : des navettes d&#039;exploration, et alors ? La question n&#039;&eacute;tait pas l&agrave;, la question &eacute;tait qu&#039;il avait port&eacute; la main sur des vies innocentes. Zoa pr&eacute;cisa, d&#039;une voix pos&eacute;e, que pour une Angelis une navette d&#039;exploration n&#039;&eacute;tait pas qu&#039;un outil. Le 13, Alisa posa ses conditions de paix : retour des possessions d&#039;avant-guerre, plus aucune attaque. Hoepner &eacute;clata de rire. Un rire sec, sans joie, qui rebondit contre les cristaux noirs et mit fin &agrave; la discussion.</div><div class="post_line"></div><div class="post_line">Le 14, un sommet de paix s&#039;ouvrit en secteur IV, organis&eacute; par L&#039;Unit&eacute;. Beurk haussa les &eacute;paules devant ce qui s&#039;annon&ccedil;ait : &laquo; Des n&eacute;gociations, alors que la waaagh elle avance bien ? &raquo; Oswald Cobblepot, lui, trouva le moyen de rendre la sc&egrave;ne &laquo; romantiquement diabolique &raquo;. Gabryelle &eacute;tait venue de loin, en robe blanche, avec son aide Clara, assise &agrave; un poste de commande d&#039;o&ugrave; elle voyait toute la tribune. Elle regardait Paullus Beneradane parler de la table. Elle ne souriait pas. &Agrave; vingt-deux heures dix-neuf, elle se pencha vers Clara et murmura de ne jamais, jamais, avoir affaire &agrave; cet homme, qui d&eacute;gageait &laquo; comme un je ne sais quoi d&#039;&eacute;trange &raquo;.</div><div class="post_line">La phrase se perdit dans le brouhaha. Il y avait des milliers de phrases comme celle-l&agrave; dans l&#039;h&eacute;micycle, de celles qu&#039;on dit &agrave; mi-voix, qu&#039;on oublie et qui reviennent.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />19/10/1026 ETU 20:19<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal319746')">Votez&nbsp;!</a> <a href="javascript:warnpost(319746)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319746" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319746%26e_mode%3Dplus%26c_choice%3D1', 544, 464)"><img src="/images/plus2.png" alt="chronique passionante" /></a><br />conteur formidable : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319746%26e_mode%3Dplus%26c_choice%3D2', 544, 464)"><img src="/images/plus3.png" alt="conteur formidable" /></a><br />humour décapant : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319746%26e_mode%3Dplus%26c_choice%3D3', 544, 464)"><img src="/images/plus1.png" alt="humour décapant" /></a></td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319746',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>V. Les gants</strong></div><div class="post_line"></div><div class="post_line">Treize jours apr&egrave;s le discours des bouchers, Hamilton reparut, et cette fois elle ne d&eacute;fendait plus personne. Elle avait un litige &agrave; plaider, le sien.</div><div class="post_line"></div><div class="post_line">L&#039;affaire tenait en quelques lignes. Dans le syst&egrave;me 11, des plan&egrave;tes tra&icirc;naient aux mains des brigands. Le roi Harald Temp&ecirc;te lui avait fait don de l&#039;une d&#039;elles, Terra 111, qu&#039;il avait propos&eacute;e quelques cycles plus t&ocirc;t &agrave; la Matriarche Arckangel. Hamilton l&#039;avait prise. Arckangel la r&eacute;clamait, et le ton des deux c&ocirc;t&eacute;s, depuis des heures, n&#039;avait plus rien de diplomatique.</div><div class="post_line"></div><div class="post_line">Le 17 juillet, &agrave; vingt-deux heures trente-huit, elle posa le diff&eacute;rend devant l&#039;assembl&eacute;e, avec les copies de leurs &eacute;changes, comme on d&eacute;pose une pi&egrave;ce de proc&eacute;dure. L&#039;h&eacute;micycle &eacute;tait &agrave; moiti&eacute; vide, mais la moiti&eacute; qui restait &eacute;coutait.</div><div class="post_line">&mdash; Je n&#039;envahis personne, dit-elle. Avant que nous arrivions en Utopie, ces plan&egrave;tes &eacute;taient habit&eacute;es. Nous avons tous conquis ou ralli&eacute; des mondes. Si une plan&egrave;te est aux mains des brigands et que je la prends, elle est &agrave; moi. Sinon, il faut que nous rendions tous nos plan&egrave;tes aux dirigeants d&#039;origine. Et que chacun garde une plan&egrave;te. Une seule.</div><div class="post_line">Elle venait d&#039;envoyer son texte lorsqu&#039;elle le relut. Au centre du marbre, l&#039;hologramme &eacute;clata de rire et &ocirc;ta ses gants.</div><div class="post_line">&mdash; Galagtique&hellip; C&#039;est un gag. &Ccedil;a m&#039;apprendra &agrave; &eacute;crire avec des moufles. Esp&eacute;rons que cela d&eacute;tende l&#039;atmosph&egrave;re.</div><div class="post_line">Cela ne d&eacute;tendit rien. Les avis arriv&egrave;rent par rafales : la premi&egrave;re conf&eacute;d&eacute;r&eacute;e Alisa Dragunova, d&#039;autres encore, qui parlaient de premier arriv&eacute;, premier servi, ou de droit du dirigeant d&#039;origine. &Agrave; minuit moins le quart, la querelle avait pris le ton des querelles qu&#039;on regrette.</div><div class="post_line">&mdash; Chacun sa m&eacute;thode, lan&ccedil;a Hamilton &agrave; la Matriarche. Vos diplomates et leurs pots-de-vin. Mes kamikazes et leur courage. Une plan&egrave;te libre, aux mains des brigands : je la prends, un brigand est nuisible. Une plan&egrave;te g&eacute;r&eacute;e par un commandant : je la lui laisse. Pourquoi vos diplomates n&eacute;gocient-ils depuis des cycles ? Il n&#039;y a plus d&#039;Angelis sur place. Il n&#039;y a que des brigands.</div><div class="post_line">Puis, apr&egrave;s une demi-seconde :</div><div class="post_line">&mdash; Je vous respecte. Je vous appelle par votre titre. Essayez de ne pas insulter vos interlocuteurs.</div><div class="post_line">La nuit passa. Dans l&#039;une des gal&eacute;ries sup&eacute;rieures, un drone de maintenance rempla&ccedil;a une dalle de lumi&egrave;re grill&eacute;e par la chaleur des hologrammes. Le lendemain, 18 juillet, un peu apr&egrave;s treize heures, les gradins se remplirent de commandants venus voir la suite, et au premier rang, dans un hologramme tremblant, parut Olhor&igrave;n, qu&#039;on n&#039;avait pas encore entendue dans ce fil.</div><div class="post_line">&mdash; Commandants, commandantes. Matriarche. Je vous ai &eacute;cout&eacute;s. Voici ma position.</div><div class="post_line">Elle &eacute;num&eacute;ra, un point apr&egrave;s l&#039;autre, sans quitter la Matriarche des yeux. Premier arriv&eacute;, premier servi : elle &eacute;tait dans son droit. Le ton de la Matriarche ne lui avait pas plu. La Matriarche venait de rallier des plan&egrave;tes qui lui appartenaient, depuis peu, mais qu&#039;elle avait prises aux brigands. Elle-m&ecirc;me avait pris, &agrave; la suite d&#039;un ordre crois&eacute;, une plan&egrave;te appartenant &agrave; la Matriarche, et l&#039;avait rendue. Puis, d&#039;une voix &agrave; peine plus lente :</div><div class="post_line">&mdash; Mes kamikazes sont pr&ecirc;ts &agrave; repartir et &agrave; reprendre les plan&egrave;tes ralli&eacute;es par la Matriarche. Je ne donnerai pas cet ordre. La Matriarche garde les plan&egrave;tes qu&#039;elle vient de me prendre.</div><div class="post_line">Une rumeur parcourut la salle. Elle poursuivit sans s&#039;y arr&ecirc;ter.</div><div class="post_line">&mdash; Je ne lui demande pas de s&#039;excuser. Je lui demande de respecter les repr&eacute;sentants de civilisation qu&#039;elle interpelle. Cette concession, je la fais pour le secteur 3. &Agrave; partir de ce cycle, je prends toute plan&egrave;te brigande que je rencontre. Je la tiens pour mienne. Je n&#039;accepterai pas l&#039;argument : &laquo; elle &eacute;tait &agrave; moi il y a quelques cycles &raquo;. Le verbe &eacute;tait sera le seul que je retiendrai.</div><div class="post_line">Elle s&#039;&eacute;loigna de deux pas, pour laisser &agrave; l&#039;assembl&eacute;e le temps de comprendre. Un peu plus tard, la Matriarche pr&eacute;senta ses excuses. Les deux holocoms se crois&egrave;rent au milieu du marbre. Hamilton les re&ccedil;ut, calmement.</div><div class="post_line">&mdash; Je vous donne mes plan&egrave;tes. J&#039;accepte vos excuses. Pour ma part, le sujet est clos.</div><div class="post_line">Le mot s&#039;installa dans la salle. Il y resterait. Quand on voudrait se souvenir d&#039;elle, on le retrouverait d&#039;abord, avant les plan&egrave;tes et avant le litige : elle ouvrait une querelle comme une proc&eacute;dure, et la fermait comme une porte.</div><div class="post_line">En quittant la sc&egrave;ne, elle se retourna vers un gradin d&#039;o&ugrave; venait, depuis un moment, un commentaire sur son &laquo; &eacute;troitesse d&#039;esprit &raquo;. T.W., bien s&ucirc;r. Elle lui adressa un clin d&#039;&oelig;il qu&#039;on vit sans l&#039;entendre.</div><div class="post_line">&mdash; Vous &ecirc;tes un ma&icirc;tre dans l&#039;ouverture d&#039;esprit. Au-del&agrave; de ces jeux de mots, vous m&#039;aviez habitu&eacute;e &agrave; mieux. J&#039;efface donc cette derni&egrave;re intervention de ma m&eacute;moire. Quant &agrave; mon ancienne appartenance &agrave; la coalition nationaliste : vous saurez dans quelques cycles quelle en &eacute;tait la cause. Vous reverrez alors votre jugement.</div><div class="post_line"></div><div class="post_line">Elle n&#039;ajouta rien. Le 20 juillet, elle instituait la Journ&eacute;e des Anges, chaque troisi&egrave;me dimanche du mois, consacr&eacute;e &agrave; r&eacute;fl&eacute;chir &agrave; la mani&egrave;re de r&eacute;soudre les conflits moins agressivement.</div><div class="post_line">Ce n&#039;&eacute;tait pas une r&eacute;conciliation. C&#039;&eacute;tait une le&ccedil;on donn&eacute;e &agrave; voix haute, &agrave; une femme qui l&#039;avait insult&eacute;e, devant mille commandants. Elle l&#039;avait donn&eacute;e sans l&egrave;ve de la voix. La Matriarche l&#039;avait re&ccedil;ue.</div><div class="post_line"></div><div class="post_line"><strong>VI. L&#039;&Eacute;pine</strong></div><div class="post_line"></div><div class="post_line">La plan&egrave;te s&#039;appelait Esperanto. On la trouvait en 5.3.1.5.1, dans le syst&egrave;me natal d&#039;un commandant du secteur 3, Guy de Kestac. Elle &eacute;tait tenue par des brigands depuis quelques cycles. Le 19 juillet, &agrave; vingt heures cinquante-huit, Hamilton y lan&ccedil;a mille escadres de kamikazes en invasion &eacute;clair. Elle prenait la plan&egrave;te, comme elle venait de l&#039;annoncer.</div><div class="post_line">Les ennuis commenc&egrave;rent par une navette. Des diplomates d&#039;Arckangel s&#039;&eacute;taient pr&eacute;sent&eacute;s sur le monde pour le rallier pacifiquement. La population locale et ses gouvernants avaient pris leur approche pour une agression. Les informations n&#039;&eacute;taient pas tr&egrave;s claires, mais il semblait que les repr&eacute;sentants aient &eacute;t&eacute; ex&eacute;cut&eacute;s. Dans la foul&eacute;e, le 20 au soir, &agrave; dix-neuf heures cinquante-huit, Guy de Kestac avait envahi lui aussi la plan&egrave;te, et l&#039;avait rebaptis&eacute;e &Eacute;pine.</div><div class="post_line"></div><div class="post_line">Deux invasions, &agrave; onze heures d&#039;intervalle, sur le m&ecirc;me caillou. Chacun avait la preuve que l&#039;autre avait menti.</div><div class="post_line"></div><div class="post_line">Le 21 juillet, Hamilton exposa l&#039;affaire &agrave; l&#039;assembl&eacute;e. Elle commen&ccedil;a par une mise en garde.</div><div class="post_line">&mdash; Ceci n&#039;est pas une demande d&#039;arbitrage. Si vous souhaitez raisonner le commandant Guy de Tersac, n&#039;h&eacute;sitez pas.</div><div class="post_line">&mdash; De Kestac, rectifia T.W. depuis les gradins. Ma louloute. C&#039;est un homme tr&egrave;s mesur&eacute;, et malheureusement occup&eacute;. Je me porte garant de lui.</div><div class="post_line">&mdash; Commandant de Kestac, dit-elle sans se troubler, excusez-moi si j&#039;ai &eacute;corch&eacute; votre nom. Cela ne se reproduira plus.</div><div class="post_line">Elle lut alors des horaires. L&#039;invasion &eacute;clair : le 19, vingt heures cinquante-huit. La r&eacute;sistance politique : le 20, huit heures cinquante-six. L&#039;invasion de de Kestac : le 20, dix-neuf heures cinquante-huit. Elle posait les minutes comme des pi&egrave;ces sur un damier, une par une, et dans les loges on voyait des commandants noter.</div><div class="post_line">Adrastee souleva une objection de sa voix de verre : une invasion classique prend vingt-quatre heures, pas douze, et selon ses chiffres la plan&egrave;te &eacute;tait encore brigande quand de Kestac avait lanc&eacute; son ordre. Le lendemain, 22 juillet, Hamilton r&eacute;pondit par une image.</div><div class="post_line">&mdash; Je tire au lance-pierre sur un de ses vaisseaux, &agrave; quatre cents m&egrave;tres. Il riposte au canon ionique quelques secondes plus tard. Je suis d&eacute;truite avant d&#039;avoir touch&eacute; sa coque. Puis-je dire : c&#039;est injuste, c&#039;est moi qui ai tir&eacute; la premi&egrave;re ? Non. Ne comparez pas qui a lanc&eacute; l&#039;ordre en premier. Comparez qui poss&eacute;dait la plan&egrave;te apr&egrave;s les brigands.</div><div class="post_line"></div><div class="post_line">Le juge Sadab trancha pour de Kestac. T.W. lui rappela la r&egrave;gle num&eacute;ro un des syst&egrave;mes natifs. Mansa le Lion fit observer, avec cordialit&eacute;, qu&#039;il n&#039;existe pas de droit galactique sur lequel les commandants puissent s&#039;appuyer ; elle r&eacute;pondit qu&#039;elle parlait du droit du d&eacute;tenteur d&#039;une plan&egrave;te, et que les seuls &agrave; n&#039;en avoir aucun &eacute;taient les brigands. Coelus, du secteur VII, parla des ordres crois&eacute;s, que l&#039;on ne pouvait imputer &agrave; personne.</div><div class="post_line"></div><div class="post_line">La nuit du 22, l&#039;hologramme de la premi&egrave;re conf&eacute;d&eacute;r&eacute;e Alisa s&#039;inclina profond&eacute;ment au centre du marbre, mains derri&egrave;re le dos, voix chaleureuse, sourire aimable : elle venait en m&eacute;diatrice, disait-elle, et personne n&#039;en crut un mot, mais personne ne la contredit. Peu apr&egrave;s, de Kestac arriva lui-m&ecirc;me, en chair et en os, par la grande porte de l&#039;h&eacute;micycle. Il venait, dit-il, d&egrave;s qu&#039;il avait vu qu&#039;il avait subi une invasion &eacute;clair sans que personne l&#039;ait pr&eacute;venu par com-x. Il remercia la galaxie de &laquo; porter une nouvelle fois le secteur 3 en ridicule pour des petites histoires de plan&egrave;tes &raquo;.</div><div class="post_line">Elle le laissa aller jusqu&#039;au bout. Puis :</div><div class="post_line">&mdash; Je vais vous r&eacute;pondre point par point, commandant.</div><div class="post_line">Elle en fit sept. Si c&#039;&eacute;taient de petites histoires, qu&#039;il les lui rende quand elle le lui demandait en X-Com. Il avait refus&eacute; : elle prenait donc la galaxie &agrave; t&eacute;moin, c&#039;&eacute;tait son droit. La plan&egrave;te ne lui avait jamais appartenu. Il n&#039;avait pas l&#039;ombre d&#039;une l&eacute;gitimit&eacute; sur ce bout de roche. Il n&#039;avait pas jug&eacute; n&eacute;cessaire de la lib&eacute;rer des brigands plus t&ocirc;t : il avait le droit de se tromper, la prochaine fois il irait peut-&ecirc;tre plus vite. Le nom avait &eacute;t&eacute; chang&eacute; apr&egrave;s son premier X-Com : il &eacute;tait donc devant sa console, et n&#039;avait pas daign&eacute; r&eacute;pondre avant le deuxi&egrave;me. Enfin, elle proposait un pacte de non-agression avant toute n&eacute;gociation. Pas un pacte contre deux plan&egrave;tes qu&#039;elle devrait lui donner.</div><div class="post_line">&mdash; Arr&ecirc;tez l&#039;astropastis, r&eacute;pondit de Kestac. Vous me prenez une plan&egrave;te et vous proposez un pacte si je vous en donne une autre ? Restez bien &agrave; l&#039;ombre. Vous divaguez.</div><div class="post_line">Il lui avait propos&eacute;, par X-Com, deux cents m&eacute;galeems pour un monde glac&eacute;. Elle avait d&eacute;j&agrave; r&eacute;pondu &agrave; la galaxie, le 21, avant m&ecirc;me qu&#039;il ne vienne :</div><div class="post_line">&mdash; Gardez vos leems et vos plan&egrave;tes. On ne marchande pas sur le droit. En tout cas pas avec moi.</div><div class="post_line"></div><div class="post_line">Le 23 juillet, de Kestac r&eacute;pondit par un num&eacute;ro de mime. Elle venait de lui dire qu&#039;il se croyait enferm&eacute; par les murs de ses certitudes. Il avait suivi, dans sa jeunesse, une formation de circassien. Il avan&ccedil;a dans la lumi&egrave;re cuivr&eacute;e, leva les mains, et se mit &agrave; mimer des murs autour de lui, feignant de d&eacute;couvrir une v&eacute;rit&eacute; terrifiante, le visage travers&eacute; d&#039;&eacute;tonnement et de crainte. Quelqu&#039;un rit dans les gradins, puis plusieurs. T.W. applaudit.</div><div class="post_line">Hamilton le regarda s&#039;amuser jusqu&#039;au bout. Puis elle dit, sans sourire :</div><div class="post_line">&mdash; Mais quel pitre.</div><div class="post_line">Il y eut un instant de flottement. Elle afficha alors des lignes de rapport, qui s&#039;inscrivirent en lettres froides au-dessus du marbre : un assaut &agrave; seize heures cinquante-quatre. Deux bombardements &agrave; seize heures trente-deux. De Kestac l&#039;avait attaqu&eacute;e.</div><div class="post_line">&mdash; Vous m&#039;attaquez. Vous prouvez ainsi que vous n&#039;avez jamais voulu n&eacute;gocier. Je suis le mur dont vous parliez. Il va distribuer quelques parpaings. Un baroud d&#039;honneur : le rapport de force est in&eacute;gal. Je n&#039;ai jamais attaqu&eacute; et je n&#039;attaquerai jamais les possessions d&#039;un autre commandant la premi&egrave;re. Il va sans dire que vous ne faites plus partie de cette cat&eacute;gorie.</div><div class="post_line">&mdash; Rendez-vous sur le champ de bataille, r&eacute;pondit de Kestac. Passez le bonjour &agrave; de Funes et &agrave; batik quand vous les verrez.</div><div class="post_line">Le nom de batik fit lever des t&ecirc;tes dans les loges, celui de de Funes aussi. On venait de l&#039;associer &agrave; deux commandants avec qui elle disait n&#039;avoir jamais communiqu&eacute;, ni en X-Com ni au sein de la coalition nationaliste. C&#039;est &agrave; cela qu&#039;elle r&eacute;pondit, et elle choisit de le faire autrement que par un d&eacute;menti.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />19/10/1026 ETU 23:49<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal319747')">Votez&nbsp;!</a> <a href="javascript:warnpost(319747)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319747" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319747%26e_mode%3Dplus%26c_choice%3D1', 544, 464)"><img src="/images/plus2.png" alt="chronique passionante" /></a><br />conteur formidable : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319747%26e_mode%3Dplus%26c_choice%3D2', 544, 464)"><img src="/images/plus3.png" alt="conteur formidable" /></a><br />humour décapant : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319747%26e_mode%3Dplus%26c_choice%3D3', 544, 464)"><img src="/images/plus1.png" alt="humour décapant" /></a></td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319747',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>VII. La fille de Nemes</strong></div><div class="post_line"></div><div class="post_line">Elle prit la parole ce soir-l&agrave;, le 23 juillet. Elle n&#039;&eacute;leva pas la voix. Un drone-interpr&egrave;te qui passait au-dessus du marbre s&#039;immobilisa, comme s&#039;il avait compris qu&#039;il valait mieux ne pas traduire trop vite.</div><div class="post_line">&mdash; Oui, j&#039;ai fait partie de la coalition nationaliste. Comme observatrice. Avec un but : limiter l&#039;impact de Libria, et si n&eacute;cessaire, la pousser &agrave; sa perte. Je vais maintenant &eacute;clairer votre lanterne.</div><div class="post_line">La salle attendait. T.W., lui, ne disait plus rien : la promesse faite cinq jours plus t&ocirc;t, on y arrivait.</div><div class="post_line">&mdash; Je suis Iria Hamilton. Fille de la commandante Nemes. En galaxie Sagesse, ma m&egrave;re s&#039;est oppos&eacute;e &agrave; Wurzel, et &agrave; Libria. Par la parole : elle &eacute;tait aliantiste. Elle faisait partie du dernier secteur ferm&eacute; avant l&#039;apocalypse. Elle n&#039;a pas surv&eacute;cu &agrave; cette apocalypse. Les seuls survivants ont &eacute;chou&eacute; dans un syst&egrave;me contr&ocirc;l&eacute; par Wurzel.</div><div class="post_line">Un silence s&#039;abattit, d&#039;une qualit&eacute; que la salle ne conna&icirc;trait plus gu&egrave;re. Aucun hologramme ne bougeait. Les projecteurs eux-m&ecirc;mes semblaient avoir r&eacute;duit leur bourdonnement.</div><div class="post_line">&mdash; Si vous voulez confirmation, demandez &agrave; la camarade Alisa Dragunova. Je lui avais fourni quelques &eacute;l&eacute;ments en ce sens par X-Com, avant que notre conflit commence. Mais continuez &agrave; me d&eacute;nigrer. Vous esp&eacute;rez para&icirc;tre plus blancs que blancs dans cette affaire. Ce ne sera pas le cas.</div><div class="post_line">Elle ne dit pas un mot de plus sur sa m&egrave;re. L&#039;assembl&eacute;e venait d&#039;apprendre en une minute qui elle &eacute;tait, et d&#039;o&ugrave; venait sa m&eacute;fiance envers Libria. Une m&egrave;re qui s&#039;&eacute;tait oppos&eacute;e &agrave; Wurzel par la parole, et que la parole n&#039;avait pas sauv&eacute;e. Personne, dans les gradins, ne songea plus &agrave; la traiter d&#039;inconnue.</div><div class="post_line">De Kestac, lui, ne s&#039;attendrit pas. Son rapport tomba le soir m&ecirc;me : cinquante-sept corvettes l&eacute;g&egrave;res laser perdues, dix-neuf mille six cent soixante-neuf escadres kamikazes estim&eacute;es d&eacute;truites chez elle. &laquo; J&#039;ai eu raison de faire quelques frappes pr&eacute;ventives &raquo;, &eacute;crivit-il. Il ajouta qu&#039;il se fichait de savoir si elle &eacute;tait &laquo; la ni&egrave;ce du cousin &raquo; de qui que ce soit, puis que sa m&egrave;re aliantiste devait pleurer en regardant comment se comportait sa fille belliqueuse.</div><div class="post_line"></div><div class="post_line">Le 24 juillet, elle reprit la phrase et la lui renvoya, &agrave; la m&ecirc;me vitesse :</div><div class="post_line">&mdash; Il est possible que l&#039;issue du combat me soit fatale. La mort nous attend tous au coin d&#039;un tournant. Je vois que vous continuez de m&#039;affubler d&#039;adjectifs. Belliqueuse. Et autres. Vous essayez l&#039;autosuggestion ? Un peu plus de classe. Peut-&ecirc;tre en arr&ecirc;tant l&#039;astropastis ? Je suis la seule, depuis le d&eacute;but, &agrave; proposer de n&eacute;gocier apr&egrave;s un cessez-le-feu.</div><div class="post_line">VIII. Le cessez-le-feu</div><div class="post_line"></div><div class="post_line">Le 25 juillet, peu apr&egrave;s minuit, une femme en robe blanche apparut au milieu du d&eacute;bat. Gabryelle, sourire aux l&egrave;vres, le regard d&#039;une douceur trompeuse. Ce qui la choquait, dit-elle, c&#039;&eacute;tait l&#039;absence de participation de ceux du secteur 3 : elle demanda pourquoi ce conflit, et pourquoi on laissait croire &agrave; l&#039;univers que la situation pouvait s&#039;embraser.</div><div class="post_line">Anatoli&eacute;vitch lui donna raison. Hamilton, qui n&#039;avait attendu que cela, proposa de nouveau un cessez-le-feu.</div><div class="post_line">&mdash; Condition pr&eacute;alable &agrave; sa signature : l&#039;engagement du commandant Guy de Kestac de ne pas tenter de reprendre, par la force ou par le ralliement, la plan&egrave;te &Eacute;pine et la plan&egrave;te Terra XI. &Agrave; la signature, je rends, dans les vingt-quatre heures, toutes les plan&egrave;tes conquises durant les premiers jours du conflit. Cinq &agrave; ce jour. Je stoppe toutes mes op&eacute;rations militaires. Et je n&eacute;gocie avec le commandant Guy de Kestac.</div><div class="post_line">L&#039;hologramme d&#039;Alisa se reforma. L&#039;Arm&eacute;e Rouge assurerait l&#039;interposition : elle reprendrait les mondes conquis &agrave; de Kestac, &agrave; l&#039;exception des plan&egrave;tes litigieuses. Puis Olhor&igrave;n proposa un statu quo temporaire, avec cette fa&ccedil;on qu&#039;elle avait de ne parler qu&#039;une fois.</div><div class="post_line">&mdash; La proposition de la commandante Olhor&igrave;n, appuy&eacute;e par la premi&egrave;re conf&eacute;d&eacute;r&eacute;e, me convient, dit Hamilton. C&#039;est exactement ce que je demande depuis le d&eacute;but. Je suis pour. Je stoppe mes attaques &agrave; partir de maintenant.</div><div class="post_line">Elle ne cacha pas ce que cela lui co&ucirc;tait. Elle avait des assauts en cours, des invasions en route, des flottes qui arrivaient sur zone. En acceptant la tr&ecirc;ve, elle risquait de voir ses kamikazes d&eacute;truits &agrave; l&#039;arriv&eacute;e.</div><div class="post_line">&mdash; C&#039;est un risque. On le prend pour la paix.</div><div class="post_line">Olhor&igrave;n lui conseilla de faire sauter ses troupes de point de contr&ocirc;le en point de contr&ocirc;le, afin d&#039;&eacute;viter les ordres r&eacute;siduels de de Kestac.</div><div class="post_line">Dans la salle de son quartier g&eacute;n&eacute;ral, loin des gradins et de leur marbre, une table holographique &eacute;talait les flottes en lueurs rouges. Ses g&eacute;n&eacute;raux attendaient l&#039;ordre d&#039;attaquer. Elle avait perdu cinquante mille kamikazes, stationn&eacute;s chez de Kestac quand il avait ouvert les hostilit&eacute;s, et elle en retenait &agrave; peu pr&egrave;s autant qui arrivaient. Les cartes r&eacute;clamaient des repr&eacute;sailles. Elle &eacute;crivit &agrave; l&#039;assembl&eacute;e :</div><div class="post_line">&mdash; Aucun autre ordre ne sera donn&eacute; dans les quarante-huit heures, malgr&eacute; les r&eacute;criminations de mes g&eacute;n&eacute;raux. Vous comprendrez que cela irrite un peu mes &eacute;toil&eacute;s.</div><div class="post_line"></div><div class="post_line">Le lendemain, de Kestac accepta. Sa derni&egrave;re attaque s&#039;ach&egrave;verait &agrave; vingt heures quinze. Olhor&igrave;n s&#039;inclina devant l&#039;un puis l&#039;autre : &laquo; Un grand merci &agrave; vous deux. Puissiez-vous trouver un terrain d&#039;entente. &raquo; Puis son hologramme s&#039;&eacute;teignit.</div><div class="post_line">Hamilton remercia de Kestac d&#039;avoir jou&eacute; la carte de la diplomatie. Et demanda &agrave; Alisa de lui remettre les deux plan&egrave;tes, Terra XI et Terra XIV, que de Kestac tenait, pour que la n&eacute;gociation puisse s&#039;ouvrir sereinement.</div><div class="post_line">La guerre ne se gagna pas. Elle ne se perdit pas non plus. Elle s&#039;arr&ecirc;ta, ce qui, dans cette salle, comptait comme un exploit.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />20/10/1026 ETU 01:03<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal319748')">Votez&nbsp;!</a> <a href="javascript:warnpost(319748)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319748" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319748%26e_mode%3Dplus%26c_choice%3D1', 544, 464)"><img src="/images/plus2.png" alt="chronique passionante" /></a><br />conteur formidable : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319748%26e_mode%3Dplus%26c_choice%3D2', 544, 464)"><img src="/images/plus3.png" alt="conteur formidable" /></a><br />humour décapant : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319748%26e_mode%3Dplus%26c_choice%3D3', 544, 464)"><img src="/images/plus1.png" alt="humour décapant" /></a></td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319748',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">X. Le secteur qu&#039;on venait de d&eacute;couvrir</div><div class="post_line">Tandis que les flottes de de Kestac et d&#039;Hamilton se figeaient sur leurs positions, une autre nouvelle montait de l&#039;assembl&eacute;e : on venait de d&eacute;couvrir un secteur vierge, le XXVIII. Le roi Harald Temp&ecirc;te fit lire un communiqu&eacute; d&#039;une gravit&eacute; d&#039;oraison : cette d&eacute;couverte pouvait faire prendre &agrave; Utopie le chemin de la paix et de la maturit&eacute;, ou embraser la galaxie. Sa flotte, sous les ordres de l&#039;amiral Lothar d&#039;Ocre-Couchant, partait en reconnaissance. L&#039;Egir, qui parlait toujours &agrave; la premi&egrave;re personne du pluriel, salua l&#039;initiative, puis douta qu&#039;une pr&eacute;sence hors du syst&egrave;me capitale soit n&eacute;cessaire pour la d&eacute;fendre. Alisa annon&ccedil;a que la Glorieuse Armada partait aussi, sous un hymne que personne ne lui avait demand&eacute;. Le Culte, lui, &eacute;tait d&eacute;j&agrave; sur place.</div><div class="post_line">Sur les cartes de l&#039;h&eacute;micycle, un nouveau pan de l&#039;espace s&#039;alluma, un grand rectangle de nuit encore sans nom, et les commandants le regard&egrave;rent comme on regarde un g&acirc;teau qu&#039;on vient de poser sur la table.</div><div class="post_line">Le soir du 25, Hamilton reparut. Elle apparaissait, d&#039;apr&egrave;s ceux qui la regardaient, avec un petit sourire en coin.</div><div class="post_line">&mdash; Commandants, commandantes. Je ne sais pas pourquoi, mais j&#039;ai eu envie de pr&eacute;ciser un point. Mes kamikazes sont aussi en route. Ils risquent de prendre certaines plan&egrave;tes avant certaines forces d&#039;invasion.</div><div class="post_line">On rit, cette fois sans m&eacute;chancet&eacute;. Olhor&igrave;n confirma que sa navette partait, Oswald Cobblepot pr&eacute;vint que ce secteur n&#039;apparaissait pas sur ses &laquo; puissants radars &raquo;, et Le Culte, arriv&eacute; le premier, annon&ccedil;a qu&#039;il &eacute;tait occup&eacute; par des brigands. Gabryelle, toujours aussi pr&eacute;sente, tint &agrave; ce que son amiral parte avec les autres. Le 29 juillet, l&#039;amiral Lothar annon&ccedil;a que, dans les dix syst&egrave;mes o&ugrave; sa flotte &eacute;tait entr&eacute;e, toutes les plan&egrave;tes non glaci&egrave;res, &agrave; trois exceptions pr&egrave;s, avaient &eacute;t&eacute; conquises.</div><div class="post_line">Quinze jours plus t&ocirc;t, elle aurait d&eacute;fendu ce droit avec des horaires et des images de lance-pierre. Ce soir-l&agrave;, elle le r&eacute;sumait en une phrase et en un sourire. On eut la sensation, sans pouvoir la nommer, que la salle lui appartenait un peu plus.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />24/10/1026 ETU 16:40<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal319754')">Votez&nbsp;!</a> <a href="javascript:warnpost(319754)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319754" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319754%26e_mode%3Dplus%26c_choice%3D1', 544, 464)"><img src="/images/plus2.png" alt="chronique passionante" /></a><br />conteur formidable : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319754%26e_mode%3Dplus%26c_choice%3D2', 544, 464)"><img src="/images/plus3.png" alt="conteur formidable" /></a><br />humour décapant : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319754%26e_mode%3Dplus%26c_choice%3D3', 544, 464)"><img src="/images/plus1.png" alt="humour décapant" /></a></td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319754',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>X. L&#039;&eacute;t&eacute; de la patience</strong></div><div class="post_line"></div><div class="post_line">L&#039;&eacute;t&eacute; s&#039;installa. Elle parlait moins, mais ce qu&#039;elle disait se retenait. D&eacute;but ao&ucirc;t, Olhor&igrave;n distribua des plan&egrave;tes, et on lui en proposa quatre.</div><div class="post_line">Dans le secteur 7, la S&oelig;ur Marie Gertrude se posait la question de l&#039;ouverture de son secteur, et l&#039;assembl&eacute;e en fit un feuilleton. Du 6 au 13 ao&ucirc;t, cela donna un long &eacute;change, dans un patois que seule la S&oelig;ur parlait, &eacute;maill&eacute; de &laquo; m&#039;cocotte &raquo; et de coups de bec. Ouxor, qui arbitrait tout ce qui pouvait &ecirc;tre arbitr&eacute;, lui r&eacute;pondit qu&#039;un jour il faudrait bien ouvrir. Elyos l&#039;accusa de tyrannie ; Lyssa Apollonia la d&eacute;fendit ; la S&oelig;ur, d&#039;un ton sec, fit remarquer &agrave; Elyos qu&#039;il venait de la mettre dans une position impossible en disant devant tout le monde qu&#039;elle voulait le raser. Gabryelle, entre deux messages, apparut en holo au milieu des p&acirc;querettes de Vilhelmina, une rose rouge entre les dents, et la salle apprit &agrave; ne plus s&#039;&eacute;tonner de rien.</div><div class="post_line"></div><div class="post_line">&Agrave; la mi-ao&ucirc;t, Gabryelle lan&ccedil;a un sondage sur la l&eacute;gitimit&eacute; du gouvernement : Le Roi est mort, vive le Roi. On la vit, derri&egrave;re un pupitre, un tableau noir et des craies de toutes les couleurs, en institutrice un peu trop sentimentale d&#039;une classe de commandants. Ynys, de la Zerleg Aral, lui r&eacute;pondit que ce n&#039;&eacute;taient pas les mannes redistributives qui motivaient son peuple. Une repr&eacute;sentante des Mercenaires Wolf se leva et ne dit que deux phrases, l&#039;une dans sa langue, l&#039;autre en langue commune : vivre le jour le jour. Vera, l&#039;andro&iuml;de, r&eacute;pondit &agrave; Ynys que la libert&eacute;, dans l&#039;acception de sa nation, n&#039;&eacute;tait pas celle-l&agrave;. Le 16, Gabryelle se pr&eacute;senta encha&icirc;n&eacute;e &agrave; son pupitre, et Mouzone lui fit remarquer, le lendemain, qu&#039;on n&#039;allait nulle part avec des menottes qui l&#039;attachaient &agrave; son pupitre. Elle sortit alors une petite cl&eacute; et retira ses cha&icirc;nes. Elle avoua que ses discours n&#039;avaient convaincu qu&#039;elle-m&ecirc;me.</div><div class="post_line"></div><div class="post_line">Le 18 ao&ucirc;t, &agrave; treize heures quarante-huit, l&#039;hologramme d&#039;Iria apparut au milieu de ce th&eacute;&acirc;tre. Elle avait le teint hal&eacute; et les traits d&eacute;tendus ; elle semblait en pleine forme.</div><div class="post_line">&mdash; Salutations, commandantes, commandants. D&eacute;sol&eacute;e de n&#039;avoir pas r&eacute;pondu plus t&ocirc;t. J&#039;&eacute;tais en exploration dans un archipel d&#039;&icirc;les &laquo; Corsican &raquo;. Mes scientifiques m&#039;ont expliqu&eacute; que les communications y &eacute;taient en 3G.</div><div class="post_line">Elle se d&eacute;clara partisane, et non opposante, de Harald Temp&ecirc;te : sa maison, issue du secteur 3, l&#039;avait aid&eacute;e financi&egrave;rement, et son assembl&eacute;e &eacute;tait non interventionniste. Danae, depuis un gradin, rappela que le roi n&#039;&eacute;tait pas mort et qu&#039;il n&#039;y avait pas d&#039;&eacute;lection pr&eacute;vue. Le 20, Olhor&igrave;n fit son entr&eacute;e, v&ecirc;tue d&#039;une longue robe rouge et d&#039;escarpins assortis, une porte flottant &agrave; ses c&ocirc;t&eacute;s et semblant la suivre dans ses d&eacute;placements, ce qui ne parut &eacute;tonner personne. Ce serait, pour la suite, le d&eacute;tail qui la rendait reconnaissable de loin : elle changeait de tenue &agrave; chaque apparition, et ne changeait jamais de mani&egrave;re.</div><div class="post_line"></div><div class="post_line">Le 22 ao&ucirc;t, Hamilton signa les Principes de Cohabitation Galactique, lan&ccedil;a vingt sondes, et raconta, &agrave; la fois pour l&#039;assembl&eacute;e et pour elle-m&ecirc;me, qu&#039;elle avait un jour envoy&eacute; cinq cent mille kamikazes &agrave; l&#039;ouverture d&#039;un secteur, avant que &laquo; le num&eacute;ro 7 &raquo; ne l&#039;interpelle et que l&#039;ordre ne soit jamais ex&eacute;cut&eacute;. La morale, dit-elle : ne pas lancer d&#039;invasion avant un bon caf&eacute;. Ouxor, qui avait fait circuler la liste des signataires, ne put s&#039;emp&ecirc;cher de sourire.</div><div class="post_line"></div><div class="post_line">Le 28 ao&ucirc;t, Ramius Marko prit la parole. Il habitait paisiblement le syst&egrave;me 17 du secteur 3, dont il poss&eacute;dait tous les mondes, et des vaisseaux de la premi&egrave;re conf&eacute;d&eacute;r&eacute;e stationnaient au-dessus de chez lui. Alisa r&eacute;pondit qu&#039;ils n&#039;&eacute;taient pour le moment qu&#039;en PC 1. Il annon&ccedil;a avoir d&eacute;truit mille corvettes laser et cent vaisseaux diplomatiques du Culte, l&#039;un de ses conf&eacute;d&eacute;r&eacute;s. Elle l&#039;appelait Marko. Lui l&#039;appelait &laquo; Draculanova &raquo;. Le 30 ao&ucirc;t, il annon&ccedil;a qu&#039;une de ses plan&egrave;tes venait de subir une invasion &eacute;clair ; Alisa claqua la langue d&#039;agacement : un r&eacute;cent bombardement avait fait, &eacute;crivit-elle, plus de neuf cent mille victimes, et la surexploitation plan&eacute;taire s&#039;ajoutait &agrave; la p&eacute;nibilit&eacute; diplomatique. Ce soir-l&agrave;, &agrave; vingt-deux heures seize, l&#039;hologramme d&#039;Alisa prit l&#039;apparence d&#039;un homme de haute stature, enferm&eacute; dans un long manteau militaire vert.</div><div class="post_line">Hamilton s&#039;&eacute;tait mat&eacute;rialis&eacute;e dans la salle le matin m&ecirc;me, vers midi, avec la copie d&#039;un holocom qu&#039;elle avait d&eacute;j&agrave; affich&eacute; dans l&#039;assembl&eacute;e du secteur 3, en r&eacute;ponse &agrave; un sondage de Ramius. Elle vota non &agrave; l&#039;ing&eacute;rence dans la gestion des ressources d&#039;une plan&egrave;te.</div><div class="post_line">&mdash; Je ne le soutiens pas. Mais je d&eacute;fends la libert&eacute;. Quand il n&#039;aura plus rien, il dispara&icirc;tra.</div><div class="post_line">Elle accusa une pens&eacute;e unique, qui visait l&#039;apotium. Alisa nia. Elles ne se virent pas tout de suite, mais chacune savait d&eacute;sormais o&ugrave; l&#039;autre se tenait.</div><div class="post_line"></div><div class="post_line"><strong>XI. La capitale</strong></div><div class="post_line"></div><div class="post_line">Le 1er septembre, &agrave; deux heures vingt du matin, Ultima annon&ccedil;a que la capitale galactique avait chang&eacute; de mains : la fin du pr&eacute;c&eacute;dent r&eacute;gime avait &eacute;t&eacute; &laquo; act&eacute;e dans le sang &raquo;, celui des hommes du roi Harald qui l&#039;avaient d&eacute;fendue. Sous la verri&egrave;re, la n&eacute;buleuse continuait de d&eacute;river comme si rien n&#039;&eacute;tait arriv&eacute;. Paullus Beneradane se d&eacute;clara pr&ecirc;t &agrave; prendre des responsabilit&eacute;s. Le si&egrave;ge de la Technocratie Valpasseanne, au quatri&egrave;me rang nord, &eacute;tait vide : l&#039;homme qui l&#039;occupait si peu de semaines plus t&ocirc;t parlait d&eacute;sormais depuis la tribune.</div><div class="post_line">La salle explosa en dix voix. Ramius Marko cria &agrave; la dictature : vingt-quatre plan&egrave;tes venaient d&#039;&ecirc;tre prises par Dragunova. Korda, le scorvien des hackers du secteur 7, demanda ce qu&#039;on pouvait appeler un r&eacute;gime qui prenait la rel&egrave;ve de la m&ecirc;me mani&egrave;re. Ouxor r&eacute;clama des &eacute;lections libres. Oswald Cobblepot se pr&eacute;senta, comme il le faisait toujours, comme &laquo; le diabolique commandant Cobblepot, comme vous le savez si bien &raquo;. Damcl&egrave;s demanda humblement la parole : il n&#039;&eacute;tait commandant de son peuple que depuis sept cycles, et il avait du mal &agrave; suivre. Mouzone fit remarquer, un peu plus loin, que la S&oelig;ur Marie Gertrude avait d&eacute;sormais le statut de paria.</div><div class="post_line"></div><div class="post_line">Le 2 septembre, Gabryelle fit afficher sur tous les &eacute;crans, en lettres g&eacute;antes : &laquo; ASSEZ ! STOP ! &raquo; Anna s&#039;appr&ecirc;tait &agrave; passer ses plan&egrave;tes en terre br&ucirc;l&eacute;e. Gabryelle la suppliait. Danae vint dire d&#039;un air chagrin&eacute; qu&#039;elle habitait le secteur 2, qu&#039;Anna &eacute;tait son amie, et que tuer des plan&egrave;tes, &ccedil;a tuait plein de gens. Korda r&eacute;clama un cessez-le-feu. Ramius Marko criait que tous &eacute;taient d&eacute;j&agrave; morts.</div><div class="post_line">Adrastee, qu&#039;on n&#039;avait pas entendue depuis longtemps, lui r&eacute;pondit, de sa voix sans &acirc;ge : &laquo; Vous avez raison. Nous sommes tous morts. &raquo;</div><div class="post_line">Hamilton n&#039;&eacute;tait pas l&agrave;. Elle observait.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />25/10/1026 ETU 01:38<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal319755')">Votez&nbsp;!</a> <a href="javascript:warnpost(319755)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319755" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319755%26e_mode%3Dplus%26c_choice%3D1', 544, 464)"><img src="/images/plus2.png" alt="chronique passionante" /></a><br />conteur formidable : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319755%26e_mode%3Dplus%26c_choice%3D2', 544, 464)"><img src="/images/plus3.png" alt="conteur formidable" /></a><br />humour décapant : 0 <a href="javascript:popup('%2Fassemblee%2Fvote%3F%26c_post_id%3D319755%26e_mode%3Dplus%26c_choice%3D3', 544, 464)"><img src="/images/plus1.png" alt="humour décapant" /></a></td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319755',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>XII. Un baron, une s&oelig;ur, une reine</strong></div><div class="post_line"></div><div class="post_line">Le 5 septembre, Paullus ouvrit une salle de d&eacute;p&ocirc;t pour les candidatures au Premier Parlement. Il ne s&#039;agissait pas de dire &laquo; j&#039;en suis &raquo;, mais de faire une vraie pr&eacute;sentation, avec un nom et un projet.</div><div class="post_line">Hamilton d&eacute;posa la sienne le 6, au soir. Elle d&eacute;non&ccedil;a le gouvernement autoproclam&eacute;, et Ultima, qui avait pris la capitale galactique de force. En trois mots, elle r&eacute;suma Utopie : Manipulation, Asservissement, Copinage. Elle signa en bas, pour la premi&egrave;re fois : Iria Hamilton, 1&egrave;re f&eacute;d&eacute;r&eacute;e. Elle se pr&eacute;senta en trois phrases, comme on pose trois cartouches : elle tenait parole ; elle ne supportait pas l&#039;injustice ; son peuple se battait depuis des g&eacute;n&eacute;rations sous la banni&egrave;re Libert&eacute;, &Eacute;galit&eacute;, Fraternit&eacute;.</div><div class="post_line"></div><div class="post_line">Le texte s&#039;afficha en lettres nettes au-dessus du marbre, et ceux qui la lisaient du fond de la salle durent plisser les yeux. On entendit, tout au loin, un archiviste de bronze caler sa tablette avec un petit choc de m&eacute;tal. Elle avait choisi ses mots comme elle choisissait ses munitions : peu, et justes.</div><div class="post_line"></div><div class="post_line">La S&oelig;ur Marie Gertrude, le lendemain, refusa de se pr&eacute;senter &agrave; &laquo; ce petit th&eacute;&acirc;tre de guignol &raquo;. Beurk annon&ccedil;a qu&#039;il venait parce qu&#039;il fallait des &laquo; boyz &raquo; et que personne d&#039;autre que lui ne savait se faire respecter chez les orks. Le 8, Olhor&igrave;n s&#039;encadra dans la porte, la longue robe rouge troqu&eacute;e pour une noire, aux reflets changeants, adoss&eacute;e au chambranle avec un fin sourire.</div><div class="post_line"></div><div class="post_line">Le 15 septembre, le secteur VIII s&#039;ouvrit. Le baron Barclay Claidheamh, du clan du m&ecirc;me nom, natif de ce secteur, posta sa charte sectorielle, dont le premier article visait les extra-sectoriels : l&#039;ouverture du secteur ne voulait pas dire que tout le monde pouvait y faire n&#039;importe quoi. La S&oelig;ur Marie Gertrude lui r&eacute;pondit de sa voix de vieille radoteuse, en lui disant d&#039;entrer dans le vrai Nudutru. Gabryelle ajouta : &laquo; Et moi Gabryelle&hellip; Enchant&eacute;e ! &raquo;</div><div class="post_line"></div><div class="post_line">Le 17, Hamilton se pr&eacute;senta &agrave; son tour, bri&egrave;vement :</div><div class="post_line">&mdash; Salutations, baron Barclay Claidheamh. Bienvenue parmi nous. J&#039;ai envoy&eacute; quelques sondes dans votre secteur. J&#039;ai pris note de votre r&egrave;glement int&eacute;rieur. Si vous n&#039;avez pas eu le temps de consulter les archives : premi&egrave;re f&eacute;d&eacute;r&eacute;e Iria Hamilton, dirigeante d&#039;un peuple &eacute;tabli &agrave; l&#039;origine en secteur 3. Pour l&#039;instant, spectatrice de l&#039;agitation galactique. Je vous souhaite de bien prot&eacute;ger votre secteur des pr&eacute;dateurs qui rodent.</div><div class="post_line"></div><div class="post_line">Le baron ne savait pas encore qu&#039;il venait de rencontrer son avocate. Elle non plus.</div><div class="post_line">Ce soir-l&agrave;, le nouveau secteur sentait encore la peinture fra&icirc;che et le m&eacute;tal neuf. Dans les loges, quelqu&#039;un fit tourner un verre de liqueur ambr&eacute;e, qui jeta un instant des paillettes sur le cristal noir. Personne ne songea &agrave; relever la phrase. Elle reviendrait.</div><div class="post_line">Le 19 septembre, Gabryelle pr&eacute;senta sa d&eacute;mission du gouvernement, celui-l&agrave; m&ecirc;me de Paullus, dont elle avait murmur&eacute; deux mois plus t&ocirc;t qu&#039;il d&eacute;gageait un je-ne-sais-quoi d&#039;&eacute;trange. Elle brandit un post-it sur lequel &eacute;taient &eacute;crites les attributions de Paullus. Olhor&igrave;n glissa depuis son si&egrave;ge : &laquo; Et pour Gaby : hip hip hip&hellip; &raquo; Quand Gabryelle revint, un peu plus tard, elle ajouta, attrist&eacute;e : &laquo; Et zut&hellip; C&#039;&eacute;tait trop beau. &raquo; Ouxor sortit le pop-corn.</div><div class="post_line"></div><div class="post_line">Le 20, elle annon&ccedil;a que ses flottes avaient pris possession de deux cent vingt mondes en secteur 26, puis trois cent soixante, puis le secteur entier, pour les rendre. Elle voulait qu&#039;on retienne un nom : Olhor&igrave;n. Olhor&igrave;n, qui s&#039;&eacute;tait gliss&eacute;e discr&egrave;tement dans la salle pour venir en personne, avan&ccedil;a au centre, d&#039;un air d&eacute;cid&eacute;.</div><div class="post_line"></div><div class="post_line">Le nom courut de gradin en gradin, murmur&eacute;, r&eacute;p&eacute;t&eacute;, jusqu&#039;&agrave; faire vibrer l&#039;air sous la coupole comme un fr&eacute;missement de cordes. Sous la verri&egrave;re, une rafale de lumi&egrave;re rose traversa la salle, et pendant une seconde on eut l&#039;impression que la nuit tout enti&egrave;re avait tourn&eacute; la t&ecirc;te.</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17899&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17899" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17899" name="d_reply_17899" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17899');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17899'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chroniques d&#039;une Immortelle</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

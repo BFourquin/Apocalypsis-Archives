@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16047 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Melancholia</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Melancholia</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=G.+Host">Cdt. G. Host</a><br>Prestige de chroniqueur&nbsp;: 42<br /><br /><img src="/avatars/11382.jpg" style="width:112px;height:128px" alt="Avatar" /><br />08/11/1021 ETU 02:15</td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal289541')">Détails</a> <a href="javascript:warnpost(289541)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289541" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 6<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289541',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#005DC2"><em>&quot;J&#039;appr&eacute;cierai aussi savoir pourquoi je n&#039;ai aucune de vos nouvelles depuis plus de 10 cycles et pourquoi vous ne me r&eacute;pondez pas.&quot;</em></font></div></div><div class="post_line"><div align="justify">Un autre.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">&quot;<em>Vous avez ralli&eacute; une plan&egrave;te m&#039;appartenant</em></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><em>Vous dites &ecirc;tes d&eacute;bord&eacute;e et prendre le temps plus tard de regarder vos ordres crois&eacute;s</em></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><em>Nous savons tous les 2 que vous jouez la montre et que vous &ecirc;tes de mauvaise foi</em>&quot;</font></div></div><div class="post_line"><div align="justify">Encore un autre.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>&quot;Sachez ch&egrave;re commandante que vous relancer de mani&egrave;re r&eacute;guli&egrave;re n&rsquo;est pas un plaisir et qui si vous ne me r&eacute;pondez pzs je serai oblig&eacute; de reprendre mes plan&egrave;tes par la force.&quot;</em></div></div><div class="post_line"><div align="justify">Encore.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#FFC0CB">&quot;Pooooooooooooooooooooooot pooooooooot pot pooooooooooooooooooooooooooooooooooooooot ?&quot;</font></em></div></div><div class="post_line"><div align="justify"><em>Et encore.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><strong><font color="#FFA500">&quot; J&#039;ai vu votre d&eacute;claration en Assembl&eacute;e Galactique, et je... Je trouve dommage que... Oh et puis merde ! Comment vous le dire tout en gardant la forme diplomatique, alors que j&#039;ai envie de vous secouer comme dans une bagarre de chiffonnier !&quot;</font></strong></em></div></div><div class="post_line"><div align="justify">Et encore.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#1E92F7"><font color="#9DF9FF">&quot;Je n&#039;ai d&#039;ailleurs re&ccedil;u aucun nouveau virement pour notre accord.&quot;</font></font></em></div></div><div class="post_line"><div align="justify">...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">**********************************</div></div><div class="post_line"><div align="center"><font size="4"><a href="https://youtu.be/1JEYnjKxf4A" target="_blank" rel="nofollow">♬♬♬</a></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle avait arr&ecirc;t&eacute; de compter les jours. Sa chambre &eacute;tait plong&eacute;e dans l&#039;obscurit&eacute; la plus totale et personne n&#039;avait l&#039;autorisation de la d&eacute;ranger &agrave; l&#039;exception du service dinatoire qui souvent r&eacute;cup&eacute;rait un plat &agrave; peine entam&eacute;. La place propre et nette avait laiss&eacute; place &agrave; un chaos de v&ecirc;tements, de rapports jet&eacute;s n&eacute;gligemment au sol, formant peu a peu un tapis dont l&#039;historique n&#039;avait pour elle plus aucune importance. Sa peau sentait la sueur, et des plaques rouges &eacute;taient apparues sur son visage, signes d&#039;une n&eacute;gligence d&#039;hygi&egrave;ne si prononc&eacute;e qu&#039;elle avait des marques de griffures sur sa peau &agrave; force de d&eacute;mangeaisons cutan&eacute;es. Elle bougeait, trainait son spectre de corps du lit &agrave; la fen&ecirc;tre, de la fen&ecirc;tre au lavabo pour boire et contempler sur son visage l&#039;hideuse maladie qui s&rsquo;&eacute;tait empar&eacute;e de son &ecirc;tre, du lavabo au bureau ou l&#039;amoncellement des COM-X d&#039;autres dirigeant demandaient &agrave; ce qu&#039;elle <u>rende compte de ses actes.</u></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><u><strong>Rendre compte de ses actes. </strong></u></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Une hypocrisie sordide qui lui donnait envie d&#039;hurler et de prendre le premier objet sous la main pour l&rsquo;&eacute;clater contre un mur.</em></div></div><div class="post_line"><div align="justify"><em><font color="#FFC0CB">&quot;Des m&eacute;moires courtes, qui ne veulent se souvenir que de ce qu&#039;ils veulent.&quot;</font> </em></div></div><div class="post_line"><div align="justify"><em>Des &ecirc;tres apeur&eacute;s, inquiets, qui avaient vu d&#039;elle et de son peuple ce qu&#039;elle n&#039;avait jamais voulu montrer.</em></div></div><div class="post_line"><div align="justify"><em>Les 23% CSA, le honteux secret de l&#039;idyllique Sanatoriom, le monstre cach&eacute; sous le lit de l&#039;utopie m&eacute;dicale de son mentor.</em></div></div><div class="post_line"><div align="justify"></div><div class="post_line"><em>Apr&egrave;s cela, que dire, que faire ? Que pr&eacute;senter alors que la violence avait &eacute;clat&eacute; en tout endroit, tout lieu et qu&#039;elle m&ecirc;me avait r&eacute;pandu la peur au nom d&#039;un sacro-saint id&eacute;al sup&eacute;rieur, d&#039;un bien commun dont elle ne voyait m&ecirc;me pas la surface sur cet &eacute;chiquier du mal ?</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle avait tent&eacute; de trouver refuge dans ses souvenirs, mais ils n&#039;avait cette fois ci pas &eacute;t&eacute; du premier secours.</em><em> Les yeux clos, perdue dans une apathie tenace, elle observait Sanatoriom de sa fen&ecirc;tre : le soleil &eacute;tait haut, et brillait sur des jardins magnifiquement entretenus. Entretenus avec le sang des patients confin&eacute;s dans les hangars souterrains, portant le stigmate d&#039;un bracelet CSA brillant constamment d&#039;une lueur rouge. Les 23% CSA : ces Patients qui n&#039;avaient pu &ecirc;tre ins&eacute;r&eacute;s dans la soci&eacute;t&eacute;, qui avaient totalement &eacute;chapp&eacute; au traitement parfait du Docteur Marley. Des fous dangereux, des violeurs, des parano&iuml;aques lourds, des sociopathes aggrav&eacute;s, des enrag&eacute;s h&eacute;matophages atteints du Syndrome de Renfield. Ce que la Nature avait fait de pire pour la Culture, entrepos&eacute;s, parqu&eacute;s, isol&eacute;s dans des stockage enfouis ou ne r&eacute;gnaient que violence et folie.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle contempla son propre bracelet, retir&eacute; depuis des cycles afin de ne pas alerter le programme de son &eacute;tat. L&#039;avantage d&#039;avoir &eacute;t&eacute; dans les arcanes du projet : elle b&eacute;n&eacute;ficiait d&#039;un kill code lui permettant de stopper le tracking de son indice CSA. Un sourire d&eacute;gout&eacute; lui vint quand elle se rappela qu&#039;au moment d&#039;enlever son bracelet, celui ci indiquait...</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><u><font color="#FF4136"><strong><em>&quot;Nouveau message COM-X en provenance du peuple d&#039;Itoria.&quot;</em></strong></font></u></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Genola se pr&eacute;cipita vers le bureau, et lan&ccedil;a le message holographique. Non, ce n&rsquo;&eacute;tait pas elle. Un nabot &eacute;trangement v&ecirc;tu venait d&eacute;blat&eacute;rer des choses qui pour elle n&#039;avaient plus d&#039;importance. Elle quitta le bureau, laissant le message tourner dans le vide. Sa col&egrave;re envers <u>elle</u> n&rsquo;&eacute;tait pas retomb&eacute;e. Elle se trouvait dans cet entre-deux confus ou elle aurait tout donn&eacute; pour avoir de ses nouvelles, mais ou la simple id&eacute;e de penser &agrave; son visage lui donnait des envies de meurtres. Elle ne s&rsquo;&eacute;tait pas encore rendu compte de la v&eacute;ritable signification de ses sentiments. Prise d&#039;une col&egrave;re aussi froide que le bleu qui se refl&eacute;tait dans son regard semi-&eacute;teint, elle envoya une r&eacute;ponse lapidaire qui ne lui apporta aucun r&eacute;confort.</em></div></div><div class="post_line"><div align="justify"><em>Vous en conviendrez : la dessus, elle avait encore pas mal &agrave; apprendre.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le message du nabot tournait encore, et Genola luttait contre ses sentiments contraires quand soudain :</em></div></div><div class="post_line"><div align="justify"><font color="#72FF84"><em>&quot;Essayez de ne pas trop en vouloir &agrave; la petite... Elle vous appr&eacute;cie beaucoup.&quot;</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Qui avait demand&eacute; &agrave; ce qu&#039;elle soit </em><strong><font color="#FFA500">&quot;secou&eacute;e comme dans une bagarre de chiffonnier !&quot; </font></strong><em>?</em></div></div><div class="post_line"><div align="justify"><em>Ne quittez pas, le Destin prend en compte votre consid&eacute;ration.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>L&rsquo;&eacute;lectrochoc de ce message fut tel qu&#039;un frisson de surprise vint saisir tout le corps de la Directrice Host.</em></div></div><div class="post_line"><div align="justify"><em>Sans r&eacute;fl&eacute;chir, son corps la porta vers le tableau COM-X ou le nabot continuait de d&eacute;blat&eacute;rer ses conneries. Elle repassa le message en arri&egrave;re jusqu&#039;&agrave; :</em></div></div><div class="post_line"><div align="justify"><em><font color="#72FF84">&quot;Elle vous appr&eacute;cie beaucoup.&quot;</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Rire d&eacute;ment ou satisfaction trop enti&egrave;re pour qu&#039;elle soit contenue, Genola se mit &agrave; sourire, pour aussit&ocirc;t &eacute;clater en sanglots. Le contraste laissait sur son visage une grimace affreuse, mais elle n&#039;en avait pour l&#039;heure plus rien &agrave; faire.</em></div></div><div class="post_line"><div align="justify"><em><font color="#72FF84">&quot;Elle vous appr&eacute;cie beaucoup.&quot;</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle relan&ccedil;a le passage une dizaine de fois avant de se remettre &agrave; penser normalement.</em><em> Puis, prise d&#039;un acc&egrave;s incontr&ocirc;l&eacute; de rangement, elle chercha un objet dans le fatras des rapports amoncel&eacute;s, des v&ecirc;tements n&eacute;glig&eacute;s, des objets &quot;malencontreusement&quot; bris&eacute;s au sol.</em></div></div><div class="post_line"><div align="justify"><font color="#FFC0CB">&quot;Je dois les </font><font color="#FFC0CB">retrouver, il faut que je les retrouve ! </font><font color="#FFC0CB">MUSZĘ JE ZNALEŹĆ !&quot;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Puis apr&egrave;s avoir cr&eacute;e du chaos dans sa recherche d&#039;ordre, elle les trouva : cela faisait longtemps qu&#039;elle n&#039;avait pas jou&eacute; &agrave; ce jeu, et ceux ci &eacute;taient certainement la relique d&#039;une vie qui n&rsquo;&eacute;tait plus la sienne d&eacute;sormais, mais elle les avait gard&eacute;, par hasard, au fond d&#039;une boite ronde qui contenait d&#039;autres souvenirs de son enfance. Deux petits cubes couleur ivoire, avec sur chaque face des rang&eacute;es de points pour en d&eacute;terminer le score &agrave; chaque lancer. Elle les contempla, comme si un insidieux tr&eacute;sor se cachait dans ces d&eacute;s de nacre qui accusaient d&#039;une patine d&eacute;pos&eacute;e l&agrave; par le temps.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC0CB">&quot;Sliatdaeh, ou qui que tu soies l&agrave; haut, </font><font color="#FFC0CB">&agrave; toi de jouer</font><font color="#FFC0CB"> : 6</font><font color="#FFC0CB"> ou moins, je tombe. 7 ou plus, je vole.</font><font color="#FFC0CB">&quot;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle lan&ccedil;a les d&eacute;s, retenant son souffle &agrave; chaque rebond des petits jouets sur le sol encombr&eacute;. Le premier d&eacute; s&rsquo;arr&ecirc;ta tr&egrave;s vite, annon&ccedil;ant un 2 en rencontrant un &eacute;clat de bouteille qui trainait au sol et qu&#039;elle avait appris &agrave; esquiver de ses pieds nus au deuxi&egrave;me essai -la coupure avait &eacute;t&eacute; bonne formatrice-. Le deuxi&egrave;me quant &agrave; lui n&#039;eut pas cette chance : il roula, roula, roula, pour aller se perdre dans les rideaux de velours qui tombaient de la fen&ecirc;tre jusqu&#039;au sol empoussi&eacute;r&eacute;.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Genola s&#039;approcha doucement des rideaux, f&eacute;brile, effray&eacute;e de connaitre le r&eacute;sultat mais en m&ecirc;me temps impatience de voir ce que le Destin lui avait r&eacute;serv&eacute;.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>La vue du score final lui fit pousser un hurlement indescriptible.</em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16047&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16047" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16047" name="d_reply_16047" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16047');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16047'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Melancholia</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

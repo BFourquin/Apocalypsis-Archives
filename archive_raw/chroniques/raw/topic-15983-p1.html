@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15983 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Fille de Papier</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Fille de Papier</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=G.+Host">Cdt. G. Host</a><br>Prestige de chroniqueur&nbsp;: 42<br /><br /><img src="/avatars/11382.jpg" style="width:112px;height:128px" alt="Avatar" /><br />23/10/1021 ETU 05:12</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D288331', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal288326')">Détails</a> <a href="javascript:warnpost(288326)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal288326" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=288326',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong><em><font size="4"><font size="5"><a href="https://youtu.be/h3aij4012T8" target="_blank" rel="nofollow">♬</a></font></font></em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em><font color="#FFA339">Elle se trouvait dans une for&ecirc;t aux grands grands arbres. Assise sur une pierre plate qui lui servait de tr&ocirc;ne involontaire, elle s&rsquo;&eacute;tait assoupie, fatigu&eacute;e des &eacute;v&egrave;nements r&eacute;cents qui l&#039;avaient bien mise &agrave; mal. Ses yeux &eacute;taient des boutons bleus, comme ceux que sa babcia cousait sur ses v&ecirc;tements. Ses l&egrave;vres de papier cr&eacute;pon, rouges comme les feuilles d&#039;automne, semblaient balbutier des sentences qui seraient &agrave; jamais perdues. La ficelle de ses cheveux blonds tombait en maints filets en cascade sur sa peau de laine maill&eacute;e tandis que sa poitrine se soulevait doucement, du souffle inspir&eacute; des dormeurs apais&eacute;s. </font></em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em><em>Un &eacute;cureuil de bois vert vint faire jouer l&#039;archet de sa curiosit&eacute; en sautillant. Sorti d&#039;une branche basse ou les noisettes s&rsquo;&eacute;taient faites rares, il trouva le sol en un bond agile puis, &eacute;tonn&eacute; de voir sise dans cette clairi&egrave;re cette</em> jeune fille de papier, il approcha une moustache joueuse pr&egrave;s de la cascade dor&eacute;e.</em></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>C&#039;est alors que l&#039;Homme Sombre fit retentir le cor de son arriv&eacute;e.</em></strong></font></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>R&eacute;veill&eacute;e en sursaut par le tonitruant appel, elle se redressa d&#039;un bond, m<em><em>ais trop tard : la for&ecirc;t avait d&eacute;j&agrave; commenc&eacute; </em>&agrave;</em> changer. </em></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>Les arbres devinrent griffus, les feuilles chang&egrave;rent de couleur et devinrent grise et s&egrave;ches, certaines tombant de leurs tr&ocirc;nes, d&eacute;mises par le danger de la venue de l&#039;Homme Sombre. L&#039;&eacute;cureuil de bois vert avait aussi entendu le cor, et le temps qu&#039;il file dans un buisson sa fourrure fantaisiste avait vir&eacute; vers un marron sale, celui des animaux boueux, des pluies d&#039;automne et des hivers incertains.</em></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>La fille de papier ne voulait pas changer, aussi prit-elle ses jambes &agrave; son cou : mais d&eacute;j&agrave; les griffus arbres se pliaient &agrave; la loi de l&#039;Homme Sombre, et refermaient leurs branches sur le passage du soleil. Elle courut, courut, et courut encore, mais elle savait une chose : Nul n&#039;&eacute;chappe &agrave; l&#039;Homme Sombre.</em></strong></font></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>Le chemin se d&eacute;roba devant elle, les pierres de sente devint d&#039;ac&eacute;r&eacute;s cailloux qui venaient meurtrir ses chevilles, accrochant ses souliers pour retarder sa fuite.</em></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>Elle sentit l&#039;ombre mena&ccedil;ante se poser sur elle, et son souffle nagu&egrave;re si paisible devint une saccade brute et paniqu&eacute;e.</em></strong></font></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>Le vent autrefois ami tomba aussi sous la coupe de l&#039;ennemi : il souffla, hurlant des choses inavouables, lui r&eacute;p&eacute;tant qu&#039;elle pouvait fuir autant qu&#039;elle le voulait, il finirait par la rattraper.</em></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>Elle voulut crier, mais il &eacute;tait trop tard : l&#039;ombre avait totalement envelopp&eacute; son corps.</em></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em><font color="#E82A1F">&quot;Geenolaa.. Geenoolaa..</font><font color="#E86E04"><font color="#E82A1F">&quot;</font></font></em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA339"><strong><em>Un cri de terreur retentit alors dans les bois quand..</em></strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>Genola ouvrit les yeux, le c&oelig;ur battant la chamade, le souffle court. La premi&egrave;re chose qu&#039;elle vit fut la tenture carmine qui couvrait le plafond de son lit. Plong&eacute;e dans les ombres celle ci donnait une couleur poisseuse pareille au sang. Elle ne l&#039;avait jamais remarqu&eacute; jusqu&#039;&agrave; maintenant, et se promit de changer cela pour des couleurs plus saines. Peut &ecirc;tre du rose, tiens, ou du violet. A voir. Tournant la t&ecirc;te pour v&eacute;rifier qu&#039;elle &eacute;tait bien seule, elle contempla l&#039;espace qui faisait sa chambre : l&#039;&eacute;l&eacute;gance du lieu supposait un certain go&ucirc;t pour les charmes d&rsquo;int&eacute;rieur, mais tout ceci se perdait dans un flou qui...</em></strong></div></div><div class="post_line"><div align="justify"><strong><em>Elle r&eacute;cup&eacute;ra ses lunettes, pos&eacute;es la sur une table de chevet. Voila qui &eacute;tait mieux.</em></strong></div></div><div class="post_line"><div align="justify"><strong><em>Personne dans la chambre, &eacute;videmment.</em></strong></div></div><div class="post_line"><div align="justify"><strong><em>Pass&eacute;e la terreur premi&egrave;re, elle tenta de calmer son c&oelig;ur qui battait la chamade encore. Elle avait l&#039;habitude, mais cette fois-ci le r&ecirc;ve &eacute;tait particuli&egrave;rement puissant, presque palpable. Presque.</em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>Genola contr&ocirc;la son bracelet CSA : 17% de d&eacute;viance. Inqui&eacute;tant, mais elle savait que l&#039;indice allait redescendre. L&#039;habitude.</em></strong></div></div><div class="post_line"><div align="justify"><strong><em>Elle se rendit compte qu&#039;elle avait terriblement soif, sa gorge lui rappelant &agrave; son bon souvenir. Trop tent&eacute;e de lutter contre ce besoin et de retourner dormir, elle prit finalement la peine de se lever. Elle souleva la lourde couette, r&eacute;v&eacute;lant son corps nu aux ombres. Ses v&ecirc;tements pli&eacute;s sur la commode lui semblaient un exercice trop compliqu&eacute; au vu de l&#039;heure tardive, aussi fit elle quelque pas dans la nuit pour aller jusqu&#039;&agrave; la salle de bain, tel un fant&ocirc;me de nymphe dans la nuit bien avanc&eacute;e.</em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>La lumi&egrave;re blafarde que projetait l&#039;ampoule de l&#039;armoire m&eacute;dicale lui donnait la p&acirc;leur d&#039;un fant&ocirc;me, les cernes de ses derni&egrave;res veill&eacute;es au Sanatoriom marquant encore lourdement sous ses paupi&egrave;res. Elle contempla son reflet nu dans le miroir, plus pour s&#039;assurer qu&#039;elle &eacute;tait bien r&eacute;veill&eacute;e que par r&eacute;elle vanit&eacute;. Prenant un verre de rin&ccedil;age, elle ouvrit le robinet pour boire son contenu d&#039;un trait. Pas suffisant, elle s&#039;en resservit un second qu&#039;elle termina tout aussi vite. Puis une chose vint capter son attention, un d&eacute;tail infime, une miette sur le tableau de sa nuit d&eacute;j&agrave; &agrave; moiti&eacute; g&acirc;ch&eacute;e par ce cauchemar r&eacute;p&eacute;t&eacute; par trop souvent. Posant la main sur son front, elle tra&ccedil;a un sillon avec son index, remonta &agrave; la base de ses cheveux, puis saisit l&#039;intrus d&#039;un rapide geste de pince &agrave; l&#039;arrach&eacute;e.</em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>Contemplant le fil blanc qu&#039;elle tenait d&eacute;sormais entre les doigts, elle pensa soudainement &agrave; sa m&egrave;re. L&#039;heure n&rsquo;&eacute;tait pas vraiment aux comparaisons, mais elle se souvint que Mama n&#039;avait jamais atteint l&#039;&acirc;ge qu&#039;elle avait f&ecirc;t&eacute; il y a peu. Un gouffre de tristesse faillit l&#039;envahir, mais elle se r&eacute;solut &agrave; l&#039;affronter, &agrave; l&#039;enfouir au fond d&#039;elle m&ecirc;me, aussi profond que tout le reste, aussi profond que..</em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em><font color="#FFC0CB">&quot;Bon Anniversaire, Genola Host,</font> dit elle a voix haute. <font color="#FFC0CB">Directrice Host, Myszka, ou qui que tu soies au fond.&quot;</font></em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>Se rappelant que la nuit n&rsquo;&eacute;tait pas encore finie, elle sautilla &agrave; pas de souris jusqu&#039;&agrave; son lit, refermant cette parenth&egrave;se nocturne. Demain elle allait changer cette tenture hideuse, continuer d&#039;&ecirc;tre Genola Host, Directrice de Sanatoriom, et surtout, elle allait assumer le fait d&#039;avoir pris de l&#039;&acirc;ge.</em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>Alors que les bras de Morph&eacute;e reprenaient leur &eacute;treinte, elle se souvint de son r&ecirc;ve-cauchemar, de l&#039;Homme Sombre, des arbres griffus et de l&rsquo;&eacute;cureuil de bois vert :</em></strong><strong><em> Sa Grand m&egrave;re lui avait racont&eacute; petite une histoire similaire, &agrave; propos d&#039;enfants perdus dans les bois et d&#039;un odieux chasseur qui se mettait &agrave; leur poursuite.</em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>Le souvenir d&#039;une &eacute;poque ou tout &eacute;tait plus simple, sans responsabilit&eacute;s, sans devoirs autres que de v&eacute;n&eacute;rer ses parents, sa Babcia, et d&rsquo;&eacute;tendre sa curiosit&eacute; infinie sur toutes les choses existantes de ce monde.</em></strong><strong><em> L&#039;&eacute;poque ou sa Grand-M&egrave;re lui avait donn&eacute; ce surnom, parce qu&#039;elle &eacute;tait toujours feuille &agrave; la main a noter les choses &eacute;tranges qui &eacute;tonnaient la si petite Genola Nielsinova.</em></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><em>Le temps ou elle &eacute;tait une simple petite &quot;<font color="#FFC0CB">Fille de Papier</font>&quot;.</em></strong></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15983&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15983" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15983" name="d_reply_15983" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15983');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15983'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Fille de Papier</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

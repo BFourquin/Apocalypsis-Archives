@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17520 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Vrac</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Vrac</p>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=17520&c_forum_page=1&c_page=2">2</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />17/01/1025 ETU 03:49</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D312913', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal312912')">Détails</a> <a href="javascript:warnpost(312912)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312912" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312912',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="left"><em>Il se trouve dans un lieu silencieux, une clairi&egrave;re solitaire, perdu dans ses pens&eacute;es, o&ugrave; l&#039;espoir semble une lointaine m&eacute;moire. C&#039;est dans cet instant que, voyant sa souffrance, un &eacute;tranger lui porte un met-sage.</div><div class="post_line"></div><div class="post_line"></em></div></div><div class="post_line"><div align="center"><strong>Le Dragon Souffrant et le C&oelig;ur pur.</strong></div></div><div class="post_line"></div><div class="post_line">Ne vois-tu pas que nos esprits sont assaillis sans tr&ecirc;ve, tandis que nos corps, eux, sont amoindris ? Ce monde d&eacute;senchant&eacute;, tel un dragon jaloux, voit sa richesse le quitter. De crainte de manquer ses tr&eacute;sors, il s&rsquo;accapare avidement tout ce qu&rsquo;il trouve ou semble briller, esp&eacute;rant que les braises qu&rsquo;il r&eacute;colte redonneront &agrave; son souffle l&rsquo;&eacute;clat d&rsquo;autrefois.</div><div class="post_line"></div><div class="post_line">Engouffrant dans son ventre la fortune de ses yeux, la masquant aux regards de tous, il observe, tristement, sa demeure s&rsquo;assombrir, tandis que sa vision le quitte.</div><div class="post_line"></div><div class="post_line">Il oublie que la port&eacute;e de ses mots et l&rsquo;immensit&eacute; de son domaine ne r&eacute;sident point dans la finitude de l&rsquo;horizon, mais dans la f&eacute;licit&eacute; de ses habitants. Roi ou empereur, lui aussi est un sujet.</div><div class="post_line"></div><div class="post_line">Sa parole jadis divine devient muette, tandis que sa lueur se perd dans l&rsquo;ombre de ses sens, et sa flamme vacille.</div><div class="post_line"></div><div class="post_line">&Agrave; celui-ci, et &agrave; la vie, dis-leur ceci :</div><div class="post_line">Ce n&rsquo;est pas ta bouche qu&rsquo;il faut soigner, mais ton c&oelig;ur qu&rsquo;il faut gu&eacute;rir.</div><div class="post_line">Conserve le tien, il t&rsquo;y aidera.</div><div class="post_line"></div><div class="post_line">Tient pour vrai, plus pragmatique cette fois : si tu peux perdre une chose, c&rsquo;est que tu la poss&egrave;des. Ne crains donc pas de voir le bonheur ou la joie s&rsquo;&eacute;clipser ; contente-toi de t&rsquo;&eacute;jouir en leur pr&eacute;sence. Et si, par fortune contraire, ils venaient &agrave; te manquer, tiens-le non pour une perte, mais pour une occasion b&eacute;nie de les reconqu&eacute;rir. H&acirc;te-toi alors de les qu&eacute;rir avec vaillance.</div><div class="post_line"></div><div class="post_line">Dans bien des cas, l&rsquo;homme de c&oelig;ur courageux trouve le chemin du bonheur.</div><div class="post_line"></div><div class="post_line"><div align="right"><em><font size="2">Le dragon est une princesse, une promisse, et nous, les plus fous des chevaliers...</font></em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />17/01/1025 ETU 07:39</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D312923', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal312921')">Détails</a> <a href="javascript:warnpost(312921)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312921" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312921',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>La mer &eacute;tait calme, un voile d&#039;obscurit&eacute; s&#039;&eacute;tendant au-del&agrave; de l&#039;horizon, o&ugrave; seules les &eacute;toiles murmuraient aux vagues. Le port de Rhode, fig&eacute; dans la lumi&egrave;re vacillante des lanternes, s&#039;effa&ccedil;ait lentement derri&egrave;re nous. Notre petit groupe, guid&eacute; par le silence de la nuit, se tenait &agrave; bord d&#039;une barque fragile, pr&ecirc;te &agrave; braver l&#039;inconnu.</em></div><div class="post_line"></div><div class="post_line"><em>Nous quittions ces contr&eacute;es du souvenir, inaccessibles &agrave; beaucoup, afin de poursuivre notre qu&ecirc;te d&rsquo;un autre &acirc;ge en direction du futur.</em></div><div class="post_line"></div><div class="post_line"><em>&Agrave; l&#039;avant, je me tenais droit, une torche dans les mains. La flamme projetait des ombres dansantes sur les visages tendus de mes compagnons. Les roches, imposantes et mena&ccedil;antes, se dessinaient &agrave; notre approche, telles des falaises gardiennes de cette cit&eacute; antique. Alors que la barque glissait entre elles, le vent soufflait faiblement, comme une respiration suspendue, un murmure discret. La brise semblait se lever des profondeurs de la mer, pr&ecirc;te &agrave; soutenir notre voyage.</em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>Voici donc le moment o&ugrave; je d&eacute;clarai mon intention, afin de franchir ce seuil.</em></div><div class="post_line"></div><div class="post_line">La vie, les po&egrave;tes en perdent la raison, les philosophes oublient ses d&eacute;sirs,</div><div class="post_line">C&#039;est un doux retrait, n&eacute;glig&eacute; dans le voile effac&eacute;</div><div class="post_line">D&#039;un amour infini, qui attend son souffle comme une mer sans rivage,</div><div class="post_line"></div><div class="post_line">D&eacute;laiss&eacute;e des sages ou r&ecirc;veurs,</div><div class="post_line">Mille promesses, peu d&rsquo;amants,</div><div class="post_line">Ignor&eacute;e de leurs pens&eacute;es,</div><div class="post_line">Ils t&rsquo;enchantent sans te comprendre,</div><div class="post_line">Ou te comprennent sans te chanter.</div><div class="post_line"></div><div class="post_line">Dans les ombres de la folie, entre les cuisses d&rsquo;une vieille &acirc;me,</div><div class="post_line">Remontant un fleuve des plus chauds,</div><div class="post_line">Mes compagnons &agrave; mon bord, naviguant sur les eaux de l&rsquo;ancien monde.</div><div class="post_line">Entre ses rives, un plaisir,</div><div class="post_line">Esp&eacute;rant de cette pr&eacute;sence appr&eacute;cier un baiser.</div><div class="post_line">Porte-t-elle un espoir ?</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />19/01/1025 ETU 11:59</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D312966', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal312954')">Détails</a> <a href="javascript:warnpost(312954)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312954" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312954',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Sous un ciel clair, le regard s&rsquo;&eacute;tend sur le champ o&ugrave; le vent fredonne doucement, les herbes dansent graciles et fines, une m&eacute;lodie &eacute;ph&eacute;m&egrave;re qui s&rsquo;&eacute;gr&egrave;ne et d&eacute;cline.</div><div class="post_line">L&#039;&oelig;il suit le chemin paisible et fluide, o&ugrave; la prairie s&rsquo;&eacute;prend, douce et limpide, tableau mouvant.</div><div class="post_line">Les sons du vent s&rsquo;unissent en harmonie, tels les cordes d&#039;une harpe ou&iuml;e, un corps jouant un chant unique, ravissant l&#039;art qui s&#039;enfuit.</div><div class="post_line"></div><div class="post_line">Le champ subtil s&rsquo;&eacute;panouit sous l&rsquo;&eacute;clat du jour, l&rsquo;horizon lui mime, &agrave; l&rsquo;unisson, toujours d&#039;un m&ecirc;me amour.</div><div class="post_line">La vision se pose, sereine et pr&eacute;cise, l&agrave; o&ugrave; la nature, calme mais fragile en rythme, sourit.</div><div class="post_line">S&rsquo;apprivoise et s&rsquo;&eacute;puise, tel un mod&egrave;le en pose d&eacute;crit en prose.&nbsp;</div><div class="post_line"></div><div class="post_line">Je dessine mes mots, les coiffe d&rsquo;un pinceau, d&eacute;fie le morose, arm&eacute; de l&#039;&eacute;crin des roses, comme des cris de rose.</div><div class="post_line">Je&nbsp;d&eacute;cide l&rsquo;effort, &eacute;cris d&eacute;cor, le sens grav&eacute; en morse.</div><div class="post_line"></div><div class="post_line">Lorsqu&#039;elle se tend offerte &agrave; l&rsquo;artiste que je suis, elle devient la m&egrave;re ouverte, am&egrave;re, houx verte des saisons &agrave; qui je d&eacute;die ces sons.</div><div class="post_line">Lieu, o&ugrave; l&rsquo;&acirc;me erre au verbe.</div><div class="post_line"></div><div class="post_line">Je suis sa graine, qui de ses seins observe son temple, &agrave; fait son temps.</div><div class="post_line">De ses formes, je trace habits d&rsquo;un portrait d&eacute;licat et piquant, fusion d&rsquo;instinct et de gr&acirc;ce.</div><div class="post_line">Une peinture vivante qui me d&eacute;passe, o&ugrave; je tr&eacute;passe.</div><div class="post_line">Elle me comprend, je vous l&rsquo;accorde, et le lui rends.</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />21/01/1025 ETU 02:46</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D312976', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal312974')">Détails</a> <a href="javascript:warnpost(312974)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312974" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312974',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Du livre des contes,</div><div class="post_line">nous sommes virgules,</div><div class="post_line">chiffres t&eacute;nus que l&rsquo;alg&egrave;bre calcule,</div><div class="post_line">tenue d&#039;agir, parenth&egrave;ses ouvertes,</div><div class="post_line">suspendues en somme d&eacute;finissant l&rsquo;espace</div><div class="post_line">o&ugrave; les nombres se nomment,</div><div class="post_line">Hommes, r&eacute;sultat ou &ecirc;tre ? Probable addition ?</div><div class="post_line"></div><div class="post_line">Sommes-nous fractions dans l&rsquo;&eacute;quation des nuits,</div><div class="post_line">inconnues errantes que le silence unifie,</div><div class="post_line">fragments d&rsquo;&eacute;toiles qu&rsquo;un ensemble divise,</div><div class="post_line">compas du temps o&ugrave; chaque arc s&rsquo;&eacute;puise.</div><div class="post_line"></div><div class="post_line">Chaque poids un &eacute;lan, chaque &eacute;lan un tr&eacute;pas,</div><div class="post_line">toute masse sa mesure,</div><div class="post_line">toutes phrases son sommet.</div><div class="post_line">Les mots des vecteurs, les nombres des axes,</div><div class="post_line">le gouvernail d&eacute;saxe, il s&rsquo;&eacute;loigne de sa boussole,</div><div class="post_line">et dans l&rsquo;horizon flou, la longue-vue s&rsquo;affole.</div><div class="post_line"></div><div class="post_line">L&rsquo;homme est fou, pour lui tout devient normal,</div><div class="post_line">les &eacute;quilibres bris&eacute;s lui semblent bancals.</div><div class="post_line">Saurait-il y voir, un point carr&eacute; ?</div><div class="post_line"></div><div class="post_line">Disons-le :</div><div class="post_line">c&rsquo;est l&rsquo;apog&eacute;e du chaos qui nous taxe,</div><div class="post_line">le sens s&rsquo;&eacute;tire, la mesure s&rsquo;efface,</div><div class="post_line">comme deux extr&ecirc;mes diluant leurs traces.</div><div class="post_line"></div><div class="post_line">L&rsquo;univers s&rsquo;&eacute;panche en un vaste espace,</div><div class="post_line">les vagues se brisent, se fondent en &eacute;tang,</div><div class="post_line">et, hors de ses flots, danse le n&eacute;ant.</div><div class="post_line"></div><div class="post_line">Les &egrave;res des pauses, les rythmes mouvants,</div><div class="post_line">horloges f&ecirc;l&eacute;es comptant &eacute;ternel instant.</div><div class="post_line"></div><div class="post_line"><s><em>Dans ce silence,</em></s></div><div class="post_line"><s><em>les airs d&eacute;possent.</em></s></div><div class="post_line"></div><div class="post_line"><div align="right"><font size="2"><em>Civodul.</em></font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />22/01/1025 ETU 08:52</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D312993', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal312990')">Détails</a> <a href="javascript:warnpost(312990)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal312990" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=312990',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center">Callypige ou Saint D&eacute;lice</div></div><div class="post_line"><div align="center"><font size="1">Question capital.</font></div></div><div class="post_line">&Ocirc; muse espi&egrave;gle, entre deux vers,</div><div class="post_line">Je te c&eacute;l&egrave;bre, en rimes claires.</div><div class="post_line">Dois on lou&eacute;s, saintes courbes ?</div><div class="post_line">Le buste noble ou bien la croupe ?</div><div class="post_line"></div><div class="post_line">Femme volage, tu nous souris,</div><div class="post_line">Tu nous &eacute;gare, tu nous ravis.</div><div class="post_line">Puis vient le temps, tu nous vole age.</div><div class="post_line">Tu nous veillit, tu noue enemis,</div><div class="post_line">Tue nous au lit, je t&#039;en supplie.</div><div class="post_line"></div><div class="post_line">J&rsquo;en perds la lyre, et m&ecirc;me les mots,</div><div class="post_line">Saurais-je &eacute;crire ? Ces formes m&rsquo;inspirent.</div><div class="post_line">Bont&eacute; du ciel quelle discipline,</div><div class="post_line">Sculpter ainsi &oelig;uvres divines !</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />07/02/1025 ETU 02:50</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313089')">Détails</a> <a href="javascript:warnpost(313089)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313089" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313089',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Ainsi l&#039;humanit&eacute; tel un songe en latence tisse le fil de son &ecirc;tre &agrave; rebours du temps. Comme l&#039;&acirc;me qui s&#039;efface &agrave; l&#039;horizon de l&#039;aube l&#039;enfant s&#039;&eacute;lance d&#039;un berceau lumineux, s&rsquo;&eacute;loigne en qu&ecirc;te d&#039;infini puis revient las, &eacute;merveill&eacute;, aux rives premi&egrave;res, dans l&rsquo;ultime soupir. Il en est ainsi des croyances ou religions : elles naissent dans l&rsquo;innocence s&rsquo;&eacute;garent dans le tumulte du monde, puis s&rsquo;inclinent, dans la p&eacute;nombre des &acirc;ges, vers l&#039;or&eacute;e du silence.</div><div class="post_line"></div><div class="post_line">Toi qui tiens ton Dieu comme l&rsquo;unique &eacute;toile, vois en moi non l&rsquo;ombre qui s&rsquo;en &eacute;carte mais l&rsquo;&eacute;cho qui s&rsquo;en approche. Si tu me dis pa&iuml;en, humain peut &ecirc;tre, brebis surement, alors je chemine, non sous un seul ciel, mais &agrave; travers de tout les vents.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />08/02/1025 ETU 05:42</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313099', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal313094')">Détails</a> <a href="javascript:warnpost(313094)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313094" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313094',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Premi&egrave;re esquisse.</div><div class="post_line"></div><div class="post_line">L&rsquo;Entropie des Dieux et la Fontaine de Jouvence</div><div class="post_line"></div><div class="post_line">Il fut un temps, aux &acirc;ges primordiaux, o&ugrave; les dieux n&rsquo;&eacute;taient que des graines endormies dans le sein de l&rsquo;ab&icirc;me. L&rsquo;univers, vaste et sans limites, &eacute;tait une mer d&rsquo;entropie bouillonnante, un chaos d&rsquo;&eacute;nergie indompt&eacute;e. Alors, du souffle d&rsquo;un premier Verbe, les dieux s&rsquo;&eacute;veill&egrave;rent et burent &agrave; longs traits cette fi&egrave;vre cosmique, ivresse d&#039;anima. Ils fa&ccedil;onn&egrave;rent leurs formes dans le tumulte, sculptant leur chair dans l&rsquo;ouragan du monde.</div><div class="post_line"></div><div class="post_line">Comme des sources jaillissant de la roche, ils capt&egrave;rent le chaos en eux et l&rsquo;ordonn&egrave;rent. Chaque foudre qu&rsquo;ils dompt&egrave;rent devint loi, chaque vague qu&rsquo;ils divis&egrave;rent devint fronti&egrave;re, chaque brasier qu&rsquo;ils ceignirent devint lumi&egrave;re. Ainsi ordonn&egrave;rent-ils le tumulte, mais ce faisant, ils scell&egrave;rent le flot. Or, ce qui court libre vivifie, et ce qui s&rsquo;entrave s&rsquo;&eacute;puise.</div><div class="post_line"></div><div class="post_line">L&rsquo;univers, autrefois oc&eacute;an&nbsp;sans borne ni dessein, devint jardin bien clos, une terre o&ugrave; l&rsquo;eau ne pouvait s&rsquo;&eacute;couler qu&rsquo;au gr&eacute; de leur vouloir. Mais toute chose enserr&eacute;e h&acirc;te sa propre ruine. L&agrave; o&ugrave; la s&egrave;ve ne circule plus, le tronc se creuse, l&agrave; o&ugrave; l&rsquo;eau ne s&rsquo;infiltre plus, le sol se fendille.&nbsp;</div><div class="post_line">L&agrave; o&ugrave; le feu ne trouve exutoire, la foudre se cabre. Ainsi, l&rsquo;ordre trop strict forgea sa perte, dans ce monde devenu trop dense, trop structur&eacute;, l&rsquo;&eacute;quilibre se fendit.</div><div class="post_line"></div><div class="post_line">Alors les dieux comprirent : l&rsquo;entropie doit circuler non &ecirc;tre dompt&eacute;e. Ce qui ne se renouvelle pas s&rsquo;&eacute;puise, et ce qui s&rsquo;&eacute;puise s&rsquo;effondre. Pour conjurer ce destin, ils creus&egrave;rent la Fontaine de Jouvence, puits invers&eacute; o&ugrave; le d&eacute;sordre du monde redevenait germe et recommencement,&nbsp;une&nbsp;gigantesque sph&eacute;re d&#039;entropie ou le temps s&#039;acc&eacute;lere presser des influences qui le compacte. L&#039;entropie est souffle et mouvement, non entrave et ge&ocirc;le. Chaque vie &eacute;teinte, chaque braise &eacute;vanouie, chaque onde dissip&eacute;e y verse son tribut, afin que de ses eaux jaill&icirc;t sans cesse un avenir neuf.</div><div class="post_line"></div><div class="post_line">L&rsquo;eau infiltre la terre, la chaleur fuit vers le froid, l&rsquo;&eacute;clair se jette sur la roche : ainsi la nature dissipe l&rsquo;exc&egrave;s, &eacute;vacue la charge, r&eacute;tablit le courant. </div><div class="post_line"></div><div class="post_line">C&rsquo;est ainsi que les hommes furent faits &agrave; leur image, soumis &agrave; la m&ecirc;me loi.&nbsp;</div><div class="post_line"></div><div class="post_line">Ils naquirent du fracas et tumultes, avides de flammes et de vertige. Dans l&rsquo;enfance, dieux naissants, ils embrass&egrave;rent le monde d&rsquo;un feu vorace, courant apr&egrave;s chaque &eacute;clat, buvant la foudre &agrave; pleines mains insconcient comme ivre&nbsp;de cette vitalit&eacute;. Puis vint l&rsquo;&acirc;ge o&ugrave; le pas ralentit, o&ugrave; la forme se fige. Alors ils devinrent comme les statues des sanctuaires :&nbsp;sages sculpt&eacute;s dans la roche, immobiles mais pleins d&rsquo;une m&eacute;moire fertile.</div><div class="post_line"></div><div class="post_line">Le monde est amphore ou lyre pour eux, jar ou cor peut &ecirc;tre, sa haute entropie irrigue les c&oelig;urs et forge l&rsquo;esprit. Il est souffle, foudre et braise, se dispersant sur la terre pour faire sont &oelig;uvre.</div><div class="post_line"></div><div class="post_line">Bulle entropique sous pression cro&icirc;t avec furie, vigne &eacute;ph&eacute;m&egrave;re abreuv&eacute;e d&rsquo;un suc br&ucirc;lant. Mais sit&ocirc;t son ardeur retomb&eacute;e, elle redevient tribut aux racines qui l&rsquo;ont nourrie.</div><div class="post_line"></div><div class="post_line">Or ses racines, longues comme les pens&eacute;es des sages, couraient sous les terres du monde.</div><div class="post_line">Les hommes y marchaient sans le savoir, croyant frayer des sentiers neufs,&nbsp;qu&rsquo;ils croyaient tracer, alors qu&rsquo;ils ne faisaient que danser sur une carte inscrite dans la profondeur du sol, suivant&nbsp;fils ancien.</div><div class="post_line"></div><div class="post_line">Ses rameaux, souples comme les visions des po&egrave;tes, s&rsquo;&eacute;lan&ccedil;aient vers le ciel.</div><div class="post_line">Ils se tendaient vers l&rsquo;inconnu, cherchant la lumi&egrave;re,</div><div class="post_line">tissant l&rsquo;espace comme une harpe dont chaque feuille &eacute;tait note, chaque fruit promesse.</div><div class="post_line"></div><div class="post_line">Et lorsque l&rsquo;un de ces grains fut m&ucirc;r, il tomba.</div><div class="post_line">Alors l&rsquo;homme s&rsquo;&eacute;veilla.</div><div class="post_line"></div><div class="post_line">Car la vigne est le monde, et ses racines sont les chemins de l&rsquo;esprit.</div><div class="post_line"></div><div class="post_line">Me vinrent ces vers;</div><div class="post_line"></div><div class="post_line">Or n&eacute;e des Mythes, orn&eacute;e des Lyres,</div><div class="post_line">Mire faite de lierre, ire m&ecirc;me de l&rsquo;hydre,</div><div class="post_line">L&rsquo;Hyre est de myrtes, d&rsquo;&eacute;thers et de cires,</div><div class="post_line">Vents en soupirs, dieux en d&eacute;lires.</div><div class="post_line"></div><div class="post_line">Offre, f&eacute;e d&#039;effort,</div><div class="post_line">Ordre fait des Lords, d&rsquo;Had&egrave;s ou de Moire,</div><div class="post_line">Soie de nos rois,</div><div class="post_line">Drap de nos morts, cordes de nos doigts,</div><div class="post_line">L&rsquo;&eacute;toffe d&rsquo;essuieux,</div><div class="post_line">Fil&eacute;e de leurs gloires,</div><div class="post_line">Fils tiss&eacute;s des espoirs,</div><div class="post_line">Tend l&rsquo;arc des destins sous l&rsquo;ombre des lois.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="right"><font size="1">Hr: J&#039;apprend, ceci est un d&eacute;but je prend les critique en X-com</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />09/02/1025 ETU 03:56</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313107', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313104')">Détails</a> <a href="javascript:warnpost(313104)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313104" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313104',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong>Manuel de gu&eacute;rison de l&#039;esprit, partie non num&eacute;rot&eacute;e.</strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line">Gu&eacute;rir le c&oelig;ur et l&#039;&acirc;me par l&#039;&eacute;criture.</div><div class="post_line"></div><div class="post_line">Les pens&eacute;es sont inconstantes, &eacute;ph&eacute;m&egrave;res. Il est difficile de se souvenir pr&eacute;cis&eacute;ment de ce que nous pensions hier, et encore plus de savoir comment nous aurions interpr&eacute;t&eacute; ces pens&eacute;es &agrave; l&rsquo;&eacute;poque. Pourtant, l&rsquo;&eacute;criture permet de capturer ces instants fuyants, de les poser sur le papier et de leur attribuer une note.</div><div class="post_line"></div><div class="post_line">En &eacute;crivant chaque jour sur notre &eacute;tat int&eacute;rieur, nous pouvons observer une &eacute;volution. Si nos mots s&rsquo;am&eacute;liorent, cela signifie que la sant&eacute; du c&oelig;ur grandit. Et lorsque, avec le temps, ce qui semblait sombre et accablant de par sa valeur initiale nous appara&icirc;t moins grave, moins douloureux, l&#039;&acirc;me se gu&eacute;rit. Si aujourd&#039;hui, la note que j&#039;aurais attribu&eacute;e hier &agrave; pareil situation ne serait plus la m&ecirc;me, ou que je sent un d&eacute;tachement alors un changement a eu lieu. L&#039;&acirc;me trouve plus de po&eacute;sie et de d&eacute;tachement qu&rsquo;auparavant.</div><div class="post_line"></div><div class="post_line">Mais l&#039;&eacute;criture ne s&#039;arr&ecirc;te pas l&agrave;.</div><div class="post_line"></div><div class="post_line">En nous immergeant dans des contr&eacute;es de beaut&eacute;, en choisissant avec soin les mots qui porteront notre esprit sur papier, nous pouvons aiguiller nos pens&eacute;es vers le meilleur, sans jamais violer leur intimit&eacute;. Plut&ocirc;t que de restreindre notre imagination, nous ouvrons des portes qu&#039;elle submerge, car, comme l&rsquo;oc&eacute;an, elle est une belle chose, et tout ce que l&#039;on encha&icirc;ne se ternit. C&rsquo;est une mani&egrave;re de cultiver la lumi&egrave;re, d&rsquo;orienter notre monde int&eacute;rieur vers une forme de paix, de douceur et d&rsquo;espoir.&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="right">Civodul, philosophe du Samedi, apprenti magicien.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Civodul">Cdt. Civodul</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12485.jpg" style="width:128px;height:128px" alt="Avatar" /><br />09/02/1025 ETU 23:05</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313112', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313110')">Détails</a> <a href="javascript:warnpost(313110)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313110" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313110',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Sous la vo&ucirc;te limpide, le regard s&rsquo;&eacute;l&egrave;ve, s&rsquo;ancre aux flancs d&rsquo;airain d&rsquo;une montagne auguste. Le vent y scande vers oubli&eacute;s, &eacute;rodant lentement les contours d&rsquo;un hymne sculpt&eacute; de pierre. L&agrave; o&ugrave; les dieux jadis assirent leur loi, o&ugrave; le marbre s&rsquo;&eacute;panche tel un vestige, l&rsquo;homme se tient, burin lev&eacute;, captif de l&#039;&oelig;uvre.</div><div class="post_line"></div><div class="post_line">Son ciseau fend l&rsquo;&eacute;chine du roc comme l&rsquo;augure trace les signes sur l&rsquo;os du ciel. &Eacute;clat tomb&eacute; est une offrande, syllabe arrach&eacute;e de masse informe qui en d&eacute;voile l&#039;esprit cach&eacute;. La roche, d&rsquo;abord muette, s&rsquo;&eacute;prend de la main qui la fa&ccedil;onne, et lui murmure secrets audibles. Il &eacute;coute, caresse, s&rsquo;ab&icirc;me.</div><div class="post_line"></div><div class="post_line">Le titan de pierre se dresse de ses doigts, mais bient&ocirc;t l&rsquo;artiste ne sait plus o&ugrave; s&rsquo;arr&ecirc;te l&rsquo;&oelig;uvre et o&ugrave; commence sa chair. Est-ce une idole ou bien le tout ? Ses traits se fondent aux sillons du granit, ses veines se gravent dans l&rsquo;entrelacs de pierre. Il ne taille plus la montagne : il la travaille, lui ob&eacute;it, &eacute;cho p&eacute;trifi&eacute; de son propre geste.</div><div class="post_line"></div><div class="post_line">Le colosse s&rsquo;anime, et l&rsquo;artisan lui se dissout.</div><div class="post_line">L&agrave;, sous l&rsquo;ombre cyclop&eacute;enne de son labeur, le souffle seul devine encore son nom.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />10/02/1025 ETU 03:42</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313114', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313113')">Détails</a> <a href="javascript:warnpost(313113)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313113" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313113',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">..(HRP D&eacute;sol&eacute; ce post n&#039;est pas valide, il semble qu&#039;il y ai eu un bug quelque part, n&#039;en tenez pas compte )</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=17520&c_forum_page=1&c_page=2">2</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Vrac</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

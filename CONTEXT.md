@@ -365,3 +365,7 @@ Pendant `full` (option `--formats html,json`, défaut), chaque page de topic Gam
 ### 9.3 Parsing vers SQLite
 
 - Non écrit (après l'inventaire et la décision de restitution).
+
+### 9.4 Forum « Chroniques » (hors galaxie)
+
+`scrape_chroniques.py` capture le forum `www.apocalypsis.org/assemblee/viewforum?c_forum=2038` (RP privés, propre à aucune galaxie, encore actif). Connexion requise (`APOC_USER`, `APOC_PASS`) ; relançable : seuls les sujets nouveaux ou modifiés sont retéléchargés. Pages brutes dans `archive_raw/chroniques/raw/`, JSON dans `archive_raw/json/chroniques/` (`--reparse` régénère le JSON sans réseau). `build_site.py` regénère les pages sous `archives/chroniques*` (gabarit Gamma), ajoute un premier tableau à la page des archives et les participations aux fiches des commandants ; le forum est **exclu des statistiques et de la recherche**.

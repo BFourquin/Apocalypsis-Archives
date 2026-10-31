@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16271 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>&quot;₪&int;&there4;&there4;६&quot;</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > &quot;₪&int;&there4;&there4;६&quot;</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />28/04/1022 ETU 04:02</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal293078')">Détails</a> <a href="javascript:warnpost(293078)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293078" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293078',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>- FYHATY! FYHATY !</strong></div><div class="post_line">Ces cris qui se lancent dans ma t&ecirc;te! j&#039;ouvre les yeux...</div><div class="post_line">- Emc cuhd m&agrave;, Judna Ysandisa, majaw-juic! suinen ui jejna l&#039;acd ma lrueq.</div><div class="post_line">Le soleil est lev&eacute;, ma nuque est encore crisp&eacute;e. Bueht T&#039;ylean n&#039;est certes pas tendre, il aurait du me tuer. Pourquoi? Tant de question me hante...</div><div class="post_line">- Judna Ysandisa?</div><div class="post_line">- Dyed-due! </div><div class="post_line">Je me l&egrave;ve, j&#039;ai encore des ecchymoses sur le visage. Bah &ccedil;a se r&eacute;tablira vite, j&#039;ajuste ma tenue, et sors d&#039;un pas feutr&eacute;... Ils sont l&agrave;!</div><div class="post_line">Un hurlement sourd d&eacute;bute, un cri sort de millier de poitrines! rythm&eacute;, sourd, martel&eacute;, les hommes et femmes pr&eacute;sents se frappent le torse en scandant sans arr&ecirc;t &quot;FYHATY! FYHATY !&quot;, ils m&#039;attendent!</div><div class="post_line"></div><div class="post_line">Je l&egrave;ve les bras en hurlant &agrave; mon tour, ils se taisent et posent un genou en terre.</div><div class="post_line">Maintenant je sais pourquoi je suis encore vivante...</div><div class="post_line"></div><div class="post_line"><font color="#C3FFFF"><em>&quot;Fyhaty, celle qui sera...&quot;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#C3FFFF"><em>&quot;Unique et multiple, seule mais de mille vies en une, ainsi viendra Fyhaty, celle qui sera...&quot;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#C3FFFF"><em>&quot;N&eacute;e d&#039;un ventre mort, pour donner la vie, ainsi viendra&nbsp; Fyhaty, celle qui sera...&quot;</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#C3FFFF">&quot;D&eacute;shonor&eacute;e d&#039;une mort loyale, ainsi viendra&nbsp; Fyhaty, celle qui sera...&quot;</font></em></div><div class="post_line"></div><div class="post_line">Ces phrases tournent dans ma t&ecirc;te, deux sont exactes &agrave; pr&eacute;sent.</div><div class="post_line">Ils sont l&agrave;, tous et toutes pour cette proph&eacute;tie! Hier T&#039;ylean m&#039;a d&eacute;shonor&eacute;e au combat, ne m&#039;offrant pas la juste mort! J&#039;ai encore le souvenir du go&ucirc;t de son sang coulant sur mon visage quand je l&#039;ai &eacute;ventr&eacute;.</div><div class="post_line">Mes larmes de rage se m&ecirc;lant aux rivi&egrave;res pourpres, j&#039;&eacute;tais &agrave; terre, il aurait d&ucirc; me tuer, c&#039;est ainsi. Il m&#039;a d&eacute;shonor&eacute;e, humili&eacute;e, je lui ai enfonc&eacute; ma lame pendant qu&#039;il se penchait sur moi pour me relever!</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#C3FFFF"><em>&quot;D&eacute;shonor&eacute;e d&#039;une mort loyale, ainsi viendra&nbsp; Fyhaty, celle qui sera...&quot;</em></font></div><div class="post_line"></div><div class="post_line">Pendant que mes yeux courent sur la foule, scrutant chaque visage apr&egrave;s l&#039;autre, les yeux se baissent, fuyants les miens. Je souris avec amertume, tire ma lame du fourreau, le m&eacute;tal sombre refl&egrave;te le soleil levant. Je la brandis, le soleil &eacute;tiole la pointe d&#039;un vif reflet argent&eacute;, je hurle en m&#039;&eacute;poumonant :</div><div class="post_line">- &quot;<strong>Ba&iuml;bma tac sund&#039;c !!!</strong>&quot; </div><div class="post_line">Tous rel&egrave;ve la t&ecirc;te, le silence r&egrave;gne. Mon ventre se tord d&#039;une fr&eacute;n&eacute;sie m&ecirc;l&eacute;e d&#039;angoisse et d&rsquo;excitation. </div><div class="post_line">Je pose le tranchant sur mon avant-bras. ils retiennent leurs souffles...</div><div class="post_line">J&#039;invoque la phrase qu&#039;ils attendent. </div><div class="post_line">-&quot;<strong>Ma cyhk tac sundc ybbamma ma jejyhd. Baibma ta my hied z&#039;ehjuxia ma c&eacute;bimlna !!!!!&quot; </strong>tandis que d&#039;un geste lent, je m&#039;entaille.</div><div class="post_line"></div><div class="post_line">Le sang s&#039;&eacute;coule d&#039;un reflet rouge vif, ils fixent les filets poisseux couler au sol, je sens approcher Fyhaty, des murmures de stup&eacute;factions se font entendrent.</div><div class="post_line">Je regarde au sol, la couleur de mon propre sang change lentement, je murmure &agrave; mon tour. je n&#039;ose y croire, la teinte rouge se change lentement en un violet tirant sur le bleu fonc&eacute;...</div><div class="post_line"><div align="center"><strong><font color="#005DC2">La proph&eacute;tie!</font></strong></div></div><div class="post_line"><div align="left">Je perd conscience...</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />30/04/1022 ETU 03:57</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293091')">Détails</a> <a href="javascript:warnpost(293091)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293091" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293091',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">-&quot;Em acd dasbc, Judna Ysandisa, nacda luilr&eacute;a... M&#039;Iheuh cyln&eacute;a cany t&eacute;dansehyhda.&quot;</div><div class="post_line">J&#039;essaye d&#039;ouvrir les yeux, mes paupi&egrave;res sont coll&eacute;es. mes muscles ne r&eacute;pondent pas &agrave; mes sollicitations. Le rituel a commenc&eacute;, l&#039;Union Sacr&eacute;e.</div><div class="post_line"></div><div class="post_line"><font color="#C3FFFF">&quot;Aveugle mais clairvoyante, ainsi viendra&nbsp; Fyhaty, celle qui sera...&quot;</font></div><div class="post_line"></div><div class="post_line">Autour de moi des voix psalmodient sourdement. mais aucun son ne sort de ma bouche, du moins pas les miens, car je prononce des mots, des suites de sons que je ne connais pas. dans une langue qui m&#039;est &eacute;trang&egrave;re et qui n&#039;&eacute;voque rien pour moi.</div><div class="post_line">&quot;shari-a umma ya usul... &quot; prononce quelqu&#039;un, je lui r&eacute;ponds sans comprendre. </div><div class="post_line">En moi une douleur violente se fait sentir dans ma nuque, elle irradie dans mon cr&acirc;ne tandis que d&#039;autres mots sont prononc&eacute;s par cet autre et dont je fais &eacute;cho sans les conna&icirc;tre...</div><div class="post_line">&quot;Syaya-chan pawkan...&quot; &quot;Tass&#039;ir id kelwen...&quot; &quot;...guz biyc ouk ...&quot; Les sons m&#039;emportent dans une tourmente de douleur et de souffrance...</div><div class="post_line">Cela dure depuis des si&egrave;cles me semble-t-il, des vagues de chaleur interne irradie mon cr&acirc;ne, je le sens pr&ecirc;t &agrave; exploser.</div><div class="post_line"></div><div class="post_line">Je ne suis pas Celle qui sera!</div><div class="post_line"></div><div class="post_line">Je serais bient&ocirc;t d&eacute;livr&eacute;e, mon cerveau &eacute;clatera sous la pression sanguine... Je vois des lieux inconnus devant moi, des images, des formes et couleurs abstraites...</div><div class="post_line">Les voix se sont tues autour de moi, le silence r&egrave;gne. les formes abstraites de couleurs diff&eacute;rentes continuent de d&eacute;filer contre mes paupi&egrave;res ferm&eacute;es, cela ne vient pas de l&#039;ext&eacute;rieur, mais de ma t&ecirc;te, comme un message, un codex que je ne comprends pas.</div><div class="post_line">Je hurle int&eacute;rieurement de rage m&ecirc;l&eacute;e de d&eacute;sespoir, la fin n&#039;arrive pas, cette lib&eacute;ration tant attendue! Douce d&eacute;livrance de l&#039;existence.</div><div class="post_line"></div><div class="post_line">Les jeux de formes ont chang&eacute; sans que je ne m&#039;en aper&ccedil;oive. Ils me paraissent plus clairs, plus&nbsp; compr&eacute;hensibles.</div><div class="post_line">Je commence &agrave; les classer, couleur, forme, mouvements, petit &agrave; petit un sch&eacute;ma logique dans les s&eacute;quences se fait entrevoir.</div><div class="post_line">Les classer, oui c&#039;est cela, je dois trier ce bordel qui r&egrave;gne dans ma t&ecirc;te!</div><div class="post_line"></div><div class="post_line"><font color="#C3FFFF">&quot;Des limbes &agrave; la lucidit&eacute;, ainsi viendra&nbsp; Fyhaty, celle qui sera...&quot;</font></div><div class="post_line"></div><div class="post_line">Je dois me r&eacute;veiller...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />09/05/1022 ETU 05:19</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293186')">Détails</a> <a href="javascript:warnpost(293186)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293186" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293186',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="5"><font color="#008000">&sect;ƕ</font><font color="#0074D9"> &sect;Ƣ</font> &sect;ƛ<font color="#9A00B2">ʃ</font> ɥ<font color="#17B529">ʄ</font><font color="#E82A1F">ʆ</font> <font color="#bbbbbb">&sect; ᴂ</font>ʥ<font color="#C3FFFF">ʨ</font><font color="#c0f0c6">ʧ</font>ʦ<font color="#ffc6c3">ʣ</font>&nbsp; &sect;ᵽ<font color="#FFDC00">ᵱ</font><font color="#005DC2">ʄ</font><font color="#F012BE">ᵭ</font><font color="#FF5F54">Ƣ</font><font color="#4CEA5E">ƣ</font>ơ<font color="#FFFF44">Ư</font><font color="#FFDC00">ƴ</font><font color="#FF5F54">ɦ</font><font color="#FFC95F">ɥ</font><font color="#1E92F7">ɲ<font color="#C3FFFF">ʥ </font></font></font></div><div class="post_line">Cela d&eacute;file devant mes yeux, du moins dans mon esprit... J&#039;ai mal au cr&acirc;ne!</div><div class="post_line">Vert, Bleu, Blanc, Rouge, Majent... A&iuml;e! Non, je bloque les couleurs, oui c&#039;est les couleurs, je les tries d&#039;abord les clairs je retient mon attention, les plus fonc&eacute;es quand elles apparaisses.</div><div class="post_line">Oui c&#039;est &ccedil;a le flot ralentit &agrave; chaque couleur m&eacute;moris&eacute;e dans la s&eacute;quence. </div><div class="post_line">La douleur s&rsquo;att&eacute;nue.</div><div class="post_line">Les formes dansent encore, je commence a retenir les assemblages g&eacute;n&eacute;raux, je fait l&#039;impasse sur les plus complexe, je sent la d&eacute;livrance venir...</div><div class="post_line"></div><div class="post_line">Je comprend, enfin je pense comprendre, je dois les trier en forme et couleur dans leur s&eacute;quences... </div><div class="post_line">Cela m&#039;&eacute;puise...</div><div class="post_line">Continuer, encore et toujours, Rouge ronde, vert droite, bleu incurv&eacute;e, clair ronde, assembl&eacute;e clair, miroir bleu...</div><div class="post_line">Elles s&#039;imbriquent de plus en plus. La tension dans mon cr&acirc;ne s&#039;apaise....</div><div class="post_line">la s&eacute;quence s&#039;&eacute;tire et se compl&egrave;te. La luminosit&eacute; change je commence &agrave; voir un blanc laiteux... Comme un rait de lumi&egrave;re sur mes paupi&egrave;res.</div><div class="post_line"></div><div class="post_line">Dans le lointain un son se fait entendre, comme un ressac sur la mer, une vague pulsante, je me rend compte qu&#039;il s&#039;agit de mon souffle qui rythme ma poitrine!</div><div class="post_line"></div><div class="post_line"><font color="#9DF9FF">&quot;De son souffle &agrave; la renaissance</font><font color="#9DF9FF">, ainsi viendra</font><font color="#9DF9FF">&nbsp; Fyhaty, celle qui sera...&quot;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />11/05/1022 ETU 04:37</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D293216', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293215')">Détails</a> <a href="javascript:warnpost(293215)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293215" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293215',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">-&quot;my naeha ti cyhk c&#039;&eacute;jaemma!&quot;</div><div class="post_line">Cette voix je ne la connais que trop bien, celle de mon oncle... Il a raison je m&#039;&eacute;veille enfin.</div><div class="post_line">Je vois clair tout en ayant l&#039;impression d&#039;avoir les paupi&egrave;res ferm&eacute;es.</div><div class="post_line"></div><div class="post_line">la pi&egrave;ce autour de moi, semblable &agrave; mon peuple, ses valeurs, autant d&#039;osmose avec les lois naturelles. La vie et sa finalit&eacute;, l&#039;ordre des choses. Ce lit douillet tress&eacute; sur des rondins non coup&eacute;s, l&#039;araign&eacute;e dans sa toile qui attend l&#039;insecte &agrave; la fen&ecirc;tre...</div><div class="post_line"></div><div class="post_line">Tant de d&eacute;tails que jamais je n&#039;avais pr&ecirc;t&eacute; attention.</div><div class="post_line"></div><div class="post_line">- &quot;Judna Ysandisa?&quot;</div><div class="post_line">-&quot; Je suis l&agrave; D&ecirc;da Lulruh...Tout vas bien&quot; je prononce ces mots en galactique standard. </div><div class="post_line">-&quot; Junda? tu parler seulement eux?&quot; Bien que je comprenne sa question, moi non plus je ne comprends pas pourquoi je me suis exprim&eacute;e de la sorte. Surtout que je n&#039;ai jamais pris la peine d&#039;apprendre cette langue!</div><div class="post_line"></div><div class="post_line">-&quot;Fyhaty, za bahca..&quot; dis-je en tournant la t&ecirc;te vers mon oncle. Il opine du chef et baise les yeux. Derri&egrave;re lui, un miroir montre mon visage, je me reconnais, mais je per&ccedil;ois une autre personnes, les trait son diff&eacute;rent et pourtant ils sont connus.</div><div class="post_line"></div><div class="post_line">La porte s&#039;ouvre, un homme sec au visage dur se frappe la poitrine, ses yeux gris m&eacute;tallis&eacute;s me regardent avec attention, d&#039;une voix neutre il me dit</div><div class="post_line">-&quot;Judna Ysandisa, ton peuple t&#039;attend! L&egrave;ve-toi et montre la voie choisie par Fyhaty!&quot;</div><div class="post_line">Je sens une vie nouvelle m&#039;envahir, un flot d&#039;&eacute;nergie inconnue parcourt mon corps, je r&eacute;ponds directement :</div><div class="post_line">-&quot;Allons-y Syhdy!&quot;</div><div class="post_line">Je suis surprise de ma r&eacute;action, j&#039;ai prononc&eacute; le nom de cet homme sans jamais l&#039;avoir connu de ma vie!!!</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#68C4E8">&quot; De tous elle prononcera les noms, ainsi SERA FYHATY!&quot;</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />29/05/1022 ETU 04:10</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293260')">Détails</a> <a href="javascript:warnpost(293260)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293260" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293260',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">-Syhdy... ui ah cussac huic yjal mac aqbmunydainc?&quot; </div><div class="post_line">-Les rapports sont &eacute;loquents, Fyhaty. Il n&#039;y a que peu de monde... deux ou trois peuples inint&eacute;ressants</div><div class="post_line"></div><div class="post_line">Une voix tonitrue dans le tr&eacute;fonds de mon esprit, tandis que mon c&oelig;ur s&rsquo;emballe. Lnaja Kucca celui qui a &eacute;t&eacute; rejet&eacute; de tous dans la lign&eacute;e des Fyhaty.</div><div class="post_line">Un esprit retors, un rebelle, qui de son ascension au titre, en a fait une page sanglante. A chaque proph&eacute;tie sa mal&eacute;diction, il est la mienne...</div><div class="post_line"></div><div class="post_line">Je dois le faire taire, d&#039;autres sont &agrave; mes c&ocirc;t&eacute;s, depuis le rituel&nbsp; je les sens en moi, autant d&#039;esprit que de clans, autant de vie, que de g&eacute;n&eacute;ration, r&eacute;unie en une seule.</div><div class="post_line"></div><div class="post_line"><em><font color="#C3FFFF">&quot;Unique et multiple, seule mais de mille vies en une, ainsi viendra Fyhaty, celle qui sera...&quot;</font></em></div><div class="post_line"></div><div class="post_line">Cette premi&egrave;re phrase a, depuis un moment, pris tous son sens pour moi...</div><div class="post_line"></div><div class="post_line">- Que devons nous faire Fyhaty?</div><div class="post_line"></div><div class="post_line">Je regarde l&#039;homme aux traits ac&eacute;r&eacute;s, et lui r&eacute;pond simplement:</div><div class="post_line"></div><div class="post_line">-&quot;Jejna ad suinnen&quot;! Tu connais la Loi...</div><div class="post_line">-Ils feront donc leur choix le moment venu...</div><div class="post_line"></div><div class="post_line">Je souris en retour, bien qu&#039;il semble dur et rev&ecirc;che, il est l&#039;&acirc;me la plus solidaire qui puisse me conseiller. Aussi &acirc;pre que le fil du rasoir, il n&#039;en est pas moins juste et humain...</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />06/06/1022 ETU 02:55</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293268')">Détails</a> <a href="javascript:warnpost(293268)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293268" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293268',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Je les regardais fondrent sur leurs proies, vif et agile, &quot;Jejna ad Suinnen&quot; pensais-je &agrave; ce moment.</div><div class="post_line"></div><div class="post_line">Jamais je n&#039;aurais cru voir les clans aussi alli&eacute;s dans un but unique, une vision, je me retournais ver Syhdy. Il me regardait, les flammes brillaient dans ses yeux... je sentais en moi monter une force inconnue. Un d&eacute;sir plus fort que tout, celui de continuer. Le &quot;Jedna ad Suinnen&quot; m&#039;avait aussi enflamm&eacute;.</div><div class="post_line"></div><div class="post_line"><font color="#C3FFFF">&quot; Les clans elle unira... Ainsi sera FYHATY!&quot;</font> une phrase r&eacute;sonna en moi, Lnaja Kucca ... Il murmurait en moi, dans les coins les plus sombres de mon esprit, il n&#039;avait pas tort... J&rsquo;eus l&#039;envie de l&#039;&eacute;couter un peu...</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">-&#039;Ils tombent et se plient sous ta main, regarde-les, ceux qui, encore hier, s&#039;entre-tuaient au nom d&#039;une banni&egrave;re pu&eacute;rile dans un village, maintenant ils sont unis comme des fr&egrave;res...&quot;</font></div><div class="post_line"></div><div class="post_line">Mes joues s&#039;enflamm&egrave;rent... <em>Quel orgueil</em>...</div><div class="post_line"></div><div class="post_line"><font color="#FFDC00">-&quot; En ton nom, petite b&acirc;tarde, ils sont pr&ecirc;ts &agrave; tout, tuer, &eacute;triper, violer, regarde les biens, leurs yeux rendus fous d&#039;ivresse par le sang qui s&#039;&eacute;coule dans les rues de cette plan&egrave;te fra&icirc;chement conquise!&quot;</font></div><div class="post_line"></div><div class="post_line">Je le chasse de mon esprit avec violence, <strong>NON!</strong> Pas en mon nom! pour le <strong>&quot;Jedna&quot;</strong>!</div><div class="post_line"></div><div class="post_line"><em>-&quot;Judna Ysandisa, qu&#039;as-tu dis?&quot; </em>me demande Syhdy..</div><div class="post_line"><em>-&quot;Rien...&quot; </em>J&#039;ai d&ucirc; murmurer &agrave;&nbsp; voix haute... J&#039;esquive la question</div><div class="post_line"><em>-&quot;O&ugrave; en sommes-nous?&quot;</em></div><div class="post_line"><em>-&quot;les derni&egrave;res forteresses des brigands viennent de se rendre, nous sommes ma&icirc;tres des lieux&quot;</em> me r&eacute;pond l&#039;homme aux traits ac&eacute;r&eacute;s.</div><div class="post_line"><em>-&quot;Bien...&quot;</em> Je regarde mes mains, tach&eacute;es de sang elles aussi.</div><div class="post_line"></div><div class="post_line">Je ne suis pas rest&eacute;e en arri&egrave;re durant l&#039;assaut. j&#039;ai tu&eacute; de mon poignard ce brigand qui tenait en mains le pivot &eacute;conomique du secteur, la contrebande...</div><div class="post_line"></div><div class="post_line"><em>-&quot;Fyhaty, Quels sont tes ordres concernant ceux qui se sont rendus?&quot;</em></div><div class="post_line"><em>-&quot;Se rendre n&#039;est pas une option...</em> <strong>Jedna ad Suinnen</strong>! <em>Laissez les civils libres</em>&quot; Dis-je d&#039;une voix inflexible.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">&quot;...Ils tombent et se plient sous ta main...&quot; </font></div><div class="post_line"></div><div class="post_line">Je ne peux que constater ce fanatisme flagrant, Syhdy &eacute;tant parti, des larmes roul&egrave;rent sur mes joues... </div><div class="post_line">La tension du combat probablement... </div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />17/06/1022 ETU 23:22</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293299')">Détails</a> <a href="javascript:warnpost(293299)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293299" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293299',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center">&quot;FYHATY! FYHATY! FYHATY!&quot;</div></div><div class="post_line"><div align="center">...</div></div><div class="post_line"><div align="center">Montre nous la voie!</div></div><div class="post_line"><div align="center">Guide nos lrav ta-lmyhc enfin unifi&eacute;s...</div></div><div class="post_line"><div align="center">Apporte le salut au peuple des Ordo Caeli!</div></div><div class="post_line"><div align="center">Que le &quot;Jejna ad Suinnen&quot; soit le tien!</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Les clans r&eacute;clamaient... Il me fallait leur donner l&#039;objet de leurs attentes. Et pourtant les avanc&eacute;e se faisaient. Mais le &quot;Jejna ad Suinnen&quot; bien pr&eacute;sent dans le sang du peuple, &eacute;chauffait les sens.</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Je leur devais bien...</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#FFDC00"><em>-&quot;Leur devoirs? Ce n&#039;est pas un mot qui sied &agrave; Fyhaty&quot; </em></font></div></div><div class="post_line"><div align="left">Je d&eacute;cidais de luter contre lui...</div></div><div class="post_line"><div align="left"><em><font color="#E8C500">-&quot;Tu est faible, emplie de doute et de confusion...&quot;</font></em></div></div><div class="post_line"><div align="left"><font color="#E8C500"><font size="3"><font color="#ffffff">-Cemahla</font></font></font><font color="#E8C500"><font color="#ffffff"><font size="3">!</font></font>&nbsp;<font color="#ffffff">criais-je.</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#E8C500"><font color="#ffffff">Syhdy, se tourna vers moi, interrogateur. Je regardait le poste de commande plan&eacute;taire, brusquement le silence r&eacute;gnait en ma&icirc;tre...&nbsp; </font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#E8C500"><em>-&quot;Un seul mot de ta part et il t&rsquo;ob&eacute;issent... Et tu ose pr&eacute;tendre leur devoir quelque chose?&quot;</em></font></div></div><div class="post_line"><div align="left"><font color="#E8C500"><font color="#ffffff">- J&#039;ai juste besoin d&#039;un peu de calme pour r&eacute;fl&eacute;chir &agrave; une d&eacute;cision Syhdy...</font></font></div></div><div class="post_line"><div align="left"><font color="#E8C500"><font color="#ffffff">- Bien Fyhaty... L&#039;homme sec fit un geste envers les chefs de clans qui retourn&egrave;rent &agrave; leur t&acirc;che en murmurants.</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#E8C500"><font color="#ffffff"><em><font color="#E8C500">-&quot;Ils s&#039;&eacute;tripaient entre eux et se battaient pour de vulgaires charognes trouv&eacute;es, il y a peu, maintenant ils sont consolid&eacute; et tu leur dois quelque chose?&quot;</font></em></font></font></div></div><div class="post_line"><div align="left"><font color="#E8C500"><font color="#ffffff">Cette voix dans ma t&ecirc;te, impossible de lutter contre. Surtout quand elle avait raison...</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#E8C500"><font color="#ffffff"><em><font color="#E8C500">-&quot;Je l&#039;aurais d&eacute;j&agrave; fait, toi tu h&eacute;site encore... Pleutre!&quot;</font></em></font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#E8C500"><font color="#ffffff">Encore une fois il avait raison... Quelles seraient les cons&eacute;quences si je d&eacute;cidais d&#039;activer le dispositif de modification spatio-temporelle du secteur?</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><em><font color="#E8C500">-&quot;Il ne se passerait rien de plus que l&#039;ouverture d&#039;un trou de vers galactique, tu le sais tr&egrave;s bien, empot&eacute;e!&quot;</font></em></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Je me calmais, c&#039;&eacute;tait la premi&egrave;re fois que sa pr&eacute;sence &eacute;tait si longue... Peut-&ecirc;tre le fait que je n&#039;appliquais pas quotidiennement les principes clefs du rituel...</div></div><div class="post_line"><div align="left">Le temps me manquait d&eacute;j&agrave; pour le sommeil, alors si en plus je perdais du temps &agrave; tenter de consolider mon esprit pour lutter contre cette mal&eacute;diction...</div></div><div class="post_line"><div align="left">Je r&eacute;citais la litanie des Noms pour le chasser tout en respirant calmement, sa pr&eacute;sence s&#039;effa&ccedil;a doucement...</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />30/06/1022 ETU 04:07</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D293322', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293321')">Détails</a> <a href="javascript:warnpost(293321)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293321" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293321',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Je marchais dans la brume matinale, la for&ecirc;t s&#039;&eacute;veillait...</div><div class="post_line">Mes pieds nus foulant l&#039;humus, l&#039;air embaumait l&#039;odeur de la nuit, l&#039;humidit&eacute; et le myc&eacute;lium. </div><div class="post_line"><div align="center"><font color="#E8C500"><em>ᵙ┆ Ӿใಶಶ≜Ộᔤ ษవ ӾవᘉỘಶ, Judna!</em></font></div></div><div class="post_line">Ces mots venaient de loin, tr&egrave;s loin...</div><div class="post_line">Ma peau fr&eacute;missait, j&#039;avais la chair de poule. Un sourire me traversa un instant en pensant &agrave; Cocotte... </div><div class="post_line"></div><div class="post_line">Une douleur me frappa la t&ecirc;te, une barre de fer rouge au plus profond de mon cr&acirc;ne, si violente que je m&#039;&eacute;croula &agrave; terre...</div><div class="post_line"></div><div class="post_line"><em><font color="#FFFA1E">-Nabnaht due, ETEUDA!</font></em></div><div class="post_line">-Laisse moi&nbsp;Lnaja Kucca!</div><div class="post_line"><em><font color="#FFFA1E">-Hors de question!</font></em></div><div class="post_line"></div><div class="post_line">Je commen&ccedil;ait a r&eacute;citer &quot;la litanie des Noms&quot; Lentement.</div><div class="post_line"></div><div class="post_line"><em><font color="#FFFA1E">-C&#039;est inutile, pas ici!</font></em></div><div class="post_line">Continuant a r&eacute;citer la longue liste des noms, je me relevais, devant moi, en plein milieux de la for&ecirc;t, une porte &eacute;tait &eacute;rig&eacute;e, sans chambranle, juste une porte, blanche, lisse, avec une poign&eacute;e de fer.</div><div class="post_line"></div><div class="post_line">Subjugu&eacute;e par cette porte et le ricanement dans mon esprit de celui qui fut le Maudit, je posa la main sur la poign&eacute;e...</div><div class="post_line">La peur m&#039;envahit subitement.</div><div class="post_line"><em><font color="#FFFA1E">-Ouvre...</font></em></div><div class="post_line">Je marquais un arr&ecirc;t.</div><div class="post_line"><em><font color="#FFFA1E">-OUVRE!</font></em></div><div class="post_line">-NON!</div><div class="post_line"><em><font color="#FFFA1E">-&nbsp;</font></em><em><font color="#FFFA1E">OUVREEEEE!!!!</font></em></div><div class="post_line">La douleur fut si fulgurante, que j&#039;ouvris la porte.</div><div class="post_line"></div><div class="post_line">Je hurla d&rsquo;effroi devant ce que je voyais, le Jedna ad Suinnen tel qu&#039;il serais dans ma lign&eacute;e!</div><div class="post_line"></div><div class="post_line"><em>- Judna Ysandisa!</em></div><div class="post_line">Je me d&eacute;battais violemment</div><div class="post_line">- JUDNA ! C&#039;est un cauchemar, juste un cauchemar!</div><div class="post_line">Mes yeux brouill&eacute;s&nbsp;<em><font size="1">(hrp: jeux de mots involontaire)</font></em> de larmes, je regardais Syhdy, pench&eacute; sur moi.</div><div class="post_line">Nul for&ecirc;t autour, nul porte, nul affres de mes visions...</div><div class="post_line"></div><div class="post_line">J&#039;&eacute;tais dans un lit... je regardais mon aide de camps.</div><div class="post_line"><em>- un cauchemar. Peut-&ecirc;tre Sydhy ...</em></div><div class="post_line"></div><div class="post_line">Je sentais encore l&#039;odeur du sang, du feu cr&eacute;pitant, j&#039;entendais encore les cris et pleurs dans ma t&ecirc;te, et ce drapeau aux terribles embl&egrave;mes.</div><div class="post_line">Cet &eacute;tendard qui me sertissait les &eacute;paules...</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />10/07/1022 ETU 02:57</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293414')">Détails</a> <a href="javascript:warnpost(293414)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293414" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293414',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Imp&eacute;ratrice...</div><div class="post_line">Que ce mot me semblait &eacute;trange. Petite dans mon village natal, ma tante, celle qui avais d&eacute;cid&eacute; &agrave; la mort de Maman durant son accouchement de m&#039;&eacute;lever, me r&eacute;citait souvent des histoire ou de grand Nom anciens avaient &eacute;t&eacute; empereurs...</div><div class="post_line"></div><div class="post_line">Empereurs, Empires, de qui, de quoi? Ce n&#039;&eacute;tait que des contes pour mes oreilles juv&eacute;niles...</div><div class="post_line"></div><div class="post_line">Maintenant j&#039;&eacute;tais moi m&ecirc;me devenue une figure de conte.</div><div class="post_line"></div><div class="post_line"><em><font color="#E8C500">-&quot; Et vas tu renier ton c&oelig;ur, oie blanche?&quot;</font></em></div><div class="post_line">-&quot; Je sais ce que tu d&eacute;sire, Lnaja, et je sais que tu a &eacute;chou&eacute;.&quot;</div><div class="post_line"><em><font color="#E8C500">-&quot; Effront&eacute;e! Je ne te permet pas de...&quot;</font></em></div><div class="post_line">-&quot; Tu n&#039;est l&agrave; que parce que mon esprit t&rsquo;accueille!&quot;</div><div class="post_line"><em><font color="#E8C500">-&quot; Chasse moi alors!&quot;</font></em></div><div class="post_line">-&quot; Non.&quot;</div><div class="post_line"><em><font color="#E8C500">-&quot; Pauvre Idiote, saisit ta chance et &eacute;coute moi!&quot;</font></em></div><div class="post_line">-&quot; le moment n&#039;est pas venu... Laisse moi.&quot;</div><div class="post_line"></div><div class="post_line">Curieusement l&#039;esprit de Lnaja s&#039;&eacute;loigna rapidement, cependant la vision de cauchemars me revint en t&ecirc;te, le sang coulait avec abondance, le feu m&#039;entourait, j&#039;&eacute;tais seule sur un champs de bataille, ce drapeau cernant mes &eacute;paule en guise d&#039;&eacute;toffe. </div><div class="post_line">Je n&#039;&eacute;tait gu&egrave;re effray&eacute;e, pourtant la vision &eacute;tant terriblement pr&eacute;cise. J&#039;&eacute;tais l&#039;instigatrice de ce charnier...</div><div class="post_line"></div><div class="post_line">Je l&#039;avais provoqu&eacute;... </div><div class="post_line"></div><div class="post_line">Un pas lest m&#039;interrompis.</div><div class="post_line"><em>-&quot;Judna?&quot;</em></div><div class="post_line"><em>-&quot;Parle Sydhy, quel est l&#039;impact de ma nomination sur les clans?&quot;</em></div><div class="post_line">L&#039;homme au profil sec et dur, marqua un temps.</div><div class="post_line"><em>-&quot;Je n&#039;ose y croire, mais les&nbsp;lrav ta-lmyhc, ont reconnu ton statut avec une grande effervescence, L&#039;empire des Ordo Caeli viens de na&icirc;tre, le peuple accorde ta l&eacute;gitimit&eacute;</em><em>.&quot;</em></div><div class="post_line"><em>-&quot; Et la proph&eacute;tie?&quot;</em></div><div class="post_line"><em>-&quot;<font color="#68C4E8"> Dans l&rsquo;univers, son nom r&eacute;sonnera, ainsi SERA FYHATY!</font>&quot;</em></div><div class="post_line"></div><div class="post_line">Je gifla de col&egrave;re mon aide de camp.</div><div class="post_line"></div><div class="post_line"><em>-&quot; Je ne te demande pas de me r&eacute;citer la proph&eacute;tie, dis moi juste ce que le peuple en pense!&quot;</em></div><div class="post_line"><em>-&quot; Une partie du peuple est fanatis&eacute;, l&#039;autre n&#039;y accroche que la coutume...&quot; </em>me r&eacute;pondis Sydhy, en essuyant le sang qui coulait de sa l&egrave;vre.</div><div class="post_line"></div><div class="post_line"><em>-&quot;Bien, fait donc un corps de combats d&#039;&eacute;lite avec les plus fanatiques, les autres seront dans l&#039;arm&eacute;e r&eacute;guli&egrave;re.&quot;</em></div><div class="post_line"><em>-&quot;Et pour les Irav ta-lmyhc?&quot; </em></div><div class="post_line"><em>-&quot;Rien ne change... Va &agrave; pr&eacute;sent&quot; </em></div><div class="post_line">L&#039;aide de camp s&#039;&eacute;clipsa, je replongeait dans ma vision...</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=ordo+caeli">Cdte. ordo caeli</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11606.jpg" style="width:128px;height:125px" alt="Avatar" /><br />18/07/1022 ETU 03:09</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293541')">Détails</a> <a href="javascript:warnpost(293541)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293541" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293541',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff">Sydhy et la proph&eacute;tesse &eacute;taient face &agrave; moi...</font></div><div class="post_line"><em>-Jedna ad Suinnen...</em> dit-il.</div><div class="post_line"><em>-Coal da tiericu! </em></div><div class="post_line"><em>-Oui Judna, le temps est venu... </em>me dit la jeune femme aveugle. C&#039;&eacute;tait ainsi les proph&egrave;tes avais leur yeux br&ucirc;l&eacute;s... Un rite, une coutume...</div><div class="post_line"></div><div class="post_line">Elle caressa ma nuque, je sentit un l&eacute;ger frissonnement...</div><div class="post_line"><em><font color="#E8C500">-&quot;Ne les laisse pas faire, bat-toi, ou tu vas dispara&icirc;tre!!! ton nom de Fyhaty s&#039;oubliera comme les autres!&quot;</font></em></div><div class="post_line"><em>-&quot;Non je ne peut pas survivre au &eacute;l&eacute;ments... Mon combat se termine avec celui de mon peuple...&quot;</em></div><div class="post_line"></div><div class="post_line">Sydhy posa un genoux au sol, me regardant fixement. Il tenait entre ses mains la coupe de Fyhaty... Un &eacute;crin fait d&#039;un m&eacute;tal &eacute;trange, o&ugrave; du moins il me semblais qu&#039;il en &eacute;tait ainsi... Apr&egrave;s tout, cela faisais des si&egrave;cles et peut-&ecirc;tre plus qu&#039;il avait &eacute;t&eacute; cr&eacute;e pour recevoir l&#039;esprit Ma&icirc;tre.</div><div class="post_line"></div><div class="post_line"><em>-Tu ne mourra pas Fyhaty, mais il ne restera plus que Judna dans ton enveloppe, bien qu&#039;elle restera imp&eacute;ratrice et suivra son peuple dans la Fin...</em></div><div class="post_line"></div><div class="post_line">Je sentit un filet poisseux couler de ma nuque, quelque chose expatriais de mon corps, de ma t&ecirc;te pr&eacute;cis&eacute;ment, des voix hurl&egrave;rent en moi, pourtant ce n&#039;&eacute;tait pas douloureux.</div><div class="post_line">Mon esprit se vidais juste, de quoi? Je ne le savais plus... </div><div class="post_line">Seule, solitude, une et une seule, ou &eacute;tait ? Non je ne me rappelle pas... qui suis-je? Judna oui mais encore? </div><div class="post_line">Je regardais l&#039;&eacute;crin tenu par cet inconnu... pourtant si familier, comme un r&ecirc;ve.</div><div class="post_line"></div><div class="post_line"><em>-C&#039;est finit Judna... La proph&eacute;tie n&#039;est plus entre tes mains. </em></div><div class="post_line"></div><div class="post_line">Je regardais l&#039;&eacute;crin se fermer, a l&#039;int&eacute;rieur, un &eacute;trange insecte se repliait sur lui-m&ecirc;me et durcissait comme une perle... qu&#039;&eacute;tais-ce?</div><div class="post_line">J&#039;effleurais ma nuque, une l&eacute;g&egrave;re plaie suppurait un peu de sang, cette chose sortait donc de moi!</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#68C4E8"><font size="3">Aux &eacute;l&eacute;ments d&eacute;vastateur et fin des temps, survivra, ainsi SERA FYHATY!</font></font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16271&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16271" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16271" name="d_reply_16271" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16271');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16271'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > &quot;₪&int;&there4;&there4;६&quot;</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

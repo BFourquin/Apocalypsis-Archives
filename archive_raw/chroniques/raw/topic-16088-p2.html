@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 16088 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Genola Host</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Genola Host</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16088&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=G.+Host">Cdt. G. Host</a><br>Prestige de chroniqueur&nbsp;: 42<br /><br /><img src="/avatars/11382.jpg" style="width:112px;height:128px" alt="Avatar" /><br />18/05/1022 ETU 08:37</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D293237', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293235')">Détails</a> <a href="javascript:warnpost(293235)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293235" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293235',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Grigori Jones arriva sur Neo Palladiom &agrave; bord d&#039;une escadre qui n&#039;avait d&eacute;sormais de kamikaze que le nom&nbsp;: les blocs d&#039;explosifs avaient &eacute;t&eacute; retir&eacute;s de la soute afin de permettre le transport d&#039;au moins deux passager en plus du pilote. La vitesse de vol de cette unit&eacute; garantissait de passer les radars sillonnant la plan&egrave;te afin d&#039;op&eacute;rer une extraction rapide et efficace. En apoth&eacute;ose, l&#039;insulte que jetait au visage une telle perversion du fleuron de la F&eacute;d&eacute;ration ajoutait &agrave; l&#039;op&eacute;ration un pied-de-nez au nouveau gouvernement qui aurait fait rugir de col&egrave;re Fregger en personne.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Trouvant une crique non loin de la capitale, il atterrit sans encombre au milieu d&#039;un panel rocheux qui surplombait la plage : le vent charg&eacute; d&#039;iode lui envoya des souvenirs qui d&#039;instinct le ramen&egrave;rent &agrave; ses heures perdues &eacute;tant gosse sur les docks de Guantana Bay. Balayant rapidement ces chim&egrave;res du pass&eacute;, il fit route &agrave; allure r&eacute;solue en direction de la capitale qui se trouvait &agrave; moins de deux kilom&egrave;tres de la crique : les fl&egrave;ches des tours pointaient en direction du ciel comme autant de promesses d&#039;aller en caresser les nu&eacute;es, mais &agrave; la vue de ces amas de tours urbaines grouillantes d&#039;une vie citadine, Grigori n&#039;y vit surtout qu&#039;un champs de barbel&eacute;s ou de dents f&eacute;roces prompts &agrave; lac&eacute;rer sa carcasse. Il savait trop bien que derri&egrave;re les mailles de cette foisonnante civilisation se trouvait un enjeu double, l&#039;un capital, l&#039;autre intime, qui chacun dormaient dans les serres d&#039;un G&eacute;n&eacute;ral sans scrupules. Mais il &eacute;tait pr&ecirc;t, et sa r&eacute;solution ne devait pas faillir tant que Sylvia Jones-Palmer et Genola Host ne seraient pas saines et sauves au c&oelig;ur de la station orbitale de Neo Sanatoriom.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593BD"><em>&quot;En arrivant &agrave; la capitale, il est important que vous &eacute;vitiez les barrages et autres inspections d&#039;identit&eacute; tant que vous ne serez pas proches du bloc 23, car nos relev&eacute;s ont indiqu&eacute;s que votre disparition soudaine des douanes de Guantana Bay a &eacute;t&eacute; signal&eacute;e. Vous retrouver au beau milieu du c&oelig;ur du pouvoir n&#039;aurait pour effet que d&rsquo;&eacute;veiller une forte suspicion &agrave; votre &eacute;gard, aussi soyez autant que possible une ombre, et tout se passera au mieux.&quot;</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le vieil homme avait mis en garde le douanier quant &agrave; d&#039;&eacute;ventuels contr&ocirc;les sauvages, choses devenues courante en capitale, aussi profita-t-il d&#039;une inspection de marchandise guildienne de provenance inconnue pour se faufiler derri&egrave;re les lignes hostiles : les stocks massifs de marchandise des VME imposaient un m&eacute;ticuleux inventaire sous peine de se voir refuser le remboursement du non per&ccedil;u si une erreur de quantit&eacute; devait &ecirc;tre d&eacute;clarer sur le tard. Jones remercia en esprit les ann&eacute;es qu&#039;il avait pass&eacute; &agrave; d&eacute;ambuler dans les immenses cargos VME &agrave; contr&ocirc;ler ces dites marchandises, maudissant alors &agrave; l&#039;&eacute;poque les monstrueuses panses &agrave; tr&eacute;sor qu&rsquo;&eacute;taient les Vaisseaux de la Guilde.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Arrivant apr&egrave;s quelque dizaines de minutes en dehors de la zone portuaire, il s&#039;engouffra dans une ruelle afin de retrouver la zone urbaine, et se mit en qu&ecirc;te du bloc 23, lieu ou se trouvait la prisonni&egrave;re Host et sa s&oelig;ur. Apr&egrave;s une bonne heure pass&eacute;e &agrave; redoubler de vigilance, son errance le mena vers une b&acirc;tisse gris&acirc;tre qui s&rsquo;&eacute;tirait tel un ver le long d&#039;un boulevard principal. Celui-ci, contre toute attente, semblait faire chemin jusqu&#039;&agrave; l&#039;immense coupole du bloc hospitalier 23.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>&quot;Bingo&quot;</em> pensa Jones. Profitant d&#039;un soleil d&eacute;clinant annonciateur du soir prochain, il trouva refuge dans un r&eacute;duit situ&eacute; non loin d&#039;un chantier proche. Avec horreur, il d&eacute;couvrit que le r&eacute;duit &eacute;tait en fait des toilettes de chantier, et l&#039;odeur latente &eacute;manant du lieu manqua plusieurs fois de le faire vomir. C&rsquo;&eacute;tait comme si le souffre et l&#039;odeur d&#039;un million de vomissures s&rsquo;&eacute;taient retrouv&eacute;es dans un gourbis de deux m&egrave;tres carr&eacute;s pour s&#039;y faire une orgie et muter finalement en une odeur plus horrible encore. Mais c&#039;est pourtant dans cette cabine qu&#039;il se terra jusqu&rsquo;&agrave; la tomb&eacute;e de la nuit, luttant contre sa peur et sa naus&eacute;e, enfilant sa tenue d&#039;infirmier afin d&#039;infiltrer l&rsquo;h&ocirc;pital psychiatrique le mieux gard&eacute; de la Galaxie.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le soir arriva, fort heureusement, bien vite, comme souvent en hiver, et la nuit lib&eacute;ratrice recouvra bient&ocirc;t le bloc 23, &eacute;clair&eacute; seulement par des lampadaire faisant front au sein des espaces verts entourant le quartier.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Habill&eacute; de sa nouvelle tenue d&#039;infirmier, Jones s&#039;avan&ccedil;a d&#039;un pas ferme en direction du bloc hospitalier 23 : le b&acirc;timent &eacute;tait gigantesque, orn&eacute; d&#039;une coupole de verre majestueuse rappelant un &oelig;il tourn&eacute; vers le ciel. Nul doute qu&#039;a l&rsquo;int&eacute;rieur devait p&eacute;n&eacute;trer une lumi&egrave;re naturelle propice &agrave; magnifier l&#039;endroit. L&#039;architecture pr&ecirc;tait aux Anciens, et les colonnes d&eacute;cor&eacute;es ainsi que les frises visible sur le fronton principal rappelaient que le classicisme avait encore de beaux jours devant lui. En s&#039;approchant plus encore, Grigori nota qu&#039;un des frontons avait &eacute;t&eacute; gratt&eacute; fortement, au point qu&#039;on en distingue plus aucun relief. La chose &eacute;tait d&#039;autant plus curieuse que celui avait &eacute;t&eacute; remplac&eacute;, de fa&ccedil;on assez sommaire il faut le dire, par une banderole montrant les exploits militaires de vaisseaux Fregger en plein combat. Outre ces d&eacute;tails, Jones remarqua qu&#039;un cordon de gardes entourait l&#039;ensemble du b&acirc;timent, rendant son d&eacute;guisement des plus pertinents.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#5593BD">&quot;Vous avez sur ce badge une identit&eacute; factice qui trompera les scanners du b&acirc;timent pour une p&eacute;riode allant de trois &agrave; six heures, au del&agrave;, les codes de d&eacute;cryptages changent et vous n&#039;aurez plus aucun moyen d&#039;avancer dans le bloc 23 sans d&eacute;clencher une alarme.&quot;</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Jones savait cela, et pour cause : Marley l&#039;avait engag&eacute; sp&eacute;cifiquement pour cela. Les codes crypt&eacute;s &eacute;taient bas&eacute;s sur le m&ecirc;me syst&egrave;me qu&#039;il avait utilis&eacute; pour faciliter le transfert de sa s&oelig;ur dans cet endroit. La s&eacute;curit&eacute; &agrave; l&#039;&eacute;poque &eacute;tait d&eacute;risoire, si bien que la falsification des dossiers, empreintes et identifications r&eacute;sidents n&#039;avaient mis que quelques jours &agrave; &ecirc;tre effectifs. </div></div><div class="post_line"><div align="justify">Mais aujourd&#039;hui tout &eacute;tait diff&eacute;rent. Grigori ne savait pas si les multiples hackings de l&#039;Organisation Ren&eacute;gate en &eacute;taient la cause ou si les protocoles de s&eacute;curit&eacute; avaient connus un bon de g&eacute;ant en un temps tr&egrave;s court, mais cracker les diff&eacute;rents <em>firewalls </em>et les multiples protocoles s&eacute;curis&eacute;s lui avait donn&eacute; maille &agrave; faire. Il avait r&eacute;ussi &agrave; se donner une fen&ecirc;tre suffisamment raisonnable pour op&eacute;rer sans encombre, mais m&ecirc;me avec ses talents, il doutait d&#039;avoir pleinement r&eacute;ussi &agrave; terrasser l&#039;hydre s&eacute;curitaire qu&rsquo;&eacute;tait devenu le r&eacute;seau du bloc 23.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">C&#039;est donc avec une certaine nervosit&eacute; qu&#039;il s&#039;avan&ccedil;a vers le cordon arm&eacute; qui entourait la r&eacute;sidence hospitali&egrave;re. Le garde qui l&rsquo;arr&ecirc;ta &eacute;tait jeune, surement fra&icirc;chement enr&ocirc;l&eacute;, et l&#039;id&eacute;e de faire une garde nocturne avait peint sur son visage une mine maussade qu&#039;&eacute;clairaient avec peine les lampadaires proches :</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#FF5F54">&quot;Papiers et documents d&#039;identification, je vous prie&quot;</font></em></div></div><div class="post_line"><div align="justify">Au moins, il n&#039;avait pas oubli&eacute; la politesse. Grigori tendit un pass magn&eacute;tique que le soldat eut t&ocirc;t fait de lire gr&acirc;ce &agrave; son scan de poche. Les secondes d&#039;analyses du scan furent autant d&rsquo;&eacute;ternit&eacute;s ou Jones s&#039;imaginant mis au fer, tortur&eacute;, ou pire, abattu dans l&#039;instant ou son subterfuge serait d&eacute;couvert. Rouge, acc&egrave;s refus&eacute;. Le c&oelig;ur de Jones rata un battement. Le garde frotta le pass contre son v&ecirc;tement et retenta le scan.</div></div><div class="post_line"><div align="justify">Le bip de validation retentit, providentiel.</div></div><div class="post_line"><div align="justify"><em><font color="#FF5F54">&quot;Bonne soir&eacute;e, Monsieur Napapijri&quot;</font></em></div></div><div class="post_line"><div align="justify">Le pass avait fonctionn&eacute;, prolongeant la vie de Jones de quelques temps encore.</div></div><div class="post_line"><div align="justify"><em>&quot;C&#039;est Napipajra, mais</em><em> ne vous en faites pas, j&#039;ai l&#039;habitude, bonne soir&eacute;e&quot;</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ni une, ni deux, Grigori &quot;Napipajra&quot; Jones s&#039;engouffra dans l&#039;imposant &eacute;difice.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=G.+Host">Cdt. G. Host</a><br>Prestige de chroniqueur&nbsp;: 42<br /><br /><img src="/avatars/11382.jpg" style="width:112px;height:128px" alt="Avatar" /><br />31/05/1022 ETU 06:57</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D293266', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293265')">Détails</a> <a href="javascript:warnpost(293265)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293265" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293265',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&nbsp;&nbsp;&nbsp;<strong><font size="5">&nbsp;&nbsp; SI</font></strong> l&#039;h&ocirc;pital paraissait grand de l&rsquo;ext&eacute;rieur, Grigori f&ucirc;t surpris de voir &agrave; quel point la superbe de fa&ccedil;ade contrastait avec la simplicit&eacute; fonctionnelle de son int&eacute;rieur : l&#039;entr&eacute;e laissa vite la place aux premiers blocs de soins qui t&eacute;moignaient du pass&eacute; du lieu plus d&eacute;di&eacute; a r&eacute;parer les corps qu&#039;a ausculter les psych&eacute;s. En passant ces premi&egrave;res chambres, il distingua les traces de meubles qui apparemment avaient &eacute;t&eacute; retir&eacute;s de salles, laissaient en ombre grise le dessin de leur contours sur des murs qui avaient besoin d&#039;un bon coup de frais. Pass&eacute; ce premier couloir de chambre vides et de souvenirs &eacute;teints, il arriva a l&#039;embranchement qui divisait le bloc 23 en cinq ailes se jouxtant les unes les autres. Sur le mur, un plan de l&#039;architecture laissait voir la relative similitude de ces dortoirs, reprenant les quatre points cardinaux ainsi qu&#039;une aile centrale servant de n&oelig;ud d&#039;&eacute;change entre toutes.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#5593BD">&quot;Une fois dans le b&acirc;timent, vous retrouverez votre s&oelig;ur ainsi que Mademoiselle Host dans le bloc le plus au Nord. Notre informateur nous </font></em><em><font color="#5593BD">a mentionn&eacute; plusieurs points de passage, dont un avec sas, que vous devrez franchir.&quot;</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Marley avait vu juste : au del&agrave; du simple contr&ocirc;le de carte qu&#039;il avait subi &agrave; l&#039;entr&eacute;e, le plan indiquait clairement que les dortoirs &eacute;taient gard&eacute;s par au moins trois sas de contr&ocirc;le que Grigori allait devoir g&eacute;rer. Seul le dortoir Nord faisait exception, poss&eacute;dant pas moins de cinq sas de contr&ocirc;le, indiquant le niveau de haute s&eacute;curit&eacute; de celui-ci. Heureusement, fort de sa t&ecirc;te et de ses bras, Jones avait sa propre id&eacute;e sur comment franchir la s&eacute;curit&eacute; parano&iuml;aque de Neo Palladiom.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les trois premiers points de contr&ocirc;le furent simples &agrave; berner, l&#039;uniforme d&#039;infirmier et l&#039;habitude qu&#039;avaient les gardes a voir d&eacute;filer des visages trop diff&eacute;rents dans cette ville-h&ocirc;pital furent les &eacute;l&eacute;ments qui permirent a Grigori de passer sans probl&egrave;me. Concernant le laissez-passer factice qu&#039;il avait con&ccedil;u, celui-ci se r&eacute;v&eacute;la fiable jusqu&#039;au sas num&eacute;ro quatre. Jones ne put s&rsquo;emp&ecirc;cher de se f&eacute;liciter mentalement de la qualit&eacute; de son travail, pour rapidement se rem&eacute;morer que la plus petite erreur de falsification de son identit&eacute; lui aurait cout&eacute; bien plus qu&#039;une amende et un jugement exp&eacute;ditif.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le quatri&egrave;me sas se compliquait un peu plus : exit le cordon de garde et les lecteurs de pass num&eacute;rique, l&#039;entr&eacute;e &eacute;tait gard&eacute;e par un Cerb&egrave;re de tout autre nature : un scanner r&eacute;tinien bloquait le passage, chose que le douanier n&#039;avait apparemment pas pu corrompre pour y ins&eacute;rer sa propre empreinte : en effet, les archives r&eacute;tiniennes &eacute;taient balay&eacute;es par un analyste toutes les 48h, ce qui laissait &agrave; peine le temps aux hackers d&#039;en cracker les s&eacute;curit&eacute;s, que l&#039;anomalie d&#039;une empreinte non r&eacute;pertori&eacute;e &eacute;tait point&eacute;e par une intelligence humaine en charge de l&#039;administration des personnels soignants du lieu. Jones avait bien tent&eacute; via <em>social engineering</em> de trouver des informations sur l&#039;un de ces contr&ocirc;leurs, mais le cloisonnement des dossiers du nouveau gouvernement ne laissait que peu de chance de trouver une trace num&eacute;rique de ces informations. Comme quoi, au 22e si&egrave;cle, l&#039;archivage papier avait encore de beaux jours devant lui.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593BD"><em>&quot;Pour les sas ne requ&eacute;rant pas la falsification de votre pass, je vous laisse juge de comment op&eacute;rer, notre informateur n&rsquo;&eacute;tant pas &agrave; m&ecirc;me de nous fournir d&#039;information plus pr&eacute;cises&quot;</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Grigori se souvenait parfaitement de la r&eacute;ponse qu&#039;il avait donn&eacute; &agrave; Marley face au probl&egrave;me :</div></div><div class="post_line"><div align="justify"><em>&quot;Croyez moi, il existe une chose que toutes les structures, m&ecirc;mes les plus imp&eacute;rialistes, fascistes et totalitaires poss&egrave;dent, et je pense ne pas me tromper que par celle-ci, tout les chemins m&egrave;nent &agrave; Palladiom.&quot;</em></div></div><div class="post_line"><div align="justify">Marley n&#039;avait pas su saisir ce trait d&#039;esprit, laissant Jones pr&eacute;parer son mat&eacute;riel en vue de l&#039;op&eacute;ration.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Face au scanner r&eacute;tinien que terminait un long couloir ou les cam&eacute;ras &eacute;taient l&eacute;gions, il ajusta sa casquette et fit curieusement demi-tour. Retourn&eacute; au sas numero trois, il retrouva le garde qui l&#039;avait inspect&eacute; et lui demanda le plus simplement du monde ou se trouvaient les toilettes. Quelque peu agac&eacute; d&#039;&ecirc;tre d&eacute;rang&eacute; pour d&#039;aussi triviales requ&ecirc;tes, le garde lui indiqua vaguement l&#039;emplacement des saint tr&ocirc;nes. Une fois arriv&eacute; au lieu de plenitude, Grigori chercha le syst&egrave;me de ventilation le plus proche, un de ceux que les services sanitaires devaient contr&ocirc;ler de l&rsquo;int&eacute;rieur afin de veiller &agrave; l&#039;aseptisation des conduits, et donc &agrave; la sanit&eacute; de l&#039;air ventil&eacute; pour les patients.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>&quot;Bingo&quot;</em> s&#039;exclama-t-il mentalement une seconde fois.</div></div><div class="post_line"><div align="justify">Non loin des sanitaires, une trappe situ&eacute; a mi-hauteur indiquait l&#039;emplacement d&#039;une conduite gard&eacute;e par une simple grille de m&eacute;tal. S&#039;engouffrant les toilettes puis&nbsp;dans une cabine, il retira sa veste, son pantalon, ses chaussures. Puis il retourna ses v&ecirc;tements pour en r&eacute;v&eacute;ler l&#039;envers : l&#039;immacul&eacute;e blancheur de la tenue d&#039;infirmier se changea en un gris formel de technicien de surface. Habill&eacute; comme tel, il quitta la cabine et sortit une petite pi&egrave;ce de 3 leems qui allait lui servir de tournevis. Cinq minutes plus tard, les fixations de la grille s&#039;ouvrirent aussi facilement qu&#039;une fille du port &agrave; la vue d&#039;un bateau de soldats. En s&#039;engouffrant dans la grille de ventilation, il se rappela qu&#039;il n&#039;avait plus tout &agrave; fait vingt ans : sa souplesse de jeune homme l&#039;avait quitt&eacute; depuis un paquet d&#039;ann&eacute;es, et ses articulations criaient &agrave; l&rsquo;agression alors qu&#039;il tentait vaguement de se faufiler dans le maigre boyau de m&eacute;tal, plongeant vers l&#039;inconnu ou les miasmes et d&#039;improbables habitants des conduits allaient &ecirc;tre ses seuls compagnons de voyage.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La reptation dura longtemps, ponctu&eacute;e d&#039;interruptions subites, l&#039;exigu&iuml;t&eacute; du conduit conduisant peu &agrave; peu Jones dans une parano&iuml;a grandissante : le moindre bruit, f&ucirc;t-il venu du conduit ou d&#039;ailleurs, amenait le douanier vers des sommets traumatiques de terreur claustrophobe. Perdu dans l&#039;obscurit&eacute; de cet intestin de m&eacute;tal, il perdit enti&egrave;rement la notion du temps, pourtant pr&eacute;cieuse car il n&#039;oubliait en outre pas qu&#039;il menait une course contre la montre. Grigori Jones pensa un instant qu&#039;entre presque mourir dans les pires toilettes de chantier de la plan&egrave;te et suffoquer dans le tuyau d&#039;&eacute;vacuation de la plus grande cit&eacute;-prison de sa plan&egrave;te, il aurait pour s&ucirc;r des anecdotes de comptoir &agrave; raconter &agrave; son retour &agrave; Guantana Bay.</div></div><div class="post_line"><div align="justify">S&#039;il revenait un jour.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Perdu dans sa version tr&egrave;s personnelle de la caverne de Platon, Grigori continua sa progression de fourmi, avan&ccedil;ant au gr&eacute; des ombres et des sons qui se dessinaient au alentours de son itin&eacute;raire aveugle. Il se fit un sch&eacute;ma mental et approximatif de son cheminement, esp&eacute;rant avoir d&eacute;pass&eacute; le scanner d&#039;une part, et priant pour trouver une sortie s&eacute;curis&eacute;e d&#039;autre part. C&#039;est alors que Dame Chance lui sourit : juste en face, une autre grille de ventilation. Approchant tant bien que mal au d&eacute;triment de ses articulations hurlant qu&#039;on l&#039;ach&egrave;ve, il put observer &agrave; travers la grille qu&#039;il se trouvait dans un espace de stockage plong&eacute; dans la p&eacute;nombre. Probl&egrave;me : la pi&egrave;ce de monnaie qui lui avait servi de tournevis de fortune &eacute;tait dans sa poche, pour l&#039;heure inaccessible.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Nul ne sut vraiment si ce fut de la chance de la part de Grigori ou de l&#039;incomp&eacute;tence de la part des gardes faisant ronde cette nuit l&agrave;, mais toujours est-il que la grille c&eacute;da au quatri&egrave;me coup de t&ecirc;te du douanier dans la plaque grillag&eacute;e, laissant Jones un peu groggy apr&egrave;s un bruit de tout les diables provoqu&eacute; par son office. La ventilation accoucha d&#039;un douanier au bord de la syncope, en sueur jusqu&#039;au dernier degr&eacute; de son &ecirc;tre, le visage ensanglant&eacute; par une arcade rompue qui ruisselait sur son nez, sa bouche et le coin de son &oelig;il droit. Mais ce ne fut pas cela qui eut fini de l&#039;achever.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">-Vous en avez mis du temps ! </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Grigori, dans l&#039;incertitude de son inconfort, s&rsquo;&eacute;tait tromp&eacute; : il n&rsquo;&eacute;tait pas dans une pi&egrave;ce de stockage.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">- Vous &ecirc;tes le Prince Charmant, et vous allez me lib&eacute;rer de la vilaine sorci&egrave;re, c&#039;est &ccedil;a ? Et ensuite on va se marier et vivre heureux et avoir beaucoup d&#039;enfants, hein ? hein ? hein ?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ce qu&#039;il avait pris pour une armoire de stockage &eacute;tait bel et bien une armoire, mais faite de muscles et de chair : un Golgoth d&#039;environs 130 kg se trouvait tapi sur un lit de fortune, caressant une peluche de lapin avec autant d&#039;attention qu&#039;une petite fille de quatre ans. Soudain le g&eacute;ant se leva, faisant grincer les ressorts d&#039;un lit qui avait d&eacute;j&agrave; pris la courbure de la b&ecirc;te :</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">-Heureusement que vous &ecirc;tes tomb&eacute; dans la bonne chambre, la vilaine sorci&egrave;re vous aurait mang&eacute; tout cru dans votre &eacute;tat ! Venez vous reposer, et racontez moi votre royaume, comment vous allez m&#039;&eacute;pouser et comment moi je vais devenir la princesse, oh oui ! La princesse Alice ! Ouiouioui !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>A suivre...</em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Genola+Host">Cdt. Genola Host</a><br>Prestige de chroniqueur&nbsp;: 1<br /><br /><img src="/avatars/11706.png" style="width:115px;height:128px" alt="Avatar" /><br />25/07/1022 ETU 02:48</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal293880')">Détails</a> <a href="javascript:warnpost(293880)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293880" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293880',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Alice &eacute;tait en fait un prisonnier mentalement instable qui croupissait depuis des ann&eacute;es dans les ge&ocirc;les hospitali&egrave;res de Sanatoriom. Jones l&#039;avait surpris en plein th&eacute; avec ses poup&eacute;es, alors que le golgoth musculeux de 130 kilos &eacute;tait fort heureusement dans un d&eacute;lire hallucinatoire de contes de f&eacute;es. Ne se sentant pas de faire un bras de fer avec telle engeance, il parut sage a Jones de rentrer dans la peau d&#039;un prince :</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">- Alors comme &ccedil;a ton royaume est situ&eacute; de l&#039;autre cot&eacute; de la Lune ?</font></div></div><div class="post_line"><div align="justify">- Exactement, et je viens emmener trois princesses pour les pr&eacute;senter &agrave; la cour des &Eacute;toiles.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;excitation bondissante d&#039;Alice fit trembler le sol.</div></div><div class="post_line"><div align="justify">- Mais par contre j&#039;ai besoin de retrouver les deux autres princesses, sinon pas de ch&acirc;teau de la Lune, et pas de cour des &Eacute;toiles. Et en silence, je t&#039;en supplies.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alice posa un doigt sur sa bouche en acquies&ccedil;ant silencieusement. L&#039;occasion &eacute;tait trop belle, elle ne devait pas la g&acirc;cher.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">- Bien, pour l&#039;heure, nous devons trouver un moyen de sortir de cette chambre.</div></div><div class="post_line"><div align="justify">Alice le regarda avec un grand sourire :</div></div><div class="post_line"><div align="justify"><font color="#008000">- Rien de plus facile ! Regarde ! GAAAAAAAAAAAAARDE !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La c&oelig;ur de Jones rata un battement.</div></div><div class="post_line"><div align="justify">Un bruit de pas se fit entendre, un bruit de bottes, synonyme d&#039;arrestation, de proc&egrave;s ex&eacute;cutif et de mise &agrave; mort certaine. Et encore, le douanier n&rsquo;&eacute;tait pas s&ucirc;r de passer par la case proc&egrave;s.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">- GARDE ! Il y a un gros rat dans ma chambre, et une princesse ne peut pas dormir avec un tel volatile en sa pr&eacute;sence ! </font></div></div><div class="post_line"><div align="justify"><font color="#FFFA1E">- Ferme l&agrave;, Brock.</font> r&eacute;pondit une voix venant de l&#039;autre cot&eacute; de la porte. La derni&egrave;re fois c&rsquo;&eacute;tait un lapin en mitraillette, et la fois d&#039;avant, une fourmi t&eacute;l&eacute;pathe.</div></div><div class="post_line"><div align="justify"><font color="#008000">- Mais Garde, il pr&eacute;tend avoir des informations sur le Professeur Marley !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Grigori se savait foutu.</div></div><div class="post_line"><div align="justify">Les cl&eacute;s tourn&egrave;rent dans le verrou de la porte.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF44">- Qu&#039;est ce que tu racontes, Brock, et ou est ce que tu as entendu ce nom l&agrave; ?</font></div></div><div class="post_line"><div align="justify"><strong><font color="#008000">- SURPRISE !</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La masse tomba sur le garde comme un rocher d&eacute;tach&eacute; d&#039;une falaise. &quot;Alice&quot; saisit le vigile habill&eacute; de blanc, et effectua une rotation de son cr&acirc;ne qui se termina dans un &quot;CRAC&quot; &eacute;c&oelig;urant.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">- Il ne me donnait jamais de compotes suppl&eacute;mentaires.</font> l&acirc;cha Alice/Brock avec froideur, sans autre forme de proc&egrave;s.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Grigori &eacute;tait partag&eacute; entre (tenter de) prendre Alice dans ses bras ou se carapater le plus vite possible. Mais une chose le taraudait :</div></div><div class="post_line"><div align="justify">- Alice, ou Brock, qui que tu soies, je n&#039;ai jamais parl&eacute; d&#039;un professeur Marley.</div></div><div class="post_line"><div align="justify"><font color="#008000">- Oui, mais c&rsquo;&eacute;tait plus simple pour le faire venir. C&#039;est l&#039;oiseau dans ma t&ecirc;te qui m&#039;a dit de donner ce pr&eacute;nom au garde.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Suspicieux mais n&eacute;anmoins sauf, Jones sortit de la cellule, suivi par une ombre massive chantonnant une comptine qui en ces instants donnait plus une atmosph&egrave;re lugubre que joyeuse &agrave; l&#039;ambiance.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">En s&#039;engouffrant dans les all&eacute;es labyrinthiques du Centre 23, il se souvint d&#039;une phrase qu&#039;il avait entendu durant ses &eacute;tudes : &quot;Aucun plan ne survit au contact de l&#039;ennemi&quot;.</div></div><div class="post_line"><div align="justify">Son instructeur avait foutrement raison.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et les deux gardes qui le prirent, lui et Alice, sur le fait, allaient rajouter une couche d&#039;accrocs &agrave; la mission.</div></div><div class="post_line"><div align="justify"><font color="#FFFA1E">- Stop ! Plus un geste&nbsp; !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alice, n&rsquo;&eacute;coutant que son courage, fon&ccedil;a t&ecirc;te baiss&eacute;e dans la m&ecirc;l&eacute;e :</div></div><div class="post_line"><div align="justify"><font color="#008000">- Prot&eacute;gez le Prince, Narniaaaaaa !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Des bruits de coups de feu retentirent, que Grigori ne prit pas le temps d&#039;analyser. Courant comme un d&eacute;rat&eacute;, se perdant dans les intersections d&eacute;dalesque du complexe hospitalier, il franchit une porte gr&acirc;ce &agrave; son passe magn&eacute;tique truqu&eacute;. Qui &eacute;tait p&eacute;rim&eacute; depuis. Une alarme retentit soudainement.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#FF5F54">&quot;Alerte intrusion, Alerte intrusion&quot;</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Face au cumul de sa malchance, Grigori Jones &eacute;clata de rire. </div></div><div class="post_line"><div align="justify">C&rsquo;&eacute;tait &agrave; peu pr&egrave;s tout ce qui lui restait pour conserver sa sant&eacute; mentale.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Elly">Cdt. Elly</a><br>Prestige de chroniqueur&nbsp;: 2<br />25/07/1022 ETU 02:59</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293881')">Détails</a> <a href="javascript:warnpost(293881)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293881" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293881',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#44B8FF"><strong>Grigori Jones entendit avant de voir.</strong></font></em></div><div class="post_line"><em><font color="#44B8FF">Les yeux toujours ferm&eacute;s attendant son in&eacute;luctable capture, il fut surpris par les premi&egrave;res explosions. Les alarmes assourdissantes indiquant que Neo Palladiom &eacute;tait attaqu&eacute;e avaient &eacute;t&eacute; d&eacute;clench&eacute;es; les cris de la foule et le bruit des armes suivi de celui des premiers corps qui tombent ne laissaient aucun doute sur le fait qu&#039;il ne s&#039;agissait pas l&agrave; d&#039;un simple exercice. Sans savoir comment, il &eacute;tait certain que les deux gardes qui le poursuivaient quelques secondes auparavant ne poseraient jamais la main sur lui.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Il ouvrit les yeux et la vit devant lui. Quelques mois auparavant il aurait &eacute;t&eacute; dans l&#039;incapacit&eacute; de reconna&icirc;tre l&#039;envahisseur mais le temps pass&eacute; aupr&egrave;s du Professeur Marley lui avait permis de lire les journaux de la capitale, dont les informations &eacute;taient bien diff&eacute;rentes de celles qu&#039;il trouvait autrefois sur Guantana Bay. L&#039;imp&eacute;ratrice Itorienne se tenait &agrave; quelques pas de lui. Il l&#039;aurait imagin&eacute;e plus vieille, hurlant des jurons, ostentatoire de vulgarit&eacute; comme dans les caricatures qu&#039;il avait pu voir et qui l&#039;avaient fait sourire. Une vieille catin vulgaire se prenant pour une cheffe de guerre, parfaite dirigeante d&#039;une tribu de barbares sauvages, plus proches des brigands que des peuples civilis&eacute;s.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Mais celle qui se tenait devant lui &eacute;tait une femme n&#039;ayant pas encore la trentaine, v&ecirc;tue sobrement d&#039;une armure de cuir sombre et portant un katana noir dont les contours restaient flous, m&ecirc;me pour l&#039;observateur le plus attentif. Le sang coulant de l&#039;arme ne laissait aucun doute quant &agrave; l&#039;origine de la mort de ses poursuivants, elle avait tu&eacute; rapidement, sans un cri, sans un bruit. Ellyria rendit son regard &agrave; Grigori, elle le fixa quelques secondes puis d&eacute;tourna les yeux avant d&#039;effectuer bri&egrave;vement un geste rituel pour les deux cadavres.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Elle partit en silence d&#039;un pas vif et assur&eacute;, lui tournant le dos sans m&ecirc;me lui avoir adress&eacute; un mot. La voix de Marley le fit revenir &agrave; la raison...</font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593BD">-Grigori ? Grigori !</font></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Avant de pouvoir r&eacute;pondre une explosion retentit &agrave; quelques pas de lui, le soulevant et le projetant &agrave; plusieurs m&egrave;tres de l&agrave; ou il se trouvait alors. Le go&ucirc;t du&nbsp;sang dans la bouche, les membres paralys&eacute;s par la douleur il &eacute;tait bien incapable de r&eacute;pondre au Professeur.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">-Oui oui c&#039;est bon ! Ici Grigori !</font></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Un petit homme roux habill&eacute; d&#039;un costume vert et d&#039;un haut de forme de la m&ecirc;me couleur avait saisi l&#039;appareil de communication et r&eacute;pondait en son nom.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">- Les Itoriens envahissent la capitale mais on s&#039;en sort pas trop mal ! Envoyez nous des renforts aussi vite que possible, on va se replier en vous attendant les gars. Dites nous simplement o&ugrave; vous attendre pour qu&#039;on se regroupe l&agrave; bas ! J&#039;attends votre retour !</font></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Baliberne, le petit homme se faisant passer pour Grigori, n&#039;attendit m&ecirc;me pas que ce dernier soit mort avant de le fouiller et de lui prendre ses affaires : l&#039;appareil servant &agrave; communiquer en esp&eacute;rant r&eacute;cup&eacute;rer des informations int&eacute;ressantes, un badge et la machine qu&#039;il tenait dans ses bras avant de mourir.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">---</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Elle avait pass&eacute; la journ&eacute;e &agrave; consulter les documents qu&#039;avaient laiss&eacute;s les anciens occupants, elle avait fait interroger les prisonniers et avait d&eacute;ploy&eacute; des troupes dont elle attendait les rapports sur une bonne partie du territoire. Elle attendait calmement, sans rien laisser transpara&icirc;tre des &eacute;motions qui l&#039;animaient. Trouverait-elle ici ce qu&#039;elle &eacute;tait venue chercher ?</font></em></div><div class="post_line"></div><div class="post_line">- Crois-tu que le G&eacute;n&eacute;ral puisse avoir emmen&eacute; sa fille sur une autre plan&egrave;te, Balou ? J&#039;&eacute;tais certaine de la retrouver ici.</div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">- Je crois que tu devrais avoir confiance dans ton instinct. Et sinon le tien, aies confiance dans le mien. L&#039;un comme l&#039;autre sont si fiers de leur capitale &quot;Sanatorium ceci, Neo Palladium cela..&quot;, elle est forc&eacute;ment quelque part dans le coin.</font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD">- 20 568.6, 13 202.3 selon les normes galactiques. Le grand b&acirc;timent. Utilisez le badge.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Le professeur qui avait &eacute;cout&eacute; le duo via l&#039;appareil vol&eacute; par Baliberne, finit par rompre le silence en leur donnant les coordonn&eacute;es auxquelles trouver Genola. L&#039;imp&eacute;ratrice laissa bri&egrave;vement transparaitre son &eacute;tonnement.</font></em></div><div class="post_line"></div><div class="post_line">- Qu&#039;est ce que ? Qui parle ?</div><div class="post_line"></div><div class="post_line"><font color="#5593BD">- ...</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">- Allo ? Allo ? J&#039;ai piqu&eacute; ce truc tout &agrave; l&#039;heure quand on a d&eacute;barqu&eacute; et j&#039;ai oubli&eacute; de l&#039;&eacute;teindre ! C&#039;est marrant &ccedil;a, hein ?</font></div><div class="post_line"></div><div class="post_line">- Tu r&eacute;cup&egrave;res du mat&eacute;riel ennemi et tu les laisses &eacute;couter nos conversations ? Si tu &eacute;tais militaire, ce serait la cours martiale.</div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">- Mais je ne suis pas militaire Lyli ! Et visiblement c&#039;est un ami qui nous aide, non ? On pourrait m&ecirc;me dire que, si ce qu&#039;il nous dit est exact, vue l&#039;incroyable co&iuml;ncidence, ce serait un coup du Destin ? Si le dieu du Destin, Sliatdaeh, &eacute;tait derri&egrave;re tout cela que ca ne m&#039;&eacute;tonnerait pas, ainsi ce n&#039;est pas ma faute. Et tu ne peux pas punir un dieu, n&#039;est ce pas ?<strong><font color="#FFFA1E"> Le sujet est donc clos pour moi !</font></strong></font></div><div class="post_line"></div><div class="post_line"><em><font color="#44B8FF">Ellyria sourit. De tous ses sujet, c&#039;&eacute;tait toujours son conseiller le plus proche qui parvenait &agrave; l&#039;amuser et &agrave; la faire sourire. Un &eacute;trange bouffon, curieusement efficace, incapable de prendre quelque sujet que ce soit au s&eacute;rieux.</font></em></div><div class="post_line"></div><div class="post_line">- Allons donc voir l&agrave; bas...Allons retrouver Genola.</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16088&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16088&amp;c_topic_page=2">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16088&c_forum_page=1&c_page=2" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16088" name="d_reply_16088" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16088');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16088'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Genola Host</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

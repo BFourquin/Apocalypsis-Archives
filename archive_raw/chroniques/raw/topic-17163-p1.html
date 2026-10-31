@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17163 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>C&#039;est le m&eacute;tier qui rentre !</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > C&#039;est le m&eacute;tier qui rentre !</p>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=17163&c_forum_page=1&c_page=2">2</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Neil+MacDowell">Cdt. Neil MacDowell</a><br>Prestige de chroniqueur&nbsp;: 40<br /><br /><img src="/avatars/12162.png" style="width:128px;height:128px" alt="Avatar" /><br />28/02/1024 ETU 19:16<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal306767')">Détails</a> <a href="javascript:warnpost(306767)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306767" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 6<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306767',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#7fdbff"><em>Aux commandes de son vaisseau de transport en pilotage automatique, le Marchand Neil MacDowell r&ecirc;vasse. Les yeux plong&eacute;s dans le noir sid&eacute;ral, il ne cesse d&rsquo;imaginer son arriv&eacute;e sur le point de livraison. Il fallait payer pour charger les vaisseaux achet&eacute;s. C&rsquo;&eacute;tait sa fa&ccedil;on de faire au grand dam de ses subalternes au sang chaud. Il fait confiance &agrave; ceux qui le sollicitent. Les prises de risque pimentent sa vie quotidiennement, ou alors il se serait ennuy&eacute; dans la routine fastidieuse des travailleurs passifs.</em></font></div><div class="post_line"><font color="#7fdbff"><em>Par contre, &agrave; la moindre livraison foireuse, il sait se montrer impitoyable. Un seul manquement au contrat commercial et le nom du commandant est ray&eacute; de ses registres. </em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Il ne fait pas souvent lui-m&ecirc;me les transports d&rsquo;habitude, mais l&agrave;, en plus du lien professionnel, il en existe un autre encore plus r&eacute;jouissant : l&rsquo;amiti&eacute; et un fort penchant pour &ldquo;ce client&rdquo;. D&rsquo;o&ugrave; les picotements sur le dos des mains et une petite difficult&eacute; &agrave; calmer sa respiration. Il y a longtemps que son c&oelig;ur n&rsquo;avait pas battu pour quelqu&rsquo;un.</em></font></div><div class="post_line"><font color="#7fdbff"><em>A sa d&eacute;charge, dans la Galaxie Harmonie, et particuli&egrave;rement dans son Secteur encore verrouill&eacute;, il n&rsquo;y a pas beaucoup de peuples encore. Alors, il consid&egrave;re comme une chance d&rsquo;avoir quelques amis de bonne compagnie.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Les heures s&#039;&eacute;gr&egrave;nent lentement et inexorablement, l&rsquo;issue du voyage se rapproche. </em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Neil s&#039;allonge sur sa couchette ergonomique et essaie de dormir un peu, malgr&eacute; ses pens&eacute;es qui tournent et dont certaines lui arrachent un sourire rare.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>L&rsquo;alarme le r&eacute;veille, ils approchent du but.</em></font></div><div class="post_line"><font color="#7fdbff"><em>Sautant de sa couchette, il se pr&eacute;pare rapidement et se met aux commandes pour demander l&rsquo;acc&egrave;s au spatio-port. Les formalit&eacute;s accomplies, la flotte se pose souplement, elle est encore l&eacute;g&egrave;re. Il descend lentement du transporteur, ayant enlev&eacute; son casque de vol, la capuche de sa cape noire rabattue sur le front et parcourt la distance le s&eacute;parant du comit&eacute; d&rsquo;accueil d&rsquo;un pas serein.</em></font></div><div class="post_line"><font color="#7fdbff"><em>Sous le bord noir de sa coiffe, il scrute les abords et les personnes qui l&rsquo;attendent presque au garde-&agrave;-vous. L&rsquo;accueil est soign&eacute; et il n&rsquo;en doute pas, amical. Il est bient&ocirc;t rattrap&eacute; par ses Lieutenants.</em></font> </div><div class="post_line"></div><div class="post_line">&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;</div><div class="post_line"></div><div class="post_line"><font color="#5593bd">- Chanceli&egrave;re de Thrope ? C&rsquo;est un honneur.</font></div><div class="post_line"><em><font color="#7fdbff">Il est tellement impressionn&eacute; qu&rsquo;il pose un genou &agrave; terre devant elle, et saisissant la main qu&rsquo;elle tend, la porte, non pas &agrave; ses l&egrave;vres comme il l&rsquo;avait imagin&eacute; cent fois, mais &agrave; son front, en signe de respect et d&rsquo;admiration. En se relevant quelques secondes apr&egrave;s, il lui sourit.</font></em></div><div class="post_line"><font color="#5593bd">- Votre oblig&eacute;, Madame. Comme pr&eacute;vu, je viens en personne prendre votre chargement de vaisseaux, lesquels seront expertis&eacute;s par Wallace, mon Responsable m&eacute;canicien et charg&eacute;s par Calum, mon Chef d&rsquo;escadrille.</font></div><div class="post_line"><font color="#7fdbff"><em>Les int&eacute;ress&eacute;s se courb&egrave;rent bri&egrave;vement sans dire un mot.</em></font></div><div class="post_line"><font color="#5593bd">- Et comme pr&eacute;vu &eacute;galement </font><font color="#7fdbff"><em>- il sortit une carte magn&eacute;tique de sa poche int&eacute;rieure qu&rsquo;il donna &agrave; Calum - l</em></font><font color="#5593bd">e paiement cash de cette op&eacute;ration, en signe d&rsquo;une collaboration fructueuse.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il esp&egrave;re&nbsp; avoir observ&eacute; le minimum du d&eacute;corum de son h&ocirc;te, incapable d&rsquo;ajouter un mot &agrave; son la&iuml;us. Il attend donc tranquillement ce qui va suivre.</font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />06/03/1024 ETU 05:50</td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal306976')">Détails</a> <a href="javascript:warnpost(306976)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306976" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306976',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Dans l&#039;orbite de Neo-Matrum, alors que le soleil se levait &agrave; peine, la Comtesse Ad&egrave;le de Thropes &eacute;mergea de son transporteur, fra&icirc;chement arriv&eacute;e au Spatioport Sainte-Ad&eacute;, le point d&#039;entr&eacute;e principal du Duch&eacute;. Ici, un flot incessant de trois milliards de tonnes de marchandises transite quotidiennement. Son vaisseau avait touch&eacute; terre sur la piste cinq, une &eacute;tendue parfaitement nivel&eacute;e d&eacute;limit&eacute;e par des bandes lumineuses jaunes et rouges &eacute;clatantes. D&#039;une longueur de dix kilom&egrave;tres, cette piste offrait amplement d&#039;espace pour accueillir des vaisseaux de toutes tailles. Compos&eacute;e d&#039;un alliage de carbone et de tungst&egrave;ne, elle &eacute;tait con&ccedil;ue pour r&eacute;sister aux temp&eacute;ratures extr&ecirc;mes g&eacute;n&eacute;r&eacute;es par les r&eacute;acteurs des vaisseaux lors de leur d&eacute;collage ou de leur atterrissage. Des syst&egrave;mes de balisage lumineux &eacute;taient strat&eacute;giquement dispos&eacute;s le long de la piste pour assurer une visibilit&eacute; maximale, guidant les vaisseaux vers leur point d&#039;arr&ecirc;t avec pr&eacute;cision.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La Comtesse se dirigea vers l&#039;immense entrep&ocirc;t situ&eacute; &agrave; l&#039;extr&eacute;mit&eacute; de la piste. Cette structure imposante s&#039;&eacute;tendait sur plusieurs &eacute;tages, offrant une capacit&eacute; de stockage massive. &Agrave; l&#039;int&eacute;rieur, cinq cents vaisseaux kamikazes reposaient dans des conteneurs oranges, mesurant chacun huit m&egrave;tres sur huit. Des manifestes de livraison &eacute;taient soigneusement accroch&eacute;s &agrave; chaque bo&icirc;te. Tout &eacute;tait pr&ecirc;t, il ne lui restait plus qu&#039;&agrave; attendre. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle se tenait devant les portes ouvertes de l&#039;entrep&ocirc;t, accompagn&eacute;e de militaires v&ecirc;tus d&#039;un uniforme orange, se tenant au garde-&agrave;-vous derri&egrave;re elle, attendant leurs ordres.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pendant ce temps, dans l&#039;espace, une flotte commerciale, escort&eacute;e par des corvettes, entrait dans le spatioport et entamait son atterrissage sur la piste cinq. &Agrave; l&#039;extr&eacute;mit&eacute; de celle-ci se tenait la Comtesse, rev&ecirc;tue d&#039;une majestueuse robe longue aux couleurs bleu et jaune. Son maquillage sobre mettait en valeur ses beaux yeux bleu ciel, tandis qu&#039;une coiffure Pompadour ornait sa t&ecirc;te. Les bras crois&eacute;s derri&egrave;re son dos, elle redressait fi&egrave;rement son torse. Lorsque le vaisseau se posa enti&egrave;rement, un homme en descendit. Il s&#039;agissait de Neil MacDowell. En le voyant, elle se d&eacute;tendit, lui tendant la main selon le protocole.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">- <font color="#5593bd">Chanceli&egrave;re de Thrope ? C&rsquo;est un honneur.</font></div></div><div class="post_line"><div align="justify">Quand ce dernier mis sa main sur son front, elle rougissait. Jamais encore personne ne lui avait t&eacute;moign&eacute; autant de respect. Un franc sourire &eacute;claira son visage.</div></div><div class="post_line"><div align="justify">- <font color="#ffdbbb">Commandant MacDowell, je suis tout autant honnor&eacute;e de vous rencontrer.</font></div></div><div class="post_line"><div align="justify">- <font color="#5593bd">Votre oblig&eacute;, Madame. Comme pr&eacute;vu, je viens en personne prendre votre chargement de vaisseaux, lesquels seront expertis&eacute;s par Wallace, mon Responsable m&eacute;canicien et charg&eacute;s par Calum, mon Chef d&rsquo;escadrille.</font></div></div><div class="post_line"><div align="justify">Elle vit un signe de la main et un militaire arriva.</div></div><div class="post_line"><div align="justify">-<font color="#ffdbbb"> Je vous pr&eacute;sente le Comte-Lieutenant-Colonel G&eacute;padid&eacute; D&#039;Alistair,</font> &quot;Le Grad&eacute; s&#039;inclina respectueusement&quot; I<font color="#ffdbbb">l s&#039;occupera des formalit&eacute;s.</font></div></div><div class="post_line"><div align="justify">- <font color="#5593bd">Et comme pr&eacute;vu &eacute;galement, le paiement cash de cette op&eacute;ration, en signe d&rsquo;une collaboration fructueuse.</font></div></div><div class="post_line"><div align="justify">Le Militaire fit signe &agrave; Wallace et &agrave; Calum de le suivre et les trois ce dirig&egrave;rent vers l&rsquo;entrep&ocirc;t</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Je vous en prie, Neil, suivez-moi. Nous allons prendre un th&eacute;</font>&quot;, l&#039;invita-t-elle chaleureusement.</div></div><div class="post_line"><div align="justify">Les deux jeunes gens se dirig&egrave;rent vers un petit b&acirc;timent adjacent &agrave; l&#039;immense entrep&ocirc;t, puis entr&egrave;rent dans un salon richement d&eacute;cor&eacute;. Un vaste tapis brod&eacute; accueillait une table et deux chaises. Sur cette derni&egrave;re, tout le n&eacute;cessaire pour pr&eacute;parer et savourer un th&eacute; &eacute;tait dispos&eacute; en argent &eacute;tincelant. &Agrave; c&ocirc;t&eacute;, deux bouteilles de 50 centilitres &eacute;taient pos&eacute;es, grav&eacute;es de sc&egrave;nes &eacute;piques repr&eacute;sentant divers moments du Duch&eacute;. L&#039;une contenait un liquide jaune, l&#039;autre un liquide vert.</div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Je vous en prie, Neil, nous serons plus &agrave; l&#039;aise ici. Je suis ravie de vous accueillir</font>&quot;, d&eacute;clara-t-elle en remplissant une tasse de th&eacute;, ouvrant la bouteille de liqueur verte, puis remplissant un verre pour son h&ocirc;te.La Comtesse rayonnait d&#039;une joie subtile qui se lisait dans son regard et se refl&eacute;tait dans son sourire. Ses gestes d&eacute;licats trahissaient une certaine excitation m&ecirc;l&eacute;e &agrave; une tendresse discr&egrave;te. Lorsqu&#039;elle pr&eacute;parait le th&eacute; pour Neil, ses mains tremblaient l&eacute;g&egrave;rement, comme si la pr&eacute;sence de cet homme avait &eacute;veill&eacute; en elle des &eacute;motions profondes et d&eacute;licates. &quot;<font color="#ffdbbb">Il s&#039;agit d&#039;un th&eacute; vert &agrave; la menthe accompagn&eacute; de la Divine, une liqueur de racine. Vous buvez une gorg&eacute;e de th&eacute;, puis une gorg&eacute;e de Divine. Cela permet d&#039;intensifier le go&ucirc;t de la menthe.</font>&quot;</div></div><div class="post_line"><div align="justify">Elle s&#039;installa en face de lui, se servant &agrave; son tour. Dans ses yeux bleus, teint&eacute;s d&#039;une lueur particuli&egrave;re, on pouvait d&eacute;celer une &eacute;tincelle de bonheur m&ecirc;l&eacute;e &agrave; une pointe de fascination. Elle le regardait avec une douce intensit&eacute;, comme si chaque moment pass&eacute; en sa compagnie &eacute;tait un pr&eacute;cieux tr&eacute;sor &agrave; ch&eacute;rir. Elle n&#039;avait pas de mots. Cette instant &eacute;tait divin.</div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Neil+MacDowell">Cdt. Neil MacDowell</a><br>Prestige de chroniqueur&nbsp;: 40<br /><br /><img src="/avatars/12162.png" style="width:128px;height:128px" alt="Avatar" /><br />06/03/1024 ETU 23:58<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal306996')">Détails</a> <a href="javascript:warnpost(306996)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306996" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306996',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Neil regardait son h&ocirc;te avec plaisir : elle paraissait d&eacute;tendue, souriante, chaleureuse et bien s&ucirc;r, accueillante. Il la suit &agrave; un demi-pas en retrait pour ne pas &ecirc;tre &agrave; sa hauteur, ce qui aurait &eacute;t&eacute; un grave manquement au protocole qu&rsquo;il s&rsquo;&eacute;tait fix&eacute;. Cela lui permet aussi de sentir les effluves d&rsquo;un parfum subtil dont il se d&eacute;lecte en secret.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Entr&eacute;s dans le salon cossu, il remarque avec amusement les fioritures de go&ucirc;t qui manquent &agrave; son domaine. Lui est plut&ocirc;t spartiate, m&ecirc;me s&rsquo;il est confortable, mais ici la touche f&eacute;minine de bon go&ucirc;t, si elle ne le surprend pas, lui fait ressentir son univers comme trop solitaire et peu raffin&eacute;.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il prend sa tasse d&egrave;s qu&rsquo;elle se sert et go&ucirc;te au breuvage, puis &agrave; la mixture verte qu&rsquo;elle nomme Divine, comme elle le lui a demand&eacute;.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">- Hum ! C&rsquo;est rafra&icirc;chissant et revigorant en m&ecirc;me temps. Ad&egrave;le, vous &ecirc;tes une f&eacute;e ! Apr&egrave;s un tel voyage, c&rsquo;est exactement ce qu&rsquo;il me fallait.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il se d&eacute;barrasse de sa cape dont il avait quand m&ecirc;me pos&eacute; la capuche sur ses &eacute;paules apr&egrave;s les salutations d&rsquo;usage, et appara&icirc;t dans un pourpoint mordor&eacute; contrastant avec son regard noir. Malgr&eacute; le fait qu&rsquo;il est Commandant, le grade le plus haut de sa communaut&eacute;, il ne supporte pas les v&ecirc;tements militaires. Il esp&egrave;re que sa compagne n&rsquo;est pas trop d&eacute;&ccedil;ue par son accoutrement mais chasse rapidement ses craintes pu&eacute;riles.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">- Ad&egrave;le, vous souvenez-vous de nos premi&egrave;res communications par x-com ? On ne peut pas dire que vous m&rsquo;avez facilit&eacute; la t&acirc;che avec votre X-T-09 ! Heureusement que je suis pers&eacute;v&eacute;rant, sinon vous auriez consum&eacute; ma bonne humeur tr&egrave;s rapidement.</font> </div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il s&rsquo;arr&ecirc;te pour lui laisser le temps de se souvenir de leurs escarmouches avec les papiers administratifs dont il a horreur. Son sourire, &agrave; ce moment-l&agrave;, est franc et ses yeux p&eacute;tillent de malice. Il se souvient qu&rsquo;elle lui avait r&eacute;pondu qu&rsquo;elle n&rsquo;avait pas d&rsquo;humour, ce dont il doutait aujourd&rsquo;hui.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il reprend une gorg&eacute;e de chaque breuvage en se disant qu&rsquo;elle est vraiment charmante avec des yeux magnifiques et tr&egrave;s&nbsp; expressifs, d&eacute;licate et douce. Ce qui ne transpirait pas dans ses messages &eacute;pistolaires. Tout &agrave; coup, il re&ccedil;oit un signal sur son bo&icirc;tier de poignet : Callum lui signale qu&rsquo;ils proc&egrave;dent &agrave; l&rsquo;embarquement qui devrait durer six heures au bas mot.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">- Excusez-moi, ma Ch&egrave;re, on me signale que nous n&rsquo;avons que six heures avant notre d&eacute;part. J&rsquo;esp&egrave;re que &ccedil;a ne perturbe en rien ce que vous avez pr&eacute;vu pour ma visite. D&rsquo;ailleurs, qu&rsquo;avez-vous pr&eacute;vu pour nous ? Une initiation sur le X-T-09 ? Je suis s&ucirc;r que vous avez mieux.</font> </div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il eut un petit rire malicieux, en la regardant rougir. Puis il finit sa tasse et son verre, soupire profond&eacute;ment d&rsquo;aise et attend la r&eacute;ponse avec confiance. Que ces quelques heures de loisir et de libert&eacute; lui &eacute;taient plaisantes. Sa main soign&eacute;e caressait doucement la table en va et vient, go&ucirc;tant le grain du bois. Si elle &eacute;tait d&rsquo;une autre mati&egrave;re, cela y ressemblait.</font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />08/03/1024 ETU 02:57</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal307079')">Détails</a> <a href="javascript:warnpost(307079)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307079" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307079',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Le bois de la table, provenant de sapin d&#039;importation, &eacute;tait finement ouvrag&eacute;, orn&eacute; au centre d&#039;une gravure repr&eacute;sentant une sc&egrave;ne intrigante. Une figure centrale, aux longs cheveux, tenait un sceptre dans ses mains, &eacute;voquant sans aucun doute la pr&eacute;sence divine de la Duchesse. Les d&eacute;tails de son visage &eacute;taient ombr&eacute;s, laissant &agrave; l&#039;imagination le soin de compl&eacute;ter son portrait. Autour d&#039;elle, une foule semblait la v&eacute;n&eacute;rer, leurs regards tourn&eacute;s vers elle. Le mouvement des personnages semblait captur&eacute; dans la gravure, comme s&#039;ils &eacute;voluaient lentement d&#039;une position &agrave; une autre.</div><div class="post_line"></div><div class="post_line">Les tasses, &eacute;galement grav&eacute;es, racontaient une histoire diff&eacute;rente : une bataille spatiale anim&eacute;e se d&eacute;roulait sur leur surface. Des vaisseaux semblaient s&#039;&eacute;craser contre des adversaires plus imposants, &eacute;voquant des croiseurs brigands et des escadres kamikazes. La th&eacute;i&egrave;re semblait repr&eacute;senter un croiseur freggers larguant quelque chose. Les gravures sur les verres, quant &agrave; elles, &eacute;taient plus abstraites, offrant des motifs complexes dont l&#039;interpr&eacute;tation &eacute;tait r&eacute;serv&eacute;e &agrave; celui qui prenait le temps de les &eacute;tudier. Les bouteilles arboraient simplement le nom de la liqueur : Divine pour la liqueur verte et Divin pour la liqueur jaune.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Hum ! C&rsquo;est rafra&icirc;chissant et revigorant en m&ecirc;me temps. Ad&egrave;le, vous &ecirc;tes une f&eacute;e ! Apr&egrave;s un tel voyage, c&rsquo;est exactement ce qu&rsquo;il me fallait</font>&quot;</div><div class="post_line">un l&eacute;ger rose colora les joues de la noble&nbsp; tandis qu&#039;un sourire radieux &eacute;clairait son visage. Ses yeux bleus &eacute;tincelaient d&#039;une joie sinc&egrave;re, refl&eacute;tant l&#039;&eacute;motion plus forte qui bouillonnait en lui. Chaque geste, chaque mot alimentant son sentiment de bonheur et d&#039;excitation contenue. </div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Ad&egrave;le, vous souvenez-vous de nos premi&egrave;res communications par x-com ? On ne peut pas dire que vous m&rsquo;avez facilit&eacute; la t&acirc;che avec votre X-T-09 ! Heureusement que je suis pers&eacute;v&eacute;rant, sinon vous auriez consum&eacute; ma bonne humeur tr&egrave;s rapidement.</font>&quot;</div><div class="post_line"></div><div class="post_line">Ad&egrave;le rigola de mani&egrave;re distingu&eacute;e, buvant une gorg&eacute;e de th&eacute; et de Divine.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ffdbbb">Il s&#039;agit du formulaire que nous devons faire remplir pour contr&ocirc;ler les ressources. Nous devons justifier de tout ici. Votre pers&eacute;v&eacute;rance est une qualit&eacute; magnifique et qui me pla&icirc;t chez vous.</font>&quot;</div><div class="post_line"></div><div class="post_line">Elle rougit l&eacute;g&egrave;rement, buvant une nouvelle gorg&eacute;e pour dissimuler son trouble. Pendant qu&#039;il buvait, elle l&#039;observait, admirant cet homme qui &eacute;tait son oppos&eacute; sur de nombreux points.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#5593bd">Excusez-moi, ma Ch&egrave;re, on me signale que nous n&rsquo;avons que six heures avant notre d&eacute;part. J&rsquo;esp&egrave;re que &ccedil;a ne perturbe en rien ce que vous avez pr&eacute;vu pour ma visite. D&rsquo;ailleurs, qu&rsquo;avez-vous pr&eacute;vu pour nous ? Une initiation sur le X-T-09 ? Je suis s&ucirc;r que vous avez mieux.</font>&quot;</div><div class="post_line"></div><div class="post_line">Un frisson d&#039;anticipation parcourut Ad&egrave;le. Se redressant l&eacute;g&egrave;rement, ses yeux azur&eacute;s brillant d&#039;une lueur d&#039;excitation contenue, elle r&eacute;pondit avec assurance : &quot;<font color="#ffdbbb">Ne vous en faites pas pour le temps, Neil. J&#039;ai pr&eacute;vu quelques surprises pour notre rencontre. Bien que l&#039;initiation sur le X-T-09 puisse &ecirc;tre tentante et amusante, la bureaucratie de Matrum &eacute;tant exaltante, j&#039;ai en effet quelque chose de plus... int&eacute;ressant &agrave; vous proposer. Mais avant, je suis certaine que vous souhaitez vous reposer un peu. Les voyages galactiques sont &eacute;puisants.</font>&quot;</div><div class="post_line"></div><div class="post_line">Elle laissa planer un l&eacute;ger myst&egrave;re dans ses paroles, savourant le moment de complicit&eacute; partag&eacute; avec Neil. Son c&oelig;ur battait un peu plus vite &agrave; l&#039;id&eacute;e de lui d&eacute;voiler ses plans, mais elle se sentait pr&ecirc;te &agrave; lui offrir une exp&eacute;rience inoubliable. Elle remplit les tasses et les verres, cette fois-ci de Divin.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ffdbbb">Je vous sers du Divin, une liqueur &agrave; base de baies. Elle offre une saveur compl&eacute;mentaire au th&eacute;. Faites attention. Contrairement &agrave; la Divine, cette liqueur est un alcool fort mais elle se boit sans mod&eacute;ration.</font>&quot;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Neil+MacDowell">Cdt. Neil MacDowell</a><br>Prestige de chroniqueur&nbsp;: 40<br /><br /><img src="/avatars/12162.png" style="width:128px;height:128px" alt="Avatar" /><br />09/03/1024 ETU 00:06<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal307119')">Détails</a> <a href="javascript:warnpost(307119)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307119" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307119',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Neil ne se d&eacute;partit pas de son petit sourire. Son h&ocirc;te avait pr&eacute;vu des surprises, et bien que son naturel ne l&rsquo;incline pas vraiment &agrave; &ecirc;tre surpris, il ne pouvait d&eacute;cemment pas l&rsquo;exprimer. Elle &eacute;tait si enjou&eacute;e en le proposant !</font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Ad&egrave;le, es-ce bien raisonnable de me servir une autre tasse de th&eacute; et une nouvelle liqueur plus alcoolis&eacute;e ? Vous ne me connaissez pas, je vais dispara&icirc;tre toutes les dix minutes dans les urinoirs, et qui sait comment me transforme l&rsquo;alcool ? Vous &ecirc;tes bien t&eacute;m&eacute;raire.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">En disant cela, pour dissimuler son amusement, il porte le verre &agrave; ses l&egrave;vres et en go&ucirc;te une petite gorg&eacute;e. Imm&eacute;diatement, il ressent la chaleur qui coule dans son &oelig;sophage jusque dans son estomac, et une douceur fruit&eacute;e lui envahit le palais.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Hummm, j&rsquo;avoue que je n&rsquo;ai pas besoin de sublimer votre th&eacute;, cette liqueur est agr&eacute;able toute seule,</font> <font color="#7fdbff">dit-il en reposant le verre.</font></div><div class="post_line"><font color="#5593bd">Je ne suis pas fatigu&eacute;. J&rsquo;endure bien plus que &ccedil;a avec mon travail, alors inutile de m&eacute;nager ma carcasse. Je pr&eacute;f&egrave;rerais passer tout de suite aux surprises, ou, si elles demandent des pr&eacute;parations, discuter un peu avec vous de votre quotidien, de vos souhaits et aspirations dans cette vie. De quoi r&ecirc;ve une Comtesse, dites-moi ?</font></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il se tient droit sur sa chaise, le regard tourn&eacute; vers la fen&ecirc;tre - parce qu&rsquo;on ne regarde pas effront&eacute;ment les personnes qui parlent de leurs r&ecirc;ves - s&rsquo;appr&ecirc;tant &agrave; recevoir ses confidences. S&rsquo;il n&rsquo;a pas envie de se reposer, il commence &agrave; se sentir l&rsquo;estomac vide. Ce n&rsquo;est pas &agrave; bord des transporteurs qu&rsquo;il y a des repas copieux !</font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />17/03/1024 ETU 05:06</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal307673')">Détails</a> <a href="javascript:warnpost(307673)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307673" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 5<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307673',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Avec un sourire radieux illuminant son visage, Ad&egrave;le porta le verre de Divin &agrave; ses l&egrave;vres, laissant la liqueur riche et aromatique danser sur sa langue. Elle partagea ensuite avec Neil ses r&ecirc;veries les plus profondes, un v&eacute;ritable kal&eacute;idoscope de d&eacute;sirs et d&#039;aspirations, o&ugrave; l&#039;aventure et l&#039;exploration de l&#039;inconnu tenaient une place pr&eacute;pond&eacute;rante.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#ffdbbb">&Agrave; pr&eacute;sent, laissons les mots de c&ocirc;t&eacute;,</font>&quot; lan&ccedil;a-t-elle avec un clin d&#039;&oelig;il plein de malice. Se levant avec une gr&acirc;ce qui d&eacute;fiait la gravit&eacute; elle-m&ecirc;me, elle glissa derri&egrave;re Neil, effleurant son &eacute;paule d&#039;un geste si l&eacute;ger qu&#039;il semblait presque &eacute;lectrique, capturant l&#039;essence de son parfum qui &eacute;veillait en elle une temp&ecirc;te de sensations. L&#039;attraction entre eux &eacute;tait tangible, un tissu d&#039;admiration et de d&eacute;sir tiss&eacute; &agrave; travers chaque moment partag&eacute;.</div><div class="post_line"></div><div class="post_line">Avec une &eacute;l&eacute;gance myst&eacute;rieuse, elle actionna un levier discret, r&eacute;v&eacute;lant une porte secr&egrave;te d&#039;o&ugrave; elle extrait un chariot d&eacute;bordant de tr&eacute;sors p&acirc;tissiers. Le spectacle &eacute;tait &eacute;blouissant : tartelettes aux fruits exquis, religieuses d&eacute;licatement &eacute;quilibr&eacute;es entre le chocolat et la vanille, cannel&eacute;s &agrave; la cro&ucirc;te parfaitement caram&eacute;lis&eacute;e, et flans au citron et framboises, chacun un chef-d&#039;&oelig;uvre d&#039;artisanat p&acirc;tissier. Chaque pi&egrave;ce semblait non seulement une c&eacute;l&eacute;bration du go&ucirc;t mais aussi du r&eacute;cit, une invitation &agrave; la d&eacute;lectation et &agrave; l&#039;&eacute;merveillement.</div><div class="post_line"></div><div class="post_line">D&eacute;licatement, elle arrangea les p&acirc;tisseries sur la table, transformant l&#039;espace entre eux en un tableau vivant de couleurs et de saveurs.</div><div class="post_line">&quot;<font color="#ffdbbb">Ces d&eacute;lices</font>,&quot; dit-elle en capturant le regard de Neil avec un sourire espi&egrave;gle, &quot;<font color="#ffdbbb">ne sont que le d&eacute;but de notre rencontre. Chaque bouch&eacute;e est un plaisir gustatives sans pareil. Mais dites-moi, mon ami, imaginez-vous mon Duch&eacute; comme ceci ? Sachez qu&#039;apr&egrave;s cette d&eacute;gustation nous irons nous balader, Ne vous inqui&eacute;tez, nous avons beau &ecirc;tre &agrave; Sainte-Ad&eacute;, un spatioport industriel, j&#039;en suis la ma&icirc;tresse de ces lieus. Et je peux les plier a ma volont&eacute;.&nbsp; </font>&quot;</div><div class="post_line"></div><div class="post_line">Elle rempli son verre de Divine et donna une cuill&egrave;re a Neil. Apr&egrave;s avoir donner la cuill&egrave;re, un d&eacute;tail se fit sentir : aucune cuill&egrave;re n&#039;&eacute;tait pr&eacute;sente initialement sur la table, une subtilit&eacute; qui aurait &eacute;chapp&eacute; &agrave; la plupart, mais pas &agrave; un observateur attentif. Elle sourit, un sourire plein de fiert&eacute; et leva l&eacute;g&egrave;rement sa main libre, paume vers le haut. Dans un mouvement fluide et gracieux, presque chor&eacute;graphi&eacute;, elle effectua un geste &eacute;l&eacute;gant dans l&#039;air. L&#039;espace autour de sa main fr&eacute;mi, charg&eacute; d&#039;une &eacute;nergie invisible. Puis, une cuill&egrave;re identique &agrave; celle qu&#039;elle venait de donner &agrave; Neil apparut doucement dans sa main.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Neil+MacDowell">Cdt. Neil MacDowell</a><br>Prestige de chroniqueur&nbsp;: 40<br /><br /><img src="/avatars/12162.png" style="width:128px;height:128px" alt="Avatar" /><br />19/03/1024 ETU 22:30<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D307786', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal307785')">Détails</a> <a href="javascript:warnpost(307785)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307785" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307785',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#7fdbff">Neil &eacute;carquille les yeux &agrave; la vue des desserts all&eacute;chants et &eacute;clate de rire au tour de magie de la petite cuill&egrave;re. Mais son bo&icirc;tier de poignet vibre encore et, le consultant, son sourire s&#039;effa&ccedil;e, ses m&acirc;choires se crispent et son regard s&#039;assombrit brusquement. Il l&egrave;ve ses yeux noirs vers la Comtesse.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Mon peuple d&eacute;sire entrer en guerre, je dois partir sur le champ. Vous aurez un message ce soir, Ad&egrave;le de Thropa. Je vous le promets. Je suis d&eacute;sol&eacute; de vous quitter ainsi.</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Il la salue bri&egrave;vement et tourne les talons pour rejoindre son vaisseau. L&#039;heure &eacute;tait grave.</em></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Neil+MacDowell">Cdt. Neil MacDowell</a><br>Prestige de chroniqueur&nbsp;: 40<br /><br /><img src="/avatars/12162.png" style="width:128px;height:128px" alt="Avatar" /><br />20/03/1024 ETU 03:24<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal307807')">Détails</a> <a href="javascript:warnpost(307807)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307807" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307807',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Un x-com tombe dans la soir&eacute;e au nom de la Comtesse Ad&egrave;le de Thrope :</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd"><em>&quot;</em>Ch&egrave;re Ad&egrave;le,&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Je vous demande de me pardonner ce d&eacute;part impromptu. La guerre mena&ccedil;ait mon peuple et il aurait &eacute;t&eacute; inconvenant que je ne le rejoigne pas. Apr&egrave;s plusieurs heures d&#039;attente, un cycle entier, sans r&eacute;ponse du Cdt. Gan Hell qui avait repris 6 plan&egrave;tes de mon natal, mon peuple a engag&eacute; les hostilit&eacute;s contre lui, suivant mes directives avant de partir.</font></div><div class="post_line"><font color="#5593bd">Et quelques heures apr&egrave;s le lancement de quelques invasions, Gan Hell me les a transmise. Alors ce conflit est mort-n&eacute; et j&#039;en suis heureux. Nous n&#039;avions pas les comp&eacute;tences militaires pour vaincre un F&eacute;d&eacute;r&eacute; largement aliment&eacute; en ressources par la Guild&eacute;enne Vallya. Nous &eacute;tions vou&eacute; &agrave; mourir. Inutile de vous avouer que j&#039;ai &eacute;t&eacute; soulag&eacute; de ce revirement.</font></div><div class="post_line"><font color="#5593bd">Le temps de d&eacute;samorcer mes propos en Tavernes et &agrave; l&#039;Assembl&eacute;e G&eacute;n&eacute;rale et je suis l&agrave;, fatigu&eacute; mais heureux pour les Clans.</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Douce Ad&egrave;le, me permettez-vous de revenir vers vous et vos fac&eacute;ties ?</font></div><div class="post_line"><font color="#5593bd">Gardez-moi le temps que vous voulez, je ne peux plus rien vous refuser.</font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Attendant votre permission avec anxi&eacute;t&eacute;,</font></div><div class="post_line"><font color="#5593bd">Esp&eacute;rant que vous ne m&#039;en voulez pas trop ou que vous m&#039;accorderez de me rattraper,</font></div><div class="post_line"><font color="#5593bd">Tendrement v&ocirc;tre,</font></div><div class="post_line"><font color="#5593bd">Neil.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Neil relut son message. Il n&#039;avait qu&#039;une seule peur, essuyer le refus d&#039;une Dame courrouc&eacute;e.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Neil+MacDowell">Cdt. Neil MacDowell</a><br>Prestige de chroniqueur&nbsp;: 40<br /><br /><img src="/avatars/12162.png" style="width:128px;height:128px" alt="Avatar" /><br />26/03/1024 ETU 02:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal307951')">Détails</a> <a href="javascript:warnpost(307951)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307951" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307951',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Quelques heures plus tard, Neil recevait un message en retour qui le fit sourire : Ad&egrave;le lui exprimait sa d&eacute;convenue en des termes li&eacute;s &agrave; la s&eacute;duction. </font><font color="#fff5b3">&ldquo;On ne se conduit pas ainsi avec une Dame&rdquo;</font><font color="#7fdbff">, disait-elle. Evidemment, son d&eacute;part pr&eacute;cipit&eacute;&nbsp; et quelque peu cavalier l&rsquo;avait laiss&eacute;e surprise et vex&eacute;e. Heureusement, le message s&rsquo;achevait sur des mots plus conciliants et doux et l&rsquo;invitait &agrave; nouveau </font><font color="#fff5b3">&ldquo;avec ma plus grande tendresse&rdquo;.</font><font color="#7fdbff"> Il revenait de loin !</font></em></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Ni une ni deux, il demanda un vaisseau &eacute;quip&eacute; pour un voyage d&#039;agr&eacute;ment, et regarda dans sa chambre forte ce qu&rsquo;il pourrait lui offrir : une tiare fine et ouvrag&eacute;e, sertie de pierres rares du m&ecirc;me bleu que ses yeux. Il l&rsquo;enveloppa dans un tissu de soie avant de l&rsquo;enfouir dans un sac en velours bleu nuit.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff"><em>Vingt-quatre heures plus tard, il &eacute;tait de retour chez la Comtesse Ad&egrave;le qu&rsquo;il retrouva un peu boudeuse. Il s&rsquo;agenouilla devant elle pour lui offrir le sachet de velours. </em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Je vous assure ma Dame qu&rsquo;il &eacute;tait vraiment urgent et n&eacute;cessaire que je retourne chez moi pour d&eacute;samorcer le courroux de mon peuple. La col&egrave;re est mauvaise conseill&egrave;re. Ils avaient un peu oubli&eacute; qu&rsquo;ils sont avant tout au service des autres et que les bains de sang ne nous tentent pas.&nbsp; </font>&nbsp; &nbsp; &nbsp; </div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il soupira et leva les yeux vers le visage de porcelaine d&rsquo;Ad&egrave;le, voyant avec soulagement un sourire charmeur sur les l&egrave;vres.</font></em></div><div class="post_line"><em><font color="#7fdbff">La Comtesse avait toujours le sac de velours &agrave; la main.</font> </em></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Me feriez-vous l&rsquo;honneur de vous parer de cela ce soir ? Cela montrerait que vous ne m&rsquo;en voulez plus.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#7fdbff">Il se releva, sentant la fatigue lui vriller les tempes.</font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />26/03/1024 ETU 17:40</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal307959')">Détails</a> <a href="javascript:warnpost(307959)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307959" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307959',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Le goujat !</font>&quot; s&#039;exclama t&#039;elle, sa voix tremblante d&#039;indignation alors que Neil, l&#039;homme qui avait captur&eacute; son c&oelig;ur, disparaissait derri&egrave;re la porte qui se refermait doucement, emportant avec lui la lumi&egrave;re de leur complicit&eacute;. La table, qui avait &eacute;t&eacute; le th&eacute;&acirc;tre de leur intimit&eacute; et de promesses &eacute;chang&eacute;es, se muait d&eacute;sormais en un mausol&eacute;e du souvenir, t&eacute;moignant de leur bonheur &eacute;ph&eacute;m&egrave;re bris&eacute; par le tourment de la s&eacute;paration. Les larmes coulaient, semblables &agrave; des perles de douleur, tra&ccedil;ant des rivi&egrave;res am&egrave;res sur le visage d&#039;Ad&egrave;le, symboles de la trahison ressentie et de la souffrance qui &eacute;treignait son &acirc;me.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle se saisit de la bouteille de Divine avec une main tremblante, et en avala le contenu d&#039;un trait. L&#039;alcool, vibrant d&#039;ar&ocirc;mes complexes, se m&eacute;langeait &agrave; la temp&ecirc;te de ses sentiments, accentuant chaque note de chagrin et d&#039;isolement dans une symphonie de d&eacute;sespoir.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Ses pens&eacute;es, naviguant entre les remous de ses sanglots, se tournaient vers Neil - son visage grav&eacute; dans sa m&eacute;moire, son parfum encore pr&eacute;sent dans l&#039;air, l&#039;&eacute;cho lointain de ses mots. Mais le gouffre laiss&eacute; par son d&eacute;part inopin&eacute; semblait s&#039;&eacute;largir, engloutissant Ad&egrave;le dans un maelstr&ouml;m d&#039;&eacute;motions conflictuelles : col&egrave;re, amour, tristesse, se m&ecirc;lant et se consumant en elle.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Son regard, charg&eacute; d&#039;une peine insondable, se fixa involontairement sur une des p&acirc;tisseries. Sous l&#039;emprise de sa col&egrave;re inexprim&eacute;e, le dessert se d&eacute;sint&eacute;gra soudain. Stup&eacute;faite par cette manifestation de ses pouvoirs, Ad&egrave;le prit conscience de l&#039;&eacute;tendue de ses capacit&eacute;s, jusque-l&agrave; ma&icirc;tris&eacute;es, d&eacute;sormais exacerb&eacute;es par la tourmente de ses sentiments et par l&#039;effet de l&#039;alcool.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Dans sa qu&ecirc;te d&#039;un r&eacute;confort &eacute;ph&eacute;m&egrave;re face &agrave; l&#039;immensit&eacute; de sa peine, elle ouvrit la bouteille de Divin. La buvant avec une ardeur d&eacute;sesp&eacute;r&eacute;e, elle se laissa sombrer dans les t&eacute;n&egrave;bres qui l&#039;entouraient, cherchant &agrave; noyer sa douleur dans l&#039;oubli, tandis que la nuit enveloppait doucement son monde bris&eacute;.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">R&eacute;veill&eacute;e par l&#039;interpellation empreinte de sollicitude de son Comte-Lieutenant-Colonel D&#039;Alistair, Ad&egrave;le ouvrit les yeux sur une sc&egrave;ne de d&eacute;solation : les p&acirc;tisseries jadis symboles d&#039;une soir&eacute;e pleine de promesses &eacute;taient r&eacute;duites en miettes et les bouteilles de liqueur gisaient &eacute;parpill&eacute;es sur le sol, vestiges d&#039;une tentative d&#039;oubli. </div></div><div class="post_line"></div><div class="post_line">&quot;Ma Comtesse, un message com-x vous est destin&eacute;. J&#039;ai pris la libert&eacute; de notifier l&#039;&eacute;tat-major et le conseil ducal de votre indisponibilit&eacute; temporaire, &eacute;voquant une l&eacute;g&egrave;re indisposition. Votre absence a &eacute;t&eacute; remarqu&eacute;e,&quot; expliqua D&#039;Alistair avec un m&eacute;lange de pr&eacute;occupation et de respect. Aid&eacute;e &agrave; se redresser par son subordonn&eacute;, qui s&#039;&eacute;carta ensuite discr&egrave;tement, elle prit connaissance du message, mais troubl&eacute;e, elle ne put en saisir le sens. </div><div class="post_line"></div><div class="post_line"><div align="justify">&quot;Dites-lui qu&#039;il me manque, mais exprimez-le avec finesse. Votre tact sera appr&eacute;ci&eacute; pour r&eacute;diger la r&eacute;ponse. Et, je souhaite en relire le contenu avant son envoi. Votre discr&eacute;tion est, comme toujours, essentielle. Transmettez-moi &eacute;galement le r&eacute;sum&eacute; des derni&egrave;res d&eacute;lib&eacute;rations du conseil d&#039;&eacute;tat-major. Je vais me rafra&icirc;chir,&quot; ordonna-t-elle.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Une heure plus tard, apr&egrave;s avoir consult&eacute; la r&eacute;ponse pr&eacute;par&eacute;e par D&#039;Alistair, elle fit demanda de remplacer un formel &quot;cordialement&quot; par &quot;avec ma plus grande tendresse&quot;, et de soulign&eacute; le vide laiss&eacute; par son absence et le conviant &agrave; revenir. Consciente des responsabilit&eacute;s qui l&#039;attendaient, elle donna &agrave; D&#039;Alistair une procuration compl&egrave;te sur les conseils, lui conf&eacute;rant son autorit&eacute; durant son absence.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">L&#039;arriv&eacute;e de Neil marqua le d&eacute;but d&#039;un nouveau chapitre. Descendant de son vaisseau, il fut accueilli par le regard d&#039;Ad&egrave;le, empreint d&#039;une ranc&oelig;ur en voie de dissolution. Lorsqu&#039;il s&#039;agenouilla pour lui offrir un sac en velours, elle le prit avec douceur, un sourire involontaire &eacute;clairant son visage. &quot;<font color="#ffdbbb">Mon cher et tendre, &eacute;pargnez-moi vos discours pacifistes. Bien que votre d&eacute;part pr&eacute;cipit&eacute; m&#039;ait pein&eacute;e, je comprends les raisons qui vous y ont contraint,</font>&quot; d&eacute;clara-t-elle, ouvrant le sac pour d&eacute;couvrir la tiare. La joie pure illuminant son visage au moment o&ugrave; elle la posa sur sa t&ecirc;te, elle pardonna spontan&eacute;ment ses &eacute;carts pass&eacute;s, charm&eacute;e par sa pr&eacute;sence.</div></div><div class="post_line"></div><div class="post_line">Guidant Neil vers un jardin int&eacute;rieur &eacute;clatant de vie avec ses plantes rares et ses fleurs exotiques, Ad&egrave;le trouva refuge au pied d&#039;un cerisier en pleine floraison. Le site, un oasis de s&eacute;r&eacute;nit&eacute;, semblait suspendu hors du temps, isol&eacute; du tumulte ext&eacute;rieur. Chaque d&eacute;tail, de la lumi&egrave;re tamis&eacute;e filtrant &agrave; travers les branches fleuries au doux murmure de l&#039;air parfum&eacute;, contribuait &agrave; cr&eacute;er une atmosph&egrave;re de tranquillit&eacute; et de renouveau.</div><div class="post_line"></div><div class="post_line">Dans ce d&eacute;cor, Ad&egrave;le se rapprocha de Neil, leurs regards s&#039;entrela&ccedil;ant dans une &eacute;treinte silencieuse qui semblait explorer les profondeurs de leurs &acirc;mes. Son geste, d&#039;une tendresse infinie, &eacute;tait celui de quelqu&#039;un qui trouve enfin un havre de paix.</div><div class="post_line"></div><div class="post_line">Alors, avec une gr&acirc;ce qui n&#039;appartenait qu&#039;&agrave; elle, elle se laissa doucement tomber dans les bras de Neil.</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=17163&c_forum_page=1&c_page=2">2</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > C&#039;est le m&eacute;tier qui rentre !</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

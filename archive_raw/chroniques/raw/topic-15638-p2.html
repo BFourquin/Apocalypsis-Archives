@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 15638 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Nouvelles d&#039;Aquarii</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouvelles d&#039;Aquarii</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=15638&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Bordure+Ext%C3%A9rieure">Coa. Bordure Ext&eacute;rieure</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/11248.jpg" style="width:128px;height:127px" alt="Avatar" /><br />03/06/1021 ETU 01:24</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285852')">Détails</a> <a href="javascript:warnpost(285852)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285852" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285852',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FF857A"><font size="4"><strong>Quelque part dans la bordure ext&eacute;rieure galactique</strong></font></font></div><div class="post_line"></div><div class="post_line"><font color="#1E92F7">&quot;- Alors, pr&ecirc;t pour le grand d&eacute;part ?&quot;</font></div><div class="post_line"><font color="#008000">&quot;- Ils n&#039;ont pas encore accept&eacute;...&quot;</font></div><div class="post_line"><font color="#1E92F7">&quot;- Mais ils vont le faire, j&#039;en suis certain !&quot;</font></div><div class="post_line"><font color="#008000">&quot;- Parce-que toi, pour un voyage si extra-ordinaire, tu n&#039;h&eacute;siterais pas de changer &agrave; ce point ?&quot;</font></div><div class="post_line"><font color="#1E92F7">&quot;- Changer ?&quot;</font></div><div class="post_line"></div><div class="post_line"><em>Il le regarda du coin de l&rsquo;&oelig;il. Il ne d&eacute;celait pas de doute sur son visage, mais une question sinc&egrave;re. Il retira ses pieds de la table, et pivota lentement sur son si&egrave;ge, pour lui faire face. Son fauteuil en grin&ccedil;a, ce qui lui rappela qu&#039;il devrait en huiler les rouages. Encore.</em></div><div class="post_line"></div><div class="post_line"><font color="#1E92F7">&quot;- Tu as peur de perdre un morceau en route ?&quot;</font></div><div class="post_line"><font color="#008000">&quot;- Tu sais tr&egrave;s bien de quoi je veux parler.&quot;</font></div><div class="post_line"></div><div class="post_line"><em>Il soupira. Il ne pourrait pas &eacute;viter &eacute;ternellement le sujet avec lui, il se savait accul&eacute;. Pourtant, son esprit essayait de l&#039;aider en le soustrayant au sujet s&eacute;rieux. Comme en lui rappelant qu&#039;il faudrait huiler le m&eacute;canisme de son fauteuil. C&#039;&eacute;tait tr&egrave;s important, vraiment. Pour &ccedil;a, il utiliserait de l&#039;huile &agrave;...</em></div><div class="post_line"></div><div class="post_line"><font color="#008000">&quot;- Tu m&#039;&eacute;coutes au moins ?&quot;</font></div><div class="post_line"><font color="#1E92F7">&quot;- Bien s&ucirc;r.&quot;</font></div><div class="post_line"><font color="#008000">&quot;- Alors arr&ecirc;te de r&eacute;fl&eacute;chir, et r&eacute;ponds moi.&quot;</font></div><div class="post_line"></div><div class="post_line"><em>Tr&egrave;s bien, le fauteuil attendrait. Il se leva et avan&ccedil;a jusqu&#039;&agrave; lui. Il posa une main sur son &eacute;paule, et de l&#039;autre, tapota tout doucement sa tempe.</em></div><div class="post_line"></div><div class="post_line"><font color="#1E92F7">&quot;- Tant que ce qui se trouve &agrave; l&#039;int&eacute;rieur reste intact, non, tu ne changeras pas. S&#039;il en avait &eacute;t&eacute; autrement, je n&#039;aurais jamais voulu t&#039;envoyer l&agrave; bas. Tu sais que j&#039;ai confiance en toi... c&#039;est pourquoi je t&#039;ai choisi. Et si j&#039;avais pu faire le voyage &agrave; ta place...&quot;</font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Son regard se tourna vers sa main droite, qu&#039;il porta proche de son visage, la paume face &agrave; lui. Il en observait tous les reliefs, de l&#039;hypoth&eacute;nar &agrave; la phalange distale de son index. Arriverait-il vraiment &agrave; s&#039;y faire si elle d&eacute;rogeait un jour &agrave; celle de ses souvenirs ?</font></em></div><div class="post_line"></div><div class="post_line"><font color="#1E92F7">&quot;- Eh bien...&quot;</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#008000"><font size="4"><strong>..............................</strong></font></font></div></div><div class="post_line"></div><div class="post_line"><em>Debout face &agrave; la cam&eacute;ra, il allume le trans-com.</em></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#1E92F7">&quot;- Honorables membres de l&#039;assembl&eacute;e d&#039;Aquarii. C&#039;est un plaisir pour nous de recevoir la nouvelle. Un ambassadeur a d&eacute;j&agrave; &eacute;t&eacute; d&eacute;sign&eacute; de notre c&ocirc;t&eacute;, et nous avons conscience des contraintes qu&#039;am&egrave;nent la distance entre nos secteurs aux abords de la galaxie. Nous y avions d&eacute;j&agrave; pens&eacute;, et gr&acirc;ce &agrave; de r&eacute;centes d&eacute;couvertes, nos scientifiques connaissent une solution plut&ocirc;t atypique, et tr&egrave;s engageante. Mais cet engagement est &agrave; l&#039;image de notre volont&eacute; sinc&egrave;re et enti&egrave;re de pouvoir enfin &eacute;changer et partager avec vous, avec proximit&eacute;.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#1E92F7">Cette solution serait... un &eacute;change d&#039;h&ocirc;tes. Nous vous passons les d&eacute;tails scientifiques, mais il est possible de transposer le codage c&eacute;r&eacute;bral d&#039;un individu &agrave; un autre. Ainsi, toute la pens&eacute;e de votre ambassadeur serait transf&eacute;r&eacute;e dans une autre enveloppe. Il existe cependant quelques contraintes : pour garder les fonctions motrices et vitales de l&#039;h&ocirc;te d&#039;accueil apr&egrave;s le transfert, une infime partie de son codage neuronal doit &ecirc;tre conserv&eacute;. Environ 1 ou 2%. Les cons&eacute;quences majeures sont qu&#039;il existe un risque d&#039;&eacute;chec du transfert de la m&ecirc;me hauteur, mais surtout... que l&#039;op&eacute;ration est d&eacute;finitive. En effet, transf&eacute;rer un esprit avec une restructuration neuronale est tr&egrave;s &eacute;prouvant pour l&#039;esprit de l&#039;individu, essayer d&#039;en &quot;d&eacute;placer&quot; un plus d&#039;une fois s&#039;est conclue dans la totalit&eacute; de nos tests par la mort c&eacute;r&eacute;brale de l&#039;h&ocirc;te.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><font color="#1E92F7">Consid&eacute;rez donc que si vous acceptez cette proposition... ce sera un voyage sans retour possible pour votre ambassadeur.&quot;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />03/06/1021 ETU 05:15</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal285853')">Détails</a> <a href="javascript:warnpost(285853)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285853" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285853',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Pensif, Louis entra dans l&#039;immense hall&nbsp;du b&acirc;timent h&eacute;bergeant&nbsp;l&#039;Assembl&eacute;e Dirigeante des Peuples Unies d&#039;Aquarii. Il se demandait ce que le Pr&eacute;sident&nbsp;avait de si urgent &agrave; lui dire qui n&eacute;cessitait ce d&eacute;placement&nbsp;dans son bureau.&nbsp;</div><div class="post_line">Ah, voil&agrave; le bureau, aussit&ocirc;t Louis frappa &agrave; la porte. La porte s&#039;ouvrit, man&oelig;uvr&eacute;&nbsp;par un garde en arme.</div><div class="post_line"></div><div class="post_line"><font color="#f551ff">&quot; - Entrez, le Pr&eacute;sident vous attends&quot;</font>. L&#039;homme le laissa entrer&nbsp;et aussit&ocirc;t sortit en refermant la porte.</div><div class="post_line"></div><div class="post_line">Louis s&#039;avan&ccedil;a jusqu&#039;au bureau. Le Pr&eacute;sident redressa la t&ecirc;te.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot;- Mes respects, Pr&eacute;sident.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot;- Bonjour, Commandeur, veuillez vous asseoir.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot;- Bien ! Louis, je vais essayer d&#039;&ecirc;tre le plus direct et rapide possible. Vous savez comme nous tous que la <strong><font size="3">Coalition de la Bordure Ext&eacute;rieure</font></strong> vient de&nbsp; nous&nbsp;r&eacute;pondre. Ils semblent enchant&eacute;s de notre acceptation d&#039;Alliance. Par ailleurs, ils acceptent&nbsp;notre demande de d&eacute;signation d&#039;un ambassadeur repr&eacute;sentant chacune des parties, mais et c&#039;est la que les choses se compliquent, ils demandent que nous fassions un &eacute;change, comment dirais-je, physique !&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot;- Mais comment cela physique, vous savez bien que c&#039;est impossible, Pr&eacute;sident !&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot;- Oui, normalement, c&#039;est impossible, mais nos alli&eacute;s nous ont transmis avec leur r&eacute;ponse un dossier comprenant les plans d&#039;une technique in&eacute;dite, inimaginable pour nous mais pourtant fonctionnelle. Nos scientifiques et techniciens ont pu construire un&nbsp;appareil pour la mettre en &oelig;uvre.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot;- Attendez Pr&eacute;sident, je ne comprends rien &agrave; vos paroles. Que fait donc de sensationnel cet appareil ?&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot; - Tr&egrave;s simple &agrave; dire, beaucoup moins &agrave; comprendre. Il permet d&#039;intervertir deux esprits entre deux corps qui peuvent en plus &ecirc;tre tr&egrave;s &eacute;loign&eacute;s&nbsp;l&#039;un de l&#039;autre. Et m&ecirc;me &ecirc;tre dans des secteurs diff&eacute;rents au fin fond de la Galaxie. La technologie utilise le canal subspatial d&#039;acc&egrave;s &agrave; un secteur. Pour r&eacute;sum&eacute;, une porte. La translation n&#039;est&nbsp;pas physique, seul, l&#039;esprit se d&eacute;place.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot;- Vous voulez dire que l&#039;&eacute;change d&#039;ambassadeur&nbsp;serait un &eacute;change d&#039;esprit !&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot;- Exactement, Louis et...&quot;</font></div><div class="post_line"><font color="#44b8ff">&quot;- Accrochez-vous ! Le conseil vient de trancher. Comme ambassadeur, c&#039;est vous qu&#039;ils veulent !&quot;</font></div><div class="post_line"></div><div class="post_line">Heureusement Louis &eacute;tait assis, mais il sentit tout de m&ecirc;me ces jambes flageoler.</div><div class="post_line"><font color="#72ff84">&quot;- Ai-je le choix ?&quot;</font> dit-il</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot;- Vous pouvez dire non mais nous pr&eacute;f&egrave;rerions que vous acceptiez.&quot;</font></div><div class="post_line"><font color="#44b8ff">&quot;Ah, oui aussi, vous devez savoir qu&#039;il n&#039;y a pas de retour possible. Vous resterez dans votre nouveau corps ! Alors !&quot;</font></div><div class="post_line"></div><div class="post_line">Louis avait l&#039;impression d&#039;avoir la t&ecirc;te dans une ruche, mais avant de se poser trop de questions et probl&egrave;mes, il r&eacute;pondit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot;- C&#039;est ok pour moi&quot;</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=15638&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15638&amp;c_topic_page=2">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15638&c_forum_page=1&c_page=2" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15638" name="d_reply_15638" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15638');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15638'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouvelles d&#039;Aquarii</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

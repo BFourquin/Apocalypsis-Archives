@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17523 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>La Grande r&eacute;union</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La Grande r&eacute;union</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />24/01/1025 ETU 01:27</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313003')">Détails</a> <a href="javascript:warnpost(313003)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313003" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313003',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Quelque part dans le Secteur 2 ....</div><div class="post_line"></div><div class="post_line">Dans le vide de l&#039;espace ou il ne se passe rien, a part la pr&eacute;sence d&#039;un croiseur Xydian, immobile, comme en attente ...</div><div class="post_line"></div><div class="post_line">Le Navigateur fit ....<font color="#ff851b">Pas encore Amiral !</font>&nbsp;</div><div class="post_line"></div><div class="post_line">...</div><div class="post_line"></div><div class="post_line">En attente... Jusqu&#039;au moment ou ..<font size="5">.<font color="#68c4e8">FZTT...</font></font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="5">FZZTTT...FZZTTT FZZZZZTT</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa339">Cela commence maintenant !</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Bien bien !</font> Fit l&#039;Amiral Draw ! <font color="#17b529">Pile a l&#039;heure !</font></div><div class="post_line"></div><div class="post_line">Un tourbillon d&#039;&eacute;nergie se forma lentement et un premier croiseur Valshenar en sorti puis un vaisseau gris et blanc et noir, le vaisseau des anti couleurs, celui des Galars, puis ce fut le tour d&#039;un autre croiseur enti&egrave;rement gris au blason rouge, celui des Tr&eacute;tons Gris, s&#039;ensuivit plusieurs autres, celui des Ramaniens, des Gochlaves, des Mandoriens, des Daldares, celui des Prumnis, des Drall, des Krones, des Moscovians, des Samaliens, et enfin des Kroll.</div><div class="post_line"></div><div class="post_line">14 vaisseaux en tout, &eacute;taient maintenant pr&eacute;sents...</div><div class="post_line"></div><div class="post_line">Ils se mirent tous en liaison pour &eacute;couter l&#039;Amiral Draw</div><div class="post_line"></div><div class="post_line"><font color="#17b529">Bien, je voit que vous &ecirc;tes tous pr&eacute;sents ! Tout d&#039;abord, je vous souhaite la bienvenue a tous dans cette galaxie&nbsp;! Je sait que vous avez fait un long chemin depuis la votre et j&#039;esp&egrave;re que l&#039;accueil et votre s&eacute;jour vous sera des plus agr&eacute;able,&nbsp;Mais je suis aussi mandat&eacute; pour vous rappeler ce que vous &ecirc;tes venus faire ici ! Discuter des troubles qui agitent votre galaxie, et donc vous &ecirc;tes ici pour discuter d&#039;une solution pour trouver un &eacute;quilibre possible qui sera respect&eacute; par tous, ces discussions en zone neutre, nous le savons, ne sera pas de tout repos, je l&#039;imagine bien, nou l&#039;imaginons d&#039;ailleurs tous ! Mais toutefois, j&#039;esp&egrave;re, sinc&egrave;rement, que vous serez tous capable de discuter entre gens calmes pos&eacute;s et civilis&eacute;s...</font></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Maintenant, nous nous devons de nous mettre en route sur une de nos plan&egrave;tes ou tout a &eacute;t&eacute; pr&eacute;par&eacute; pour vous recevoir, vou allez donc nous suivre....Encore une fois, je vous souhaite la bienvenue dans notre galaxie...</font></div><div class="post_line"></div><div class="post_line">l&#039;Amiral coupa le contact et fit a l&#039;officier de la s&eacute;curit&eacute;&nbsp;: <font color="#17b529">Les Moscovians &eacute;tant nos plus fervents alli&eacute;s c&#039;est pourquoi je tient a leurs s&eacute;curit&eacute;, surveillez &eacute;troitement les Gochlaves je vous prie !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Et les Ramaniens ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#17b529">Aussi bien sur ! Cela va de soit !...</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />24/01/1025 ETU 06:09</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313011', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313010')">Détails</a> <a href="javascript:warnpost(313010)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313010" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313010',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Pendant ce temps l&agrave; sur une certaine plan&egrave;te du Secteur 2 ...</div><div class="post_line"></div><div class="post_line">L&#039;Amiral Valovsky monta sur l&#039;estrade, aussit&ocirc;t, une sph&egrave;re anti-grav s&#039;approcha pr&egrave;s d&#039;elle, avant de commencer, elle admira les grandes tentures dress&eacute;e aux couleurs des visiteurs, encore que, pour les Galars, on ne pouvaient gu&egrave;re parler de couleurs, seuls le gris, le noir et le blanc existait....</div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Bien !</font> Fit elle, <font color="#ffdbbb">je vois que tout a &eacute;t&eacute; pr&eacute;par&eacute; pour recevoir les visiteurs ambassadeurs, mais laissez moi vous expliquer la situation, Leurs situation, mais sachez d&#039;abord que si il y a des affrontements dans notre galaxie, nous sommes loin d&#039;&ecirc;tres les seuls faites moi confiance !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Leur situation est claire, je vais commencer par l&#039;Empire de Valsh&eacute;nar, entr&eacute; en conflit r&eacute;volutionnaire depuis peu, l&#039;empire fut d&eacute;stabilis&eacute;, certains donc ont tent&eacute;s d&#039;en profiter, les Tr&eacute;tons d&#039;abord, puis la surprise de voir les Tr&eacute;tons s&#039;allier aux Ramaniens, eux qui ne s&#039;allient jamais, c&#039;&eacute;tait assez surprenant mais ne vous m&eacute;prenez pas ! cela ne pouvait &ecirc;tre qu&#039;une br&egrave;ve alliance, les Tr&eacute;tons comme les Ramaniens ne pouvant en aucun cas &ecirc;tres dignes de parole, les Tr&eacute;tons sont d&#039;apparence plut&ocirc;t petites mais tr&egrave;s musculeux, ce sont des reptilo&iuml;des &eacute;cailleux et verts a t&ecirc;te de crocodiles, une queue courte mais puissante et parlant d&#039;une voix vibrante et extr&ecirc;mement grave, ilss sont&nbsp;sous r&eacute;gime dictatorial sauvage et barbare, ils ne supportent personne...&nbsp;D&#039;ailleurs, ils ne sont pas venus !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">J&#039;en reviens au conflit ! Les Valshenars ces grands chevaliers aux heaumes et capes longues&nbsp;noirs apr&egrave;s avoir mis en place un gouvernement D&eacute;mocratique, mais encore fragile, se trouva des alli&eacute;s pour repousser les agresseurs.</font></div><div class="post_line"><font color="#ffdbbb">Le Tretons Gris, et les Samaliens, ainsi furent ils repouss&eacute;s, je le rappelle soit dit en passant, les Tr&eacute;tons gris, autrefois trait&eacute;s comme esclaves par les tr&eacute;tons, firent eux m&ecirc;mes un jour, leurs propres r&eacute;volte, vol&egrave;rent des vaisseaux et se r&eacute;fugi&egrave;rent &agrave; l&#039;autre extr&eacute;mit&eacute; de la galaxie ou ils &eacute;tablirent aussi, sur une plan&egrave;te, Leur propre R&eacute;publique.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Pendant ce temps, les Gochlaves fervent ennemis des Moscovians, menac&egrave;rent ces derniers, je vous le rappelle, les Gochlaves sont des communistes pur et dur dont les Ramaniens sont comme leurs Vassaux, et suivent les Gochlaves comme leurs ombres, ils sont donc aussi des ennemis aux&nbsp;Moscovians qui&nbsp;sont aussi des communistes mais plus des d&eacute;mocrates lib&eacute;raux cependant, heureusement, ils sont assez &eacute;loign&eacute;s les uns des autres.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">La guerre des Prumnis face aux Kroll, les Prumnis&nbsp;subirent une d&eacute;faite d&#039;importance mais firent comme les Tr&eacute;tons gris en se r&eacute;fugiant aux lignes frontali&egrave;res de la galaxie, m&ecirc;me situation donc !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Pendant ce temps la, les Galars sont en perp&eacute;tuel conflit....Avec eux m&ecirc;me !!...Mais ceci ne rentrera pas en ligne de compte dans les discussions, ceci dit, pour vous expliquer la situation, leurs villes sont reli&eacute;es entre elle par de grande voies ressemblant a des canaux mais sans eaux, pass&eacute; une heure tardive, tout est boucl&eacute; et chacun reste chez soi, c&#039;est en effet l&agrave; que ressortent les bikers sur des motos tr&egrave;s color&eacute;es, et d&eacute;truisent tout ce qu&#039;ils peuvent la nuit en protestation de l&#039;interdiction des couleurs en surface... la s&eacute;curit&eacute; ne peut rien y faire car ils sont trop nombreux, sous la surface de la plan&egrave;te s&#039;&eacute;tendent des labyrinthes entiers et connus seulement des Bikers ...Bref passons,...Passons car c&#039;est une gu&eacute;rilla perp&eacute;tuelle ...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Les Mandoriens sont nos alli&eacute;s et sont &eacute;galement en guerre contre les Tr&eacute;tons mais qui n&#039;est pas en guerre contre eux , mais l&agrave;, les Tr&eacute;tons ont re&ccedil;us des revers sanglants m&ecirc;me de la part des Samaliens, ces grands gaillards noirs de peau et mesurant un peu plus de 2 m&egrave;tres&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Maintenant pour conclure ! Pourquoi je vous raconte tout cela ? ... Tout simplement parce que vous faites VOUS partie de la s&eacute;curit&eacute; ! Quand tous ces visiteurs vont arriver, il va falloir surveiller TRES &eacute;troitement tous le monde, et cela pour deux raisons !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">La premi&egrave;re ! c&#039;est que tout doit se passer sans heurts</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">La deuxi&egrave;me c&#039;est parce que nous avons une image a tenir, C EST NOUS&nbsp; !! qui recevons, nous nous devons d&#039;&ecirc;tres exemplaire mais aussi pleins d&#039;autorit&eacute; car quand tout ce beau monde vont se croiser dans les couloirs, il n&#039;est pas interdit de penser qu&#039;il puisse arriver quelques affrontements et vous informer de ce qui se passe dans leur galaxie, est la meilleure mani&egrave;re de vous forger une id&eacute;e des diverses &eacute;tats d&#039;esprits ....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Je vous demande donc ...D&#039;&ecirc;tre extr&ecirc;mement vigilants et observateurs pour tout ce qui pourrait &ecirc;tre suspect ! Merci de votre attention ! ...</font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />24/01/1025 ETU 19:53</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313017')">Détails</a> <a href="javascript:warnpost(313017)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313017" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313017',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Les diff&eacute;rents ambassadeurs se pos&egrave;rent, bien sur, en arrivant, certains s&#039;observ&egrave;rent avec de diff&eacute;rentes expressions, cela allait des regards hautains, assassins, sourires par rapport &agrave; certains, d&#039;autres &eacute;changeant m&ecirc;mes amicalement....</div><div class="post_line"></div><div class="post_line">Sur chacun des si&egrave;ges anti gravit&eacute; comme il se doit, sur l&#039;un des accoudoirs, trois touches, l&#039;une, verte pour oui, l&#039;autre rouge pour non en cas de demande de vote et la troisi&egrave;me blanche pour demander la parole, en mod&egrave;le du S&eacute;nat Moscovian.</div><div class="post_line"></div><div class="post_line">les si&egrave;ges &eacute;tant plac&eacute;s en demi cercle, les organisateurs avaient pris soin de s&eacute;parer les bellig&eacute;rants, au cas ou ...</div><div class="post_line"></div><div class="post_line">la premi&egrave;re &agrave; rentrer fut la Princesse Mandorienne, de courts cheveux noirs, en tenue moulante blanche cass&eacute;e, une cape du m&ecirc;me ton sur les &eacute;paules, deux soldats l&#039;accompagnant, de longs fusils ressemblant a de longue lance &eacute;vas&eacute;es.</div><div class="post_line">Puis ce fut le Samalien s&#039;asseyant &agrave; ses cot&eacute;s, ensuite le Tr&eacute;ton gris, gris du fait de la coloration de ses &eacute;cailles, qui les diff&eacute;renciaient tellement des Tr&eacute;tons communs, les deux races se ha&iuml;ssaient purement et simplement, les Tretons gris ayant conquis leur libert&eacute; de haute lutte, les moscovians ensuite, puis les autres, le Galar tr&egrave;s reconnaissable, maigre de figure, d&#039;apparence humaine mais n&#039;&eacute;mettant aucun sourire, aussi gris que l&#039;&eacute;tait le manque de couleurs de ses v&ecirc;tements, d&#039;o&ugrave;, la r&eacute;flexion murmurante de l&#039;Ambassadeur Moscovian a l&#039;oreille de la Princesse ...</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">On dirait un Percepteur administratif, tout aussi lugubre !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Celle ci pouffa discr&egrave;tement mais redevint s&eacute;rieuse rapidement...</div><div class="post_line"></div><div class="post_line">Les Gochlaves en long manteaux rouges grenat&nbsp;et les Ramaniens suivant derri&egrave;re.</div><div class="post_line"></div><div class="post_line">Une fois tous le monde en place, le Pr&eacute;sident du S&eacute;nat Xydian monta sur l&#039;estrade au centre et commen&ccedil;a :</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Bien ! Je me pr&eacute;sente, je suis le Pr&eacute;sident du S&eacute;nat, Klentar je vous souhaite &agrave; tous la bienvenue, nous sommes ici pour discuter calmement et pos&eacute;ment, afin de ramener une paix possible dans votre galaxie, ici la zone &eacute;tant neutre, j&#039;ose esp&eacute;rer qu&#039;il n&#039;y aura aucun d&eacute;bordement intempestif, mais nous sommes bien sur, entre gens civilis&eacute;s n&#039;est il pas ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Le ton &eacute;tait il narquois ? un grand silence ce fit, certains se regardant mais Klentar poursuivit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Hum ! bon ! Parfait....</font>Il baissa la t&ecirc;te et continua comme si de rien n&#039;&eacute;tait...<font color="#ffffff">Heu ....Comme vous avez pu le remarquer, sur votre si&egrave;ge, il y a trois touche, si vous devez prendre une d&eacute;cision tout a l&#039;heure et qu&#039;il vous faut voter, la touche verte est pour oui, la rouge pour non et la blanche pour demander la parole...</font></div><div class="post_line"></div><div class="post_line">Le rouge le vert, un seul fit la grimace, le Galar soupira !</div><div class="post_line"></div><div class="post_line">Klentar fit mine de rien entendre ni de voir certains sourire moqueurs &agrave; la r&eacute;action du dit soupir.</div><div class="post_line"></div><div class="post_line">B<font color="#ffffff">ien, nous allons donc d&eacute;clarer cette s&eacute;ance ouverte, qui veut commencer ? Klentar observa son pupitre et fit Et la parole est au repr&eacute;sentant Treton gris, Ambassadeur, je vous en prie !</font></div><div class="post_line"></div><div class="post_line">Celui ci se leva de son si&egrave;ge diff&eacute;rent des autres, un si&egrave;ge qu&#039;il avait fallut adapter a cause de sa queue volumineuse et commen&ccedil;a a parler d&#039;une voix rauque, grasse,&nbsp;tr&egrave;s basse et vibrante&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Je pense que nous sommes ici pour discuter d&#039;abord de l&#039;&eacute;limination des Tr&eacute;tons, vous serez d&#039;accord que pour tous les vaisseaux que cela soit militaires, marchands ou autres, ils ne cessent d&#039;attaquer &agrave; tous va, toute race confondue, d&eacute;cidons d&#039;&eacute;liminer ce probl&egrave;me avant de pouvoir continuer &agrave; pr&eacute;parer de grandes t&acirc;ches saines et constructives !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Merci Maitre Ambassadeur et la parole est au repr&eacute;sentant Ramanien, Maitre ? Je vous en prie !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Celui ci se leva un sourire moqueur aux l&egrave;vre : <font color="#e8c500">Etonnant de la part d&#039;un Tr&eacute;ton, m&ecirc;me gris ! Et qui nous dit que vous nous demandez cela pour vous d&eacute;barrasser d&#039;eux justement pour devenir ensuite aussi agressif qu&#039;eux ? !! Parce que apr&egrave;s tout ! Qui vous connait a fond ici ? Un Tr&eacute;ton m&ecirc;me gris, n&#039;est il pas de m&ecirc;me nature, qui sait ! vous &ecirc;tes peut &ecirc;tre a nous embrouiller car il est possible que vous ne soyez qu&#039;un vulgaire comploteur de rue !</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Le Tr&eacute;ton gris allait se lever mais fu retenu par la Princesse qui appuya f&eacute;brilement sur la touche blanche !</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Et la parole est &agrave; son Altesse&nbsp;Princesse repr&eacute;sentante de Mandor, votre Altesse je vous en prie !</font></div><div class="post_line"></div><div class="post_line">La Princesse Livya se leva hors d&#039;elle et hurla plus qu&#039;elle ne fit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">ASSEZ&nbsp; ! ASSEZ M ENTENDEZ VOUS&nbsp; ?!! Comment osez vous ! Vous qui avez tent&eacute; de soudoyer certains de mes administrateurs, tent&eacute; d&#039;envahir ma contr&eacute;e, et envahir par la m&ecirc;me occasion les Valshenars sans oublier d&#039;autres aussi, essay&eacute; &eacute;galement d&#039;assassiner certains repr&eacute;sentants Moscovians ....HOOOO mais j&#039;oubliais, IL EST VRAI&nbsp; que vous avez du agir par ordres, bien sur !! Puisque vous &ecirc;tes les fid&egrave;les toutous des Gochlaves n&#039;est il pas ?&nbsp;</font></div><div class="post_line"><font color="#9df9ff">Cela vous va bien de donner des le&ccedil;ons aux autres, dites moi ? N&#039;auriez vous pas autre chose &agrave; faire que d&#039;&ecirc;tre ici, ....Un os a ronger offert g&eacute;n&eacute;reusement par l&#039;administration Gochlave pourquoi pas ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Hum votre Altesse ? Je vous en prie !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">J&#039;en ai finie !</font> Fit elle en se rassoyant</div><div class="post_line"></div><div class="post_line">Le Ramanien toujours un sourire au l&egrave;vres fit une grimace en montrant un petit bout de langue, agitant ses doigts &agrave; l&#039;adresse de la Princesse...</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Je vous en prie gardez ici, en ces lieux une bien s&eacute;ance ! pour les uns et les autres ! cela ne serait pas de trop en vous remerciant par avance ! Laaa parole est au repr&eacute;sentant Gochlave, Maitre je vous en prie !</font></div><div class="post_line"></div><div class="post_line">Le Gochlave se leva a son tour en regardant d&#039;un air de reproche le Ramanien mais ne lui fit aucune remarque a son intention et commen&ccedil;a.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Hum ! Merci Monsieur le Pr&eacute;sident de m&#039;accorder la parole...</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">H&eacute; non votre soi disant Altesse ! Nous ne donnons pas d&#039;os a ronger aux Ramanien et non, nous ne sommes pas au courant de ces affaires, et si affaire il y a eu, nous ferons en sorte de commencer une enqu&ecirc;te sur ces points, veuillez donc observer d&#039;abord que les Ramaniens sont d&#039;excellents combattants et oui, je l&#039;avoue, parfois, ils agissent sur nos conseils.... Je dit bien conseils et non des ordres, Bien sur, je voit d&eacute;j&agrave; votre d&eacute;sapprobation quand a la&nbsp; tentative d&#039;invasion de l&#039;Empire des Valshenars mais c&#039;&eacute;tait uniquement pour y restaurer de l&#039;ordre avant que cela ne devienne une situation explosive incontr&ocirc;lable....</font></div><div class="post_line"></div><div class="post_line">Le moscovian baissa la t&ecirc;te en murmurant <font color="#ffff00">Ben voyons !</font> Mais cela s&#039;entendit</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Maitre de Moscovia ! je vous en prie ! Respectez le temps de parole s&#039;il vous plait !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">OUIII Monsieur l&#039;ambassadeur , vous qui avez vers&eacute; dans la ....D&eacute;mocratie ce&nbsp;qui semble &ecirc;tre un danger pour nous d&#039;ailleurs, vous avez rejet&eacute; le communisme d&#039;antan pour vous pervertir ensuite&nbsp;mais je passe sur ce sujet, nous pensons &agrave; l&#039;avenir nous ! Vous semblez croire sans doute que nous sommes des envahisseurs mais qui sait, peut &ecirc;tre est ce vous les envahisseurs apr&egrave;s tout !</font></div><div class="post_line"></div><div class="post_line">La dessus un ricanement se fit entendre, celui du Samalien qui ne put s&#039;emp&ecirc;cher de faire ... <font color="#e86e04">Qu&#039;est ce qu&#039;il faut pas entendre, elle vaut bien son taux en Silicium celle l&agrave; .</font></div><div class="post_line"></div><div class="post_line">D&#039;un air hautain, le Gochlave se rassit vex&eacute;&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Hum, je vous demanderais de rester calme et courtois, encore une fois nous sommes ici pour essayer de trouver des solutions constructives merci ! Et la parole est au repr&eacute;sentant Samalien, Maitre je vous en prie !</font></div><div class="post_line"></div><div class="post_line">Le Samalien, noir de peau,&nbsp;se leva, portant un long b&acirc;ton finissant en demi lune d&#039;or, des bagues aux pierres pr&eacute;cieuses aux doigts et un collier en or massif d&eacute;coratif sur une toge jaune et orange</div><div class="post_line"></div><div class="post_line"><font color="#e86e04">Merci Monsieur le Pr&eacute;sident, Monsieur le&nbsp;Gochlave ! Est ce aussi pour ramener l&#039;ordre sur ma plan&egrave;te que d&#039;avoir tent&eacute; vous et votre dogue &eacute;dent&eacute; de Ramanien d&#039;envahir ma plan&egrave;te ? Vous avez vu se qui se passe quand on nous attaque ? Vous avez subit une d&eacute;faite terrible et les Mandoriens, si nous ne les avions pas aid&eacute;s, serait aujourd&#039;hui vos esclaves, voila VOILA la v&eacute;rit&eacute; pure !&nbsp; La v&eacute;rit&eacute; vraie ! Merci de votre attention !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Hum merci Maitre ...La parole est d&eacute;sormais au Maitre S&eacute;nateur Kr&ocirc;ne, Maitre je vous en prie !</font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Merci Monsieur le Pr&eacute;sident, Ce que nous entendons est assez explicite et j&#039;interviens ici en reprenant la proposition des Tr&eacute;tons gris, bien sur, il faudra que nous nous en chargions un jour des Tr&eacute;tons, pour la paix et la s&eacute;r&eacute;nit&eacute; de chacun mais il est bien clair pour tous, que cela ne pourra se faire que dans une action coh&eacute;rente et ...Coll&eacute;giale !&nbsp;</font></div><div class="post_line"></div><div class="post_line">J<font color="#2ecc40">e propose moi, un syst&egrave;me de surveillance plan&eacute;taire ou chacun d&eacute;limitera tr&egrave;s sp&eacute;cifiquement les fronti&egrave;res ainsi que la cr&eacute;ation d&#039;un tribunal multi race afin de d&eacute;battre du sort de tout contrevenant, ces sortes de polices seront issues des diff&eacute;rentes parties en pr&eacute;sence et donc surveillerons Leurs fronti&egrave;res qui leurs tiennent &agrave; coeur, en ca de litige, le tribunal tranchera la question, un tribunal compos&eacute; de membres de plusieurs races diff&eacute;rentes, cela va de soi !&nbsp;</font></div><div class="post_line"><font color="#2ecc40">Merci de votre attention !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Hum ! Merci Maitre, je trouve que pour l&#039;instant vous &ecirc;tes le seul a proposer une solution merci a vous, je vous propose donc une pause, nous reprendrons ensuite si vous le voulez bien merci</font>&nbsp;</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />04/02/1025 ETU 05:31</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313067')">Détails</a> <a href="javascript:warnpost(313067)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313067" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313067',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">la pause &eacute;tant termin&eacute;e, les repr&eacute;sentants reprirent leurs places&nbsp;</div><div class="post_line"></div><div class="post_line">Klentar reprit la sienne et fit : <font color="#ffffff">H&eacute; bien Maitres Ambassadeurs et Ambassadrice, cette pause &eacute;tant termin&eacute;e, nous allons pouvoir poursuivre le d&eacute;bat, des lors, quelqu&#039;un peut reprendre la parole si il le d&eacute;sire ...</font>Il observa son &eacute;cran et reprit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Laaaaa parole est donn&eacute;e au S&eacute;nateur repr&eacute;sentant les Kr&ouml;nes, S&eacute;nateur ? Je vous en prie !</font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e">Merci Monsieur le Pr&eacute;sident !</font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e">Cher coll&egrave;gues d&#039;o&ugrave; que vous soyez, la cr&eacute;ation d&#039;une police ne pourra se faire que si cette police porte le m&ecirc;me embl&egrave;me, un embl&egrave;me pour toutes les zones de notre espace galactique, cette police sera, ou plut&ocirc;t, devra &ecirc;tre ind&eacute;pendante et constitu&eacute;e d&#039;agents de toutes les races, hormis celle des Tr&eacute;tons bien entendu, de cette fa&ccedil;on, cela ajoutera &agrave; l&#039;impartialit&eacute; de cette police des fronti&egrave;res galactique, et c&#039;est pour cela qu&#039;il est imp&eacute;ratif que cette police soit totalement ind&eacute;pendante et donc porte un insigne, un drapeau m&ecirc;me, qui repr&eacute;sentera cette police et d&eacute;montrera ainsi que cette police n&#039;appartient a aucune nation, sinon qu&#039;a elle m&ecirc;me.</font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e">Bien sur, il y aura des s&eacute;curit&eacute;s, des formations d&#039;agents qui veillerons &eacute;troitement a ce que cette police ne soit a aucun moment, corrompue de quelques mani&egrave;res que ce soit ! Ce qui exigera que dans cette police, il y ai plusieurs services diff&eacute;rents et actifs.</font></div><div class="post_line"><font color="#4cea5e">Cette police galactique sera donc compos&eacute;e d&#039;agent venant de toutes les nations comme je l&#039;ai dit, mais qui seront tri&eacute;s sur le volet .... Ceci est ma proposition.</font></div><div class="post_line"><font color="#4cea5e">Je vous remercie de votre attention.</font></div><div class="post_line"></div><div class="post_line">Le Krone se rassis la t&ecirc;te haute, dans l&#039;assistance, certains se regard&egrave;rent dubitatifs, d&#039;autres hoch&egrave;rent la t&ecirc;te en approuvant et discutant entre eux.</div><div class="post_line">La Princesse Mandorienne, son visage bleu ciel, ses cheveux noirs luisant, elle discutait avec le Repr&eacute;sentant Moscovian et le Samalien, ils semblaient approuver.</div><div class="post_line">Le Galar se frottant le menton semblait plong&eacute; dans ses r&eacute;flexions, le Ramanien observant le Gochlave, visiblement attendant sa d&eacute;cision.</div><div class="post_line">Aucune &eacute;motion &eacute;tait visible pour le Valshenar, sous son heaume, se tenant droit il finit cependant par hocher la t&ecirc;te, en signe d&#039;assentiment.</div><div class="post_line">Le Prumni discutait avec le Tr&eacute;ton gris, tout deux approuvaient avec joie cette possibilit&eacute;.</div><div class="post_line"></div><div class="post_line">Plus mitig&eacute; &eacute;tait le Kroll, semblait &ecirc;tre la t&ecirc;te basse, r&eacute;fl&eacute;chissant...</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Quelqun a t&#039;il a redire ? Ou a ajouter quelque chose ? Si c&#039;est pour apporter une autre solution suppl&eacute;mentaire, il ou elle peut prendre la parole... Oui ? Princesse ? je vous en prie !</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Elle se leva et cru bon de rajouter ...</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tout ceci ne sera possible que lors de la cr&eacute;ation, Une charte soit &eacute;crite, avec r&egrave;glements et interdictions, cette charte ne devra se faire qu&#039;en pr&eacute;sence d&#039;un membre repr&eacute;sentant chaque race, ainsi que pour la cr&eacute;ation de cette police, merci de votre attention !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">He bien merci a vous votre altesse et maintenant si il n&#039;y a plus rien a rajouter ? ...</font>Il attendit un moment mais c&#039;&eacute;tait le silence total tout a coup, chacun r&eacute;fl&eacute;chissant a ce qu&#039;allait devenir l&#039;avenir, ou bien des cons&eacute;quences d&#039;une telle d&eacute;cision sans doute...Klentar rompit le silence.</div><div class="post_line"><font color="#ffffff">Eeeet bien Maitres repr&eacute;sentants et repr&eacute;sentante, je pense que il est temps de valider cette d&eacute;cision en votant, vous savez comment faire, je vous en prie ! &ecirc;tes vous pour ou contre, il serait pr&eacute;f&eacute;rable que les abstentions soient &eacute;vit&eacute;es pour cette affaire, en vous remerciant par avance... Allez y maintenant.</font></div><div class="post_line"></div><div class="post_line">ils vot&egrave;rent tous pour a part un qui vota non, le Daldare,&nbsp;mais cela ne comptait pratiquement pas, le Gochlave fit un discret oui au Ramanien qui suivi donc pour le oui...</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Parfait !</font> Fit Klentar, <font color="#ffffff">Ce plan est donc adopt&eacute; par une majorit&eacute; moins une voie, je vous f&eacute;licite, pour cette brillante r&eacute;union, en esp&eacute;rant que cela ne soit pas sign&eacute; que sur tablette informatique mais aussi dans les actes merci a tous ! nous pouvons tous nous applaudir en signe de respect et de paix !</font></div><div class="post_line"></div><div class="post_line">Un moment d&#039;h&eacute;sitation et ...Le Moscovian commen&ccedil;a en se levant suivi par la Princesse finalement, ils se lev&egrave;rent tous les uns apr&egrave;s les autres et imit&egrave;rent le mouvement, un tonnerre d&#039;applaudissements se fit entendre dans tout l&#039;h&eacute;micycle...</div><div class="post_line"></div><div class="post_line">Quelque instants plus tard, ils sortirent tous, certains se regardant cependant avec m&eacute;fiance, d&#039;autres avec bienveillance, ils ils profit&egrave;rent un peu de leurs s&eacute;jours avant de repartir...</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17523&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17523" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17523" name="d_reply_17523" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17523');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17523'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La Grande r&eacute;union</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

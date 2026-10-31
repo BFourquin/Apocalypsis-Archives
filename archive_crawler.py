@@ -473,7 +473,7 @@ def _cut_post(right: str) -> str:
     return right[:ends[-1].start()] if ends else right
 
 
-def _post(left: str, right: str, gamma: bool, base: str):
+def _post(left: str, right: str, gamma: bool, base: str, html_body: bool = False):
     right = _cut_post(right)
     p = {}
     grade, name = _author(re.split(r"<br", left, 1, flags=re.I)[0], gamma)
@@ -487,6 +487,9 @@ def _post(left: str, right: str, gamma: bool, base: str):
     if m:
         # chemin du fichier local sous raw/ (les avatars Beta sont propres à chaque galaxie)
         p["avatar"] = local_path(normalize_url(urljoin(base, html_lib.unescape(m.group(1)))))
+        st = re.search(r'style\s*=\s*"([^"]*)"', left[m.start():left.find(">", m.end())])
+        if html_body and st:
+            p["avatar_style"] = st.group(1)  # dimensions d'origine, pour regénérer la page
     iso, sans_annee = _date(left)
     if iso:
         p["date"] = iso
@@ -523,6 +526,8 @@ def _post(left: str, right: str, gamma: bool, base: str):
         p["supprime"] = True  # bannière « supprimé durant la partie » : le message est conservé, la bannière retirée du texte
     text, liens, images = _body(corps)
     p["texte"] = text
+    if html_body:
+        p["html"] = corps.strip()  # HTML du corps, pour regénérer la page (forum Chroniques)
     if liens:
         p["liens"] = liens
     if images:
@@ -531,14 +536,14 @@ def _post(left: str, right: str, gamma: bool, base: str):
 
 
 def parse_topic_page(html: str, partie: str, galaxie: str, forum: str, topic: str, page: int, gamma: bool,
-                     base: str = "http://localhost/"):
+                     base: str = "http://localhost/", html_body: bool = False):
     h2 = re.search(r"<h2>(.*?)</h2>", html, re.S)
     fm = re.search(r'forums/\d+/page\d+">(.*?)</a>' if gamma else r'viewforum-\d+-\d+\.html">(.*?)</a>', html, re.S)
     posts = []
     if gamma:
         for chunk in re.split(r'<td class="post_left">', html)[1:]:
             left, _, right = chunk.partition('<td class="post_right">')
-            posts.append(_post(left, right, True, base))
+            posts.append(_post(left, right, True, base, html_body))
     else:
         for chunk in re.split(r'<tr>\s*<td class="posts">', html)[1:]:
             left, _, right = chunk.partition('</td><td class="posts">')

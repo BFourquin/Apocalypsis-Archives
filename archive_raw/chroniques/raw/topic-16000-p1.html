@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16000 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>La voie</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La voie</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Zed%C3%A9an">Cdt. Zed&eacute;an</a><br>Prestige de chroniqueur&nbsp;: 12<br /><br /><img src="/avatars/11384.jpg" style="width:102px;height:128px" alt="Avatar" /><br />31/10/1021 ETU 02:30</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D288688', 544, 464)">version précédente</a> - Score&nbsp;: 8 <a href="javascript:toggle_bloc('cal288684')">Détails</a> <a href="javascript:warnpost(288684)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal288684" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 7<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=288684',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Des tas d&#039;&eacute;tincelles apparurent au large d&#039;une plan&egrave;te .....</div><div class="post_line"></div><div class="post_line">Un &eacute;norme cercle de lumi&egrave;re puis un vaisseau en sorti&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center">http://img110.xooimage.com/views/5/f/e/mercurys-ii-5386ac1.jpg/</div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Le Psycho Astralis.</font></div></div><div class="post_line"><div align="left"></div><div class="post_line"><font color="#ffffff">Le Commandant reprenait ses esprits, grand homme &agrave; barbe blanche, dans un grand manteau &agrave; boutons dor&eacute;s, une casquette &agrave; visi&egrave;re us&eacute;e sur le cr&acirc;ne ....</font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Nous voila sortis Professeur mais .....sans les autres vaisseaux !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Justement mon cher ! Justement ! Ceci me conforte dans une nouvelle th&eacute;orie mais je vous l&#039;expliquerais plus tard ....Pour le moment .....!!!</font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Dites Professeur ?&nbsp; Vous .....Heu .....Je suppose que c&#039;est ....Une nouvelle galaxie non ? Vous la reconnaissez ? .....vous ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Pas le moins du monde mon cher ! Pas le moins du monde ! Et c&#039;est justement cela le probl&egrave;me voyez vous ? Quand aux autres vaisseaux Moscovians, je n&#039;ai aucune id&eacute;e de ce qu&#039;ils ont pu devenir, ou plut&ocirc;t de savoir ou ils sont mais il est impossible qu&#039;ils soient d&eacute;truits !</font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Qu&#039;allons nous faire alors Professeur Steffey ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Le Professeur r&eacute;fl&eacute;chissait en regardant l&#039;espace, dans sa blouse blanche, ses lunettes rondes,&nbsp;trop&nbsp;grandes, ses longs cheveux noirs luisants....</font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Professeur ? ....Nous sommes dans une nouvelle dimension ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Justement mon ami ! Voyez vous ! Jusque l&agrave; nous nous &eacute;tions toujours figur&eacute;s que dans l&#039;univers, cela se r&eacute;sumait qu&#039;a peu de choses .....Mais je m&#039;explique et vous allez comprendre !</font><font color="#2ecc40">&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Admettons ! Admettons juste un instant que vous soyez sur une plan&egrave;te et dans une ville, soudain vous voyez quelqu&#039;un qui vous dit qu&#039;il vient du futur, et qu&#039;il peut vous raconter ce qui va se passer dans les 50 prochaines ann&eacute;es ......Et tout &agrave; coup en voila un second qui arrive, qui affirme la m&ecirc;me chose, et vous explique un destin diff&eacute;rent, Voil&agrave; maintenant un troisi&egrave;me puis un quatri&egrave;me ......</div><div class="post_line"></div><div class="post_line"> Le premier affirme que une guerre nucl&eacute;aire va avoir lieue, que le monde ne sera plus qu&#039;un champ de ruines, </div><div class="post_line"></div><div class="post_line">Le Second, lui affirme pas du tout ! Pas du tout, en fait il va y avoir une hausse des temp&eacute;ratures qui abimerons les r&eacute;coltes et il y aura de moins en moins d&#039;eau provocant ainsi une gigantesque famine !</div><div class="post_line"></div><div class="post_line">Le troisi&egrave;me rit et dit c&#039;est moi qu&#039;il faut croire ! En fait il y aura la r&eacute;volution mondiale parce que la diff&eacute;rence entre riches et pauvres est bien trop grande ! Cela va finir par exploser !</div><div class="post_line"></div><div class="post_line">Le Quatri&egrave;me quand &agrave; lui se moque des trois autres et dit mais pas du tout en fait cela va &ecirc;tre une crise &eacute;conomique sans pr&eacute;c&eacute;dent car les ressources naturelles vont diminuer prodigieusement vite ! Nous renvoyant ainsi &agrave; des &acirc;ges primaires .....</div><div class="post_line"></div><div class="post_line">Commandant ? Comment r&eacute;agiriez vous ?</font><font color="#2ecc40">&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Peuh ! je renverrais tous ces gogos car si je devait croire &agrave; tous ce qu&#039;ils racontent, pas un des 4 ne disent la m&ecirc;me chose !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Pr&eacute;cis&eacute;ment, et, je doit avouer que ma premi&egrave;re r&eacute;action serait de vous rejoindre sur ce fait .....MAIS !!! Car apr&egrave;s coup ! j&#039;y r&eacute;fl&eacute;chirais ensuite &agrave; deux fois !</font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Professeur ???&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Oui oui ! Je m&#039;explique ! ....Je reviens donc au fait que l&#039;on croyaient fermement que l&#039;univers, du moins ses lois se r&eacute;sumaient &agrave; quelque chose de simple, quelque chose de bref ....</font></div></div><div class="post_line"><div align="left"><font color="#e8b6ef"></div><div class="post_line">Prenez un point A, un point B et un point C ! Le A repr&eacute;sente le pass&eacute;, le point B le pr&eacute;sent, et le point C le futur.....Jusque l&agrave;, pour nous, cela repr&eacute;sente une ligne bien droite et bien trac&eacute;e, de ce fait.....Nous avons donc un futur que nous ne connaissons pas encore mais qui est bien d&eacute;fini ! .....D&#039;ou la question des lors, comment 4 personnes peuvent affirmer connaitre le futur en nous pr&eacute;sentant 4 destins diff&eacute;rents ......</div><div class="post_line"></div><div class="post_line">Il n&#039;y a que deux solutions :</font></div></div><div class="post_line"><div align="left"><font color="#e8b6ef"></div><div class="post_line">La premi&egrave;re, il s&#039;agit bien entendu de racontars &eacute;lucubrant&nbsp;voulant faire parler d&#039;eux, ceci est &eacute;videmment l&#039;hypoth&egrave;se la plus vraisemblable !</div><div class="post_line"></div><div class="post_line">La seconde .....Je me dit .....&nbsp;Et si ils avaient tous les 4 raison ? En imaginant cette hypoth&egrave;se, cela nous am&egrave;ne alors &agrave; une toute nouvelle th&eacute;orie, et cette th&eacute;orie est que il y a le point A, B, C,&nbsp;mais aussi les points&nbsp;D, E, F,&nbsp;G, H, I, J, K,&nbsp; etc etc qu&#039;est ce qui nous prouve en effet que le futur ne d&eacute;pend pas des dimensions parall&egrave;les cela voudrait aussi dire qu&#039;il y a une MUUUUltitude de dimensions tant normales que temporelles qui s&#039;entre croisent et qu&#039;en empruntant un de ses passages, nous arrivions totalement au hasard....Quelque part&nbsp;</div><div class="post_line"></div><div class="post_line">En conclusion, il est possible de penser que ces 4 l&agrave;, aient tout aussi bien pu dire la v&eacute;rit&eacute;, venant eux m&ecirc;mes de directions diff&eacute;rentes mais en sont ils eux m&ecirc;mes conscients ? Car il se peut aussi qu&#039;ils croient &ecirc;tres arriv&eacute;s dans Leurs pass&eacute;&nbsp;comprenez vous ?</font><font color="#2ecc40">&nbsp;</div><div class="post_line"></div><div class="post_line"></font><font color="#2ecc40">Autrement dit leurs futurs est aussi r&eacute;el que le notre mais pas le notre, le leurs,&nbsp;Professeur ?</div><div class="post_line"></div><div class="post_line"></font><font color="#e8b6ef">Exactement ! Et cela est d&#039;autant plus fantastique que les possibilit&eacute;s dans ce cas, sont infinit&eacute;simales ! Et certes, des plus int&eacute;ressantes &agrave; &eacute;tudier ne trouvez vous pas ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Heuu .....Hum ! Nous..... Arrivons en vue d&#039;une plan&egrave;te Professeur Steffey, habit&eacute;e par ......Heuu ....Selon les scanners de votre vaisseau, ce serait .....Des volailles intelligentes ?</div><div class="post_line"></div><div class="post_line"></font><font color="#e8b6ef">Et cela vous &eacute;tonne il mon ami ? Si vous saviez les formes de diff&eacute;rentes vies que j&#039;ai pu voir dans les diff&eacute;rentes galaxies Mon cher, Vous n&#039;en reviendriez certainement pas !</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Le Commandant fron&ccedil;a les sourcils et fit lentement et presque en murmurant&nbsp;pensif apr&egrave;s un long moment de r&eacute;flexion&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">Dites moi Professeur Steffey ........D&#039;ou tenez vous cette .....Long&eacute;vit&eacute; ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Le Professeur le regarda avec un fin sourire en coin&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Vous ......Devriez voir si cette race est amicale ou non ! Ne croyez vous pas Commandant ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Sans le quitter du regard, le Commandant mit un temps a r&eacute;pondre .......<font color="#2ecc40">Oui</font>....<font color="#2ecc40">Vous</font> .....<font color="#2ecc40">.Avez raison !</font></div><div class="post_line"></div><div class="post_line">Il se retourna et commen&ccedil;a &agrave; donner des ordres, <font color="#2ecc40">Cap sur cette plan&egrave;te et une fois le contact &eacute;tabli, identifiez vous !</font></div><div class="post_line"></div><div class="post_line"><font color="#c0f0c6">Bien Camarade Commandant !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">&nbsp;</font></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Zed%C3%A9an">Cdt. Zed&eacute;an</a><br>Prestige de chroniqueur&nbsp;: 12<br /><br /><img src="/avatars/11384.jpg" style="width:102px;height:128px" alt="Avatar" /><br />05/11/1021 ETU 18:54</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal289247')">Détails</a> <a href="javascript:warnpost(289247)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289247" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289247',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Steffey avait fait poser son vaisseau sur la plan&egrave;te de cocotte, apr&egrave;s avoir longuement &eacute;tudi&eacute; les dessins de ces poules si avanc&eacute;es, il avait d&eacute;plac&eacute; des appareils &eacute;tranges, il les avait reli&eacute;s ensuite entre eux lorsque qu&#039;il eu finit ......</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Que la lumi&egrave;re des &eacute;toiles &eacute;clairent votre voie Professeur mais que diable &ecirc;tes vous donc en train de fabriquer ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ha Professeur Klein, ravi de vous voir, ! H&eacute; bien comme vous pouvez le voir je d&eacute;place de lourds ordinateurs et les met en place pour aider nos amis &agrave; plumes pour lesquels nous travaillons, je ne sait pas si vous vous en &ecirc;tes aper&ccedil;us mais.....Il leurs est impossible pour l&#039;instant de communiquer mais ceci dit ....ils arrivent tout de m&ecirc;me &agrave; communiquer plus ou moins par dessins ! Or j&#039;ai pu voir ses dessins ! .....Cela ressemble a un langage primaire certes mais un langage tout de m&ecirc;me, alors .....</font></div><div class="post_line"><font color="#ffff00">l&#039;appareil que vous voyez l&agrave; est un d&eacute;veloppeur de langage, il a pour fonction de l&#039;am&eacute;liorer consid&eacute;rablement mais ces informations vont arriver p&ecirc;le-m&ecirc;le et c&#039;est pourquoi, jje l&#039;ai reli&eacute; &agrave; cet ordinateur qui lui est un....Ce que je pourrait appeler une sorte d&#039;ordinateur ordonateur qui va classer le tout en ordre et&nbsp;comme il faut !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Je vous avouerais que si j&#039;avais du le faire moi m&ecirc;me comme n&#039;importe qui le ferait, j&#039;aurais surement pass&eacute; des journ&eacute;es enti&egrave;re &agrave; le concevoir, Il est cependant vrai que j&#039;avait d&eacute;j&agrave; fait fabriquer ces appareils lorsque nous &eacute;tions encore &agrave; Moscovia !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Donc je reprend ! cet Ordonateur est&nbsp;Lui m&ecirc;me reli&eacute; a l&#039;ordinateur central qui lui va concevoir &agrave; partir de ces donn&eacute;es, une puce qui sera fort utile &agrave; nos amis volatile car une fois plac&eacute;es sous la peau du cou, elle permettrons de traduire leurs pens&eacute;es puis de&nbsp;parler normalement ce qui leurs seraient fort utile vous en conviendrez mon ami !</font></div><div class="post_line"></div><div class="post_line">Beat, le Professeur suivait ses explications de bout en bout et finit par dire ! Heuu Professeur vous &ecirc;tes .....Vous &ecirc;tes ! ...</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Attention mon cher ami a ce que vous allez dire ! ! si jamais vous me sortez que je suis un g&eacute;nie, je ne vous adresse plus la parole pendant un bon mois ! </font>Fit il avec un sourire en coin mais avec les sourcils fronc&eacute;s&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Heuu ...hum ...je ...je ne pensait pas a cela Professeur !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ha ? A quoi donc alors ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Heuu .....Je ...Non non ! d&#039;ailleurs j&#039;ai oubli&eacute; ! .......Hum .....Heu....Dans combien de temps cela arrivera &agrave; son terme Professeur ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ho il faudra bien compter 5 ou six heures le temps d&#039;effectuer les diff&eacute;rents chargements</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Mais dites moi ? Le placement des puces ? ....Ce sera douloureux ?&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Douloureux ?</font> <font color="#ffffff">Le professeur rit &agrave; ce moment et reprit</font> <font color="#ffff00">Bien sur que non voyons ! il s&#039;agira d&#039;une puce informatique miniaturis&eacute;e, juste une toute petite piqure, si m&ecirc;me ils la sente, je n&#039;en suis pas sur du tout d&#039;ailleurs &agrave; peine une micro piqure mais qui rentrera imm&eacute;diatement en fonction des qu&#039;elle sera pos&eacute;e ! Rassurez vous mon ami juste une formalit&eacute;, d&#039;ailleurs je m&#039;en suis implant&eacute;e une moi m&ecirc;me pour comprendre cette race qui ont pour nom les Sloms, je vous l&#039;assure je n&#039;ai qu&#039;a peine senti un pic, bien ! ....Si vous le permettez ! Je doit continuez de tout r&eacute;gler et tout mettre en place maintenant</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Ho heu je vous en prie Professeur et si vous avez besoin de moi ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ma foi ! si vous voulez m&#039;assister ! ce ne sera pas de refus en effet cher ami ! Allons y alors .....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Klein s&#039;affaira au cot&eacute; de Steffey, sous sa direction, il brancha les diff&eacute;rents cables..... Bient&ocirc;t, les poules pourraient enfin parler et s&#039;exprimer librement au S&eacute;nat ......</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16000&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16000" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16000" name="d_reply_16000" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16000');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16000'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La voie</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

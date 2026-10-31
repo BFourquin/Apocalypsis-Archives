@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15241 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Chirurgie &amp; Piraterie</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chirurgie &amp; Piraterie</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Traffalgar+Law">Cdt. Traffalgar Law</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/10639.jpg" style="width:62px;height:128px" alt="Avatar" /><br />15/12/1020 ETU 08:08<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal279164')">Détails</a> <a href="javascript:warnpost(279164)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279164" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 5<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279164',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Des murmures.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Des rumeurs.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Des bruits qui courent.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&Eacute;tait-il mort ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Cette question animait les discussions de taverne, souvent celles qui se finissaient tard dans la nuit. Il faut dire que personne n&#039;avait crois&eacute; le capitaine Law depuis des dizaines et des dizaines de cycles. Certains en avaient soi-disant entendu parl&eacute;, mais vous savez, c&#039;est le genre d&#039;histoire o&ugrave; un inconnu au bar vous dis entre deux bi&egrave;res connaitre quelqu&#039;un qui a un ami qui connait l&#039;oncle d&#039;une femme qui &eacute;tait la maitresse du capitaine il y a pas si longtemps... Tout un programme. Pas &eacute;tonnant avec ce genre d&#039;histoire que tout le monde le pense mort le bonhomme.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;&eacute;quipage n&#039;avait en sa possession que quelques colonies esseul&eacute;es. Depuis que la Coalition avait pris la t&ecirc;te d&#039;Odyss&eacute;e, Law avait laiss&eacute; tomber ses colonies. La situation &eacute;tait stable et durable dans la galaxie. Il n&#039;avait plus senti le besoin de faire peser le poids d&#039;une intervention de l&#039;&eacute;quipage se disait-il. Les pirates &eacute;taient diss&eacute;min&eacute;s aux quatre coins de l&#039;univers, bien loin des conflits. Certains &eacute;cumaient les tavernes. Toujours les moins bien fam&eacute;es de l&#039;univers bien entendu, tandis que d&#039;autres &eacute;cumaient les flots des innombrables mers et oc&eacute;ans des anciens mondes.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pour le capitaine, la r&eacute;alit&eacute; &eacute;tait tout autre. Law &eacute;tait tomb&eacute; encore un peu plus dans l&#039;alcool et le silence. Il ne s&#039;&eacute;tait jamais vraiment remis de ce qu&#039;il s&#039;&eacute;tait pass&eacute; suite &agrave; la derni&egrave;re mutinerie. Les tirs d&#039;ADM provoqu&eacute; par <font color="#ffc0cb">Rosinante</font>, le chef de la flotte scientifique de l&#039;&eacute;quipage ne lui avait pas laiss&eacute; le choix. Si proche fut-il de celui qu&#039;il appelait <font color="#ffc0cb">Rosi</font>, le capitaine du Heart avait d&eacute;cid&eacute; de l&#039;ex&eacute;cuter sur le pont du Heart.</div></div><div class="post_line"><div align="justify">Il pleuvait ce jour l&agrave; lorsque Law d&eacute;gaina son immense Katana. Il avait avanc&eacute; vers son second, agenouill&eacute; sur le glissant pont principal. <font color="#ffc0cb">Rosinante </font>souriait. Ce n&#039;&eacute;tait pas une expression de provocation, il &eacute;tait r&eacute;ellement satisfait. Fier de son capitaine. Fier qu&#039;il assume de prendre des d&eacute;cisions difficiles. Fier qu&#039;il ne recule pas. Fier qu&#039;il assume ses choix.</div></div><div class="post_line"><div align="justify">Law posa sa deuxi&egrave;me main sur le large manche de son arme puis d&#039;un mouvement rapide, il trancha net la t&ecirc;te de <font color="#ffc0cb">Rosinante</font>. Cette derni&egrave;re roula un instant sur le pont. Elle roula juste ce qu&#039;il fallait pour que le capitaine voit une derni&egrave;re fois le sourire de l&#039;ami a qui il venait d&#039;&ocirc;ter la vie.</div></div><div class="post_line"><div align="justify">C&#039;est en r&eacute;alit&eacute; suite &agrave; cet incident que le capitaine avait d&eacute;cid&eacute; de d&eacute;manteler la flotte du Heart. Chacune des divisions avait pris des directions et red&eacute;cid&eacute; d&#039;objectifs diff&eacute;rents.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Law &eacute;tait retourn&eacute; sur sa petite plan&egrave;te natale du secteur 4. Apr&egrave;s ce qu&#039;il s&#039;&eacute;tait pass&eacute;, le capitaine avait d&eacute;cid&eacute; de revenir &agrave; la source de sa qu&ecirc;te de justice et de libert&eacute; : son petit village de p&eacute;cheurs natal. Il n&#039;avait pas r&eacute;ussi &agrave; revenir dans l&#039;anonymat, tout le monde connaissait Law ici. Mais les habitants avaient bien compris que Law &eacute;tait revenu sur l&#039;ile car il avait besoin de solitude. Ils respect&egrave;rent sa solitude et personne ne le d&eacute;rangeait. Law n&#039;&eacute;tait sollicit&eacute; que lorsqu&#039;il y avait un malade &agrave; op&eacute;rer et lorsque sa compagne El&eacute;a arrivait au port pour lui rendre visite. Elle aussi avait accept&eacute;&nbsp;de laisser Traffalgar seul, pendant un temps du moins. Petit &agrave; petit, le capitaine se resociabilisa avec les habitants du village. Le temps faisait son affaire. Traffalgar &eacute;tait l&#039;homme qu&#039;il voulait &ecirc;tre quand il &eacute;tait jeune gar&ccedil;on. Il &eacute;tait surement le meilleur chirurgien de son temps et il avait r&eacute;ussi &agrave; rendre le monde un endroit plus libre. Un monde sans oppression ni justice &agrave; deux vitesses selon les classes sociales.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le ciel de Traffalgar Law semblait s&#039;&eacute;claircir avant que tout ne s&#039;effondre un matin d&#039;automne. Le vent soufflait fort sur le port du village, mais malgr&eacute; cela, toute la population y &eacute;tait rassembl&eacute;e. Une navire venait d&#039;amarrer. Law ne reconnut pas le pavillon, mais une chose &eacute;tait certaine, c&#039;&eacute;tait des voiles noires. Law d&eacute;cida donc de descendre voir ce qu&#039;il se passait au port, quand tout &agrave; coup un hurlement d&eacute;chirant lui retourna les entrailles. Il fit demi-tour pour attraper son Katana rest&eacute; &agrave; l&#039;int&eacute;rieur de la maison et il redescendit en trombe vers le port.</div></div><div class="post_line"><div align="justify">Une fois sur place, Law ne put que constater le massacre. Une douzaine d&#039;hommes &eacute;taient descendus du navire. Une douzaine d&#039;homme avaient r&eacute;ussi en quelques minutes &agrave; tuer des dizaines d&#039;habitants et encore moins que &ccedil;a pour plonger le village dans l&#039;horreur. Un des hommes plongea son ep&eacute;e dans le torse d&#039;un vieil homme avant de remarquer Law. Il retira son arme du corps du pauvre homme qui retomba sur les pav&eacute;s du port avant de se diriger vers Law. C&#039;&eacute;tait reparti... l&#039;homme n&#039;eut pas le temps de lever son &eacute;p&eacute;e que son tronc se s&eacute;para du reste de son corps. Quelques instants plus tard, il ne restait plus qu&#039;un homme sur les pav&eacute;s avec un Katana sous la gorge.</div></div><div class="post_line"><div align="justify">Law ne posa qu&#039;une seule question.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><em>Pourquoi ?</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;homme lui r&eacute;pondit.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000">L&#039;apocalypse arrive. Odyss&eacute;e se meurt. Seuls les plus riches et les plus puissants pourront se sauver. Les autres mourront de toute fa&ccedil;on, alors autant forcer le destin.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Traffalgar ne r&eacute;pondit pas. Il appuya sur sa lame, condamnant l&#039;homme &agrave; mourir sur les pav&eacute;s. Ce dernier avait vraisemblablement trop forc&eacute; le destin.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Suite &agrave; cette incident, Law disparut de son &icirc;le natale.</div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15241&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15241" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15241" name="d_reply_15241" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15241');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15241'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chirurgie &amp; Piraterie</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

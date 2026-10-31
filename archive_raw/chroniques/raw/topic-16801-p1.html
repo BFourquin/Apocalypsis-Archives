@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16801 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Sept si&egrave;cles de guerres nucl&eacute;aires</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Sept si&egrave;cles de guerres nucl&eacute;aires</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Kyu+Tae-Hyun">Cdt. Kyu Tae-Hyun</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11912.jpg" style="width:128px;height:128px" alt="Avatar" /><br />02/06/1023 ETU 19:51<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal299729')">Détails</a> <a href="javascript:warnpost(299729)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal299729" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=299729',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><a href="https://www.youtube.com/watch?v=PijwJMawWGA" target="_blank" rel="nofollow"><font color="#bbbbbb"><font size="5">♫ </font><u>Young People of the Farm [Juchewave]</u></font></a></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>Plan&egrave;te&nbsp;Anhyol, secteur 0.</em></div><div class="post_line"></div><div class="post_line"><em>Un bureau&nbsp;froid, minimaliste, sans aucune d&eacute;coration. De nombreux ordinateurs affichent divers rapports et cartes du secteur. Kyu Tae-Hyun &eacute;tait plong&eacute; dans une retransmission de quelques combats ayant lieu plus loin dans le secteur contre les forces de la Th&eacute;s&eacute;ris Korps, avant d&#039;&ecirc;tre interrompu par un message vocal de son aide de camp.</em></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><em>Commandant Kyu, un agent des renseignements de l&#039;Entente a d&eacute;barqu&eacute;&nbsp;du dernier cargo en provenance d&#039;Ittias. Il souhaite vous rencontrer au plus vite.</em></font></div><div class="post_line"></div><div class="post_line"><em>La visite directe des renseignements Ittiades n&#039;&eacute;tait jamais une bonne nouvelle. Exer&ccedil;ant&nbsp;un pouvoir consid&eacute;rable sur toute la politique extra-plan&eacute;taire Ittiade, Kyu&nbsp;Tae-Hyun &eacute;tait &eacute;galement la cible de la surveillance permanente et de la plus grande parano&iuml;a de chacune des sept nations membres de l&#039;Entente. Tant qu&#039;il ne s&#039;agissait que d&#039;une ou de l&#039;autre nation seule, mais il s&#039;agissait l&agrave; d&#039;un agent de l&#039;Office Central de l&#039;Entente, n&eacute;cessitant la concertation de toutes les nations membres...</em></div><div class="post_line"><em>M&ecirc;me pour l&#039;homme le plus puissant d&#039;Ittias, pareil d&eacute;placement pouvait signifier l&#039;accusation de trahison et la mort en cas de r&eacute;ponse non convaincante. Mais n&eacute;anmoins, les rapports des derniers cycles &eacute;taient des plus positifs, ne laissant Kyu que dans une anxi&eacute;t&eacute; r&eacute;duite en attendant l&#039;arriv&eacute; de l&#039;agent.</em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc0cb">DING ! Authentification en cours du visiteur</font></em><font color="#ffc0cb"><em>&hellip;</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc0cb">Authentification valid&eacute;e. Profil confidentiel non divulgable. Accr&eacute;ditation de confidentialit&eacute; niveau 2 de l&#039;Office Central de Renseignement de l&#039;Entente Ittiade.</font></em></div><div class="post_line"></div><div class="post_line"><em>Kyu activa un bouton ouvrant la porte blind&eacute;e de son bureau, laissant entrer une personne rev&ecirc;tue&nbsp;enti&egrave;rement de noir des chaussures &agrave; son masque de confidentialit&eacute;. Son modulateur vocal &eacute;tait si pouss&eacute; qu&#039;il n&#039;&eacute;tait pas m&ecirc;me possible de d&eacute;terminer s&#039;il s&#039;agissait d&#039;un homme ou d&#039;une femme.</em></div><div class="post_line"><em>Les formalit&eacute;s de pr&eacute;sentation se r&eacute;duisirent &agrave; un simple hochement de t&ecirc;te, l&#039;authentification par le syst&egrave;me de s&eacute;curit&eacute; &eacute;tant d&eacute;j&agrave; consid&eacute;r&eacute; comme faisant office de pr&eacute;sentation pour les Ittiades.</em></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">- Il y a un demi-cycle, la F&eacute;d&eacute;ration&nbsp;Hamgyŏng nous a communiqu&eacute; un dossier r&eacute;cup&eacute;r&eacute; par un agent&nbsp;infiltr&eacute; dans la r&eacute;sistance de la plan&egrave;te&nbsp;Sunan. Il semblerait que l&#039;Empire de&nbsp;Cheongju ait r&eacute;ussi &agrave; communiquer au-del&agrave; d&#039;Ittias et &agrave; transmettre des informations capitales &agrave; nos ennemis.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">- Sommes nous s&ucirc;rs que la source est bien&nbsp;Cheongju ? Nous avons jusqu&#039;&agrave; pr&eacute;sent r&eacute;ussi &agrave; brouiller tout signal en provenance ou &agrave; destination d&#039;Ittias pour les nations rivales &agrave; l&#039;Entente. Ne serait-ce pas une manipulation d&#039;une nation membre de l&#039;Entente ?</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">- Nous l&#039;ignorons, mais le fait est que nos ennemis disposent d&eacute;sormais de ces informations qui jusqu&#039;&agrave; pr&eacute;sent avaient &eacute;t&eacute; confin&eacute;es &agrave; Ittias. Je vous laisse juger par vous m&ecirc;me...</font></div><div class="post_line"></div><div class="post_line"><em>L&#039;agent posa sur le bureau&nbsp;un dossier contenant entre autres un petit livret. L&#039;inqui&eacute;tude de&nbsp;Kyu s&#039;&eacute;tait &eacute;vanouie en constatant que la visite ne concernait pas ses propres r&eacute;sultats, mais eut t&ocirc;t fait de revenir rien qu&#039;&agrave; la lecture de la&nbsp;premi&egrave;re couverture :</em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center"><em><strong><font color="#bbbbbb"><font size="5">Aux adversaires de l&#039;Entente Ittiade :&nbsp;</font></font></strong></em></div></div><div class="post_line"><div align="center"><em><strong><font color="#bbbbbb"><font size="5">Seule la connaissance de votre ennemi vous permettra la victoire.</font></font></strong></em></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="center"><em><em><strong><font color="#bbbbbb"><font size="4">Minist&egrave;re Imp&eacute;rial&nbsp;du Renseignement de Cheongju</font></font></strong></em></em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Kyu+Tae-Hyun">Cdt. Kyu Tae-Hyun</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11912.jpg" style="width:128px;height:128px" alt="Avatar" /><br />02/06/1023 ETU 20:05<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D299733', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal299730')">Détails</a> <a href="javascript:warnpost(299730)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal299730" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=299730',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><a href="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81rO4p-g9rx4gLOgXHuDK2qNxUu8391cs8WdrEoZ3eGEB1WQ40RM5Vym3ffL0cEF5QZkhcjlwn1j3ToqGU02cqvd2vsg=w1885-h947" target="_blank" rel="nofollow"><font size="5">&lt;&lt;&lt;__ Chapitre I : Epoque de l&#039;Isolation (86 - 328 ETU) __&gt;&gt;&gt;</font></a></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="left"><a href="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81o7PepIcUAUavJryxtgqkOkmxbBbFyHAiWPm3E021w0A23YBTRHSpiFJxtBmB-_HGQVns4hHPvVLAiBQOpf-q1kvvOf2Q=w1885-h947" target="_blank" rel="nofollow"><font size="5">&lt;&lt;&lt;__ Chapitre II : Premier Contact (329 ETU) __&gt;&gt;&gt;</font></a></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><a href="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81pBQgEaWA5-lwmgxXhnrcYuH674NCNOmrbCVsByDBTFzCNRB1lkEsaTbz6s6AwZR-pCQ7GtXGcZ1RKfAWVrtXAI1WPS4Q=w1885-h947" target="_blank" rel="nofollow"><font size="5">&lt;&lt;&lt;__ Chapitre III : La Grande Invasion (330-344 ETU) __&gt;&gt;&gt;</font></a></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb"><font size="2">[Pour les lecteurs futurs des archives, des h&eacute;bergeurs alternatifs seront fournis dans le dernier post de la chronique&nbsp;pour r&eacute;duire les risques de perte]</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Kyu+Tae-Hyun">Cdt. Kyu Tae-Hyun</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11912.jpg" style="width:128px;height:128px" alt="Avatar" /><br />25/06/1023 ETU 22:59<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D301143', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal301142')">Détails</a> <a href="javascript:warnpost(301142)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301142" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301142',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div><div class="post_line"><em><a href="https://www.youtube.com/watch?v=LkWO5muKoUg" target="_blank" rel="nofollow"><font color="#bbbbbb"><font size="5">♫ </font><u>Red Chol Pass</u></font></a></em></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><a href="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81qk0JixDPKQvtmdO5x2cdKTkVfzb5y4LINzB0oAvk9W1q0YZveu6Y5RN95F4hDp3WVzL2Ngb3EP-6uuImgQ-B5RLm6ARA=w1920-h899" target="_blank" rel="nofollow"><font size="5">&lt;&lt;&lt;__ Annexe I&nbsp;: Forteresse Ittiade __&gt;&gt;&gt;</font></a></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="left"><a href="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81oygeVbM7r3qs2C_KXQ3eGGIuoU1ariWcaSdF_EQXwL1Wa_2A_6jl2ojjjgwoSTD2xXwPUMDF3hPO6FgeBH5szE8o9o6A=w1920-h899" target="_blank" rel="nofollow"><font size="5">&lt;&lt;&lt;__ Chapitre&nbsp;IV : La Disparition du Khanat&nbsp;(344 ETU) __&gt;&gt;&gt;</font></a></div></div><div class="post_line"></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><a href="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81o9AJzho_3ZvokCkSd9txz5iPPfpULxjAMisG7EYH6Bp6U1-YxEtCg_5x-zJ0Ej3WFvYO4pjR4BQGilhXkup8xMxtyhyg=w1920-h899" target="_blank" rel="nofollow"><font size="5">&lt;&lt;&lt;__ Chapitre V : La Chute de la&nbsp;RPDI (347 ETU) __&gt;&gt;&gt;</font></a></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="center"><div align="left"><a href="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81omsP7Knmo2CQp6ho4Sj31aD1EcsJJ5pFVK7Su8ewYmVhM12iFGMlFmCqDdGqJVZo-7u-i4OsBOow8y6I6VTmWYPriGDA=w1920-h899" target="_blank" rel="nofollow"><font size="5">&lt;&lt;&lt;__ Chapitre VI : Epoque de l&#039;Anarchie&nbsp;(347-362 ETU) __&gt;&gt;&gt;</font></a></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ittias">Cdt. Ittias</a><br>Prestige de chroniqueur&nbsp;: 2<br /><br /><img src="/avatars/12146.jpg" style="width:128px;height:117px" alt="Avatar" /><br />29/01/1024 ETU 07:03</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal305965')">Détails</a> <a href="javascript:warnpost(305965)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305965" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305965',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb">[ Rehost publications pr&eacute;c&eacute;dentes&nbsp;+ quelques nouvelles publications au prochain post ]</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><a href="https://www.youtube.com/watch?v=PijwJMawWGA" target="_blank" rel="nofollow"><font color="#bbbbbb"><font size="5">♫</font> <u><em>Young People of the Farm [Juchewave]</em></u></font></a></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre I : Epoque de l&#039;Isolation (86 - 328 ETU)</font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/DzT0bj8/Diapositive1.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/2vsNvVYJJx4q.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1tjasVVBbTo-xwqrswLloHfjHWYtMNd5j/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre II : Premier Contact (329 ETU)</font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/DYDcD2L/RP-ITTIAS-2.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/IzebEj2Y8A4L.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1QDtITTdPniHrDAQev9-gnZdbXjATk1Pi/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre III : La Grande Invasion (330-344 ETU)</font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/D1DKLvf/RP-ITTIAS-3.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/HbDVdHsgXSyE.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1RqZtJS3bfrOBKwvzbnHwMqL29CI5D5ji/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">__________________________________________________________________________________________</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><a href="https://www.youtube.com/watch?v=LkWO5muKoUg" target="_blank" rel="nofollow"><font color="#bbbbbb"><font size="5">♫</font> <u><em>Red Chol Pass</em></u></font></a></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Annexe I : Forteresse Ittiade</font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/9ttryjK/RP-ITTIAS-4.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://i.ibb.co/9ttryjK/RP-ITTIAS-4.png" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1kMO6ySwf5NrIvmulOA-cSA_Kx0tYlHwI/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre IV : La Disparition du Khanat (344 ETU)</font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/wRyctyS/RP-ITTIAS-5.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/2poHfWjQE5Y1.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1rRs5mjmBrYSzZFqrlWrASOv_1AwvXpIN/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre V : La Chute de la RPDI (347 ETU)</font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/vqb0GrH/RP-ITTIAS-6.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/qZhRbk8uTZ7R.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1QSO44ZL0i6TJGICrio5fpxbVeuNPL4LI/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre VI :&nbsp;Epoque de l&rsquo;Anarchie (347 - 362 ETU) </font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/stnKMjV/RP-ITTIAS-7.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/fKzGluHWvzmB.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1y2cnItfQDZzasDVO3KOVajKFvVa-1CPS/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"><font size="4"><u><a href="https://drive.google.com/file/d/1y2cnItfQDZzasDVO3KOVajKFvVa-1CPS/view" target="_blank" rel="nofollow"></a></u></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ittias">Cdt. Ittias</a><br>Prestige de chroniqueur&nbsp;: 2<br /><br /><img src="/avatars/12146.jpg" style="width:128px;height:117px" alt="Avatar" /><br />29/01/1024 ETU 07:05</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal305966')">Détails</a> <a href="javascript:warnpost(305966)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305966" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305966',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><a href="https://www.youtube.com/watch?v=SQb0Kkh2qpc" target="_blank" rel="nofollow"><font color="#bbbbbb"><font size="5">♫</font> <u><em>Motherland will always remember us &mdash; instrumental </em></u></font></a></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre VII :&nbsp; Les H&eacute;ritiers du Khanat </font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/4gKN32f/RP-ITTIAS-8.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/17jjoLH93Vlq.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1kS3pdLrKUmEvYD_KthA-t-3YXgMB7eK4/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre VIII :&nbsp; Les Successeurs de la RPDI </font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/5KhsV9M/RP-ITTIAS-9.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/IEJfbpuGneeM.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1BKOcq-WwgNaij054ciYNboFBK_Fl5kiU/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font size="5">Chapitre IX :&nbsp; Les Nouvelles Nations Ittiades </font></div><div class="post_line"><font size="4">&gt;&gt; Lien <u><a href="https://i.ibb.co/2n0PM40/RP-ITTIAS-10.png" target="_blank" rel="nofollow">1</a></u> / <u><a href="https://gcdnb.pbrd.co/images/Rbl5sQWIdL1b.png?o=1" target="_blank" rel="nofollow">2</a></u> / <u><a href="https://drive.google.com/file/d/1geM7nMQ1VXZNyjJDHpIvTtH1UQVqyg1I/view" target="_blank" rel="nofollow">3</a></u></font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16801&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16801" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16801" name="d_reply_16801" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16801');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16801'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Sept si&egrave;cles de guerres nucl&eacute;aires</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

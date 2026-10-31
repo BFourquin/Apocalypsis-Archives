@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 17825 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Concert de musique</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Concert de musique</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=17825&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=17825&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />02/02/1026 ETU 15:35</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318680')">Détails</a> <a href="javascript:warnpost(318680)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318680" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318680',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="4">26 :&nbsp;<font color="#ffff00">https://www.youtube.com/watch?v=O</font><font color="#f551ff">nT58cIJSpw&amp;list=RDOnT58cIJSpw&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">27 :&nbsp;<font color="#fff5b3">https://www.youtube.com/watch?v=d73tiBBzv</font><font color="#ffffff">FM&amp;list=RDd73tiBBzvFM&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4"><font color="#ffffff">28 :&nbsp;</font><font color="#c0f0c6">https://www.youtube.com/watch?v=_0Jrm</font><font color="#ffdc00">T3FjBE&amp;list=RD_0JrmT3FjBE&amp;start_radio=1</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />03/02/1026 ETU 18:53</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318696')">Détails</a> <a href="javascript:warnpost(318696)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318696" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318696',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Les ovations ne manquaient pas et l&#039;incident de la tentative d&#039;attaque &eacute;tait d&eacute;j&agrave; oubli&eacute;e mais le concert lui continuait, de nouveaux groupes se pr&eacute;sentaient &agrave; leurs tours ...</div><div class="post_line"></div><div class="post_line"><font size="4">29 :&nbsp;<font color="#ff0000">https://www.youtube.com/w</font><font color="#ffff00">atch?v=BwN3NiZt-P</font><font color="#68c4e8">U&amp;list=RDBwN3NiZt-PU&amp;start_radio=1 (Viet Nam)&nbsp;</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">30 :&nbsp;<font color="#fbb8ec">https://www.youtube.com/watch?v=0YJVu9EKBqA&amp;list=RD0YJVu9EKBqA&amp;start_radio=1 (Pakistan group)</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">31 :&nbsp;<font color="#fff5b3">https://www.youtube.com/watch?v=LsgO5OTU</font></font><font color="#2ecc40"><font size="4">sRU&amp;list=RDLsgO5OTUsRU&amp;start_radio=1 (Lettonie)</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />04/02/1026 ETU 17:59</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318712')">Détails</a> <a href="javascript:warnpost(318712)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318712" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318712',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="4">32 :&nbsp;<font color="#ffdc00">https://www.youtube.com/watch?v=ix710LMe</font><font color="#fff5b3">E2E&amp;list=RDix710LMeE2E&amp;start_radio=1</font> <font color="#fff5b3">( Car&eacute;lie)</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">33 :&nbsp;<font color="#ff0000">https://www.youtube.com/watch?v=ua95fP</font><font color="#ffffff">R6HC8&amp;list=RDua95fP</font><font color="#9df9ff">R6HC8&amp;start_radio=1 (Caucase)</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">34 :&nbsp;<font color="#ffffff">https://www.youtube.com/watch?v=fZYZPAN</font></font><font color="#bbbbbb"><font size="4">BF6g&amp;list=RDfZYZPANBF6g&amp;start_radio=1 (Turquie)</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />05/02/1026 ETU 20:47</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318715')">Détails</a> <a href="javascript:warnpost(318715)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318715" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318715',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="4">35 :&nbsp;<font color="#c0f0c6">https://www.youtube.com/watch?v=ccsUj</font><font color="#fff5b3">Rhpo_U&amp;list=RD</font><font color="#e8b6ef">ccsUjRhp</font>o<font color="#ffffff">_U&amp;start_radio=1 (Cuba )</font></font></div><div class="post_line"></div><div class="post_line"><font size="4"><font color="#ffffff">36 :&nbsp;</font><font color="#0074d9">https://www.youtube.com/watch?v=</font><font color="#1e92f7">XeraDSzu0nw&amp;list=</font><font color="#0074d9">RDXeraDSzu0nw&amp;start_radio=1 (Danemark )</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">37 :&nbsp;<font color="#44b8ff">https://www.youtube.c</font><font color="#e86e04">om/watch?v</font><font color="#e82a1f">=y8q4zPjXd0M&amp;list=</font></font><font color="#ffffff"><font size="4">RDy8q4zPjXd0M&amp;start_radio=1 (Iceland)</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />06/02/1026 ETU 15:13</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D318730', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318729')">Détails</a> <a href="javascript:warnpost(318729)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318729" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318729',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="4">38 :&nbsp;https://www.youtube.com/watch?v=xqovGKdgAXY&amp;list=RDxqovGKdgAXY&amp;start_radio=1 (Su&egrave;de)</font></div><div class="post_line"></div><div class="post_line"><font size="4">39 :<font color="#c0f0c6">&nbsp;https://www.youtube.com/watch?v=-6X</font><font color="#bbbbbb">l9tBWt54&amp;list=RD-6Xl9tBWt54&amp;start_radio=1 </font>(Finlande)</font></div><div class="post_line"></div><div class="post_line"><font size="4">40 :&nbsp;<font color="#2ecc40">https://www.youtube.com/watch?v=CW</font><font color="#ffffff">zaUkMvfZE&amp;list=RDCW</font><font color="#e86e04">zaUkMvfZE&amp;start_radio=1 (Finlande)</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />07/02/1026 ETU 17:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318744')">Détails</a> <a href="javascript:warnpost(318744)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318744" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318744',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="4">41 :&nbsp;<font color="#ffff44">https://www.youtube.com/watch?v=xx7mkKIX</font><font color="#ff0000">XDw&amp;list=RDxx7mkKIXXDw&amp;start_radio=1 (Kazakhstan)</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">42 :&nbsp;<font color="#ffffff">https://www.youtube.com/watch?v=JmajbHfB</font><font color="#c3ffff">5T4&amp;list=RDJmajbHfB5T4&amp;start_radio=1</font> (Norv&egrave;ge)</font></div><div class="post_line"></div><div class="post_line"><font size="4">43 :&nbsp;<font color="#e86e04">https://www.youtube.com/watch?v=wZnVQT_</font><font color="#ffa500">iEYo&amp;list=RDwZnVQT_iEYo&amp;start_radio=1</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />08/02/1026 ETU 08:16</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318746')">Détails</a> <a href="javascript:warnpost(318746)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318746" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318746',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="4">44 :<font color="#4cea5e">&nbsp;https://www.youtube.com/watch?v=igdmcqa</font><font color="#bbbbbb">el8Y&amp;list=RDigdmcqael8Y&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">45 :&nbsp;<font color="#e86e04">https://www.youtube.com/watch?v=MG_</font><font color="#e8c500">npaLydKg&amp;list=RDMG_npaLydKg&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">46 :&nbsp;<font color="#1e92f7">https://www.youtube.com/watch?v=D</font><font color="#2ecc40">39M92kRfIQ&amp;list=RDD39M92kRfIQ&amp;start_radio=1</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />09/02/1026 ETU 19:04</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318755')">Détails</a> <a href="javascript:warnpost(318755)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318755" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318755',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="4">47 :&nbsp;<font color="#fff5b3">https://www.youtube.com/watch?v=iPQL9</font><font color="#7fdbff">qyGBQ4&amp;list=RDiPQL9qyGBQ4&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">48 :&nbsp;<font color="#7fdbff">https://www.youtube.com/watch?v=ttIL</font><font color="#ffffff">4EnqXdU&amp;list=RDttIL4EnqXdU&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">49 :&nbsp;<font color="#e8b6ef">https://www.youtube.com/watch?v=zU</font><font color="#ffc0cb">RHUV2b4p4&amp;list=RDz</font>U<font color="#ff30dc">RHUV2b4p4&amp;start_radio=1</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />10/02/1026 ETU 18:50</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318763')">Détails</a> <a href="javascript:warnpost(318763)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318763" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318763',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="4">50 :<font color="#ff4136">&nbsp;https://www.youtube.com/watch?v=XDIYOiQU</font><font color="#ff857a">i2s&amp;list=RDXDIYOiQUi2s&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">51 :&nbsp;<font color="#d9f4ff">https://www.youtube.com/watc</font>h<font color="#c0f0c6">?v=o6f593X6rv8&amp;list=RD</font><font color="#fff5b3">o6f593X6rv8&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">52 :&nbsp;<font color="#ffffff">https://www.youtube.com/watch?v=</font><font color="#ff0000">W8r-tXRLazs&amp;list=RD</font><font color="#bbbbbb">W8r-tXRLazs&amp;start_radio=1</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Gred">Cdt. Gred</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12743.jpg" style="width:128px;height:128px" alt="Avatar" /><br />11/02/1026 ETU 19:31</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal318785')">Détails</a> <a href="javascript:warnpost(318785)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal318785" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=318785',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="4">53 :&nbsp;<font color="#1e92f7">https://www.youtube.com/watch?</font><font color="#ffff00">v=Up6uSmbuHug&amp;list=RD</font>U<font color="#ffffff">p6uSmbuHug&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4"><font color="#ffffff">54 :</font><font color="#68c4e8">&nbsp;https://www.youtube.com/watch?v=Jgjrrkf</font><font color="#ffdbbb">y9yw&amp;list=RDJgjrrkfy9yw&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">55 :&nbsp;<font color="#ffa339">https://www.youtube.com/watch?v=</font><font color="#ff0000">OQA6BBDMNu8&amp;list=R</font><font color="#bbbbbb">DOQA6BBDMNu8&amp;start_radio=1</font></font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=17825&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=17825&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Concert de musique</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

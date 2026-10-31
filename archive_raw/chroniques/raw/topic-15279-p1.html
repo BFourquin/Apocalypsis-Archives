@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15279 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Extraits c&eacute;l&eacute;riens</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Extraits c&eacute;l&eacute;riens</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Baronne+Sam%27di">Cdte. Baronne Sam&#039;di</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/11006.png" style="width:128px;height:123px" alt="Avatar" /><br />09/01/1021 ETU 07:45</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal279441')">Détails</a> <a href="javascript:warnpost(279441)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279441" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279441',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#7FDBFF"><strong><em>--- PREMIERS PAS ENTROPIQUES ---</em></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><em>Personne n&#039;a d&eacute;crit ce qu&#039;il s&#039;est pass&eacute; lorsque l&#039;Apocalypse en Odyss&eacute;e a &eacute;t&eacute; pr&eacute;dite. Du moins, personne ne l&#039;a encore fait. C&#039;&eacute;tait bien trop horrible, et l&#039;esprit de chaque C&eacute;l&eacute;rien en est encore bien trop marqu&eacute; pour avoir le courage de lire ce qu&#039;ils savent d&eacute;j&agrave;.</em></font></div><div class="post_line"><font color="#44B8FF"><em>C&#039;est pour cela que je ne m&#039;attarderai pas sur ce sujet. Ce n&#039;est pas mon r&ocirc;le. En tant que chroniqueur d&#039;Entropie, mon r&ocirc;le est d&#039;ouvrir une nouvelle page, aussi blanche et pure que nos espoirs &agrave; tous, de notre histoire.</em></font></div><div class="post_line"><font color="#44B8FF"><em>Nous avons quitt&eacute; notre ch&egrave;re Tela, la plan&egrave;te qui nous a vus na&icirc;tre, qui a failli nous tuer, que nous avons r&eacute;ussi &agrave; apprivoiser, et qui nous a couverts de bienfaits que nous ne sommes pas s&ucirc;rs d&#039;avoir m&eacute;rit&eacute;s. Et nous l&#039;avons abandonn&eacute;e, comme des enfants ingrats. Beaucoup des n&ocirc;tres ont pleur&eacute;, ce jour-l&agrave;. Non pas parce qu&#039;ils laissaient derri&egrave;re eux toutes leurs possessions, voire m&ecirc;me certains membres de leurs familles, non pas parce qu&#039;ils avaient peur de l&#039;avenir, mais parce qu&#039;ils quittaient leur M&egrave;re &agrave; tous, la laissant impuissante face &agrave; sa fin. Tela. Nous nous sommes jur&eacute;s de ne jamais baptiser une plan&egrave;te ainsi. Il n&#039;y en aura qu&#039;une, &agrave; jamais.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><em>Mais je m&#039;&eacute;gare.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><em>Entropie. Le nom de cette galaxie ne pr&eacute;sageait rien de bon. Mais avions-nous le choix ? </em></font></div><div class="post_line"><font color="#44B8FF"><em>Nous avons pos&eacute; la Vision, l&#039;Intuition et la Justesse aux abords d&#039;une jungle, dans une plaine aux hautes herbes, sur la premi&egrave;re plan&egrave;te qui nous a parue la plus apte &agrave; accueillir nos milliards de survivants. Les dizaines d&#039;autres vaisseaux se sont pos&eacute;s aux quatre coins de la plan&egrave;te, suivant les ordres de la Baronne Sam&#039;di. Les deux vaisseaux de transport et le vaisseau de colonisation ont subi quelques d&eacute;g&acirc;ts en traversant des champs d&#039;ast&eacute;ro&iuml;des, mais rien d&#039;irr&eacute;parable. Beaucoup d&#039;entre nous n&#039;avaient jamais quitt&eacute; Tela, et j&#039;&eacute;tais de ceux-l&agrave;. A premi&egrave;re vue, cette jungle ressemblait &agrave; celles que nous avions, chez nous. Mais les arbres portaient tous des feuilles si immenses que nous aurions pu nous faire des abris avec une seule d&#039;entre elles. La terre &eacute;tait d&#039;un rouge presque phosphorescent, contrastant avec le bleu-vert du feuillage. L&#039;eau des rivi&egrave;res &eacute;tait fra&icirc;che et potable, mais d&eacute;gageait un ar&ocirc;me tr&egrave;s l&eacute;g&egrave;rement sucr&eacute; lorsque remu&eacute;e, si bien que lorsque nous avons admir&eacute; une cascade, nous avons &eacute;t&eacute; pris d&#039;une irr&eacute;sistible et ridicule envie de p&acirc;tisseries. Les animaux que nous avons crois&eacute;s avaient de nombreuses similitudes avec les esp&egrave;ces que nous avions r&eacute;pertori&eacute;es sur Tela, mais &eacute;taient sensiblement diff&eacute;rents, d&eacute;form&eacute;s, comme si nous les observions en r&ecirc;ve. Cette plan&egrave;te semblait &ecirc;tre une version imaginaire de Tela, comme si un enfant c&eacute;l&eacute;rien l&#039;avait cr&eacute;&eacute;e de toutes pi&egrave;ces.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><em>La Baronne Sam&#039;di ne nous a pas laiss&eacute;s r&ecirc;vasser plus longtemps, et a ordonn&eacute; qu&#039;on &eacute;tablisse notre capitale sur un haut plateau surplombant la jungle. Elle a baptis&eacute; notre nouvelle plan&egrave;te Tatel, rappelant vaguement le nom de Tela &agrave; notre souvenir et &agrave; celui des futures g&eacute;n&eacute;rations. La Justesse se mit en marche. Je n&#039;avais encore jamais vu un vaisseau de colonisation &agrave; l&rsquo;&oelig;uvre. Il a for&eacute; la falaise sous le plateau, s&#039;enfon&ccedil;ant dans la roche rouge comme s&#039;il n&#039;y avait rien. Le vacarme de ses machines a provoqu&eacute; un vol d&#039;oiseaux bleu et blanc si grands qu&#039;on aurait pu monter sur leur dos. Puis, plus rien, pendant quelques secondes. On m&#039;a alors dit que les b&acirc;tisseurs prenaient toujours un peu de temps pour faire leurs calculs sur une plan&egrave;te inconnue, compte tenu des nombreux nouveaux param&egrave;tres. Quels calculs, ai-je voulu demander. Mais je n&#039;en ai pas eu le temps. Allumez vos protecteurs auditifs, m&#039;a-t-on dit. A peine m&#039;&eacute;tais-je ex&eacute;cut&eacute; qu&#039;une violente explosion a fait trembler le sol. </em></font></div><div class="post_line"><font color="#44B8FF"><em>Quand j&#039;ai rouvert les yeux, une ville &eacute;tait n&eacute;e, l&agrave;-haut, sur le plateau. Je ne pouvais pas croire qu&#039;il &eacute;tait si simple de b&acirc;tir une ville pouvait accueillir plusieurs milliers d&#039;habitants. Le baron Var&#039;uso, pr&egrave;s de moi, m&#039;a souri, m&#039;a dit que je devrais sortir de ma biblioth&egrave;que de temps en temps, et il a ajout&eacute; fi&egrave;rement que le Protocole Xpansion &eacute;tait une invention de son d&eacute;funt p&egrave;re, scientifique et ing&eacute;nieur de talent. Nous nous sommes approch&eacute;s. A mon grand soulagement, je n&#039;avais pas une v&eacute;ritable ville de toplor et de verre comme Tela&#039;ni devant moi. Il aurait fallu des ann&eacute;es pour reconstruire notre capitale. Ce n&#039;&eacute;taient que des b&acirc;timents pr&eacute;fabriqu&eacute;s. Solides, durables et parfaitement fonctionnels, mais tout de m&ecirc;me pr&eacute;fabriqu&eacute;s.</em></font></div><div class="post_line"><font color="#44B8FF"><em>Puis, les premiers b&acirc;timents pos&eacute;s, une universit&eacute; comportant plusieurs d&eacute;partements de recherche, un chantier spatial, et, bien s&ucirc;r, un tr&eacute;sor public, pr&egrave;s de trois cents telluriciens <font color="#ffffff">*</font>, parmi tous ceux qui peuplaient Odyss&eacute;e, sont entr&eacute;s en sc&egrave;ne. Ils ont trac&eacute; des routes, creus&eacute; des canaux, des &eacute;gouts, des tunnels, construit des milliers de maisons simples mais suffisamment confortables pour ravir nos survivants. En quelques heures &agrave; peine, &agrave; la nuit tomb&eacute;e, ils avaient b&acirc;ti une ville enti&egrave;re. Les anciens habitants de la capitale ont &eacute;t&eacute; log&eacute;s dans ces maisons de pierre, tandis que les autres, ceux des Baronnies, ont d&ucirc; passer leur premi&egrave;re nuit dans les vaisseaux de transports, o&ugrave; ils ont pu b&eacute;n&eacute;ficier, du coup, de bien plus de place.</em></font></div><div class="post_line"><font color="#44B8FF"><em>Nous avons su par holocom que les autres survivants, r&eacute;partis aux quatre coins de la plan&egrave;te, avaient eux aussi trouv&eacute; un endroit propice &agrave; la construction d&#039;une ville. Partout, donc, jaillissaient la surface de Tatel des myriades de villes de pierre.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#44B8FF"><em>En tant que chroniqueur d&#039;Entropie, je fais partie des privil&eacute;gi&eacute;s qui habitent une maison de pierre provisoire. Je m&#039;appr&ecirc;te donc &agrave; passer ma premi&egrave;re nuit sur Tatel, notre nouveau foyer. Dehors, le silence se fait, hormis quelques cris &eacute;tranges d&#039;animaux inconnus. Je crois que chacun d&#039;entre nous essaye de se r&eacute;jouir de la situation en &eacute;vitant de penser &agrave; tout ce que nous avons laiss&eacute; derri&egrave;re nous. La journ&eacute;e a &eacute;t&eacute; longue. Probablement plus de trente heures. Il faudra que je v&eacute;rifie &ccedil;a.</em></font></div><div class="post_line"><font color="#44B8FF"><em>Nous ignorons encore si cette plan&egrave;te est habit&eacute;e. Nos villes provisoires ne prennent pas beaucoup de place et nous n&#039;avons alt&eacute;r&eacute; l&#039;environnement que de mani&egrave;re presque insignifiante. Si Tatel est habit&eacute;e par une civilisation intelligente, j&#039;ai le sentiment que nos diplomates saurons n&eacute;gocier le meilleur avenir pour notre peuple.</em></font></div><div class="post_line"></div><div class="post_line"><div align="right"><font color="#7FDBFF"><em>Ki&#039;dral Skun, chroniqueur d&#039;Entropie</em></font></div></div><div class="post_line"><div align="right"><font color="#7FDBFF"><em>Baronnie de Tatel</em></font></div></div><div class="post_line"><div align="right"><font color="#7FDBFF"><em>Premier Jour Apr&egrave;s l&#039;Evacuation d&#039;Odyss&eacute;e</em></font></div></div><div class="post_line"></div><div class="post_line">----------</div><div class="post_line"><font color="#44B8FF"><em><font color="#ffffff">*</font> <font size="1">Il faut savoir que les C&eacute;l&eacute;riens &eacute;tant issus de nombreuses manipulations g&eacute;n&eacute;tiques orchestr&eacute;es par des Humains, certains d&#039;entre eux ont d&eacute;velopp&eacute; des capacit&eacute;s hors du commun. Bien s&ucirc;r, cela reste dans la limite du raisonnable. Personne ne peut voler ou n&#039;est immortel. La Baronne Sam&#039;di, par exemple, peut converser avec les morts. Et les telluriciens, comme leur nom l&#039;indique, savent manipuler la terre pour cr&eacute;er toutes sortes de choses incroyables. Si on m&#039;avait laiss&eacute; le choix, j&#039;aurais certainement choisi d&#039;en &ecirc;tre un. Leur pouvoir de cr&eacute;ation pratiquement infini m&#039;a toujours fascin&eacute;. Mais h&eacute;las, je fais partie de ceux qui sont n&eacute;s sans pouvoir.</font></em></font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15279&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15279" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15279" name="d_reply_15279" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15279');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15279'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Extraits c&eacute;l&eacute;riens</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

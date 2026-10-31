@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16888 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>A la recherche de Sarah</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche de Sarah</p>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=2">2</a>&nbsp;...&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=5">5</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=6">6</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />01/07/1023 ETU 20:11</td><td class="post_right"><div class="posthead">Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal301646')">Détails</a> <a href="javascript:warnpost(301646)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301646" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 7<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301646',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>* &Agrave; son r&eacute;veil en Vindicte, Jim TraineDehors n&#039;avait qu&#039;une seule id&eacute;e... Trouv&eacute; Sarah... <a href="https://www.apocalypsis.org/showuser?e_cap=Sarah+kleptoman" target="_blank" rel="nofollow">Sarah Louise Kl&eacute;ptoman</a>.&nbsp;Les cycles passent et aucune nouvelle d&#039;elle. Il parcourra son syst&egrave;me natif, puis le secteur 1. Mais rien...&nbsp;M&ecirc;me pas un signal de d&eacute;tresse. L&#039;angoisse et la peur hant&egrave;rent peu &agrave; peu le commandant. Il ne tarda pas &agrave; plonger dans l&#039;alcool. La perte de son Bar le &quot;Braxis&quot; par les brigands l&#039;affaiblit encore plus, au point ou le suicide devins une option... Une solution a toute sa souffrance. La mort serait alors l&#039;&eacute;chappatoire et la r&eacute;ponse pour la retrouver ? Un soir ou la boisson l&#039;avait affaiblit, il posa la main sur son r&eacute;volver. L&#039;id&eacute;e allait devenir r&eacute;elle...</em></div><div class="post_line"></div><div class="post_line"><em>C&#039;est alors qu&#039;une poign&eacute;e de commandants se r&eacute;unir autour de lui, pour l&#039;aider a affronter cette &eacute;preuve !&nbsp; Myah, Tarik, Ex-000 et Tuntiak voyant Jimmy dans cet &eacute;tat ne purent rester impassible. Alcool, drogue et bonnes paroles <u>l&#039;aid&egrave;rent &agrave; surmonter cette &eacute;preuve.</u> Apr&egrave;s quelques vomissements et malaises, le Marshall se rendit compte de l&#039;immensit&eacute; de la Galaxie. Seul, il n&#039;avait aucune chance ! La commandante Myah lui proposa alors de rejoindre sa qu&ecirc;te. Sa joie explosa et il pris la jeune femme dans ses bras. Enfin... Enfin quelqu&#039;un pour l&#039;aid&eacute;. Soudain Tarik et Ex-000 choisir eux aussi de rejoindre l&#039;exp&eacute;dition. Tuntiak quant &agrave; lui, choisit d&#039;envoyer une d&eacute;nomm&eacute;e Olivia pour repr&eacute;senter le groupe Tamas au c&ocirc;t&eacute; de Jim. TraineDehors explosa de joie et relan&ccedil;a une tourn&eacute; de rhum.</em></div><div class="post_line"></div><div class="post_line"><em>Devant l&#039;immensit&eacute; de la Galaxie, le commandant proposa alors a la petite bande de se s&eacute;parer pour couvrir plus de terrain.</em></div><div class="post_line"></div><div class="post_line"><em>Avec Myah en professeur de danse, Tarik a la sono, Ex-000 comme m&eacute;decin et Olivia... Sans compter notre Jim national pour la bibine, &ccedil;a ne peut mal tourner !</em></div><div class="post_line"><em>Le groupe d&#039;aventurier &eacute;tait r&eacute;uni, qu&#039;allait-il leur arriver ? Jusqu&#039;o&ugrave; pouvait-il les mener cette qu&ecirc;te ? Quel danger les attendait ? L&#039;avenir nous le dira...&nbsp;*</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />02/07/1023 ETU 02:57<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal301660')">Détails</a> <a href="javascript:warnpost(301660)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301660" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301660',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><em>Myah avait attendu l&rsquo;appel de Jim. Elle n&rsquo;avait pas pu supporter de le voir souffrir, de le voir larmoyer sur son aim&eacute;e et d&rsquo;&ecirc;tre autant solitaire dans sa douleur. En plus, en ce moment, elle n&rsquo;&eacute;tait pas tenue de rester sur ses terres. Alors&hellip; un vote avait &eacute;t&eacute; organis&eacute; pour &eacute;lire provisoirement un nouveau Guide &agrave; sa place, le temps de son absence.</em></div><div class="post_line"></div><div class="post_line">-<font color="#ffa500"> Corn&eacute;lius, te voil&agrave; promu pendant mon absence, mais ne mets pas le Secteur en &eacute;bullition, hein ? Tu mesures tes paroles&hellip; Pas envie de revenir en guerre !</font></div><div class="post_line">-<font color="#5593bd"> Non Madame, je ferai attention.</font></div><div class="post_line">- <font color="#ffa500">Madame ?</font></div><div class="post_line">-<font color="#5593bd"> Ben&hellip; c&rsquo;est moi le Guide depuis ce matin !</font></div><div class="post_line">-<font color="#ffa500"> Dis donc, tu t&rsquo;y es habitu&eacute; tr&egrave;s vite&hellip; F&eacute;licitations !</font></div><div class="post_line"></div><div class="post_line"><em>La derni&egrave;re phrase &eacute;tait ironique, mais Myah redoutait vraiment les maladresses de Corn&eacute;lius.&nbsp; Enfin, elle allait enfin partir avec une bande d&rsquo;amis pour une mission d&rsquo;humanit&eacute; !</em></div><div class="post_line"><em>Elle se pr&eacute;senta &agrave; l&rsquo;astroport priv&eacute; et personnel superviser l&rsquo;avancement de ses ordres.</em></div><div class="post_line"></div><div class="post_line">-<font color="#ffa500"> Hey, tout est pr&ecirc;t, Morgan ?</font></div><div class="post_line">- <font color="#17b529">Oui Madame, nous avons embarqu&eacute; ce que vous aviez demand&eacute;&hellip;y compris votre malle personnelle&hellip; Vous voulez v&eacute;rifier ?</font> <em>dit-il avec un air soucieux.</em></div><div class="post_line">- <font color="#ffa500">Non, cher pilote, je te fais confiance !</font></div><div class="post_line"></div><div class="post_line"><em>Myah avait rev&ecirc;tu sa combinaison de vol. Elle allait piloter sans personne &agrave; bord pour la seconder, ce qui ajoutait un peu de piquant &agrave; son escapade</em>. </div><div class="post_line"></div><div class="post_line">-<font color="#ffa500"> Ne te fais pas de souci pour moi, Morgan. Je t&rsquo;enverrai des nouvelles r&eacute;guli&egrave;rement. Mais hooo&hellip; motus !&nbsp; Et surveille Corn&eacute;lius du coin de l&rsquo;&oelig;il, et rapporte-moi ses conneries. Et puis, si tu as des nouvelles de &laquo; qui tu sais &raquo;, je t&rsquo;ai enregistr&eacute; des messages&hellip;</font></div><div class="post_line">-<font color="#17b529"> Je n&rsquo;y manquerai pas, Myah</font>.</div><div class="post_line"></div><div class="post_line"><em>Elle monta dans son vaisseau diplomatique, entra les premi&egrave;res coordonn&eacute;es de vol et alla v&eacute;rifier que son barda &eacute;tait complet. Son espace pour le repos &eacute;tait parfait&hellip; Le VME n&rsquo;&eacute;tait pas imposant, mais confortable pour elle.</em></div><div class="post_line"></div><div class="post_line"><em>Puis elle s&rsquo;installa aux commandes&hellip;</em></div><div class="post_line">- <font color="#ffa500">Jim, les potos, me&nbsp; voil&agrave; !</font></div><div class="post_line"></div><div class="post_line"><em>Les r&eacute;acteurs ronfl&egrave;rent de joie.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Disident.R">Cdt. Disident.R</a><br>Prestige de chroniqueur&nbsp;: 86<br /><br /><img src="/avatars/11768.jpg" style="width:128px;height:112px" alt="Avatar" /><br />02/07/1023 ETU 19:52</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal301707')">Détails</a> <a href="javascript:warnpost(301707)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301707" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301707',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Ex-000, le vieux baroudeur de l&#039;espace, avait &eacute;t&eacute; attir&eacute; par hasard dans une taverne qui correspondait parfaitement &agrave; son &acirc;ge. Intrigu&eacute;, il s&#039;&eacute;tait pos&eacute; dans cet &eacute;tablissement r&eacute;tro, rappelant les bars de sa jeunesse.&nbsp;</div><div class="post_line"></div><div class="post_line">Rapidement, il remarqua Jim et devina sa lutte contre l&#039;addiction qui le tourmentait. Avant m&ecirc;me de le relever de son dernier exc&egrave;s, il sentait que ce jeune homme avait un c&oelig;ur lourd.</div><div class="post_line"></div><div class="post_line">Pourtant, Ex-000 avait choisi de rester dans l&#039;ombre, &eacute;coutant attentivement les conversations qui animaient ce bar perdu. Les discussions faisaient resurgir des souvenirs en lui. L&#039;amour perdu, les explorations galactiques, l&#039;aventure et le go&ucirc;t du risque, tout cela &eacute;tait &eacute;voqu&eacute; autour d&#039;alcool &agrave; profusion.</div><div class="post_line">Et pourquoi pas ? Apr&egrave;s tout, il &eacute;tait ind&eacute;pendant des dissidents, &agrave; la retraite, et m&ecirc;me sa vieille navette de reconnaissance n&#039;&eacute;tait plus conforme aux normes actuelles. Malgr&eacute; tout, il tenait &agrave; cet amas de ferraille !</div><div class="post_line"></div><div class="post_line">Il avait personnellement apport&eacute; des am&eacute;liorations &agrave; sa navette, un conteneur &agrave; d&eacute;chet fix&eacute; au r&eacute;acteur ionique, conservant les souvenirs de ses aventures, ainsi que divers gadgets ajout&eacute;s dans le cockpit, y compris une petite danseuse qui se tortillait au gr&eacute; des temp&ecirc;tes plasmique des &eacute;toiles. </div><div class="post_line">Il avait retir&eacute; son immatriculation et am&eacute;lior&eacute; les performances du moteur. Sous son apparence de d&eacute;chet spatial, la machine renfermait les technologies dernier cri. Il y avait m&ecirc;me une petite distillerie au cas o&ugrave;...</div><div class="post_line"></div><div class="post_line">C&#039;est ainsi qu&#039;il proposa de rejoindre le groupe. </div><div class="post_line">L&#039;errance sans fin prenait enfin un sens, offrant une cure de jouvence &agrave; cet ancien explorateur. Peut-&ecirc;tre trouverait-il son compte dans cette nouvelle aventure, m&ecirc;lant pass&eacute; et futur.</div><div class="post_line"></div><div class="post_line">Les blocs de propulsions se mirent en route en toussant. il poussa les gaz, les turbine rugirent puis se mirent a ronronner.</div><div class="post_line"></div><div class="post_line">Ex-000 attendit le d&eacute;part pour suivre la bande de casse-cout, r&eacute;glant les instruments, il tapa sur le hud, la danseuse se tortilla sur le coup. Il souris... </div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />03/07/1023 ETU 01:52</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal301733')">Détails</a> <a href="javascript:warnpost(301733)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301733" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301733',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">*<em> Pendant ce temps, dans un endroit tenue secret...</em><em>&nbsp;La base Omega &eacute;tait en &eacute;bullition, des soldats courraient dans tous les sens. Ces pr&eacute;paratifs laissent penser qu&#039;une &eacute;norme op&eacute;ration militaire aller d&eacute;buter..</em>&nbsp;*</div><div class="post_line"><a href="https://assets.vg247.com/current//2009/08/thebridge.jpg" target="_blank" rel="nofollow">Qg Base Omega</a></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Matt, es ce que tout est pr&eacute;s ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Presque Jim, nous ajustons les derni&egrave;res donn&eacute;es, la base sera bient&ocirc;t op&eacute;rationnel !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Et nos amis ? O&ugrave; en sont-ils ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">D&#039;apr&egrave;s nos informations Myah et Ex-000 devraient nous rejoindre sous peu. Pour Olivia et Tarik, &ccedil;a ne saurait tarder aussi !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Bien... Je compte sur toi pour coordonn&eacute;e les op&eacute;rations et veill&eacute; sur &quot;La Nouvelle Conf&eacute;d&eacute;ration&quot;, en cas de probl&egrave;me, tu pourras compter sur Tychus.</font></div><div class="post_line"><font color="#68c4e8">Je vais r&eacute;gler encore quelques d&eacute;tails, pr&eacute;viens moi quand tout le monde sera l&agrave; !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Oui Jim !</font></div><div class="post_line"></div><div class="post_line"><em>* Un soldat arriva a c&ocirc;t&eacute; de Matt, une caisse de munition dans les bras. *</em></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Monsieur, ou doit t&#039;on placer les munitions ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Hangar 5, all&eacute; num&eacute;ro 2 !</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&Agrave; vos ordres !</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ffff44"><font size="1">Bordel Jim, j&#039;esp&egrave;re que tu sais o&ugrave; tu vas avec tes furieux !</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Tarik">Cdt. Tarik</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/11865.jpg" style="width:128px;height:80px" alt="Avatar" /><br />03/07/1023 ETU 04:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 7 <a href="javascript:toggle_bloc('cal301768')">Détails</a> <a href="javascript:warnpost(301768)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301768" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301768',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="right"><em>Plan&egrave;te Esyop</em></div></div><div class="post_line"><div align="right"><em>Centre de commandement spatial</em></div></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Oh Paramouf ! Ca fait un bail qu&#039;on t&#039;as pas vu ici ! L&#039;air d&#039;notre bonne vieille plan&egrave;te te manquait !?</font></div><div class="post_line"><font color="#008000">- Je suis surtout l&agrave; parce que, tu m&#039;as demand&eacute; de venir ... Puis il faut se le payer le voyage depuis le Secteur 4 hein, je vais pas revenir par ici tous les 2 cycles !</font></div><div class="post_line"><font color="#ffff00">- Hey &ccedil;a va, j&#039;te charrie ! On peut plus rien t&#039;dire toi. Monsieur g&egrave;re son Secteur, c&#039;est d&#039;venu l&#039;roi d&#039;l&#039;Apotium.</font></div><div class="post_line"><font color="#008000">- J&#039;aimerai bien tu sais, d&#039;ailleurs, j&#039;attend toujours ma cargaison ! J&#039;ai trouv&eacute; un truc la derni&egrave;re fois, la r&eacute;action &agrave; certes fais sauter un labo, mais ...</font></div><div class="post_line"><font color="#ffff00">- ... Mais on va s&#039;calmer ! L&#039;apotium c&#039;est pas gratos et on a pas encore les moyens d&#039;pouvoir le j&#039;ter par les f&#039;n&ecirc;tres ! <font size="1">&#039;fin les croiseurs, tu m&#039;as compris.</font></font></div><div class="post_line"><font color="#008000">- Oui mais si tu m&#039;en envoies une petite caisse, une caissounette, si &ccedil;a se trouve je vais trouver la formule pour te le synth&eacute;tiser et pouf !!! A NOUS LA RICHESSE !! De l&#039;Apotium comme s&#039;il en pleuvait !</font></div><div class="post_line"><font color="#ffff00">- Euuh, quand j&#039;vois la tronche de certains mecs qui nous l&#039;extrait, j&#039;suis pas s&ucirc;r d&#039;vouloir me doucher &agrave; l&#039;Apotium. Puis, il va m&#039;falloir un peu plus que des &quot;si &ccedil;a s&#039;trouve&quot; pour me convaincre de financer cette recherche !</font></div><div class="post_line"><font color="#ffff00">Mais laisse tomber &ccedil;a deux s&#039;condes. Tu t&#039;doutes bien que si j&#039;t&#039;ai fait venir ici, sur Esyop, c&#039;est qu&#039;il y a mati&egrave;re.</font></div><div class="post_line"><font color="#008000">- Oui j&#039;imagine. On m&#039;a m&ecirc;me rapport&eacute; d&#039;ailleurs qu&#039;en ce moment, tu tournais beaucoup en rond. Qu&#039;est ce qu&#039;il se passe ? Quelques chose de pas tr&egrave;s marrant nous est ou va nous arriver ?</font></div><div class="post_line"><font color="#ffff00">- Bin ... Oui, et non. Bon j&#039;te fais l&#039;topo rapide, mais&nbsp;tu m&#039;laisses finir, OK ? Je t&#039;ai fais venir ici parce que t&#039;es la seule personne &agrave; qui j&#039;peux dire &ccedil;a, parce que t&#039;es le mec&nbsp;en qui j&#039;ai le plus confiance dans toute cette Galaxie.</font></div><div class="post_line"><font color="#ffff00">En gros, ... si j&#039;devais r&eacute;sumer l&#039;truc ...</font></div><div class="post_line"><font color="#ffff00">J&#039;me casse et j&#039;te laisse les cl&eacute;s du bateau !</font></div><div class="post_line"><font color="#ffff00">J&#039;ai pas plus court.</font></div><div class="post_line"><font color="#008000">- QU&#039;EST CE QUE TU ME BARAGOUINE LA ! C&#039;EST QUOI CETTE PUTAIN DE NOUVELLE LUBIE ENCORE !? SI YA UNE GONZESSE LA D&#039;SSOUS, J&#039;TE FAIS UNE PUTAIN DE CLE D&#039;BRAS !</font></div><div class="post_line"><font color="#ffff00">- Woo, calmos l&#039;asticot. En plus non, c&#039;est m&ecirc;me pas une histoire d&#039;gonzesse ... &#039;fin si du coup ... Mais c&#039;est pas la mienne !</font></div><div class="post_line"><font color="#008000">- Comment &ccedil;a ? Tu tapes dans les nanas maqu&eacute;es toi maintenant ?</font></div><div class="post_line"><font color="#ffff00">- Non non t&#039;inqui&egrave;te, puis laisse ma vie sentimentale ou elle est d&eacute;j&agrave;.</font></div><div class="post_line"><font color="#ffff00">Bon, en gros, j&#039;t&#039;ai parl&eacute; du Jim l&#039;autre jour. Si j&#039;ai bien compris l&#039;truc, il a paum&eacute; sa nana. Et le mec, au lieu d&#039;la chercher dans son bled, il &agrave; l&#039;air d&#039;la chercher dans toute la Galaxie. D&eacute;j&agrave; ya un bon niveau d&#039;paumage l&agrave;. Puis bon, je te passe les d&eacute;tails, mais yavait un peu d&#039;alcool, il nous a demand&eacute; un coup d&#039;main avec d&#039;autres gars et patatrac on se retrouve &agrave; aller fouiller un peu partout pour essayer d&#039;la localiser.</font></div><div class="post_line"><font color="#008000">- Ton histoire est un peu &eacute;trange, mais pourquoi t&#039;as dis oui &agrave; ce gars l&agrave; ? Tu t&#039;en cogne de sa gonzesse, non ?</font></div><div class="post_line"><font color="#ffff00">- Non mais &ccedil;a c&#039;est une chose, mais &eacute;coute moi. Alors d&eacute;j&agrave; le Jim j&#039;l&#039;aime bien, il est sympa et on fait des bonnes soir&eacute;es avec. Donc sur le principe &ccedil;a me g&egrave;ne pas d&#039;lui filer un coup d&#039;main. Puis bon r&eacute;fl&eacute;chi, il c&#039;est pass&eacute; quoi la derni&egrave;re fois que j&#039;me suis cass&eacute; d&#039;Esyop ? L&agrave; cette fois c&#039;est pareil, imagine les trucs que j&#039;vais potentiellement croiser sur ma route !</font></div><div class="post_line"><font color="#008000">- Hum. T&#039;as toujours ce r&ecirc;ve d&#039;ailleurs dans ta t&ecirc;te toi. Mais bon, cette fois les circonstances ne sont pas les m&ecirc;mes. La derni&egrave;re fois, tu es parti, mais tu es revenu avec des gars qui t&#039;ont aid&eacute; &agrave; d&eacute;gager le pouvoir belliqueux qui &eacute;tait en place ici. Et regarde ce qu&#039;il c&#039;est pass&eacute; apr&egrave;s. Ton exode a conduit notre civilisation &agrave; la gloire supr&ecirc;me, tu&nbsp;as &eacute;radiqu&eacute; les guerres intestines qui rongeaient la plan&egrave;tes, tu as mis en place un nouveau mode de gouvernance qui nous a tous amen&eacute; &agrave; vivre une vie sereine et paisible, puis apr&egrave;s. Tu nous a fait voyager dans l&#039;univers, fait conqu&eacute;rir de nouvelles plan&egrave;tes avec des peuples que tu as su convaincre &agrave; nous suivre, tu as lev&eacute; des milliards de fonds pour nous donner l&#039;opportunit&eacute; d&#039;&ecirc;tre ce que nous sommes aujourd&#039;hui.</font></div><div class="post_line"><font color="#008000">Tu as une responsabilit&eacute; vis &agrave; vis de &ccedil;a, tu ne peux pas, ..., enfin tu ne peux plus te permettre de partir comme &ccedil;a. L&#039;IZI, c&#039;est toi, c&#039;est toi que les gens suivent. Qu&#039;est-ce qui te permet de penser que tu peux abandonner ce que toi m&ecirc;me tu as b&acirc;ti?</font></div><div class="post_line"><font color="#ffff00">- Essaye pas d&#039;m&#039;avoir par les sentiments ! Sur l&#039;fond, c&#039;est toi qui a raison. Mais tu sais, je n&#039;abandonne personne cette fois. Je compte bien rester aux commandes de notre IZI. Seulement l&agrave;, j&#039;ai vraiment l&#039;intuition qu&#039;il faut que j&#039;parte faire cette excursion. Maintenant que l&#039;on a tout c&#039;qu&#039;il nous faut, tu crois pas qu&#039;c&#039;est l&#039;moment d&#039;se mouiller pour voir c&#039;qu&#039;il y a encore apr&egrave;s ? C&#039;est pas l&#039;jour ou une civilisation inconnu viendra taper &agrave; notre porte avec des gros croiseurs qu&#039;il faudra s&#039;poser cette question. Et puis au pire, si j&#039;me plante, bah j&#039;aurais voyager un peu.</font></div><div class="post_line"><font color="#008000">- Oui, et si tu venais &agrave; mourir au cours de ton &quot;excursion&quot;. On fait quoi ?</font></div><div class="post_line"><font color="#ffff00">- Si tu penses au pire aussi ...</font></div><div class="post_line"><font color="#008000">- Il faut bien que quelqu&#039;un y pense !!!</font></div><div class="post_line"><font color="#ffff00">- Non mais ya pas d&#039;raison. Puis bon, au pire, j&#039;mourrai avec la satisfaction d&#039;savoir que c&#039;est toi qui pilote la machine. Ca me rassurera. <font size="1">Oui bon sauf pour l&#039;c&ocirc;t&eacute; pognon j&#039;t&#039;avoues.</font></font></div><div class="post_line"><font color="#ffff00">En tout cas, j&#039;y ai tr&egrave;s longuement r&eacute;fl&eacute;chi, ma d&eacute;cision est prise. Acceptes, s&#039;il te plait, de prendre ma place. C&#039;est du temporaire, je compte bien rentrer un jour &agrave; la maison. Et puis je s&#039;rai pas un fant&ocirc;me, je s&#039;rai&nbsp;joignable &agrave; tout moment. Si t&#039;as besoin de quelque chose, ou des doutes sur comment g&eacute;rer l&#039;IZI, je s&#039;rai &eacute;videmment toujours l&agrave; ! Juste un peu moins pr&eacute;sent quoi. C&#039;est tout.</font></div><div class="post_line"><font color="#008000">- Comme je te connais, je sais que je ne parviendrai pas &agrave; te faire revenir en arri&egrave;re. Si c&#039;est ta d&eacute;cision, je l&#039;accepte ... Mais je ne peux m&#039;emp&ecirc;cher d&#039;&ecirc;tre un peu inquiet quant &agrave; l&#039;avenir ... Tu pars quand ?</font></div><div class="post_line"><font color="#ffff00">- Bah disons que Jim m&#039;a envoy&eacute; les coordonn&eacute;es d&#039;sa Base Omega. Et avant que t&#039;arrives, j&#039;en ai profit&eacute; pour boucler tout c&#039;que j&#039;avais &agrave; faire. Du coup, j&#039;vais d&eacute;coll&eacute;e dans pas longtemps. En plus j&#039;ai mes playlists qui sont pr&ecirc;te l&agrave; !</font></div><div class="post_line"><font color="#008000">- Ah oui ... Tiens, prend &ccedil;a alors. Ca fait un petit moment que je travaillais dessus. J&#039;avais l&#039;intuition qu&#039;il fallait&nbsp;que je te le donne aujourd&#039;hui. Je vois que j&#039;ai encore vu juste.&nbsp;Normalement, il doit t&#039;attendre dans le hangar principal.</font></div><div class="post_line"><font color="#ffff00">- Les codes d&#039;acc&egrave;s &agrave; un nouveau vaisseau ?? C&#039;est sympa d&#039;avoir pens&eacute; &agrave; moi !</font></div><div class="post_line"><font color="#ffff00">Bon, tu sais comment j&#039;suis dou&eacute; pour les aurevoir hein.</font></div><div class="post_line"><font color="#008000">- Oui je sais. Fais bonne route mon ami.</font></div><div class="post_line"><font color="#008000"><font size="1">Bon, &agrave; moi de g&eacute;rer tout &ccedil;a maintenant ... Ca va aller, &ccedil;a va aller ... Bon d&eacute;j&agrave;, ou il range l&#039;Apotium ici.</font></font></div><div class="post_line"><font color="#ffff00">- Merci Paramouf, t&#039;imagines m&ecirc;me pas comment c&#039;est incroyable d&#039;avoir un ami comme toi. Si t&#039;as besoin d&#039;un truc, fais comme chez toi. Bon retour chez nous en tout cas et, ... &agrave; bient&ocirc;t !!</font></div><div class="post_line"><font color="#ffff00"><font size="1">Et j&#039;ai fait un trait sur l&#039;niveau d&#039;l&#039;Apotium, alors fais gaffe hein !</font></font></div><div class="post_line"></div><div class="post_line"><div align="right"><em>Hangar principal du centre de commandement spatial</em></div></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">BAH PUTAIN ! Il c&#039;est pas foutu d&#039;ma gueule l&#039;enfoir&eacute; ! Y vont m&#039;entendre arriver d&#039;puis la stratosph&egrave;re avec &ccedil;a MOUAHAHAH !</font></div><div class="post_line"><font color="#ffff00">Je vais t&#039;appel&eacute;, ... Hum, ...&nbsp;<a href="https://th.bing.com/th/id/OIG.1E8KMnTu5vAtkf10rJls?pid=ImgGn" target="_blank" rel="nofollow"><u>Angela</u></a>&nbsp;!</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Aller Angy, fais p&#039;ter les watt !!!!!!!!!!!</font></div><div class="post_line"></div><div class="post_line"><a href="https://www.youtube.com/watch?v=CpiKsQ0K3Ug" target="_blank" rel="nofollow"><em><font color="#ffffff"><font size="1">Musique d&#039;arriv&eacute;e</font></font></em></a></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Disident.R">Cdt. Disident.R</a><br>Prestige de chroniqueur&nbsp;: 86<br /><br /><img src="/avatars/11768.jpg" style="width:128px;height:112px" alt="Avatar" /><br />05/07/1023 ETU 02:50</td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal301962')">Détails</a> <a href="javascript:warnpost(301962)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301962" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 5<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301962',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>La vieille navette d&#039;Ex-000 se pr&eacute;parait &agrave; d&eacute;coller en direction de la destination choisie par Jim. Malgr&eacute; son aspect d&eacute;labr&eacute;, elle &eacute;tait pr&ecirc;te &agrave; partir. Les moteurs vrombissaient, pr&ecirc;ts &agrave; donner toute leur puissance. Soudain, un premier accoup se fit ressentir, suivi d&#039;un torrent ionique crach&eacute; par les moteurs.</em></div><div class="post_line"></div><div class="post_line"><em>Ex-000, prenant les commandes de la navette, donna ses ordres &agrave; l&#039;ordinateur central. Il activa le guidage par ondes gravitationnelles, une technologie avanc&eacute;e qui lui permettrait de naviguer plus efficacement dans l&#039;espace. L&#039;ordinateur acquies&ccedil;a et commen&ccedil;a &agrave; calculer les trajectoires en utilisant les ondes gravitationnelles &eacute;mises par les objets massifs pr&eacute;sents dans l&#039;espace.</em></div><div class="post_line"></div><div class="post_line"><em>L&#039;ia du vaisseaux se pronon&ccedil;a</em></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb"><em>Ӿ≜ษӾ┆ษ వಶ Ӿใ┆⎤... </div><div class="post_line"></em></font></div><div class="post_line"><font color="#ffc0cb"><em>♨ใỘಶᵙ ๆవ Ӿใใ⎤ๆใಶಶవవ ỘಶಖవӾᵙవవ ...</em></font></div><div class="post_line"><font color="#ffc0cb"><em>Ӿ≜ษӾ┆ษ ๆ┆ ಶใᘉ⚀⎤వᔤ ๆవ ᔤ≜┆ᵙᔤ వಶ Ӿใ┆⎤...</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb"><em>⎤వ♨వ⎤≜ᦎవ ≜ӾᵙỘচ.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb"><em>ᦎ┆Ộๆ≜ᦎవ ᵙవ⎤ᘉỘಶవ! ಗవษӾใᘉవ ≜⚀ใ⎤ๆ Ӿใᘉᘉ≜ಶๆవ⎤</em></font></div><div class="post_line"></div><div class="post_line"><em>La navette commen&ccedil;a &agrave; se mouvoir lentement, puis gagna en vitesse &agrave; mesure que les moteurs se stabilisaient. La force des acoups diminua progressivement, et le torrent ionique se transforma en un flux r&eacute;gulier propulsant la navette dans l&#039;espace. Ex-000 sentait l&#039;excitation monter en lui alors qu&#039;il se dirigeait vers cette nouvelle destination.</em></div><div class="post_line"></div><div class="post_line"><em>Les &eacute;toiles d&eacute;filaient devant ses yeux, tandis que la navette s&#039;&eacute;levait dans l&#039;infini du cosmos. Ex-000 avait l&#039;impression de revivre ses ann&eacute;es de jeunesse, lorsque chaque d&eacute;collage &eacute;tait une aventure en soi. Il s&#039;accrochait fermement aux commandes, scrutant l&#039;horizon spatial avec une lueur d&#039;excitation dans les yeux.</em></div><div class="post_line"></div><div class="post_line"><em>La navette, propuls&eacute;e par les moteurs am&eacute;lior&eacute;s et guid&eacute;e par le syst&egrave;me de guidage par ondes gravitationnelles, traversait l&#039;espace avec une pr&eacute;cision impressionnante. Elle naviguait habilement entre les ast&eacute;ro&iuml;des, &eacute;vitant les dangers qui se pr&eacute;sentaient sur sa route.</em></div><div class="post_line"></div><div class="post_line"><em>Ex-000 souriait, sachant qu&#039;il &eacute;tait enfin de retour dans son &eacute;l&eacute;ment, pr&ecirc;t &agrave; affronter de nouvelles aventures. La destination choisie par Jim se rapprochait peu &agrave; peu, et Ex-000 sentait son c&oelig;ur battre avec intensit&eacute;. Il savait que cette fois-ci, il ne resterait pas dans l&#039;ombre, mais serait un acteur &agrave; part enti&egrave;re de cette incroyable exp&eacute;dition galactique.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Ouverture du canal de communication : x-com_0 Jim</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">J&#039;arrive Gamin... </font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />05/07/1023 ETU 15:55<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal302015')">Détails</a> <a href="javascript:warnpost(302015)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302015" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302015',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Th&eacute;ra, Secteur 4, Galaxie Vindicte. Premiers jours de l&#039;&eacute;t&eacute;.</em></div><div class="post_line"></div><div class="post_line"><em>Comme tous ceux de l&#039;Ellada dite Ultime, Anudar b&eacute;n&eacute;ficiait d&#039;une esp&eacute;rance de vie bien plus &eacute;tendue que celle des &ecirc;tres humains de la Terre des origines. Pourtant, ce n&#039;&eacute;tait que d&#039;une fa&ccedil;on r&eacute;cente qu&#039;il avait &eacute;t&eacute; amen&eacute; &agrave; d&eacute;couvrir le concept d&#039;Apocalypse - et donc, &agrave; devoir diriger son peuple &agrave; travers le vide et le froid cruels qui s&eacute;parent les galaxies : l&#039;appel d&#039;Arkh&ecirc;ia Th&eacute;ra - la premi&egrave;re de toutes, la seule, la vraie - se faisait &agrave; chaque fois ressentir plus fort et plus lancinant.</em></div><div class="post_line"></div><div class="post_line"><em>Le destin de l&#039;Ellada - et par cons&eacute;quent&nbsp;la responsabilit&eacute; de son gouvernement que l&#039;on appelait Ecoum&eacute;n&ecirc; - n&#039;&eacute;tait donc autre que de revenir aussit&ocirc;t que possible en arri&egrave;re, et de rendre la lumi&egrave;re et la musique de la vie au plus important de tous les mondes elladiques. Aucune autre t&acirc;che n&#039;&eacute;tait prioritaire - mais parfois, certaines d&#039;entre elles poss&eacute;daient malgr&eacute; tout leur importance propre.</em></div><div class="post_line"></div><div class="post_line"><em>Les mains sur la rambarde du balcon, Anudar eut un soupir. Des visiteurs importants risquaient de se pr&eacute;senter sous peu, ce qui n&#039;&eacute;tait jamais arriv&eacute; depuis les premiers pas de l&#039;Ellada dans l&#039;espace - autrefois en Galaxie Entropie. La Table avait d&eacute;battu de la strat&eacute;gie avec soin : fallait-il recevoir ces gens ou bien leur transf&eacute;rer les informations qu&#039;ils avaient r&eacute;clam&eacute;es ? L&#039;Ellada &eacute;tait volontiers anim&eacute;e de tendances isolationnistes - comme en attestait le programme de gouvernance interstellaire qu&#039;elle soumettait t&ocirc;t ou tard &agrave; tout gouvernement galactique &agrave; peu pr&egrave;s stable - mais le sujet semblait d&#039;une r&eacute;elle importance. Il fallait que le Commandant Jim Tra&icirc;neDehors puisse voir de ses yeux les preuves que l&#039;Ecoum&eacute;n&ecirc; avait conserv&eacute;es depuis les faits. Associ&eacute;es &agrave; d&#039;autres que le gouvernement galactique avait sans doute exhum&eacute; par ailleurs, elles devraient permettre &agrave; Jim de progresser dans sa qu&ecirc;te.</em></div><div class="post_line"></div><div class="post_line"><em>L&#039;invitation avait &eacute;t&eacute; transmise. L&#039;Ecoum&eacute;n&ecirc; avait fait le premier pas. Maintenant, Anudar attendait.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Tamas">Cdt. Tamas</a><br>Prestige de chroniqueur&nbsp;: 13<br /><br /><img src="/avatars/11871.jpg" style="width:127px;height:128px" alt="Avatar" /><br />06/07/1023 ETU 06:36</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D302049', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal302048')">Détails</a> <a href="javascript:warnpost(302048)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302048" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 3<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302048',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#fbb8ec">- C&rsquo;est une mission top secr&egrave;te !</font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- Allezzzzz </strong></font></font><font color="#4cea5e"><font size="2"><strong>OLIVIAAAA </strong></font></font><font color="#ff0000"><font size="2"><strong>RACONTE MOAAAAAA</strong></font></font></div><div class="post_line"><font color="#e8b6ef">- Rho ma biche, c&rsquo;est vraiment parce que c&rsquo;est toi.</font></div><div class="post_line"><font color="#e8b6ef">On part &agrave; la recherche de l&rsquo;amour de Jim. Une </font><font color="#4cea5e"><strong>Sarah Kleptomane</strong></font><font color="#e8b6ef">. Il para&icirc;t qu&rsquo;elle est aussi dangereuse que sexy.</font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- En plus c&rsquo;est romantique ♡o♡ je suis tellement fi&egrave;re de toi ! Mais tu vas nous manquer aux soir&eacute;es comment je g&egrave;re le club moi hein ?</strong></font></font></div><div class="post_line"><font color="#e8b6ef">- Je sais que t&rsquo;as toutes les comp&eacute;tences pour &ccedil;a.</font></div><div class="post_line"><font color="#e8b6ef"><font size="2"><strong>- Et pour les ST ?</strong></font></font></div><div class="post_line"><font color="#e8b6ef">- Ah oui pour les ST il faut voir avec </font><font color="#4cea5e"><strong>Pablito</strong></font><font color="#ffc0cb">.</font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- </strong></font></font><font color="#4cea5e"><font size="2"><strong>Paulita </strong></font></font><font color="#ff0000"><font size="2"><strong>!</strong></font></font></div><div class="post_line"><font color="#ffc0cb">- </font><font color="#e8b6ef">Quoi </font><font color="#4cea5e"><strong>Paulita</strong></font><font color="#e8b6ef">, &ccedil;a y est il a franchis le pas ? <strong>FELICITATIONS </strong>!!!</font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- Hihihihih, moui sa derni&egrave;re injection a eu lieu il y a 3 cycles.</strong></font></font></div><div class="post_line"><font color="#e8b6ef">- Et alors, heureuse ?</font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- Bon&hellip; je lui ai promis de ne rien dire mais avec toi &ccedil;a ne compte pas. On baise ENFIN comme des folles ! J&rsquo;ai encore joui trois fois la nuit derni&egrave;re. Et il ne bande plus maintenant donc&hellip;. Il ne d&eacute;bande plus ! hihih</strong></font></font></div><div class="post_line"><font color="#fbb8ec">- Ca me fait vraiment plaisir pour toi !</font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- </strong></font></font><font color="#4cea5e"><font size="2"><strong>Olivia</strong></font></font><font color="#ff0000"><font size="2"><strong>&hellip;. Tu vas &ecirc;tre prudente hein ?</strong></font></font></div><div class="post_line"><font color="#e8b6ef">- Rhooo, bien s&ucirc;r </font><font color="#4cea5e"><strong>G&eacute;raldine</strong></font><font color="#e8b6ef">, je mettrais des <strong>condomm </strong>! Pas d&rsquo;<strong>apotite </strong>ma ch&eacute;rie.</font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- Non je ne parle pas de &ccedil;a je parle de ta mission&hellip;</strong></font></font></div><div class="post_line"><font color="#e8b6ef">- Hum&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Tu n&rsquo;as pas &agrave; t&rsquo;inqui&eacute;ter. Je g&egrave;re. <strong>Parcontre je suis vraiment &agrave; la bourre faut que jte laisse. La bise ma belle je t&rsquo;appelle quand je reviens.</strong></font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- Bisous !</strong></font></font></div><div class="post_line"><font color="#e8b6ef"><strong>- AAAAHHH attends,</strong> juste un truc, le rouge &agrave; l&egrave;vres, </font><font color="#ff0000"><strong>rouge </strong></font><font color="#e8b6ef"><strong>ou </strong></font><font color="#4cea5e"><strong>vert </strong></font><font color="#e8b6ef"><strong>?</strong></font></div><div class="post_line"><font color="#ff0000"><font size="2"><strong>- Rho ma ch&eacute;rie, rouge ! Pour le vert t&rsquo;as d&eacute;j&agrave; tes &eacute;cailles torrriiiiiiiiiid..</strong></font></font><font color="#e8b6ef">Hihi ok <strong>BISOUS </strong>!</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><em>Quelques heures plus tard&hellip;</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff0000"><font size="2">- Tu veux dire que tu as int&eacute;gr&eacute; le groupe permanent ?!</font></font></div><div class="post_line"><font color="#e8b6ef">- Heheh <strong>ouiii </strong>!</font></div><div class="post_line"><font color="#ff0000"><font size="2">- Et ils t&rsquo;envoient d&eacute;j&agrave; en mission ? </font></font></div><div class="post_line"><font color="#e8b6ef">- Bien s&ucirc;r, je suis g&eacute;niale !</font></div><div class="post_line"><font color="#ff0000"><font size="2">- Je suis si fi&egrave;re de toi <strong>mon </strong>ch&hellip; <strong>MA </strong>ch&eacute;rie !</font></font></div><div class="post_line"><font color="#e8b6ef">- Merci maman. &Ccedil;a me touche que tu pr&ecirc;tes attention &agrave; mes choix.</font></div><div class="post_line"><font color="#ff0000"><font size="2">- Ah tu sais j&rsquo;ai un calendrier sur le frigo ma puce, comme &ccedil;a <strong>d&egrave;s qu&rsquo;on change de phase</strong>, je sais si je dois t&rsquo;appeler </font></font><font color="#4cea5e"><font size="2"><strong>C&eacute;dric </strong></font></font><font color="#ff0000"><font size="2">ou </font></font><font color="#4cea5e"><font size="2"><strong>Olivia</strong></font></font><font color="#ff0000"><font size="2">. Comment se passe ta modific..</font></font><font color="#e8b6ef"><strong>Parcontre je suis vraiment &agrave; la bourre faut que jte laisse. Gros bisous je t&rsquo;appelle quand je reviens.</strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><em>Quelques cycles plus tard&hellip;</em></font></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ff0000">&lt;&lt;&lt;<a href="https://www.youtube.com/watch?v=pSXdHvuw7P8" target="_blank" rel="nofollow">&gt; ambiance &lt;</a>&gt;&gt;&gt;</font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font color="#ffa500">Pour le f&ecirc;ter d&eacute;part de sa premi&egrave;re mission, </font><font color="#4cea5e"><strong>Olivia </strong></font><font color="#ffa500">avait vu les choses en grand : l&rsquo;organisation d&rsquo;un festival directement au port spatial. Apr&egrave;s un pot de d&eacute;part qui a dur&eacute; quelques cycles la tronche du site est r&eacute;v&eacute;latrice du mot d&rsquo;ordre de cet &eacute;v&eacute;nement :<strong> Sexe, drogue, rumba et libert&eacute;</strong>.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffa500">Des confettis partout, des graffs explicites et sauvages posant des chim&egrave;res d&rsquo;</font><font color="#4cea5e"><strong>homme-femme-serpent </strong></font><font color="#ffa500">sur la carlingue de vaisseaux&hellip; M&ecirc;me les <strong>m&eacute;canos </strong>et <strong>techniciens </strong>se sont m&ecirc;l&eacute;s &agrave; la fiesta. Une atmosph&egrave;re encore &eacute;lectrique qui ne sera pas oubli&eacute;e de sit&ocirc;t.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffa500">Au fond d&rsquo;elle, </font><font color="#4cea5e"><strong>Olivia </strong></font><font color="#ffa500">sait pertinemment que <strong>ce voyage peut &ecirc;tre sans retour</strong>, c&rsquo;est pourquoi elle a choisi de le f&ecirc;ter avec ses nombreux amis comme &agrave; son habitude : dans l&rsquo;<strong>exub&eacute;rance </strong>et l&rsquo;exag&eacute;ration. N&rsquo;oublions pas que si elle a int&eacute;gr&eacute; le groupe permanent de </font><font color="#4cea5e"><strong>Tamas</strong></font><font color="#ffa500">, c&rsquo;est forc&eacute;ment qu&rsquo;elle a des talents particuliers et je vous jure qu&rsquo;apr&egrave;s ces nuits de folie tout le monde est persuad&eacute; que c&rsquo;est parce qu&rsquo;<strong>elle s&rsquo;&eacute;clate sans tabou</strong>.&nbsp; </font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffa500">Derni&egrave;res embrassades avec des copines, un gros c&acirc;lin avec..</font></em><font color="#e8b6ef"><strong>Parcontre je suis vraiment &agrave; la bourre faut que jvous laisse. Gros bisous je vous appelle quand je reviens et on remet &ccedil;a ? ;)</strong></font></div><div class="post_line"></div><div class="post_line"><div align="center"><a href="https://www.zupimages.net/viewer.php?id=23/26/wusz.jpg" target="_blank" rel="nofollow">https://www.zupimages.net/viewer.php?id=23/26/wusz.jpg</a></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />07/07/1023 ETU 05:09</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D302107', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal302102')">Détails</a> <a href="javascript:warnpost(302102)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302102" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302102',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">* <em>Base Om&eacute;ga, quelques cycles plus tard... Le groupe &eacute;tait enfin r&eacute;uni devant Matt et la console de commandement strat&eacute;gique.&nbsp;Matthew activa la console puis commen&ccedil;a le briefing de mission...</em> *</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>* Le responsable tactique se tenais debout devant la <a href="https://zupimages.net/up/23/26/jmkt.jpg" target="_blank" rel="nofollow">carte galactique</a>, les bras crois&eacute;s dans le dos. Le torse bien droit et fier. *</em></div><div class="post_line"><font color="#ffff44">D&#039;abord, je souhaite vous remercier tous d&#039;avoir r&eacute;pondu &agrave; l&#039;appel de Jim. Merci.</font></div><div class="post_line"><font color="#ffff44">Comme vous le savez, la mission qui vous attend ne sera pas facile. Il se peut m&ecirc;me que certains d&#039;entre vous, ne reviennent jamais !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><em>* Il passa en revue chacun des aventuriers. *</em></div><div class="post_line"><font color="#ffff44">Myah, Ex-000, Tarik et bien s&ucirc;r O... Oliv... Olivia...</font></div><div class="post_line"></div><div class="post_line"><em>* L&#039;officier resta bloquer quelques secondes, laissant TraineDehors mal &agrave; l&#039;aise. Le Marshall fit le tour de la table et donna un petit coup de coude &agrave; son camarade. *</em></div><div class="post_line"><font color="#68c4e8">Bordel Matt, tu fous quoi l&agrave; ? Tu me fous la honte devant les copains !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Jim... Elle... Elle est magnifique !</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Allons, mon gar&ccedil;on reprend toi ! Le travail avant tous ! Reste professionnel !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Hum... Pardonnez-moi !</font></div><div class="post_line"></div><div class="post_line"><a href="https://www.youtube.com/watch?v=SerCIT55GVQ" target="_blank" rel="nofollow">#Musique d&#039;ambiance #</a></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Reprenons-la ou nous &eacute;tions. Comme vous pouvez le voir, la galaxie est tr&egrave;s vaste... Il y a une grande quantit&eacute; de secteur &agrave; explorer.&nbsp;Je serais votre officier de liaison ainsi que strat&eacute;gique afin de coordonner l&#039;op&eacute;ration.</div><div class="post_line"></font></div><div class="post_line"><font color="#ffff44">Et malheureusement, notre Marshall n&#039;a pas les moyens d&#039;explorer chacun des mondes pr&eacute;sents.</font></div><div class="post_line"><font color="#ffff44">Votre mission sera simple... Explorer et prendre contact avec un maximum de personnes afin de trouver une piste sur Sarah.</font></div><div class="post_line"><font color="#ffff44">Pour cela, j&#039;ai opt&eacute; pour vous s&eacute;parer chacun de votre c&ocirc;t&eacute;. Ainsi, vous pourrez couvrir plus de terrain.</font></div><div class="post_line"><font color="#ffff44">&Eacute;tudier attentivement chaque d&eacute;tail, ne laisser rien passer. Le moindre petit d&eacute;tail a de l&#039;importance !</font></div><div class="post_line"><font color="#ffff44">Vous avez carte blanche, pour cette mission ! </font></div><div class="post_line"><font color="#ffff44">Encore une chose... Prenez garde aux brigands, ils sont de plus en plus actifs ces temps si ! </font></div><div class="post_line"><font color="#ffff44">Et le fameux Krrrrrrr ainsi que son acolyte &Eacute;rebos sont devenus tr&egrave;s agressifs.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Jim, je dois te pr&eacute;venir nous avons re&ccedil;u un rapport. Des brigands ont attaqu&eacute; un monde en syst&egrave;me 8, secteur 1.</font></div><div class="post_line"><font color="#ffff44">Les ordures ont pill&eacute; la plan&egrave;te, et kidnapp&eacute; plus de 700 enfants.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8"><font size="3">Quoi ?????????????</font></font></div><div class="post_line"><font color="#68c4e8">Personne... Personne ne touche &agrave; un <font size="4">ENFANT</font> !</font></div><div class="post_line"><font color="#68c4e8">Il me faut un &eacute;quipage et des armes !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Je m&#039;attendais a cette r&eacute;ponse, je t&#039;ai pr&eacute;par&eacute; ton fusil ionique MK3, ainsi qu&#039;un corsaire.</font></div><div class="post_line"><font color="#ffff44">Tu as des munitions et des vivres pour un mois !</font></div><div class="post_line"><font color="#ffff44">L&#039;&eacute;quipage t&#039;attend, hangar num&eacute;ro 2.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Pardonnez-moi les amis, je vous rejoindrais d&egrave;s que possible. Je ne peux laisser passer cela !</font></div><div class="post_line"><font color="#68c4e8"><font size="1">Sarah, tu ne me pardonnerais jamais de laisser ces enfants souffrir...</font></font></div><div class="post_line"></div><div class="post_line"><em>* Ainsi TrainDehors, partie &agrave; l&#039;aventure laissant sa qu&ecirc;te de c&ocirc;t&eacute;. Les autres compagnons auraient sans doute voulu aider Jim contre les brigands, mais comme dirait Jimmy : <u>&quot;La mission avant tous !&quot;</u> *</em></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Bien... &Agrave; nous, que souhaitez vous pour r&eacute;aliser vos missions ? Vaisseaux, munition, &eacute;quipage ?</font></div><div class="post_line"><font color="#ffff44">Je suis &agrave; votre enti&egrave;re disposition !</font></div><div class="post_line"></div><div class="post_line"><div align="center">**************************************************************************************************************</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><em>* Quelques minutes plus tard...&nbsp;Le groupe &eacute;tant parti, Matt resta seul dans la salle de briefing... *</em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff857a">Monsieur, une intervention en Assembl&eacute;e devrais vous int&eacute;ress&eacute; !</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffff44">Affichage sur &eacute;cran...</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#2ecc40"><strong>&quot;L&#039;Ecoum&eacute;n&ecirc; a de tr&egrave;s s&eacute;rieuses raisons de penser que la Sarah du Commandant Tra&icirc;neDehors et la jeune Sarah Kleptoman rencontr&eacute;e autrefois sont une seule et m&ecirc;me personne. La Table de notre gouvernement annonce renoncer &agrave; la r&eacute;compense promise par le d&eacute;cret. A la place, nous invitons le Commandant Tra&icirc;neDehors &agrave; nous rejoindre sur notre capitale Th&eacute;ra en Secteur 4. Nous avons cru comprendre qu&#039;un certain nombre d&#039;individus l&#039;accompagnaient dans sa qu&ecirc;te : leur pr&eacute;sence &eacute;ventuelle serait bien entendu appr&eacute;ci&eacute;e elle aussi.&quot;</strong></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffff44">Bon sang, Jim... Les amis, revenez vite ! Nous tenons peut &ecirc;tre une piste...</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Disident.R">Cdt. Disident.R</a><br>Prestige de chroniqueur&nbsp;: 86<br /><br /><img src="/avatars/11768.jpg" style="width:128px;height:112px" alt="Avatar" /><br />09/07/1023 ETU 04:12</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal302267')">Détails</a> <a href="javascript:warnpost(302267)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302267" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302267',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>EX-000 interrogat l&#039;IA des sondes...</em></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Param&egrave;tre des donn&eacute;es sur Th&eacute;ra secteur 4.</font></div><div class="post_line"><font color="#ffc0cb">.... .... ...... </font></div><div class="post_line"><font color="#ffc0cb">Secteur calme et s&eacute;curis&eacute;.&nbsp;</font></div><div class="post_line"><font color="#ffc0cb">Th&eacute;ra communique. </font></div><div class="post_line"><font color="#ffc0cb">Fr&eacute;quence du </font><font color="#ffc0cb">transpondeur : ██████-█████-██████</font></div><div class="post_line"><font color="#ffc0cb">... ... ... </font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Calcul d&rsquo;itin&eacute;raire optimale.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">... ... ...&nbsp;</font></div><div class="post_line"><font color="#ffc0cb">S&eacute;quen&ccedil;age .... ..... ...... .......</font></div><div class="post_line"><font color="#ffc0cb">Optimisation du plan de vol:</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">Plong&eacute;e quantique aux coordonn&eacute;es :&nbsp;</font><font color="#ffc0cb"> █████████████</font><font color="#ffc0cb">█</font></div><div class="post_line"><font color="#ffc0cb">Saut transitoire : ██████████████</font></div><div class="post_line"><font color="#ffc0cb">Surface en : ██████████████ T:2.5 ETU</font></div><div class="post_line"><font color="#ffc0cb">Plong&eacute;e Quantique en immersion : ██████████████ + ██████████████</font></div><div class="post_line"><font color="#ffc0cb">Surface au coordonn&eacute;es final : temps de voyage ██████████████ ETU</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">Termin&eacute;.</font></div><div class="post_line"><font color="#ffc0cb">... ... ...</font></div><div class="post_line"></div><div class="post_line"><em>Ex-000 fit un contr&ocirc;le de routine de sa navette, puis s&#039;approcha de Jim.</em></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Quand tu veut p&#039;tit. J&#039;</font><font color="#fff5b3">reste en arri&egrave;re du convoi.</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=2">2</a>&nbsp;...&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=5">5</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=6">6</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche de Sarah</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

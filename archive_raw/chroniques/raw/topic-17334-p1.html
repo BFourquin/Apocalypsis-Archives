@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17334 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>REDECOUVERTE : La l&eacute;gende des trois...</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > REDECOUVERTE : La l&eacute;gende des trois...</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Wolff">Cdt. Wolff</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/12374.jpg" style="width:73px;height:128px" alt="Avatar" /><br />17/09/1024 ETU 05:37</td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal310120')">Détails</a> <a href="javascript:warnpost(310120)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal310120" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=310120',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Eliot assis &agrave; son bureau surveillait sur les &eacute;crans en demi-cercle devant lui, les &eacute;changes entre les membres du Concile des clans. On frappa &agrave; sa porte. Qui pouvait bien le d&eacute;ranger sans passer par son secr&eacute;tariat.</div><div class="post_line"><font color="#b3d5f4">- Entrez !</font> dit-il</div><div class="post_line"></div><div class="post_line">L&#039;Amiral Moliret Patrick qui dirige les Services de Renseignement de la R&eacute;publique, entra et referma pr&eacute;cautionneusement la porte derri&egrave;re lui.</div><div class="post_line"><font color="#b3d5f4">- Bonjour, Amiral, comment allez-vous ?</font></div><div class="post_line"><font color="#e8b6ef">- Tr&egrave;s bien Pr&eacute;sident, vous m&#039;excuserez de d&eacute;barquer ainsi &agrave; l&#039;impromptu mais une affaire qui me semble de la plus haute importance m&#039;y incite.</font></div><div class="post_line"><font color="#b3d5f4">- Je vous &eacute;coute Patrick.</font></div><div class="post_line"><font color="#e8b6ef">- Bien, vous savez que nous venons de mettre au point un&nbsp;appareil&nbsp;de r&eacute;ception de signaux spatiaux beaucoup plus performants que ce que nous avions.</font></div><div class="post_line"><font color="#b3d5f4">- Je suis au courant Patrick et alors ?</font>&nbsp; R&eacute;pondit Eliot d&#039;un air&nbsp;plut&ocirc;t agac&eacute;.</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">- Eh bien cela va vous paraitre &eacute;trange mais nous venons d&#039;intercepter un signal semblant contenir un texte tr&egrave;s ambigu&euml;. Nos services de d&eacute;cryptage ont&nbsp;un peu gal&eacute;rer sur le codage mais nous avons maintenant traduit pratiquement tout le texte hormis des trous. La r&eacute;ception est encore loin d&#039;&ecirc;tre au top.</font></div><div class="post_line"><font color="#b3d5f4">- Ok et que dis donc ce texte venu du fin fond de l&#039;espace ?&nbsp;Morbleu !&nbsp;&nbsp;</font>R&eacute;pondit Eliot, avec un trait d&#039;humour et affichant&nbsp;un l&eacute;ger sourire.</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">- Ne vous moquez pas Pr&eacute;sident.</font> R&eacute;pondit l&#039;Amiral d&#039;un air agac&eacute;.&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">-&nbsp;D&#039;ailleurs vous pouvez en prendre connaissance, je viens de vous l&#039;envoyer.</font></div><div class="post_line"></div><div class="post_line">Eliot redevenu s&eacute;rieux, consulta son &eacute;cran, pointa du doigt une zone pour&nbsp;afficher&nbsp;le Texte et commen&ccedil;a &agrave; en prendre connaissance.</div><div class="post_line">Les techniciens n&#039;avaient pas r&eacute;ussi &agrave; tout restituer&nbsp;mais d&#039;entr&eacute;e, certaines phrases l&#039;ont intrigu&eacute;. Son visage rapidement est devenu grave. Cela commen&ccedil;ait par&nbsp;</div><div class="post_line"></div><div class="post_line"><strong><em><font color="#c0f0c6"><font size="3">* NOUS ****** TROIS EN SECTEUR 8...</font></font></em></strong></div><div class="post_line"><strong><em><font color="#c0f0c6">* En v&eacute;r*** nous ***** cinq. Mais trois alli&eacute;s, et m&ecirc;me plus, trois *****. Trois com********* bien diff&eacute;rents, ne serait-ce que par *** esp&egrave;ces qui n&rsquo;avaient *** * voir...</font></em></strong></div><div class="post_line"></div><div class="post_line">Le Pr&eacute;sident releva la t&ecirc;te, regarda son Amiral et dit.</div><div class="post_line"><font color="#b3d5f4">- Amiral je ne comprends rien, c&#039;est du charabia...</font></div><div class="post_line"><font color="#e8b6ef">- Lisez la ligne 4 Pr&eacute;sident.</font></div><div class="post_line"></div><div class="post_line">Eliot se replongea dans la lecture&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#c0f0c6"><strong>* Pour que quelqu&rsquo;un ret****** un jour ces pages ** qu&rsquo;il raconte &agrave; *** tour l&rsquo;histoire de l&rsquo;Union des Civilisa**** Souveraines).</strong></font></div><div class="post_line"></div><div class="post_line">Eliot releva la t&ecirc;te.&nbsp;</div><div class="post_line"><font color="#b3d5f4">- Non d&#039;un Bachi-bouzouk. UCS, c&#039;est le sigle qui apparait &agrave; l&#039;avant du vaisseau dont nous venons de retrouver la carcasse dans le &quot;Crat&egrave;re de l&#039;&oelig;il&quot;. Vous m&#039;arr&ecirc;tez si je me trompe mais il semble qu&#039;il renferme des technologies hors de notre port&eacute;e.</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">- Oui, c&#039;est cela. La l&eacute;gende dit que des vaisseaux ruche gigantesques nous ont amen&eacute; sur cette plan&egrave;te suite &agrave; l&#039;exode des Clans. Ce pourrait &ecirc;tre le vaisseau Amiral de cette flotte,&nbsp;et lisez donc la ligne 19</font></div><div class="post_line"></div><div class="post_line"><strong><font color="#c0f0c6">** ***** de ***** la connaissance ** ****** Esprit Nogis. Il m&rsquo;invita ********* aux &eacute;trangers, ********* Aux Lacs Secrets</font></strong>.</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">- et aussi celle-ci</font></div><div class="post_line"></div><div class="post_line"><strong><font color="#c0f0c6">* Au temple, ** rencontrai ** Com***dant Baert. Nous ****** connaissance autour ***** belle tabl&eacute;e, et nous fin&icirc;mes ************* politique.</font></strong></div><div class="post_line"></div><div class="post_line">L&agrave;, le visage du Pr&eacute;sident venait de changer de couleur.</div><div class="post_line"><font color="#b3d5f4">- Vous pensez comme moi Patrick, aux textes des anciens racontant notre arriv&eacute;e sur cette plan&egrave;te et &agrave; l&#039;homme qui est cens&eacute; nous y avoir guid&eacute;. Mais enfin Nom d&#039;un Hurluberlu, ce n&#039;est qu&#039;une l&eacute;gende, rien n&#039;a &eacute;t&eacute; prouv&eacute; !</font></div><div class="post_line"><font color="#e8b6ef">- Je sais Pr&eacute;sident, mais avouez que ce texte est vraiment... stup&eacute;fiant. Et le Nom du Dieu <strong>Nogis</strong> de l&#039;&eacute;glise&nbsp;<strong>Inari</strong>, religion de&nbsp;certains clans...</font></div><div class="post_line"><font color="#b3d5f4">- Ok, Patrick, faites mander en urgence le Seigneur Commandeur Wolff et provoquer une r&eacute;union du concile des clans.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Wolff">Cdt. Wolff</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/12374.jpg" style="width:73px;height:128px" alt="Avatar" /><br />19/09/1024 ETU 21:28</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal310203')">Détails</a> <a href="javascript:warnpost(310203)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal310203" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=310203',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb">Le Commandeur Wolff arriva dans le couloir permettant d&#039;acc&eacute;der &agrave; la&nbsp;pi&egrave;ce d&eacute;di&eacute; au Concile. Couloir tr&egrave;s encombr&eacute; par une multitude des gens arm&eacute;s jusqu&#039;aux dents. Les chefs de Clan se d&eacute;pla&ccedil;aient pour la plupart avec leur garde personnelle, mais celle-ci n&#039;&eacute;tait pas admise au Concile. Cette attitude inutile en ces lieux n&#039;&eacute;tait que la r&eacute;&eacute;mergence&nbsp;de temps pass&eacute;s o&ugrave; les clans se faisaient la guerre.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">A l&#039;entr&eacute;e dans la pi&egrave;ce, il se dirigea vers l&#039;importante table ronde autour de laquelle les seigneurs&nbsp;de Clan prenaient d&eacute;j&agrave; place. Chacun avait son emplacement attitr&eacute;. D&egrave;s qu&#039;il fut install&eacute;, un &eacute;cran et clavier &eacute;merg&egrave;rent du plateau devant lui. Trois coups de gong furent frapp&eacute;s, d&#039;un seul bloc l&#039;auditoire se leva et&nbsp;&nbsp;le silence se fit imm&eacute;diatement. Le Pr&eacute;sident Haddock entra d&#039;un pas ferme se dirigeant lui aussi vers son fauteuil.</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- Force &agrave; vous Seigneurs et Dames, merci d&#039;&ecirc;tre pr&eacute;sent et veuillez vous assoir. </font><font color="#bbbbbb">Le temps lui aussi de s&#039;assoir et il reprit.</font></div><div class="post_line"><font color="#b3d5f4">- Vous avez, je pense, tous consult&eacute;s les documents objet de notre pr&eacute;sence ici mais &eacute;coutons tout d&#039;abord ce qu&#039;en pense nos historiens.</font><font color="#bbbbbb"> Une image holographique apparut au milieu de la table repr&eacute;sentant une jeune femme. Celle-ci commen&ccedil;a.</font></div><div class="post_line"></div><div class="post_line"><font color="#c0f0c6">- Respects &agrave; vous. Sur demande du Pr&eacute;sident et au vu de ce qui vous&nbsp;am&egrave;ne ici, nous avons consult&eacute; nos archives les plus anciennes et recoup&eacute; celle-ci avec les L&eacute;gendes issues des temps anciens. Il semble bien et c&#039;est un fait acquis que notre civilisation en plein exode&nbsp;est arriv&eacute; sur cette plan&egrave;te. Pourquoi ? il semble que le Secteur et surement la Galaxie d&#039;o&ugrave; nous provenons ont subi une sorte d&#039;apocalypse. Notre peuple, du moins ce qu&#039;il en restait, a d&ucirc; partir. Mais comment,&nbsp;me direz vous ! Les l&eacute;gendes parlent d&#039;une travers&eacute;e &agrave;&nbsp;l&#039;int&eacute;rieur d&#039;un vers et de centaines de jours dans celui-ci. Pour nous actuellement, c&#039;est inconcevable mais quel &eacute;tait le niveau technologique de nos anc&ecirc;tres ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#c0f0c6">- Plus avant la&nbsp;catastrophe nous n&#039;avons pratiquement rien hormis quelques l&eacute;gendes que nous n&#039;avions jamais prisent au s&eacute;rieux. L&#039;une d&#039;elle qui provient du Clan des Loups semble faire r&eacute;f&eacute;rence &agrave; une alliance des trois? Trois civilisations amies totalement diff&eacute;rentes et pourtant tr&egrave;s proche. Une autre l&eacute;gende venant du Clan du Renard nous parle d&#039;&ecirc;tres capables de changer d&#039;apparence. L&eacute;gende qui se rapproche fortement de la <strong>Religion Inari</strong> et du <strong>Dieu Nogis</strong>, culte pratiqu&eacute; par certains d&#039;entre nous. Le texte intercept&eacute; de l&#039;espace, comporte effectivement d&#039;&eacute;tranges&nbsp;analogies avec ce que je viens de vous relater. Nous allons continuer nos recherches. Merci de votre attention.</font><font color="#bbbbbb"> Aussit&ocirc;t l&#039;holo disparut.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Le Pr&eacute;sident se tourna vers Eric.</font></div><div class="post_line"><font color="#b3d5f4">- Commandeur avez vous pu vous renseigner ?</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Pr&eacute;sident, Pour faire rapide, l&#039;&eacute;pave&nbsp;retrouv&eacute; dans les cendres du crat&egrave;re ne correspond qu&#039;&agrave; une petite partie d&#039;un important&nbsp;vaisseau de guerre. Nous pensons maintenant que ce devait &ecirc;tre probablement le&nbsp;vaisseau de Commandement d&#039;une flotte, un croiseur Amiral. Nous essayons de comprendre&nbsp;la technologie tr&egrave;s en avance de ce que nous connaissons. Nous pouvons pratiquement affirmer que ce vaisseau ne transportait pas la population, ce qui nous incite &agrave; penser que d&#039;autres vaisseaux ruche ont probablement atterri&nbsp;sur la plan&egrave;te. Autre chose, effectivement il y a bien eu un embl&egrave;me de peint sur la carlingue, un cercle, trois symboles et des pictogrammes&nbsp;dont la traduction correspond&nbsp;&agrave; &quot;<strong>U.C.S</strong>.&quot;.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Un Seigneur se leva. Grand, Carr&eacute;, l&#039;homme, le regard froid commen&ccedil;a.</font></div><div class="post_line"><font color="#ffc0cb">- Moi Seigneur du Clan des Aigles je vous le dis.</font><font color="#bbbbbb"> Il marqua un temp de pause.</font></div><div class="post_line"><font color="#bbbbbb">&nbsp;</font></div><div class="post_line"><font color="#ffc0cb">- Cette histoire ne tient pas debout. Foutaises et pure fabulations&nbsp;!&nbsp;Comment peut-on prendre au s&eacute;rieux des l&eacute;gendes racont&eacute;es aux enfants, un texte venant de l&#039;espace qui pourrait &ecirc;tre un faux, deux trois symboles sur une &eacute;pave soit disant &agrave; l&#039;origine de notre arriv&eacute;e ici. Non ! restons sur du concret comme les combats que nous menons contre les Brigands et oublions&nbsp;ceci !</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Un autre Seigneur se leva.</font></div><div class="post_line"><font color="#ffdbbb">- Pr&eacute;sentement Lord&nbsp;Li Held, Seigneur &nbsp;du Clan du Renard. Petite pause puis. -&nbsp;les l&eacute;gendes sont ce qu&#039;elles sont mais n&#039;y a t&#039;il pas toujours un brin de v&eacute;rit&eacute; qui provoque leur apparition ! Nous devrions tout de m&ecirc;me prendre au s&eacute;rieux ce message.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Les deux protagonistes se sont rassis. Le Pr&eacute;sident reprit.</font></div><div class="post_line"><font color="#b3d5f4">- Pas d&#039;autres intervention ? Commandeur, qu&#039;en pensez-vous r&eacute;ellement ?</font><font color="#bbbbbb">&nbsp;Appuya t-il sur le dernier mot.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Eric se leva, il commen&ccedil;a.</font></div><div class="post_line"><font color="#fff5b3">- La carcasse du vaisseau existe&nbsp;bien, ce n&#039;est pas une l&eacute;gende. Trop de similitude, nous devons prendre cela au s&eacute;rieux. Notre peuple a tr&egrave;s bien pu par le pass&eacute; connaitre d&#039;autres civilisations, s&#039;allier et &eacute;voluer conjointement avec elles. Nous sommes actuellement en train de nous apercevoir que notre syst&egrave;me est probablement d&eacute;j&agrave; occup&eacute; par d&#039;autres entit&eacute;s. Pour ma part, j&#039;&eacute;mettrai un signal de r&eacute;ponse dans l&#039;espace.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">De l&#039;autre cot&eacute; de la table, pratiquement face &agrave; Eric, une jeune femme se leva. Sa beaut&eacute; irradi&eacute;e totalement la pi&egrave;ce.</font></div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">- Ellen Wood , Dame du clan des Arbres. Seigneur et Dame ici pr&eacute;sents, je veux bien croire &agrave; un font de r&eacute;alit&eacute; mais pourquoi ne pas envisager que ce soit un pi&egrave;ge, Que ce&nbsp;peuple&nbsp;nous cherche simplement que pour nous envahir et nous d&eacute;truire. Commandeur, je vous trouve bien prompt &agrave; rechercher le contact. Ne pourriez-vous vous souvenir que vous &ecirc;tes&nbsp;sens&eacute; prot&eacute;ger la R&eacute;publique. Que cache votre empressement &agrave; vouloir vous rapprocher d&#039;eux ?</font><font color="#bbbbbb"> dit-elle avec un petit air malicieux.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Eric sentit la moutarde lui monter au nez. Que lui voulez encore cette Elfe, toujours &agrave; essayer de l&#039;abaisser. Sa beaut&eacute;&nbsp;ne pouvait emp&ecirc;cher qu&#039;elle lui irritait le poil, par tous les dieux. Il failli r&eacute;pondre mais le Pr&eacute;sident le devan&ccedil;a,&nbsp;sentant monter la tension entre les deux protagonistes, il&nbsp;conclu.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- Merci Eric, Messieurs,&nbsp;mesdames&nbsp;je vous demande de bien vouloir voter pour&nbsp;l&#039;envoi d&#039;un signal ou non ?</font></div><div class="post_line"><font color="#bbbbbb">Rapidement les votes apparurent sur un &eacute;cran g&eacute;ant.</font></div><div class="post_line"><font color="#b3d5f4">- Bien, 68 pour et 32 contre. Nous allons travailler &agrave; l&#039;&eacute;laboration du texte. Merci &agrave; tous pour votre attention</font><font color="#bbbbbb">. Le C&eacute;r&eacute;monial se reproduisit pour la sortie du dirigeant&nbsp;de la salle.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Aussit&ocirc;t Eric se dirigea vers la sortie et retrouva son ami qui l&#039;attendait.&nbsp;</font></div><div class="post_line"><font color="#ffdbbb">- Dis moi Eric, tu me semble furax.</font><font color="#bbbbbb">&nbsp;</font></div><div class="post_line"><font color="#fff5b3">- Hum, cette Elfe n&#039;a pas son pareille pour me rabaisser.</font><font color="#bbbbbb">&nbsp;</font></div><div class="post_line"><font color="#ffdbbb">- Cela commence comme &ccedil;&agrave; et termine par une union.</font><font color="#bbbbbb">&nbsp;</font></div><div class="post_line"><font color="#fff5b3">- Une union avec cette furie, tu n&#039;y pense m&ecirc;me pas !&nbsp;</font></div><div class="post_line"><font color="#ffdbbb">- Hum, hum, nous verrons bien. Elle t&#039;en veux simplement parce que tu es devenu Commandeur &agrave; la place de son p&egrave;re. C&#039;est elle qui voulait cette place.</font><font color="#bbbbbb">&nbsp;</font></div><div class="post_line"><font color="#fff5b3">- Tu sais tr&egrave;s bien que je n&#039;ai rien demand&eacute;, on me l&#039;a presque impos&eacute;. Bon passons &agrave; autre chose, nous avons du boulot !</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Wolff">Cdt. Wolff</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/12374.jpg" style="width:73px;height:128px" alt="Avatar" /><br />20/09/1024 ETU 22:23</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal310224')">Détails</a> <a href="javascript:warnpost(310224)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal310224" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=310224',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb">Eric pianota sur son transCom, une sonnerie se fit entendre et une voix r&eacute;pondit.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- Bonjour Commandeur, que puis je pour vous ?</font></div><div class="post_line"><font color="#ffff44">- Respects Pr&eacute;sident, je voulais vous soumettre le message que nous avons pr&eacute;par&eacute; pour envoyer en retour. Par ailleurs nous avons fait des progr&egrave;s&nbsp;rapides sur le langage utilis&eacute; et nous sommes maintenant capable de r&eacute;&eacute;mettre avec leur codage.</font></div><div class="post_line"><font color="#b3d5f4">- Comment avez-vous pu avancer aussi vite en si peu de temps !</font> <font color="#bbbbbb">Demanda Eliot avec un petit sourire. M&ecirc;me s&#039;il connaissait d&eacute;j&agrave; la r&eacute;ponse.</font></div><div class="post_line"><font color="#bbbbbb">Eric l&eacute;g&egrave;rement embarrass&eacute; et pris au d&eacute;pourvu ne pu&nbsp;que r&eacute;pondre.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Heu, Hum, c&#039;est &agrave; dire que... Bon, ok, m&ecirc;me si cela me fait mal au ventre, nous avons eu une aide pr&eacute;cieuse.</font></div><div class="post_line"><font color="#b3d5f4">- Ah bon,</font> <font color="#bbbbbb">r&eacute;pondit Eliot. </font><font color="#b3d5f4">- De quelle aide parlez-vous !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Pr&eacute;sident avec tout le respect que je vous dois, ne faites pas l&#039;innocent et reconnaissez que c&#039;est sur votre action ! Donc, la Princesse&nbsp;Ellen Wood, sur votre demande, a rejoint notre &eacute;quipe. M&ecirc;me si sa pr&eacute;sence me donne parfois des boutons, je dois reconnaitre que c&#039;est une &eacute;minente linguiste et avec son &eacute;quipe nous avons fait un pas de g&eacute;ant et avons dor&eacute;navant l&#039;ensemble du message correctement traduit &agrave; notre disposition.</font></div><div class="post_line"><font color="#d9f4ff">- Ok Eric, je vous &eacute;coute. </font><font color="#bbbbbb">dit Eliot.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00"><font size="3">Message en retour &agrave; l&#039;attention du peuple qui a envoy&eacute; :</font>&nbsp;<font size="4"><strong>NOUS &Eacute;TIONS TROIS EN SECTEUR 8..</strong>.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00"><font size="3">Je suis le Commandeur Eric Wolf mandat&eacute; par la </font><strong><font size="3">R&eacute;publique des Clans de la civilisation V&eacute;nusienne</font></strong><font size="3">. En r&eacute;ponse &agrave; votre message re&ccedil;u, nous pensons que notre anc&ecirc;tre lointain a probablement fait partie prenante de l&#039;Alliance cit&eacute;e&nbsp;</font><strong><font size="4">Union des Civilisations Souveraines</font></strong><font size="3">.&nbsp;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ffff00">Pour nous , &agrave; priori l&#039;exode vers cette nouvelle Galaxie ne s&#039;est pas fait dans le m&ecirc;me segment de temps que vous. Nous avons des dizaines de g&eacute;n&eacute;rations de plus par rapport &agrave; vous.&nbsp;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ffff00">Le Commandant <strong>Baert</strong>, paix &agrave; son &acirc;me est disparu depuis fort longtemps. C&#039;est la d&eacute;couverte d&#039;une partie de l&#039;&eacute;pave de son vaisseau Amiral qui nous a permis la r&eacute;v&eacute;lation de l&#039;homme &agrave; la t&ecirc;te de l&#039;exode et&nbsp;prouvant sans nul doute possible que c&#039;est lui qui nous a amen&eacute; sur ce point de l&#039;espace. Comment, il y a encore beaucoup d&#039;inconnus...&nbsp;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ffff00">Toutefois, nous vous pensons sinc&egrave;res dans votre d&eacute;marche et nous sommes pr&ecirc;t d&egrave;s que possible &agrave; renouer des liens &eacute;troits et amicaux&nbsp;avec votre civilisation et avec l&#039;Union.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00"><font size="3">Commandeur Eric Wolf</font></font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Sans attendre Eliot prit la parole.</font><font color="#d9f4ff">&nbsp;</font></div><div class="post_line"><font color="#b3d5f4">- Bon travail &agrave; vous et votre &eacute;quipe. Vous pouvez &eacute;mettre sans tarder. Ah, et souhaitez le bonjour de ma part &agrave; la Princesse...</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Koushtar">Cdt. Koushtar</a><br>Prestige de chroniqueur&nbsp;: 24<br /><br /><img src="/avatars/12324.jpg" style="width:128px;height:128px" alt="Avatar" /><br />07/10/1024 ETU 11:14</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D310687', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal310685')">Détails</a> <a href="javascript:warnpost(310685)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal310685" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=310685',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em><font size="3">Le G&eacute;n&eacute;ral Koushtar &eacute;tait d&eacute;bord&eacute;, comme tous les jours depuis que lui et les Sapifs rescap&eacute;s de la galaxie Harmonie avaient colonis&eacute; une nouvelle capitale. Il marchait au pas de course dans les couloirs du centre de commandement, lan&ccedil;ant des &laquo;&nbsp;Bonjour&nbsp;&raquo; &agrave; la pelle de droite &agrave; gauche, en prenant soin de ne surtout pas serrer de main qui l&rsquo;aurait retenu. </font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3">&laquo; - <font color="#0074d9">G&eacute;n&eacute;ral, un message du&hellip;</font></font></div></div><div class="post_line"><div align="justify"><font size="3">- <font color="#4cea5e">Plus tard Lieutenant, plus tard. </font></font></div></div><div class="post_line"><div align="justify"><font size="3">- <font color="#0074d9">Mais c&rsquo;est &agrave; propos&hellip;</font> <em>dit le Lieutenant qui emboitait le pas du G&eacute;n&eacute;ral,</em> <font color="#0074d9">C&rsquo;est au sujet de&hellip; </font></font></div></div><div class="post_line"><div align="justify"><font size="3">- <font color="#4cea5e">Qu&rsquo;y a-t-il encore ?</font> <em>c</em><em>oupa Koushtar sans s&rsquo;arr&ecirc;ter</em>, <font color="#4cea5e">Deux Sapifs enrhum&eacute;s qui sortent une nouvelle th&eacute;orie ? Je m&rsquo;en touche les mickeys. </font></font></div></div><div class="post_line"><div align="justify"><font size="3">- <font color="#0074d9">Non, mon G&eacute;n&eacute;ral. Il s&rsquo;agit d&rsquo;un message venant d&rsquo;un autre secteur,</font> <em>Koushtar s&rsquo;arr&ecirc;ta et se retourna vers son lieutenant, qui failli lui rentrer dedans.</em></font></div></div><div class="post_line"><div align="justify"><font size="3">- <font color="#4cea5e">He bien, qu&rsquo;attendez-vous pour le lire ? Vous croyez que je suis l&agrave; pour polir des diamants ?</font></font></div></div><div class="post_line"><div align="justify"><font size="3">-<font color="#0074d9">Hum&hellip;</font> l<em>e lieutenant tentait de retrouver une contenance, il d&eacute;plia son papier, inspira profond&eacute;ment, et lu :</em> <font color="#0074d9">Message &agrave; l&rsquo;attention&hellip; </font>&raquo; <em>Arrachant le papier des mains de son subordonn&eacute;, le G&eacute;n&eacute;ral reprit sa marche, toujours en cadence.</em></font></div></div><div class="post_line"><div align="justify"><font size="3">-&nbsp;<font color="#4cea5e">Merci Lieutenant ! Vous avez fait du bon boulot !</font></font></div></div><div class="post_line"><div align="justify"><font size="3">-&nbsp;<font color="#0074d9">M&hellip;Merci mon G&eacute;n&eacute;ral&hellip; </font><em>r&eacute;pondit de loin le lieutenant rest&eacute; sur place.</em> &raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><em>Il entama lui-m&ecirc;me la lecture tout en marchant :</em> &laquo; <font color="#4cea5e">Message &agrave; l&rsquo;attention de la personne qui a envoy&eacute;: NOUS &Eacute;TIONS TROIS EN SECTEUR 8&hellip;</font> &raquo;,<em> puis stoppa net.</em> &laquo; <font color="#17b529">Nom d&rsquo;un Kami !</font> &raquo; <em>s&rsquo;&eacute;cria-t-il en faisant demi-tour, courant cette fois. </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><em>Il d&eacute;boula en trombe au centre de messagerie, o&ugrave; le rythme des imprimantes et des bipbips r&eacute;sonnait sur le bourdon des conversations.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3">&laquo; -&nbsp;<font color="#4cea5e">Officier de liaison ! Ouvrez une fr&eacute;quence chronicale tout de suite !</font></font></div></div><div class="post_line"><div align="justify"><font size="3">-&nbsp;<font color="#ff30dc">Fr&eacute;quence ouverte mon g&eacute;n&eacute;ral.</font></font></div></div><div class="post_line"><div align="justify"><font size="3">-&nbsp;<font color="#4cea5e">Bien &eacute;crivez :</font><font color="#ffff00"> Message &agrave; l&rsquo;attention du Commandeur Wolf.</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffff00"><font size="3">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Commandeur, Ici le G&eacute;n&eacute;ral Koushtar. Il y a longtemps d&eacute;j&agrave;, votre anc&ecirc;tre le commandant Baert, &eacute;tait mon alli&eacute;. Nous &eacute;tions amis et nous avions des projets, quand arriva l&rsquo;apocalypse d&rsquo;Harmonie. Ce que vous me dites concernant la temporalit&eacute; confirme mes craintes, Baert n&rsquo;est plus, et cela m&rsquo;attriste au plus haut point. Peut-&ecirc;tre retrouverais-je en vous un peu de lui, puisqu&rsquo;il est votre anc&ecirc;tre. Sachez que j&rsquo;ai refond&eacute; l&rsquo;Union des Civilisations Souveraines, qui &eacute;tait notre alliance commune, et vous y serez le bienvenu, en tant qu&rsquo;h&eacute;ritier de l&rsquo;un des trois fondateurs. C&rsquo;est d&rsquo;ailleurs apr&egrave;s une&hellip; apparition du troisi&egrave;me fondateur que je l&rsquo;ai fait. C&rsquo;est le Prince Nogis qui m&rsquo;a demand&eacute; de recr&eacute;er l&rsquo;Union. Mais vous ne pouvez pas en savoir plus sur le Prince Inari puisque lui non plus, n&rsquo;est plus parmi nous. Mes scientifiques am&eacute;liorent nos communications pour pouvoir, bient&ocirc;t j&rsquo;esp&egrave;re, entrer personnellement en contact vous. Votre message m&rsquo;a redonn&eacute; de l&rsquo;espoir !</font></font></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Wolff">Cdt. Wolff</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/12374.jpg" style="width:73px;height:128px" alt="Avatar" /><br />24/10/1024 ETU 03:36</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal311341')">Détails</a> <a href="javascript:warnpost(311341)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal311341" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=311341',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb">Eric sortit rapidement du vaisseau Amiral qui venait de le d&eacute;poser sur l&rsquo;Astroport de la capitale de </font><strong><font color="#bbbbbb">New-V&eacute;nus</font></strong><font color="#bbbbbb">. Sa garde rapproch&eacute;, ces fid&egrave;les Fremen l&rsquo;attendait au pied du vaisseau. Il les salua et se dirigea rapidement vers les v&eacute;hicules qui attendaient &agrave; quelques pas. Pendant qu&rsquo;il marchait, il prit son </font><em><font color="#bbbbbb">TransCom</font></em><font color="#bbbbbb"> et &eacute;non&ccedil;&acirc;t </font><strong><font color="#fff5b3">&laquo; Contact WOOD &raquo;</font></strong><font color="#bbbbbb">. L&rsquo;espace d&rsquo;un instant et une voix f&eacute;minine lui r&eacute;pondit.</font></div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">- Oui Commandeur !</font></div><div class="post_line"><font color="#fff5b3">- Bonjour Princesse, vous vouliez me voir ?</font></div><div class="post_line"><font color="#d9f4ff">- Oui, pouvez-vous passer au Telespace rapidement ?</font></div><div class="post_line"><font color="#fff5b3">- j&rsquo;y serai dans une quinzaine de minutes.</font><font color="#bbbbbb"> Et il raccrocha. J&rsquo;esp&egrave;re que c&rsquo;est s&eacute;rieux, pensa t-il en lui-m&ecirc;me. Elle semblait press&eacute; qu&rsquo;il la rejoigne. Qui pouvait bien &ecirc;tre si urgent &agrave; ce point ?</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Quelques minutes plus tard, arriv&eacute; devant la porte du labo, Eric se retourna vers ces hommes.</font></div><div class="post_line"><font color="#fff5b3">- Merci, attendez-moi ici.</font><font color="#bbbbbb"> Et il entra. La petite salle &agrave; l&rsquo;ambiance feutr&eacute;e &eacute;tait le si&egrave;ge des t&eacute;l&eacute;communications importantes et confidentielles de la R&eacute;publique. Voyant Ellen Wood assise &agrave; un bureau, il se dirigea vers elle.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Mes respects, ma Dame.</font><font color="#bbbbbb"> Dit-il avec un petit sourire taquin. Il connaissait d&eacute;j&agrave; la r&eacute;plique suivante. Sans lever les yeux du document qu&rsquo;elle regardait, Ellen lui dit.</font></div><div class="post_line"></div><div class="post_line"><font color="#d9f4ff">- Combien de fois faut-il que je vous dise que je ne suis pas votre Dame.</font></div><div class="post_line"><font color="#fff5b3">- Ha oui, bon, mes respects PRINCESSE.</font><font color="#bbbbbb"> Exag&eacute;ra t-il.</font></div><div class="post_line"><font color="#d9f4ff">- Eric, vous avez jur&eacute; de me pourrir la vie ce matin ?</font><font color="#bbbbbb"> Dit-elle mi-figue, mi raisin. Le jeu semblait l&rsquo;amuser&nbsp;aussi.</font></div><div class="post_line"><font color="#d9f4ff">- Bon, puis je vous dire de quoi il retourne ?</font></div><div class="post_line"><font color="#fff5b3">- Ma foi, je ne suis pas press&eacute;, je voulais prendre des nouvelles de votre GRANDEURE&hellip;</font></div><div class="post_line"><font color="#d9f4ff">- Vous m&rsquo;agacez, est ce qu&rsquo;un message d&rsquo;un G&eacute;n&eacute;ral &agrave; l&rsquo;autre bout de la Galaxie ne vous int&eacute;resse pas ?</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Aussit&ocirc;t Eric redevint s&eacute;rieux.&nbsp;</font></div><div class="post_line"><font color="#fff5b3">- Mince, vous &ecirc;tes s&eacute;rieuse ?</font></div><div class="post_line"><font color="#d9f4ff">- Oui, il est arriv&eacute; ce matin et nous avons aussi re&ccedil;u un Xcom.</font></div><div class="post_line"><font color="#fff5b3">- Un Xcom ?</font><font color="#bbbbbb"> Faites voir et il se pencha sur les documents.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Eric les relut plusieurs fois pour bien s&rsquo;en imprimer, puis la regardant. </font></div><div class="post_line"><font color="#fff5b3">- Avez-vous pr&eacute;venu le Pr&eacute;sident ? </font></div><div class="post_line"><font color="#d9f4ff">- Oui Eric, il nous d&eacute;l&egrave;gue toute autorit&eacute; pour r&eacute;pondre. </font></div><div class="post_line"><font color="#fff5b3">- Le pouvant nous par Xcom ?</font></div><div class="post_line"><font color="#d9f4ff">- Non, nous n&rsquo;avons pas la Technologie mais nous pouvons faire comme la derni&egrave;re fois en ciblant cette fois plus pr&eacute;cis&eacute;ment leur Secteur.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">L&rsquo;apr&egrave;s midi &eacute;tait bien avanc&eacute; lorsque Eric se releva et d&eacute;visagea la Princesse. </font></div><div class="post_line"><font color="#fff5b3">- Ellen, je crois que nous faisons une bonne &eacute;quipe. Notre r&eacute;ponse est pr&ecirc;te. </font></div><div class="post_line"><font color="#d9f4ff">- Je le con&ccedil;ois.</font><font color="#bbbbbb"> dit-elle doucement sans pr&eacute;cisez si elle parlait du document o&ugrave; de l&rsquo;&eacute;quipe.&nbsp;</font></div><div class="post_line"><font color="#d9f4ff">- Je vais le donner &agrave; l&rsquo;op&eacute;rateur pour l&rsquo;&eacute;mettre.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Dites-moi, Ellen !</font><font color="#bbbbbb"> Elle s&rsquo;arr&ecirc;ta et se retourna. </font></div><div class="post_line"><font color="#d9f4ff">- Tiens c&rsquo;est Ellen maintenant. Oui, je vous &eacute;coute ?</font></div><div class="post_line"><font color="#fff5b3">- Nous pourrions&hellip; heu&hellip;&nbsp; pour f&ecirc;ter cet excellent travail&hellip;&nbsp; nous pourrions aller&hellip; heu&hellip;&nbsp; boire un&hellip; un verre. Je vous invite</font><font color="#bbbbbb">. Eric se sentait bizarrement gauche sous son regard percent. Quelle beaut&eacute; pensa t-il !&nbsp;</font></div><div class="post_line"><font color="#bbbbbb">De son cot&eacute;, Ellen s&rsquo;amusait comme une folle.</font></div><div class="post_line"><font color="#d9f4ff">- vous me paraissez confus Eric o&ugrave; je me trompe ?</font><font color="#bbbbbb"> Dit-elle avec un petit sourire qui ne fit qu&rsquo;accentuer sa beaut&eacute; et le mettre encore plus mal &agrave; l&rsquo;aise.</font></div><div class="post_line"><font color="#d9f4ff">- Bien puisque vous proposez, j&rsquo;envoie le document et je vous rejoins.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Arrivant &agrave; l&rsquo;op&eacute;rateur, Ellen lui tendit le document et lui dit. </font></div><div class="post_line"><font color="#d9f4ff">- Envoy&eacute; le comme pr&eacute;vu s&rsquo;il vous plait. </font></div><div class="post_line"><font color="#e8b6ef">- Bien Princesse.</font><font color="#bbbbbb"> Le jeune Lieutenant op&eacute;rateur des Com prit le document et le relut rapidement.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">************************************************************************************************************************</font></div><div class="post_line"><font color="#fbb8ec">A l&rsquo;attention du G&eacute;n&eacute;ral Koushtar.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">La R&eacute;publiques des Clans V&eacute;nusiens et moi-m&ecirc;me le Commandeur Wolff sommes enchant&eacute;s de votre r&eacute;ponse. Nous ne demandons bien sur qu&rsquo;&agrave; entamer des relations de paix et de confiance entre nos deux peuples dans la continuit&eacute; de celles que vous avez eu avec notre anc&ecirc;tre, feu le Commandant Baert.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Bien sur, nous pourrons envisager de nous rallier &agrave; votre Coalition avec plaisir. Mais avant cela, il faudra que nous puissions vous raconter dans le d&eacute;tail notre &eacute;volution. Nous avons,&nbsp;nous aussi fonder des liens tr&egrave;s forts avec d&rsquo;autres. Malheureusement cela ne pourra se faire que lorsque nous pourrons communiquer avec vous en toute s&eacute;curit&eacute; et confidentialit&eacute;. Ce qui adviendra bient&ocirc;t, nous l&rsquo;esp&eacute;rons.</font></div><div class="post_line"><font color="#fbb8ec">Avec nos meilleurs sentiments.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Par ordre de la R&eacute;publique des Clans V&eacute;nusiens.</font></div><div class="post_line"><font color="#fbb8ec">Commandeur Eric Wolff</font></div><div class="post_line"><font color="#bbbbbb">*********************************************************************************************************************</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17334&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17334" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17334" name="d_reply_17334" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17334');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17334'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > REDECOUVERTE : La l&eacute;gende des trois...</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15638 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Nouvelles d&#039;Aquarii</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouvelles d&#039;Aquarii</p>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=15638&c_forum_page=1&c_page=2">2</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />11/04/1021 ETU 22:20</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285155')">Détails</a> <a href="javascript:warnpost(285155)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285155" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285155',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font color="#44b8ff"><font size="3">Plan&egrave;te Aquarii, taverne de <em>l&#039;United Planets League</em>, Salle du&nbsp;Centre op&eacute;rationnel de l&#039;Alliance</font></font></strong></div><div class="post_line"></div><div class="post_line">Sur la console de Commandement la phonie bipa. L&#039;officier sup&eacute;rieur de Commandement appuya sur une des touches.</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Oui, je vous &eacute;coute.</font></div><div class="post_line"></div><div class="post_line">F&eacute;brile, le jeune officier Trans r&eacute;pondit</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- Ltt Aldera, mon G&eacute;n&eacute;ral, des images &eacute;tranges...</font></div><div class="post_line"><font color="#ffff44">- Expliquez vous Lieutenant !</font></div><div class="post_line"><font color="#72ff84">- La transHFspace modifi&eacute;e que nous ont install&eacute; les techniciens, elle nous transmet des images l&eacute;g&egrave;rement brouill&eacute;es mais tout de m&ecirc;me suffisamment explicites et &eacute;tonnantes !</font></div><div class="post_line"><font color="#ffff44">- Lieutenant, avez-vous bu ou quoi, je ne comprends toujours rien. C&#039;est quoi cet appareil ?</font></div><div class="post_line"><font color="#72ff84">- Nos savants, mon G&eacute;n&eacute;ral, ont fait une d&eacute;couverte derni&egrave;rement sur la transmission de nouvelles&nbsp;ondes&nbsp;et la r&eacute;ception de signaux tr&egrave;s faibles impossibles &agrave; recevoir avec nos r&eacute;cepteurs habituels. Un prototype, une transHFspace modifi&eacute;e a &eacute;t&eacute; r&eacute;alis&eacute;e et install&eacute;e sur notre console il y a trois mois environ.</font></div><div class="post_line"><font color="#ffff44">- Ok Lieutenant et donc ?</font></div><div class="post_line"><font color="#72ff84">- Eh bien G&eacute;n&eacute;ral, le signal que nous captons actuellement si nous en croyons l&#039;appareil, proviendrait du fin fond de l&#039;espace, bien en dehors de notre secteur.</font></div><div class="post_line"><font color="#ffff44">- Lieutenant, enregistrez tout ce que vous recevez, je pr&eacute;viens le Commandeur...</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />12/04/1021 ETU 00:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285156')">Détails</a> <a href="javascript:warnpost(285156)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285156" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285156',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff4136"><font size="3"><strong><em>Quelque part dans le syst&egrave;me 19 aux abords de la plan&egrave;te&nbsp;aniro-9</em></strong></font></font></div><div class="post_line"></div><div class="post_line">Allong&eacute; sur le&nbsp;lit dans sa cabine, Louis se r&eacute;veilla brusquement. Il&nbsp;ne saurait dire pourquoi mais quelque chose venait de se produire. M&ecirc;me si le sourd ronronnement du vaisseau n&rsquo;avait pas chang&eacute;, quelque chose venait de le r&eacute;veiller. Pr&eacute;science, pr&eacute;monition ou simplement intuition, Louis se releva au moment o&ugrave; son trans sonna. </div><div class="post_line"><font color="#ffff44">- J&rsquo;&eacute;coute,</font></div><div class="post_line"><font color="#44b8ff">- Flotte de Brigands en approche Commandeur.</font> Lui r&eacute;pondit la voix.</div><div class="post_line"><font color="#ffff44">- Ok, j&rsquo;arrive, passez en ROUGE</font></div><div class="post_line"></div><div class="post_line">Quelques minutes plus tard, Louis entra dans la salle. Le planton de service &agrave; la porte se mit au garde &agrave; vous et annon&ccedil;a </div><div class="post_line"><font color="#ffc95f">- Commandeur sur la passerelle</font></div><div class="post_line"></div><div class="post_line">Louis ne ralenti pas, se dirigea au centre de la pi&egrave;ce o&ugrave; si&eacute;geait en surplomb,&nbsp;le fauteuil de Commandement. Il s&rsquo;y assit et d&rsquo;un rapide coup d&rsquo;&oelig;il, balaya les consoles de commande et les personnels en cercle autour de lui. Puis relevant les yeux, il scruta l&rsquo;espace au travers des immenses baies vitr&eacute;es surplombant les appareils et offrant une vue vers l&rsquo;avant du b&acirc;timent . </div><div class="post_line"><font color="#ffff44">- Macotsii, qu&rsquo;en est-il ?</font></div><div class="post_line"><font color="#c3ffff">- Une importante flotte Brigands est en approche, nous d&eacute;nombrons au minimum entre 800 et 850 corvettes corsaires. Elles sont pratiquement &agrave; distance de combat.</font></div><div class="post_line"></div><div class="post_line">- Le Lieutenant situ&eacute; derri&egrave;re la console radar intervint. </div><div class="post_line"><font color="#72ff84">- Attention, ils nous allument !</font></div><div class="post_line"></div><div class="post_line">Effectivement, &agrave; l&rsquo;angle droit de la baie vitr&eacute;e de multiples traits lumineux se dirigeaient en grandissant rapidement vers la flotte.</div><div class="post_line">Louis savait que ces 120 corvettes &eacute;taient inf&eacute;rieures en nombre, il allait falloir proc&eacute;der finement.</div><div class="post_line">Puis ce fut la fureur, le b&acirc;timent trembla sur lui-m&ecirc;me dans un bruit sourd. Une d&eacute;flagration tr&egrave;s proche de nous, pensa Louis.&nbsp;De la radio une voix se fit entendre</div><div class="post_line"><font color="#17b529">- corvette 5X283, nous sommes s&eacute;rieusement touch&eacute;s, demandons aide !</font></div><div class="post_line"><font color="#ffff44">- Ici, Commandeur Antef, essayez de vous d&eacute;gager de la zone de combat 5X283 nous vous envoyons de l&rsquo;aide.</font></div><div class="post_line"><font color="#ffff44">- Macotsii, larguez des navettes de secours pour 5X283 !</font></div><div class="post_line"><font color="#ffff44">-&nbsp; Leader One &agrave;&nbsp;l&rsquo;ensemble de la flotte, A mon top nous faisons un saut regroup&eacute; en X2345-Y45-Z18 par rapport &agrave; ma position et ensuite dispersion au sein du nuage de brigands en les allumons. </font></div><div class="post_line"></div><div class="post_line">Macotsii r&eacute;agit imm&eacute;diatement.&nbsp;</div><div class="post_line"><font color="#c3ffff">- Commandeur, c&rsquo;est risqu&eacute; nous allons &ecirc;tre tr&egrave;s rapproch&eacute;s. Ils peuvent nous allumer comme un seul point.</font></div><div class="post_line"><font color="#ffff44">- Pas faux Capitaine, mais ils n&rsquo;ont pas notre pr&eacute;cision de tir et ils vont h&eacute;siter de peur de se tirer eux-m&ecirc;mes dessus. Si nous somme rapides, &ccedil;a va le faire, donnez le d&eacute;part !</font></div><div class="post_line"><font color="#72ff84">- Leader One&nbsp;&agrave;&nbsp;toutes les unit&eacute;s 3- 2- 1- Z&eacute;ro.</font></div><div class="post_line"></div><div class="post_line">Instantan&eacute;ment les &eacute;crans devinrent floues, une vibration importante se fit sentir, puis de nouveau le silence et le visuel revint montrant le groupe de ioniques et autour les&nbsp;corvettes brigands dans tous les azimuts, mais d&eacute;j&agrave; les ioniques se d&eacute;pla&ccedil;aient rapidement s&#039;intercalant entre les corvettes Brigands. Louis intervint&nbsp;</div><div class="post_line"><font color="#ffff44">-&nbsp;Ici,&nbsp;Leader One, on bouge, on se d&eacute;place entre eux et on les allumes, pas d&#039;&eacute;conomies&nbsp;et surtout soyez pr&eacute;cis dans les tirs. </font></div><div class="post_line"></div><div class="post_line">Les vaisseaux qui venaient de faire d&rsquo;un seul bloc un saut au niveau du nuage de Brigands se s&eacute;par&egrave;rent&nbsp; instantan&eacute;ment et les &eacute;clairs ioniques apparurent dans un semblant de d&eacute;sordre. Les rayons ioniques provoquaient des sifflements aigus. Partout des vaisseaux touch&eacute;s projetaient des d&eacute;bris dans l&rsquo;espace. Le bruit du combat devenait assourdissant. Dans la radio, les personnels rendaient compte des op&eacute;rations. La tension palpable devenait intenable. Puis les &eacute;clairs devinrent moins fr&eacute;quents, les tirs s&rsquo;estomp&egrave;rent, le calme revenait.</div><div class="post_line">Macotsii prit la parole&nbsp;</div><div class="post_line"><font color="#72ff84">- A tous, Brigands en d&eacute;route, rendez compte.</font></div><div class="post_line"><font color="#ff30dc">- Corvette 4X452 Ready, Corvette 0X412 Ready, Corvette JL875 nous sommes touch&eacute;s mais nous pouvons repartir, Corvette BN51 Ready, Corvette HJ564 Envoyer navette de secours, le vaisseau est perdu, Corv&hellip;</font>&nbsp;</div><div class="post_line"></div><div class="post_line">et la longue liste continua &agrave; s&rsquo;&eacute;grener&hellip; Macotsii reprit la parole&nbsp;</div><div class="post_line"><font color="#72ff84">- il semble qu&rsquo;ils aient perdu la moiti&eacute; de leur appareils, les autres se sont retir&eacute;s, devons&nbsp;nous les poursuivre Commandeur ?</font></div><div class="post_line"><font color="#ffff44">- Non, f&eacute;licitation Capitaine, mais nous n&rsquo;avons pas suffisamment de vaisseaux pour risquer de nous disperser.&nbsp; Envoyez de l&rsquo;aide aux vaisseaux en perdition et nous rentrons chez nous.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />12/04/1021 ETU 07:11</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal285178')">Détails</a> <a href="javascript:warnpost(285178)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285178" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285178',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Louis &eacute;tait revenu dans sa cabine. Assis &agrave; son bureau, il r&eacute;fl&eacute;chissait aux derniers &eacute;v&egrave;nements. Le combat qu&#039;ils venaient de livrer aux Brigands. Cette fois-ci, ils avaient bien failli les surprendre. Coup de chance et aussi virtuosit&eacute; de ces pilotes, ils s&#039;en sortaient &agrave; bon compte. La flotte &quot;<em><strong>Enterprise</strong></em>&quot;&nbsp;nouvellement &eacute;quip&eacute;e du dernier mod&egrave;le de Corvettes &agrave; leur disposition; les ioniques, c&#039;&eacute;tait tr&egrave;s bien comport&eacute;e.</div><div class="post_line"><font color="#f551ff">- Commandeur ?</font>&nbsp;</div><div class="post_line">Pris dans ces pens&eacute;es, Louis mit un peu de temps &agrave; r&eacute;pondre.</div><div class="post_line"><font color="#ffff44">- Oui, je vous &eacute;coute !</font></div><div class="post_line"><font color="#f551ff">- Console des transmissions, Commandeur, nous avons un appel du Commandement du&nbsp;Centre Op&eacute;rationnel de l&#039;<strong><em>United Planets League.</em></strong></font></div><div class="post_line"><font color="#ffff44">- Ok, passez le moi directement sur mon transCom.</font></div><div class="post_line"><font color="#f551ff">- A vos ordres Commandeur, je vous bascule la Com.</font></div><div class="post_line"></div><div class="post_line">La voie semblait venir de tr&egrave;s loin, mais Louis ne s&#039;en &eacute;tonna pas. Entre la plan&egrave;te capitale <strong>Aquarri</strong> et le syst&egrave;me 19, le chemin est long.</div><div class="post_line"><font color="#72ff84">- Mes respects Commandeur, G&eacute;n&eacute;ral Itsou, une communication &eacute;tonnante et semblant provenir hors du secteur vient d&#039;&ecirc;tre capt&eacute;e par nos r&eacute;cepteurs. Pourriez vous passer au centre Ops ?</font></div><div class="post_line"><font color="#ffff44">- Oui G&eacute;n&eacute;ral, je suis impatient de voir cela mais nous avons trois jours de voyage pour rentrer.</font></div><div class="post_line"><font color="#72ff84">- Bien, nous vous attendons et vous souhaitons un bon retour&nbsp;!</font></div><div class="post_line"><font color="#ffff44">- A bient&ocirc;t.</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Louis raccrocha perplexe. A quoi pouvait bien ressembler cette communication !</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />13/04/1021 ETU 06:46</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285209')">Détails</a> <a href="javascript:warnpost(285209)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285209" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285209',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Le spacioport &laquo; <strong><em><font size="3">Luke</font></em></strong> &raquo;&nbsp; situ&eacute; pr&egrave;s de la ville de <strong>Chich&eacute;n Itz&aacute;</strong> sur <strong>Aquarii</strong> est en effervescence. La flotte &laquo; Enterprise &raquo; est stationn&eacute;e en orbite et les navettes de d&eacute;barquement font les allers-retours entre elle et le spacioport. Au sifflement infernal des r&eacute;tro-propulseurs de celles-ci, s&rsquo;ajoute les sir&egrave;nes des v&eacute;hicules ambulance transportant les bless&eacute;s et le bruit m&eacute;tallique des immenses tractos acheminant les mat&eacute;riaux destin&eacute;s &agrave; la r&eacute;paration des vaisseaux en attente dans l&rsquo;espace.</div><div class="post_line">Une navette en approche attire rapidement l&rsquo;attention des personnels pr&eacute;sents sur le port. En effet, elle est escort&eacute;e par une vingtaine de chasseurs X-Wing. La navette aussit&ocirc;t pos&eacute;, les chasseurs font demi-tour et repartent&nbsp; vers l&rsquo;espace. Mais personne n&#039;est dupe, il s&#039;agit bien du Commandeur et de sa garde rapproch&eacute;e, l&#039;Escadron Rogue.</div><div class="post_line">La porte arri&egrave;re de la navette s&rsquo;abaisse et le Commandant Antef suivi de son fid&egrave;le ami Angus,&nbsp; descendent rapidement et s&rsquo;engouffrent dans un&nbsp;v&eacute;hicule &agrave; r&eacute;pulseur noir qui attendait. Aussit&ocirc;t celui-ci s&rsquo;&eacute;l&egrave;ve au-dessus du sol&nbsp; et s&rsquo;&eacute;loigne, suivit de deux&nbsp;TIE Crawler lourdement arm&eacute;s.</div><div class="post_line"></div><div class="post_line">Le cort&egrave;ge s&rsquo;arr&ecirc;te devant un immense b&acirc;timent. Sur les toits, des centaines de drapeaux repr&eacute;sentant les peuples alli&eacute;s, flottent au vent.&nbsp; Un immense panneau portant l&rsquo;inscription &laquo; <font color="#f012be"><strong><em><font size="3">United Planets League</font></em></strong> </font>&raquo; est plac&eacute; sur la face avant du b&acirc;timent.&nbsp;</div><div class="post_line"></div><div class="post_line">Antef et Angus se pr&eacute;sente devant la porte d&rsquo;acc&egrave;s du b&acirc;timent surnomm&eacute; &laquo; <em><font color="#17b529">la Taverne</font></em> &raquo;. D&rsquo;o&ugrave; peut bien venir ce terme, pense Louis pendant que le syst&egrave;me scanne son &oelig;il.&nbsp; Ah, voil&agrave;, le sas s&rsquo;ouvre, nos deux hommes entrent &agrave; l&rsquo;int&eacute;rieur.</div><div class="post_line"></div><div class="post_line">Louis p&eacute;n&egrave;tre le premier dans la salle principal du b&acirc;timent. Aujourd&#039;hui, exceptionnellement, elle est bond&eacute;e de monde.</div><div class="post_line"></div><div class="post_line">D&rsquo;un coup d&rsquo;&oelig;il rapide, Louis distingue plusieurs d&eacute;l&eacute;gations alli&eacute;es : les hommes d&#039;apparence aviaire du syst&egrave;me 11, &agrave; droite des personnes du Royaume Kalandrique, un peu plus loin un groupe des plan&egrave;tes des Seigneurs, &agrave; gauche la civilisation Gayarienne et aussi un groupe de militaires repr&eacute;sentant les quatre plan&egrave;tes&nbsp;du point 1&nbsp;du syst&egrave;me 7 et&nbsp;au fond de la salle, la derni&egrave;re civilisation a avoir rejoint l&rsquo;Alliance originaire du syst&egrave;me 5&nbsp;et puis bien sur les gens d&rsquo;Aquarii.</div><div class="post_line"></div><div class="post_line">Louis reporta son regard sur une petite estrade install&eacute;e devant l&rsquo;&eacute;cran g&eacute;ant. Un G&eacute;n&eacute;ral, magnifique dans sa tenue d&#039;apparat, attendait son bon vouloir. S&rsquo;adressant &agrave; lui, il dit.</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Bonjour G&eacute;n&eacute;ral Hamon, je crois que tout le monde est pr&eacute;sent, je vous laisse la parole&hellip;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />15/04/1021 ETU 06:20</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285235')">Détails</a> <a href="javascript:warnpost(285235)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285235" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285235',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Le G&eacute;n&eacute;ral, debout derri&egrave;re l&#039;estrade commen&ccedil;a.</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - Mesdames, messieurs, Il y a une dizaine de jours Aquarrien, la console transHFspace a commenc&eacute; &agrave; recevoir une&nbsp;&eacute;trange &eacute;mission. Je dis &eacute;mission et non communication, car nous recevons pratiquement en continu des images vid&eacute;o. Il y a quelques&nbsp;mois, nos techniciens ont am&eacute;lior&eacute;&nbsp;la console transHFspace gr&acirc;ce &agrave; une d&eacute;couverte de nos scientifiques.</font></div><div class="post_line"><font color="#72ff84">Donc pour en revenir &agrave; notre sujet, les images que nous recevons semble &ecirc;tre r&eacute;alis&eacute;es dans une immense pi&egrave;ce, un h&eacute;micycle o&ugrave; nous pouvons distinguer des personnages h&eacute;t&eacute;roclites humano&iuml;des ou non. Les images sont souvent brouill&eacute;es et les sons de mauvaises qualit&eacute;s. Voil&agrave; un aper&ccedil;u : &quot;</font></div><div class="post_line"></div><div class="post_line">Des images effectivement de mauvaise qualit&eacute; vid&eacute;o apparaissent sur l&#039;&eacute;cran g&eacute;ant. Elles permette&nbsp;toutefois de distinguer un&nbsp;immense amphith&eacute;&acirc;tre. Une surface ronde, vide au milieu et de luxueuses banquettes en demi-cercle autour de celle-ci. Les rang&eacute;es de banquettes&nbsp;sont innombrables,&nbsp;chaque rang&eacute;e plus haute que la pr&eacute;c&eacute;dente. Diss&eacute;min&eacute;s et install&eacute;s sur ces si&egrave;ges, un nombre incalculable&nbsp;personnages tous richement v&ecirc;tus, parfois de fa&ccedil;on &eacute;trange, probablement des dignitaires. Le plan vid&eacute;o de la pi&egrave;ce est fixe, mais l&#039;on voit&nbsp;les personnages intervenir et l&#039;on entend&nbsp;les dialogues dans des langues incompr&eacute;hensibles pour les auditeurs qui regardent et &eacute;coutent bouche b&eacute;e devant l&#039;&eacute;cran g&eacute;ant.</div><div class="post_line"></div><div class="post_line">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color="#ff857a"> :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!&nbsp; :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::</font></div><div class="post_line"><font color="#ff857a"><em>Bon cycle a tous, aujourd&#039;hui le commandant Stinger a outrageusement attaquer le Cercle !</em></font></div><div class="post_line"><font color="#ff857a"><em>Par la la pr&eacute;sente, moi Mr P, met la t&ecirc;te de ce sc&eacute;l&eacute;rat a prix.</em></font></div><div class="post_line"><font color="#ff857a"><em>La chasse est ouverte.</em></font></div><div class="post_line"><font color="#ff857a"><em>Personne ne touche a l&#039;Aiguille Noire !:::::::::::::::::::::::::::::::::::::: ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::&nbsp; ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: :::::::::::::::::::::::::::::::::::::::::&nbsp;&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Orbite de la plan&egrave;te Ronsys, syst&egrave;me 17, secteur XIX.</font></div><div class="post_line"><font color="#44b8ff">15/03/1021 ETU.................................&nbsp;Des d&eacute;bris par centaines de milliers encombrent l&#039;orbite, encore parsem&eacute;e d&#039;explosions ainsi que de l&#039;&eacute;clat lointain des r&eacute;acteurs de vaisseaux traquant quelques nefs indemnes d&nbsp; ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::&nbsp; :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::&nbsp; ::::::::::::::::::::::::::::::::::::::::::::::::&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</font><font color="#72ff84">Vostroff se demanda si elle avait bue ou pas</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Il s&#039;appr&ecirc;ta a se d&eacute;placer, Oleg Cabanov un contr&ocirc;leur en imperm&eacute;able et costume cravate impeccable qui se pr&eacute;parait &agrave; allumer sa cigarette, se pr&eacute;para &agrave; l&#039;arr&ecirc;ter mais Karel lui fit Non ! c&#039;est bon, j&#039;ai mon &eacute;p&eacute;e thermique de tout :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::&nbsp; &nbsp;:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: :::::::::::::::::::::::::::::::::::::::::::::::::::::::::</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#f012be"><em><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&quot;Camarades ! ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,</strong></em></font><font color="#f012be"><strong><em>La paix acquise, nous pourrions presque croire &ecirc;tre arriv&eacute;s au bout de l&#039;Histoire avec un grand H. Comme si la m&eacute;canique de la reconstruction &eacute;tait, plus qu&#039;une pause des relations internationales</em>:</strong>:::::::::::::::::::::::::::::::::::&nbsp; ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ::::::::::::::::::::::::::::::::::::::::::::::::::::::::</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Vous faites pas pousser des Cannabaceae sur ta plan&egrave;te?????????:::::::::::::::::::::::::::::::La paix, j&#039;sais pas, mais le silence ouais c&#039;est bon..........................&Ccedil;a veux dire qu&#039;il y a pas un connard qui va venir hypoth&eacute;quer ta maison sans te demander ton avis tu vois.:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::&nbsp; :::::::::::::::::::::::::::::::::::::::::::&nbsp;</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</font><font color="#ffff44">je demanderais aux deux concern&eacute;s de me fournir un &eacute;chantillon de moustache et apr&egrave;s une &eacute;tude compara&nbsp; ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::</font></div><div class="post_line"></div><div class="post_line">La vid&eacute;o continua a d&eacute;filer sur l&#039;&eacute;cran mais le son diminua et disparu. Un silence de mort dans la salle permit au G&eacute;n&eacute;ral de reprendre la parole.</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - les images&nbsp;que vous voyez arrivent de fa&ccedil;on pratiquement ininterrompu et nous pensons avoir en partie localis&eacute; la provenance. Il semblerait que se soit un secteur plus ou moins identique au notre et &agrave; des milliards d&#039;ann&eacute;es situ&eacute;&nbsp;globalement au centre de la Galaxie. Concernant les images, les scientifiques sont tous d&#039;accords pour dire qu&#039;il s&#039;agit probablement d&#039;une transmission des d&eacute;bats, parfois houleux d&#039;ailleurs, d&#039;une&nbsp;assembl&eacute;e dirigeante. &quot;</font></div><div class="post_line">Le G&eacute;n&eacute;ral marqua une pause.&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - Le nombre de personnages, leurs diff&eacute;rences, la palette de langues diff&eacute;rentes, tout cela nous fait penser &agrave; quelque chose d&#039;&eacute;norme. Une assembl&eacute;e qui regrouperait un nombre incommensurable&nbsp;de mondes, peut-&ecirc;tre m&ecirc;me de secteurs. &quot;</font></div><div class="post_line">Des chuchotements de plus en plus audibles commenc&egrave;rent &agrave; se faire entendre. L&#039;orateur continua...</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - Nous ne sommes pas actuellement capable de comprendre toutes les langues utilis&eacute;es, m&ecirc;me si nos linguistes commencent &agrave; s&#039;approprier certaines. &quot;</font></div><div class="post_line">Et il conclut par.</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - Je reviendrai vers vous d&egrave;s que nous en saurons plus. Je&nbsp;vous remercie de votre attention... &quot;</font></div><div class="post_line">Aussit&ocirc;t un immense brouhaha se fit entendre dans la salle, chacun y allant de sa vision.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />16/04/1021 ETU 06:07</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal285248')">Détails</a> <a href="javascript:warnpost(285248)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285248" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285248',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Dans la grande pi&egrave;ce principale du b&acirc;timent de l&#039;<em><strong><font size="3">United Planets League</font> </strong></em>surnomm&eacute; la &quot;<em>Taverne</em>&quot;, parmi les petites tables diss&eacute;min&eacute;es pr&eacute;s du grand meuble Bar, trois hommes &eacute;taient install&eacute;s &agrave; l&#039;une d&#039;elle...&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">&quot; - Alors, Louis, tu nous le dis oui ou non ?&quot;</font></div><div class="post_line"><font color="#ffff44">&quot; - Bon ok les amis, mais vous tenez votre langue tous les deux, je ne veux pas que cela s&#039;&eacute;bruite pour l&#039;instant.&nbsp;</font></div><div class="post_line"><font color="#ffff44">Comme vous le savez, nos savants, techniciens et linguistes travaillent d&#039;arrache pied sur les images venant de l&#039;hypoth&eacute;tique secteur que nous avons r&eacute;f&eacute;rencer comme z&eacute;ro.&quot;</font></div><div class="post_line"></div><div class="post_line">Ulphidias intervint.</div><div class="post_line"><font color="#c3ffff">&quot; - J&#039;ai pu collaborer avec les linguites, ils ont faits d&#039;&eacute;normes progr&egrave;s !&quot;</font></div><div class="post_line"><font color="#ffff44">&quot; - Effectivement&quot; </font><font color="#ffffff">poursuivit Louis,</font><font color="#ffff44"> &quot; - Nous tenons pour acquis que ces &eacute;missions sont bien des transmissions de d&eacute;bats d&#039;une Assembl&eacute;e dirigeante et nous sommes m&ecirc;me pratiquement certain qu&#039;il s&#039;agit de chef d&#039;&eacute;tat, d&#039;empereur, de pr&eacute;sident et leur dignitaires qui viennent probablement des quatre coins de l&#039;univers.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Angus &agrave; son tour prit la parole.</font></div><div class="post_line"><font color="#ff56ff">&quot; - Si je comprends et que l&#039;on pousse plus loin la r&eacute;flexion, cela pourrait vouloir dire que pour cette assembl&eacute;e et son dirigeant quel qu&#039;il soit, nous sommes leurs sujets !&quot;</font></div><div class="post_line"><font color="#ffff44">&quot; - En effet Angus, mais tant que la &quot;<strong><em>Porte des &eacute;toiles</em></strong>&quot; comme nous la nommons n&#039;a pas &eacute;t&eacute; d&eacute;couverte, il ne peut y avoir d&#039;interaction physique mais en th&eacute;orie et au vu des images, il semble qu&#039;il existe bien un gouvernement Galactique.&quot;</font><font color="#ffffff"> dit Louis.</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">&quot; - D&eacute;mentielle, inimaginable. Sommes nous oblig&eacute; d&#039;accepter cela Louis ?&quot;</font><font color="#ffffff"> s&#039;exclama Ulphidias</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">&quot; - Plus ou moins, nous n&#039;en sommes qu&#039;au balbutiement, ne sommes s&ucirc;r&nbsp;de rien et pour l&#039;instant hors de port&eacute;e. Ensuite, il semble que tous les peuples ne font pas l&#039;all&eacute;geance&nbsp;au gouvernement galactique, certains seraient neutre, d&#039;autres compl&egrave;tement oppos&eacute;s, mais &agrave; priori tous peuvent si&eacute;ger &agrave; l&#039;Assembl&eacute;e.&quot;</font></div><div class="post_line"><font color="#ff56ff">&quot; - Dis moi Louis !&quot;</font><font color="#ffffff"> reprit Angus </font><font color="#ff56ff">&quot; - si nous pouvons recevoir ces images, ne pouvons nous &eacute;mettre&nbsp;vers eux ?&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Louis h&eacute;sita, peut-&ecirc;tre de peur d&#039;en dire trop...&nbsp;</font></div><div class="post_line"><font color="#ffff44">&quot; - nos savants y travaillent et nous avons bonne espoir pour bient&ocirc;t, pas physiquement mais sous forme d&#039;un simili holo.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Ulphidias eut le mot de la fin</font></div><div class="post_line"><font color="#c3ffff">&quot; - En attendant, mes amis buvons cet agr&eacute;able Baer et trinquons &agrave; la Galaxie. La force soit avec nous&nbsp;!&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Les trois amis lev&egrave;rent leur verre et trinqu&egrave;rent.</font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />07/05/1021 ETU 07:05</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285599')">Détails</a> <a href="javascript:warnpost(285599)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285599" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285599',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Harold Alistran pianotait sur l&#039;&eacute;cran tactile incorpor&eacute; dans la console. Sa concentration &eacute;tait au maximum, il mettait les derniers r&eacute;glages &agrave; son b&eacute;b&eacute;. Eh oui, depuis plusieurs mois, il dirigeait l&#039;&eacute;quipe de scientifiques charg&eacute;e de construire une machine capable de r&eacute;pondre aux transmissions re&ccedil;us du fin fond de la Galaxie. En parall&egrave;le, un autre groupe continuait &agrave; d&eacute;crypter ces informations&nbsp;et maintenant tous &eacute;tait d&#039;accord sur un&nbsp;point. Cela provenait d&#039;une&nbsp;probable&nbsp;Assembl&eacute;e Galactique sur une plan&egrave;te capitale&nbsp;d&#039;un&nbsp;&nbsp;<strong><font size="3">secteur baptis&eacute; &quot;0&quot;</font></strong>.&nbsp;</div><div class="post_line"></div><div class="post_line">La pi&egrave;ce dans laquelle se trouvait Harold &eacute;tait de taille relativement r&eacute;duite de premier abord, mais &agrave; y regarder de plus pr&egrave;s, les murs &eacute;taient invisibles, cach&eacute;s par de grandes armoires m&eacute;talliques contenant des serveurs, des calculateurs, des &eacute;crans tactiles&nbsp;et syst&egrave;mes r&eacute;seaux, sans oublier les syst&egrave;mes de climatisations et&nbsp;d&#039;alimentations. Au milieu de la pi&egrave;ce, sur le sol, trac&eacute;,&nbsp;un carr&eacute; d&#039;un m&ecirc;tral de cot&eacute;. Au plafond suspendus en rond autour de ce carr&eacute; de gros appareils ressemblant &agrave; la fois &agrave; des spots g&eacute;ants et des syst&egrave;mes de cam&eacute;ras robotis&eacute;es. Certains de ces appareils diffusaient sur le carr&eacute; une lumi&egrave;re blanche &eacute;blouissante. La console sur laquelle Harold&nbsp;travaillait, elle, &eacute;tait l&eacute;g&egrave;rement d&eacute;cal&eacute;e sur la gauche.</div><div class="post_line"></div><div class="post_line">Harold s&#039;adressa &agrave; son coll&egrave;gue Erans. Celui-ci &agrave; genoux au pied de l&#039;armoire des trans Hyperspace terminait un r&eacute;glage.</div><div class="post_line"><font color="#72ff84">&quot; - Erans, Nous y sommes presque ! Peux-tu monter la puissance de l&#039;Emetystrans de 5% ?&quot;</font></div><div class="post_line"><font color="#44b8ff">&quot; - Je peux essayer sans garantie qu&#039;il tienne le coup, nous sommes d&eacute;j&agrave; &agrave; 88.45% !&quot;</font></div><div class="post_line">Un silence se fit dans la salle. Silence n&#039;est d&#039;ailleurs pas forc&eacute;ment le terme appropri&eacute;, sachant qu&#039;un ronflement&nbsp; sourd provoqu&eacute; par les appareils de clim se diffusait en permanence.</div><div class="post_line">Erans reprit <font color="#44b8ff">&quot;- Ouf, &ccedil;a a l&#039;air de tenir, pour moi c&#039;est ok.&quot;</font></div><div class="post_line">Harold regarda son &eacute;cran et r&eacute;pondit <font color="#72ff84">&quot; - Bien, si mes calculs sont bons, normalement nous devrions &ecirc;tre capables de diffuser vers eux. Il n&#039;y a plus qu&#039;&agrave; faire l&#039;essai !&nbsp;</font></div><div class="post_line"><font color="#72ff84">Je vais contacter le Commandeur Antef pour l&#039;informer de la situation.&quot;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />10/05/1021 ETU 07:21</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal285634')">Détails</a> <a href="javascript:warnpost(285634)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285634" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285634',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Louis &eacute;tait en conversation avec le G&eacute;n&eacute;ral Hamon dans la salle des op&eacute;rations lorsque son transcom sonna.</div><div class="post_line"><font color="#ffff44">&quot; - Excusez moi G&eacute;n&eacute;ral, un appel, je dois r&eacute;pondre.&quot;</font></div><div class="post_line"><font color="#f551ff">&quot; - Bien Commandeur &agrave; plus tard.&quot;</font> lui r&eacute;pondit le G&eacute;n&eacute;ral en se dirigeant vers la console de contr&ocirc;le principale de la salle.</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">&quot; - Bonjour, Alistran, je vous &eacute;coute !&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - Mes respects Commandeur, j&#039;ai une grande nouvelle pour vous. L&#039;holoGtrans est pr&ecirc;t, nous pensons qu&#039;il devrait fonctionner.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">&quot; - Fantastique, je n&#039;en reviens pas du travail accompli !&quot;</font> r&eacute;pondit Louis, <font color="#ffff44">&quot; - mais pourriez-vous m&#039;en expliquer succinctement le principe de fonctionnement. Cela m&#039;aidera pour la pr&eacute;paration de mon intervention&quot;.</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - Pour sch&eacute;matiser, les images re&ccedil;ues&nbsp;sont&nbsp;une sorte d&#039;hologramme de l&#039;immense pi&egrave;ce contenant l&#039;Assembl&eacute;e Galactique. Nous avons d&eacute;velopp&eacute; un casque qui permet &agrave; son porteur de visualiser en 3D ce que nous recevons. Puis, il nous est venu l&#039;id&eacute;e de renvoyer l&#039;image hologramme et le son de la personne portant le casque vers la source du signal et sous la m&ecirc;me forme.&quot;</font> Le scientifique s&#039;interrompit et Louis en profita.</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">&quot; - Ok, vous renvoyez un signal mais qui nous dit qu&#039;ils vont le prendre en compte ?&quot;</font></div><div class="post_line"></div><div class="post_line">Alistran reprit <font color="#72ff84">&quot; - Nous pensons que ces gens ne s&#039;emb&ecirc;terai pas &agrave; g&eacute;n&eacute;rer tout cela sans attendre un retour. Ce que nous renvoyons est totalement conforme &agrave; ce que nous recevons.&quot;</font></div><div class="post_line"></div><div class="post_line">Louis r&eacute;fl&eacute;chissait tout haut <font color="#ffff44">&quot; - Un retour, d&#039;accord mais le temps de transmission, quand vont-ils nous&nbsp;recevoir ?&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - Oui&quot;</font> r&eacute;pondit Alistran m&ecirc;me si cela ne s&#039;adressait pas sp&eacute;cifiquement &agrave; lui <font color="#72ff84">&quot;ce fut l&agrave;, la partie la plus complexe. Dans un premier temps, apr&eacute;s la d&eacute;couverte de cette forme d&#039;onde inconnue, nous avons due adapter nos r&eacute;cepteurs mais nous n&#039;avions ni la compr&eacute;hension, ni la technologie pour retransmettre le signal vers la Galaxie. Et nous devons un grand merci &agrave; nos Alli&eacute;s &quot;Les seigneurs&quot;. Ils nous ont partag&eacute; la compr&eacute;hension de cette nouvelle forme d&#039;onde qui voyage &agrave; des vitesses inimaginables, pratiquement instantan&eacute;es. Ils nous ont aussi aid&eacute; &agrave; d&eacute;velopper l&#039;&eacute;metteur. Il y aura forc&eacute;ment un temps de latence entre vous et les personnes de l&#039;Assembl&eacute;e mais, ils et vous devriez vous voir correctement et vous entendre&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">&quot; - Vraiment du bon travail&quot;</font> reprit Louis <font color="#ffff44">&quot; - je vais donc pr&eacute;parer mon intervention et je vous rappelle. Et je vais aussi par la m&ecirc;me occasion, remercier le Cdt Galnas pour l&#039;aide de ces scientifiques. A bient&ocirc;t, monsieur Alistran&quot;</font> et Louis raccrocha. L&#039;impensable, il y a peu, allait peut-&ecirc;tre devenir possible...</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Bordure+Ext%C3%A9rieure">Coa. Bordure Ext&eacute;rieure</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/11248.jpg" style="width:128px;height:127px" alt="Avatar" /><br />26/05/1021 ETU 05:36</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal285813')">Détails</a> <a href="javascript:warnpost(285813)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285813" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285813',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FF857A"><strong><font size="4">Quelque part dans la bordure ext&eacute;rieure galactique</font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF857A"><font size="4"><font size="2"><font color="#ffffff"><em>Allong&eacute; sur le lit de sa cabine, la grosse voix et le bruit de la porte coulissante l&#039;avaient sortie de son sommeil.</em></font></font></font></font></div><div class="post_line"></div><div class="post_line"><font color="#FFA500"><font size="4"><font size="2">&quot;- Les d&eacute;lib&eacute;rations sont termin&eacute;es.<em>&quot;</em></font></font></font></div><div class="post_line"><font color="#1E92F7"><font size="4"><font size="2">&quot;- Et donc ?<em>&quot;</em></font></font></font></div><div class="post_line"><font color="#FFA500"><font size="4"><font size="2">&quot;- Ils sont de ton avis.<em>&quot;</em></font></font></font></div><div class="post_line"></div><div class="post_line"><font color="#FF857A"><font size="4"><font size="2"><font color="#ffffff"><em>Il sourit. &Ccedil;a valait le coup d&#039;&ecirc;tre r&eacute;veill&eacute; si brusquement pour une si bonne nouvelle.</em></font></font></font></font></div><div class="post_line"><font color="#FF857A"><font size="4"><font size="2"><font color="#ffffff"><em>Il lui pardonna inconsciemment son intrusion et bondit hors du lit, enfilant &agrave; la h&acirc;te sa tenue.</em></font></font></font></font></div><div class="post_line"></div><div class="post_line"><font color="#1E92F7"><font size="4"><font size="2"><em>&quot;</em>- G&eacute;nial ! Je vais pr&eacute;parer le corps diplomatique, d&egrave;s que c&#039;est pr&ecirc;t, je leur annoncerai. J&#039;ai h&acirc;te ! </font></font></font></div><div class="post_line"><font color="#1E92F7"><font size="4"><font size="2">AH. Tu as bien compris que j&#039;&eacute;tais press&eacute;, alors je te laisse ranger la cabine ?&quot;</font></font></font></div><div class="post_line"><font color="#FFA500"><font size="4"><font size="2">&quot;...&quot;</font></font></font></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#008000"><font size="4"><strong>..............................</strong></font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="left"><font color="#008000"><font size="4"><font color="#ffffff"><font size="2"><em>Debout face &agrave; la cam&eacute;ra, et avec tous les autres ambassadeurs de son secteur assis dans l&#039;arri&egrave;re plan, il allume le trans-com.</em></font></font></font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="justify"><font color="#008000"><font size="4"><font color="#ffffff"><font size="2"><font color="#1E92F7">&quot;- Honorables membres de l&#039;assembl&eacute;e d&#039;Aquarii. Notre secteur a eu le plaisir d&#039;&eacute;changer avec vous depuis quelques temps, et nous avons pu en apprendre sur vous au travers de votre commandeur. Et plus nous avons appris &agrave; vous conna&icirc;tre, plus nous nous sentions proche de vous malgr&eacute; la distance. Parce-que que nous partageons quelque chose de pr&eacute;cieux, quelque chose qui lie les &ecirc;tres sentients bien plus que tout autre chose : des id&eacute;es et des convictions.</font></font></font></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><font size="4"><font color="#ffffff"><font size="2"><font color="#1E92F7">C&#039;est pourquoi aujourd&#039;hui, nous vous proposons ce qui aurait d&eacute;j&agrave; d&ucirc; &ecirc;tre fait depuis longtemps : Une alliance. </font></font></font></font></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><font size="4"><font color="#ffffff"><font size="2"><font color="#1E92F7">Savoir le peuple Aquariens &agrave; nos c&ocirc;t&eacute;s dans toutes les &eacute;preuves que nous pourrions rencontrer serait pour nous un immense honneur. Comme il en serait un que vous nous accordiez votre confiance en &eacute;tant convaincu que vous pourrez compter sur nous tous, enti&egrave;rement et sans retenue.</font></font></font></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><font size="4"><font color="#ffffff"><font size="2"><font color="#1E92F7">Chers membres de l&#039;assembl&eacute;e, je vous prie de consid&eacute;rer tout notre respect pour vous et votre peuple...&quot;</font></font></font></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><font color="#008000"><font size="4"><font color="#ffffff"><font size="2"><font color="#1E92F7"><font color="#ffffff"><em>Il salua c&eacute;r&eacute;moniellement avant que le trans-com ne s&#039;&eacute;teigne. Ils savaient que la communication mettrait du temps &agrave; arriver jusqu&#039;&agrave; cet autre secteur &eacute;loign&eacute;, aussi n&#039;avait-il plus qu&#039;&agrave; attendre...</em></font></font></font></font></font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Antef">Cdt. Antef</a><br>Prestige de chroniqueur&nbsp;: 35<br /><br /><img src="/avatars/11151.jpg" style="width:128px;height:121px" alt="Avatar" /><br />27/05/1021 ETU 06:18</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285815')">Détails</a> <a href="javascript:warnpost(285815)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285815" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285815',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Louis montait&nbsp; rapidement les marches&nbsp;menant &agrave;&nbsp;l&#039;immense salle de l&#039;Assembl&eacute;e Dirigeante des <strong><font size="3">Peuples Unies d&#039;Aquarii</font></strong>. Depuis deux ann&eacute;es Aquarienne, l&#039;Assembl&eacute;e avait d&eacute;m&eacute;nag&eacute;&nbsp;vers la plan&egrave;te <strong><font size="3">Mebsuta</font></strong> devenue Capitale de la Coalition. Un brouhaha se faisait entendre au travers des lourdes portes.</div><div class="post_line"></div><div class="post_line">Arriv&eacute; pr&egrave;s de celle-ci, il n&#039;eut pas &agrave; ralentir, les portes s&#039;ouvrirent, pouss&eacute;s par quatre gardes en tenue d&#039;apparat. A l&#039;entr&eacute;e du Commandeur de la coalition dans la salle, un lieutenant rigide au garde &agrave; vous salut et annonce dans un micro.</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">&quot; - Commandeur dans la salle&quot;</font></div><div class="post_line"></div><div class="post_line">les voix peu &agrave; peu se turent et le silence se fit. Louis se dirige vers son si&egrave;ge. D&#039;un regard rapide autour de lui, il d&eacute;couvre l&#039;h&eacute;micycle de l&#039;assembl&eacute;e. Impressionnant, jamais il n&#039;avait vu autant&nbsp;d&#039;humano&iuml;des dans cet endroit.</div><div class="post_line"></div><div class="post_line">De l&#039;autre cot&eacute; de la salle, le Pr&eacute;sident de l&#039;Assembl&eacute;e, le Seigneur des terres arides de la plan&egrave;te <strong>Jabbah</strong> se l&egrave;ve et prend la parole.</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">&quot;-&nbsp; Mesdames et Messieurs, dirigeants des plan&egrave;tes Unies, nous devons aujourd&#039;hui parler d&#039;une affaire d&#039;importance qui concerne notre avenir &agrave; tous. Il y a trois semaines du calendrier Aquarien, une civilisation&nbsp;extra-sectoriel a contact&eacute; nos services. La Coalition <strong>&quot;Bordure Ext&eacute;rieure&quot;</strong>, c&#039;est son nom, recherche des contacts avec les jeunes civilisations des secteurs ferm&eacute;s.&nbsp;Apr&egrave;s plusieurs &eacute;changes de part et d&#039;autre, nous en sommes venu &agrave; l&#039;id&eacute;e qu&#039;ils partagent avec nous les m&ecirc;mes&nbsp;id&eacute;es et&nbsp;convictions. Dans leur dernier message,&nbsp;ils nous proposent une alliance entre nos peuples. L&#039;objectif, &eacute;changer des id&eacute;es, des techniques, pr&eacute;parer l&#039;apr&egrave;s ouverture vers la galaxie si elle se produit. Voil&agrave;, mes chers amis. Il nous faut maintenant nous d&eacute;cider !&quot;</font></div><div class="post_line"></div><div class="post_line">Aussit&ocirc;t le Seigneur Emelo Tierce, Prince r&eacute;gnant sur la plan&egrave;te <strong>Denebola</strong> intervint. Le Prince Tierce impressionne quiconque ne le connait pas. Les&nbsp;indig&egrave;nes de cette plan&egrave;te sont des &ecirc;tres semi f&eacute;lins, corps humano&iuml;de recouvert d&#039;une somptueuse fourrure rousse. Mais ne nous y trompons pas, sous leur apparence douce et calme, ils peuvent en une fraction de seconde vous sauter &agrave; la gorge et de leur griffe tranchante vous envoyer &quot;<em>ad patres</em>&quot;.</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">&quot; - Mes seigneurs, les messages de ce peuple m&ecirc;me s&#039;ils nous semblent plus que sympathique et attrayant, n&#039;ont peut-&ecirc;tre rien de vrai. Nous avons de part le pass&eacute; d&eacute;j&agrave;,&nbsp; &eacute;t&eacute; confront&eacute;s plusieurs fois &agrave; de soi-disant alli&eacute;s qui se sont d&eacute;tourn&eacute;s&nbsp;de nous d&egrave;s les premiers remous. Nous devons r&eacute;fl&eacute;chir &agrave; cela avant d&#039;accorder notre confiance totale.&quot;</font></div><div class="post_line"></div><div class="post_line">A peine avait-il termin&eacute;, qu&#039;un Elfe Ail&eacute; d&#039;Aquarii se leva, majestueux les ailes semi-d&eacute;ploy&eacute;es. Il s&#039;agissait du roi&nbsp;Hatepsekhemoui (traduction approximative en langue Aquarienne). Louis pensa au fond de lui &quot;<em>on dirait un dieu</em>&quot;. Les Elfes Ail&eacute;s sont les vrai indig&egrave;nes d&#039;Aquarii, pr&eacute;sent sur la plan&egrave;te lorsque les vaisseaux Aquariens sont arriv&eacute;s. Dans un premier temps, cach&eacute;s des humains, les premiers contacts furent tr&egrave;s durs et sanglants. Puis apr&egrave;s bien des combats et morts, la paix fut conclue. Les elfes ail&eacute;s sont maintenant des amis chers en qui nous avons toute confiance. Le roi dit :&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot; - Amis, j&#039;ai consult&eacute; la Force des Anc&ecirc;tres. Ils sont calmes. Notre race vous a fait confiance, je pense que nous pouvons les accepter.&quot;</font></div><div class="post_line"></div><div class="post_line">Dans la foul&eacute;e,&nbsp;plusieurs dirigeants prirent la parole, puis, enfin, le Pr&eacute;sident se leva.</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">&quot; - je vous remercie tous pour vos interventions, nous vous avons entendu. Maintenant le conseil des vingt-quatre va d&eacute;lib&eacute;rer.&quot;</font></div><div class="post_line"></div><div class="post_line">Louis avait suivi les d&eacute;bats. Son avis &eacute;tait fait, il fallait accepter&nbsp;l&#039;Alliance, m&ecirc;me si de par le pass&eacute;, il avait souvent &eacute;tait d&eacute;&ccedil;u. Seul son ami le Cdt Galnas des peuples &quot;<strong><font size="3">Des seigneurs</font></strong>&quot;&nbsp;avait toujours tenue parole.</div><div class="post_line"></div><div class="post_line">L&#039;attente fut longue et enfin le Pr&eacute;sident r&eacute;apparut suivit de l&#039;ensemble des dignitaires du conseil. Sans attendre, il prit la parole.</div><div class="post_line"></div><div class="post_line"><font color="#ff56ff">&quot;Mesdames et messieurs repr&eacute;sentants des peuples d&#039;Aquarii, l&#039;heure est d&#039;importance. La Coalition des peuples d&#039;Aquarii accepte l&#039;Alliance. Elle demande seulement que deux ambassadeurs soient d&eacute;sign&eacute;s pour chacun des partis, m&ecirc;me si physiquement cela parait impossible de les transporter chacun entre les deux secteurs. Nous verrons ce que la&nbsp;Coalition &quot;<font size="2"><strong>Bordure&nbsp;</strong><strong>Ext&eacute;rieure</strong></font>&quot; nous proposera. Donc &agrave; l&#039;heure o&ugrave; je vous parle, le message de bienvenue est parti vers le secteur 6.&quot;</font></div><div class="post_line"></div><div class="post_line">Enfin, Louis respira. Dans la salle, les applaudissements s&#039;amplifi&egrave;rent.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">&nbsp;</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=15638&c_forum_page=1&c_page=2">2</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouvelles d&#039;Aquarii</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

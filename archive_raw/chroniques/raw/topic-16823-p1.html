@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16823 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Conspiracy</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Conspiracy</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Th%C3%A8res">Cdt. Th&egrave;res</a><br>Prestige de chroniqueur&nbsp;: 17<br /><br /><img src="/avatars/11900.jpg" style="width:128px;height:85px" alt="Avatar" /><br />11/06/1023 ETU 08:07<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal300282')">Détails</a> <a href="javascript:warnpost(300282)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300282" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300282',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Le Maximous Imperator se trouvait dans la chambre de son palais imp&eacute;rial apr&egrave;s avoir fait un bilan sur la situation militaire, l&#039;expansion de l&#039;Empire et sa stabilit&eacute; avec ses plus hauts G&eacute;n&eacute;raux. 5 minutes apr&egrave;s la fin de la r&eacute;union, quelqu&#039;un toc &agrave; la porte de la chambre imp&eacute;riale avant d&#039;entrer: c&#039;&eacute;tait le G&eacute;n&eacute;ral Nikana, le bras droit de l&#039;Imperator, du moins jusqu&#039;&agrave; ce moment... Que venait il faire l&agrave; &agrave; cette heure? Avant que l&#039;Imperator puisse dire quoi que ce soit, une dizaine de soldats entra&nbsp;dans la pi&egrave;ce, leurs armes point&eacute;es sur leur chef supr&ecirc;me, puis le G&eacute;n&eacute;ral assomma Th&egrave;res sans dire un mot.</div><div class="post_line"></div><div class="post_line">2 heures ont pass&eacute; et Th&egrave;res se r&eacute;veille enfin dans..... <strong>un cachot!!!!</strong> Comment cela &eacute;tait il possible? Lui, l&#039;Empereur de toute une nation enferm&eacute; dans le cachot d&#039;une de ses propres prisons. Une fois en capacit&eacute; de se lever et de crier, Th&egrave;res appela &agrave; l&#039;aide mais aucune r&eacute;ponse ne se fit entendre. Le voil&agrave; seul dans une prison sombre et insalubre, jusqu&#039;&agrave; ce qu&#039;un garde arrive et jette deux autres personnes dans le m&ecirc;me cachot. Th&egrave;res reconnu instantan&eacute;ment ces deux personnes: sa femme et son plus fid&egrave;le Ministre du Conseil des 20. Il prit alors la parole &quot;<font color="#005dc2">Soldat, qu&#039;est ce que cela veut dire?&nbsp;Que fa&icirc;tes vous?&nbsp;Je vous somme de nous laisser sortir imm&eacute;diatement, je suis votre Empereur et je vous l&#039;ordonne!</font>&quot; Le soldat ricana aussit&ocirc;t et repartit apr&egrave;s avoir referm&eacute; la porte du cachot. Les nouveaux arriv&eacute;s &eacute;taient encore inconscients et on entendait le soldat parler au loin &quot;<font color="#ff857a">Le chien est musel&eacute;, je r&eacute;p&egrave;te le chien est musel&eacute;. O&ugrave; en est le reste du plan, quand passe t on &agrave; la phase 3?</font>&quot;.</div><div class="post_line">Mais que se passait-il??? Tout cela ressemblait &agrave; un coup d&#039;&Eacute;tat et Th&egrave;res ne pouvait rien faire mais l&#039;attitude agressive du G&eacute;n&eacute;ral Nikana envers sont propre Empereur et&nbsp;les autres Commandants&nbsp;devenait maintenant tr&egrave;s claire. Des questions tourmentaient l&#039;Imperator: Qu&#039;est ce que le G&eacute;n&eacute;ral va faire maintenant qu&#039;il doit certainement disposer des pleins pouvoirs? Quel sort r&eacute;serve t il &agrave; celui qui dirigeait la nation jusqu&#039;&agrave; il y a quelques heures? Et ses camarades de cachot? Qui soutenait le G&eacute;n&eacute;ral? La population allait elle faire quelque chose? En tous cas, une chose &eacute;tait s&ucirc;r, quelque chose va mal tourner.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Th%C3%A8res">Cdt. Th&egrave;res</a><br>Prestige de chroniqueur&nbsp;: 17<br /><br /><img src="/avatars/11900.jpg" style="width:128px;height:85px" alt="Avatar" /><br />12/06/1023 ETU 04:50<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal300303')">Détails</a> <a href="javascript:warnpost(300303)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300303" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300303',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#005dc2">Cela fera bient&ocirc;t 24 heures que je suis l&agrave;, coinc&eacute; dans ce cachot, aucune nouvelle du monde ext&eacute;rieur et c&#039;est &agrave; peine si on m&#039;a apport&eacute; de quoi manger, je suis leur Empereur bordel!! Je veux savoir ce qu&#039;il se passe ! </font><font color="#ff0000">&quot;</font><font color="#ff0000">GARDES! GARDES! O&ugrave; &ecirc;tes vous? J&#039;exige parler imm&eacute;diatement au G&eacute;n&eacute;ral Nikana!&quot;</font></div><div class="post_line"><font color="#005dc2">Aucune r&eacute;ponse, aucun bruit, aucun signe de vie quand tout &agrave; coup des cris se font entendre, pas des cris de joie ou une r&eacute;ponse de la part des gardes, non rien de tout cela, des cris de douleur, de peur et de tristesse accompagn&eacute;s par des hurlements. Les habitants de la capitale semblaient hurler comme si la s&eacute;curit&eacute; faisait des charges de cavalerie dans la foule, mais je ne leur en ai jamais donn&eacute; l&#039;ordre. Ces cris sont horribles! Comment peut on laisser des gens autant souffrir! C&#039;est une honte! Mais je suis l&agrave;, encha&icirc;n&eacute; et je ne peux rien faire, mes </font><font color="#005dc2">colocataires de cellule ne se sont toujours pas r&eacute;veill&eacute;s mais je peux sentir leur pouls, ils sont vivants c&#039;est toujours &ccedil;a.....</font></div><div class="post_line"><font color="#005dc2">Il faut que je fasse quelque chose, je ne peux pas laisser mes concitoyens souffrir, que vont faire les militaires maintenant qu&#039;ils sont au pouvoir??? La cellule est compl&egrave;tement vide, je ne peux rien faire, les hurlements de douleurs se font toujours entendre, cela fait d&eacute;j&agrave; 45 minutes, je sens mes &eacute;motions m&#039;envahir, des larmes commencent &agrave; couler lentement sur mon visage et je vois d&eacute;j&agrave; ma mort arriver. Je serre alors ma ch&egrave;re et tendre contre moi en esp&eacute;rant qu&#039;elle ne souffre pas, puis je ferme les yeux et sent que je commence &agrave; m&#039;en aller, je ne suis pas si vieux mais je me demande si la nourriture qu&#039;on nous a servi &eacute;tait v&eacute;ritablement comestible...</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Th%C3%A8res">Cdt. Th&egrave;res</a><br>Prestige de chroniqueur&nbsp;: 17<br /><br /><img src="/avatars/11900.jpg" style="width:128px;height:85px" alt="Avatar" /><br />15/06/1023 ETU 20:39<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal300538')">Détails</a> <a href="javascript:warnpost(300538)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300538" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300538',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Th&egrave;res venait de se r&eacute;veiller mais il &eacute;tait maintenant seul dans la&nbsp;cellule, il n&#039;avait&nbsp;rien entendu, rien&nbsp;vu, aucun mouvement, mais sa t&ecirc;te lui faisait mal, avait-il &eacute;t&eacute; drogu&eacute;???&nbsp;</em></div><div class="post_line"><em>Au bout de tout juste quelques secondes, le G&eacute;n&eacute;ral Nikana arriva avec une escorte de quelques soldats</em></div><div class="post_line"></div><div class="post_line"><font color="#008000">L&agrave; vous pouvez toujours hurler, personne ne vous entendra. Par contre essayait quoi que ce soit et vous ne reverrez&nbsp;jamais votre femme, fin si, mais en plusieurs morceaux.&nbsp;</font></div><div class="post_line"><font color="#005dc2">Comment osez vous me menacer de la sorte, je suis votre Empereur et j&#039;aimerais bien savoir ce qu&#039;il se passe dans mon propre Empire!</font></div><div class="post_line"><font color="#008000">Ah, vous voulez savoir! Bon d&#039;accord, alors vous avez essay&eacute; de monter un coup d&#039;&Eacute;tat apr&egrave;s avoir augment&eacute; les imp&ocirc;ts en gardant les revenus pour vous afin de fuir avec votre famille et garder un train de vie digne de ce nom jusqu&#039;&agrave; votre mort. Alors moi, j&#039;ai fait mon devoir, je vous ai arr&ecirc;t&eacute; tant qu&#039;il en &eacute;tait encore possible et maintenant je suis en train de restructurer les restes de votre &Eacute;tat pour en faire MON Empire. Et oui, tout le monde croit que vous &ecirc;tes mort.</font></div><div class="post_line"><font color="#005dc2">Mais cela n&#039;a aucun sens, personne ne doit vous croire, c&#039;est absurde. D&#039;ailleurs les hurlements que j&#039;ai entendu la derni&egrave;re fois, ces cris de terreur c&#039;&eacute;tait quoi alors???</font></div><div class="post_line"><font color="#008000">Figurez vous que toute l&#039;arm&eacute;e n&#039;a pas h&eacute;sit&eacute; &agrave; me suivre, aucun soldat ne vous est fid&egrave;le, vous &ecirc;tes le pass&eacute; et je suis le future mais le future ne pla&icirc;t pas &agrave; tous les habitants, alors je leur ai fait comprendre que je m&#039;en fous que &ccedil;a leur aille ou pas, c&#039;est comme &ccedil;a. Alors oui, il y a eu quelques grabuges et on a d&ucirc; utiliser nos armes contre nos propres citoyens mais c&#039;&eacute;tait n&eacute;cessaire.</font></div><div class="post_line"><font color="#005dc2">Mais vous &ecirc;tes compl&egrave;tement fou, c&#039;est n&#039;importe quoi, laissez moi sortir et arr&ecirc;tez de massacrer des innocents, il en est encore temps.</font></div><div class="post_line"><font color="#008000">Pour que je passe en cour martiale, mais oui bien s&ucirc;r, vous voulez pas non plus que je vous fasse des courbettes.... Vous n&#039;&ecirc;tes plus rien! Bon maintenant c&#039;est moi qui pose les questions. Pourquoi certains ordres m&#039;&eacute;chappent? Votre administration &eacute;tait une v&eacute;ritable catastrophe et il faut croire que vous avez encore quelques fid&egrave;les dans l&#039;arm&eacute;e, d&icirc;tes leur d&#039;arr&ecirc;ter imm&eacute;diatement o&ugrave; eux, leur famille, leurs proches et votre femme &agrave; vous subiront un traitement que je n&#039;aimerai pas subir. On a d&eacute;couvert de nouvelles techniques d&#039;interrogatoire, c&#039;est g&eacute;nial, personne n&#039;y r&eacute;siste, ils balanceraient m&ecirc;me leur m&egrave;re, bon par contre &agrave; la fin de l&#039;interrogatoire ils ne sont plus tr&egrave;s vivant... mais &ccedil;a c&#039;est un d&eacute;tail. Fin bon voil&agrave;, c&#039;est mon premier et dernier avertissement!</font></div><div class="post_line"></div><div class="post_line"><em>Sur ce, le G&eacute;n&eacute;ral fit imm&eacute;diatement demi tour et sorti de la prison.</em></div><div class="post_line"><em>Mais Th&egrave;res &eacute;tait encore sous le choc, que pouvait il faire???</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Th%C3%A8res">Cdt. Th&egrave;res</a><br>Prestige de chroniqueur&nbsp;: 17<br /><br /><img src="/avatars/11900.jpg" style="width:128px;height:85px" alt="Avatar" /><br />30/06/1023 ETU 01:57<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal301461')">Détails</a> <a href="javascript:warnpost(301461)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301461" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301461',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Cela va bient&ocirc;t faire 20 jours que Th&egrave;res est emprisonn&eacute;&nbsp;au fond d&#039;une de ses propres prisons. Il ne sait rien, il voit juste 2 gardes faire leurs rondes et lui apporter ses repas, des repas qui sont tr&egrave;s loin d&#039;&eacute;galer ceux que lui servait son cuisinier avant!&nbsp;</em></div><div class="post_line"><em>Ah, il y a du bruit dans le couloir, mais qu&#039;est-ce??? Attention un tir lui fr&ocirc;le l&#039;&eacute;paule! Des gens sont venus le sauver ,mais non? C&#039;est incroyable, lui qui avait perdu tout espoir y croit maintenant dur comme fer. Au bout de quelques instants il n&#039;y avait plus aucun bruit, Th&egrave;res se mit alors &agrave; hurler &quot;</em><font color="#005dc2">Je suis l&agrave;! C&#039;est moi Th&egrave;res, votre Empereur,&nbsp;venez m&#039;aider s&#039;il vous pla&icirc;t, je vous en supplie</font><em>&quot;. Le bruit d&#039;une porte de prison retentit mais pas la sienne, puis une autre, et enfin un groupe d&#039;une dizaine de soldat tr&egrave;s press&eacute;s arrive, lui ouvre la porte puis l&#039;assomme avant de partir &agrave; toute vitesse vers on ne sait o&ugrave; en transportant Th&egrave;res comme un sac de vulgaires patates....</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Th%C3%A8res">Cdt. Th&egrave;res</a><br>Prestige de chroniqueur&nbsp;: 17<br /><br /><img src="/avatars/11900.jpg" style="width:128px;height:85px" alt="Avatar" /><br />01/07/1023 ETU 03:58<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal301606')">Détails</a> <a href="javascript:warnpost(301606)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301606" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301606',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Je reprend connaissance apr&egrave;s quelques heures, je ne reconnais ni le lieu dans lequel je suis ni les gens qui y sont pr&eacute;sents, on se croirait dans le QG d&#039;une milice ou d&#039;un groupuscule terroriste pas tr&egrave;s net, mais l&agrave; au moins je ne suis pas dans une prison, je n&#039;ai pas de menottes et aucune arme n&#039;est point&eacute;e sur moi.</em></div><div class="post_line"><font color="#005dc2">Salutations Messieurs, pourrai je savoir o&ugrave; nous sommes et qui vous &ecirc;tes s&#039;il vous pla&icirc;t?</font></div><div class="post_line"><font color="#ffc95f">Oui bien s&ucirc;r, nous n&#039;avions pas vu que vous vous &eacute;tiez r&eacute;veill&eacute;, d&eacute;sol&eacute; pour le coup de cross mais c&#039;&eacute;tait plus simple et pratique. Moi je suis le Lieutenant Dupont et je suis &agrave; l&#039;origine de cette op&eacute;ration.&nbsp;</font></div><div class="post_line"><font color="#ffc95f">Les informations du G&eacute;n&eacute;ral Nikana sur votre disparition suspecte &eacute;tait bien trop floues pour y croire donc avec d&#039;autres camarades nous avons cherch&eacute; la v&eacute;rit&eacute; et nous avons finis par la trouver. Au d&eacute;but on avait seulement quelques doutes mais Nikana a pris le pouvoir trop vite et surtout il l&#039;utilise &agrave; tord et &agrave; travers, il s&#039;est impos&eacute; et n&#039;a laiss&eacute; personne le contredire. On a alors compris qu&#039;il s&#039;agissait bien d&#039;un coup d&#039;&Eacute;tat mais on ne pensait pas qu&#039;il vous avait gard&eacute; en vie, cette d&eacute;cision est &eacute;trange d&#039;ailleurs.... Nikana a fait tirer dans les foules qui s&#039;opposaient &agrave; lui, des millions de personnes &agrave; travers la galaxie ont &eacute;t&eacute; massacr&eacute;es car telle &eacute;tait sa d&eacute;cision, il est sans piti&eacute;! Une fois que plus personne ne manifestait publiquement sont opposition, il a ensuite cr&eacute;&eacute; une unit&eacute; sp&eacute;ciale au sein de l&#039;arm&eacute;e afin de traquer ceux qu&#039;il appelle les &quot;dissidents&quot;. Nous avons r&eacute;ussit &agrave; en sauver quelques uns mais beaucoup trop ont &eacute;t&eacute; tortur&eacute;s voire m&ecirc;me abus&eacute;s sexuellement et vendus comme des esclaves. Hommes, femmes, enfants, vieillards, il ne fait aucune diff&eacute;rence, cet homme est sadique, il m&eacute;rite les pires traitements qui existent! Donc voil&agrave;, apr&egrave;s plusieurs semaines &agrave; vous chercher, on vous a enfin trouv&eacute;.</font></div><div class="post_line"><font color="#005dc2">Dites, ma femme et le Ministre Martin vous les avez retrouv&eacute;? Ils &eacute;taient avec moi dans la prison du palais mais on a ensuite &eacute;t&eacute; s&eacute;par&eacute;.</font></div><div class="post_line"><font color="#ffc95f">Hum hum, alors en fait on a retrouv&eacute; leurs traces et ont les a retrouv&eacute; dans deux cellules diff&eacute;rentes pas trop loin de la v&ocirc;tre, mais leurs corps &eacute;taient d&eacute;pourvus de vie, nous avons fait une rapide autopsie, ils ont &eacute;t&eacute; tortur&eacute; par la nouvelle machine qui fait les interrogatoires avec de tr&egrave;s bons r&eacute;sultats mais surtout beaucoup de morts.</font></div><div class="post_line"><em>&Agrave; cet instant, je sentis le monde s&#039;&eacute;crouler sous mes pieds. Il me fallu 2 secondes avant de m&#039;&eacute;crouler sur le sol et de commencer &agrave; pleurer. Une larme, puis deux, trois, quatre,.... &ccedil;a ne s&#039;arr&ecirc;tait pas mais bordel Th&egrave;res tu es Empereur et tu es devant une petite dizaine de militaires, <strong>ressaisi toi!!!</strong>&nbsp;</em>&nbsp;<font color="#005dc2">Je, je, merci pour tout ce que vous avez fait. Maintenant fa&icirc;tes moi un topo sur la situation, votre organisation, vos moyens, votre plan et tout le n&eacute;cessaire.</font></div><div class="post_line"><font color="#ffc95f">Si vous avez besoin d&#039;un peu de temps, il n&#039;y a pas de soucis on peut vous laisser tranquille quelques temps pour int&eacute;grer tout &ccedil;a.</font></div><div class="post_line"><font color="#005dc2">Non, ne vous inqui&eacute;tez pas, pas besoin , il faut que tout cela cesse, on ne peut pas laisser Nikana continuer!</font></div><div class="post_line"><font color="#ffc95f">D&#039;accord, donc d&#039;un point de vue militaire, Nikana est largement soutenu, je dirai qu&#039;il a au moins 2 tiers de l&#039;arm&eacute;e qui sont de son c&ocirc;t&eacute; tels des fanatiques, ils ex&eacute;cutent tous ses&nbsp;ordres. Nous avons r&eacute;ussit &agrave; rallier &agrave; notre cause &agrave; peu pr&egrave;s 25% de l&#039;arm&eacute;e mais ces temps ci Nikana devient un peu parano et ex&eacute;cute m&ecirc;me certains de ses hommes au moindre doute. Le reste suit ou d&eacute;missionne mais s&#039;ils d&eacute;missionnent ils sont class&eacute;s comme &quot;dissidents&quot; et il ne leur reste pas longtemps &agrave; vivre.&nbsp;</font></div><div class="post_line"><font color="#ffc95f">La population est terroris&eacute;e par Nikana est ses sbires, certains ont bien voulu nous aider et certains sont m&ecirc;me morts &agrave; cause de cela, la quasi totalit&eacute; des Solastaliens vous croit mort, il faut dire que la propagande vous a fait passer pour un &eacute;norme tra&icirc;tre avant de dire avoir retrouv&eacute; votre corps inerte. &Agrave; mon avis leur soutient vous serait total mais la peur en bloquerai une partie d&#039;agir.&nbsp;</font></div><div class="post_line"><font color="#ffc95f">Dans la sph&egrave;re politique, Nikana a musel&eacute; le Conseil des 20, ils n&#039;ont plus aucun pouvoir, aucune autorit&eacute; et tr&egrave;s peu d&#039;influence, l&agrave; encore leur soutient vous serait total &agrave; mon avis.&nbsp;</font></div><div class="post_line"><font color="#ffc95f">Et enfin, &eacute;tant donn&eacute; que l&#039;argent est le nerf de la guerre, c&ocirc;t&eacute; leems, Nikana s&#039;est mis une bonne partie des grandes richesses de l&#039;Empire dans la poche (&agrave; cause de l&#039;esclavage, les remises d&#039;imp&ocirc;ts et de taxes, les avantages,...). D&#039;ailleurs certaines industries l&#039;ont compl&egrave;tement soutenue dans sa prise de pouvoir, elles l&#039;ont m&ecirc;me financ&eacute; et fourni. Toutefois, quelques industries et riches ont pr&eacute;f&eacute;r&eacute; fuir, ils sont partis vers d&#039;autres plan&egrave;tes plus s&ucirc;res. Nous les avons contact&eacute;, leur soutient envers vous est absolu, gr&acirc;ce &agrave; eux nous avons pu nous fournir tout l&#039;&eacute;quipement dont nous disposons (armes, blind&eacute;s, robots, drones, canons, vaisseaux, fr&eacute;gates, corvettes,...).&nbsp;</font></div><div class="post_line"><font color="#ffc95f">Et voil&agrave;, je crois que j&#039;ai fait le tour. Ah oui et aussi la politique galactique a &eacute;t&eacute; &agrave; peu pr&egrave;s conserv&eacute;e.</font></div><div class="post_line"><font color="#005dc2">D&#039;accord et qu&#039;avez vous pr&eacute;vu pour la suite?</font></div><div class="post_line"><font color="#ffc95f">Honn&ecirc;tement, notre objectif principal &eacute;tait de vous retrouver, gr&acirc;ce &agrave; vous on devrait gagner &eacute;norm&eacute;ment de soutien et on pensait que vous aurez une id&eacute;e car beaucoup d&#039;hommes commencent &agrave; avoir tr&egrave;s peur de Nikana, des hommes ont p&eacute;ris pour vous sauver, tant d&#039;innocents sont morts.....</font></div><div class="post_line"><font color="#005dc2">Ok, bon laissez moi r&eacute;fl&eacute;chir un peu.</font></div><div class="post_line"><font color="#005dc2">J&#039;ai trouv&eacute;! Gr&acirc;ce au r&eacute;seau que vous avez cr&eacute;&eacute;, vous allez faire passer le mot partout dans l&#039;Empire que je ne suis pas mort, que c&#039;&eacute;tait un coup d&#039;&Eacute;tat et que je vais arriver pour d&eacute;livrer l&#039;Empire de son inf&acirc;me dirigeant autoproclam&eacute; mais que pour cela j&#039;ai besoin d&#039;eux. Il va falloir faire des sacrifices et j&#039;en suis conscient, mais tous ensemble on va r&eacute;ussir. Ensuite, s&eacute;curisez un canal pour que je puisse m&#039;adressez &agrave; nos g&eacute;n&eacute;reux donateurs et peut &ecirc;tre m&ecirc;me trouv&eacute; une aide provenant d&#039;un Commandant ext&eacute;rieur. De votre c&ocirc;t&eacute;, continuez vos op&eacute;rations de sabotages, essayez de recruter un peu plus et essayez de faire peur &agrave; ceux qui soutiennent Nikana, ils vont sentir le vent tourner et ils devraient nous aider ou au moins arr&ecirc;ter de le soutenir, je pense surtout aux grandes fortunes qui le soutiennent, fa&icirc;tes leur sentir que s&#039;en est bient&ocirc;t finis pour Nikana et qu&#039;ils devraient nous aider s&#039;ils veulent rester en vie. Et surtout fa&icirc;tes attention &agrave; vous, assez de victimes ont perdu leur vie dans tout &ccedil;a, il faut que &ccedil;a cesse!</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Th%C3%A8res">Cdt. Th&egrave;res</a><br>Prestige de chroniqueur&nbsp;: 17<br /><br /><img src="/avatars/11900.jpg" style="width:128px;height:85px" alt="Avatar" /><br />02/07/1023 ETU 02:40<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal301658')">Détails</a> <a href="javascript:warnpost(301658)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301658" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301658',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffc95f">Toutes nos op&eacute;rations sont un v&eacute;ritable succ&egrave;s, nous avons subis quelques pertes mais nous nous rapprochons &agrave; grand pas de la victoire, Nikana est en train de se retrancher dans le palais Imp&eacute;rial sur Solastal, une bonne partie de ses hommes lui sont rest&eacute;s fid&egrave;les mais nos sabotages les ont consid&eacute;rablement affaiblis. Transport, communication, logistique et approvisionnement ont &eacute;t&eacute; largement perturb&eacute;s, la population vous acclame, ils n&#039;attendent que votre retour et certains osent m&ecirc;me descendre dans les rues pour votre retour. Sur certaines plan&egrave;tes les militaires ont refus&eacute; de tirer dans la foule et se sont retourn&eacute;s contre Nikana, pas loin d&#039;un quart des possessions de l&#039;Empire sont &agrave; vos ordres. Nikana a peur, il se retranche, ses soutiens le l&acirc;chent, l&#039;&eacute;lite ne le soutien plus, ils ont trop peur des r&eacute;percutions que cela aurait si vous gagnez.</font></div><div class="post_line"><font color="#ffc95f">La victoire totale n&#039;est plus qu&#039;une question de temps, le plus compliqu&eacute; sera de d&eacute;faire les soldats qui lui sont rest&eacute;s fid&egrave;les, ils sont malheureusement encore nombreux et reprendre la capitale ne sera pas t&acirc;che simple, nous allons avoir besoin de plus pour r&eacute;ussir.</font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Ne vous en fa&icirc;tes pas, je m&#039;en charge!</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nerios">Cdt. Nerios</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/11915.jpg" style="width:102px;height:128px" alt="Avatar" /><br />04/07/1023 ETU 03:51<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D301873', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal301866')">Détails</a> <a href="javascript:warnpost(301866)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301866" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301866',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Sous l&#039;&eacute;clairage&nbsp;aust&egrave;re,&nbsp;caract&eacute;ristique des Ittiades,&nbsp;de la Forteresse-Assembl&eacute;e du Mandat Stellaire, le ministre des relations Galactiques des Kodyn,&nbsp;le V&eacute;n&eacute;rable&nbsp;Damaskēn&oacute;s,&nbsp;&eacute;pluchait ses dossiers un &agrave; un depuis un bureau du b&acirc;timent des Renseignements.&nbsp;</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Damaskēn&oacute;s &eacute;tait certes &acirc;g&eacute; et ch&eacute;tif, mais vif d&#039;esprit, et il jouissait d&#039;une confiance pleine de la part du Repr&eacute;sentant des Sages Nerios. Cela lui avait fait retrouver une seconde jeunesse, &eacute;tant particuli&egrave;rement int&eacute;ress&eacute; par la rencontre de nouvelles civilisations et disposant d&#039;un pouvoir de d&eacute;cision sur certains sujets diplomatiques.&nbsp;</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">La chute du Paladin&nbsp;Helliax avait adouci sa charge de travail,&nbsp;mais le retard accumul&eacute; lors de la Guerre du Secteur 3&nbsp;lui occasionnait certaines nuits blanches. Il pouvait n&eacute;anmoins compter sur la compagnie du G&eacute;n&eacute;ral&nbsp;Arukta&iuml;, l&#039;un des seuls Seelie pr&eacute;sent dans le b&acirc;timent &agrave; cette heure tardive, pour lui a&eacute;rer l&#039;esprit de temps en temps. Ils &eacute;taient seuls dans ce&nbsp;bureau,&nbsp;les horaires de nuit dans cette Forteresse &eacute;taient assur&eacute;s par une branche des Renseignements &agrave; l&#039;autre bout de la plan&egrave;te, permettant une couverture permanente des informations. Des op&eacute;rateurs d&#039;astreinte &eacute;taient cependant pr&eacute;sents &agrave; l&#039;&eacute;tage inf&eacute;rieur, dans l&#039;aile de la D&eacute;tection Radar, mais l&#039;aile Diplomatique &eacute;tait donc habituellement vide la nuit.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Ce n&#039;est pas encore aujourd&#039;hui qu&#039;on verra des jeunes faire du z&egrave;le &agrave; cette heure-ci, pas vrai&nbsp;?</font> <em><font color="#ffffff">- dit-il &agrave; Arukta&iuml;, un sourire amus&eacute; en coin. Il se moquait bien de qui &eacute;tait pr&eacute;sent et &agrave; quelle heure&nbsp;tant que le travail &eacute;tait fait, et la Guerre avait &eacute;prouv&eacute; beaucoup de Kodyn et de Seelie.&nbsp;</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Arukta&iuml; souria, un th&eacute; Seelie &agrave; la main et r&eacute;pondit en riant jovialement :&nbsp;</font></em></div><div class="post_line"><font color="#ffc0cb">- Dites-moi tout de suite que vous voudriez voir autre chose que mes rides, V&eacute;n&eacute;rable, que j&#039;aille me faire refaire le visage &agrave; Shambala !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Damaskēn&oacute;s ria doucement mais sinc&egrave;rement, sa timidit&eacute; naturelle l&#039;emp&ecirc;chant de s&#039;esclaffer. Il appr&eacute;ciait Arukta&iuml; et son naturel, chose peu r&eacute;pandue dans les hautes sph&egrave;res des Kodyn.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Soudainement, une missive triplement crypt&eacute;e&nbsp;de l&#039;aile Diplomatique arriva sur l&#039;&eacute;cran central du bureau octogonal et l</font></em><em><font color="#ffffff">a mine du V&eacute;n&eacute;rable se renfrogna :&nbsp;</font></em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Arukta&iuml;, la Diplomatie sait que nous sommes ici. S&#039;ils nous l&#039;ont envoy&eacute;&nbsp;maintenant et avec ce niveau de cryptage, c&#039;est qu&#039;il y a urgence. Nous passons en S&eacute;curit&eacute; de niveau 1, fermez l&#039;acc&egrave;s &agrave; l&#039;&eacute;tage et rentrons nos codes d&#039;acc&egrave;s.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Arukta&iuml; enclencha la proc&eacute;dure de fermeture des portes et de mise en quarantaine de l&#039;&eacute;tage. Personne ne devait rentrer pour tenter de voir ou de subtiliser cette information capitale.</font></em></div><div class="post_line"><em><font color="#ffffff">Ils saisirent leurs codes d&#039;acc&egrave;s, et un message tr&egrave;s &eacute;tonnant&nbsp;apparut &agrave; l&#039;&eacute;cran.&nbsp;</font></em></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">&quot;Ici Th&egrave;res, bon, je vais pas y aller par 4 chemins mais je suis toujours en vie ! Cette ordure de Nikana a fait un coup d&#039;&eacute;tat, j&#039;appelle n&#039;importe qui du Mandat Stellaire qui pourra m&#039;aider &agrave; retrouver le tr&ocirc;ne qui m&#039;est d&ucirc; ! Envoyez-nous de l&#039;aide !&quot;</font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">On pouvait entendre des coups de canons ioniques, des hommes crier, et le visuel ainsi que le code de cryptage ne laissait aucun doute : Th&egrave;res &eacute;tait bien vivant, contrairement &agrave; toutes les informations re&ccedil;ues jusqu&#039;&agrave; pr&eacute;sent.&nbsp;</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Arukta&iuml; et&nbsp;Damaskēn&oacute;s se regard&egrave;rent, l&#039;air grave. L&#039;un des plus puissants Commandants du Secteur 3 n&#039;avait pas &eacute;t&eacute; remplac&eacute; pacifiquement et justement, mais victime d&#039;un coup d&#039;&eacute;tat.&nbsp;</font></em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">J&#039;emm&egrave;ne imm&eacute;diatement l&#039;information au Repr&eacute;sentant des Sages,&nbsp;</font><font color="#e8c500">Ag&aacute;thōn Nerios</font><font color="#68c4e8"> doit absolument prendre connaissance de ce message</font>. <font color="#68c4e8">J&#039;estime qu&#039;il voudra que les Kodyn interviennent sous l&#039;&eacute;gide du Mandat, je vous laisse en faire de m&ecirc;me avec la Braise du Khanat, cher ami. Nous allons devoir frapper vite et fort.</font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Damaskēn&oacute;s transf&egrave;ra le message sur son ordinateur, transmit une copie &agrave; Arukta&iuml; et d&eacute;truisit l&#039;original. Arukta&iuml; lui fit un signe de t&ecirc;te avant que le Kodyn ne l&egrave;ve le blocus de l&#039;&eacute;tage et se dirige vers l&#039;aile r&eacute;serv&eacute;e aux Kodyn, les gardes attendant son retour juste derri&egrave;re la porte.&nbsp;</font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Rhea+Na%27Serrt">Cdte. Rhea Na&#039;Serrt</a><br>Prestige de chroniqueur&nbsp;: 69<br /><br /><img src="/avatars/11914.jpg" style="width:128px;height:128px" alt="Avatar" /><br />08/07/1023 ETU 23:08</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal302259')">Détails</a> <a href="javascript:warnpost(302259)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302259" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302259',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Aruktai dormait assez peu. Ou pas sur des p&eacute;riodes prolong&eacute;es de temps. Le mode de vie nomade des seelies de Shambhala, coupl&eacute; &agrave; ses anciennes fonctions militaires, l&rsquo;avaient peu &agrave; peu form&eacute; &agrave; se reposer lors des trajets, ou le temps d&rsquo;une poign&eacute;e d&rsquo;heure seulement. Du reste, bien qu&rsquo;&eacute;tant un animal social assum&eacute; comme tel, il appr&eacute;ciait le calme (toujours relatif dans ce genre de structure) qu&rsquo;offrait la nuit. En tout cas le v&eacute;n&eacute;rable&nbsp;Damaskēn&oacute;s incarnait une forme ind&eacute;niable de calme. Loin de la froideur protocolaire caract&eacute;risant une bonne moiti&eacute; des peuples du Mandat, loin aussi de la fiert&eacute; souvent d&eacute;plac&eacute;e des seelie, il &eacute;tait simplement humain. L&rsquo;observer travailler &ndash; car Arukta&iuml; mettait sa grande exp&eacute;rience au service d&rsquo;une fain&eacute;antise de comp&eacute;tition et faisait toujours en sorte de laisser les charges les plus fatigantes &agrave; d&#039;autres &ndash; n&rsquo;&eacute;tait pas d&eacute;sagr&eacute;able.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Cependant l&rsquo;arriv&eacute;e de la missive fit comprendre au vieux g&eacute;n&eacute;ral que le calme allait bient&ocirc;t laisser place &agrave; autre-chose. En bon seelie il aurait sans doute d&ucirc; se r&eacute;jouir de cette nouvelle occasion que lui offraient les &eacute;toiles d&rsquo;effleurer la gloire. Il avala une gorg&eacute;e de th&eacute;, et fron&ccedil;a imperceptiblement les sourcils avant de se pencher en direction du panel de contr&ocirc;le pour entrer ses codes d&rsquo;acc&egrave;s en m&ecirc;me temps que Damaskēn&oacute;s, puis &eacute;couta en silence.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffc6c3">Oh, alors &ccedil;a, &ccedil;a me r&eacute;jouit.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il n&rsquo;avait jamais aim&eacute; Nikana. Des ann&eacute;es loin des intrigues politiques de la capitale imp&eacute;riale lui avaient appris &agrave; d&eacute;tester les tyrans, et en la mati&egrave;re, le g&eacute;n&eacute;ral faisait office de cas d&rsquo;&eacute;cole. Sanguinaire, vulgaire, brutal. Seulement on ne pouvait pas lui reprocher de se d&eacute;rober &agrave; ses obligations diplomatiques, et en ce qui concernait Shambhala, la situation &eacute;tait claire&nbsp;: l&rsquo;homme faisait un excellent alli&eacute;, r&eacute;actif et respectueux. En d&rsquo;autres termes, c&rsquo;&eacute;tait une ordure, oui, mais notre ordure. Et il n&rsquo;&eacute;tait pas question d&rsquo;y toucher.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La survie de Th&egrave;res changeait tout. Le vieux seelie se passa une main dans la barbe. Il acquies&ccedil;a en entendant son voisin.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffc6c3">Entendu. Ma ni&egrave;ce fera le n&eacute;cessaire.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle pourrait aussi pr&eacute;venir le Khaan shiree, r&eacute;alisa-t-il. Et le gouvernement du Khanat risquait, pour une raison qui lui &eacute;tait propre, de chercher &agrave; ralentir l&rsquo;op&eacute;ration. Les complots des grandes familles &eacute;taient aussi incompr&eacute;hensibles de l&rsquo;ext&eacute;rieur que d&eacute;l&eacute;t&egrave;res pour les seelies dans leur ensemble. Il h&eacute;sita. Peut-&ecirc;tre ne serait-il pas n&eacute;cessaire de le dire &agrave; Rhea. Apr&egrave;s tout, depuis la guerre contre Helliax il &eacute;tait &agrave; la t&ecirc;te des <em>t&uuml;met </em>d&eacute;ploy&eacute;s en secteur 4. H&eacute;las, il savait que ceux-l&agrave; n&rsquo;auraient pas le temps de se mobiliser en secteur 3. Pas assez rapidement pour soutenir Th&egrave;res.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ce serait un nouveau test adress&eacute; &agrave; Rhea. Peut-&ecirc;tre que cette derni&egrave;re allait enfin prendre conscience du pouvoir particuli&egrave;rement important qui accompagnait son titre, et de la faillibilit&eacute; des grandes familles. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Loin de quitter les lieux, Arukta&iuml; resta dans la salle et sorti un petit bo&icirc;tier de l&rsquo;int&eacute;rieur de son long manteau. Un dispositif de communication organique, qui se brancha &agrave; son syst&egrave;me nerveux, et envoya un message crypt&eacute; &agrave; l&rsquo;aile seelie de la forteresse, d&rsquo;o&ugrave; le message fut &agrave; nouveau chiffr&eacute; puis transf&eacute;r&eacute; en direction de la barge de commandement qui servait plus ou moins de demeure permanente &agrave; la <em>g&uuml;nj </em>depuis la destruction de la Spire.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La r&eacute;ponse tomba tr&egrave;s rapidement.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ff857a">J&#039;arrive, mon oncle, la justice des &eacute;toiles dans mon sillage.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La petite n&#039;avait m&ecirc;me pas h&eacute;sit&eacute;. Il y avait de quoi &ecirc;tre fier.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nerios">Cdt. Nerios</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/11915.jpg" style="width:102px;height:128px" alt="Avatar" /><br />19/07/1023 ETU 05:08<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal302826')">Détails</a> <a href="javascript:warnpost(302826)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302826" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302826',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">La capitale du G&eacute;n&eacute;ral Nikana &eacute;tait prise d&#039;assaut comme elle ne l&#039;avait jamais &eacute;t&eacute;.&nbsp;</div><div class="post_line">Les chasseurs d&#039;&eacute;lites des Seelies parcouraient les rues par le ciel, mitraillant et bombardant chaque poste de contr&ocirc;le des factieux. Apr&egrave;s leur passage, les vaisseaux de transport Kodyn parachutaient d&#039;innombrables soldats au sol, dans l&#039;espoir de prendre les b&acirc;timents de d&eacute;cision pour couper les communications des rebelles. L&#039;objectif &eacute;tait clair : frapper vite, et&nbsp;frapper fort.&nbsp;</div><div class="post_line"></div><div class="post_line">Les commandos Kodyn ouvraient le feu m&eacute;thodiquement, progressant dans les b&acirc;timents d&eacute;sign&eacute;s avec une rapidit&eacute; qui ne pi&eacute;tinait pas sur la prudence. Malgr&eacute; les pertes, la chute des r&eacute;seaux de communications des troupes de Nikana produisait une panique de plus en plus palpable : ils ne s&#039;attendaient pas &agrave; &ecirc;tre pris d&#039;assaut, et leur loyaut&eacute; n&#039;&eacute;tait tenue que par la crainte de repr&eacute;sailles. Maintenant que la cha&icirc;ne de Commandement s&#039;effondrait, nombre d&#039;entre eux se rendaient, ou tentaient d&eacute;sesp&eacute;r&eacute;ment des attaques ressemblant plus &agrave; des tentatives de suicide qu&#039;&agrave; une offensive organis&eacute;e.&nbsp;</div><div class="post_line"></div><div class="post_line">Ag&aacute;thōn Nerios suivait la situation depuis la Capitale, et tout semblait se d&eacute;rouler sans accroc. Apr&egrave;s quelques heures, l&#039;annonce tomba enfin : la capitale &eacute;tait sous le contr&ocirc;le du Mandat Stellaire. Une seule question restait en suspens : O&ugrave; sont Nikana et Th&egrave;res ?&nbsp;</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16823&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16823" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16823" name="d_reply_16823" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16823');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16823'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Conspiracy</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

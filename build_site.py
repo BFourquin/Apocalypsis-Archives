@@ -14,12 +14,17 @@ Modifications apportées aux pages d'origine (voir CONTEXT.md, 2.6 et 2.9) :
     un sous-dossier (https://<compte>.github.io/<dépôt>/) ;
   * pages réencodées en UTF-8 (Beta : ISO-8859-1). Les dates Beta (JJ/MM ETU HH:MM) sont intactes.
 
+Forum « Chroniques » (RP privés, hors galaxie ; scrape_chroniques.py -> archive_raw/json/chroniques) : pages regénérées
+dans le gabarit Gamma sous archives/chroniques*, lien dans un premier tableau de la page des archives, participations
+ajoutées aux fiches des commandants ; exclu des statistiques et de la recherche.
+
 Les ressources absentes de la capture (CSS, images... pas encore téléchargées) sont simplement
 absentes du site ; relancer la construction une fois la capture terminée.
 
 Bibliothèque standard uniquement. Usage : python build_site.py [--raw ...] [--json ...] [--out _site]
 """
 import argparse
+import html
 import json
 import os
 import posixpath
@@ -27,6 +32,7 @@ import re
 import shutil
 import sys
 import unicodedata
+import urllib.parse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from archive_crawler import local_path, normalize_url  # noqa: E402
@@ -59,6 +65,7 @@ def decode(body, gamma):
         return body.decode("latin-1")
 
 
+CHRON_TABLE = ""  # tableau d'accès aux Chroniques, renseigné par main() quand des sujets ont été capturés
 KNOWN = None  # chemins (relatifs à raw) des pages présentes dans le site ; None : pas de contrôle
 ARCHIVES_HOME = f"{GAMMA}/archives.html"
 REFRESH_RE = re.compile(r"""(<meta[^>]*http-equiv=["']?refresh["']?[^>]*content=["'][^"']*URL=)([^"']+)""", re.I)
@@ -90,11 +97,30 @@ def rewrite_url(val, page_rel, page_host):
     return rel(target, page_rel) + frag
 
 
+POSTER_GAMMA_RE = re.compile(r'(<td class="post_left">\s*)([^<]*?\S)(\s*<br)')
+POSTER_BETA_RE = re.compile(r'(<td class="posts">)([^<]+)(<br>)')
+GRADE_RE = re.compile(r"^\S+\.\s+(?=\S)")
+
+
+def link_posters(t, page_rel, gamma):
+    """Le nom de l'auteur de chaque message renvoie à sa fiche (commandants.html?n=nom, résolu par commandants.js)."""
+    def sub(m):
+        name = GRADE_RE.sub("", html.unescape(m.group(2)).strip()) if gamma else html.unescape(m.group(2)).strip()
+        if not name:
+            return m.group(0)
+        href = rel("commandants.html", page_rel) + "?n=" + urllib.parse.quote(name, safe="")
+        return f'{m.group(1)}<a href="{href}" title="Fiche du commandant">{m.group(2).strip()}</a>{m.group(3)}'
+    return (POSTER_GAMMA_RE if gamma else POSTER_BETA_RE).sub(sub, t)
+
+
 def transform_html(body, page_rel):
     host = page_rel.split("/", 1)[0]
     gamma = host == GAMMA
     t = decode(body, gamma)
     t = GA_RE.sub("", t)
+    if CHRON_TABLE and page_rel == ARCHIVES_HOME:  # premier tableau de la page des archives : accès aux Chroniques
+        # le <br> d'origine après le titre est consommé : l'espace avec le tableau Gamma est celui qui sépare Gamma et Beta
+        t = re.sub(r"(<h3>Archives des parties précédentes</h3>)\s*<br>", lambda m: m.group(1) + "\n<br>\n" + CHRON_TABLE, t, 1)
     if gamma:
         t = WARN_RE.sub("", t)
         for a, b in LABELS + LABEL_ENT:
@@ -103,6 +129,12 @@ def transform_html(body, page_rel):
     t = REFRESH_RE.sub(lambda m: m.group(1) + rewrite_url(m.group(2), page_rel, host), t)
     t = ATTR_RE.sub(lambda m: f"{m.group(1)}={m.group(2)}{rewrite_url(m.group(3), page_rel, host)}{m.group(2)}", t)
     t = re.sub(r"(charset\s*=\s*)iso-8859-1", r"\1utf-8", t, flags=re.I)
+    if "viewtopic" in page_rel or "/topics/" in page_rel:
+        t = link_posters(t, page_rel, gamma)
+    if gamma and "subtabs_nie" in t and 'id="login"' not in t and 'class="mainarea"' not in t:
+        # les pages d'archives n'ont pas le conteneur des forums du jeu : sans lui, pas de largeur maximale (90em, centré)
+        t = re.sub(r"(<body[^>]*>)", r'\1<div class="mainarea" style="margin-top:0">', t, 1, flags=re.I)
+        t = re.sub(r"</body>", "</div></body>", t, 1, flags=re.I)
     if gamma and 'id="login"' in t:  # pages d'index (archives, parties, galaxies) : gabarit du site public
         t = simplify_public_page(t)
     return t.encode("utf-8")
@@ -122,6 +154,164 @@ def transform_css(body, page_rel):
     t = body.decode("utf-8", "replace")
     host = page_rel.split("/", 1)[0]
     return CSS_URL_RE.sub(lambda m: f"url({rewrite_url(m.group(2), page_rel, host)})", t).encode("utf-8")
+
+
+# --------------------------------------------------------------------------
+# Chroniques : forum hors galaxie, regénéré dans le gabarit des pages Gamma
+# --------------------------------------------------------------------------
+CHRON_DIR = "chroniques"
+CHRON_LIST = f"{GAMMA}/archives/{CHRON_DIR}.html"
+NEG_LABELS = ["orthographe insuffisante", "présentation bâclée", "hors sujet", "hors role play", "message insultant"]
+POS_LABELS = ["efforts visibles", "message adapté", "message remarquable", "humour décapant", "role play intéressant"]
+NEG_CODES = ("orthographe", "presentation", "hors_sujet", "hors_roleplay", "insultant")
+POS_CODES = ("efforts", "adapte", "remarquable", "humour", "roleplay")
+SUPPORT = ('<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." '
+           'title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">')
+CHRON_HEAD = """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Archives</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="/css/definitive.css?v=55">
+  <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  <script type="text/javascript" src="/js/common.js?v=55"></script>
+</head>
+<body class="backgroundimg bg-assemblee_assemblee">
+<div align="left">
+\t<a href="/">
+\t\t<img src="/images/public/logo_petit.jpg" alt="Apocalypsis">
+\t</a>
+\t<a href="/archives">Archives</a>
+ &gt; <a href="/archives/%(d)s">Chroniques</a>%(crumb)s
+</div>
+<div class="subtabs subtabs_nie">
+"""
+CHRON_HELP_TITLE = 'Forum Chroniques'
+CHRON_HELP = '<p class="texte">Le forum Chroniques est un espace dédié aux textes RP personnels et non politiques. Histoire de votre civilisation, récit de faits marquants pour votre commandant, RP privés entre plusieurs joueurs... sont quelques exemples de textes que vous pouvez poster sur ce forum. Tous les messages politiques, débats... doivent être postés à l\'assemblée galactique. Tout message ne respectant pas les règles du forum Chroniques pourra être supprimé.</p><p class="texte warning">Avant d\'intervenir dans un sujet dont vous n\'êtes pas l\'auteur sur le forum Chroniques, assurez vous d\'avoir la permission de l\'auteur avant de poster votre message.</p><p class="texte warning">Tous les messages postés dans le forum chroniques sont considérés comme privés ! Vous ne pouvez donc pas citer ni utiliser le contenu des chroniques : votre personnage n\'en a pas connaissance.</p>'
+# texte de présentation du forum (page d'origine), puis style de l'infobulle [?] (reprend celui du site, sans Bootstrap)
+CHRON_INTRO = '<p><div class="post_line"><em>Apr&egrave;s avoir re&ccedil;u un &eacute;trange signal &eacute;manant d&#039;une r&eacute;gion d&eacute;serte de l&#039;univers, tr&egrave;s loin de votre galaxie, vous &ecirc;tes parvenu &agrave; d&eacute;coder une suite de symboles.</em></div><div class="post_line"></div><div class="post_line"><font size="4"><strong>ӾՖ⎤ใಶỘಭ┆</strong></font></div><div class="post_line"></div><div class="post_line"><em>Sans plus d&#039;information sur la signification ou la provenance de ce signal, vous pointez vos antennes vers le cadran d&#039;origine et vous pr&eacute;parez &agrave; transmettre une r&eacute;ponse, toutefois conscient que ce que vous vous appr&ecirc;tez &agrave; envoyer ne sera surement jamais lu par quiconque...</div><div class="post_line"></div><div class="post_line">Personne dans cette galaxie ne pourra intercepter cette transmission, et quand bien m&ecirc;me elle venait &agrave; atteindre sa destination, des millions de cycles se seront &eacute;coul&eacute;s pour vous et il en faudrait tout autant pour esp&eacute;rer une quelconque r&eacute;ponse.</em></div></p>'
+CHRON_STYLE = """<style>
+.help-btn { cursor: help; position: relative; }
+.help-pop { display: none; position: absolute; z-index: 10; left: 50%; transform: translateX(-50%); top: 1.6em; width: 500px; max-width: 90vw;
+  border: 1px solid #555555; border-bottom: 3px solid orange; background: black; text-align: left; font-weight: normal; }
+.help-btn:focus .help-pop { display: block; }
+.help-pop h4 { margin: 0; padding: 8px 14px; color: orange; font-size: 18px; border-bottom: 1px solid #555555; }
+.help-pop div { max-height: 400px; overflow: auto; padding: 9px 14px; }
+.help-pop p { text-align: justify; margin: 0 0 10px; }
+</style>
+"""
+CHRON_TAIL = "</div>\n\n</body>\n</html>\n"
+
+
+def etu_date(m):
+    """Date d'un message au format d'origine Gamma : JJ/MM/AAAA ETU HH:MM (année réelle - 1000)."""
+    mm = re.match(r"(\d{4})-(\d\d)-(\d\d) (\d\d:\d\d)", m.get("date") or "")
+    return f"{mm[3]}/{mm[2]}/{int(mm[1]) - 1000} ETU {mm[4]}" if mm else ""
+
+
+def load_chroniques(json_root):
+    """Sujets du forum Chroniques (scrape_chroniques.py), du plus récemment actif au plus ancien."""
+    d = os.path.join(json_root, CHRON_DIR, "topics")
+    topics = []
+    if os.path.isdir(d):
+        for fn in os.listdir(d):
+            if fn.endswith(".json"):
+                with open(os.path.join(d, fn), encoding="utf-8") as fh:
+                    t = json.load(fh)
+                if any(t.get("messages", {}).values()):
+                    topics.append(t)
+
+    def last(t):
+        return max((m.get("date") or "" for ms in t["messages"].values() for m in ms), default="")
+    return sorted(topics, key=lambda t: (last(t), t["topic"]), reverse=True)
+
+
+def chron_pages(t):
+    return sorted(int(p) for p in t["messages"])
+
+
+def chron_url(t, page=1):
+    return f"/archives/{CHRON_DIR}/topics/{t['topic']}/page{page}"
+
+
+def full_name(m):
+    return (m.get("grade", "") + " " + m["auteur"]).strip()
+
+
+def render_chron_post(m):
+    e = html.escape
+    left = e(full_name(m))
+    if m.get("compteur") is not None:
+        left += f"<br>{e(m.get('compteur_label', 'Prestige de chroniqueur'))}&nbsp;: {m['compteur']}"
+    if m.get("avatar"):
+        style = f' style="{e(m["avatar_style"])}"' if m.get("avatar_style") else ""
+        left += f'<br /><br /><img src="/{e(m["avatar"].split("/", 1)[1])}"{style} alt="Avatar" />'
+    left += f"<br />{etu_date(m)}"
+    if m.get("soutien"):
+        left += '<div align="center">' + "&nbsp;".join([SUPPORT] * m["soutien"]) + "</div>"
+    head = "Message édité - " if m.get("edite") else ""
+    if m.get("score") is not None:
+        head += f"Score&nbsp;: {m['score']}"
+        if m.get("id") is not None and m.get("votes"):
+            votes = "<br />".join(f"{e(l)} : {n}" for l, n in m["votes"])
+            head += (f""" <a href="javascript:toggle_bloc('cal{m['id']}')">Détails</a><div id="cal{m['id']}" class="vote">"""
+                     f'<table align="center"><tr><td class="vote2">{votes}</td></tr></table></div>')
+    body = m.get("html")
+    if body is None:  # texte seul
+        body = "".join(f'<div class="post_line">{e(l)}</div>' for l in m.get("texte", "").split("\n"))
+    return f'<tr><td class="post_left">{left}</td><td class="post_right"><div class="posthead">{head}</div>{body}</td></tr>'
+
+
+def render_chron_pagination(t, page):
+    pages = chron_pages(t)
+    if len(pages) < 2:
+        return ""
+    return "<p>Pages&nbsp;: " + " ".join(str(p) if p == page else f'<a href="{chron_url(t, p)}">{p}</a>' for p in pages) + "</p>"
+
+
+def render_chron_poll(t):
+    s = t.get("sondage")
+    if not s:
+        return ""
+    top = max([o["votes"] for o in s["options"]] + [1])
+    rows = "".join(f'<tr><td>{html.escape(o["texte"])}</td><td>{o["votes"]}</td><td><div style="height: 9px; width: {round(100 * o["votes"] / top)}px; background-color:#81F0FF"></div></td></tr>'
+                   for o in s["options"])
+    total = s.get("total", sum(o["votes"] for o in s["options"]))
+    fin = f" Ce vote a pris fin le&nbsp;: {html.escape(etu_date({'date': s['fin']}) or s['fin'])}" if s.get("fin") else ""
+    return (f'<div class="poll"><h2>{html.escape(s["question"])}</h2><table class="listing"><tbody>{rows}</tbody></table>'
+            f"Total&nbsp;: {total} vote(s){fin}</div>")
+
+
+def render_chroniques(topics):
+    """-> {chemin relatif à raw: HTML} : la liste des sujets et une page par page de sujet."""
+    out, rows, e = {}, [], html.escape
+    for t in topics:
+        ms = [m for p in chron_pages(t) for m in t["messages"][str(p)]]
+        lastm = max(ms, key=lambda m: m.get("date") or "")
+        rows.append(
+            f'<tr><td class="wrap_allowed"><a href="{chron_url(t)}">{e(t["titre"])}</a></td>'
+            f'<td class="title">{e(full_name(ms[0]))}</td><td class="title">{len(ms) - 1}</td>'
+            f'<td class="title">{etu_date(lastm)}<br />{e(full_name(lastm))}</td></tr>')
+        for page in chron_pages(t):
+            out[f"{GAMMA}{chron_url(t, page)}.html"] = (
+                CHRON_HEAD % {"d": CHRON_DIR, "crumb": f' &gt; <a href="{chron_url(t)}">{e(t["titre"])}</a>'}
+                + f'<h2>{e(t["titre"])}</h2>' + (render_chron_poll(t) if page == 1 else "")
+                + render_chron_pagination(t, page)
+                + '<table class="viewtopic">' + "".join(render_chron_post(m) for m in t["messages"][str(page)]) + "</table>"
+                + render_chron_pagination(t, page) + CHRON_TAIL)
+    out[CHRON_LIST] = (CHRON_HEAD % {"d": CHRON_DIR, "crumb": ""} + "<h2>Chroniques</h2>" + CHRON_STYLE
+                       + f'<a class="help-btn" tabindex="0"><b>[?]</b><span class="help-pop"><h4>{CHRON_HELP_TITLE}</h4><div>{CHRON_HELP}</div></span></a>'
+                       + CHRON_INTRO + "<br>"
+                       + '<table class="listing"><tr><th>Sujet</th><th>Auteur</th><th>Réponses</th><th>Dernier message</th></tr>'
+                       + "".join(rows) + "</table>" + CHRON_TAIL)
+    return out
+
+
+def chron_table(n_topics):
+    """Premier tableau de la page des archives : accès au forum Chroniques."""
+    return ('<table align="center" class="listing"><tbody><tr><th>Hors galaxie</th></tr><tr><td class="title wrap_allowed">'
+            f'<a href="/archives/{CHRON_DIR}">Chroniques · {n_topics} sujet(s)</a>'
+            "</td></tr></tbody></table>\n")
 
 
 # --------------------------------------------------------------------------
@@ -206,6 +396,28 @@ def galaxy_order(label):
 AUTHOR_SHARD = 100
 
 
+def load_descriptions(json_root):
+    """Descriptions publiques (scrape_descriptions.py) : {norm(nom): {"o": galaxie d'origine, "s": [[titre, html], ...]}}."""
+    path = os.path.join(json_root, "descriptions.json")
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8") as fh:
+        return {norm(k): v for k, v in json.load(fh).items()}
+
+
+def description_for(desc, name, gals):
+    """Sections de la description d'un commandant, si elle date d'une galaxie où ce nom a joué (le nom a pu être
+    repris par un autre joueur plus tard) ; liste vide si le joueur n'a rien renseigné (textes par défaut ignorés)."""
+    d = desc.get(norm(name))
+    # champs remplis pour rien (« . », « - ») écartés, comme les textes par défaut
+    sections = [sec for sec in (d or {"s": []})["s"] if re.search(r"\w", re.sub(r"<[^>]*>", "", sec[1])) or "<img" in sec[1] or len(re.sub(r"<[^>]*>", "", sec[1]).strip()) > 3]
+    if not sections:
+        return []
+    if d["o"] is not None and not any(re.match(rf"Gamma 2 · Galaxie {d['o']}(?: ·|$)", g) for g in gals):
+        return []
+    return sections
+
+
 def build_search(json_root, files, out):
     groups, gidx, docs, dkeys, gkeys = [], {}, [], [], []
     fields = {"t": {}, "c": {}, "a": {}}  # titre, contenu, auteurs (commandants et coalitions)
@@ -213,8 +425,8 @@ def build_search(json_root, files, out):
     stats = {}  # galaxie -> sujets, posts, mots, commandants (hors floodeur en Gamma 2 · Galaxie 5)
     n_json = 0
     for root, _, fns in os.walk(json_root):
-        if os.path.basename(root) != "topics":
-            continue
+        if os.path.basename(root) != "topics" or os.path.relpath(root, json_root).split(os.sep)[0] == CHRON_DIR:
+            continue  # les Chroniques (hors galaxie) sont exclues des statistiques et de la recherche
         for fn in sorted(fns, key=lambda s: (len(s), s)):
             with open(os.path.join(root, fn), encoding="utf-8") as fh:
                 t = json.load(fh)
@@ -324,25 +536,55 @@ def build_search(json_root, files, out):
     with open(os.path.join(out, "stats.json"), "w", encoding="utf-8") as fh:
         json.dump(rows, fh, ensure_ascii=False, separators=(",", ":"))
 
+    # participations aux Chroniques : ajoutées aux fiches, sans effet sur les totaux des galaxies
+    for t in load_chroniques(json_root):
+        pages = chron_pages(t)
+        for page in pages:
+            for i, m in enumerate(t["messages"][str(page)]):
+                name = m["auteur"].strip()
+                A = authors.setdefault(norm(name), {"n": name, "m": 0, "s": 0, "p": {}, "q": {},
+                                                           "av": "", "rd": None, "gal": {}, "top": {}})
+                if m.get("avatar") and not A["av"]:
+                    A["av"] = m["avatar"]
+                C = A.setdefault("ch", {}).setdefault(t["topic"], {"t": t["titre"], "n": 0, "pages": set(), "first": None, "last": None,
+                                                                     "cr": int(page == pages[0] and i == 0)})
+                C["n"] += 1
+                C["pages"].add(page)
+                iso = m.get("date") or ""
+                if C["first"] is None or iso < C["first"][0]:
+                    C["first"] = (iso, disp_date(m))
+                if C["last"] is None or iso >= C["last"][0]:
+                    C["last"] = (iso, disp_date(m))
+
     # fiches commandants / coalitions
     adir = os.path.join(out, "auteurs")
     os.makedirs(adir, exist_ok=True)
     order = sorted(authors.values(), key=lambda a: norm(a["n"]))
-    listing, shard = [], {}
+    desc = load_descriptions(json_root)
+    listing, shard, dshard = [], {}, {}
     for i, A in enumerate(order):
         gals = sorted(A["gal"], key=galaxy_order, reverse=True)
         gi = {g: j for j, g in enumerate(gals)}
-        listing.append([A["n"], A["m"], len(gals)])
+        chron = sorted(A.get("ch", {}).items(), key=lambda kv: (kv[1]["last"][0], kv[0]), reverse=True)
+        listing.append([A["n"], A["m"], len(gals)] + ([sum(c["n"] for _, c in chron)] if chron else []))
         top = sorted(A["top"].values(), key=lambda T: (galaxy_order(T["gal"]), T["id"]), reverse=True)
+        sections = description_for(desc, A["n"], gals)
+        if sections:
+            dshard.setdefault(i // AUTHOR_SHARD, {})[str(i)] = sections
         shard.setdefault(i // AUTHOR_SHARD, {})[str(i)] = {
             "n": A["n"], "m": A["m"], "s": A["s"], "p": A["p"], "q": A["q"], "av": A["av"], "rd": A["rd"],
             "gal": [[g, A["gal"][g]["m"], len(A["gal"][g]["tp"]), A["gal"][g]["first"][1], A["gal"][g]["last"][1]] for g in gals],
             "top": [[T["docs"], T["n"], T["first"], T["last"], T["cr"], gi[T["gal"]]] for T in top],
+            **({"d": 1} if sections else {}),
+            **({"ch": [[tid, c["t"], c["n"], c["first"][1], c["last"][1], c["cr"], sorted(c["pages"])] for tid, c in chron]} if chron else {}),
         }
     with open(os.path.join(adir, "liste.json"), "w", encoding="utf-8") as fh:
         json.dump({"shard": AUTHOR_SHARD, "a": listing}, fh, ensure_ascii=False, separators=(",", ":"))
     for k, v in shard.items():
         with open(os.path.join(adir, f"{k}.json"), "w", encoding="utf-8") as fh:
+            json.dump(v, fh, ensure_ascii=False, separators=(",", ":"))
+    for k, v in dshard.items():
+        with open(os.path.join(adir, f"d{k}.json"), "w", encoding="utf-8") as fh:
             json.dump(v, fh, ensure_ascii=False, separators=(",", ":"))
     print(f"recherche : {n_json} topics JSON, {n} pages indexées, {nfiles} fichiers d'index, {len(order)} auteurs")
 
@@ -396,6 +638,11 @@ def main():
                 KNOWN.add(os.path.relpath(os.path.join(root, fn), base).replace(os.sep, "/"))
     for k in [k for k in KNOWN if k.startswith(BETA) and k.endswith("/forums_galactiques.html")]:
         KNOWN.discard(k)
+    chron_pages_html = render_chroniques(load_chroniques(a.json))
+    if chron_pages_html:
+        global CHRON_TABLE
+        CHRON_TABLE = chron_table(len(load_chroniques(a.json)))
+        KNOWN.update(chron_pages_html)
     files, n_html, n_other = {}, 0, 0
     for base in [a.raw] + ([a.overlay] if a.overlay else []):
         for root, _, fns in os.walk(base):
@@ -424,6 +671,12 @@ def main():
                     n_other += 1
                 with open(dst, "wb") as fh:
                     fh.write(body)
+    for page_rel, page in chron_pages_html.items():
+        dst = os.path.join(a.out, page_rel)
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        with open(dst, "wb") as fh:
+            fh.write(transform_html(page.encode("utf-8"), page_rel))
+        n_html += 1
     open(os.path.join(a.out, ".nojekyll"), "w").close()
     print(f"{n_html} pages HTML, {n_other} autres fichiers")
     build_search(a.json, files, a.out)

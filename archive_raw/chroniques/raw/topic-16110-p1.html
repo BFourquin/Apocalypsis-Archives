@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16110 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Souvenirs de duel</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Souvenirs de duel</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Mirox">Cdt. Mirox</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/11374.jpg" style="width:82px;height:128px" alt="Avatar" /><br />29/11/1021 ETU 06:30<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal290475')">Détails</a> <a href="javascript:warnpost(290475)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal290475" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=290475',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong><font color="#c3ffff"><font size="3"><u>Souvenir num&eacute;ro 1</u></font></font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font color="#ff0000">|| ACTIVATION DU PROTOCOLE DE DUEL ||</font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font color="#ff0000">ACTIVATION DE L&#039;ARMURE</font></strong></div></div><div class="post_line"><div align="center"><strong><font color="#ff0000">ACTIVATION DE L&#039;ARMEMENT</font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font color="#ff0000">DERIVATION DE LA PUISSANCE EM RESIDUELLE DU TELEPORTEUR&nbsp;VERS LES BOUCLIERS</font></strong></div></div><div class="post_line"><div align="center"><strong><font color="#ff0000">DERIVATION DE LA PUISSANCE EM DES COMMUNICATEURS VERS LES BOUCLIERS</font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font color="#ff0000">TEMPERATURE DE L&#039;ARMURE&nbsp;: SURCHAUFFE</font></strong></div></div><div class="post_line"><div align="center"><font color="#ff0000"><strong>▶&nbsp;SURCANDAN&Ccedil;AGE DES REFROIDISSEURS</strong></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff0000"><strong>ATTRIBUTION DE LA PUISSANCE EM DES BATTERIES A L&#039;ARMEMENT</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="left"><em><font color="#bbbbbb">Le souvenir est clair, mais en dit peu, la seule image qu&#039;on peut en tirer est celle de celui dont provient le souvenir&nbsp;: <a href="https://i.pinimg.com/564x/7f/bc/7c/7fbc7c13f4ebac025d045b8da3322411.jpg" target="_blank" rel="nofollow"><font color="#bbbbbb">Image de Mirox</font></a></font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#c3ffff"><strong>&lt;&lt;J&#039;&eacute;tais &agrave; bord du croiseur amiral ennemi, seul. L&#039;alarme r&eacute;sonnait.&nbsp;Le vaisseau &eacute;tait en piteux &eacute;tat :&nbsp;la coque &eacute;tait perc&eacute;e sur plusieurs compartiments, le&nbsp;bouclier HS, pas un tiers des canons ioniques ne pouvait encore faire feu&nbsp;et de l&#039;&eacute;quipage, il ne restait qu&#039;une poign&eacute;e d&#039;hommes en vie. Aucun&nbsp;ne pouvait&nbsp;savoir que l&#039;&eacute;tat de leur flotte &eacute;tait le dernier de leur probl&egrave;me.&nbsp;La t&eacute;l&eacute;portation m&#039;avait directement guid&eacute; au&nbsp;le&nbsp;poste&nbsp;de commandement ; face au Commandant,&nbsp;les&nbsp;derniers gardes&nbsp;encore debout pointaient&nbsp;leur pistolet vers moi et des &eacute;clairs de lumi&egrave;re en jaillissaient sans parvenir &agrave;&nbsp;m&#039;atteindre. Il ne devait rien rester d&#039;eux apr&egrave;s mon passage. Je fis ce que j&#039;avais &agrave; faire.&gt;&gt;</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffffff">Telle est la voie vers Zira.</font></strong></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Mirox">Cdt. Mirox</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/11374.jpg" style="width:82px;height:128px" alt="Avatar" /><br />02/12/1021 ETU 04:29<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal290648')">Détails</a> <a href="javascript:warnpost(290648)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal290648" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=290648',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><u><font color="#c3ffff"><font size="3"><strong>Souvenir num&eacute;ro 2</strong></font></font></u></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="justify">De son c&ocirc;t&eacute;, Mirox avait rejoint son transporteur, les moteurs &eacute;taient d&eacute;j&agrave; chauds et l&#039;&eacute;quipage &agrave; son poste. La flottille d&eacute;colla dans la minute, non sans bruit, mais&nbsp;l&#039;agitation qu&#039;avait produit le duel servait de parfaite couverture,&nbsp;pas m&ecirc;me les autorit&eacute;s plan&eacute;taires ne tent&egrave;rent de l&#039;intercepter.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le croiseur qui l&#039;attendait en orbite &eacute;tait &eacute;quip&eacute; de la derni&egrave;re technologie de d&eacute;placement dans le vide stellaire. Il avait &eacute;t&eacute; adapt&eacute; pour qu&#039;une centaine d&#039;humano&iuml;des&nbsp;puissent vivre en auto-suffisance pendant des ann&eacute;es. Pour des &ecirc;tres humains un voyage extragalactique n&#039;&eacute;tait cependant pas encore envisageable. Trop long, trop co&ucirc;teux,&nbsp;et pour trouver quoi au bout du chemin ? Une horde de brigands et des plan&egrave;tes en d&eacute;clin ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Mais pour un &ecirc;tre comme lui, un monstre&nbsp;dont personne ne connaissait les r&eacute;els objectifs et capacit&eacute;s. Il se pourrait que... Oui. Il se pourrait que Mirox soit parti&nbsp;&agrave; jamais vers une autre galaxie. L&agrave; o&ugrave;&nbsp;il ne pourra&nbsp;causer plus aucune mort ni aucune souffrance aux humbles citoyens de Souvenir, &agrave; un endroit suffisamment &eacute;loign&eacute; pour qu&#039;il&nbsp;soit impossible &agrave; quiconque de suffisamment fou pour le chercher&nbsp;de jamais le retrouver.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le navire est maintenant parti&nbsp;vers l&#039;infini, et tant que Mirox n&#039;aura pas obtenu ce qu&#039;il recherche, il continuera sa route entre les &eacute;toiles&nbsp;pour l&#039;&eacute;ternit&eacute;.</div></div><div class="post_line"><div align="justify"><em><font color="#bbbbbb">Mort du commandant Mirox...</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><strong><font color="#ffffff">Telle est la voie vers Zira.</font></strong></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Unforgiven">Cdt. Unforgiven</a><br>Prestige de chroniqueur&nbsp;: 2<br />12/12/1021 ETU 02:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal291090')">Détails</a> <a href="javascript:warnpost(291090)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal291090" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 2</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=291090',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><u><font size="3"><strong>Troisi&egrave;me Souvenir, hihihi...</strong></font></u></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="left">J&#039;ai bient&ocirc;t fini ! Je vais bient&ocirc;t partir les jeunes. Ne m&#039;oubliez pas les enfants. Ah ! Je vais vous raconter une histoire, un vieux souvenir. Vous avez toujours voulu savoir pourquoi j&#039;avais tant de statues &agrave; la maison.</div><div class="post_line"></div><div class="post_line">C&#039;&eacute;tait un soir d&#039;automne, je devais mourir ce soir l&agrave;. Mais Dieu refusait de me prendre au paradis. Une histoire de g&eacute;nocide...</div></div><div class="post_line"><div align="left">Vous comprendrez plus tard les enfants. Hihi...</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Donc je reprends. C&#039;&eacute;tait un soir d&#039;automne et Dieu refusait de me prendre au paradis. Vous vous dites qu&#039;il allait m&#039;envoyer en enfer comme d&#039;habitude mais en voyant le Diable je me suis mis &agrave; rire. Et le Diable... Et le Diable ! &ccedil;a lui a pas plu du tout que je me moque de son... hihi, de son... de son... de son... de son PETIT KIKI !</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Hihihihihihihi...</div></div><div class="post_line"><div align="left">Hihihihihihihihihihihihihihi...</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">&ccedil;a va, &ccedil;a va aller les enfants. Merci, merci. Hihi. Kiki, c&#039;est le surnom de son tout pitit caniche. Hihihihihihi... c&#039;est pas c&#039;lui qui a trois t&ecirc;tes les enfants. Lui c&#039;est Kiki, le tout pitit caniche &agrave; Didi ! Hihihihihihihihi !</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">...</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Alors dicoup, il l&#039;y pi vouli qui j&#039;y vienne dans&nbsp;son nifer. Et moui j&#039;me suis retrouvi au tapis. Jpouvis plus mourir et jsuis rist&eacute; chez moui.</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Pouis j&#039;mi souis dis c&#039;qui pouvi fire pour bi qu&#039;Di&nbsp;m&#039;reprinne au z&#039;paradis. Oki j&#039;mi si dis. J&#039;vy rendre hommage y tous l&#039;y gens qu&#039;jy tou&eacute;. J&#039;sivi fire qud&#039;is stitues di coup j&#039;y fi dis stitues. Ine puir chique pirsonne qu&#039;y plis li y causi d&#039;mi. Hihihi.</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Voil&agrave; comment j&#039;ai fait les enfants. Une statue pour chaque personne, soit neuf-milliards-neuf-cent-quatre-vingt-dix-neuf-millions-neuf-cent-quatre-vingt-dix-neuf-mille-neuf-cent-quatre-vingt-dix-neuf statues. Vous me direz les enfants : mais c&#039;est pas vrai il y en a pas&nbsp;neuf-milliards-neuf-cent-quatre-vingt-dix-neuf-millions-neuf-cent-quatre-vingt-dix-neuf-mille-neuf-cent-quatre-vingt-dix-neuf, il y en a&nbsp;dix-milliards ! Et je vous r&eacute;pondrez que la&nbsp;derni&egrave;re n&#039;est pas celle de quelqu&#039;un qui est parti &agrave; cause de moi, mais la derni&egrave;re c&#039;est celle de quelqu&#039;un&nbsp;qui va bient&ocirc;t partir gr&acirc;ce &agrave; moi : c&#039;est la mienne&nbsp;!</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Et voil&agrave; comment j&#039;ai d&eacute;fi&eacute; &agrave; la fois Dieu et le Diable et que je m&#039;en finis au paradis.</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Au revoir les enfants.&nbsp;Et faites pas de b&ecirc;tises si vous voulez pas vous retrouver avec le m&ecirc;me probl&egrave;me que moi !</div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16110&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16110" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16110" name="d_reply_16110" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16110');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16110'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Souvenirs de duel</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16386 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Surprise imp&eacute;riale</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Surprise imp&eacute;riale</p>
+        <div class="poll"><h2>Que va-t-il se passer?</h2><table class="listing"><tbody><tr><td>Un mariage? Je peux venir?</td><td>1</td><td><div style="height: 9px; width: 25px; background-color:#81F0FF" /></td></tr><tr class="odd"><td>Une f&ecirc;te? J&#039;esp&egrave;re qu&#039;il n&#039;y aura pas que de l&#039;eau!</td><td>4</td><td><div style="height: 9px; width: 100px; background-color:#81F0FF" /></td></tr><tr><td>Vous avez parl&eacute; d&#039;une statue?...</td><td>1</td><td><div style="height: 9px; width: 25px; background-color:#81F0FF" /></td></tr><tr class="odd"><td>Encore une connerie de riche dirigeant...</td><td>3</td><td><div style="height: 9px; width: 75px; background-color:#81F0FF" /></td></tr><tr><td>Je m&#039;en fous royalement!</td><td>1</td><td><div style="height: 9px; width: 25px; background-color:#81F0FF" /></td></tr><tr class="odd"><td>Peut &ecirc;tre la promotion d&#039;un g&eacute;n&eacute;ral</td><td>2</td><td><div style="height: 9px; width: 50px; background-color:#81F0FF" /></td></tr><tr><td>Une campagne &eacute;lectorale? Dans un Empire???</td><td>0</td><td><div style="height: 9px; width: 0px; background-color:#81F0FF" /></td></tr><tr class="odd"><td>Un dirigeant qui va encore se faire l&eacute;cher les bottes...</td><td>1</td><td><div style="height: 9px; width: 25px; background-color:#81F0FF" /></td></tr><tr><td colspan="3">Total&nbsp;: 13 vote(s)</td></tr></tbody></table>Ce vote a pris fin le&nbsp;: 10/08/1022 ETU 07:12</div>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Papa+Cawl">Cdt. Papa Cawl</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/11651.png" style="width:93px;height:128px" alt="Avatar" /><br />09/08/1022 ETU 07:12<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal294292')">Détails</a> <a href="javascript:warnpost(294292)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294292" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294292',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#005dc2">Plutus, quelle magnifique&nbsp;plan&egrave;te, &agrave; peine son nom prononc&eacute; que toute personne &eacute;tant pass&eacute;e par l&agrave; en a le sourire aux l&egrave;vres. Cette plan&egrave;te au climat temp&eacute;r&eacute; a &eacute;t&eacute; la premi&egrave;re pacifi&eacute;e par le Vieux Cawl, les habitants qui &eacute;taient sous l&#039;emprise de brigands ont tr&egrave;s chaleureusement accueillis les diplomates, en quelques temps les brigands avaient &eacute;t&eacute; bannis au profit d&#039;une civilisation florissante. La v&eacute;g&eacute;tation &eacute;tait partout, les habitants, en guise de remerciements avaient engag&eacute; la construction d&#039;une immense statue constitu&eacute;e d&#039;un m&eacute;tal issu du c&oelig;ur de Plutus, un m&eacute;tal plus que rare et dont seuls les habitants en poss&egrave;de &agrave; travers toute la galaxie, tout en connaissant les vertus de ce m&eacute;tal bleu. Petit &agrave; petit les citoyens se multipliaient, des grattes ciels sortaient de&nbsp;terre, des b&acirc;timents un peu partout sans d&eacute;truire la splendide v&eacute;g&eacute;tation. Les habitants vivaient confortablement, les riches marchands s&#039;y install&egrave;rent et les politiciens en firent de m&ecirc;me, un somptueux palais pour le Vieux Cawl avait m&ecirc;me vu le jour et c&#039;est uniquement sur cette plan&egrave;te que se trouve la r&eacute;sidence officielle de l&#039;Empereur h&eacute;ritier Cawl.</font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Chaque passant pouvait voir d&egrave;s l&#039;entr&eacute;e dans la capitale &quot;</font><font color="#ff0000">Venez le 10/09 pour une immense f&ecirc;te en l&#039;honneur du meilleur de tous les papys et pas que!</font><font color="#005dc2">&quot;</font></div><div class="post_line"><font color="#005dc2">Mais d&icirc;tes donc, de quoi pourrait-il bien&nbsp;s&#039;agir? M&ecirc;me l&#039;Empereur h&eacute;ritier ne sait pas, il sait juste que l&#039;enti&egrave;ret&eacute; de la famille imp&eacute;riale doit &ecirc;tre pr&eacute;sente, fin ceux vivants, donc......... Lui.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Papa+Cawl">Cdt. Papa Cawl</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/11651.png" style="width:93px;height:128px" alt="Avatar" /><br />11/08/1022 ETU 01:21<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal294310')">Détails</a> <a href="javascript:warnpost(294310)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294310" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294310',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#005dc2">Et voil&agrave;, nous sommes d&eacute;j&agrave; le 10/0<strong>8</strong>, une tribune a &eacute;t&eacute; install&eacute;e &agrave; c&ocirc;t&eacute; de la statue. Une tribune? Pardon, 5 tribunes ont &eacute;t&eacute; install&eacute;es, une remplie de militaires haut grad&eacute;s, 3 remplies de personnes venues voir ce qui va se passer et une autre r&eacute;serv&eacute;e &agrave; la famille imp&eacute;riale. L&#039;heure de l&#039;ap&eacute;ro se rapproche de plus en plus et le Vieux Cawl n&#039;est toujours pas l&agrave;, mais que fait-il? Apr&egrave;s quelques heures d&#039;attentes sous un soleil accablant et de nombreux verres, les spectateurs d&eacute;couvrent enfin le convoi imp&eacute;rial qui s&#039;approche, le Vieux Cawl sort sa t&ecirc;te pour saluer tout le public venu l&#039;acclamer, tous les militaires au garde-&agrave;-vous, mais que vois-je? L&#039;Empereur h&eacute;ritier n&#039;est pas seul dans son v&eacute;hicule, on aper&ccedil;oit un jeune homme, sans doute Charles mais qui sont les deux ombres f&eacute;minines qui se cachent derri&egrave;re? Tant de questions auxquelles des r&eacute;ponses devraient bient&ocirc;t se joindre.</font></div><div class="post_line"><font color="#005dc2">Enfin arriv&eacute; &agrave; sa tribune Papa Cawl descend les marches, suivi de pr&egrave;s&nbsp;par son petit fils puis la porti&egrave;re se referme aussit&ocirc;t. La &quot;famille&quot; imp&eacute;riale s&#039;installe alors confortablement dans sa tribune puis plus aucun bruit. 10, 20, 30 secondes mais toujours un immense silence. Alors l&#039;Empereur h&eacute;ritier prit la parole: &quot;</font><font color="#ff0000">Bon, on attend quoi? C&#039;est pas que mais j&#039;ai des choses &agrave; faire moi...</font><font color="#005dc2">&quot; Pourquoi un ton aussi froid? &quot;</font><font color="#ff0000">Mais non, je rigole, mon humour de vieux papy n&#039;est pas le meilleur je vous l&#039;accorde. Que les festivit&eacute;s&nbsp;commencent !!!</font><font color="#005dc2">&quot; Des chasseurs commenc&egrave;rent un magnifique d&eacute;fil&eacute; a&eacute;rien, puis quelques troupes terrestres et les meilleurs musiciens du syst&egrave;me accompagn&eacute;s d&#039;excellent chanteurs commenc&egrave;rent&nbsp;leur art. Un chant &agrave; la gloire du dirigeant qui s&#039;en sort pas trop mal pour le moment. Puis une fois tout ce spectacle termin&eacute; Papa Cawl reprit la parole &quot;</font><font color="#ff0000">C&#039;est ma tourn&eacute;e, champagne &agrave; volont&eacute; pour tout le monde</font><font color="#005dc2">&quot; Chose dite, chose faite, des dro&iuml;des par centaines arriv&egrave;rent pour satisfaire la soif des spectateurs.</font></div><div class="post_line"><font color="#005dc2">Tout se passait pour le meilleur mais toujours aucun &eacute;v&eacute;nement sp&eacute;cial ne se d&eacute;signait &agrave; l&#039;horizon. Charles se leva et commen&ccedil;a son discours: &quot;</font><font color="#17b529">Chers concitoyens, cher grand-p&egrave;re, j&#039;ai l&#039;honneur de me tenir devant vous aujourd&#039;hui pour cet heureux &eacute;v&eacute;nement! Vous vous demandez de quoi je parle, alors je vais vous expliquer cela de suite.</font> <em><font color="#005dc2">Il appuya sur un bouton au sol et la statue fut alors d&eacute;voil&eacute;e. Le r&eacute;sultat &eacute;tait resplendissant, la statue d&#039;un bleu magnifique et qui brillait de mille feux d&eacute;passait certains buildings de la capitale et ressemblait comme deux gouttes d&#039;eau au Vieux Cawl &agrave; une seule exception.</font> </em><font color="#17b529">Je tiens tout d&#039;abord &agrave; remercier la totalit&eacute; de ceux ayant particip&eacute; de loin comme de pr&egrave;s &agrave; la r&eacute;alisation de cette statue &agrave; couper le souffle. J&#039;attire aussi v&ocirc;tre attention sur la visage de cette statue. Vous voyez bien ce que vous voyez une couronne, la plus grande jamais con&ccedil;ue, en or massif, sertie de diamants de toutes les couleurs possibles. Vous reconnaissez&nbsp;peut &ecirc;tre alors que c&#039;est celle des l&eacute;gendes, celle qui a suivit notre Saint Empereur dans chacune de ses d&eacute;marches alors m&ecirc;me que selon les l&eacute;gendes il cr&eacute;ait le monde, vous avez devant vous la r&eacute;plique exacte de la Couronne de la Cr&eacute;ation &agrave; la taille d&#039;un Titan.</font> <em><font color="#005dc2">D&#039;immenses louanges s&#039;&eacute;lev&egrave;rent alors dans la foule</font><font color="#ffffff">.</font> </em><font color="#17b529">Mais nous ne nous sommes pas arr&ecirc;t&eacute;s l&agrave;, nous avons aussi la r&eacute;plique exacte de la </font><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Crowns%2C_Mus&eacute;e_du_Louvre%2C_April_2011blackened.jpg/640px-Crowns%2C_Mus&eacute;e_du_Louvre%2C_April_2011blackened.jpg" target="_blank" rel="nofollow"><font color="#ffffff">Couronne de la Cr&eacute;ation</font></a><font color="#17b529">&nbsp;&agrave; taille humaine, voil&agrave; pourquoi vous &ecirc;tes ici, pour le couronnement de notre bon Empereur h&eacute;ritier, qui devient d&eacute;sormais Empereur Supr&ecirc;me. Bien &eacute;videmment cette d&eacute;cision&nbsp;doit &ecirc;tre faite &agrave; l&#039;unanimit&eacute;, l&#039;enti&egrave;ret&eacute; du cadre militaire et politique ainsi que les plus grande fortunes de l&#039;Empire ont d&eacute;j&agrave; donn&eacute; leur accord. Que toute personne oppos&eacute;e &agrave; cette d&eacute;cision le dise maintenant ou se taise &agrave; jamais!</font><font color="#005dc2">&quot;</font> <font color="#005dc2"><em>Au bout de quelques dizaines de secondes, u</em><em>n homme dans la tribune face &agrave; la famille imp&eacute;riale se leva, tout le monde le fixait, puis il commen&ccedil;a &agrave; applaudir. Les militaires en firent de m&ecirc;me et tous les autres spectateurs suivirent. </em>Face &agrave; tant d&#039;enthousiasme et sous les applaudissements de l&#039;enti&egrave;ret&eacute; des personnes pr&eacute;sentes Charles prit la Couronne et la d&eacute;posa lentement sur la t&ecirc;te du tout r&eacute;cent Empereur Supr&ecirc;me.</font></div><div class="post_line"><font color="#005dc2">Un g&eacute;n&eacute;ral se leva et d&eacute;clara: &quot;</font><font color="#9a00b2">Soldats! Garde &agrave; vous devant v&ocirc;tre Empereur Supr&ecirc;me!</font><font color="#005dc2">&quot;</font></div><div class="post_line"><font color="#005dc2">Une larme &eacute;chappa des yeux du Vieux Cawl, lui qui n&#039;avait pas &eacute;t&eacute; &eacute;pargn&eacute; par la Faucheuse se voyait aujourd&#039;hui d&eacute;tenteur de la confiance de l&#039;enti&egrave;ret&eacute; de tous ses concitoyens.</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16386&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16386" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16386" name="d_reply_16386" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16386');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16386'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Surprise imp&eacute;riale</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

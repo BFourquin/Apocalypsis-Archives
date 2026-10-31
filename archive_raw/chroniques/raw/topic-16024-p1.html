@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16024 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Kyrielle</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Kyrielle</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior%E2%80%99back">Cdt. Denior&rsquo;back</a><br>Prestige de chroniqueur&nbsp;: 26<br /><br /><img src="/avatars/11390.jpg" style="width:128px;height:58px" alt="Avatar" /><br />05/11/1021 ETU 01:52</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal289171')">Détails</a> <a href="javascript:warnpost(289171)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289171" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289171',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffff44">&laquo; &nbsp;Je n&rsquo;ai pas chang&eacute;, je suis toujours ce jeune homme &eacute;tranger qui te chantait des romances, qui t&rsquo;inventait des dimanches, qui te faisait voyager&hellip;. &raquo;&nbsp;</div><div class="post_line"></div><div class="post_line">Denior &eacute;coutait cette niaiserie langoureuse d&rsquo;une oreille discr&egrave;te sans pour autant se d&eacute;tacher de la nostalgie qui y &eacute;tait attach&eacute;. Le souvenir multi mill&eacute;naire ne s&rsquo;&eacute;tait jamais vraiment dissip&eacute;. La Reine Jana dansant avec la pochette du disque portant le beau visage du chanteur sur sa poitrine, improvisant un slow qu&rsquo;elle n&rsquo;aurait jamais voulu danser avec son mari, le calme et ennuyeux Roi Balter. Ses premiers grands parents. Le Tr&egrave;s Haut son p&egrave;re l&rsquo;avait incarn&eacute; une premi&egrave;re fois chez les hommes. Et comme son fr&egrave;re a&icirc;n&eacute;, pour la seule fois seulement, il n&rsquo;&eacute;tait pas n&eacute; adulte mais avait connu l&rsquo;exp&eacute;rience de la naissance, de l&rsquo;enfance et de la r&eacute;v&eacute;lation. Son P&egrave;re lui avait dit qu&rsquo;ainsi il comprendrait mieux les hommes.</div><div class="post_line">A son retour, son a&icirc;n&eacute; qui avait connu toute l&rsquo;&eacute;tendue des joies et des souffrances des hommes n&rsquo;&eacute;tait pas certain que les hommes eux l&rsquo;avaient compris mais du moins il leur avait ouvert la voie vers l&rsquo;&eacute;ternit&eacute;. Enfin quand leur P&egrave;re l&rsquo;aurait d&eacute;cid&eacute; car il recommen&ccedil;ait son &oelig;uvre &agrave; chaque fois, &agrave; chaque apocalypse. Et il avait pris l&rsquo;habitude d&rsquo;y envoyer son petit dernier. Son a&icirc;n&eacute; avait sauv&eacute; les hommes, le second dirigeait ses arm&eacute;es c&eacute;lestes,&nbsp;le troisi&egrave;me, le porteur de lumi&egrave;re avait failli et devait s&rsquo;occuper des damn&eacute;s. Gabriel, le quatri&egrave;me &eacute;tait le celui qui l&rsquo;esprit et moi le petit dernier des quinze, j&rsquo;&eacute;tais le messager. Certains m&rsquo;assimilaient &agrave; l&rsquo;Esprit Saint mais je n&rsquo;&eacute;tais qu&rsquo;un des quinze. Le troisi&egrave;me, l&rsquo;exil&eacute; m&rsquo;aimait bien et j&rsquo;aimais lui rendre visite. J&rsquo;y croisais d&rsquo;anciennes connaissances. Je le regrettais parfois car s&rsquo;ils &eacute;taient l&agrave;, c&rsquo;est parce que j&rsquo;avais failli&hellip;&nbsp;</div><div class="post_line"></div><div class="post_line">Quand cela cessera t&rsquo;il P&egrave;re? Oui je sais, nous sommes perfection et nous devons les mener &agrave; la perfection! Mais alors pourquoi le Libre arbitre ? Et parfaits, qu&rsquo;adviendra t&rsquo;il de nous? &raquo;</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior%E2%80%99back">Cdt. Denior&rsquo;back</a><br>Prestige de chroniqueur&nbsp;: 26<br /><br /><img src="/avatars/11390.jpg" style="width:128px;height:58px" alt="Avatar" /><br />06/11/1021 ETU 20:02</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal289439')">Détails</a> <a href="javascript:warnpost(289439)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289439" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289439',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#9a00b2">&laquo; Ne te pose pas cette question Uriel, l&agrave; n&rsquo;est pas ta destin&eacute;e &raquo;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Encore une fois, il cl&ocirc;turait la conversation sans que je puisse r&eacute;agir. Mais que faire ou dire? Il est le Tout, hier, aujourd&rsquo;hui et demain. Ne m&rsquo;en d&eacute;plaise a moi&nbsp;&nbsp;ou au troisi&egrave;me. Mais je n&rsquo;ai pas son ind&eacute;pendance d&rsquo;esprit. Mais je me plais &agrave; ob&eacute;ir, &agrave; lui ob&eacute;ir. Il m&rsquo;a fait et peut le d&eacute;faire. Je ne prendrais pas ce risque, je connais mon d&eacute;faut, chacun des quinze en a un, au moins un. Le mien, principal, c&rsquo;est mon amour propre. Je ne peux aimer au del&agrave; de moi, plus clairement qu&rsquo;au m&ecirc;me niveau de celui dont je m&rsquo;aime. Lui aime au del&agrave; de lui, pas moi. Et je ne m&rsquo;aime pas autant qu&rsquo;il aime. Pourtant, il sait combien je m&rsquo;aime.&nbsp;</font></div><div class="post_line"><font color="#ffff44">Il me dit souvent que je dois aimer les hommes. Mais je les aime. Pas autant que moi, mais je les aime et m&ecirc;me sans doute plus que l&rsquo;amour qu&rsquo;ils se partagent. &Ccedil;a devrait suffire tout de m&ecirc;me non? S&rsquo;ils le&nbsp;faisaient, il n&rsquo;y aurait pas toutes ces guerres, toute cette souffrance.</font></div><div class="post_line"><font color="#ffff44">Mais non, ils ont leur libre arbitre, il faut qu&rsquo;ils d&eacute;cident par eux m&ecirc;mes, qu&rsquo;ils puissent se tromper pour apprendre. Mais ils n&rsquo;apprennent rien et n&rsquo;apprendront jamais rien. Combien d&rsquo;apocalypses ont ils d&eacute;j&agrave; subi sans que la cr&eacute;ation aboutisse &agrave; la perfection du Il ?</font></div><div class="post_line"><font color="#ffff44">Et moi &agrave; chaque fois, je dois pr&ecirc;cher dans le d&eacute;sert, en les aimant et les supportant. Mais j&rsquo;en ai parfois assez! Il para&icirc;t que cela se voit, je m&rsquo;emporte plus souvent et facilement qu&rsquo;avant. La part humaine l&rsquo;emporte un peu plus peut &ecirc;tre. Pourtant mes pouvoirs n&rsquo;ont jamais &eacute;t&eacute; aussi forts et je pourrais d&eacute;truire et recommencer ce qui est d&eacute;j&agrave; entrepris sans effort. Pourquoi?</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior%E2%80%99back">Cdt. Denior&rsquo;back</a><br>Prestige de chroniqueur&nbsp;: 26<br /><br /><img src="/avatars/11390.jpg" style="width:128px;height:58px" alt="Avatar" /><br />08/11/1021 ETU 02:12</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal289540')">Détails</a> <a href="javascript:warnpost(289540)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289540" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289540',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff30dc">&laquo; Ils sont venus, ils sont tous l&agrave;, d&egrave;s qu&rsquo;ils ont entendu ce cri, elle va mourrir la maman&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ff30dc">&laquo; S&rsquo;il faut mourir un jour, je veux que tu sois l&agrave;&hellip;&nbsp;</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9">&laquo; Uriel, mon fils, toi mon dernier, cesses de te complaire dans ta tristesse. Ton r&ocirc;le n&rsquo;est pas celui ci&hellip;. &raquo;</font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9">&laquo; &nbsp;</font><font color="#ffff44">ce n&rsquo;est pas de la tristesse, pas encore en tout cas. De la nostalgie, peut &ecirc;tre. Sans doute m&ecirc;me. Non, je ne suis pas triste car je sais que je la reverrai. Un jour, tu le d&eacute;cideras. Et avec elle. Ma cr&eacute;ation, ou plut&ocirc;t nos deux adorables cr&eacute;ations.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9">Oui. Et tu le sais. Le temps compte pour toi, pas pour eux. Ils sont en b&eacute;atitude. Ne crains rien pour eux. Ne crains rien pour toi. Un jour, tu les retrouvera. Tu trouveras le passage&hellip;.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Si Lucifer le veut&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#b10dc9">Bien tent&eacute;, Uriel, bien jou&eacute; mais tu ne le sauras pas &raquo;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior%E2%80%99back">Cdt. Denior&rsquo;back</a><br>Prestige de chroniqueur&nbsp;: 26<br /><br /><img src="/avatars/11390.jpg" style="width:128px;height:58px" alt="Avatar" /><br />04/12/1021 ETU 23:31</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal290849')">Détails</a> <a href="javascript:warnpost(290849)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal290849" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=290849',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font size="5"><font color="#ff4136">Mon fils, qu&rsquo;as tu?&nbsp;</font><font color="#ff4136">Pourquoi te d&eacute;sesp&egrave;res tu?&nbsp;</font></div><div class="post_line"><font color="#fffa1e">Ils ne comprennent rien. Ils en restent sur leurs petits &eacute;go&iuml;smes. Je viens de leur apporter un espoir et ils soufflent dessus pour l&rsquo;&eacute;teindre. Je n&rsquo;en peux plus.</font></div><div class="post_line"><font color="#ffc0cb">Tu n&rsquo;as pas le droit de d&eacute;sesp&eacute;rer. Tu es Uriel le messager. Luc ton fr&egrave;re a dup&eacute; une fois de plus Alan le cinqui&egrave;me. Tu as r&eacute;gl&eacute; le souci. C&rsquo;&eacute;tait ta mission, le reste, ils choisiront. Mon temps n&rsquo;est pas le leur. Si je dois recommencer une fois de plus, je le ferais !</font></div><div class="post_line"><font color="#ffa500">Et je devrais attendre encore pour la revoir&hellip;..</font></font></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16024&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16024" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16024" name="d_reply_16024" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16024');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16024'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Kyrielle</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

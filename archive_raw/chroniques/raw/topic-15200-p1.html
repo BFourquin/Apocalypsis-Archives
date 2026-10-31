@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15200 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Zbra</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Zbra</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />09/09/1020 ETU 04:07</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal278188')">Détails</a> <a href="javascript:warnpost(278188)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278188" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278188',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em><u>Plan&egrave;te Zbra, Secteur 1 syst&egrave;me 5 PC 3&nbsp;</u></em></div><div class="post_line">&nbsp;</div><div class="post_line">Ils arriv&egrave;rent dans l&#039;espace prot&eacute;g&eacute;, la plan&egrave;te se r&eacute;v&eacute;la aux yeux des invit&eacute;s. C&#039;&eacute;tait un immense d&eacute;sert, parsem&eacute; ici et la part d&#039;immense canyon profond de plusieurs centaines de m&egrave;tres. La couleur principale de ces d&eacute;sert est l&rsquo;orange. De nombreuses zones jaunes voir blanches traversent ici et la cette orange monotone. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aux p&ocirc;les se trouve des champs de patate et de riz ainsi que quelque immense puits. Sur cette plan&egrave;te l&#039;eau est souterraine. Lorsque la phase atterrissage du vaisseau dans le spatioport du p&ocirc;le sud, une ville se dessina, elle &eacute;tait directement creus&eacute;e dans la pierre d&#039;un canyon &agrave; la fronti&egrave;re du p&ocirc;le. La navette se posa sur le sol de gr&egrave;s blanch&acirc;tre lisse. Autour de la porte se trouve une haie d&rsquo;honneur compos&eacute; de 40 soldats. Ils &eacute;taient habill&eacute;s de ch&egrave;che jaune p&acirc;les et en uniforme couleur sable. Sur leur buste leur nom &eacute;tait marqu&eacute; deux fois : une en Alphabet commun et l&#039;autre en Alphabet local. &Agrave; c&ocirc;t&eacute; de leur nom se trouve leur grade illustr&eacute; avec des traits droits. Leur nom n&rsquo;&eacute;tait compos&eacute; que de quatre lettres de l&#039;alphabet commun, cela &eacute;tait une norme chez les Svrayen. Il y avait autant d&#039;hommes que de femme. </div><div class="post_line">Il n&#039;y avait que quatre soldats qui portaient une arme les autres &eacute;taient &agrave; mains nues. Ils savaient qu&#039;il &eacute;tait tout aussi dangereux a main qu&#039;avec un fusil. La carabine qu&#039;ils portaient est un fusil ionique, une arme anti mat&eacute;rielle.&nbsp;</div><div class="post_line">&nbsp;</div><div class="post_line">Un cynos, trapu sorti du vaisseau. Il avait une armure d&rsquo;un noir tirant sur le violet, elle &eacute;tait faite de l&rsquo;obsidienne le plus pur et elle luisant sous le p&acirc;le soleil bleue de la plan&egrave;te. Il se d&eacute;cala sur la droite et laissa laissait passer deux autres personne. Un immense g&eacute;ant qui d&eacute;passant de presque 50 centim&egrave;tre la personne a son c&ocirc;t&eacute;. D&rsquo;une armure d&rsquo;or &eacute;tincelante. Ce Cynos, qui habitait cette armure &eacute;tait une personne importante dans leur soci&eacute;t&eacute;, c&rsquo;&eacute;tait Sokhar, l&rsquo;&Eacute;narque des Cynos, &agrave; c&ocirc;t&eacute; de lui se trouve une Cynos, un armure d&rsquo;un argent pur, &eacute;tincelant.&nbsp;C&rsquo;&eacute;tait Selkis.</div></div><div class="post_line"><div align="justify">Tout le long de la pause d&#039;atterrissage Sokhar avait observ&eacute; avec int&eacute;r&ecirc;t les paysages qui s&rsquo;&eacute;taient offert &agrave; leur vue. Il aimait les mondes d&eacute;sertiques,&nbsp; sentir la chaleur du soleil tanner les peaux et &eacute;prouver les corps. Ces mondes hostiles donnaient souvent naissance &agrave; des peuples valeureux et ici cela semblait &ecirc;tre le cas au vu de l&#039;accueil qui leur &eacute;tait fait. Selkis ne cessait de s&rsquo;&eacute;merveiller devant ce qui l&rsquo;entourait.&nbsp;</div><div class="post_line"></div><div class="post_line">Au bout de la haie se trouve un v&eacute;hicule bleu cyan port&eacute; sur chenille. Il avait une longueur d&rsquo;environ huit m&egrave;tre et une hauteur de trois m&egrave;tre, la porte lat&eacute;ral ouverte et la commandante Lali devant. Elle &eacute;tait habill&eacute;e de l&#039;uniforme de soldat local. Sur son torse il y avait son nom en Alphabet commun, Lali et Alphabet local : ల . Son grade de Commande &agrave; c&ocirc;t&eacute; : &quot; W&quot;.&nbsp;</div><div class="post_line"></div><div class="post_line">C&rsquo;&eacute;tait le point d&#039;orgue de leur arriv&eacute;e.&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Eh bien,</font> lan&ccedil;a t-elle, <font color="#E8C500">on peut dire qu&#039;ils savent recevoir ici.</font></div><div class="post_line">&nbsp;</div><div class="post_line">Lali s&#039;avan&ccedil;a, souriante, vers le groupe de Cynos.&nbsp;</div><div class="post_line"><font color="#FFFF00">Bienvenue sur Zbra, mes amis, Y avez fait bon voyage ? </font>Elle eut fait l&#039;effort d&#039;apprendre la langue commune ainsi que la langue local pour pouvoir &ecirc;tre moins d&eacute;pendante de Bill son traducteur. Sokhar pris la parole en premier.&nbsp;</div><div class="post_line"><font color="#FFA500">Merci bien Commandante Lali, je vous pr&eacute;sente ma s&oelig;ur Selkis.&nbsp;</font></div><div class="post_line"></div><div class="post_line">Il l&#039;a d&eacute;signa d&#039;un geste de la main. Il entendit alors un l&eacute;ger d&eacute;clic. Sa s&oelig;ur venait de r&eacute;tracter le casque attenant &agrave; son armure, qui disparut dans un l&eacute;ger bruit m&eacute;tallique dans la collerette de cette derni&egrave;re. Selkis secoua alors la t&ecirc;te et ses longs cheveux d&#039;un blond presque blanc s&#039;&eacute;panouirent avec &eacute;l&eacute;gance. Sa peau blanche semblait luire au soleil, qui faisait &eacute;galement ressortir la couleur de ses yeux d&#039;un bleu arctique.</div><div class="post_line"></div><div class="post_line">Sokhar poussa un l&eacute;ger soupir et d&eacute;signa ensuite le dernier Cynos qui les accompagneraient.&nbsp;</div><div class="post_line"><font color="#FFA500">Voici le commandant Telokh, un fr&egrave;re d&#039;arme et &eacute;galement diplomate repr&eacute;sentant de notre gouvernement, mon second si l&#039;on devait donner une qualification.</font></div><div class="post_line">&nbsp;</div><div class="post_line">Lali fit une embrassade &agrave; Sokhar donna une poign&eacute;e de main respectueuse a Selkis en complimentant son visage et enfin salua d&rsquo;un salut militaire Telokh.&nbsp; </div><div class="post_line"><font color="#FFFF00">Y vous propose qu&#039;Y allons au disert Odari pour nY d&eacute;monstration. Montons dans notre courcou pour y aller. Nous en avons pour di heure di voyage. </font>Elle monta dans le v&eacute;hicule suivi du groupe, Puis s&#039;adressant au chauffeur <font color="#FFFF00">మేము ప్రారంభించవచ్చు, Y li ai dis d&#039;aller dans le d&eacute;sert.&nbsp;</font></div><div class="post_line">Nous rentrouvrons Bill sur place.&nbsp;</div><div class="post_line">&nbsp;</div><div class="post_line"><font color="#17B529">సరే మేము ప్రారంభిస్తాము </font>. Lui r&eacute;pondit le chauffeur.&nbsp;</div><div class="post_line">&nbsp;</div><div class="post_line">Le courcou trembla et d&eacute;marra.&nbsp;</div><div class="post_line">&nbsp;</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></div><div class="post_line"><font size="1">La&nbsp; partie suivante arrive bient&ocirc;t</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />05/10/1020 ETU 05:35</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal278511')">Détails</a> <a href="javascript:warnpost(278511)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278511" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278511',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">L&#039;int&eacute;rieur de la cabine &eacute;tait grand, les banquettes sont dispos&eacute;s de chaque c&ocirc;t&eacute; de l&rsquo;habitacle et sont en tissus ignifug&eacute;. L&#039;int&eacute;rieur est spacieux, et cinq personnes peuvent s&rsquo;installer, et des fen&ecirc;tre sont installer sur les parois de l&rsquo;habitacle. </div><div class="post_line"><div align="justify">Le v&eacute;hicule s&rsquo;enfonce dans l&#039;immense failles par une rampe. Sur la paroi oppos&eacute;e des habitation se dessinait dans la roche. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les trois Cynos n&#039;en perdaient pas une miette. Leur monde natal &eacute;tait tellement diff&eacute;rent du point de vue de la civilisation que leur curiosit&eacute; &eacute;tait &agrave; son maximum. </div></div><div class="post_line"><div align="justify"><font color="#FFFF00">les Ulounyen sont di troglodytes car la surface Y inexploitable dans cette r&eacute;gion di la plan&egrave;te</font>. Lali regarda le groupe perplexe.<font color="#FFFF00"> Laissez-moi vous Y expliquer le fonctionnement de la pl&ocirc;n&egrave;te. La pl&ocirc;n&egrave;te Zbra est le si&egrave;ge militaire et culturel de la civilisation svrayenne. Je suis origniaire de la commounit&eacute; Svra qui r&egrave;gne sur le grand Nord de la plan&egrave;te. Svra qui veut dire Nord. notre communaut&eacute; englobe tout le pole nord. Y une r&eacute;gion temp&eacute;r&eacute; o&ugrave; les temp&eacute;rature moyenne avoisine les 27&deg;C. L&rsquo;arme martial du Zbra Y provient des tribus de l&rsquo;&eacute;quateur de la plan&egrave;te dans laquelle la temp&eacute;rature atteint presque 50&deg;. cette temp&eacute;rature coupl&eacute; a un taux d&rsquo;humidit&eacute; tr&egrave;s faible permet d&rsquo;Y avoir un contr&ocirc;le total et absolu sur tous les membres de son corps. </font></div></div><div class="post_line"><div align="justify">A travers la fen&ecirc;tre, la vie de la ville troglodytes s&rsquo;anime. dans de nombreux b&acirc;timents, qui sont creus&eacute;s &agrave; m&ecirc;me la roche. La rue n&rsquo;&eacute;tait &eacute;clair&eacute; qu&rsquo;avec les enseigne lumineuse rouge et jaunes des diff&eacute;rent commerce s&eacute;par&eacute; par une all&eacute;e dans la rout&eacute; &eacute;tait en un mat&eacute;riau r&eacute;fl&eacute;chissant. Cette ambiance visuelle &eacute;tait coupl&eacute; a une odeur de nouille saut&eacute;e et de sang. L&rsquo;ambiance &eacute;tait tr&egrave;s rouge et mortel ce qui semblait mettre mal &agrave; l&rsquo;aise les Cynos pr&eacute;sent dans le v&eacute;hicule mais qui ne semblait pas d&eacute;rang&eacute; les Svrayens. Ils semblaient tout a fait dans leur univers dans cette ambiance morbide car la violence fait parti int&eacute;grante de la vie des Svrayens d&egrave;s leur plus jeune &acirc;ges .</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Sokhar s&#039;approcha de la fen&ecirc;tre pour essayer d&#039;apercevoir un peu plus la ville et ses habitants. Il souhaitait s&#039;y arr&ecirc;ter et voir ainsi que toucher par lui-m&ecirc;me cet environnement. Il apostropha le pilote et parla dans son bracelet. Il esp&eacute;rait que le dispositif qu&#039;avait install&eacute; Ilo allait fonctionner et qu&rsquo;il n&#039;allait pas d&eacute;clencher un conflit.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA500">C&#039;est possible de s&rsquo;arr&ecirc;ter ? De descendre ? </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;appareil retransmit ceci : </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA500">ఆపడానికి? కిందికి వెళ్ళు ?</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le pilote regarda Lali qui acquies&ccedil;a lentement. Le vaisseau entama une descente lente.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA500">Cela ne durera pas longtemps commandante mais je sais que je m&rsquo;en voudrais, plus tard, si je n&rsquo;en profite pas pour voir tout cela de plus pr&egrave;s.&nbsp; </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un &agrave;-coup annon&ccedil;a le freinage. La porte s&#039;ouvrit et Sokhar s&rsquo;engouffra dans l&#039;ouverture. Il s&#039;arr&ecirc;ta un instant et prit une longue inspiration, il sentit un mouvement derri&egrave;re lui, Telokh faisait de m&ecirc;me. Une vieille habitude Cynos, cela leur permettait de mieux appr&eacute;hender leur environnement. Cette odeur de fer, cette odeur lourde, presque poisseuse, celle du sang, reconnaissable entre toutes. Ils pouss&egrave;rent tout deux un l&eacute;ger grognement de d&eacute;lectation.&nbsp; Ils aimaient cela. Ils s&#039;approch&egrave;rent des b&acirc;timents et appreci&egrave;rent l&#039;architecture. Malgr&egrave;s l&#039;odeur et la couleur ambiante, la rue &eacute;tait d&#039;une propret&eacute; impeccable. Les habitants les regardaient et s&#039;&eacute;cartaient un peu d&#039;eux. Un groupe d&#039;adolescents &eacute;taient pr&eacute;sent dans une cour, suivant un entra&icirc;nement sous la houlette d&#039;un instructeur qui n&#039;avait pas l&#039;air commode.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La commandante Lali entreprit de leur expliquer.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Le Zbra Y la principale occupation et penser des habitants de la plan&egrave;te. La maitrise du Zbra passe avant tout par la gestion du souffle que l&#039;on appel Opur, de la ma&icirc;trise parfaite de son corps, Omur, ainsi que de la parfaite connaissance dY forces dY son esprit, Oyur. Tout ceci implique un lien mental avec tout ses compagnons. Le Touc. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Sokhar hochait la t&ecirc;te aux explications de la commandante. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA500">Le lien mental dont vous parlez, nous pouvons l&#039;atteindre en passant par le Kelnoh, un &eacute;tat meditatif profond o&ugrave; nous ressentons ce qui nous entoure et cela sur de longues distances.&nbsp; L&#039;esprit de corps est essentiel pour la coh&eacute;sion et la force des soldats. Nous appelons cela le khela. Un seul maillon faible et c&#039;est tout le groupe qui en p&acirc;tira. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il se saisit d&#039;un de ses coutelas, le fit virevolter et abattit sa lame sur Telokh. Ce dernier avait &eacute;galement sortit la sienne et para le coup. Le croisement des deux lames fit se tourner plusieurs t&ecirc;tes vers eux. Chacun une main dans le dos, les deux Cynos se mirent &agrave; s&#039;affronter &agrave; l&#039;arme blanche en une s&eacute;rie de mouvements nets et pr&eacute;cis qui, s&#039;ils passaient, pouvaient causer de profondes blessures. Chacun d&#039;eux maitrisaient parfaitement son arme. Telokh tenant son arme &agrave; l&#039;envers la passa dans le cou de Sokhar et ramena la lame violemment vers lui. La nuque pouvait y passer. Le repr&eacute;sentant Cynos avait un genou &agrave; terre, sa lame vers le sol. Mais Telokh stoppa son mouvement, la lame de Sokhar se tenait juste sous sa jugulaire.</div></div><div class="post_line"><div align="justify">Durant leurs passe d&#039;arme quelque badaud vinrent regarder, Ils &eacute;tait habill&eacute; de combinaison grise, certain &eacute;tait plus en beige. Il semblait &ecirc;tre d&#039;une classe social &eacute;lev&eacute;. certain portait m&ecirc;me, fi&egrave;rement, un revolver a leur poitrine </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un rire franc s&#039;&eacute;chappa de leurs armures, ils rengain&egrave;rent leurs armes apr&egrave;s s&#039;&ecirc;tre salu&eacute;s comme il se doit.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00"><font color="#FFA500">Pas un seul maillon faible, pas de diff&eacute;rences entre les soldats, tous des fr&egrave;res. Mais il me semble qu&#039;&agrave; la diff&eacute;rence de notre peuple, vous &ecirc;tes plus tourn&eacute;s vers les fusils, c&#039;est bien cela ?</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">C&#039;est exactement &ccedil;a. Notre armement est principalement compos&eacute; d&#039;armes anti mat&eacute;riel ainsi que de fusil a moyenne et longue distance. Nos jeunes sont form&eacute;s au tir de pr&eacute;cision des leur hexakaidec-agio (16 ans). Cette entra&icirc;nement s&#039;appelle le Zroy. Ceux qui choisissent d&#039;&ecirc;tre Tiruelle (chasseur d&#039;engin m&eacute;canique)Y&nbsp; subissent un entrainement Opur, Omur plus intense que ses camarades. Y me prends pour exemple. D&egrave;s mes hexakaidec-agio mon instructeur m&#039;Y propos&eacute; nou fusil ionique Mk I. Et c&#039;Y devenue mY armes de pr&eacute;dilection. </font></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Je suis nou des meilleures Tiruelle de tout le Svra. </font></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Y me rappelle de quand Y icos-agio</font><font color="#FFFF00">. </font><font color="#FFFF00">J&#039;Y appel&eacute; en tant que Lilio (Capitaine de section) et nY</font><font color="#FFFF00"> objectif Y la capture de la pl&ocirc;</font><font color="#FFFF00">n&egrave;te Monoxyde dans le but de s&eacute;curiser le territoire Svrayen.</font></div></div><div class="post_line"><div align="justify">La commandante s&#039;appuya sur le mur d&#039;un b&acirc;timent et commen&ccedil;a son histoire</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Nous Y &eacute;t&eacute; parachut&eacute;s en plein dans le d&eacute;sert. Nou immense paysage noir. Le sol local Y fait en graphite. A certains endroit Y vit que le sol blanchit. Selon nos coordonn&eacute;es nous sommes a environ 20 km d&#039;une base strat&eacute;gie. L&#039;ambiance Y particuli&egrave;rement sombre. On pouvait voir par si par la d&rsquo;immense montagne grisonnante. Le sol Y fait un sable qui a tendance a ce coagul&eacute; quand Y marche dessus comme s&#039;Y &eacute;taient liquides. </font></div></div><div class="post_line"><div align="justify"><font color="#FFFF00"><font color="#e8b6ef">Oy. Y icosa. Ay Ay Ay</font>. avait dis le Lilio (g&eacute;n&eacute;ral de section), Et Y se mit a courir en direction de la base fusil ionique en main et flasque de malpass a la ceinture. La plan&egrave;te a une structure particuli&egrave;re &eacute;trange. Le Lilio&nbsp; qui avait pentacont-agio nous dis de faire attention car Y sentait que quelque chose clochait.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Y</font><font color="#FFFF00"> pris une vitesse de icosikaipenta km/h</font><font color="#FFFF00">, ce qui pour dY soldats entra&icirc;n&eacute;s au Zbra,</font><font color="#FFFF00"> Y un rythme pas trop rapide. Au dessus de nY t&ecirc;tes nou grondement dans le ciel gris puis nou immense machine vient survol&eacute; notre position. Y se mit en position de tir. </font></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Boum. </font></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">L&#039;engin flottant tire et un obus de t&eacute;tra tonnes en sortie. En m&ecirc;me pas tri secondes, la compagnie Y fus au sol pr&ecirc;tent a recevoir l&#039;explosion </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">La seconde suivante, nou explosion atomique se fit ressentir.</font></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Le Lilio et l&#039;op&eacute;rateur radio moururent sur le coup, lY autres s&#039;en sortirent avec juste quelque br&ucirc;lures. Malheureusement, certains fusils Y avaient fondus. LY soldats en &eacute;tat de tirer firent feu. Y eut fallut pr&egrave;s de tri heures de tirs nourrit dans nou crat&egrave;re fumant et radioactif pour Y venir a bout. Le vaisseau Y &eacute;tait en feu, le ciel &eacute;tait de z&eacute;br&eacute; de violet d&ucirc;t au tirs ionique. Nou autre d&eacute;tonation se fit sentir. Y&#039;&eacute;tait le vaisseau qui avait explos&eacute;. LY d&eacute;bris retomb&egrave;rent par petit morceau et vinrent se planter sur nous en une pluie d&eacute;vastatrice. Y donnais l&#039;ordre de partir et sous cette pluie de m&eacute;tal carbonis&eacute; que nous part&icirc;mes vers l&#039;objectif.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La commandante pris une grande inspiration et regarda les Cynos qui &eacute;tait absorb&eacute; par son r&eacute;cit. Elle reprit.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Au bout de nou heure de courses effr&eacute;n&eacute;, Y arriv&acirc;mes au pied de la base. Y &eacute;tait b&acirc;tie sur une colline de plus de tetraconta m&egrave;tres de haut. L&#039;absence de l&#039;op&eacute;rateur radio Y emp&ecirc;cherait de contacter l&#039;&eacute;tat-major. Nous all&acirc;mes donc devoir les contacter une fois la base prise. Sur nou compagnie d&#039;icosa&nbsp; Y &eacute;tions plus que dod&eacute;ca. Les autres sont morts d&eacute;capit&eacute;s durant la pluie de d&eacute;bris. Arriv&eacute;s au pied de la colline on entreprit de l&#039;escalader silencieusement.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Arriv&eacute; en haut Y retrouv&acirc;mes au pied d&#039;une cl&ocirc;ture &eacute;lectrique. Contre cela nou seul tire de Ionique suffit &agrave; Y mettre hors service le grillage. Le grillage &eacute;tait en barbel&eacute; tout le long.</font><font color="#FFFF00">La prise de la base ne dura que triaconta secondes. LY soldats pr&eacute;sents sur place pris peur en nous voyant, car Y &eacute;tions totalement noirs de suie atomique et Y avions une puissante odeur de br&ucirc;ler.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Lali montra une photo au Cynos. </div></div><div class="post_line"><div align="justify">On pouvais reconna&icirc;tre Lali, un fusil de 95 cm a la main, dans un uniforme gris. le ciel avait encore quelque tache violette. a cot&eacute; d&#039;elle plusieurs soldat, la plupart encagoul&eacute;, avait le m&ecirc;me type d&rsquo;arsenal.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Aujourd&#039;hui tout ces camarades Y sont partit se retirer dans le d&eacute;sert central, Y suis la seul de mon escouade a &ecirc;tre encore en service.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Sokhar hocha la t&ecirc;te. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA500">C&#039;est le genre d&#039;exp&eacute;riences qui forge un caract&egrave;re et marque les soldats. On sait qu&rsquo;apr&egrave;s ce genre de mission, si l&#039;on survit, ceux avec qui nous l&rsquo;auront effectu&eacute;e seront nos fr&egrave;res d&#039;armes et que nous pourrons leur confier nos vies. Cela cr&eacute;&eacute; les liens parmi les plus solides que je connaisse.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Selkis prit alors la parole.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFC95F"><font color="#E8C500">Il faut aussi ensuite se souvenir de ceux qui ne sont pas revenus, des morts glorieux qui se sont sacrifi&eacute;s pour le salut de leur peuple. Que jamais ne soit vain leur sacrifice et honorer leur m&eacute;moire et leur famille.</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Lali eut un grand sourire </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">De retours &agrave; Zbra nou hommage pl&ocirc;naitaire Y organiser, et nou d&eacute;sint&eacute;gration dY corps par la puissante Atomique</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle eut une leg&egrave;re larme en pensant a cette c&eacute;r&eacute;monie, elle avait perdu des camarades. elle savait que ce sacrifice en valait la peine. Elle pris une grande inspiration</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFFF00">Y vous propse dY remonter dY le Courcou. Vous pourrais Y raconter nou r&eacute;cit Y combat </font></div></div><div class="post_line"><div align="justify"></div><div class="post_line">Ils remont&egrave;rent dans le v&eacute;hicule qui red&eacute;marra.&nbsp; </div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Sokhar">Cdt. Sokhar</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/10530.jpg" style="width:128px;height:128px" alt="Avatar" /><br />14/10/1020 ETU 21:31</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D278884', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal278883')">Détails</a> <a href="javascript:warnpost(278883)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278883" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278883',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Sokhar acquies&ccedil;a et il remonta dans le vaisseau, suivit de Selkis et Telokh. Ce dernier jeta un dernier regard &agrave; ce qui les entourait pour s&#039;assurer que tout allait bien et monta &agrave; la suite des frangins. L&#039;a&icirc;n&eacute; avait &eacute;cout&eacute; attentivement le r&eacute;cit de la commandante, il y avait trouv&eacute; des similitudes avec ses propres exp&eacute;riences de combat. Durant ses longues ann&eacute;es de vie, il avait eu son compte de batailles et de morts et savait que cela n&#039;&eacute;tait pas encore termin&eacute;.</div><div class="post_line"></div><div class="post_line">Le vaisseau se mit &agrave; trembler et s&#039;&eacute;leva doucement pour se remettre en route. Sokhar resta silencieux quelques temps, perdu dans ses pens&eacute;es,&nbsp; se rem&eacute;morant diverses batailles pour savoir lequel il serait pertinent de raconter &agrave; Lali qui le fixait, comme attendant sa prise de parole. La ville rapetissait au fur et &agrave; mesure que le courcou prenait de la hauteur, les rues troglodytes se dessinaient comme des art&egrave;res dans la roche. Il est vrai que les enseignes lumineuses donnaient &agrave; la ville une ambiance sanglante.</div><div class="post_line"></div><div class="post_line">Il exhala fortement et prit la parole.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Un r&eacute;cit de combat? Il pourrait y en avoir beaucoup.</font></div><div class="post_line"></div><div class="post_line">Il jeta un oeil &agrave; Telokh, il n&#039;avait pas besoin de voir son visage pour le comprendre.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Et bien, l&#039;&eacute;pisode de Malastar pourrait convenir.</font></div><div class="post_line"></div><div class="post_line">Il se racla la gorge, ferma les yeux pour se rem&eacute;morer tous les d&eacute;tails de cet affrontement.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">C&#039;est un &eacute;pisode qui s&#039;est d&eacute;roul&eacute; lors de la guerre de lib&eacute;ration de ce monde. J&#039;&eacute;tais encore un juv&eacute;nile &agrave; l&#039;&eacute;poque, il y a une centaine d&#039;ann&eacute;es. Nous avions &eacute;t&eacute; envoy&eacute; avec Telokh et une escouade pour infiltrer un poste avanc&eacute; devant faire tomber la ville capitale de la r&eacute;gion. Nous avions d&eacute;laiss&eacute; nos armures, l&#039;effet de surprise devant &ecirc;tre &agrave; notre avantage. La lune &eacute;tait haute dans le ciel alors que nous arrivions en vu du poste avanc&eacute;.&nbsp; On savait qu&#039;il y avait une bonne garnison et on avait entendu tout un tas de r&eacute;cits qui en provenait. M&ecirc;me si l&#039;exag&eacute;ration est de mise dans ces moments l&agrave;,&nbsp; ce que nous avions entendu &eacute;tait trop pr&eacute;cis pour n&#039;&ecirc;tre que des ragots, du moins pas tout.</font></div><div class="post_line"></div><div class="post_line">Il secoua la t&ecirc;te en y repensant et se remit &agrave; regarder par la fen&ecirc;tre.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Nous &eacute;tions 15 choisis pour cette mission. Alors qu&#039;on arrivait en vu du poste avanc&eacute;,&nbsp; l&#039;odeur que nous sentions ne faisait que renforcer les r&eacute;cits. &Ccedil;a sentait la mort, au sens propre, &ccedil;a sentait les corps en d&eacute;composition. Il nous fallait escalader les murs afin de p&eacute;n&eacute;trer dans le poste. Myloh se mit en hauteur avec son sniper afin de d&eacute;gager les murs. On pouvait approcher sans craintes. On avait r&eacute;ussit &agrave; les atteindre et l&#039;on vit tomber deux corps, chacun une balle dans la t&ecirc;te. Cela avait &eacute;t&eacute; pr&eacute;c&eacute;d&eacute; de deux faibles sifflements. Apr&egrave;s avoir r&eacute;ussi la mont&eacute;e on se faufila le long du chemin de ronde. Un des d&eacute;fenseurs eu le malheur de sortir &agrave; ce moment l&agrave; et se prit une balle dans la gorge, qui &eacute;touffa son cri d&#039;alarme dans un gargouillis morbide.</font></div><div class="post_line"><font color="#ffa500">On put alors entrer dans le b&acirc;timent. J&#039;&eacute;tais suivit de Telokh et de deux autres soldats. Les autres prenant de l&#039;autre cot&eacute; et se dispersant en petits groupes. L&#039;odeur qui remontait des profondeurs nous prit au coeur. Plus on descendait plus on se doutait de ce que nous allions d&eacute;couvrir. Un petit groupe de soldats sortit d&#039;un corridor et se stop&egrave;rent en tombant sur nous. Sans vouloir nous jeter des fleurs, cela etait compr&eacute;hensible.&nbsp; Tomber sur 4 Cynos en pleine nuit, cela concr&eacute;tiserait les cauchemars de nombres d&#039;etres vivants.</font></div><div class="post_line"><font color="#ffa500">Je saisis le premier &agrave; la trach&eacute;e et lui arracha tandis que Telokh enfon&ccedil;ait sa lame dans le ventre du second. Le troisi&egrave;me eut la nuque bris&eacute;e par un des soldats nous accompagnant qui s&#039;&eacute;tait trouv&eacute; derri&egrave;re la porte ouverte.</font></div><div class="post_line"><font color="#ffa500">L&#039;exploration se poursuivit sans trop de difficult&eacute;s et nous sommes tomb&eacute;s sur l&#039;origine de l&#039;odeur. Des corps, des dizaines, des centaines de corps entass&eacute;s les uns sur les autres. Des civils dans la grande majorit&eacute; et quelques soldats, un v&eacute;ritable massacre. A ce moment l&agrave;,&nbsp; plus de retenue,&nbsp; plus de piti&eacute;,&nbsp; il n&#039;y avait pas la place pour &ccedil;a dans notre coeur.</font></div><div class="post_line"></div><div class="post_line">Il serrait et desserait son poing machinalement. Il voyait du coin de l&#039;oeil Telokh remuant sa jambe fr&eacute;n&eacute;tiquement. Lui aussi se rem&eacute;morait les &eacute;v&eacute;nements.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Nous les avons traqu&eacute;s,&nbsp; il n&#039;y a pas d&#039;autres mots. Les uns apr&egrave;s les autres nous les avons traqu&eacute; et mis &agrave; mort avec des raffinements de cruaut&eacute;. Nous avions une r&eacute;putation &agrave; tenir et ce jour l&agrave;, elle se v&eacute;rifia. Les alarmes sonnaient dans tout le poste, tant pis pour la discr&eacute;tion,&nbsp; ce n&#039;&eacute;tait plus de mise. Alors que nous &eacute;tions engag&eacute; dans un affrontement des explosions se firent entendre, ils avaient sortit l&#039;artillerie. Un mur explosa &agrave; notre droite, m&#039;envoyant bouler &agrave; l&#039;autre bout de la pi&egrave;ce. En me relevant j&#039;ai vu le tireur, j&#039;avais le flanc en sang mais je me suis &eacute;lanc&eacute; sur lui et d&#039;un violent coup de la main je l&#039;ai &eacute;ventr&eacute; avant de lui d&eacute;vorer le coeur. Il n&#039;&eacute;tait pas mort alors que je le saisisais dans ma main, ses veines encore reli&eacute;es &agrave; son corps. Il avait compris ce qui lui arrivait. La lueur de vie qui l&#039;animait s&#039;&eacute;teignit lorsque je le d&eacute;chiqueta de mes dents. Toute raison nous avait quitt&eacute; &agrave; cet instant. Des explosions retentissaient un peu partout, le plafond s&#039;&eacute;croula alors sur nous et nous f&ucirc;mes 3 &agrave; &ecirc;tre ensevelis. Telokh avait r&eacute;ussi &agrave; esquiver l&#039;effondrement, occup&eacute; dans la pi&egrave;ce attenante.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je parvins &agrave; me degager non sans mal. Je devais ressembler &agrave; un d&eacute;mon je pense, couvert de poussi&egrave;res, de sang et de d&eacute;bris divers, le regard hagard. Les deux autres s&#039;extirp&egrave;rent &eacute;galement , l&#039;un d&#039;eux avait perdu l&#039;usage son bras gauche mais ne voulait pas reculer ou renoncer.</font></div><div class="post_line"></div><div class="post_line">Il mit sa main droite sur le coeur.&nbsp; Junah &eacute;tait un guerrier comme on en faisait peu. Telokh en fit de m&ecirc;me.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Telokh se rappela &agrave; nous lorsque l&#039;on vit un corps traverser le mur suivit d&#039;un hurlement caract&eacute;ristique. Il passa la t&ecirc;te par le trou et nous fit signe de le suivre. On atteignit alors une grande salle de conf&eacute;rence donnant sur la cour int&eacute;rieure. Nos troupes avaient pris possession des lieux et terminaient leur t&acirc;che.&nbsp; Un bruit se fit entendre derri&egrave;re nous, dans les escaliers et 4 soldats en sortirent, en mauvais &eacute;tat.&nbsp; On se fixa durant quelques secondes et l&#039;un d&#039;eux sorti un d&eacute;tonateur thermal. Nous avons &eacute;t&eacute; deux &agrave; leur sauter dessus, Telokh prenant le bless&eacute; sous son bras et sautant &agrave; travers la baie vitr&eacute;e. Gurna avait saut&eacute; d&#039;un bond sur le torse du premier, lui enfon&ccedil;ant la cage thoracique tandis que le second s&#039;&eacute;croulait &agrave; sa suite, le visage en sang apr&egrave;s la morsure de Gurna. Le troisi&egrave;me j&#039;en fis mon affaire, plongeant ma main dans son ventre et saissisant ses entrailles. Je m&#039;en servi comme d&#039;un b&eacute;lier pour charger celui tenant le d&eacute;tonateur.&nbsp; Ce dont je me souviens ensuite c&#039;est d&#039;une grande explosion et d&#039;une longue chute. Puis de la douleur, qui partait de mon bras gauche et parcourait mon flanc jusqu&#039;&agrave; ma jambe. La sensation d&#039;&eacute;touffement &eacute;tait tr&egrave;s,&nbsp; trop m&ecirc;me, pr&eacute;sente. Je pouvais &agrave; peine bouger et je r&eacute;alisais que j&#039;&eacute;tais au milieu de cadavres. Dans l&#039;explosion nous &eacute;tions tomb&eacute;s au niveau du charnier et nous en faisions d&eacute;sormais parti.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">J&#039;ai cru ma derni&egrave;re heure arriv&eacute;e et cel&agrave; dura un temps qui me sembla interminable jusqu&#039;&agrave; ce que je sente une odeur famili&egrave;re .</font></div><div class="post_line"></div><div class="post_line">Il pointa Telokh du doigt.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">La sienne. Puis les corps se mirent &agrave; bouger, de la poussi&egrave;re et du sang me recouvrant un peu plus. Et j&#039;ai alors vu sa sale t&ecirc;te souriant b&ecirc;tement et qui me dit : &quot;Heureusement que tu pues comme pas permis sinon je serais pass&eacute; &agrave; c&ocirc;t&eacute; de toi.&quot; &Ccedil;a fait toujours plaisir n&#039;est ce pas?</font></div><div class="post_line"></div><div class="post_line">Selkis et Telokh rirent doucement.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">C&#039;&eacute;tait bien la v&eacute;rit&eacute; et apr&egrave;s tout c&#039;est gr&acirc;ce &agrave; &ccedil;a que tu es en vie. Merci qui? Merci bibi.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">On peut dire &ccedil;a comme &ccedil;a. Malheureusement Gurna n&#039;a pas eu ma chance, il est tomb&eacute; sur un morceau de m&eacute;tal et s&#039;est retrouv&eacute; empal&eacute;. Paix &agrave; son &acirc;me, c&#039;&eacute;tait un grand guerrier.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Un bon soldat et un grand guerrier. Paix &agrave; son &acirc;me.</font></div><div class="post_line"></div><div class="post_line">Sokhar hocha la t&ecirc;te et soupira.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">P&eacute;d&eacute;&nbsp;et M&egrave;re &eacute;taient morts d&#039;inqui&eacute;tude.&nbsp; On n&#039;avait que des bribes d&#039;informations et rien n&#039;indiquait qui &eacute;tait vivant et qui ne l&#039;&eacute;tait pas. C&#039;est gr&acirc;ce au Kelnoh que j&#039;ai r&eacute;ussi &agrave; me rassurer. Lorsque je t&#039;ai senti un poids a quitt&eacute; mon coeur.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">J&#039;&eacute;tais heureux de pouvoir sentir ta pr&eacute;sence &eacute;galement petite soeur.</font></div><div class="post_line"></div><div class="post_line">Il lui donna une petite bourrasque de l&#039;&eacute;paule qu&#039;elle lui rendit.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Et voil&agrave; commandante, vous vouliez un r&eacute;cit de combat Cynos, vous en avez eu un. Vous allez nous prendre pour des barbares hahaha.</font></div><div class="post_line"></div><div class="post_line">Lali &eacute;coutait avec int&eacute;r&ecirc;t leur r&eacute;cit.</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Votre fa&ccedil;on dY battre est &agrave; mille lieu de la notre. LY Zbra nous enseigne lY fa&ccedil;ons de contr&ocirc;ler notre corps et notre &acirc;me, jamais un aussi grand exc&egrave;s dY violence n&#039;Y serai pass&eacute;. Nous avons pour habitude de soit capturer nos adversaire et lY transformer en cible pour le Zroy, ou de simplement lY &eacute;liminer d&#039;une fracture de la colonne vert&eacute;brale, jamais nous Y pourrons &ecirc;tre aussi sanguinaire. Mais no point communs subsiste : notre abn&eacute;gation total au combats. Pour qu&#039;un Svrayien Y arr&ecirc;te le combats, il faut qu&#039;Y ne soit plus en &eacute;tat de s&#039;Y mouvoir ou qu&#039;Y soit mort. La douleur n&#039;Y est pas. Lors de l&#039;explosion atomique que nous avons subit, seul nou br&ucirc;lure persiste sur ma nuque, trace de nou lointain combats.</font></div><div class="post_line"></div><div class="post_line">la commandante se pencha en avant, en montrant sa nuque. Elle &eacute;tait rouge et fl&eacute;trit mais il semblait aussi solide que le reste de son corps. on pouvait aussi voir la cicatrice du passage d&#039;une balle juste au dessus de la tache. Un vestige d&#039;un tentative d&rsquo;assassinat.</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Y vais aussi vous livrer nou conseil : pour Y tuer un Svarien entra&icirc;ner au Zbra rapidement, les armes a feu n&#039;ont d&#039;utilit&eacute; que de le ralentir.</font></div><div class="post_line"></div><div class="post_line">Elle se releva se recoiffa en vitesse, et continua :</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Seul nou surexposition a nou poison produit par nou esp&egrave;ce end&eacute;mique dY Disert Sivage Nabaztag, nomm&eacute; Leporid&oelig; peut venir a bout rapidement d&#039;un soldat.</font></div><div class="post_line">Sur son visage on pouvait lire une pointe d&#039;axi&eacute;t&eacute;.</div><div class="post_line">Elle regarda par la fen&ecirc;tre. la ville continuait a se dessiner dans cette ambiance rougeoyante.</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Nous Y allons sortir de la ville pour acc&egrave;s au disert. Et nous Y prendrons nou escorte car dans ce disert la plus part dY b&ecirc;tes Y sont agressive.</font></div><div class="post_line"></div><div class="post_line">la route continua et le quartier de vie s&#039;&eacute;teigna petit a petit, et le plafond s&#039;&eacute;leva jusqu&#039;a envrion 100 mettre. autour de la route d&#039;immense porte en un m&eacute;tal antracite et de nombreux ouvirier en tenue jaune&nbsp; fluo qui se voyait de tr&egrave;s loin et une odeur m&eacute;tallique se fait sentir, la douce lumi&egrave;re rouge avait &eacute;t&eacute; remplac&eacute; par une lumi&egrave;re violette. les trottoir &eacute;tait encombr&eacute; de v&eacute;hicule remplie de tube. Des ouvriers s&#039;occuper les vider. en face de la route une des porte &eacute;tait grande ouverte et deux soldates avec des fusils Ioniques gardait l&#039;entr&eacute;e.</div><div class="post_line">A la vue du v&eacute;hicule, elle se mirent au garde &agrave; vous. Le courcou marqua l&rsquo;arr&ecirc;t et entra dans le b&acirc;timents, l&#039;int&eacute;rrieur &eacute;tait d&#039;un blanc immacul&eacute;, ce qui d&eacute;not&eacute; de la couleur jaun&acirc;tre de l&#039;exterieur.&nbsp; et deux autres v&eacute;hicules y &eacute;tait stationn&eacute;. Une soldate s&#039;approcha du v&eacute;hicule et &eacute;changea deux mots avec le chauffeur, Elle avait l&#039;uniforme standard a une diff&eacute;rence pr&egrave;s le grade qu&#039;elle avait : XX n&#039;existe pas</div><div class="post_line">Lali regarda la sc&egrave;ne avec un regards suspect,</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Permettez je vais faire bouger les choses.</font></div><div class="post_line"></div><div class="post_line">elle posa sa main a sa ceinture, pris son molpass, en bu une gorg&eacute; et le rangea.</div><div class="post_line">elle sorti du v&eacute;hicule et cria</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">సైనికుడు! వెంటనే మిమ్మల్ని మీరు గుర్తించండి!</font></div><div class="post_line">le traducteur du Cynos indiquait : <em>Soldat ! identifiez-vous imm&eacute;diatement !</em></div><div class="post_line"></div><div class="post_line">La soldat sorti un pistolet de sa ceinture et tira. la balle vint se loger dans l&#039;&eacute;paule de Lali, qui &eacute;tait toujours en train de sortir du v&eacute;hicule. l&#039;instant d&#039;apr&egrave;s La commandante fis un bon en direction de la r&eacute;n&eacute;gate. l&#039;arme n&#039;avait pas le temps de se r&eacute;arm&eacute; que la ranger de la commandante vint lui heurter le visage. sous le choc initial la soldate eut un mouvement de recule. la douille sortit de la chambre en m&ecirc;me que l&#039;autre pied percute la gorge. avec ce deuxi&egrave;me coups, la ren&eacute;gate lacha son arme et tenta de parer la troisi&egrave;me attaque de Lali mais elle n&#039;eut pas le temps et s&#039;&eacute;croula par terre juste apr&egrave;s le bruit m&eacute;tallique du pistolet. l&#039;attaque avait durer 30 secondes.</div><div class="post_line"></div><div class="post_line">---</div><div class="post_line"></div><div class="post_line">Les Cynos tentaient de regarder par la fen&ecirc;tre pour savoir ce qu&#039;il se passait. Sokhar tordait son cou mais n&#039;apercevait rien de plus qu&#039;un soldat qui avait parl&eacute; au chauffeur. La blancheur immacul&eacute;e des b&acirc;timents offraient une luminosit&eacute; intense malgr&eacute; le fait qu&#039;ils se trouvaient en int&eacute;rieur.</div><div class="post_line">Alors qu&#039;il se faisait cette r&eacute;flexion, son traducteur retransmis les paroles de la commandante Lali, ce qui lui fit tendre l&#039;oreille un peu plus. Selkis s&#039;etait lev&eacute;e &agrave; ces mots. La d&eacute;tonation qui suivit les pris par surprise. Lali &eacute;tait toujours au niveau des marches du v&eacute;hicule et ils purent voir une l&eacute;g&egrave;re gerbe de sang s&#039;envoler de son &eacute;paule.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Commandante!!</font></div><div class="post_line"></div><div class="post_line">La Cynos s&#039;&eacute;lan&ccedil;a &agrave; la suite de la commandante. Elle s&#039;engoufra dans l&#039;ouverture, d&eacute;gainant une fois dehors une lame filiforme, brillante comme l&#039;argent qu&#039;elle tenait toujours &agrave; port&eacute; dans un fourreau cal&eacute; entre ses omoplates. Force &eacute;tait de constater que la commandante n&#039;avait pas besoin d&#039;aide mais elle vint tout de m&ecirc;me vers elle, observant les environs d&#039;un oeil entra&icirc;n&eacute;,&nbsp; faisant virevolter son arme. Elle &eacute;tait pr&ecirc;te &agrave; toute &eacute;ventualit&eacute;s. Elle la rejoint et faisait un rempart de son corps, au cas o&ugrave;. Elle jauga la soldate &agrave; terre et mit son arme vers son visage.</div><div class="post_line"></div><div class="post_line"><em><font color="#ffdc00">Khebenty...</font></em></div><div class="post_line"></div><div class="post_line">Ce qui en langue commune pourrait se traduire par tra&icirc;tre,&nbsp; c&#039;est ce que r&eacute;pondrait un Cynos poli.</div><div class="post_line"></div><div class="post_line">Elle cracha &agrave; c&ocirc;t&eacute; de son visage.</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Tout ira bien pour vous commandante?</font></div><div class="post_line"></div><div class="post_line">Elle d&eacute;signa d&#039;un coup de t&ecirc;te la blessure &agrave; l&#039;&eacute;paule.</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ne vous Y inqui&eacute;tez pas, Selkis. la balle ne m&#039;Yas fait aucun d&eacute;gats, par contre je pense savoir pourquoi je me fais attaquer.</font></div><div class="post_line"></div><div class="post_line">Deux soldats entr&egrave;rent, ils &eacute;taient cagoul&eacute;s. il march&egrave;rent calmement vers le lieu de la confrontation. Le chauffeurs sortit du camion et rejoignit Lali. Les soldats se pr&eacute;sent&egrave;rent devant Lali et l&#039;autre homme,ils firent un salut militaire puis ils sortirent un sac noir de leur poche ainsi qu&#039;une paire de menottes. Ils relev&egrave;rent la femme qui poussa un couinement, ils lui mirent le sac sur la t&ecirc;te et les menottes au poign&eacute;es. En suite ils ressortirent par la o&ugrave; ils &eacute;taient entr&eacute;s.</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Y vous prie d&#039;Y m&rsquo;excusez&nbsp; de ce leger contre-temps. Nous repartons sur le champs.</font></div><div class="post_line"></div><div class="post_line">la commandante attrapa l&#039;arme de par terre, la mit a sa ceinture. Elle &eacute;changea deux mots avec le pilotes.</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Bien nous d&eacute;marrons sur le champs pour Y &ecirc;tre avant l&#039;heure la plus chaude la journ&eacute;e</font></div><div class="post_line"></div><div class="post_line">Sokhar la regarda d&#039;un air circonspect. Du moins c&#039;est l&#039;air qu&#039;il avait sous son masque.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Vous vous faites tirer dessus et vous vous excusez? Votre peuple a de bien curieuses moeurs. Vous n&#039;avez pas &agrave; vous excusez commandante, l&#039;important est que vous alliez bien. </font></div><div class="post_line"><font color="#ffa500">Toujours aussi impulsive petite soeur, hein?</font></div><div class="post_line"></div><div class="post_line">Le ton &eacute;tait l&eacute;ger,&nbsp; il ne pouvait lui reprocher &ccedil;a.&nbsp; En guise r&eacute;ponse,&nbsp; elle leva son majeur &agrave; son attention, avec un l&eacute;ger sourire. Cela le fit rire doucement.</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15200&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15200" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15200" name="d_reply_15200" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15200');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15200'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Zbra</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

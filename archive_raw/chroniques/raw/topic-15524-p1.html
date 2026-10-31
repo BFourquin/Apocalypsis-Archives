@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15524 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Les p&eacute;tales brulants...</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Les p&eacute;tales brulants...</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Kaori+Sakurajima">Cdte. Kaori Sakurajima</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/10866.gif" style="width:90px;height:128px" alt="Avatar" /><br />07/03/1021 ETU 09:15<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D283609', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal283606')">Détails</a> <a href="javascript:warnpost(283606)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283606" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283606',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><em><font size="4"><a href="https://youtu.be/OSte8jXX0RM" target="_blank" rel="nofollow">♪ ♫ ♬&nbsp;♪</a></font></em></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>C&#039;&eacute;tait d&eacute;j&agrave; il y a plusieurs ann&eacute;es, je n&#039;&eacute;tais qu&#039;une jeune adolescente. A l&#039;&eacute;poque, je ne m&#039;attendais pas du tout au destin qui m&#039;&eacute;tait r&eacute;serv&eacute;. Je n&#039;&eacute;tais personne. Fille cadette de parents modestes.&nbsp;C&#039;&eacute;tait une belle p&eacute;riode de prosp&eacute;rit&eacute; et d&#039;insouciance. Nous avions nos petits tracas quotidiens et on se plaignait pour avoir une vie meilleure et plus facile. Mais nous &eacute;tions tellement loin de nous douter que nous vivions &agrave; l&#039;&eacute;poque dans un v&eacute;ritable r&ecirc;ve. C&#039;est bien plus tard que l&#039;on a r&eacute;alis&eacute; que c&#039;&eacute;tait un &acirc;ge v&eacute;ritablement heureux...</em></div><div class="post_line"></div><div class="post_line"><em>Ce jour l&agrave;, j&#039;&eacute;tais rentr&eacute; de la ville plus t&ocirc;t que pr&eacute;vu. Ma famille habitait un petit village accroch&eacute; au flanc d&#039;une petite montagne. C&#039;&eacute;tait un joli village traditionnel avec des petites maisons en bois et en pierre. Tout autour, &agrave; flanc de montagne sur des terrasses, se trouvaient des jardins et des champs cultiv&eacute;s. Tout en haut de la montagne se trouvait un petit sanctuaire aux couleurs flamboyantes, perch&eacute; au sommet sur un pic rocheux.&nbsp;De l&agrave;, nous avions une vue imprenable sur la la baie, cern&eacute; d&#039;autres montagnes bois&eacute;s. A l&#039;int&eacute;rieur de la baie se trouvait plusieurs petites &icirc;les entour&eacute;s de plages au sable blanc. Et puis au pied de notre montagne, il y avait la ville et son port. Plusieurs centaines d&#039;ann&eacute;es auparavant, c&#039;&eacute;tait un port de guerre o&ugrave;&nbsp;mouillaient de gigantesques bateaux de la marine. Mais depuis la r&eacute;volution spatiale, les bateaux de guerre ont fait place &agrave; l&#039;&eacute;norme polder o&ugrave; se trouvait d&eacute;sormais les immenses arsenaux spatiaux.&nbsp;</em></div><div class="post_line"><em>Tous les jours &agrave; heure fixe on voyait les vaisseaux d&eacute;coller vers l&#039;orbite de <strong><font color="#fff5b3">Vanilla</font></strong>. J&#039;aimais beaucoup les regarder s&#039;en aller. J&#039;&eacute;tais r&ecirc;veuse et je me voyais partir un jour dans l&#039;un de ces vaisseau et explorer l&#039;espace...</em></div><div class="post_line"></div><div class="post_line"><em>Je rentrais chez moi, charg&eacute;e d&#039;affaires dans mon gros sac &agrave; dos. Remonter la route du village &eacute;tait laborieux, le sac faisait son poids... J&#039;aurais bien pu prendre les transports et la petite navette qui fait la liaison entre la ville et le village, mais nous avions peu de moyens, alors si on pouvait s&#039;en passer, on comptait sur nos deux jambes.</em></div><div class="post_line"><em>C&#039;&eacute;tait une journ&eacute;e ordinaire de&nbsp;printemps. A cette &eacute;poque tous les arbres fruitiers, amandiers, cerisiers, poiriers, p&ecirc;ch&eacute;s et pommiers &eacute;taient en fleurs. Tous ces arbres fleuris formaient un sublime patchwork color&eacute; sur la montagne. Au d&eacute;tour d&#039;un jardin en terrasse, il y avait un sublime cerisier pleureur. L&#039;arbre &eacute;tait tr&egrave;s grand, il avait peut &ecirc;tre plusieurs centaines d&#039;ann&eacute;es. Fatigu&eacute;e de ma marche, j&#039;ai&nbsp;d&eacute;cid&eacute;&nbsp;de m&#039;arr&ecirc;ter et de faire une pause &agrave; son pied. Je posa lourdement mon gros sac au sol et dans un grand soupir, je me suis affal&eacute;e par terre. L&#039;herbe moussue att&eacute;nua ma chute, tel un petit matelas douillet parsem&eacute; de p&eacute;tales de cerisier.</em></div><div class="post_line"></div><div class="post_line"><em>Il faisait tr&egrave;s beau ce jour l&agrave;, hormis quelques nuages qui s&#039;aventuraient ici et l&agrave;, le temps &eacute;tait sublime. La douce chaleur du soleil me caressait le visage au gr&eacute;s du mouvement des branches de l&#039;arbre, port&eacute;s par la fine brise printani&egrave;re. Oui, on peut dire que c&#039;&eacute;tait une p&eacute;riode tr&egrave;s heureuse de ma vie... Si seulement j&#039;avais&nbsp;pu rester &eacute;ternellement couch&eacute;e au pied de cet arbre magnifique. Je me souviens encore du chant des oiseaux et des enfants qui jouaient un peu plus loin. Je me suis alors mise &agrave; fermer&nbsp;les yeux pour me concentrer sur la beaut&eacute; qui m&#039;entourait et profiter au maximum de cet instant. Et puis je me mis &agrave; somnoler.</em></div><div class="post_line"></div><div class="post_line"><em>C&#039;&eacute;tait le grondement lointain d&#039;une navette spatiale qui me r&eacute;veilla. En me relevant, je m&#039;aper&ccedil;u que le cerisier m&#039;avait couverte de ses p&eacute;tales. J&#039;esquissa un sourire amus&eacute; et je continua d&#039;observer la navette parti dans un immense jet de feu et de fum&eacute;e. Secondes apr&egrave;s secondes, elle disparaissait, on ne voyait plus que sa train&eacute;e dans le ciel turquoise. C&#039;est alors que je vis que le soleil n&#039;allait pas tarder &agrave; passer de l&#039;autre c&ocirc;t&eacute; de la montagne pour ensuite&nbsp;se coucher. Je me suis relev&eacute;e d&#039;un bond et&nbsp; j&#039;ai&nbsp;imm&eacute;diatement attrap&eacute;&nbsp;mon sac pour le remettre sur mon dos, et continuer le&nbsp;chemin qui me restait jusqu&#039;&agrave; chez moi.</em></div><div class="post_line"></div><div class="post_line"><em>En remontant la route, j&#039;entendis&nbsp;le grondement sourd d&#039;une nouvelle navette qui d&eacute;collait. Surprise, je me suis retourn&eacute; parce qu&#039;il &eacute;tait inhabituel que plusieurs vaisseaux d&eacute;collent en m&ecirc;me temps, mais bon, &ccedil;a arrivait quand m&ecirc;me. Je regardais encore une fois le vaisseau d&eacute;coller, m&#039;imaginant d&eacute;j&agrave; &agrave; bord comme capitaine et voyager vers les fins fonds de l&#039;univers. C&#039;est alors que soudainement, dans un &eacute;clat incroyable de flammes, la navette explosa en vol. Continuant l&eacute;g&egrave;rement de s&#039;&eacute;lever, elle forma une gigantesque boule de feu en&nbsp;projetant ses d&eacute;bris fumants vers la terre ferme. Les restes de la navette tournoyaient dans les airs et finirent par s&#039;&eacute;craser dans la baie, projetant des tonnes et des tonnes&nbsp;d&#039;eau &agrave; l&#039;impact. Tout de suite apr&egrave;s, la sir&egrave;ne d&#039;alerte retentit de&nbsp;partout. A cet instant, les gens sortirent de chez eux, &eacute;tonn&eacute;s et stup&eacute;faits. Une femme qui &eacute;tait devant&nbsp;chez elle se demanda &agrave; haute voix ce qu&#039;il se passait. Je lui expliqua ce que j&#039;avais vu, la navette qui explose et qui s&#039;&eacute;crase dans la mer. La dame &eacute;tait devenue livide, et je voyais la peur envahir son visage. Elle dit qu&#039;<strong><font color="#ffc6c3">Ils</font></strong> arrivaient... Moi je ne comprit pas de qui elle parlait&nbsp;sur le coup...</em></div><div class="post_line"></div><div class="post_line"><em>Je reprit mon chemin vers ma maison, tout le monde &eacute;tait dehors &agrave; s&#039;activer et &agrave; s&#039;interroger. Je ne comprenais pas pourquoi, mais cette peur collective m&#039;envahissait et malgr&eacute; le poids de mon sac et le d&eacute;nivel&eacute; de la route, je me mis &agrave; courir. Comme prise de panique. J&#039;&eacute;tais tr&egrave;s vite &agrave; bout de souffle,&nbsp;je me maudissais de m&#039;&ecirc;tre arr&ecirc;t&eacute;e et d&#039;avoir fait une sieste pr&eacute;c&eacute;demment. J&#039;aurais d&eacute;j&agrave; pu &ecirc;tre &agrave; la maison avec ma famille. Ils avaient d&ucirc; entendre les sir&egrave;nes d&#039;alerte et ils devaient s&#039;inqui&eacute;ter pour moi.&nbsp;</em></div><div class="post_line"><em>A cet instant, je croise un officier de police qui commen&ccedil;a &agrave; me hurler dessus. Prise dans mon &eacute;lan, je n&#039;avais pas compris ce qu&#039;il me disait, et il me tira par mon sac &agrave; dos. Je faillit perdre l&#039;&eacute;quilibre&nbsp;et l&#039;homme me secoua, visiblement sous pression. Il m&#039;ordonna en criant d&#039;aller me mettre imm&eacute;diatement &agrave; l&#039;abris dans un des bunker de la protection civile. J&#039;&eacute;tais compl&egrave;tement perdue et j&#039;&eacute;tais sous l&#039;effet de la peur. Je crois que je lui ai dit d&#039;une petite voix larmoyante que je ne savais pas o&ugrave; c&#039;&eacute;tait, et que je devais remonter au village pour que mes parents ne s&#039;inqui&egrave;tent plus. Mais l&#039;homme me dit que je n&#039;avais pas le temps d&#039;y arriver et que je devais&nbsp;suivre toutes les autres personnes qui sortaient de chez eux vers la m&ecirc;me direction. Puis,&nbsp;avant de partir il me dit, c&#039;est les <strong><font color="#ffc6c3">Factionnaires</font></strong> qui nous attaquent...</em></div><div class="post_line"></div><div class="post_line"><em>D&#039;un pas peu assur&eacute;, et encore essouffl&eacute;e&nbsp;de mon sprint, je me dirigea dans la direction que l&#039;officier m&#039;avait indiqu&eacute;. A cet &eacute;poque, je ne me pr&eacute;occupais pas trop de ce qui se passait dans le monde. Je me souviens que mes parents parlaient souvent de cette <strong><font color="#ffc6c3">Faction Militariste</font></strong>, et qu&#039;ils&nbsp;craignaient que leur id&eacute;ologie ne m&egrave;ne vers une guerre. Mais pour moi leur empire &eacute;tait tellement lointain. Et puis qu&#039;es-ce qu&#039;une ado de mon &acirc;ge allait s&#039;encombrer avec des craintes politiques...&nbsp; J&#039;avais tellement d&#039;autres tracas insignifiants...</em></div><div class="post_line"><em>Je ne m&#039;en &eacute;tais pas rendu compte, mais je pleurais. En quelques instants tout avait chang&eacute;, j&#039;&eacute;tais totalement d&eacute;boussol&eacute;e. Une dame d&#039;un certain &acirc;ge me rep&eacute;ra et elle&nbsp;me prit la main et me demanda de la suivre d&#039;une voix douce. Elle avait certainement vu ma d&eacute;tresse et m&#039;enjoignit de rester avec elle. Elle marchait lentement et elle me demanda de l&#039;aider en lui prenant son bras.&nbsp;</em></div><div class="post_line"><em>Tout en marchant, la vieille dame&nbsp;me demanda comment je m&#039;appelais et d&#039;o&ugrave; es-ce que je venais. Elle me dit que je n&#039;avais pas le temps de rentrer chez moi et que je serai plus en s&eacute;curit&eacute; en&nbsp;restant ici. Elle me proposa d&#039;appeler ma famille avec son holophone pour les rassurer, mais quand elle fouilla dans sa poche, elle s&#039;aper&ccedil;u d&#039;un air d&eacute;sol&eacute;&nbsp;qu&#039;elle l&#039;avait oubli&eacute; chez elle. Alors silencieusement, &agrave; son rythme, nous avons poursuivis notre chemin vers le bunker.</em></div><div class="post_line"></div><div class="post_line"><em>Le soleil &eacute;tait d&eacute;j&agrave; pass&eacute; derri&egrave;re la montagne, et le ciel prenait une douce couleur orang&eacute;e.&nbsp;Les gens autour de nous s&#039;affolaient de plus en plus, certains couraient avec les bras charg&eacute;s de valises remplies &agrave; la va-vite, d&#039;autres portaient leurs enfant dans les bras pour les emmener en s&eacute;curit&eacute;. C&#039;&eacute;tait une vision chaotique. Au loin on pouvait entendre les vaisseaux spatiaux qui d&eacute;collaient du spatioport. C&#039;est alors que quand je retourna la t&ecirc;te dans leur direction, je les vis presque tous exploser simultan&eacute;ment dans les airs. Imm&eacute;diatement, les armements AA des bunkers crach&egrave;rent leurs obus dans le ciel.&nbsp;Sortant d&#039;un nuage, un &eacute;norme croiseur de combat fit son apparition, et l&#039;instant d&#039;apr&egrave;s, c&#039;&eacute;tait tout le complexe des arsenaux militaires qui explosa. On vit d&#039;abord les boules de feu des explosions s&#039;&eacute;lever dans les airs, et puis ensuite c&#039;&eacute;tait le son du&nbsp;fracas des bombes qui nous parvint. Les gens &eacute;taient t&eacute;tanis&eacute;s par ce spectacle. J&#039;ai senti la main de la dame se resserrer&nbsp;autour de mon bras, elle me dit alors que son fils travaillait l&agrave; bas. Ses mots me retourn&egrave;rent l&#039;estomac, mais, sans conviction, j&#039;essaya de la rassurer en lui disant qu&#039;il avait certainement&nbsp;pu &eacute;chapper au bombardement...</em></div><div class="post_line"></div><div class="post_line"><em>Et c&#039;est alors que les cris stridents des badaud&nbsp;nous stopp&egrave;rent. Un second croiseur de combat apparu de derri&egrave;re la montagne. Il&nbsp;nous semblait aussi imposant que le premier qui se trouvait d&eacute;j&agrave; au dessus de la baie pour bombarder l&#039;arsenal. On entendait clairement le grognement lourd des moteurs. Les gens se mirent tous &agrave; courir de panique. Malgr&eacute; les bousculades, la vieille dame et moi parvinrent &agrave; nous extirper tant bien que mal de la foule. Le croiseur avan&ccedil;ait lentement, mais il nous paraissait presque aussi gros que la montagne.&nbsp;</em></div><div class="post_line"><em>Et c&#039;est l&agrave; que je vis notre&nbsp;petit sanctuaire, qui &eacute;tait perch&eacute; sur le pic, exploser compl&egrave;tement. Et puis un sifflement. Et alors, je regardais impuissante les bombes exploser en plein sur mon village. J&#039;ai pouss&eacute; un cri d&eacute;sesp&eacute;r&eacute;, qui je crois devait&nbsp;plus se trouver entre la stupeur et l&#039;horreur. La vieille dame essayait de me retenir mais je m&#039;extirpa de sa faible &eacute;treinte et m&#039;&eacute;lan&ccedil;a &agrave; toutes jambes vers mon village. J&#039;&eacute;tais entrain de lutter&nbsp;&agrave; travers la foule, mais forc&eacute;ment je me suis faite bousculer, puis&nbsp;je suis tomb&eacute;. Des pieds me passaient dessus et quelqu&#039;un m&#039;assomma&nbsp;&agrave; moiti&eacute; apr&egrave;s m&#039;&ecirc;tre pris un coup de jambe &agrave; la t&ecirc;te. Je sentis ensuite qu&#039;on m&#039;agrippai et j&#039;ai pu sortir la t&ecirc;te de la cohue. Un homme imposant venait de me charger comme une plume sur sa large &eacute;paule.</em></div><div class="post_line"></div><div class="post_line"><em>Reprenant vite&nbsp;mes esprits, je recommen&ccedil;ait &agrave; crier et &agrave;&nbsp;me d&eacute;battre. Mais plus je m&#039;agitais et plus l&#039;homme&nbsp;resserrait&nbsp;sa prise. Et c&#039;est &agrave; cet instant qu&#039;il y eut un nouveau sifflement... Cette fois bien plus audible. Le croiseur &eacute;tait juste au dessus de nous. Et &agrave; partir de l&agrave;, l&#039;enfer se d&eacute;cha&icirc;na compl&egrave;tement sur nous. Je ne me rappelle plus tr&egrave;s bien de cet instant, mais je me souviens que j&#039;avais mise machinalement mes mains sur les oreilles pour me prot&eacute;ger du fracas des explosions. Je fermais aussi tellement les yeux que j&#039;en avais mal au visage. Et puis plus rien...</em><em>&nbsp;</em></div><div class="post_line"><em>Je me rappelle uniquement reprendre conscience avec un &eacute;trange go&ucirc;t de fer dans la bouche. Et puis il y avait cette &eacute;trange odeur de poudre et de souffre, m&eacute;lang&eacute;s au brul&eacute;... Et en plus de &ccedil;a, je n&#039;arrivais pas &agrave; respirer, ni &agrave; bouger. Quelque chose m&#039;emp&ecirc;chait de me mouvoir et m&#039;&eacute;crasait. Apr&egrave;s quelques secondes je me rendis compte que quelqu&#039;un &eacute;tait couch&eacute; sur moi. Je me suis extirp&eacute;e tant bien que mal, et je finis par remarquer qu&#039;en r&eacute;alit&eacute; c&#039;&eacute;tait l&#039;homme&nbsp;qui m&#039;avait sauv&eacute; de la foule pr&eacute;c&eacute;demment. Je tapota doucement son &eacute;paule en lui parlant, mais il ne bougea pas. C&#039;est l&agrave; que je vis avec horreur que son dos &eacute;tait constell&eacute; d&#039;&eacute;clats de verre et de bois qui rentraient profond&eacute;ment dans son corps.</em></div><div class="post_line"></div><div class="post_line"><em>Je ne sais pas comment d&eacute;crire mon horreur. Je n&#039;avais jamais vu la mort de si pr&egrave;s. Une fois relev&eacute;e, je r&eacute;alisa l&#039;ampleur de la catastrophe... Les maisons brulaient&nbsp;toutes autour de moi. La chaleur devenait &eacute;touffante... Mais le pire, c&#039;&eacute;tait toutes les personnes allong&eacute;es sur la route et qui baignaient dans une gigantesque marre de sang... Il faisait tellement chaud &agrave; cause des incendies, je ne sais m&ecirc;me plus si mes larmes coulaient, ou bien si elles s&#039;&eacute;vaporaient instantan&eacute;ment. J&#039;&eacute;tais horrifi&eacute;e, terroris&eacute;e. Le moindre cr&eacute;pitement, le moindre craquement me faisait peur. Et puis toutes ces personnes allong&eacute;s par terre,&nbsp;souvent le corps lac&eacute;r&eacute; et d&eacute;chiquet&eacute; par les bombes. J&#039;entendais surtout des r&acirc;les inhumains qui se perdaient dans l&#039;&eacute;paisse fum&eacute;e suffocante. J&#039;&eacute;tais compl&egrave;tement d&eacute;sorient&eacute;e, je ne savais pas o&ugrave; j&#039;allais.&nbsp;</em></div><div class="post_line"></div><div class="post_line"><em>J</em><em>e me suis mise &agrave; penser que je devais me r&eacute;veiller de ma sieste de dessous le cerisier pleureur... Mais je ne me r&eacute;veillais pas de mon cauchemar... En marchant je vis au milieu des cadavres une forme aux v&ecirc;tements&nbsp;familiers. Je ne sais plus ce que j&#039;ai exactement &eacute;prouv&eacute; quand j&#039;ai reconnu cette vieille dame qui m&#039;avait guid&eacute; quelques instants plus t&ocirc;t, mais je sais qu&#039;apr&egrave;s, je me suis dit qu&#039;elle n&#039;aurait pas eu &agrave; souffrir de la perte de son fils, certainement d&eacute;j&agrave; mort dans le bombardement de l&#039;arsenal...</em></div><div class="post_line"></div><div class="post_line"><em>Le temps me paraissait tellement long, &agrave; enjamber tous ces&nbsp;d&eacute;bris et ces corps. Je ne m&#039;&eacute;tais m&ecirc;me pas demand&eacute; si je n&#039;&eacute;tais pas bless&eacute;e. J&#039;&eacute;tais tellement abasourdie par la violence et par l&#039;horreur &agrave; la quelle j&#039;&eacute;tais confront&eacute;e. Je me souviens juste que j&#039;avais du sang sur mes mains et mes v&ecirc;tements. Mais apr&egrave;s coup, je pense que c&#039;&eacute;tait celui de l&#039;homme qui m&#039;avais sauv&eacute; la vie. Son corps m&#039;avais sauv&eacute; de l&#039;explosion...</em></div><div class="post_line"></div><div class="post_line"><em>Aujourd&#039;hui, je r&ecirc;ve encore de cette belle journ&eacute;e de printemps, cette journ&eacute;e qui s&#039;est termin&eacute;e dans les flammes et le sang...</em></div><div class="post_line"><em>Mais surtout des p&eacute;tales br&ucirc;lants virevoltant dans la nuit...</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15524&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15524" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15524" name="d_reply_15524" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15524');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15524'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Les p&eacute;tales brulants...</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

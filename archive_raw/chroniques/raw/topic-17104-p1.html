@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17104 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>La Der des Der</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La Der des Der</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />05/01/1024 ETU 00:14</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305691')">Détails</a> <a href="javascript:warnpost(305691)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305691" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305691',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">La D&eacute;pendance Ducal baignait dans une douce lueur cr&eacute;pusculaire, laissant filtrer des teintes pourpres &agrave; travers les fen&ecirc;tres aux rideaux d&eacute;licatement drap&eacute;s. Le bureau de la Duchesse, un sanctuaire de travail opulent, &eacute;tait un m&eacute;lange de technologie sophistiqu&eacute;e et de raffinement classique. Des hologrammes flottaient, d&eacute;livrant des informations, tandis que des &eacute;tag&egrave;res richement d&eacute;cor&eacute;es arboraient des reliques d&#039;un pass&eacute; prestigieux. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La Duchesse Ad&eacute;la&iuml;de &eacute;tait plong&eacute;e dans ses correspondances, entour&eacute;e de consoles informatiques. La lueur de ses moniteurs contrastait avec l&#039;obscurit&eacute; naissante &agrave; l&#039;ext&eacute;rieur. Le soudain fracas des bottes d&#039;un soldat v&ecirc;tu de la tunique pourpre des Communications traversa la pi&egrave;ce, d&eacute;chirant le silence studieux.</div></div><div class="post_line"></div><div class="post_line">La Duchesse interrompit son &eacute;tude et leva ses yeux per&ccedil;ants, fixant le soldat. &quot;<font color="#f551ff">Votre Gr&acirc;ce... C&#039;est urgent...</font>&quot; articula-t-il, son souffle haletant.</div><div class="post_line"></div><div class="post_line">L&#039;autorit&eacute; divine de la Duchesse se fit sentir alors qu&#039;elle faisait signe au soldat de s&#039;asseoir, se levant majestueusement de son si&egrave;ge. Chaque mouvement qu&#039;elle effectuait &eacute;tait mesur&eacute;, impr&eacute;gn&eacute; d&#039;une assurance et d&#039;une dignit&eacute; propre &agrave; une dirigeante aguerrie.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#fbb8ec">Repos, Capitaine... Je suis d&eacute;j&agrave; au courant de la gravit&eacute; de la situation,</font>&quot; affirma-t-elle d&#039;une voix empreinte d&#039;une sagesse. Elle rejoignit le bord de son bureau en bois sculpt&eacute;, faisant face au soldat, son regard refl&eacute;tant un savoir infini. </div><div class="post_line">&quot;<font color="#fbb8ec">Votre arriv&eacute;e est en retard d&#039;un instant, mais cela ne fait nullement obstacle. Convoquez imm&eacute;diatement l&#039;ensemble des nobles de notre duch&eacute;. Exigez d&#039;eux une liste exhaustive, non seulement des notables et des personnalit&eacute;s influentes de leurs territoires. Contactez &eacute;galement Ad&egrave;le De Thrope pour les d&eacute;tails pr&eacute;cis sur nos vaisseaux capables de franchir les fronti&egrave;res galactiques.</font>&quot;</div><div class="post_line"></div><div class="post_line">Le soldat s&#039;inclina profond&eacute;ment avant de se retirer avec une derni&egrave;re marque de respect. La Duchesse, replong&eacute;e dans ses r&eacute;flexions, posa son regard sur la vue cosmique offerte par sa fen&ecirc;tre, absorb&eacute;e par ce nouvel enjeu qui se profilaient au cr&eacute;puscule de son r&egrave;gne.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />06/01/1024 ETU 01:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305696')">Détails</a> <a href="javascript:warnpost(305696)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305696" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305696',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Trois cycles s&#039;&eacute;taient &eacute;coul&eacute;s depuis la convocation, et l&#039;amphith&eacute;&acirc;tre monumental de l&#039;Assembl&eacute;e Ducal &eacute;tait envahi par une mar&eacute;e chatoyante de dignitaires et de repr&eacute;sentants. Les gradins s&#039;&eacute;levaient en un demi-cercle majestueux, chaque si&egrave;ge occup&eacute; par des personnalit&eacute;s en tenue formelle, illumin&eacute;es par la lueur tamis&eacute;e des hologrammes des dignitaires les plus lointain.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">En contrebas, la sc&egrave;ne imposante se d&eacute;ployait, encadr&eacute;e par des colonnes sculpt&eacute;es et des motifs incrust&eacute;s dans le marbre. Sur cette estrade, la Duchesse, la Grande G&eacute;n&eacute;rale des Arm&eacute;es et Principale Diplomate du Duch&eacute; La Comtesse Ad&egrave;le De Thrope, et le Responsable Ducal Scientifique, le Vi-Comte C&eacute;dric D&#039;Angeclo, si&eacute;geaient derri&egrave;re une imposante table en marbre blanc, symbole de l&#039;autorit&eacute; de la Duchesse.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La Duchesse, se levant de son si&egrave;ge, &eacute;manait une aura d&#039;une divine puissance alors qu&#039;elle dominait l&#039;espace par sa pr&eacute;sence. Sa voix, imp&eacute;rieuse et ma&icirc;tris&eacute;e, r&eacute;sonnait dans l&#039;amphith&eacute;&acirc;tre. &quot;<font color="#fbb8ec">Mesdames les Comtesses, Messieurs les Comtes, Mesdames les Baronnes et Messieurs les Barons, je vous remercie pour votre diligence &agrave; r&eacute;pondre &agrave; cette convocation. La situation est des plus urgentes. L&#039;Apocalypse galactique est aux portes. Je vais laisser le Vi-Comte D&#039;Angeclo vous exposer les d&eacute;tails.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un soupir collectif d&#039;effroi traversa l&#039;assembl&eacute;e.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#fff5b3">Bonjour &agrave; tous. Permettez-moi d&#039;&eacute;claircir la situation qui pr&eacute;occupe notre Galaxie. Les fluctuations des trous noirs qui maintiennent notre stabilit&eacute; interstellaire s&#039;aggravent de mani&egrave;re inqui&eacute;tante. Les observations et les calculs les plus pessimistes convergent vers une conclusion alarmante : nous n&#039;avons que 14 cycles avant leur effondrement total. Leur destruction entra&icirc;nerait un chaos gravitationnel sans pr&eacute;c&eacute;dent, mena&ccedil;ant chaque secteur, chaque syst&egrave;me, chaque plan&egrave;te, chaque &ecirc;tre vivant.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Sa voix r&eacute;sonnait, emplie de gravit&eacute;, captant l&#039;attention de l&#039;assembl&eacute;e plong&eacute;e dans un silence angoiss&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#fff5b3">La n&eacute;cessit&eacute; d&#039;une &eacute;vacuation est in&eacute;vitable. Nous devons mobiliser toutes nos ressources pour sauver autant de vies que possible. Chaque individu, chaque famille recens&eacute;e par vos soins doit &ecirc;tre pr&eacute;par&eacute; &agrave; quitter le Duch&eacute;. Nous devons &eacute;galement garantir la pr&eacute;servation de nos connaissances, de notre culture, de notre histoire. C&#039;est votre devoir sacr&eacute; envers notre duch&eacute;. Notre capacit&eacute; d&#039;&eacute;vacuation est estim&eacute;e &agrave; cent cinquante mille &acirc;mes. Cela semble beaucoup, mais c&#039;est une goutte d&#039;eau dans l&#039;oc&eacute;an face &agrave; la population totale de notre civilisation. Nous devons &ecirc;tre prudents, ordonn&eacute;s, et rapides. Nous devons nous entraider, mettre de c&ocirc;t&eacute; les conflits, pour survivre en tant que civilisation unie.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un tumulte grandissant &eacute;clata parmi l&#039;assembl&eacute;e, les voix s&#039;&eacute;levant dans une confusion croissante. D&#039;un geste imp&eacute;rieux, la Duchesse imposa le silence, captant l&#039;attention de chacun.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#fbb8ec">La situation est grave, mais nous avons une chance de sauver un grand nombre d&#039;entre vous. Vous disposez de dix cycles pour pr&eacute;parer votre d&eacute;part. &Agrave; l&#039;aube du onzi&egrave;me cycle, vous devrez &ecirc;tre en orbite de la Baronnie de Sanidete. Tout retard sera fatal. Nous d&eacute;collerons au cr&eacute;puscule de ce jour-l&agrave;. Chacun doit se pr&eacute;parer au mieux pour cette &eacute;vacuation. Dispersez-vous et agissez rapidement.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Dans un tumulte anxieux. l&#039;assembl&eacute;e se vida progressivement, chaque individu se pr&eacute;cipitant vers sa t&acirc;che conscient de l&#039;horloge implacable comptant les cycles restants avant l&#039;in&eacute;luctable.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />07/01/1024 ETU 17:01</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305698')">Détails</a> <a href="javascript:warnpost(305698)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305698" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305698',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">La Duchesse se leva et se dirigea vers l&#039;immense baie vitr&eacute; qui donne sur le ciel. </div><div class="post_line">Le Vi-Comte et la Comtesse se fray&egrave;rent un chemin &agrave; travers l&#039;amphith&eacute;&acirc;tre, leurs pas &agrave; peine audibles se m&ecirc;lant au murmure feutr&eacute; de leurs v&ecirc;tements somptueux. La lumi&egrave;re tamis&eacute;e dansait sur les cristaux de la vitre, cr&eacute;ant une symphonie de reflets chatoyants &agrave; leur passage. &Agrave; mesure qu&#039;ils approchaient, la lumi&egrave;re des &eacute;toiles semblait se faire plus intense, illuminant leurs visages dans une aura c&eacute;leste.</div><div class="post_line">Les regards pr&eacute;occup&eacute;s et s&eacute;rieux des trois figures &eacute;minentes du Duch&eacute; se crois&egrave;rent dans un &eacute;change silencieux, alors que la Comtesse De Thrope brisa le silence. Sa voix, teint&eacute;e d&#039;inqui&eacute;tude, r&eacute;sonna dans l&#039;immense h&eacute;misph&egrave;re.</div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">&quot;Votre Gr&acirc;ce, o&ugrave; nous m&egrave;nera ce voyage ? Nous ne poss&eacute;dons pas assez de ressources pour assurer la survie d&#039;une telle masse de population sur une dur&eacute;e aussi &eacute;tendue.&quot;</font></div><div class="post_line"></div><div class="post_line">La Duchesse posa une main rassurante sur l&#039;&eacute;paule de cette derni&egrave;re. &quot;<font color="#fbb8ec">Ad&egrave;le, ayez confiance en moi. Nous survivrons. Un vaisseau de transport est en cours d&#039;am&eacute;nagement pour acceuillir nous et les Comt&eacute;s du Noyau. Nous aurons tout ce dont nous avons besoin pour reconstruire le Duch&eacute; ailleurs. Le moment est venu de quitter le CQFD. R&eacute;glez les derni&egrave;res affaires en son sein. Le Duch&eacute; sera dissous au Onzi&egrave;me Cycle. Au Douzi&egrave;me Cycle, le protocole Om&eacute;ga sera enclench&eacute;. Au Treizi&egrave;me Cycle, nous aurons quitt&eacute; la Galaxie, et nous pourrons observer l&#039;Apocalypse au Quatorzi&egrave;me Cycle. &Agrave; ce moment-l&agrave;, nous serons en totale autarcie.</font>&quot;</div><div class="post_line"></div><div class="post_line">Un regard &agrave; la fois d&eacute;termin&eacute; et compatissant passa entre la Duchesse et la Comtesse, cette derni&egrave;re d&eacute;glutissant avec angoisse.</div><div class="post_line"></div><div class="post_line">Ils contempl&egrave;rent les &eacute;toiles, &agrave; la fois si lointaines et pourtant si proches, t&eacute;moins silencieux de l&#039;ultime ballet cosmique. La d&eacute;termination grav&eacute;e sur les visages des trois figures contrastait avec la fragilit&eacute; apparente de leur situation.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />09/01/1024 ETU 05:35</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305702')">Détails</a> <a href="javascript:warnpost(305702)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305702" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305702',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">L&#039;aube se glissait doucement &agrave; travers les fen&ecirc;tres du Bureau de la Duchesse alors qu&#039;elle organisait m&eacute;thodiquement ses effets personnels. Trois silhouettes bris&egrave;rent soudainement sa concentration.</div><div class="post_line">&quot; <font color="#c3ffff">Votre Grace, je suis le Vi-Comte Marc De La Roche, repr&eacute;sentant des Colonies. Nous devons discuter. J&#039;ai entendu dire que vous avez pr&eacute;vu un plan d&#039;&eacute;vacuation pour le duch&eacute;, mais vous n&#039;avez pas mentionn&eacute; un mot concernant vos colonies ! C&#039;est inacceptable.</font>&quot;</div><div class="post_line"></div><div class="post_line">La Duchesse releva les yeux, une froideur gla&ccedil;ante animant son regard. Elle prit la parole d&#039;une voix cassante :&nbsp;</div><div class="post_line">&quot;<font color="#fbb8ec">Quittez imm&eacute;diatement ce bureau.</font></div><div class="post_line">- <font color="#c3ffff">Non. Nous ne partirons pas sans obtenir gain de cause. Vos colonies ont largement contribu&eacute; &agrave; la grandeur de notre duch&eacute;. Vous devez les inclure dans vos plans.</font>&quot;</div><div class="post_line"></div><div class="post_line">Une lueur &eacute;trange dans les yeux de la Duchesse fit p&acirc;lir les deux nobles qui accompagnaient De La Roche. &quot;<font color="#c3ffff">Qui vous a autoris&eacute; &agrave; bouger, bande de l&acirc;ches !</font>&quot; Les acolytes, terrifi&eacute;, prirent la fuite, laissant l&#039;homme seul face &agrave; la Duchesse.</div><div class="post_line">&quot;<font color="#fbb8ec">Qui &ecirc;tes-vous pour me parler ainsi ? Vous n&#039;&ecirc;tes qu&#039;un insignifiant sous-noble.</font>&quot; Marc vacilla mais tenta de dissimuler son malaise.</div><div class="post_line">- <font color="#c3ffff">Duchesse, je repr&eacute;sente les int&eacute;r&ecirc;ts des colonies.</font></div><div class="post_line">- <font color="#fbb8ec">Vous n&#039;&ecirc;tes qu&#039;un repr&eacute;sentant qui se surestime. Vous m&#039;interrompez dans mon propre bureau pour m&#039;insulter.</font><font color="#e8b6ef">&quot;</font></div><div class="post_line"></div><div class="post_line">Ses prunelles pass&egrave;rent du bleu glacial &agrave; un rouge incandescent. Soudain, une obscurit&eacute; suffocante engloutit la pi&egrave;ce. Le ciel ros&eacute; de l&#039;aube sombra dans une nuit d&#039;encre, une unique sph&egrave;re solaire vacillante. Les yeux de la Duchesse semblaient &eacute;mettre une lueur dans cette noirceur.</div><div class="post_line">&quot;<font color="#fbb8ec">Tirez et la mort ne vous sera qu&#039;un agr&eacute;able souvenir. Vous auriez d&ucirc; fuir comme vos larbins. Mais vous avez choisi de me menacer. Allez-y, tirez et vous saurez.</font>&quot;</div><div class="post_line">L&#039;homme l&acirc;cha un hurlement primal et vida son chargeur mais &agrave; chaque d&eacute;tonation, les yeux de la Duchesse paraissaient s&#039;&eacute;largir davantage.</div><div class="post_line"><font color="#e8b6ef">&quot;</font><font color="#fbb8ec">Vous avez fait un choix regrettable Marc De La Roche. Mais ce sera le dernier</font><font color="#e8b6ef">.&quot;</font></div><div class="post_line">Les hurlements de l&#039;homme r&eacute;sonnaient comme une complainte, secou&eacute; par des convulsions violentes.</div><div class="post_line"></div><div class="post_line">La lueur ros&eacute;e fit timidement son retour, et la Duchesse, ses yeux retrouvant leur teinte azur, portait cinq impacts b&eacute;ants sur son front. Les douilles jonchaient le sol, dessinant une macabre constellation, pendant que l&#039;homme gisait, bris&eacute;, pleurant et priant dans une cacophonie de souffrance.</div><div class="post_line">&quot;<font color="#fbb8ec">Vous connaissez la sortie. Ne revenez plus jamais ici&quot;</font> Marc rampa avec f&eacute;brilit&eacute; hors de la pi&egrave;ce.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />13/01/1024 ETU 03:39</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305707')">Détails</a> <a href="javascript:warnpost(305707)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305707" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305707',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">La Duchesse Ad&eacute;la&iuml;de se frayait un chemin &agrave; travers les vastes coursives du chantier spatial du Laboratoire ADM, son imposante silhouette se d&eacute;tachant dans la lueur &eacute;manant des Grokanons, le sommet de la flotte ducal, qui &eacute;mergeaient majestueusement de leur &eacute;tat embryonnaire. Alors que deux cycles seulement s&eacute;paraient le Duch&eacute; de l&#039;&eacute;vacuation cruciale, ces titanesques croiseurs bombardiers incarnaient l&#039;apoth&eacute;ose d&#039;un projet d&#039;une envergure exceptionnelle.</div><div class="post_line"></div><div class="post_line">Face &agrave; elle, quatre colosses c&eacute;lestes prenaient forme, d&eacute;ployant une envergure qui d&eacute;fiait toute logique. Les Grokanons, symboles de puissance et d&#039;exploits technologiques, s&#039;&eacute;tendaient sur dix kilom&egrave;tres de large, s&#039;allongeaient majestueusement sur une distance imposante de 400 kilom&egrave;tres, et s&#039;&eacute;levaient avec une majest&eacute; imp&eacute;rieuse sur 100 kilom&egrave;tres. Ces g&eacute;ants d&#039;acier et de technologie joueraient un r&ocirc;le vital dans la grande &eacute;vacuation, mettant en &oelig;uvre le protocole Omega pour assurer la p&eacute;rennit&eacute; du Duch&eacute; &agrave; travers les &eacute;preuves &agrave; venir.</div><div class="post_line"></div><div class="post_line">Chaque croiseur bombardier se dressait comme une forteresse volante, arborant une carapace m&eacute;tallique &eacute;tincelante dans l&#039;immensit&eacute; cosmique. Leurs formes massives &eacute;taient orn&eacute;es d&#039;innombrables tourelles, canons et plates-formes de d&eacute;fense, &eacute;voquant une aura intimidante et indomptable. Les flancs des vaisseaux &eacute;taient grav&eacute;s d&#039;inscriptions, t&eacute;moignant du d&eacute;vouement des valeureux soldats qui, avec une ferveur ind&eacute;fectible, les serviraient jusqu&#039;&agrave; la fin des temps.</div><div class="post_line"></div><div class="post_line">&Agrave; l&#039;int&eacute;rieur de ces titans galactiques, un gigantesque canon s&#039;&eacute;tendait sur la longueur du vaisseau, entour&eacute; d&#039;une multitude d&#039;&eacute;tages renfermant des quartiers r&eacute;sidentiels somptueux, des centres de commandement strat&eacute;giques et un impressionnant r&eacute;acteur apotique, pulsant d&#039;une &eacute;nergie titanesque pour propulser ces monstres d&#039;acier &agrave; travers les confins de l&#039;espace.</div><div class="post_line"></div><div class="post_line">Dans le m&ecirc;me laboratoire, un autre projet, jalousement gard&eacute;, prenait forme. Un vaisseau de transport luxueux, portant le nom &eacute;vocateur de &quot;L&#039;&Eacute;clat C&eacute;leste&quot;, &eacute;tait sur le point d&#039;&ecirc;tre r&eacute;v&eacute;l&eacute;. Con&ccedil;u pour l&#039;&eacute;vacuation de la Duchesse Ad&eacute;la&iuml;de et de sa cour, ce vaisseau &eacute;tait une &oelig;uvre d&#039;art technologique d&eacute;di&eacute;e &agrave; la pr&eacute;servation de l&#039;&eacute;lite du duch&eacute;.</div><div class="post_line"></div><div class="post_line">La coque de l&#039;&Eacute;clat C&eacute;leste, fa&ccedil;onn&eacute;e &agrave; partir de mat&eacute;riaux l&eacute;gers mais d&#039;une r&eacute;sistance exceptionnelle, projetait une silhouette &eacute;l&eacute;gante dans l&#039;obscurit&eacute; interstellaire. Des &eacute;clairages subtils parcouraient la coque, conf&eacute;rant &agrave; l&#039;ensemble une aura de majest&eacute;. Bien que ses dimensions fussent imposantes, elles ne rivalisaient pas avec la d&eacute;mesure des Grokanons. Avec une longueur de 1500 m&egrave;tres, une largeur de 500 m&egrave;tres et une hauteur de 200 m&egrave;tres, l&#039;&Eacute;clat C&eacute;leste se distinguait par son &eacute;l&eacute;gance discr&egrave;te plut&ocirc;t que par une pr&eacute;sence imposante.</div><div class="post_line"></div><div class="post_line">&Agrave; bord, chaque centim&egrave;tre carr&eacute; avait &eacute;t&eacute; pens&eacute; pour offrir un confort in&eacute;gal&eacute;. Les quartiers r&eacute;sidentiels rivalisaient avec les suites des palais terrestres, meubl&eacute;s avec des mat&eacute;riaux nobles et agr&eacute;ment&eacute;s d&#039;&oelig;uvres d&#039;art rares. Des espaces de loisirs luxuriants et des jardins int&eacute;rieurs cr&eacute;aient une atmosph&egrave;re de raffinement.</div><div class="post_line"></div><div class="post_line">Seule une poign&eacute;e d&#039;individus - une cinquantaine de nobles et cinq cents membres du personnel, incluant des militaires et des employ&eacute;s de service - auraient le privil&egrave;ge d&#039;embarquer &agrave; bord de ce vaisseau privil&eacute;gi&eacute;. Les autres membres de la noblesse devraient se r&eacute;soudre &agrave; voyager &agrave; bord de transporteurs plus modestes. Tout &eacute;tait d&eacute;sormais en place pour la grande travers&eacute;e.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />14/01/1024 ETU 21:07</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305849')">Détails</a> <a href="javascript:warnpost(305849)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305849" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305849',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Dans le poste de commandement de l&#039;&Eacute;clat C&eacute;leste, la Duchesse Ad&eacute;la&iuml;de tr&ocirc;nait majestueusement dans son si&egrave;ge, observant la toile d&#039;&eacute;toiles &agrave; travers la grande baie vitr&eacute;e. Autour du vaisseau, une flottille de vaisseaux attendait le signal pour le d&eacute;part. Le jour tant attendu de l&#039;&eacute;vacuation &eacute;tait enfin arriv&eacute;, et elle se pr&eacute;parait &agrave; guider sa noblesse vers l&#039;inconnu. D&#039;une voix empreinte de solennit&eacute;, elle prit la parole.</div><div class="post_line">&quot;<font color="#fbb8ec">&Eacute;clat C&eacute;leste &agrave; groupe Omega, tous les autres</font><font color="#fbb8ec"> canaux, silence radio. Vous avez le feu vert pour lancer le protocole. &Eacute;clat C&eacute;leste &agrave; tous les vaisseaux, les autres canaux, silence radio. Ici votre Duchesse. &Agrave; mon commandement, mettez le cap en direction du cadran sud. Je vous b&eacute;nis, que vos chemins soient stables. B&eacute;ni soit le Duch&eacute; de Matrum.</font>&quot;</div><div class="post_line">Une voix automatis&eacute;e prit le relais, r&eacute;sonnant dans tout les vaisseaux.</div><div class="post_line">&quot;BIP, D&Eacute;PART DANS 3 BIP, </div><div class="post_line">D&Eacute;PART DANS 2 BIP, </div><div class="post_line">D&Eacute;PART DANS 1 </div><div class="post_line">QUE LA DUCHESSE VOUS B&Eacute;NISSE : BON VOYAGE. L&#039;&Eacute;VACUATION COMMENCE.&quot;</div><div class="post_line">&Agrave; cet instant pr&eacute;cis, les vaisseaux s&#039;&eacute;branl&egrave;rent, prenant lentement de la vitesse. En un instant, l&#039;orbite autrefois peupl&eacute;e &eacute;tait d&eacute;sormais vide, les vaisseaux se fondant dans l&#039;obscurit&eacute; cosmique. Seul un message automatis&eacute; r&eacute;sonnait sur toutes les fr&eacute;quences de communication appartenant au Duch&eacute;.</div><div class="post_line">&quot;<font color="#fbb8ec">C&#039;est votre Duchesse qui vous parle. La fin est in&eacute;vitable, et c&#039;est le c&oelig;ur lourd que je vous annonce que le Duch&eacute; n&#039;est plus. D&eacute;sormais, vous ne pouvez compter que sur vous-m&ecirc;mes. Que la m&eacute;moire du Duch&eacute; de Matrum reste grav&eacute;e dans vos c&oelig;urs, comme une &eacute;toile qui guide votre destin.</font>&quot;</div><div class="post_line">Le Duch&eacute; ne survivait plus que dans l&#039;esprit et le souvenir de ses habitants, qui se lan&ccedil;aient vers un avenir incertain, portant avec eux l&#039;h&eacute;ritage d&#039;une civilisation &eacute;teinte.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />16/01/1024 ETU 07:51</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal305915')">Détails</a> <a href="javascript:warnpost(305915)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305915" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305915',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">&Agrave; bord de l&#039;&Eacute;clat C&eacute;leste, dans l&#039;infinit&eacute; stellaire, la Duchesse Ad&eacute;la&iuml;de se tenait avec solennit&eacute; devant l&#039;assembl&eacute;e de nobles. Elle commen&ccedil;a son allocution d&#039;une voix empreinte d&#039;&eacute;motion et de d&eacute;termination :</div><div class="post_line"></div><div class="post_line">&quot;<font color="#fbb8ec">Mes chers amis, nobles de Matrum, nous voici plong&eacute;s dans une &eacute;pop&eacute;e in&eacute;dite. Nous avons perdu le contact avec notre sonde la plus &eacute;loign&eacute;e. C&#039;est avec un c&oelig;ur lourd, empli de d&eacute;fis et d&#039;espoirs, que je m&#039;adresse &agrave; vous durant cet instant crucial. En cette p&eacute;riode de transition, l&#039;unit&eacute; devient notre refuge, et la pr&eacute;servation de l&#039;h&eacute;ritage de Matrum, notre devoir sacr&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Dans cette nouvelle &egrave;re, je vous pr&eacute;sente la constitution actualis&eacute;e du Duch&eacute; de Matrum, un pacte pour notre avenir.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">D&eacute;sormais, toutes les plan&egrave;tes du Duch&eacute; dans la Galaxie de Vindicte sont reconnues comme des Friches. L&#039;&Eacute;clat C&eacute;leste se dresse comme le symbole Unique et de droit divin de notre Duch&eacute;, rel&eacute;guant les autres vaisseaux au statut d&#039;entit&eacute;s &eacute;trang&egrave;res &agrave; notre destin.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Le Conseil Ducal est r&eacute;voqu&eacute; de ses fonctions, et moi, Duchesse de Matrum, suis la seule d&eacute;positaire du pouvoir d&eacute;cisionnel et judiciaire au sein de ce vaisseau sacr&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Le &pound;eems n&#039;a plus de valeur ici. Les soldes seront octroy&eacute;es &agrave; la d&eacute;couverte d&#039;une terre qui pourrait devenir notre nouveau foyer. Notre destin est d&eacute;sormais li&eacute; &agrave; notre capacit&eacute; &agrave; naviguer vers un avenir inexplor&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Durant cette phase, votre statut noble n&#039;accorde plus de privil&egrave;ges. Vous &ecirc;tes d&eacute;sormais &eacute;gaux aux Ordinaires de l&#039;&Eacute;clat C&eacute;leste. Seuls les membres du corps militaire conservent leurs statuts et pr&eacute;rogatives, car ils sont les gardiens de notre s&eacute;curit&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Je m&#039;engage &agrave; assurer &agrave; chacun, ind&eacute;pendamment de son statut, un logement d&eacute;cent et des repas quotidiens, tout en appelant &agrave; la responsabilit&eacute; collective pour la pr&eacute;servation de nos ressources. Le gaspillage ne sera tol&eacute;r&eacute;, et des sanctions s&eacute;v&egrave;res seront appliqu&eacute;es.</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">La participation active aux loisirs et aux t&acirc;ches communes devient un devoir sacr&eacute;, car ensemble, nous naviguons vers l&#039;inconnu, porteurs de l&#039;h&eacute;ritage de Matrum.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Que notre unit&eacute; soit la flamme inextinguible dans ces temps incertains.</font>&quot;</div><div class="post_line"></div><div class="post_line">Un triomphe d&#039;applaudissements empreints d&#039;appr&eacute;hension conclut ce discours.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />21/01/1024 ETU 01:09</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305930')">Détails</a> <a href="javascript:warnpost(305930)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305930" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305930',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">L&#039;ancienne Comtesse Ad&egrave;le De Thrope &eacute;mergea de son sommeil dans une cabine somptueuse, d&#039;une &eacute;l&eacute;gance &agrave; couper le souffle. L&#039;espace, bien que mesurant neuf m&egrave;tres carr&eacute;s, &eacute;tait richement d&eacute;cor&eacute;. Son lit, confectionn&eacute; dans un bois noble et finement grav&eacute;, tr&ocirc;nait au centre de la pi&egrave;ce. Les murs &eacute;taient orn&eacute;s d&#039;une tapisserie d&eacute;peignant des symboles abstraits, tandis qu&#039;un tapis traditionnel habillait le sol luxueusement. Cette cabine &eacute;tait un hymne &agrave; la luxure.</div><div class="post_line">Apr&egrave;s s&#039;&ecirc;tre &eacute;tir&eacute;e avec gr&acirc;ce, la Comtesse se leva de son lit et proc&eacute;da &agrave; une toilette matinale. V&ecirc;tue d&#039;une tenue &eacute;l&eacute;gante, elle se dirigea vers l&#039;un des caf&eacute;s prestigieux &agrave; bord de l&#039;&Eacute;clat C&eacute;leste. Un petit-d&eacute;jeuner rapide plus tard, elle se rendit &agrave; son service, elle avait choisi le poste de balayeuse dans les archives. Un travail planqu&eacute; et tranquille, lui permettait de se plonger dans la lecture de vieux rapports, r&eacute;veillant en elle la nostalgie d&#039;une &eacute;poque r&eacute;volue.</div><div class="post_line"></div><div class="post_line">Devant une &eacute;tag&egrave;re bien garnie, elle saisit un dossier qui piqua son int&eacute;r&ecirc;t et s&#039;installa &agrave; une table d&#039;&eacute;tude. Le premier rapport traitait de l&#039;interpellation de trois terroristes responsables d&#039;une attaque sur la Baronnie d&#039;Ertza au sein du Comt&eacute; de Yira. Une pand&eacute;mie s&eacute;v&egrave;re avait &eacute;clat&eacute; &agrave; la suite de cette attaque, une information qui la prit de court. Elle se souvint vaguement d&#039;une note interdisant l&#039;acc&egrave;s &agrave; la Baronnie, mais aucune information suppl&eacute;mentaire ne lui &eacute;tait parvenue &agrave; l&#039;&eacute;poque.</div><div class="post_line"></div><div class="post_line">Intrigu&eacute;e, elle poursuivit la lecture des rapports. Ils faisaient &eacute;tat d&#039;une pand&eacute;mie ayant d&eacute;g&eacute;n&eacute;r&eacute; en &eacute;meute, et elle d&eacute;couvrit des d&eacute;tails sur l&#039;&eacute;vacuation des nobles vers le palais du Comte. &Eacute;tonnamment, elle n&#039;avait aucune connaissance de cet &eacute;v&eacute;nement, bien qu&#039;elle ait occup&eacute; le poste de G&eacute;n&eacute;ral des Arm&eacute;es. Les rapports &eacute;voquaient confinement, &eacute;vacuation, et finalement, la nouvelle du d&eacute;c&egrave;s du Baron d&#039;Ertza.</div><div class="post_line"></div><div class="post_line">Une lettre particuli&egrave;re attira son attention. Elle mentionnait la destitution de l&#039;ensemble des nobles du Comt&eacute; et la dissolution de celui-ci par la Duchesse. Ce dossier se concluait sur un avis de recherche pour l&#039;ensemble des anciens nobles du Comt&eacute;. La Comtesse n&#039;avait que des souvenirs flous de la quarantaine impos&eacute;e au Comt&eacute;, mais le ton exp&eacute;ditif et sans appel de la Duchesse, tel qu&#039;il &eacute;tait expos&eacute; dans ce dossier, ajoutait du carburant au feu de la fronde qui grondait dans l&#039;&Eacute;clat C&eacute;leste. La lecture de ce dossier laissait entrevoir une sombre r&eacute;alit&eacute; dissimul&eacute;e derri&egrave;re les apparences, alimentant davantage son d&eacute;sir de comprendre les rouages secrets de la Duchesse.</div><div class="post_line"></div><div class="post_line">Elle saisit le dossier et retourna vers le caf&eacute;, s&#039;installant aux c&ocirc;t&eacute;s de C&eacute;dric D&#039;Angeclo.</div><div class="post_line">&quot;<font color="#ffdbbb">Mon ami, j&#039;avais raison, notre destitution n&#039;est pas un &eacute;v&eacute;nement exceptionnel...</font><font color="#ffc6c3">&quot;</font> </div><div class="post_line"><font color="#fff5b3">&quot;Bonjour Ad&egrave;le, comment allez-vous ?&quot;</font> </div><div class="post_line">&quot;<font color="#ffdbbb">Oui, bonjour. Regardez ce dossier. Avez-vous entendu parler du Comt&eacute; de Yira ?</font>&quot; </div><div class="post_line">&quot;<font color="#fff5b3">Il &eacute;tait situ&eacute; dans le syst&egrave;me 4, il me semble. O&ugrave; voulez-vous en venir ?</font>&quot; </div><div class="post_line">&quot;<font color="#ffdbbb">Le Comt&eacute; a &eacute;t&eacute; dissous par la Duchesse.</font>&quot; Elle tapota sur le dossier. &quot;<font color="#ffdbbb">Tout est expliqu&eacute; ici. La Duchesse nous a tous trahis. Nous devons nous r&eacute;volter !</font>&quot; </div><div class="post_line">&quot;<font color="#fff5b3">Oula, Ad&egrave;le, ma ch&egrave;re amie, vos pens&eacute;es vous d&eacute;passent. Nous avons jur&eacute; fid&eacute;lit&eacute; &agrave; la Duchesse jusqu&#039;&agrave; notre mort. La r&eacute;volution serait trahir notre serment.</font>&quot; </div><div class="post_line">&quot;<font color="#ffdbbb">La Duchesse nous a d&eacute;mis de nos titres, et par cons&eacute;quent, de nos v&oelig;ux. Nous ne lui devons plus rien. Rappelle-toi de quand date la derni&egrave;re intervention de la Duchesse. C&#039;&eacute;tait pour nous destituer. La seule chose qui nous unit desormais, c&#039;est le travail de chacun. Ensemble, nous sommes forts. Sans la Duchesse, nous sommes meilleurs.</font>&quot;</div><div class="post_line">C&eacute;dric D&#039;Angeclo prit le dossier, ses yeux parcourant rapidement les informations. Il plissa le front, d&eacute;contenanc&eacute; par les r&eacute;v&eacute;lations qu&#039;il d&eacute;couvrait. &quot;<font color="#fff5b3">Ad&egrave;le, c&#039;est une situation d&eacute;licate. Nous devons agir avec prudence. Une r&eacute;volte pourrait plonger l&#039;&Eacute;clat C&eacute;leste dans le chaos. Ne sous-estimez pas la loyaut&eacute; des autres envers la Duchesse. Nous devons peser nos options soigneusement.</font>&quot;</div><div class="post_line">Ad&egrave;le, cependant, &eacute;tait d&eacute;termin&eacute;e. &quot;<font color="#ffdbbb">Notre destin est entre nos mains. La Duchesse nous a laiss&eacute;s &agrave; l&#039;abandon, et nous devons prendre notre destin en main. Les preuves sont l&agrave;, dans ce dossier. Nous pouvons rallier ceux qui partagent notre vision, ceux qui veulent plus que de simples ordres automatis&eacute;s. Ensemble, nous pouvons changer notre destin&eacute;e.</font>&quot;</div><div class="post_line">&quot;<font color="#fff5b3">Mais que proposer-vous ?</font>&quot;</div><div class="post_line">Ad&egrave;le sourit d&#039;un air d&eacute;termin&eacute;. &quot; <font color="#ffdbbb">Un nouveau syst&egrave;me qui nous permettra d&#039;avoir un vrai pouvoir. Nous devons mettre en place un r&eacute;gime directorial bas&eacute; sur la noblesse. Nous devons tous avoir notre mot &agrave; dire, et les pouvoirs doivent &ecirc;tre r&eacute;partis &eacute;quitablement entre nous seulement.</font>&quot;</div><div class="post_line">Les deux nobles se regard&egrave;rent, partag&eacute;s entre le devoir envers la Duchesse et la tentation de lutter pour une nouvelle vision du futur.</div><div class="post_line">C&eacute;dric semblait r&eacute;fl&eacute;chir profond&eacute;ment, luttant avec ses convictions et les r&eacute;alit&eacute;s de leur situation. &quot;<font color="#fff5b3">Cela semble risqu&eacute;, mais si c&#039;est la seule voie vers un avenir meilleur, alors je suis pr&ecirc;t &agrave; me battre &agrave; vos c&ocirc;t&eacute;s. Nous devons proc&eacute;der avec pr&eacute;caution et intelligence.</font>&quot;</div><div class="post_line">Ad&egrave;le hocha la t&ecirc;te avec gratitude. &quot;<font color="#ffdbbb">Nous formons une alliance puissante. Notre cause est juste, et nous devons agir avant que d&#039;autres ne soient entra&icirc;n&eacute;s par la col&egrave;re et la confusion. Nous allons reconqu&eacute;rir notre place dans l&#039;&Eacute;clat C&eacute;leste et offrir &agrave; nos amis une direction digne de leur loyaut&eacute;.</font>&quot;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />29/01/1024 ETU 01:36</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D305964', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305963')">Détails</a> <a href="javascript:warnpost(305963)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305963" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305963',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Un nouveau cycle commence, et avec lui, une tension palpable s&#039;infiltre dans les coursives de l&#039;&Eacute;clat C&eacute;leste. La Duchesse &eacute;merge d&#039;un air l&eacute;g&egrave;rement exasp&eacute;r&eacute;, son regard scrutant la foule agit&eacute;e qui d&eacute;fie l&#039;autorit&eacute; des soldats en faction, fusils d&#039;assaut au poing. Ses pas r&eacute;sonnent avec autorit&eacute; alors qu&#039;elle se fraye un chemin &agrave; travers la masse inqui&egrave;te, son regard d&#039;azur luisant d&#039;une d&eacute;termination implacable.</div></div><div class="post_line"><div align="justify">&quot;<font color="#fbb8ec">De la discipline ! Votre tentative de r&eacute;volte est scandaleuse ! La honte doit vous envahir ! Dispersez-vous et retournez &agrave; vos occupations !</font>&quot;</div></div><div class="post_line">Sa voix est oppressante et glaciale. La foule, sous le poids de son autorit&eacute;, commence &agrave; se dissoudre dans un silence pesant, jusqu&#039;&agrave; ce que seul un cercle restreint de nobles demeure.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#fbb8ec">Ad&egrave;le... Votre pr&eacute;sence ne me surprend gu&egrave;re...&quot;</font>, murmure-t-elle en se frayant un chemin &agrave; travers les rangs de soldats, approchant d&#039;Ad&egrave;le de Thrope dont le regard trahit une d&eacute;termination vacillante.</div><div class="post_line">&quot;<font color="#fbb8ec">Ma s&oelig;ur, soyez raisonnable... Je comprends votre col&egrave;re.</font>&quot; La Duchesse pose une main fraternelle sur la joue de la comtesse, son geste empreint d&#039;une compassion teint&eacute;e de fermet&eacute;. &quot;<font color="#fbb8ec">Les mesures que j&#039;ai prises au d&eacute;part de cette &eacute;vacuation &eacute;taient n&eacute;cessaires, pour assurer notre survie dans cette galaxie nouvelle, notre nouveau foyer. Sachez que vous &ecirc;tes l&#039;essence m&ecirc;me de ce nouveau Matrum, l&#039;espoir de notre avenir. Vous, ainsi que chacun &agrave; bord de ce noble vaisseau, &ecirc;tes l&#039;&acirc;me du Duch&eacute;. Vous aurez une place &eacute;minente dans notre destin&eacute;e. Allez, va en paix, Ad&egrave;le.</font>&quot;</div><div class="post_line">La tension se dissipe lentement dans les coursives de l&#039;&Eacute;clat C&eacute;leste, laissant place &agrave; une atmosph&egrave;re plus l&eacute;g&egrave;re et agr&eacute;able. </div><div class="post_line">Les nobles se dispersent dans un murmure &eacute;touff&eacute;, faisant abstraction du poids de leurs pens&eacute;es et de leurs aspirations.</div><div class="post_line">Il ne restait d&eacute;sormais que les deux s&oelig;urs qui se tenait a distance du mur de soldat. </div><div class="post_line">Ad&egrave;le de Thrope, la comtesse jadis rebelle, reste un instant fig&eacute;e sous le regard de la Duchesse, ses pens&eacute;es tourbillonnant dans un tumulte int&eacute;rieur. Elle se tenait debout avec une d&eacute;termination bris&eacute;e dans son regard. ses mains &eacute;tait crois&eacute;s sur son ventre. Quand &agrave; la Duchesse, son regard &eacute;tait devenu beaucoup chaud, moins agressif. </div><div class="post_line"></div><div class="post_line">Le calme s&#039;installe entre les deux femmes, il &eacute;tait charg&eacute; d&#039;une multitude d&#039;&eacute;motions inexprim&eacute;es. Puis, lentement, Ad&egrave;le incline la t&ecirc;te en signe d&#039;acceptation ou de soumission, un &eacute;clair nouveau dans son regard. La Duchesse lui adresse un dernier regard empreint de respect et d&#039;encouragement, avant de poursuivre son chemin &agrave; travers les d&eacute;dales du vaisseau. </div><div class="post_line"></div><div class="post_line">Arriv&eacute;e dans le poste de pilotage, la Duchesse est accueillie par le capitaine avec un m&eacute;lange d&#039;honneur et de respect. Son pas est assur&eacute;,&nbsp; et elle est impatiente d&#039;entendre les derni&egrave;res nouvelles du vaisseau.</div><div class="post_line">&quot;<font color="#d9f4ff">Votre Gr&acirc;ce, nous avons une annonce &agrave; vous faire&quot;, commence le capitaine d&#039;une voix empreinte de solennit&eacute;. &quot;Nos scanners indiquent que nous sommes &agrave; proximit&eacute; d&#039;une galaxie inconnue. Aucune trace de signe de vie d&#039;une civilisation spatiale quelconque n&#039;a &eacute;t&eacute; d&eacute;tect&eacute;e. Nous avons d&eacute;couvert une nouvelle terre.</font>&quot;</div><div class="post_line">Un sourire discret se dessine sur le visage de la Duchesse, un m&eacute;lange de soulagement et d&#039;anticipation.</div><div class="post_line">&quot;<font color="#d9f4ff">De plus, nos capteurs indiquent que la Galaxie de Vindicte a &eacute;t&eacute; le th&eacute;&acirc;tre d&#039;importants &eacute;changes de tirs ADM, mais elle semble toujours &ecirc;tre en activit&eacute;. L&#039;effondrement redout&eacute; n&#039;a pas eu lieu, et nous sommes maintenant trop loin pour faire demi-tour.</font>&quot;</div><div class="post_line">&quot;<font color="#fbb8ec">Merci, Capitaine</font>&quot;, r&eacute;pond-elle d&#039;une voix calme &quot;<font color="#fbb8ec">Continuez &agrave; surveiller la situation de pr&egrave;s. Pr&eacute;parez notre approche de cette nouvelle galaxie. Nous avons un avenir &agrave; b&acirc;tir, et nous ne reculerons sous aucun pr&eacute;texte.</font>&quot;</div><div class="post_line">Elle marque une pause, son regard balayant les diff&eacute;rents rapport accroch&eacute;s dans de nombreux tableau de li&egrave;ge tout autour de la pi&egrave;ce.</div><div class="post_line">&quot;<font color="#fbb8ec">Nous avons surmont&eacute; tant d&#039;obstacles jusqu&#039;&agrave; pr&eacute;sent&quot;, d&eacute;clare-t-elle finalement. &quot;Nous avons surv&eacute;cu &agrave; l&#039;effondrement de notre civilisation, &agrave; la trahison et &agrave; l&#039;exil. Maintenant, nous avons une nouvelle opportunit&eacute; de prosp&eacute;rer. Rompez, capitaine.</font>&quot;</div><div class="post_line">Elle se l&egrave;ve et retourne &agrave; son bureau pour commencer &agrave; &eacute;laborer le protocole de recolonisation.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ad%C3%A9la%C3%AFde">Cdte. Ad&eacute;la&iuml;de</a><br>Prestige de chroniqueur&nbsp;: 90<br /><br /><img src="/avatars/11863.png" style="width:128px;height:128px" alt="Avatar" /><br />07/02/1024 ETU 04:12</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D306135', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal306133')">Détails</a> <a href="javascript:warnpost(306133)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal306133" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=306133',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Apr&egrave;s de longs cycles d&#039;errance dans l&#039;immensit&eacute; c&eacute;leste, l&#039;&Eacute;clat C&eacute;leste &eacute;mergea enfin dans une nouvelle galaxie : la Galaxie d&#039;Harmonie. Une ambiance de jubilation s&#039;empara du vaisseau alors qu&#039;il se rapprochait de la plan&egrave;te Ctebu-292, d&eacute;sign&eacute;e comme nouveau foyer pour le Nouveau Duch&eacute; de Matrum.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Quelques cycles et quelques massacres de populations indig&egrave;nes pass&egrave;rent avant que le nouveau Duch&eacute; ne prenne forme. Les 550 exil&eacute;s se rassembl&egrave;rent pour c&eacute;l&eacute;brer cette nouvelle &egrave;re lors d&#039;un banquet grandiose, organis&eacute; dans un majestueux palais fra&icirc;chement &eacute;rig&eacute;. Les murs de la salle de r&eacute;ception &eacute;taient orn&eacute;s de riches tapisseries, d&eacute;peignant des sc&egrave;nes de la vie d&#039;avant et des l&eacute;gendes anciennes, rappelant ainsi les racines de leur peuple. Des lustres en cristal pendaient du plafond vo&ucirc;t&eacute;, r&eacute;pandant une lumi&egrave;re qui dansait sur les murs.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les convives, v&ecirc;tus de leurs plus beaux atours, &eacute;taient install&eacute;s autour d&#039;une longue table en bois massif, o&ugrave; le nom de chacun &eacute;tait grav&eacute; avec pr&eacute;cision. Des nappes d&#039;un blanc immacul&eacute; recouvraient les tables, agr&eacute;ment&eacute;es de d&eacute;corations rappelant la flore luxuriante de leur nouveau monde.</div></div><div class="post_line"><div align="justify">Sur le buffet somptueusement dress&eacute;, une vari&eacute;t&eacute; de mets d&eacute;licieux s&#039;&eacute;talait. Des r&ocirc;tis juteux, des volailles dor&eacute;es &agrave; point, des poissons fra&icirc;chement p&ecirc;ch&eacute;s et des l&eacute;gumes color&eacute;s, tous provenant des terres fertiles de Ctebu-292, ravissaient les sens des convives.</div></div><div class="post_line"><div align="justify">Puis vint enfin le moment tant attendu o&ugrave; la Duchesse se leva pour prendre la parole. Sa voix r&eacute;sonna avec puissance dans la salle, captivant l&#039;attention de tous les convives rassembl&eacute;s.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&quot;<font color="#fbb8ec">Chers Compagnons,</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fbb8ec">Alors que nous posons les fondations de notre nouveau foyer sur N&eacute;o-Matrum, je me tiens devant vous avec un c&oelig;ur rempli de gratitude et d&#039;admiration. Nous avons entrepris ce voyage avec l&#039;espoir de trouver une nouvelle terre o&ugrave; nous pourrions b&acirc;tir un avenir meilleur, et gr&acirc;ce &agrave; votre d&eacute;vouement, votre travail acharn&eacute; et votre sacrifice, nous y sommes parvenus. Chacun de vous a jou&eacute; un r&ocirc;le crucial dans la fondation de notre nouveau Duch&eacute;, et je suis profond&eacute;ment reconnaissante de votre contribution inestimable.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fbb8ec">Je suis honor&eacute;e de vous annoncer que vous &ecirc;tes tous &eacute;lev&eacute;s au rang de nobles. En reconnaissance de votre engagement et de votre d&eacute;vouement &agrave; notre cause, vous m&eacute;ritez le titre honorifique de Fondateur et Fondatrice. Vous &ecirc;tes les architectes de notre nouvelle soci&eacute;t&eacute;, les artisans de notre destin&eacute;e, et je suis fi&egrave;re de vous compter parmi la nouvelle noblesse de </font><font color="#fbb8ec">Matrum.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fbb8ec">Que ce titre soit le symbole de votre d&eacute;termination, de votre courage et de votre vision pour un avenir meilleur. Que chacun de vous continue &agrave; porter avec fiert&eacute; ce titre, et que cela vous rappelle toujours le r&ocirc;le vital que vous avez jou&eacute; dans la cr&eacute;ation de notre patrie sur cette nouvelle terre.</font>&quot;</div></div><div class="post_line"><div align="justify">La Duchesse se tourne vers Ad&egrave;le De Thrope, lui adressant un regard fraternel.</div></div><div class="post_line"><div align="justify">&quot;<font color="#fbb8ec">Je remercie particuli&egrave;rement la nouvelle Chanceli&egrave;re Ad&egrave;le De Thrope d&#039;&ecirc;tre &agrave; mes c&ocirc;t&eacute;s durant cette nouvelle p&eacute;riode de nos vies. Je vais proc&eacute;der &agrave; l&#039;anoblissement personnel de chacun &agrave; la fin de ce repas.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fbb8ec">Je vous b&eacute;nis, mes chers confr&egrave;res et cons&oelig;urs. Puissiez-vous toujours trouver la force et la d&eacute;termination en moi pour poursuivre notre noble cause.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fbb8ec">Vive notre nouveau Duch&eacute; !</font></div></div><div class="post_line"><div align="justify"><font color="#fbb8ec">Je vous remercie</font>.&quot;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Un tonnerre d&#039;applaudissements conclut ce discours, et c&#039;est sous une nouvelle aura que le repas se poursuit, marquant ainsi le d&eacute;but d&#039;une &egrave;re prometteuse.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">--FIN--</div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17104&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17104" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17104" name="d_reply_17104" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17104');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17104'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > La Der des Der</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16471 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>apostrophe</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > apostrophe</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=-Gilgamesh-">Cdt. -Gilgamesh-</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11770.jpg" style="width:128px;height:72px" alt="Avatar" /><br />20/09/1022 ETU 05:21</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal295264')">Détails</a> <a href="javascript:warnpost(295264)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal295264" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=295264',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff857a"><em><a href="https://www.youtube.com/watch?v=3Tb0NWTVtqE" target="_blank" rel="nofollow">https://www.youtube.com/watch?v=3Tb0NWTVtqE</a></em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><em>&quot;Vois tu j&#039;ai longtemps ri de ceux qui ne livraient pas bataille, moquant leurs espoirs que j&#039;estimais craintifs.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><em>Ils ne d&eacute;siraient que gagner du temps, se sachant bien impuissant pour un combat qui vient.</em></font></div><div class="post_line"><font color="#ff857a"><em>L&#039;homme sur la montagne n&#039;&eacute;tais pas fou, surplombant nos arm&eacute;es traversant ce lieu, trop calme et impassible bien qu&#039;agit&eacute; en cons&eacute;quence, sachant son seigneur et ma&icirc;tre, &ecirc;tre&nbsp;un adversaire bien plus redoutable qu&#039;il ne sera jamais, ainsi de son point de vue, &agrave; quoi bon prendre les armes ?</em></font></div><div class="post_line"><font color="#ff857a"><em>Aux commandes de nos l&eacute;gions, serions-nous pour finir&nbsp;renvers&eacute;s?</em></font></div><div class="post_line"><em><font color="#ff857a">Sans opposer de r&eacute;sistance, ils &eacute;vit&egrave;rent la disparition inutile de certains braves, il ne me serait pas d&eacute;plaisant de le leur rendre.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><em>Je n&#039;&eacute;tais alors moi-m&ecirc;me pas imperm&eacute;able &agrave; la sagesse, j&#039;ignorais simplement qu&#039;elle puisse exister &eacute;tais-je alors vraiment libre de la choisir ?</em></font></div><div class="post_line"><font color="#ff857a"><em>Je l&#039;ai beaucoup entendu ; ce n&#039;est pas, t&#039;as faute, tu es simplement tomb&eacute; avec les mauvais.</em></font></div><div class="post_line"><font color="#ff857a"><em>Que cela soit vrai ou non, ils sont les miens.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><em>Soit nous venons tous, sois je m&#039;y refuse.</em></font></div><div class="post_line"><font color="#ff857a"><em>En eux une part de moi, en moi une part de eux, m&#039;accepter seul serais injuste.</em></font></div><div class="post_line"><font color="#ff857a"><em>Vous m&#039;invitez, je vous rends gr&acirc;ce, mais acquiescer serait indigne.&quot;</em></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=-Gilgamesh-">Cdt. -Gilgamesh-</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11770.jpg" style="width:128px;height:72px" alt="Avatar" /><br />23/09/1022 ETU 09:02</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D295277', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal295273')">Détails</a> <a href="javascript:warnpost(295273)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal295273" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=295273',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ff56ff">Chaque apostrophe est unique, sans liens chronologiques direct les une&nbsp;envers les autres.</font></div></div><div class="post_line"><div align="center"><font color="#ff56ff">Il s&#039;agit de textes traversant l&#039;univers sous des fr&eacute;quences commun&eacute;ment&nbsp;imperceptibles&nbsp;condamnant normalement ces choses &agrave; rest&eacute; inconnue de tout protagonistes vivant&nbsp; aujourd&#039;hui.</font></div></div><div class="post_line"></div><div class="post_line"><em><font color="#72ff84">Je comprend, tu poss&egrave;de&nbsp;une nature primo</font><font color="#5593bd">rdiale, ne gardant de la subtilit&eacute; qu&#039;un moyen d&#039;amen&eacute; le ressentie au paroxysme.</font></em></div><div class="post_line"><em><font color="#5593bd">La sauvagerie dans sa grandeur et petitesse.</font></em></div><div class="post_line"><em><font color="#5593bd">Pour ma part, j&#039;ai bien peur qu&#039;une seule gloire n&eacute;cessite de trop nombreux enfers qui balayer par les sables du temps ne parvienne pas aux oreilles de nos jugements, il faut alors vivre beaucoup pour le comprendre, la jeunesse pousse &agrave; vouloir conqu&eacute;rir par l&#039;&eacute;p&eacute;e ce que l&#039;esprit met tant de temps &agrave; forg&eacute;, voici pourquoi il semble que ta long&eacute;vit&eacute; se poursuive alors que la mienne, telle que je suis bient&ocirc;t touche &agrave; sa fin.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#5593bd">Il est vrai que l&#039;amiti&eacute; sinc&egrave;re d&#039;un homme envers un autre est un spectacle d&eacute;chirant, enchantant les maux d&#039;une tel perte, la trag&eacute;die grotesque d&#039;une fin de vie pr&eacute;matur&eacute;e, reste pour moi, l&#039;air grandiose d&#039;un hymne que je r&eacute;p&egrave;te, souvenir in&eacute;branlable. Un traumatisme, aux travers des &acirc;ges, de toutes mes vies.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#5593bd">&quot;En-chantant mes maux, en-chantant les mots.&quot;</font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=-Gilgamesh-">Cdt. -Gilgamesh-</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11770.jpg" style="width:128px;height:72px" alt="Avatar" /><br />05/10/1022 ETU 06:30</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D295520', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal295511')">Détails</a> <a href="javascript:warnpost(295511)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal295511" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=295511',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ff857a"><strong>****Rire****</strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a"><strong>https://www.youtube.com/watch?v=fTUGk5vsVCA</strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">&quot;Homme, de ce que tu me dis, je crois que tes affirmations sont bien pr&eacute;somptueuses...</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Si ton dieu existe, permet moi d&#039;estim&eacute; que nul ne le conna&icirc;t.</font></em></div><div class="post_line"><em><font color="#ff857a">Il ne serait pas forc&eacute;ment magnanime de la part d&#039;un dirigeant de dire &agrave; son peuple que le paradis ou il se tient, c&#039;est forg&eacute; sur une marre de cadavre.</font></em></div><div class="post_line"><em><font color="#ff857a">Je pense que le r&ocirc;le de l&#039;inconscient n&#039;est pas le moins agr&eacute;able.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Lors d&#039;une guerre c&eacute;leste, le perdant est un d&eacute;mon, le gagnant, un sauveur...</font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Vois-tu, je ne pr&eacute;tends pas que ces choses sont fausses du temps o&ugrave; j&#039;&eacute;tais enfant, j&#039;&eacute;tais alors bien innocent.</font></em></div><div class="post_line"><em><font color="#ff857a">J&#039;ai formul&eacute; des souhaits, des v&oelig;ux, souvent de protection sans vraiment y croire, mais en esp&eacute;rant sinc&egrave;rement...</font></em></div><div class="post_line"><em><font color="#ff857a">Ils se sont tous r&eacute;alis&eacute;, la folie de cette r&eacute;alit&eacute;, &agrave; voulu que chacun d&#039;entre eux eu trouv&eacute; sa place dans des livres pourtant &eacute;crit avant ma venue et donc avant ma parole...</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Dit moi, s&#039;il s&#039;agit l&agrave; d&#039;un lien qui nous unis, ou au contraire d&#039;une preuve de&nbsp;la puissance de l&#039;oreille qui m&#039;&eacute;coutas ?</font></em></div><div class="post_line"><em><font color="#ff857a">Si nous sommes ci bons, pourquoi le monde est il ainsi?</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Je ne me suis jamais vu que comme un &ecirc;tre, limit&eacute; victime de ficelles tir&eacute;e par une facette enfouit de son esprit avan&ccedil;ant sur une route sombre en bordure d&#039;une for&ecirc;t sans fin, j&#039;ai alors choisit le r&ocirc;le du fou pour enlis&eacute;s mon commanditaire, esp&eacute;rant le lass&eacute;, et me voici devenu magicien. </font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Je crois mon pauvre, que jamais d&eacute;mon n&#039;eut enseign&eacute; &agrave; vous autres, le moindre sceau qui ne le lie vraiment, mais voit tu, ce fut une bonne tactique...</font></em></div><div class="post_line"><em><font color="#ff857a">Si les hommes ne peuvent pas contr&ocirc;l&eacute; ils n&#039;invoquent pas, et s&#039;ils n&#039;invoquent pas, il est bien dur de les vaincre...</font></em></div><div class="post_line"><em><font color="#ff857a">L&#039;homme que tu cites, jamais n&#039;eut asservit aucun d&eacute;mon, mais il les a servis.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">J&#039;avance encercl&eacute;, mais en toute l&eacute;g&egrave;ret&eacute;, si un sceau ne peut &ecirc;tre bris&eacute; celui-ci alors n&#039;existe pas.</font></em></div><div class="post_line"><em><font color="#ff857a">Crois-tu vraiment, que corde que j&#039;ai tiss&eacute; puisse vraiment retenir, nooon elle abaisse la vigilance d&#039;une cible, qui va bient&ocirc;t disparaitre.</font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Je suis un cheval de troie, j&#039;ai trop critiqu&eacute; Ulysse, je m&#039;en excuse. </font></em></div><div class="post_line"><em><font color="#ff857a">Je parle trop t&ocirc;t? Mais... c&#039;est trop tard.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Je serais amen&eacute; &agrave; ton dieu qui n&#039;en est pas un comme sacrifice, le plus grand des buffets...</div><div class="post_line">Surtout, sont dernier.</font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Il n&#039;est pas&nbsp;fils d&#039;un dieu, mais celui d&#039;un tra&icirc;tre, te voici condamn&eacute;. </font></em></div><div class="post_line"><em><font color="#ff857a">La corruption, ne m&#039;atteint pas plus que le parfait.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Je ne m&eacute;rite pas triste sort, pourtant je suis bien impur.</div><div class="post_line"></font><font color="#ff857a">Cette place, est la seule qui me sied ; &agrave;</font><font color="#ff857a">&nbsp;grande histoire, ses h&eacute;ros ont leurs fins.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Adieu, jeune fou.&quot;</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff"><font size="1">Noooonn....</font></font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=-Gilgamesh-">Cdt. -Gilgamesh-</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11770.jpg" style="width:128px;height:72px" alt="Avatar" /><br />05/10/1022 ETU 09:44</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D295527', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal295521')">Détails</a> <a href="javascript:warnpost(295521)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal295521" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=295521',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffc95f"><em><font size="1">Un spectre humano&iuml;de sans visage encapuchonn&eacute;, v&ecirc;tu d&#039;une robe noire, se tient devant &agrave; homme &agrave; qui il porte l&#039;estocade, fendant gracieusement le&nbsp;vent comme si lui-m&ecirc;me complice refusait d&#039;appliquer sur cette lame une moindre pression.</font></em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><em>&quot;Voici ton heure.</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Tu te moques de ces gens qui te surpassent, prenant plaisir &agrave; humilier, tandis que tu rampe&nbsp;&agrave; mes pieds te noyant dans ton sang, sans honneur et sans gloire.</div><div class="post_line">Je te le dis :</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ff857a">Il est moins honteux d&#039;&eacute;chouer en suivant un chemin sinueux guid&eacute; d&#039;un c&oelig;ur pur r&eacute;pondant aux appels d&#039;une juste cause que de croire r&eacute;ussir &agrave; l&#039;&eacute;gard de notre unique orgueil sur la route pav&eacute; des damn&eacute;es.</font></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><em>Je suis pourtant, le plus grand de ceux-la, toutefois je ne fut jamais mauvais</em></font></div><div class="post_line"><font color="#ff857a"><em>ainsi j&#039;exprime une v&eacute;rit&eacute; &agrave; mon encontre,</em></font></div><div class="post_line"><font color="#ff857a"><em>Il n&#039;y as que moi qui puisse mourir pour &eacute;nonc&eacute; ce qui pourtant me d&eacute;ment.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><em>La providence aura voulu, qu&#039;ici mon orgueil se joigne &agrave; mon ch&oelig;ur, attendrissant sa br&ucirc;lure,</em></font></div><div class="post_line"><font color="#ff857a"><em>faisant un temps taire ses voix.</div><div class="post_line">Il m&#039;eut suffi, d&#039;essayer pour r&eacute;ussir.&quot;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"><font size="1"><em>Je n&#039;eus en plusieurs mill&eacute;naires offert qu&#039;une seule rose bleu.</div><div class="post_line">Celle qui la poss&egrave;de, n&#039;eut m&ecirc;me pas prononc&eacute; un seul v&oelig;u si ce n&#039;est souhait&eacute; ma libert&eacute; sans le dire. </em></font></font></div><div class="post_line"><em><font color="#F09898"><font size="1">Mon ego causera ma perte, celle-ci me rend &agrave; la hauteur.</font></font></em></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16471&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16471" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16471" name="d_reply_16471" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16471');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16471'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > apostrophe</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

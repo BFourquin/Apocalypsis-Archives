@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15060 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>j o i e</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > j o i e</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hulk+Harness">Cdt. Hulk Harness</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10588.jpg" style="width:128px;height:73px" alt="Avatar" /><br />04/06/1020 ETU 07:58</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D276215', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal276210')">Détails</a> <a href="javascript:warnpost(276210)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal276210" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=276210',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="right"><font size="5">Tout,</font></div><div class="post_line">chaque forme&nbsp;transitoire</div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font size="4">image fugace</font></div></div><div class="post_line"><div align="right"><font size="4">figure fig&eacute;e du feu</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font size="4">il r&egrave;gne partout</font></div></div><div class="post_line"><div align="right"><font size="4">dieu ultime</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font size="4">&eacute;nergie</font></div></div><div class="post_line"><div align="right"><font size="4">fondamentale</font></div></div><div class="post_line"><div align="right"><font size="4">respiration de Brahma</font></div></div><div class="post_line"><div align="right"><font size="4">certains le nomment</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font size="7">Agni</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="justify"><div align="right"></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">depuis ce temps que j&#039;arpente l&#039;univers &agrave; la recherche de quelque soulagement &agrave; mes tourments, j&#039;atterris, en quelque sorte, sur ce coin d&#039;une galaxie qui eut le projet de se nommer du nom m&eacute;morable et h&eacute;ro&iuml;que de Odysseus, que l&#039;idiome fran&ccedil;ais -(le fran&ccedil;ais, on le sait, est un fruit de la baise du latin par le grec)-&nbsp;traduit par Odyss&eacute;e, son trajet, et Ulysse, le marin.</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">Ici, alors je d&eacute;couvre une souche humaine prometteuse et je fonde ma civilisation, une civilisation &agrave; laquelle je vais, tr&egrave;s malheureusement mais aussi tr&egrave;s certainement survivre. Parce que, selon l&#039;aspect pratique, et selon l&#039;avencement actuel de la science, je suis essentiellement immortel.</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">je dis tr&egrave;s certainement mais c&#039;est une probabilit&eacute; &eacute;lev&eacute;e, sans plus. qui peut pr&eacute;dire l&#039;avenir?</font></div></div><div class="post_line"><div align="right"><font color="#2ecc40">je crains un peu les atomiques qui propagent la&nbsp;disruption jusqu&#039;&agrave; l&#039;&acirc;me si l&#039;on est frapp&eacute; de plein fouet</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">bon... j&#039;ai un attribut, qui est en fait une lutte constante, un &quot;attribut&quot; donc&nbsp;de la divinit&eacute;.&nbsp;Mais je ne suis pas un dieu loin s&#039;en faut, je suis pourtant un mutant soit&nbsp;un d&eacute;fi extr&ecirc;me de la nature qui un moment de hasard rare sort de ses gonds, et&nbsp; mon rapport &agrave; mes divinit&eacute;s cr&eacute;atrices est traumatique parce qu&#039;il s&#039;agit de relations concr&egrave;tes et non seulement symboliques ou imaginaires.</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">Car c&#039;est la&nbsp;la Science et la folie d&#039;un homme m&#039;ont fait.</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">Je suis le gonflement loufoque de l&#039;arch&eacute;type de Hercule, d&#039;autres me traitent de Frankenstein, ou comme sa cr&eacute;ature composite, plut&ocirc;t. Enfant ma m&egrave;re est morte, en ma pr&eacute;sence, faute d&#039;avoir &eacute;vacu&eacute; &agrave; temps le site d&#039;un des premiers&nbsp;essais nucl&eacute;aires sur cette ancienne plan&egrave;te que je SAIS &ecirc;tre le berceau de cette humanit&eacute; maintenant r&eacute;pandue partout &agrave; travers plusieurs galaxies --</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">-- vous devriez m&#039;accorder le statut de patrimoine universel de l&#039;humanit&eacute; et me fournir des plan&egrave;tes pour favoriser mon d&eacute;veloppement&nbsp;puisque j&#039;ai &eacute;t&eacute; le t&eacute;moin oculaire de tout ce processus de destruction de la vieille Terre parce que j&#039;y suis n&eacute; et que je n&#039;ai pas pu y mourir.</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">Parce que je suis l&agrave;, m&eacute;moire vivante pour r&eacute;pondre &agrave; toutes vos questions. --</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="left"><div align="right"><font size="4"><font color="#72ff84">La question des limites</font></font></div></div><div class="post_line"></div><div class="post_line"><div align="right"><font color="#72ff84"><font size="4">Les journ&eacute;es sont intenses, il n&#039;y a pas de limites &agrave; ce qu&#039;il faudrait faire mais mes &eacute;nergies sont limit&eacute;es, malgr&eacute; les apparences, et il ne me suffit pas de ma force, parce que laiss&eacute;e tranquille comme en repos elle diminue sensiblement. Ce n&#039;est que lorsqu&#039;elle est horriblement d&eacute;fi&eacute;e que ma force se manifeste et je n&#039;en connais pas les limites.</font></font></div></div><div class="post_line"></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#2ecc40">Donc, nous y voil&agrave;! Le pr&eacute;sent, les sauriens, les guerres &eacute;parses, manger ou &ecirc;tre mang&eacute;,</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#44b8ff">puis ce grand calme, quand on repose dans la puissance, le vert de la vie luxuriante se change en bleu sattvique....</font></div></div><div class="post_line"><div align="right"><font color="#44b8ff">l&#039;appel des hauteurs, finesse des vibrations, air froid et rar&eacute;fi&eacute;, Ajna et le peuple des &eacute;thers...</font></div></div><div class="post_line"><div align="right"><font color="#44b8ff">m&eacute;ditation dans la sagesse, du sein du soleil divin, baign&eacute; dans l&#039;&eacute;nergie absolue de ce bloc de lumi&egrave;re compacte</font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="left"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#fffa1e">gloire inextinguible de Sat Chid Ananda</font></div></div><div class="post_line"></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="left"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#fffa1e">les trois noms de la divinit&eacute; triune</font></div></div><div class="post_line"></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="right"><font color="#ffff00"><font size="4">AUM -Om mani padme- AUM</font></font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="left"><div align="right"></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"></div></div><div class="post_line"><div align="right"><font color="#008000"><font size="7">HH</font></font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15060&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15060" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15060" name="d_reply_15060" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15060');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15060'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > j o i e</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

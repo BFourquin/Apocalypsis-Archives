@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15078 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Nouveaux horizons</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouveaux horizons</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=El%C3%A9a">Cdte. El&eacute;a</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10631.jpg" style="width:121px;height:128px" alt="Avatar" /><br />12/06/1020 ETU 04:45</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D276460', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal276459')">Détails</a> <a href="javascript:warnpost(276459)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal276459" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=276459',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#d9f4ff"><font size="2"><strong>// Secteur Noir - plan&egrave;te Capitale&nbsp;Agath&eacute;e (16.4.9.2)&nbsp; //</strong></font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>Adoss&eacute;e contre la baie vitr&eacute;e de son bureau, les doigts gliss&eacute;s dans le voilage encadrant la large fen&ecirc;tre, El&eacute;a contemplait pensivement le visage m&eacute;tamorphos&eacute; de la cit&eacute; qui s&#039;&eacute;talait &agrave; perte de vue devant ses yeux. Il &eacute;tait difficile d&#039;imaginer que, il y quelques cycles encore, la capitale agath&eacute;enne concentrait toute l&#039;activit&eacute; digne d&#039;une civilisation marchande en pleine expansion. Les rues aujourd&#039;hui d&eacute;sertes paraissaient plus larges, d&eacute;pouill&eacute;es de leur foule habituelle. Un peu plus t&ocirc;t, un de ses conseillers avait avou&eacute; &agrave; El&eacute;a que cette vision lui flanquait le cafard : il avait l&#039;impression de contempler une ville morte ; un fant&ocirc;me. La jeune femme n&#039;&eacute;tait pas de cet avis. Pour elle, Agath&eacute;e &eacute;tait simplement une vieille dame assoupie, qui avait fait son temps et qui passait aujourd&#039;hui le flambeau.&nbsp;</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Des &eacute;clats de voix tir&egrave;rent la jeune femme de ses r&eacute;flexions et elle d&eacute;tourna son regard de la fen&ecirc;tre. Contrastant avec le calme qui r&eacute;gnait &agrave; l&rsquo;ext&eacute;rieur, son bureau et le Palais tout entier qui l&#039;abritait &eacute;tait une fourmili&egrave;re f&eacute;brile : depuis quelques cycles, le personnel s&#039;activait sans rel&acirc;che pour achever un d&eacute;m&eacute;nagement d&#039;une ampleur in&eacute;dite. On avait d&eacute;j&agrave; fait migrer la majorit&eacute; de la population agath&eacute;enne, la capitale et le centre administratif &eacute;taient les derniers &agrave; finir leurs cartons. </em></div></div><div class="post_line"><div align="justify"><em>Esquissant un sourire, El&eacute;a suivit du regard un homme qui venait de saisir une pile de dossier, suivi de pr&egrave;s par Marcel - le robot assistant de la jeune femme. La machine &eacute;tait dot&eacute;e d&#039;une intelligence artificielle aux capacit&eacute;s in&eacute;gal&eacute;es&nbsp;mais les ing&eacute;nieurs avaient pouss&eacute; la perfection un peu plus (trop ?)&nbsp;loin. En effet, &eacute;quip&eacute;&nbsp;du&nbsp;PPA (Profil de personnalit&eacute; authentique), Marcel &eacute;tait en principe capable d&#039;avoir des &eacute;motions plus humaines. Cons&eacute;quence, Marcel &eacute;tait notoirement d&eacute;pressif, parano&iuml;aque et donc, l&eacute;g&egrave;rement aga&ccedil;ant pour son entourage.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#f551ff"><em>- Pourquoi ces dossiers n&#039;ont pas &eacute;t&eacute; emball&eacute;s ? Mon dieu, mon dieu... Vous n&#039;avez aucune logique, c&#039;est encore pire que ce que je craignais. Je me demande comment votre esp&egrave;ce a r&eacute;ussi &agrave; survivre jusqu&#039;ici. Enfin... &agrave; quoi bon... </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le robot acheva sa phrase dans un long soupir m&eacute;tallis&eacute;, alors qu&#039;il se baissait pour ramasser quelques feuilles tomb&eacute;es au sol. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#f551ff">- Quand je pense que je devrait faire confiance &agrave; l&#039;un de vos semblable pour nous mener &agrave; bon port... Eeeenfin...&nbsp;</font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>L&#039;homme ne l&#039;&eacute;coutait d&eacute;j&agrave; plus et s&#039;&eacute;tait h&acirc;t&eacute; de quitter le bureau, esp&eacute;rant visiblement semer Marcel derri&egrave;re lui. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">- Marcel ?</font> <em>El&eacute;a interpella la petite machine humano&iuml;de, la coupant dans ses ronchonnements. </em><font color="#7fdbff">Tu as les derniers rapports du Secteur 18 ? </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Avec des gestes las, le robot attrapa une tablette pos&eacute;e sur la table et se rapprocha d&#039;El&eacute;a pour la lui remettre. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#f551ff"><em>- Ne m&#039;insultez pas, je suis heureusement encore capable de traiter ce genre d&#039;informations. Vous avez ici les derniers rapports d&#039;installation de votre civilisation en Secteur 18. Non, ne me remerciez pas... </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>El&eacute;a fit d&eacute;rouler du doigt les donn&eacute;es de la tablette, le regard p&eacute;tillant. D&eacute;m&eacute;nager un peuple de plusieurs centaines de milliards d&#039;&acirc;mes &eacute;tait un vrai challenge, mais avec des moyens adapt&eacute;s, rien n&#039;&eacute;tait impossible. L&#039;installation des agath&eacute;ens se d&eacute;roulait sans accroc, et un &agrave; un, les anciens mondes qui les avaient vus na&icirc;tre en Secteur Noir &eacute;taient abandonn&eacute;s derri&egrave;re eux. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">- Stup&eacute;fiant... </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#f551ff">- Je sais. D&eacute;primant, n&#039;est-ce pas ? Nous quittons une territoire s&eacute;curis&eacute; pour nous jeter sur des terres lointaines et hostiles. Je pourrais calculer nos chances de survie, mais cela vous d&eacute;truirait le moral... </font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>El&eacute;a tendit &agrave; nouveau la tablette au robot, qui la r&eacute;cup&eacute;ra d&#039;un geste lent et sans conviction.</em> </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">- C&#039;est Law qui est l&agrave; bas. Tout est sous son contr&ocirc;le. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#f551ff">- Voil&agrave; qui me rassure consid&eacute;rablement, quant au sort funeste qui nous attend... </font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=El%C3%A9a">Cdte. El&eacute;a</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10631.jpg" style="width:121px;height:128px" alt="Avatar" /><br />12/06/1020 ETU 07:41</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal276464')">Détails</a> <a href="javascript:warnpost(276464)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal276464" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=276464',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><strong><font color="#d9f4ff"><font size="2">// Secteur 18 - Le Heart, vaisseau du Capitaine Law&nbsp; //</font></font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#72ff84">- Vous pouvez l&#039;attendre ici, il ne va pas tarder. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La porte se referma sur l&#039;homme qui l&#039;avait escort&eacute;e jusque l&agrave;, et la jeune femme se retrouva seule. Son regard balaya la pi&egrave;ce et chaque meuble, chaque objet, raviva dans sa m&eacute;moire les souvenirs de sa premi&egrave;re visite &agrave; bord du Heart. Elle appr&eacute;cia avec une singuli&egrave;re familiarit&eacute; de retrouver l&#039;ambiance de cette cabine au bois sombre, o&ugrave; la technologie se m&ecirc;lait habilement au mobilier authentique. Comme souvent lorsqu&#039;elle pensait &agrave; Law, El&eacute;a ramena machinalement la main au pendentif de son collier alors que ses yeux se posaient tour &agrave; tour sur le bureau de ch&ecirc;ne massif... l&#039;&eacute;tag&egrave;re abritant les fameuses bouteilles de rhum du capitaine... le large lit, &agrave; l&#039;oppos&eacute; de la pi&egrave;ce... </em></div></div><div class="post_line"><div align="justify"><em>Une douce chaleur naquit dans le creux de son ventre et elle se secoua, avant de finalement rel&acirc;cher son collier. Elle s&#039;avan&ccedil;a dans la cabine, pour se rapprocher de la table d&#039;orientation qui tr&ocirc;nait en son centre. C&#039;&eacute;tait certainement l&#039;&eacute;l&eacute;ment de la pi&egrave;ce qui la captivait le plus. Caressant du doigt le cadre de la table en merisier, elle s&rsquo;ab&icirc;ma dans la contemplation d&#039;une projection holograhique de la galaxie.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Toute &agrave; ses pens&eacute;es, c&#039;est &agrave; peine si elle entendit la porte de la cabine s&#039;ouvrir et se refermer dans son dos. Elle ressentit sans la voir la pr&eacute;sence du Capitaine emplir la pi&egrave;ce, mais elle ne fit pas un geste pour se retourner. Avec un sourire naissant sur les l&egrave;vres, elle ne d&eacute;tacha pas son regard de la carte, n&#039;offrant au capitaine que la vue de son dos. Ses longs cheveux blonds d&eacute;tach&eacute;s tombaient en cascade sur ses &eacute;paules nues, et sur le d&eacute;collet&eacute; d&#039;une robe de soie bleue. </em></div></div><div class="post_line"><div align="justify"><em>Law prit le temps de se d&eacute;faire de son manteau, avant de rejoindre &agrave; son tour de la table d&#039;orientation. Les yeux pos&eacute;s sur El&eacute;a, il ne pouvait emp&ecirc;cher son esprit de dessiner mentalement les courbes de son corps sous le tissu fin de sa robe. Arriv&eacute; dans le dos de la jeune femme, il glissa finalement les bras autour de sa taille et l&#039;enserra avec douceur. Dans un m&ecirc;me souffle, ils prirent chacun une lente inspiration, partageant le plaisir de retrouver le contact de leurs corps apr&egrave;s plusieurs cycles de s&eacute;paration. </em></div></div><div class="post_line"><div align="justify"><em>La table d&#039;orientation projetait la repr&eacute;sentation du Secteur 18, dont une bonne part comportait &agrave; pr&eacute;sent les couleurs agath&eacute;ennes. Apr&egrave;s quelques instants de contemplation silencieuse, Law fut le premier &agrave; prendre la parole. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><em>- Alors, satisfaite de cette nouvelle carte ? </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le sourire d&#039;El&eacute;a s&#039;&eacute;largit. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">- Je dois dire que je suis presque impressionn&eacute;e, Capitaine. Je constate que tu as fait tr&egrave;s bon usage de mes vaisseaux, je ne regrette pas l&#039;investissement. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Posant ses mains sur celles de Law, elle pencha l&eacute;g&egrave;rement la t&ecirc;te en arri&egrave;re, offrant l&#039;espace de sa gorge comme une invitation. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">- C&#039;est une nouvelle &egrave;re qui s&#039;offre &agrave; nous, d&eacute;j&agrave; pleine de promesses. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>El&eacute;a ferma les yeux alors que Law d&eacute;posait un baiser dans le creux de son cou, et un frisson la fit s&#039;interrompre quelques instants. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">- Tu avais raison dans ton message. Il y a beaucoup de sujets qu&#039;on doit aborder. Mais il y en a un qu&#039;on doit traiter en priorit&eacute;... </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>D&#039;un mouvement souple,&nbsp;elle se retourna face au capitaine, et, plongeant dans son regard, elle d&eacute;posa sur ses l&egrave;vres un long baiser passionn&eacute;. Comme la premi&egrave;re fois, le Lien qui les unissait d&eacute;multiplia leurs sensations et, alors que toute pens&eacute;e s&#039;&eacute;vanouissait de son esprit,&nbsp;elle&nbsp;s&#039;abandonna avec d&eacute;lice&nbsp;entre les mains du pirate.&nbsp;</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">* * * *</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Au milieu des draps d&eacute;faits, El&eacute;a faisait pensivement courir ses doigts sur le corps du pirate allong&eacute; &agrave; c&ocirc;t&eacute; d&#039;elle. A pr&eacute;sent que leurs corps &eacute;taient lib&eacute;r&eacute;s de toute la tension et de l&#039;envie qui les d&eacute;vorait, ils baignaient dans un &eacute;tat de d&eacute;tente proche de la perfection. Elle aurait &eacute;t&eacute; incapable de dire combien de temps ils &eacute;taient rest&eacute;s ainsi, partageant ce moment de douceur complice qui se passait de mots. La jeune femme suivit les dessins du tatouage sur le torse de Traffalgar, formant un large c&oelig;ur. Elle finit par poser y poser sa paume, sentant le rythme cardiaque et la respiration du pirate qui redescendaient peu &agrave; peu &agrave; un rythme normal. </em></div></div><div class="post_line"><div align="justify"><em>Sentant que la jeune femme avait stopp&eacute; ses caresses, Law finit par ouvrir les yeux et ils &eacute;chang&egrave;rent un sourire. El&eacute;a se mordilla la l&egrave;vre et, prenant appui sur son coude, elle se redressa l&eacute;g&egrave;rement. Elle passa une m&egrave;che de cheveux derri&egrave;re son oreille avant de glisser dans un souffle... </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">- Installe moi sur la Capitale... </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Law ne r&eacute;pondit pas imm&eacute;diatement, et la surprise se lut sur son visage. Il dut visiblement faire un effort pour int&eacute;grer la d&eacute;claration de la jeune femme. </em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><em>- Tu disais ne pas en vouloir... Qu&#039;est-ce qui t&#039;a fait changer d&#039;avis ? </em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">- Tout est toujours une question de contexte. A l&#039;&eacute;poque, ce n&#039;&eacute;tait pas le moment. Mon &eacute;conomie &eacute;tait en plein d&eacute;veloppement, il me fallait avoir la main sur des march&eacute;s de Contrebande, et Chirin avait &eacute;t&eacute; d&eacute;sign&eacute; par les votes... Aujourd&#039;hui, la situation a chang&eacute;. </font></div></div><div class="post_line"><div align="justify"><em>Un sourire &eacute;tira ses l&egrave;vres.&nbsp;</em></div></div><div class="post_line"><div align="justify"><font color="#7fdbff">Aujourd&#039;hui, j&#039;en ai envie.&nbsp;Tu ne souhaite pas la garder, et il n&#039;y a aucun candidat s&eacute;rieux &agrave; sa reprise. J&#039;ai r&eacute;fl&eacute;chi&nbsp;&agrave; ce que tu m&#039;a dit, et je crois que tu as raison : laisse moi prendre le relais.&nbsp;</font></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Traffalgar+Law">Cdt. Traffalgar Law</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/10639.jpg" style="width:62px;height:128px" alt="Avatar" /><br />25/06/1020 ETU 18:33<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal276753')">Détails</a> <a href="javascript:warnpost(276753)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal276753" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=276753',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Apr&egrave;s quelques instant, Law passa de la surprise &agrave; la satisfaction.&nbsp;Le capitaine tenta en vain de r&eacute;primer un sourire. Enfin. Enfin elle avait d&eacute;cider de prendre la place qui aurait d&ucirc;t depuis bien longtemps &ecirc;tre la sienne.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><em>Il &eacute;tait temps El&eacute;a. Depuis que j&#039;ai d&eacute;pos&eacute; ta candidature pour la capitale lors des derni&egrave;res &eacute;lections galactique tu aurais d&ucirc;t &ecirc;tre &agrave; la t&ecirc;te de cette plan&egrave;te et de la galaxie. J&#039;en avais discut&eacute; avec Chirin, il avait &eacute;t&eacute; le premier surpris par sa victoire, il &eacute;tait certain que ce serait toi. La galaxie est encore dubitative, tu vas rencontrer des opposants c&#039;est certain. Il va falloir les conqu&eacute;rir, ils ne savent pas suffisamment qui tu es. Ils sont trop tendance &agrave; te voir &agrave; travers moi.&nbsp;</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Law sortie du lit et se dirigea vers son bureau.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><em>C&#039;est quand m&ecirc;me un comble tu ne trouve pas ? Moi le pirate associable qui est une figure plus politique que la c&eacute;l&egrave;bre marchande d&#039;Agath&eacute;e. Presque risible. Il est grand temps que nous r&eacute;inversions le court des choses. Je compte sur toi pour prendre la dimension qui est la tienne. Cette galaxie a besoin de stabilit&eacute;, elle a besoin de savoir que tu as les &eacute;paules pour gouverner.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il se servit un grand verre de rhum. Il le leva en direction de la jeune femme toujours install&eacute;e dans le lit.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><em>Je vais mettre les voiles loin de la capitale. Cette galaxie est paralys&eacute;e par la peur de s&#039;en prendre &agrave; l&#039;&eacute;quipage, il est grand temps de passer &agrave; autre chose avant que je passe pour le bourreau que je ne veux pas &ecirc;tre. La galaxie a besoin de libert&eacute; alors que la peur l&rsquo;encha&icirc;ne aujourd&#039;hui. Il est en effet grand temps que tu prennes le relais.</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15078&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15078" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15078" name="d_reply_15078" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15078');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15078'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouveaux horizons</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

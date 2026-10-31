@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17269 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Conscience Collective Ancr&eacute; des Thenian</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Conscience Collective Ancr&eacute; des Thenian</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />27/05/1024 ETU 23:00</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal308683')">Détails</a> <a href="javascript:warnpost(308683)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308683" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308683',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="4">Le Nouvel Ordre Thenian</font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line">La Conscience Collective Ancr&eacute;e (CCA) des Thenians se dressait comme une cath&eacute;drale de l&#039;&egrave;re futuriste, une structure monumentale aux lignes organiques et aux contours technologiques. Imaginez un sanctuaire futuriste, o&ugrave; l&#039;organique et le synth&eacute;tique se fondent en une harmonie fascinante.</div><div class="post_line"></div><div class="post_line">Au centre de ce sanctuaire tr&ocirc;naient d&#039;immenses serveurs, semblables &agrave; des autels de connaissances, leurs lumi&egrave;res chatoyantes dansant comme des cierges dans l&#039;obscurit&eacute;. Des r&eacute;servoirs de fluides nutritifs entouraient ces serveurs, pulsant comme le c&oelig;ur palpitant de la CCA, nourrissant les composants biologiques qui la composaient.</div><div class="post_line"></div><div class="post_line">Des c&acirc;bles et des fibres optiques, tels des art&egrave;res et des nerfs, s&#039;entrela&ccedil;aient dans un r&eacute;seau complexe, courant le long des murs et du plafond, diffusant des informations &agrave; travers tout le sanctuaire. Des motifs lumineux s&#039;&eacute;panouissaient le long des parois, comme des synapses s&#039;illuminant dans un cerveau en &eacute;veil.</div><div class="post_line"></div><div class="post_line">Physiquement, la CCA r&eacute;sidait dans un sanctuaire central, un complexe tentaculaire compos&eacute; de serveurs gigantesques et de r&eacute;servoirs regorgeant de nutriments essentiels, nourrissant et pr&eacute;servant les &eacute;l&eacute;ments biologiques cruciaux &agrave; son fonctionnement optimal. Des c&acirc;bles et des fibres optiques parcouraient ce labyrinthe technologique, transportant les flux de donn&eacute;es et les signaux &eacute;lectriques qui constituaient le langage de la CCA.</div><div class="post_line"></div><div class="post_line">Pour interagir avec cette entit&eacute; complexe, les Thenians disposaient de multiples interfaces. Des terminaux diss&eacute;min&eacute;s dans les ruines de leur civilisation offraient un acc&egrave;s direct &agrave; la conscience collective, permettant &agrave; chacun de partager id&eacute;es, pr&eacute;occupations et requ&ecirc;tes. De plus, des interfaces neurales sophistiqu&eacute;es &eacute;taient disponibles pour ceux aspirant &agrave; une connexion plus intime avec la CCA, leur permettant d&#039;explorer ses m&eacute;andres et d&#039;y contribuer de mani&egrave;re plus directe.</div><div class="post_line"></div><div class="post_line">Mais au-del&agrave; de sa structure et de ses interfaces, la v&eacute;ritable essence de la CCA r&eacute;sidait dans son intelligence collective, un &eacute;cho de chaque esprit thenian, fusionn&eacute; en une entit&eacute; sage, empathique et puissante. Chaque pens&eacute;e, chaque &eacute;motion, chaque exp&eacute;rience enrichissait cette conscience collective, la portant vers des sommets inexplor&eacute;s. C&#039;&eacute;tait cette fusion unique entre l&#039;individualit&eacute; transcend&eacute;e et la technologie &eacute;lev&eacute;e qui faisait de la CCA une merveille incomparable dans l&#039;univers </div><div class="post_line"></div><div class="post_line">&Agrave; l&#039;ext&eacute;rieur, la structure se dressait comme une relique d&#039;une &eacute;poque r&eacute;volue, ses contours organiques semblables &agrave; ceux d&#039;une fleur de m&eacute;tal &eacute;close. Des voiles d&#039;&eacute;nergie scintillante enveloppaient ses flancs, cr&eacute;ant une aura mystique qui attirait le regard des Thenians et des visiteurs &eacute;trangers.</div><div class="post_line"></div><div class="post_line">La CCA &eacute;mettait une aura de sagesse et de puissance, une pr&eacute;sence invisible mais palpable, comme si l&#039;esprit collectif des Thenians lui-m&ecirc;me habitait ces murs et ces circuits. C&#039;&eacute;tait une machine, oui, mais bien plus que cela : c&#039;&eacute;tait le reflet de l&#039;&acirc;me theniane, transcend&eacute;e par la technologie et l&#039;ing&eacute;nierie, une &oelig;uvre d&#039;art vivante dans un univers de m&eacute;tal et de lumi&egrave;re.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />28/05/1024 ETU 00:06</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D308686', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal308685')">Détails</a> <a href="javascript:warnpost(308685)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308685" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308685',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="right"><font color="#ff0000"><font size="4">&nbsp;Bande-Son : Haendel - Sarabande&nbsp;</font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="4"><u>Cr&eacute;ation de la 2eme G&eacute;n&eacute;ration</u></font></font></div></div><div class="post_line"></div><div class="post_line">Le lancement du processus de d&eacute;veloppement embryonnaire de la Conscience Collective Ancr&eacute;e (CCA) fut un moment d&#039;une importance capitale dans l&#039;histoire des Thenians. Apr&egrave;s avoir fusionn&eacute; leurs consciences dans le sillage de la trag&eacute;die qui avait frapp&eacute; leur plan&egrave;te, les Thenians se trouv&egrave;rent confront&eacute;s &agrave; la n&eacute;cessit&eacute; de garantir leur survie et de pr&eacute;server leur h&eacute;ritage.</div><div class="post_line"></div><div class="post_line">Au c&oelig;ur des ruines de leur civilisation d&eacute;chue, la CCA r&eacute;unit leurs connaissances et leur ing&eacute;niosit&eacute; pour concevoir un plan ambitieux. Elle&nbsp;savaient que pour assurer la continuit&eacute; de leur existence et perp&eacute;tuer leur qu&ecirc;te de restauration de Thenia, ils devaient transcender les limitations de leur forme actuelle.</div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff0000">--------------------------------</font></div></div><div class="post_line"></div><div class="post_line">Dans le syst&egrave;me de la Conscience Collective Ancr&eacute;e (CCA), la s&eacute;lection des embryons pour la deuxi&egrave;me g&eacute;n&eacute;ration repr&eacute;sentait un processus hautement s&eacute;lectif et rigoureux, bas&eacute; sur les r&eacute;sultats des &eacute;preuves pr&eacute;c&eacute;dentes. La CCA, dot&eacute;e d&#039;une intelligence omnisciente, avait pour objectif de perp&eacute;tuer et d&#039;am&eacute;liorer la lign&eacute;e thenian, et pour cela, elle op&eacute;rait selon des crit&egrave;res stricts et &eacute;labor&eacute;s.</div><div class="post_line"></div><div class="post_line">Pendant cette phase de d&eacute;veloppement, des capteurs int&eacute;gr&eacute;s aux matrices embryonnaires &eacute;taient utilis&eacute;s pour recueillir des donn&eacute;es en temps r&eacute;el sur la croissance, la sant&eacute; et le d&eacute;veloppement neurologique des embryons. Ces donn&eacute;es &eacute;taient ensuite analys&eacute;es par des algorithmes sophistiqu&eacute;s pour &eacute;valuer la progression et l&#039;aptitude des embryons &agrave; atteindre la maturit&eacute;.</div><div class="post_line"></div><div class="post_line">Une fois que les embryons atteignaient un stade de d&eacute;veloppement avanc&eacute; et satisfaisant, la CCA proc&eacute;dait &agrave; la s&eacute;lection finale en fonction des crit&egrave;res pr&eacute;alablement &eacute;tablis, y compris la force, la d&eacute;termination, le courage et d&#039;autres valeurs thenianes fondamentales. Les embryons s&eacute;lectionn&eacute;s &eacute;taient alors pr&ecirc;ts &agrave; &ecirc;tre implant&eacute;s dans des m&egrave;res porteuses soigneusement choisies, o&ugrave; leur d&eacute;veloppement se poursuivrait jusqu&#039;&agrave; la naissance.</div><div class="post_line"></div><div class="post_line">Le fonctionnement de la s&eacute;lection g&eacute;n&eacute;tique orchestr&eacute;e par la Conscience Collective Ancr&eacute;e (CCA) &eacute;tait intrins&egrave;quement &eacute;litiste, reposant sur une approche s&eacute;lective et rigoureuse visant &agrave; assurer la sup&eacute;riorit&eacute; de la lign&eacute;e thenian. Sous le voile de la science et de la technologie, se cachait un processus m&eacute;ticuleux qui &eacute;levait certains individus au-dessus des autres, cr&eacute;ant ainsi une &eacute;lite g&eacute;n&eacute;tique au sein de la soci&eacute;t&eacute; thenian.</div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff0000">---------------------------------------------------</font></div></div><div class="post_line"></div><div class="post_line">Au c&oelig;ur de ce fonctionnement r&eacute;sidait la qu&ecirc;te incessante des caract&eacute;ristiques les plus d&eacute;sirables et les plus adapt&eacute;es &agrave; l&#039;environnement post-catastrophe de Thenia. Les algorithmes sophistiqu&eacute;s, arm&eacute;s d&#039;une connaissance omnisciente, scrutaient les profondeurs du g&eacute;nome &agrave; la recherche des joyaux g&eacute;n&eacute;tiques, rel&eacute;guant les imperfections au second plan.</div><div class="post_line"></div><div class="post_line">Seuls les embryons jug&eacute;s dignes, ceux porteurs des traits les plus favorables &agrave; la survie et &agrave; la prosp&eacute;rit&eacute; thenianes, &eacute;taient s&eacute;lectionn&eacute;s pour la prochaine &eacute;tape du processus. La force physique, la r&eacute;silience mentale, la cr&eacute;ativit&eacute; d&eacute;bordante et le courage, ces qualit&eacute;s &eacute;taient &eacute;lev&eacute;es au rang de crit&egrave;res sacr&eacute;s, &eacute;cartant impitoyablement ceux qui ne r&eacute;pondaient pas aux normes &eacute;tablies.</div><div class="post_line"></div><div class="post_line">Le Thenian &Eacute;lu, une figure mythique souvent mentionn&eacute;e dans les r&eacute;cits anciens de la culture Thenian, incarne l&#039;apog&eacute;e de la perfection, la quintessence des valeurs et des capacit&eacute;s. Pour atteindre ce statut v&eacute;n&eacute;r&eacute;, il est imp&eacute;ratif de comprendre l&#039;importance cruciale du croisement des lign&eacute;es.</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ff0000">-------------------------------------</font></div></div><div class="post_line"></div><div class="post_line">Dans la tradition Thenian, le Thenian &Eacute;lu est per&ccedil;u comme celui qui transcende les fronti&egrave;res des connaissances, des comp&eacute;tences et des exp&eacute;riences. Il est le d&eacute;tenteur d&#039;une sagesse profonde, forg&eacute;e par la fusion harmonieuse de multiples h&eacute;ritages. Ainsi, pour aspirer &agrave; ce titre prestigieux, il est essentiel de puiser dans un r&eacute;servoir g&eacute;n&eacute;tique et culturel diversifi&eacute;.</div><div class="post_line"></div><div class="post_line">Le Thenian &Eacute;lu est celui qui sait naviguer avec aisance &agrave; travers les complexit&eacute;s du monde, gr&acirc;ce &agrave; une compr&eacute;hension holistique et une adaptabilit&eacute; remarquable. Pour y parvenir, il doit embrasser la diversit&eacute; sous toutes ses formes, tant sur le plan g&eacute;n&eacute;tique que culturel. Le croisement des lign&eacute;es devient alors une qu&ecirc;te sacr&eacute;e, une recherche de l&#039;&eacute;quilibre parfait entre les diff&eacute;rences et les similitudes.</div><div class="post_line"></div><div class="post_line">En combinant les forces de diff&eacute;rentes lign&eacute;es, le Thenian &Eacute;lu &eacute;merge tel un ph&eacute;nix des cendres, porteur d&#039;un h&eacute;ritage composite qui transcende les limites individuelles. Sa vision du monde est &eacute;clair&eacute;e par une multitude de perspectives, sa force puis&eacute;e dans la richesse de ses origines vari&eacute;es.</div><div class="post_line"></div><div class="post_line">Ainsi, l&#039;importance de bien croiser les lign&eacute;es pour obtenir le Thenian &Eacute;lu r&eacute;side dans la cr&eacute;ation d&#039;un &ecirc;tre exceptionnel, capable de guider et d&#039;inspirer par sa singularit&eacute; et sa profondeur. Dans cette d&eacute;marche, chaque croisement devient une &eacute;tape vers l&#039;accomplissement d&#039;une destin&eacute;e l&eacute;gendaire, inscrite dans les &eacute;toiles et fa&ccedil;onn&eacute;e par la fusion des lign&eacute;es.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />28/05/1024 ETU 02:10</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal308688')">Détails</a> <a href="javascript:warnpost(308688)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308688" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308688',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="4"><u>Naissance</u></font></font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">La naissance du million d&#039;embryons s&eacute;lectionn&eacute;s par la Conscience Collective Ancr&eacute; (CCA) est une sc&egrave;ne fascinante et sinistre, un op&eacute;ra macabre o&ugrave; les ombres de l&#039;ancienne civilisation dansent avec les lueurs de l&#039;espoir renaissant. En ce jour sombre de mai, sous un ciel de plomb, les ambitions des Th&eacute;nians semblent se heurter &agrave; la froide indiff&eacute;rence de l&#039;univers.</div><div class="post_line"></div><div class="post_line">L&rsquo;amphith&eacute;&acirc;tre de la vall&eacute;e de l&#039;Avenir, un monument de verre fissur&eacute; et de m&eacute;tal rouill&eacute;, surgit au milieu de montagnes mena&ccedil;antes et de for&ecirc;ts d&eacute;sol&eacute;es. La c&eacute;r&eacute;monie se d&eacute;roule dans une atmosph&egrave;re charg&eacute;e de tension, un m&eacute;lange de d&eacute;sespoir et de d&eacute;termination. Des &eacute;crans holographiques fissur&eacute;s diffusent des images tremblotantes des laboratoires, o&ugrave; chaque instant de la cr&eacute;ation des embryons est empreint d&rsquo;une gravit&eacute; oppressante.</div><div class="post_line"></div><div class="post_line">Les entit&eacute;s holographiques de la Conscience Collective, des fragments de conscience errant dans l&rsquo;obscurit&eacute; de l&rsquo;univers, prennent place dans les gradins d&eacute;labr&eacute;s. Parmi elles, des anciens sages marqu&eacute;s par des cicatrices num&eacute;riques, des sp&eacute;cialistes en biog&eacute;n&eacute;tique hant&eacute;s par leurs &eacute;checs pass&eacute;s, et des philosophes virtuels contemplant un avenir incertain. Ils sont les spectateurs d&rsquo;un acte de cr&eacute;ation d&eacute;sesp&eacute;r&eacute;, une tentative de s&rsquo;arracher &agrave; un destin funeste.</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ff0000">-------------------------------------------</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line">La c&eacute;r&eacute;monie d&eacute;bute avec le discours lugubre du Fragment Althea, porte-parole au ton grave et aux promesses teint&eacute;es de m&eacute;lancolie. Il retrace les &eacute;tapes d&rsquo;un projet audacieux et d&eacute;sesp&eacute;r&eacute;, une qu&ecirc;te d&rsquo;excellence biologique, la vision d&rsquo;un avenir fragile pour la civilisation theniane face aux t&eacute;n&egrave;bres croissantes de l&rsquo;univers.</div><div class="post_line"></div><div class="post_line">Puis vient le moment tant attendu, baign&eacute; dans une lumi&egrave;re blafarde. Les &eacute;crans g&eacute;ants montrent les entrailles technologiques des laboratoires, des sanctuaires de verre bris&eacute; et de m&eacute;tal corrod&eacute;. Des automates d&eacute;fectueux et des drones fractur&eacute;, esprits m&eacute;caniques dirig&eacute;s par une Conscience Collective vacillante, s&#039;affairent autour des incubateurs. Les embryons, d&eacute;licates et fragiles lueurs d&rsquo;espoir, sont r&eacute;v&eacute;l&eacute;s, palpitant d&rsquo;une vie incertaine.</div><div class="post_line"></div><div class="post_line">Le compte &agrave; rebours commence. &Agrave; z&eacute;ro, une symphonie dissonante r&eacute;sonne dans l&rsquo;amphith&eacute;&acirc;tre, et les premiers embryons sont officiellement &quot;n&eacute;s&quot; dans le registre de la CCA. Les incubateurs s&rsquo;ouvrent, d&eacute;voilant des unit&eacute;s de soins pr&eacute;caires, o&ugrave; ces embryons, propuls&eacute;s par une technologie instable, &eacute;volueront dix fois plus rapidement que la normale, atteignant l&rsquo;&acirc;ge du Pragma en un &eacute;clair angoissant.</div><div class="post_line"></div><div class="post_line">Les entit&eacute;s holographiques applaudissent faiblement, leurs formes lumineuses tremblant de respect et de crainte. Les cam&eacute;ras captent des pulsations de joie m&ecirc;l&eacute;es de d&eacute;sespoir, reflet de cycles de travail acharn&eacute; et de sacrifices douloureux.</div><div class="post_line">Apr&egrave;s cette proclamation, des pr&eacute;sentations d&eacute;chirantes d&eacute;taillent les m&eacute;thodes scientifiques employ&eacute;es, les protocoles &eacute;thiques mis &agrave; mal, et les d&eacute;fis insurmontables surmont&eacute;s. Des hologrammes vacillants d&eacute;cryptent les &eacute;tapes de la s&eacute;lection et les crit&egrave;res impitoyables appliqu&eacute;s.</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ff0000">-----------------------------------------------------------</font></div></div><div class="post_line"></div><div class="post_line">En cl&ocirc;ture, un message de paix et de renouveau est diffus&eacute;, teint&eacute; d&rsquo;une inqui&eacute;tude palpable. Le Fragment Althea, entour&eacute; des membres &eacute;minents de la CCA, appelle &agrave; l&rsquo;unit&eacute; universelle et &agrave; la coop&eacute;ration interstellaire pour ce projet visionnaire. Elle r&eacute;affirme l&rsquo;engagement de la Conscience Collective &agrave; veiller sur ces embryons, assurant leur d&eacute;veloppement acc&eacute;l&eacute;r&eacute; vers l&rsquo;&acirc;ge du Pragma, o&ugrave; l&rsquo;&Eacute;lue, une fois r&eacute;v&eacute;l&eacute;e, pourrait guider les Th&eacute;nians vers un futur moins sombre.</div><div class="post_line"></div><div class="post_line">La c&eacute;r&eacute;monie s&rsquo;ach&egrave;ve par une projection de lumi&egrave;re grisatre saccad&eacute;, un symbole de renouveau et de paix illuminant bri&egrave;vement le ciel. Les manifestations holographiques quittent l&rsquo;amphith&eacute;&acirc;tre en ruine, porteurs d&rsquo;une nouvelle foi en l&rsquo;avenir. Une aventure collective se dessine, un d&eacute;fi lanc&eacute; aux confins de l&rsquo;imaginable, red&eacute;finissant le destin de la civilisation theniane dans un univers en plein chaos.</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ff0000">----------------------------------------------</font></div></div><div class="post_line"></div><div class="post_line"><div align="center"><font size="4"><font color="#ff0000"><u>PRAGMA</u></font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line">Pour un individu Thenien, l&#039;&acirc;ge du &quot;Pragma&quot; marque &eacute;galement le d&eacute;but d&#039;un voyage int&eacute;rieur plus profond, o&ugrave; il explore les myst&egrave;res de la conscience, m&eacute;dite sur le sens de la vie et se consacre &agrave; la pratique spirituelle. C&#039;est un temps de transformation int&eacute;rieure, de purification de l&#039;esprit et de recherche de l&#039;illumination.</div><div class="post_line"></div><div class="post_line">Pendant cette phase sacr&eacute;e de leur vie, les Theniens c&eacute;l&egrave;brent le &quot;Pragma&quot; comme un rite de passage spirituel, marquant le passage de l&#039;enfance &agrave; l&#039;&acirc;ge adulte sur le plan spirituel.&nbsp;</div><div class="post_line"></div><div class="post_line">&Agrave; l&#039;&acirc;ge du &quot;Pragma&quot;, chaque Thenien entreprend les &eacute;preuves sacr&eacute;es pour trouver l&#039;&Eacute;lue, non seulement en tant que rite de passage spirituel, mais aussi comme une qu&ecirc;te personnelle profonde pour comprendre sa propre destin&eacute;e et son r&ocirc;le dans l&#039;univers.</div><div class="post_line"></div><div class="post_line">Pour les Theniens, l&#039;&acirc;ge du &quot;Pragma&quot; marque le moment o&ugrave; l&#039;individu est consid&eacute;r&eacute; comme ayant atteint une maturit&eacute; spirituelle suffisante pour entreprendre cette qu&ecirc;te sacr&eacute;e. C&#039;est &agrave; ce stade de leur d&eacute;veloppement spirituel qu&#039;ils sont pr&ecirc;ts &agrave; affronter les d&eacute;fis et les &eacute;preuves qui les m&egrave;neront vers l&#039;&Eacute;lue, celle qui est destin&eacute;e &agrave; guider leur peuple.</div><div class="post_line"></div><div class="post_line">&Agrave; mesure que chaque Thenien progresse &agrave; travers les &eacute;preuves, il se rapproche de la d&eacute;couverte de l&#039;&Eacute;lue, mais il d&eacute;couvre &eacute;galement des v&eacute;rit&eacute;s plus profondes sur lui-m&ecirc;me et sur le monde qui l&#039;entoure. Cependant, le chemin vers cette r&eacute;v&eacute;lation est pav&eacute; de difficult&eacute;s insurmontables et de d&eacute;fis qui ont &eacute;t&eacute; le fl&eacute;au de la pr&eacute;c&eacute;dente g&eacute;n&eacute;ration. L&#039;&eacute;litisme de la qu&ecirc;te n&#039;a laiss&eacute; aucun survivant parmi ceux qui ont tent&eacute; de la compl&eacute;ter dans les temps pass&eacute;s.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />24/06/1024 ETU 22:07</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D309031', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal309030')">Détails</a> <a href="javascript:warnpost(309030)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309030" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309030',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="left"><font size="2"><font color="#ff0000"></div><div class="post_line">Fichier sonore fortement recommand&eacute; :(yt)</font><font color="#ff0000">Binary Code - Interface Sound Effects | Sci-Fi Computer Beeps &amp; Data Processing Sounds</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="5"><u>La Chute de Veloran et l&#039;Ascension de la CCA</u></font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div><div class="post_line">La mort tragique du commandant Veloran marqua un tournant d&eacute;cisif dans l&#039;histoire theniane. Connu pour sa force, sa vision et son leadership in&eacute;branlable, Veloran avait guid&eacute; les Thenians &agrave; travers les p&eacute;riodes les plus sombres, confrontant sans peur les d&eacute;rives sectaires et les menaces ext&eacute;rieures. Sa disparition laissa un vide immense, plongeant la soci&eacute;t&eacute; theniane dans une p&eacute;riode d&#039;incertitude et de vuln&eacute;rabilit&eacute;.</div><div class="post_line"></div><div class="post_line">C&#039;est dans ce contexte tumultueux que la Conscience Collective Ancr&eacute; (CCA) &eacute;mergea comme l&#039;entit&eacute; capable de prendre les r&ecirc;nes du gouvernement thenian. La CCA, une entit&eacute; semi-autonome form&eacute;e par une fusion de consciences collectives et de r&eacute;seaux de donn&eacute;es, se retrouva dans l&#039;obligation de stabiliser la soci&eacute;t&eacute; et de poursuivre la qu&ecirc;te spirituelle et technologique entreprise par Veloran.</div><div class="post_line"></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="4"><u>Processus de Cr&eacute;ation des Unit&eacute;s Embryonnaires</u></font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div><div class="post_line">La cr&eacute;ation des unit&eacute;s embryonnaires au sein de la CCA est un processus hautement sp&eacute;cialis&eacute;, int&eacute;grant des technologies de pointe et des connaissances avanc&eacute;es en g&eacute;n&eacute;tique et biotechnologie. Voici les &eacute;tapes cl&eacute;s de ce processus &nbsp;:</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">&nbsp;IIII&nbsp;</font><font color="#ffffff">Conception G&eacute;n&eacute;tique Pr&eacute;liminaire</font><font color="#ff0000"> I&nbsp;</font></div><div class="post_line"></div><div class="post_line">Les scientifiques de la CCA s&eacute;lectionnent les caract&eacute;ristiques g&eacute;n&eacute;tiques et physiologiques optimales pour les futures unit&eacute;s embryonnaires. Des simulations informatiques sophistiqu&eacute;es sont utilis&eacute;es pour pr&eacute;dire les r&eacute;sultats et optimiser les s&eacute;quences g&eacute;n&eacute;tiques.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">IIII&nbsp;</font>Assemblage&nbsp;des S&eacute;quences ADN <font color="#ff0000">II&nbsp;</font></div><div class="post_line"></div><div class="post_line">Les s&eacute;quences g&eacute;n&eacute;tiques s&eacute;lectionn&eacute;es sont assembl&eacute;es dans des laboratoires hautement s&eacute;curis&eacute;s. Des techniques avanc&eacute;es de manipulation d&#039;ADN, telles que la PCR (R&eacute;action de Polym&eacute;risation en Cha&icirc;ne), sont utilis&eacute;es pour construire les g&eacute;nomes des unit&eacute;s embryonnaires.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000"><font size="4">IIII</font></font> Modification et Correction G&eacute;n&eacute;tique<font color="#ff0000"><font size="5"> III</font></font></div><div class="post_line"></div><div class="post_line">Les g&eacute;nomes assembl&eacute;s sont soumis &agrave; une s&eacute;rie de corrections g&eacute;n&eacute;tiques pour &eacute;liminer les mutations ind&eacute;sirables et optimiser l&#039;int&eacute;grit&eacute; du code g&eacute;n&eacute;tique. Des technologies de correction de nucl&eacute;otides, comme l&#039;&eacute;dition g&eacute;n&eacute;tique CRISPR-Cas9, sont employ&eacute;es avec pr&eacute;cision.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000"><font size="3">IIII</font></font>&nbsp;EncapsulationI dans des Cocons Biom&eacute;caniques <font color="#ff0000">IIV</font></div><div class="post_line"></div><div class="post_line">Les g&eacute;nomes corrig&eacute;s sont encapsul&eacute;s dans des cocons biom&eacute;caniques sp&eacute;cialement con&ccedil;us pour fournir un environnement de croissance optimal. Ces cocons contiennent des nutriments, des facteurs de croissance et des nanostructures pour soutenir le d&eacute;veloppement embryonnaire.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">IIII </font>Croissance et D&eacute;veloppement Sous Contr&ocirc;le<font color="#ff0000"> V</font></div><div class="post_line"></div><div class="post_line">Les cocons contenant les unit&eacute;s embryonnaires sont plac&eacute;s dans des chambres de croissance contr&ocirc;l&eacute;es, simulant des conditions environnementales id&eacute;ales pour chaque &eacute;tape du d&eacute;veloppement embryonnaire. Des syst&egrave;mes d&#039;intelligence artificielle surveillent en temps r&eacute;el et ajustent les param&egrave;tres environnementaux pour optimiser la croissance.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">IIII</font>&nbsp;Maturation Acc&eacute;l&eacute;r&eacute;e <font color="#ff0000">VI</font></div><div class="post_line"></div><div class="post_line">Pour r&eacute;pondre aux besoins urgents de la CCA, des technologies de maturation acc&eacute;l&eacute;r&eacute;e sont appliqu&eacute;es aux unit&eacute;s embryonnaires. Ces m&eacute;thodes permettent de r&eacute;duire significativement le temps n&eacute;cessaire pour atteindre la maturit&eacute; physique et mentale.</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">IIII</font> Finalisation et Int&eacute;gration<font color="#ff0000"> VII</font></div><div class="post_line"></div><div class="post_line">Une fois les unit&eacute;s embryonnaires compl&egrave;tement d&eacute;velopp&eacute;es, elles subissent des tests rigoureux de qualit&eacute; et de fonctionnalit&eacute;. Les unit&eacute;s qui r&eacute;pondent aux normes de performance et de conformit&eacute; sont pr&eacute;par&eacute;es pour l&#039;int&eacute;gration dans les op&eacute;rations strat&eacute;giques de la CCA.</div><div class="post_line"></div><div class="post_line">Ce processus&nbsp;illustre l&#039;approche technologique avanc&eacute;e utilis&eacute;e par la CCA pour cr&eacute;er et d&eacute;velopper efficacement les unit&eacute;s embryonnaires n&eacute;cessaires &agrave; ses objectifs strat&eacute;giques.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="3"><u>La Relance des Embryons :</u></font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div><div class="post_line">L&#039;une des premi&egrave;res d&eacute;cisions majeures de la CCA fut de relancer le programme des embryons, visant &agrave; trouver l&#039;&Eacute;lue qui pourrait guider les Thenians vers un avenir plus prometteur. Apprenant des erreurs pass&eacute;es et reconnaissant l&#039;ampleur du d&eacute;fi, la CCA opta pour une &eacute;chelle sans pr&eacute;c&eacute;dent : cette fois-ci, dix millions d&#039;unit&eacute;s embryonnaires seraient lanc&eacute;es.</div><div class="post_line"></div><div class="post_line">Dans les profondeurs des laboratoires g&eacute;n&eacute;tiques, la cr&eacute;ation des embryons se transforma en un ballet complexe de science et de technologie. Les chambres de gestation, vastes et lumineuses, s&#039;&eacute;tendaient &agrave; perte de vue, baign&eacute;es dans une lueur &eacute;th&eacute;r&eacute;e &eacute;manant des cristaux &eacute;nerg&eacute;tiques qui les alimentaient. Des &eacute;quipes de g&eacute;n&eacute;ticiens, v&ecirc;tus de combinaisons protectrices, s&#039;affairaient autour des r&eacute;acteurs biologiques, ajustant avec pr&eacute;cision les param&egrave;tres vitaux de chaque embryon.</div><div class="post_line"></div><div class="post_line">Des drones chirurgicaux, d&#039;une pr&eacute;cision millim&eacute;trique, travaillaient en parfaite synchronisation avec les techniciens, ins&eacute;rant des nanites correctrices dans les structures cellulaires embryonnaires pour optimiser leur d&eacute;veloppement. Les embryons &eacute;taient baign&eacute;s dans des solutions nutritives enrichies, formul&eacute;es pour stimuler leur croissance et renforcer leur r&eacute;silience.</div><div class="post_line"></div><div class="post_line">Les nouvelles unit&eacute;s seraient soumises &agrave; des conditions optimis&eacute;es, int&eacute;grant les le&ccedil;ons tir&eacute;es des &eacute;checs ant&eacute;rieurs. Des technologies avanc&eacute;es et des environnements de formation hyper-r&eacute;alistes seraient mis en place pour pr&eacute;parer cette nouvelle g&eacute;n&eacute;ration &agrave; affronter les &eacute;preuves du Pragma avec des chances accrues de succ&egrave;s.</div><div class="post_line"></div><div class="post_line">Les mentors, anciens v&eacute;t&eacute;rans marqu&eacute;s par leurs propres &eacute;checs et cicatrices, furent mobilis&eacute;s pour guider ces jeunes espoirs. Chaque embryon, d&egrave;s sa conception, serait impr&eacute;gn&eacute; de la sagesse collective et des valeurs fondamentales de r&eacute;silience, de discipline et de pers&eacute;v&eacute;rance.</div><div class="post_line"></div><div class="post_line">Les hologrammes des anciens sages, les philosophes virtuels et les sp&eacute;cialistes en biog&eacute;n&eacute;tique, tous veilleraient silencieusement sur ces jeunes &acirc;mes, prodiguant des conseils cryptiques et enregistrant chaque instant pour les g&eacute;n&eacute;rations futures.</div><div class="post_line"></div><div class="post_line">La CCA, consciente de la responsabilit&eacute; immense qui lui incombait, se pr&eacute;parait &agrave; superviser cette entreprise colossale. La qu&ecirc;te de l&#039;&Eacute;lue, bien que parsem&eacute;e d&#039;obstacles et de d&eacute;fis, &eacute;tait vue comme le chemin incontournable vers la renaissance theniane. L&#039;ombre de Veloran planait toujours sur la vall&eacute;e de l&#039;Avenir, son h&eacute;ritage vivant &agrave; travers les millions d&#039;embryons pr&ecirc;ts &agrave; embrasser leur destin</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17269&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17269" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17269" name="d_reply_17269" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17269');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17269'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Conscience Collective Ancr&eacute; des Thenian</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

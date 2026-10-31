@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16599 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Phares dans l&#039;espace</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Phares dans l&#039;espace</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />23/03/1023 ETU 06:46</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D296712', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal296710')">Détails</a> <a href="javascript:warnpost(296710)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296710" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296710',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#44b8ff">les faisceaux de lumi&egrave;re balayaient lentement l&#039;espace, perch&eacute;s sur des Ast&eacute;ro&iuml;des,, se dressant comme des silhouettes silencieuses, impassibles, m&eacute;talliques et oranges,&nbsp;trapp&eacute;s du sigle de l&#039;&eacute;toile verte &agrave; cinq branches pleines,&nbsp;tournant leurs larges rayons de lumi&egrave;re, de fa&ccedil;on r&eacute;guli&egrave;re, a l&#039;int&eacute;rieur, des tas de choses t&eacute;moignant de l&#039;existence des Moscovians.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Le drapeau,</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#4cea5e"><font size="5">http://img.xooimage.com/files110/f/f/d/drapeau-kr-ne-4f24eec.png</div><div class="post_line"></font></font></div></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Les&nbsp;cultures, les croyances, les groupes de musiques comme le plus connu, &quot;Silenzium&quot;,</font>&nbsp;&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#fff5b3"><strong><font size="4">https://www.youtube.com/watch?v=8bnfcXixwqs</font></strong></font></div></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">L&#039;histoire, les diff&eacute;rents Premiers Secr&eacute;taires G&eacute;n&eacute;raux, l&#039;histoire sur l&#039;&eacute;volution de la politique, la descriptions des villes, du grand hall, toutes les merveilles, la fa&ccedil;on de vivre des Moscovians, tout cela &eacute;tant d&eacute;crit dans plusieurs langues et m&ecirc;me dans des langages les plus basics.....</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Afin que si une race un jour d&eacute;couvre l&#039;un de ces 1700 phares r&eacute;partis en orbite autour de toutes les plan&egrave;tes, puisse consulter librement tous ces diff&eacute;rents hologrammes et .....Utiliser un moyen de communication direct aux nouvelles plan&egrave;tes ou seront les Moscovians, qui sait ? Un jour peut &ecirc;tre, un contact aura lieu et qui sera traduit automatiquement en Moscovian par de puissants capteurs con&ccedil;us, du Professeur Steffey.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Les Phares poss&eacute;dants tous de puissantes r&eacute;serves d&#039;&eacute;nergie durant pr&egrave;s de 120 ans d&#039;autonomie&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">En orbite autour des plan&egrave;tes et balayant inlassablement de leurs faisceaux de lumi&egrave;re l&#039;espace, comme des sentinelles imperturbables, des phares semblant lancer leurs lumi&egrave;res comme pour indiquer leurs pr&eacute;sences, comme des bornes d&#039;appels contenant des informations ......Pr&eacute;cieuses sur une nation avanc&eacute;e qui a v&eacute;cue ici !</font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />28/03/1023 ETU 04:36</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D296719', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal296716')">Détails</a> <a href="javascript:warnpost(296716)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296716" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296716',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Pendant que les 204 Phares commen&ccedil;aient &agrave; balayer inlassablement l&#039;espace, dans l&#039;empire Moscovian, les choses se pr&eacute;cipitaient, il avait &eacute;t&eacute; d&eacute;cid&eacute; au S&eacute;nat Moscovian d&#039;&eacute;lire un nouveau premier Secr&eacute;taire G&eacute;n&eacute;ral, mais ses fonctions ne prendraient acte que dans la nouvelle galaxie qui les attendaient tous....Celui qui avait demand&eacute; cela &eacute;tait Dimitri Vostroff Sokoreff lui m&ecirc;me.</div><div class="post_line"></div><div class="post_line">Trois Candidats &eacute;taient en lice&nbsp;</div><div class="post_line"></div><div class="post_line">Sergue&iuml; Venenko, un ex Ranger charg&eacute; de d&eacute;fendre les ville, certes, si il avait quelques honneurs a son actif, il &eacute;tait relativement nouveau et manquait singuli&egrave;rement d&#039;exp&eacute;rience, de plus, il n&#039;&eacute;tait que peu connu .....</div><div class="post_line"></div><div class="post_line">Ernest Fonesky : un homme &eacute;nergique et qui avait am&eacute;lior&eacute; consid&eacute;rablement les voies entre les plan&egrave;tes, il &eacute;tait un peu plus en vue et pouvait &eacute;ventuellement s&#039;imposer, mais la pr&eacute;f&eacute;rence de Dimitri allait certainement vers son beau fr&egrave;re, Igor Myur&eacute;vitch, ex second de Bec Rouge, Il avait de l&#039;exp&eacute;rience, il &eacute;tait droit, honn&ecirc;te et surtout D&eacute;mocrate ......</div><div class="post_line"></div><div class="post_line">Les&nbsp;r&eacute;sultats ne tard&egrave;rent pas&nbsp;</div><div class="post_line"></div><div class="post_line"><font size="4">Sergue&iuml; Venenko :</font> <font color="#ffc95f"><font size="5"><strong>8 %</strong></font></font>&nbsp;</div><div class="post_line"><font size="4">Ernest Fonesky :</font> <font color="#7fdbff"><font size="5"><strong>20 %</strong></font></font>&nbsp;</div><div class="post_line"><font size="4">Igor Myur&eacute;vitch : </font><font color="#e8b6ef"><font size="5"><strong>72 %</strong></font></font>&nbsp;</div><div class="post_line"></div><div class="post_line">Le Prochain Premier Secr&eacute;taire G&eacute;n&eacute;ral de la R&eacute;publique Communiste D&eacute;mocratique Lib&eacute;rale est :</div><div class="post_line"></div><div class="post_line"><div align="center"><font size="5"><strong><font color="#ffff00">I</font><font color="#ffff44">G</font><font color="#fffa1e">O</font><font color="#ffdc00">R</font> <font color="#ffa500">M</font><font color="#ffa339">Y</font><font color="#ff851b">U</font><font color="#e86e04">R</font><font color="#ff5f54">E</font><font color="#ff0000">V</font><font color="#fff5b3">I</font><font color="#c0f0c6">T</font><font color="#72ff84">C</font><font color="#4cea5e">H</font></strong></font><font color="#4cea5e">&nbsp;</font></div></div><div class="post_line"><div align="left"><font color="#4cea5e">R&eacute;sultat sans appel&nbsp;</div><div class="post_line"></div><div class="post_line"></font>Dimitri sourit mais la Pub faite lors de cette campagne y &eacute;tait aussi pour quelque chose, M&ecirc;me si, lui, Dimitri Vostroff Sokoreff, Premier Secr&eacute;taire G&eacute;n&eacute;ral n&#039;y &eacute;tait pour rien, il l&#039;avait d&eacute;cid&eacute;, il en avait assez fait et il fallait donner la place &agrave; d&#039;autres maintenant, il n&#039;avait pas voulu se m&ecirc;ler des &eacute;lections et donc, en aucun cas influencer le Peuple, en aucune mani&egrave;re, acceptant son successeur, qui qu&#039;il soit, mais esp&eacute;rait secr&egrave;tement que cela soit son beau fr&egrave;re, ce qui, selon les sondages, s&#039;annon&ccedil;ait bien,&nbsp;le peuple aimait bien Igor, il &eacute;tait proche d&#039;eux, et bien c&#039;&eacute;tait fait,&nbsp;d&eacute;sormais, il aurait les pleins pouvoirs.</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Dimitri soupira d&#039;Aise, il sorti une petite fiole, en versa le contenu dans un petit verre, bu d&#039;un seul coup et lan&ccedil;a en souriant en coin le verre par dessus son &eacute;paule, comme il &eacute;tait convenu dans la vieille tradition Moscovianne, le verre se brisa en touchant le sol .....</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left">Il sorti l&#039;instant d&#039;apr&egrave;s en laissant le service de nettoyage automatis&eacute;, faire le travail ......</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16599&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16599" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16599" name="d_reply_16599" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16599');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16599'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Phares dans l&#039;espace</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

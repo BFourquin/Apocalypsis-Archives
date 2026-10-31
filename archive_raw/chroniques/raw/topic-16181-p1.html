@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16181 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Nouveau Gouvernement Labyrinthique</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouveau Gouvernement Labyrinthique</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nyalnamar+Veritas">Cdte. Nyalnamar Veritas</a><br>Prestige de chroniqueur&nbsp;: 28<br /><br /><img src="/avatars/11412.jpg" style="width:112px;height:128px" alt="Avatar" /><br />21/12/1021 ETU 02:27<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D291512', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal291504')">Détails</a> <a href="javascript:warnpost(291504)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal291504" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=291504',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="right">Ma philosophie : d&eacute;truire tous les cinquante ans villes et villages anciens, </div></div><div class="post_line"><div align="right">bannir la nature des limites de l&rsquo;art, supprimer l&rsquo;amour et la sinc&eacute;rit&eacute; dans l&rsquo;art, </div></div><div class="post_line"><div align="right">mais en aucun cas ne tarir la source vive de l&rsquo;homme : la guerre.</div></div><div class="post_line"><div align="right">Nos ateliers ne peignent plus des tableaux, ils b&acirc;tissent les formes de la vie ; </div></div><div class="post_line"><div align="right">ce ne seront plus les tableaux mais les projets qui deviendront des cr&eacute;atures vivantes.</div></div><div class="post_line"><div align="right">- Malevitch </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Lorsque la Clique des Futuristes avait nomm&eacute;e l&#039;Or&eacute;e &agrave; la t&ecirc;te de sa repr&eacute;sentation pour les &eacute;lections, &ccedil;&#039;avait d&#039;abord &eacute;t&eacute; par souci quasi-populiste d&#039;&eacute;vocation symbolique. Dans une nation o&ugrave; la course au pouvoir se joue dans de grandes discussions &eacute;thiques et de d&eacute;bats philosophiques d&eacute;tach&eacute;s, habituellement, de la r&eacute;alit&eacute; physique des choses, nommer une militaire n&#039;allait pas vraiment de soi. Elle n&#039;&eacute;tait pas une artiste, pas une penseuse, pas une magicienne, ne c&ocirc;toyait pas vraiment les cercles d&#039;intellectuels composant l&#039;avant-garde du mouvement. Elle &eacute;tait, &agrave; d&eacute;faut d&#039;autres termes, un compromis. Mais un compromis n&eacute;cessaire, comme le soulignait la note &eacute;crit en marge de la r&eacute;union qui avait abouti &agrave; sa nomination : &quot;Nous [les futuristes] parlons constamment de guerre mais nous ne la connaissons pas. Quand on entend un futuriste parler de guerre, on a l&#039;impression de faire face &agrave; un aveugle qui parlerait de couleurs. Le concept nous est connu, et c&#039;est tout. L&#039;Or&eacute;e, elle, a les deux yeux bien ouverts. Elle sait&quot;. Et puis elle avait d&#039;autres qualit&eacute;s. Pas toutes &eacute;videntes aux premiers abords, mais qui, une &agrave; une s&#039;av&eacute;r&egrave;rent utiles au succ&egrave;s du mouvement. D&eacute;j&agrave; elle &eacute;tait un g&eacute;nie organisationnel. Pendant que les chercheurs et les peintres r&eacute;citaient leurs grandes th&eacute;ories de l&rsquo;an&eacute;antissement, l&#039;Or&eacute;e travaillait &agrave; des applications concr&egrave;tes de ces principes, constituant au sein de l&#039;arm&eacute;e une milice de Vandales qu&#039;elle employa avec beaucoup de z&egrave;le &agrave; pratiquer la destruction rationnelle de toute anciennet&eacute;, relique, &eacute;tat d&#039;esprit r&eacute;actionnaire et pens&eacute;e d&eacute;faitiste. La ratonnade devint, entre ses mains capables et une fois &eacute;quip&eacute;e des bases id&eacute;ologiques de ses pairs, un outil d&#039;une extr&ecirc;me efficacit&eacute;. De plus, elle &eacute;tait intelligente. Pas naturellement pouss&eacute;e &agrave; la conception de th&eacute;orie, mais capable d&#039;en assimiler ais&eacute;ment une grande quantit&eacute; et de faire le tri dans l&#039;ensemble. Sa conception du monde n&#039;&eacute;tait pas bas&eacute;e sur ses propres d&eacute;couvertes philosophiques, mais &eacute;tait parfaitement coh&eacute;rente. En d&eacute;bats, elle pouvait donc &ecirc;tre une teigne. Bien plus que les penseurs bafouilleurs donc les id&eacute;es g&eacute;niales c&ocirc;toyaient le fourmillement mal d&eacute;grossi de leurs autres r&eacute;flexions. Enfin, elle &eacute;tait dot&eacute;e d&#039;un charisme tout particulier, semblant moduler son ampleur selon la n&eacute;cessit&eacute; du moment : elle passait pour calme, sinon &eacute;teinte, quand on avait pas besoin d&#039;elle. Quand on insultait ce qu&#039;elle d&eacute;fendait, elle s&#039;emportait, magn&eacute;tique. Et quand on remettait en question quoi que ce soit de la pens&eacute;e futuriste ou de la Nyalnaamr Veritas, elle se transformait en v&eacute;ritable temp&ecirc;te, renversant les murs et les remparts rh&eacute;toriques de ses adversaires et les apostrophant avec une violence confinant &agrave; la psychopathie, mais inexplicablement attirante pour qui n&#039;&eacute;tait pas directement le sujet de son attaque.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">C&#039;&eacute;tait aussi ce qui avait d&eacute;cid&eacute; la premi&egrave;re oratrice &agrave; en faire sa femme de main. Bien qu&#039;&eacute;tant assez rationnelle et plut&ocirc;t mod&eacute;r&eacute;e, la Nyalnamar Veritas &eacute;tait au m&ecirc;me titre que tout son peuple, une rescap&eacute;e de guerre. Traumatis&eacute;e. Lasse des trahisons ressenties et de l&#039;adversit&eacute; ambiante. Le fanatisme total dont faisait preuve l&#039;Or&eacute;e, qui avait organis&eacute; un v&eacute;ritable culte de la personnalit&eacute; de sa ma&icirc;tresse et entrepris, seule, la mise au pas de la soci&eacute;t&eacute; Labyrinthique, &eacute;tait un atout.&nbsp;Les Treize Labyrinthes avaient bien droit &agrave; un peu de grandeur. Et puisqu&#039;une politique mod&eacute;r&eacute;e avait amen&eacute;e &agrave; un presque-d&eacute;sastre, puisque ses alli&eacute;s continuaient de lui manquer de respect, de lui r&eacute;clamer plus qu&#039;ils ne m&eacute;ritaient, de se moquer ouvertement d&#039;elle, il n&#039;y avait pas de mal &agrave; s&#039;entourer d&#039;individus qui voyaient en elle ce qu&#039;elle &eacute;tait vraiment : la R&eacute;gente du Roi, la cheffe supr&ecirc;me d&#039;un peuple. Le sommet de la Pyramide. L&#039;incarnation de la volont&eacute; des Labyrinthes. </div></div><div class="post_line"></div><div class="post_line"><div align="justify">Ce titre, Nyalanamr Veritas, avait un sens qui, sous son mandat, avait trop perdu de sa splendeur. Maintenant, il &eacute;tait temps de le redorer. Et pour &ccedil;a on pouvait faire confiance aux futuristes. Allergiques aux vieilles erreurs. S&#039;ils se trompaient, eux, ce serait au moins dans un genre nouveau. Jamais vu, m&ecirc;me. On ne s&#039;ennuierait pas.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et &agrave; ce propos les choses commen&ccedil;aient bien. Entre la fin de la guerre, la r&eacute;cup&eacute;ration de la contrebande sectorielle et la nomination m&ecirc;me du nouveau Grand Conseil, les bonnes nouvelles commen&ccedil;aient &agrave; s&#039;accumuler dans un genre de retour karmique qui n&#039;&eacute;tait pas sans inqui&eacute;ter la Premi&egrave;re Oratrice. Pour l&#039;heure, cependant, elle n&#039;avait pas le loisir d&#039;y r&eacute;fl&eacute;chir. On avait install&eacute; une grande pyramide sur Couronnement, et c&#039;&eacute;tait l&agrave; que devait, officiellement, avoir lieu l&#039;intronisation publique des membres du nouveau Grand Conseil. Quelques ac&eacute;phales - des survivants - un bon tiers de primototalistes - pour faire tourner la machine - et une majorit&eacute; de futuristes, car ils avaient remport&eacute;s la bataille. C&#039;&eacute;tait en compagnie de l&#039;Or&eacute;e, leur cheffe, que la Nyalnamar Veritas discutait maintenant. Elles &eacute;taient &agrave; la tribune devant un grand Champ-de-Mars o&ugrave; l&#039;on avait dispos&eacute; des milliers de spectateurs. Visiteurs &eacute;trangers, diplomates issus de nations alli&eacute;es, fanatiques futuristes, citoyens des labyrinthes. Tous, amass&eacute;s sur d&#039;immenses gradins, saluaient et criaient face &agrave; l&#039;indescriptible spectacle qui faisait office de c&eacute;l&eacute;brations.&nbsp;Des cavaliers s&#039;entre-tuant selon une chor&eacute;graphie sacrificielle, un d&eacute;fil&eacute; zigzagant au milieu d&#039;arbres &agrave; Marty o&ugrave; l&#039;on empalait les criminels ennemis. Dans le lointain, de l&rsquo;artillerie d&eacute;versait ses fl&egrave;ches de feu sur une position en hauteur, o&ugrave; l&#039;on avait entass&eacute; autant de prisonniers que possible, et des chasseurs de la flotte d&#039;invasion sillonnaient le ciel, sans interruption, imitant sans-cesse l&#039;exploit de l&#039;Or&eacute;e qui, durant la guerre, avait vol&eacute;e un chasseur pour jeter un seau de pierre sur un capitole ennemi, puis une rose blanche en l&#039;honneur de la femme de l&#039;occupant. Une romantique, sous ses airs durs. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Des drapeaux flottaient. Ceux des Labyrinthes. Des trois cliques au pouvoir. De la plan&egrave;te. des diff&eacute;rents corps de l&#039;arm&eacute;e. Ordre de chevalier. On scandait &quot;Vive la mort !&quot; et, aussi &quot;Vive la vie&quot;, car il s&#039;&eacute;tait av&eacute;r&eacute; que sans vie, pas de mort, et que si on meurt entour&eacute; de sang, on nait dans la m&ecirc;me situation. Les deux &eacute;tapes sont similaires. Dans la loge d&#039;honneur, la Nyalanamar affichait un air parfaitement indiff&eacute;rent. Des cr&eacute;atures asexu&eacute;es, entre l&#039;&eacute;ph&egrave;be et la mannequin, naviguaient pour servir les invit&eacute;s.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#fff5b3">J&#039;ai pris en compte les notes de votre premi&egrave;re r&eacute;union, l&#039;Or&eacute;e. </font>Elle ne la regardait m&ecirc;me pas, essayant de percevoir avec quel outil, exactement, l&#039;un des pr&ecirc;tres essayait d&#039;ouvrir une ch&egrave;vre &agrave; la table du banquet. <font color="#fff5b3">Je suis surprise de voir que vous vous entendez aussi bien avec les Ac&eacute;phales.</font></div></div><div class="post_line"><div align="justify">- <font color="#d9f4ff">Madame ?</font></div></div><div class="post_line"><div align="justify">- <font color="#fff5b3">Consid&eacute;rant ce qui leur est arriv&eacute;...</font>&quot; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle fit un vague geste de main, &eacute;vitant de revenir pr&eacute;cis&eacute;ment sur leur assassinat.&nbsp;&Agrave; c&ocirc;t&eacute; d&#039;elle, l&#039;Or&eacute;e semblait r&eacute;ellement surprise.</div></div><div class="post_line"></div><div class="post_line">&quot;<font color="#d9f4ff">Ils ont d&#039;excellentes id&eacute;es ! Cependant ils ne pouvaient pas atteindre la majorit&eacute; au Conseil.</font></div><div class="post_line">- <font color="#fff5b3">Ils ne devaient pas, vous voulez dire.</font></div><div class="post_line">- <font color="#d9f4ff">Non madame, je veux dire que c&#039;&eacute;tait une impossibilit&eacute; philosophique.</font>&quot;</div><div class="post_line"></div><div class="post_line">Elle &eacute;tait s&ucirc;re d&#039;elle, la Premi&egrave;re Oratrice acquies&ccedil;a doucement. Pourquoi pas apr&egrave;s tout. L&#039;Or&eacute;e continua, indiquant d&#039;un geste la d&eacute;monstration de chaos et de puissance qui servait &agrave; c&eacute;l&eacute;brer son arriv&eacute;e au pouvoir.</div><div class="post_line"></div><div class="post_line"><div align="justify">&quot;<font color="#d9f4ff">Quand nous avons propos&eacute; de d&eacute;construire le d&eacute;fil&eacute; classique, ils se sont montr&eacute;s tr&egrave;s int&eacute;ress&eacute;s, par exemple. Ils ont &eacute;norm&eacute;ment de bonnes id&eacute;es. Le d&eacute;passement de l&#039;interdit, de soi, n&#039;est pas une mauvaise chose. C&#039;est r&eacute;volutionnaire en fait. Mais leur manque de vision d&#039;ensemble nous aurait amen&eacute; &agrave; un d&eacute;sastre.</font></div></div><div class="post_line"><div align="justify">-<font color="#fff5b3"> Hm. Et c&#039;est &agrave; cause d&#039;eux que la note des festivit&eacute;s s&#039;&eacute;l&egrave;ve &agrave; plus de deux milliards de leems ?</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;Or&eacute;e s&#039;interrompit et se redresse imperceptiblement sur sa chaise, faisant le compte de l&#039;ensemble des d&eacute;penses et r&eacute;attribuant chacune d&#039;entre-elle &agrave; qui les avait propos&eacute;es. Elle acquies&ccedil;a finalement, et la Nyalnamar &eacute;clata d&#039;un rire sinc&egrave;re. Bien. C&#039;&eacute;tait vraiment une bonne nouvelle. Elle aimait la conception libertine et d&eacute;pensi&egrave;re des ac&eacute;phales. Les voir travailler avec son second choix &eacute;tait une bonne chose.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#fff5b3">Vous allez faire un discours. De quoi allez-vous parler ?</font></div></div><div class="post_line"><div align="justify"><font color="#d9f4ff">- De th&eacute;orie, madame.</font></div></div><div class="post_line"><div align="justify">- <font color="#fff5b3">Vous savez, on va vous traiter de fasciste.</font></div></div><div class="post_line"><div align="justify">-<font color="#d9f4ff"> Le fascisme est contre-r&eacute;volutionnaire. </font></div><div class="post_line">-<font color="#fff5b3"> Mais d&eacute;tach&eacute; de la r&eacute;alit&eacute;. Comme vous et nos projets d&#039;avenir.</font></div></div><div class="post_line"><div align="justify">-<font color="#d9f4ff"> Ils ont cr&eacute;&eacute; des m&eacute;thodes que nous allons sublimer pour de bon. Au m&ecirc;me titre qu&#039;il faut na&icirc;tre pour mourir, il faut bien des r&eacute;actionnaires en opposition desquels cr&eacute;er le progr&egrave;s.</font></div></div><div class="post_line"><div align="justify">- <font color="#fff5b3">Exactement, l&#039;Or&eacute;e.</font>&quot; Elle frappa ses mains l&#039;une contre l&#039;autre, puis haussa un sourcil et s&#039;appr&ecirc;ta &agrave; ajouter quelque-chose, au lieu de quoi elle recula brusquement dans son si&egrave;ge avec un &quot;<font color="#fff5b3">Oh !</font>&quot; surpris.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Un obus venait de s&#039;&eacute;craser sur le d&eacute;fil&eacute;, broyant une majorette et lib&eacute;rant un gaz toxique qui fit instantan&eacute;ment muter une partie des chevaliers. Ceux qui ne moururent pas compress&eacute;s dans leurs armures s&#039;enfuirent en rampant, courant, volant jusqu&#039;aux gradins et sur les buffets, o&ugrave; ils commenc&egrave;rent &agrave; d&eacute;vorer les visiteurs ou &agrave; s&#039;y fusionner dans d&#039;intenses parodies d&#039;&eacute;treintes; Les mages et les soldats survivants se mirent en branle pour les exterminer et la foule &eacute;clata en une multitude de petits groupes, riant de joie, ou d&#039;horreur. Quelqu&#039;un lan&ccedil;a une grenade &agrave; proximit&eacute; des invit&eacute;s d&#039;honneur et un garde du corps la r&eacute;exp&eacute;dia &agrave; l&#039;envoyeur d&#039;un violent coup de pied, accompagnant le geste d&#039;un tir de plasma et d&#039;un &quot;Barbares !&quot; un peu outr&eacute;. La Nyalnamar Veritas pencha la t&ecirc;te sur le c&ocirc;t&eacute;. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#fff5b3">C&#039;&eacute;tait pr&eacute;vu ?</font></div></div><div class="post_line"><div align="justify">- <font color="#d9f4ff">Je ne me souviens plus de tout les d&eacute;tails de la c&eacute;r&eacute;monie.</font>&quot; L&#039;Or&eacute;e esquiva son regard. Elle n&#039;aimait pas ne pas savoir, &ccedil;a la mettait mal &agrave; l&#039;aise. Elle voulut aller chercher un aide de camp et lui demander la r&eacute;ponse, mais la Premi&egrave;re Oratrice lui attrapa le bras.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#fff5b3">Laissez-les s&#039;amuser un peu. Regardez !</font>&quot; On avait distribu&eacute; des armes aux diplomates, qui repoussaient d&eacute;sormais les vagues de mutant &agrave; l&#039;aide de sabres, de batons, ou tout simplement des si&egrave;ges sur lesquels ils &eacute;taient assis jusqu&#039;alors. Quelque-part, un orchestre se mit &agrave; jouer <a href="https://youtu.be/C2T97GsY0nI" target="_blank" rel="nofollow">un hymne rapide</a>, et un homme aux cheveux longs grimpa sur un arbre &agrave; martyr pour d&eacute;clamer un discours &agrave; propos de Dieu. </div><div class="post_line"></div><div class="post_line">Les Labyrinthes &eacute;taient de retour &agrave; la normale.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div><div class="post_line">Cela faisait plaisir &agrave; voir.</div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16181&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16181" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16181" name="d_reply_16181" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16181');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16181'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouveau Gouvernement Labyrinthique</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

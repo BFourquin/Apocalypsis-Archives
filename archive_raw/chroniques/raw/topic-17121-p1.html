@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17121 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Khatan &eacute;ternelle</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Khatan &eacute;ternelle</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Rhea+Na%27Serrt">Cdte. Rhea Na&#039;Serrt</a><br>Prestige de chroniqueur&nbsp;: 69<br /><br /><img src="/avatars/11914.jpg" style="width:128px;height:128px" alt="Avatar" /><br />17/01/1024 ETU 07:48</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal305922')">Détails</a> <a href="javascript:warnpost(305922)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305922" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305922',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">La Khatan fixait la projection de Thalw. Petite plan&egrave;te en fils de fers color&eacute;s au dessus desquels orbitaient des ic&ocirc;nes de barges de batailles et de fr&eacute;gates de d&eacute;barquement. La bataille pour l&rsquo;orbite avait &eacute;t&eacute; dans la droite lign&eacute;e de toutes les autres&nbsp;: d&rsquo;une facilit&eacute; &agrave; pleurer, mais suffisamment brutale pour offrir satisfaction et gloire &agrave; ses guerriers. Maintenant ceux-l&agrave; descendaient sur le monde pour y &eacute;tablir leur occupation. Cela faisait plusieurs heures qu&rsquo;une intense campagne de bombardement suborbitaux &eacute;tait venue &agrave; bout de tout ce qui pouvait pr&eacute;tendre r&eacute;sister &agrave; la toute puissance du Khanat.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Une toute puissance qui semblait bien faible, face &agrave; la disparition du Mandat, de ses membres les plus &eacute;minents, et &agrave; la mort annonc&eacute;e de la galaxie.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>M&ecirc;me en revitalisant nos mondes cycles apr&egrave;s cycle ils continuent de mourir</em>, constata Rhea en son for int&eacute;rieur. <em>Notre niveau technologique est tel&nbsp;: nous d&eacute;vorons les mondes plus vite que nous ne les soignons. Mais &agrave; quoi bon de toute fa&ccedil;on.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle aurait ador&eacute;e de sentir heureuse ou satisfaite, en ce moment. Sa victoire sur Thalw avait en effet de quoi la rendre fier. Celui qui se vantait de prot&eacute;ger le secteur avait perdu sa capitale &ndash; et d&rsquo;autres mondes encore &ndash; sans arriver &agrave; offrir une r&eacute;ponse coh&eacute;rente au caract&egrave;re particuli&egrave;rement chaotique de son incursion. Les mondes tombaient, &eacute;taient repris&nbsp;: ils remboursaient dans l&rsquo;intervalle le prix des appareils d&eacute;truits au combat. Si l&rsquo;invasion avait &eacute;t&eacute; men&eacute;e dans un vrai but de conqu&ecirc;te, cela ne faisait aucun doute, le secteur aurait &eacute;t&eacute; pacifi&eacute; pour la gloire du Khanat. Mais ce n&rsquo;&eacute;tait pas le plan de Rhea&nbsp;: cela n&rsquo;avait jamais &eacute;t&eacute; son plan. Elle venait ici pour honorer les siens, pour tuer une derni&egrave;re fois. Pour jouir de ce que la galaxie avait &agrave; offrir avant la fin de cette derni&egrave;re.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle soupira et balaya l&rsquo;hologramme plan&eacute;taire d&rsquo;un geste brusque. L&rsquo;interface de commandement se replia dans un bruit humide. La coque se referma sur la glande de projection et les nerfs qui reliaient la khatan &agrave; son si&egrave;ge fr&eacute;mirent en ressentant l&rsquo;exasp&eacute;ration de celle qui, des cycles durant, n&rsquo;avait &eacute;t&eacute; que g&uuml;nj. Aucun de ses vieux alli&eacute;s n&rsquo;avait pu assister &agrave; son ascension, et celle-l&agrave; n&rsquo;avait amen&eacute; &agrave; rien, sinon qu&rsquo;&agrave; une intense solitude au bout de l&rsquo;univers.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ff5f54">C&rsquo;est &eacute;trange,</font> d&eacute;clara-t-elle enfin. <font color="#ff5f54">Toute cette route pour rien. Impossible de savoir si les astres se jouent de nous, ou s&rsquo;ils ont toujours &eacute;t&eacute; ignorants.&nbsp;</font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Une autre possibilit&eacute;, bien entendu, &eacute;tait qu&rsquo;ils n&rsquo;avaient en fait jamais exist&eacute;. Une possibilit&eacute; qui la rendait curieuse, sans qu&rsquo;elle ne puisse vraiment en faire quoi que ce soit. Peut-&ecirc;tre bien que les astres n&rsquo;existaient pas, en fin de compte. Et alors&nbsp;? Leur sagesse, f&ucirc;t-elle mythique, avait donn&eacute; la force &agrave; son peuple de... </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle ravala la rh&eacute;torique. Devant elle, le pont de commandement &eacute;tait toujours aussi vide, &agrave; l&rsquo;exception des moines qu&rsquo;elle avait fait &eacute;carteler durant la bataille. Au plus fort de sa joie sanguinaire, elle avait exig&eacute; que l&rsquo;on fasse tuer tous les hommes de Foi. La Galaxie s&rsquo;arr&ecirc;tait. C&rsquo;&eacute;tait la fin de l&rsquo;&eacute;ternit&eacute;. Elle n&rsquo;avait plus besoin de leurs conseils et son peuple n&rsquo;avait gu&egrave;re besoin d&rsquo;eux.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Curieusement les hommes s&rsquo;ex&eacute;cut&egrave;rent sans ciller. Impossible de savoir s&rsquo;ils &eacute;taient fanatiquement ob&eacute;issants &agrave; leur Khatan, au point m&ecirc;me d&rsquo;ignorer leur conditionnement religieux, ou si &ndash; comme elle avait appris &agrave; le craindre &ndash; des r&eacute;publicains, la&iuml;cs et oppos&eacute;s au syst&egrave;me des castes, composaient bien le gros de sa troupe. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pour une raison obscure ceux-l&agrave; l&rsquo;avaient toujours consid&eacute;r&eacute; comme le meilleur espoir, peut-&ecirc;tre m&ecirc;me le seul, de mener leur id&eacute;ologie au pouvoir. Ainsi donc les r&eacute;publicains adoraient l&rsquo;imp&eacute;ratrice. Ce n&rsquo;&eacute;tait cependant pas r&eacute;ciproque. En d&rsquo;autres temps, une telle possibilit&eacute; l&rsquo;aurait donc r&eacute;pugn&eacute;e.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Maintenant elle consid&eacute;rait simplement leur fid&eacute;lit&eacute; comme louable. Puisque tout finissait il n&rsquo;y avait pas de raisons de s&rsquo;attarder sur les structures. Seuls les sentiments avaient un semblant de valeur. Eux, au moins, r&eacute;sisteraient peut-&ecirc;tre &agrave;... </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#ff5f54">Mais non, c&rsquo;est imb&eacute;cile.</font>&nbsp;&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle se d&eacute;tacha du tr&ocirc;ne de commandement. Les nerfs quitt&egrave;rent les cavit&eacute;s de ses implants, gliss&egrave;rent hors de ses propres terminaisons dans un petit filet de sang. Rhea traversa la passerelle de commandement d&rsquo;un pas lent, mains jointes devant elle. Il n&rsquo;y avait pas un seul officier. Pas un seul guerrier&nbsp;; Rien que les consoles, la chair de leurs interfaces se soulevant doucement au rythme de la nymphe qui traversait leur viande, et les cadavres des moines accroch&eacute;s sur la passerelle sup&eacute;rieure. Les autres f&ecirc;taient la victoire dans le mess et les couloirs. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Rhea interrompit sa marche au bout de la plateforme, devant la grande baie vitr&eacute;e qui donnait sur la plan&egrave;te. Des continents entiers flambaient encore, et le flux d&rsquo;appareil civil &eacute;tait strictement jugul&eacute; par les croiseurs seelies. Comme si tenir ce monde avait encore de l&rsquo;importance. Comme si cette pr&eacute;sence commerciale pouvait vraiment apporter quoi que ce soit au Khanat.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Comme si, en fait, la fin de toute chose n&rsquo;&eacute;tait pas d&eacute;j&agrave; l&agrave;, aux portes du monde.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le Khanat Seelie avait prosp&eacute;r&eacute; jusqu&rsquo;au bout, en fin de compte.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Voyant son r&ecirc;ve se terminer, Rhea tomba &agrave; genoux et pleura enfin.</div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17121&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17121" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17121" name="d_reply_17121" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17121');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17121'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Khatan &eacute;ternelle</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

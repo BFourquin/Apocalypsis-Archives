@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15165 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Aux Portes de L&#039;enfer</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Aux Portes de L&#039;enfer</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ste%C3%AFnneilla">Cdte. Ste&iuml;nneilla</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10826.jpg" style="width:90px;height:128px" alt="Avatar" /><br />31/07/1020 ETU 08:55<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal277781')">Détails</a> <a href="javascript:warnpost(277781)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal277781" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=277781',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff"><u><em>25/07/1020 ETU</em></u></font></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#44B8FF">D&eacute;part num&eacute;ro 1 : 16.18.18.4 - Trajectoire : 16.8</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">D&eacute;part num&eacute;ro 2 : 16.4.19.4 - Trajectoire : 16.8</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">Analyse en cours du temps avant l&#039;impact</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">1 heure 19 minutes 34 secondes.</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">Pr&eacute;paration du d&ocirc;me de protection</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">D&ocirc;me install&eacute; coordonn&eacute;es 16.8.13.4.1</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">Puissance du d&ocirc;me insuffisante</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">Demande de placer le d&ocirc;me</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">Mise en place du d&ocirc;me</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">D&ocirc;me actif</font></div></div><div class="post_line"><div align="center"><font color="#ffffff"><font color="#44B8FF">Taverne Blanche prot&eacute;g&eacute;e</font></font></div></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font color="#FF56FF">Idraah, c&#039;est termin&eacute; ?</font></font></div><div class="post_line"><div align="center"><font color="#44B8FF">D&eacute;placement des flottes effectu&eacute;</font></div></div><div class="post_line"><div align="center"><font color="#ffffff"><font color="#44B8FF">Flottes s&eacute;curis&eacute;s</font></font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#FF0000"><font size="7">***</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>Ste&iuml;nneilla se trouvait cette fois dans les flammes de la for&ecirc;t, sa robe noire prenait lentement feu laissant &eacute;chapp&eacute; une fum&eacute;e noir &eacute;paisse. Pour une fois, la chaleur ne lui fit aucun mal, bien au contraire, elle se sentait parfaitement bien. Comme aspir&eacute; par elle, un tourbillon de flamme se forma autour de son corps. Le croassement des corbeaux se fit de plus en plus intense, comme s&#039;ils attendaient ou sentaient quelque chose de mena&ccedil;ant. Ste&iuml;nneilla ferma lentement les yeux, priant pour que &ccedil;a fonctionne, car cette fois, personne n&#039;&eacute;tait l&agrave; pour l&#039;aider. La douce chaleur l&rsquo;enveloppa comme un habille, comme une protection. Le vent glacial se leva enfin, avait-elle r&eacute;ussi ? Son corps se gla&ccedil;a et se paralysa, aucun de ses membres ne voulaient lui r&eacute;pondre alors elle tomba lourdement &agrave; terre. Elle ouvrit lentement les yeux et remarqua quelque chose d&#039;&eacute;trange.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">C&#039;est quoi &ccedil;a ?</font></font></div></div><div class="post_line"><div align="justify"><em><font color="#ffffff">Les flammes n&#039;avaient pas d&eacute;truit sa robe, mais l&#039;avaient modifi&eacute;. Elle remarqua aussi des tatouage dont elle ignorait l&#039;existence, mais pour une fois, ce n&#039;&eacute;tait pas de la peinture. En relevant la t&ecirc;te elle fut abasourdit par la vison qu&#039;elle avait. La for&ecirc;t &eacute;tait &eacute;teinte, de la fum&eacute; blanche sortait du sol comme si l&#039;incendie avait enfin &eacute;t&eacute; arr&ecirc;t&eacute;. Mais son regard s&#039;arr&ecirc;ta au pied d&#039;un des arbres.</font></em></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>Une forme massive prit place devant elle, bien plus grande et bien plus large qu&#039;elle. Les vapeurs qui se d&eacute;gageaient peu &agrave; peu laissait appara&icirc;tre un visage humain, ou ce qu&#039;il en restait. La partie gauche semblait en tr&egrave;s bonne &eacute;tat, mais la droite elle, n&#039;avait plus rien d&#039;humain. Il n&#039;y avait ni peau, ni nerd, juste un visage osseux qui fit frissonner Ste&iuml;nneilla.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Steni....Steni, Steni, Steni ! Quelle surprise !</font></font><a href="https://image.noelshack.com/fichiers/2020/31/5/1596152736-undead-portrait-03-by-zano-d9g7e41.jpg" target="_blank" rel="nofollow"> <u>L&#039;homme</u></a><font color="#ffffff"><em> d&eacute;gaina son &eacute;p&eacute;e et posa la pointe sur la gorge de Ste&iuml;nneilla avec un demi-sourire.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Plus de massacre... Plus de pillage... Plus de trahison.</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Tu souhaites maintenant donner des ordres ? Pauvre petite &acirc;me en d&eacute;tresse... Path&eacute;tique.</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">&Ccedil;a ne sera pas aussi simple...</font> <em>Elle leva sa main et montra &agrave; l&#039;homme sa main ensanglant&eacute;e.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Tu t&#039;es bless&eacute; ? Pauvre enfant...</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Oh ? Non, tu es li&eacute; &agrave; moi maintenant... Je meurs, tu meurs. Alors maintenant &agrave; toi de choisir...</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Esp&egrave;ce de...</font><em> L&#039;homme s&rsquo;appr&ecirc;tait &agrave; frapper le corps de Ste&iuml;nneilla avec sa lame, mais l&#039;&eacute;p&eacute;e tomba lourdement &agrave; terre et un corbeau avait pris la place de l&#039;homme.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">J&#039;avais oubli&eacute; de pr&eacute;ciser &ccedil;a... Maintenant, tu vas m&#039;&eacute;couter. Nos terres sont entre les mains du Capitaine Law, s&ucirc;rement un ami &agrave; toi ! Des bombes vont bient&ocirc;t tomber... Et les Karapeins ne seront pas les seuls touch&eacute;s ! Tu te dois de prot&eacute;ger tes hommes ! De prot&eacute;ger ces terres !</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>Une nouvelle fois, l&#039;oiseau se transforma en humain sous le regard &eacute;nerv&eacute; de la jeune femme.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Tu as toujours souhait&eacute; attaquer les autres... Tu as toujours voulu la mort... Alors je te propose celle du Capitaine Law et celle de Gionna Fox. Vous aurez vos terres... Vos ressources... Et vous serez libre.</font></font></div></div><div class="post_line"><div align="justify"><font color="#005DC2">Combien de temps avons-nous pour nous pr&eacute;parer ?</font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">1 heure...</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Quoi ! Tu me fais revenir &agrave; la vie et tu me dis que je vais crever encore une fois dans 1 heure ! Pendant que toi et les &ecirc;tres difformes de cette &icirc;le allez vous cacher dans des endroits s&eacute;curis&eacute;s ! Tu me prends pour qui !</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Pour un bon &agrave; rien... Mais la ce n&#039;est pas le sujet... Les minutes d&eacute;filent... Ne perds pas ton temps !</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font color="#FF0000"><font size="7">***</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>La nuit &eacute;tait compl&egrave;tement tomb&eacute;e sur Gabette, les mers commen&ccedil;aient &agrave; s&#039;agiter comme si elles sentaient qu&#039;une catastrophe allait arriver. Ste&iuml;nneilla, elle, &eacute;tait sur les plages face aux navires. Elle restait l&agrave;, sans bouger &agrave; contempler les &eacute;toiles. Apr&egrave;s avoir tois&eacute; le ciel, son regard s&#039;arr&ecirc;ta sur une forme blanche qui ressemblait &eacute;trangement &agrave; une &eacute;toile filante.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Elles arrivent...</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>Ste&iuml;nneilla fixait les bombes dans le ciel esp&eacute;rant qu&#039;ils n&#039;atteignent pas sa civilisation, mais elle savait que ce n&#039;&eacute;tait qu&#039;un v&oelig;u et que les choses n&#039;allaient pas aller en s&#039;am&eacute;liorant. Contrairement &agrave; sa civilisation et &agrave; celles des pirates, elle n&#039;avait pas cherch&eacute; d&#039;endroit pour se mettre &agrave; l&#039;abri. Non, elle souhaitait voir &ccedil;a de ses propres yeux. Elle connaissait d&eacute;j&agrave; la folie humaine, elle connaissait l&#039;envie des humains pour ce qui &eacute;tait d&#039;attaquer des civilisations innocentes, mais elle ne pouvait pas imaginer qu&#039;ils pouvaient aussi s&#039;attaquer entre eux. Les minutes d&eacute;filaient lentement, mais les bombes, elles, semblaient se rapprocher comme si pour elles, le temps avait acc&eacute;l&eacute;r&eacute;. Elle ne connaissait pas les cons&eacute;quences d&#039;un tel acte, mais d&#039;apr&egrave;s ses amis, quelqu&#039;un qui faisait subir &ccedil;a &agrave; ses ennemis et ses alli&eacute;s n&#039;avait plus rien d&#039;humain en lui. Sans aucune compassion, l&#039;&ecirc;tre humain n&#039;&eacute;tait qu&#039;une coquille vide et capable du pire. Au d&eacute;part, elle voyait Law comme un sauveur, un &ecirc;tre capable de d&eacute;fendre les civilisations et non de les d&eacute;truire. Cette guerre, elle ne la menait pas pour elle. Cette guerre, elle la menait pour les autres Secteurs, pour prot&eacute;ger les civilisations qui mouraient sous les coups du Heart et il &eacute;tait hors de question qu&#039;elle baisse les armes. Si la guerre devait prendre fin, c&#039;&eacute;tait &agrave; Law et &agrave; Gionna de se rendre, de laisser les Secteurs natifs d&eacute;cider par eux m&ecirc;me. M&ecirc;me s&#039;ils poss&eacute;daient la plus grande puissance offensive, il &eacute;tait hors de question pour eux de plier le genou face aux dictateurs.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Steni, les troupes son en place.</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>L&#039;homme sortit la femme de ses pens&eacute;es bien sombre. Elle chassa les id&eacute;es qu&#039;elle avait en t&ecirc;te avant de fixer le Capitaine qui semblait pour la premi&egrave;re fois soucieux.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Tu sais qu&#039;une bombe d&eacute;gage des vapeurs s&ucirc;rement toxique, m&ecirc;me pour ta civilisation. Si un de mes hommes meurt...</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Ils vont mourir.</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Comment ?</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Ceux &agrave; l&#039;ext&eacute;rieur du d&ocirc;me vont s&ucirc;rement mourir.</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Tu plaisantes ! Tu nous fais revenir moi et mes hommes pour nous dire que nous allons mourir !</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Vous &ecirc;tes d&eacute;j&agrave; mort depuis un bon moment... Votre mort est donc impossible.</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Hein ? Et toi, tu vas admirer le ciel encore longtemps en attendant ton heure ?</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>En guise de r&eacute;ponse, Ste&iuml;nneilla eut un rire silencieux presque inaudible pour le Capitaine.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Oh... Le feu...</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>Ste&iuml;nneilla lui sourit tendrement comme si rien ne s&#039;&eacute;tait jamais pass&eacute;e entre les Karapeins et les humains. Mais en r&eacute;alit&eacute;, elle cachait sa tristesse face &agrave; l&#039;homme qu&#039;elle avait longtemps d&eacute;test&eacute;.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">M&ecirc;me si j&#039;ai un peu peur...</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Je te prendrais pour une folle si tu n&#039;avais pas peur.</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>Les deux ennemis regard&egrave;rent les deux &eacute;toiles filantes qui s&#039;approchaient de plus en plus de la plan&egrave;te. &Agrave; cet instant, Ste&iuml;nneilla ferma les yeux, comme si elle voulait graver &agrave; jamais ce moment dans sa m&eacute;moire. Comme si elle voulait toujours se rappeler que l&#039;action de Law allait entra&icirc;ner la perte de milliers de Karapeins. La robe noire qu&#039;elle portait habituellement commen&ccedil;ait une danse effr&eacute;n&eacute;e avec le vent qui gagnait en puissance. Les vagues commen&ccedil;aient &agrave; l&eacute;cher les pieds des deux &ecirc;tres pr&eacute;sents, le souffle chaud m&eacute;lang&eacute; &agrave; la fra&icirc;cheur de l&#039;eau fit ouvrir les yeux de Ste&iuml;nneilla. C&#039;&eacute;tait &agrave; cet instant qu&#039;une boule de feu se joignit aux deux &eacute;toiles, elles venaient de rentrer dans l&#039;atmosph&egrave;re et les flammes qui entouraient les deux bombes donnaient l&rsquo;impression que leurs vitesses augmentait. Elle pensa une derni&egrave;re fois &agrave; Armi, &agrave; Seth et &agrave; Baliberne. Avaient-ils r&eacute;ussi &agrave; se mettre en s&eacute;curit&eacute; ? Elle l&rsquo;esp&eacute;rait et il &eacute;tait trop tard pour le v&eacute;rifier. En une fraction de seconde, les deux bombes se d&eacute;coup&egrave;rent en plusieurs morceaux et tombaient comme une pluie de m&eacute;t&eacute;orites sur le sol. La premi&egrave;re toucha principalement les for&ecirc;ts et les villages, la deuxi&egrave;me, elle, toucha les extr&eacute;mit&eacute;s de l&#039;&icirc;le, dont la plage ou se trouvait Ste&iuml;nneilla et le Capitaine. La secousse de la bombe la plus proche fit perdre l&#039;&eacute;quilibre aux deux personnes qui s&#039;&eacute;croul&egrave;rent &agrave; terre &agrave; cause des vibrations que l&#039;impact avait provoqu&eacute;. Ste&iuml;nneilla regardait les autres fragments se fracasser contre les arbres et les navires sans rien pouvoir faire. Une fois les bombardements termin&eacute;s, elle put se relever et constater l&#039;ampleur des d&eacute;g&acirc;ts ne souhaitant m&ecirc;me pas imagin&eacute; les &eacute;v&eacute;nements derri&egrave;re les arbres. Mais ce n&#039;&eacute;tait pas termin&eacute;, une &eacute;trange odeur prit d&#039;assaut les nez de Ste&iuml;nneilla.</em></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#005DC2">Les vapeurs !</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><font color="#FF56FF">Non... De l&#039;Apotium. Va demander &agrave; Idraah le temps qu&#039;il reste au d&ocirc;me.</font></font></div></div><div class="post_line"><div align="justify"><font color="#ffffff"><em>L&#039;homme acquies&ccedil;a et partit en direction des navires pendant que Ste&iuml;nneilla s&#039;aventurait &agrave; travers les arbres. Elle voulait voir &ccedil;a de ses propres yeux m&ecirc;me si la haine et la tristesse se m&eacute;langeaient, elle ne voulait pas oublier. Apr&egrave;s plusieurs mettre elle aper&ccedil;ut les flammes qui avaient &eacute;lu domicile depuis l&#039;arriv&eacute;e des humains, autour c&#039;&eacute;tait une v&eacute;ritable sc&egrave;ne d&#039;horreur. Les animaux s&rsquo;&eacute;touffant avec le poison qu&#039;ils anilhais se jetaient dans les flammes pour abr&eacute;ger leurs souffrances. Mais pour eux aussi, elle ne pouvait pas les aider, elle ne pouvait que contempler la sc&egrave;ne tragique qui lui faisait face. L&#039;atmosph&egrave;re &eacute;tait pesante comme si ces &eacute;v&eacute;nements n&#039;&eacute;taient pas les pires, alors, elle continua son chemin traversant les villages rong&eacute;s par les flammes. Sa destination principale &eacute;tait les grottes. M&ecirc;me si elle ne pla&ccedil;ait aucun espoir dans ces endroits, elle essayait un minium d&#039;y croire. Malheureusement, elle arriva devant les plaines qui &eacute;taient compl&egrave;tement d&eacute;vast&eacute;es, plusieurs centaines de corps &eacute;taient dispers&eacute; comme si les Karapeins avaient cherch&eacute; &agrave; fuir les bombardements. Elle passa son regard sur les dizaines d&#039;enfants pr&eacute;sents, l&agrave;, sans vie. Des hommes, des femmes, mais son regard s&rsquo;arr&ecirc;ta subitement sur un autre corps &eacute;tendu au sol. Contrairement aux autres, la personne devait faire 30 centim&egrave;tres. Elle prit le Rituhell dans ses mains et le regarda longuement. Il &eacute;tait le p&egrave;re de toutes les cr&eacute;atures de ce monde, il &eacute;tait celui qui avait donn&eacute; la vie aux premiers Karapeins et celui qui avait donn&eacute; sa vie pour les prot&eacute;ger. Malgr&eacute; la magie que seul eux pouvaient contr&ocirc;ler, ils n&#039;avaient pas r&eacute;ussi &agrave; survivre &agrave; leurs cr&eacute;ations. Elle posa d&eacute;licatement le petit corps &agrave; terre et fit demi-tour pour rejoindre le Capitaine et Idraah. Une fois arriv&eacute;e sur les plages, elle monta l&#039;&eacute;chelle du navire principal et rejoignit l&#039;homme en cabine.</em></font></div></div><div class="post_line"><div align="justify"><font color="#FF56FF">Idraah, fais moi le r&eacute;capitulatif de notre civilisation avant et apr&egrave;s l&#039;attaque !</font></div></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#44B8FF">Habitants avant l&#039;impact : 654 754 454 785 habitants</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">Chargement en cours...</font></div></div><div class="post_line"><div align="center"><font color="#44B8FF">Habitants apr&egrave;s l&#039;impact : 456 287 504 446 habitants.</font></div></div><div class="post_line"><div align="center"><font color="#ffffff"><font color="#44B8FF">Habitants d&eacute;c&eacute;d&eacute;s : 198 455 950 339</font></font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15165&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15165" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15165" name="d_reply_15165" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15165');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15165'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Aux Portes de L&#039;enfer</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

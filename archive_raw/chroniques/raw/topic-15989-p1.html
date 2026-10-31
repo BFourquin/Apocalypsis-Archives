@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15989 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Histoires d&#039;un vieil homme</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Histoires d&#039;un vieil homme</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ellyria">Cdte. Ellyria</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11387.jpg" style="width:102px;height:128px" alt="Avatar" /><br />25/10/1021 ETU 03:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D288414', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal288412')">Détails</a> <a href="javascript:warnpost(288412)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal288412" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 5<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=288412',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">- Encore une !</div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">&nbsp;- Encore ? Vous devriez d&eacute;j&agrave; &ecirc;tre couch&eacute;s tous les deux &agrave; cette heure l&agrave;.. Surtout toi Ellyria. Ton fr&egrave;re est un petit peu plus &acirc;g&eacute; mais..</font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD">- Elle peut rester ! Plus tard quand je m&egrave;nerai les n&ocirc;tres, elle sera ma conseill&egrave;re de guerre et ma plus grande g&eacute;n&eacute;rale ! Elle a aussi le droit de rester tard avec moi !</font></div><div class="post_line"></div><div class="post_line">- Oui ! Une derni&egrave;re et apr&egrave;s je vais me coucher, promis !</div><div class="post_line"></div><div class="post_line"><em><font color="#1E92F7">Les pommettes de la petite fille avaient rosies de fiert&eacute; en entendant son fr&egrave;re. Ils adoraient les histoires de Balou, Ce petit homme &eacute;trange, plein d&#039;&eacute;nergie malgr&eacute; son &acirc;ge avanc&eacute; qui leur servait de tuteur. Avait-il vraiment v&eacute;cu tout ce qu&#039;il racontait ou avait-il simplement une imagination d&eacute;bordante ? Si la question pouvait int&eacute;resser certains adultes, les deux enfants eux ne souhaitaient pas en conna&icirc;tre la r&eacute;ponse.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">D&#039;accord, d&#039;accord. Qui suis-je apr&egrave;s tout pour m&#039;opposer &agrave; la volont&eacute; in&eacute;branlable du futur chef de la tribu et de celle qui en deviendra la championne ? Cette histoire ci sera probablement pour toi d&#039;ailleurs, tu te crois invincible jeune demoiselle ? Et bien &eacute;coute ce qui peut arriver lorsqu&#039;on s&#039;attaque &agrave; plus fort que soi ! Une fois, j&#039;ai voulu chasser l&#039;Ours blanc et croyez moi bien que je ne faisais&nbsp; vraiment pas le poids...</font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B">---</font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><font color="#4CEA5E">Je n&#039;ai pas toujours gagn&eacute; ma cro&ucirc;te honn&ecirc;tement, voyez-vous ? Il y a des p&eacute;riodes de ma vie dont je suis peu fier et celle-ci en fait d&eacute;finitivement partie. J&#039;avais alors la trentaine bien entam&eacute;e, c&#039;&eacute;tait quelques ann&eacute;es apr&egrave;s ces &eacute;lections Ornaniennes et je fuyais le pays pour m&#039;&eacute;viter d&#039;avoir &agrave; rembourser des dettes que j&#039;aurais &eacute;t&eacute; bien incapable d&#039;&eacute;ponger. Bref, je ne pouvais pas me faire embaucher chez quelque artisan que ce soit &agrave; cause de la r&eacute;putation d&#039;agitateur qui me collait &agrave; la peau - pourtant dieu sait que ceux qui b&eacute;n&eacute;ficient de mes services n&#039;ont jamais aucune raison de s&#039;en plaindre - et pas un tavernier ne souhaitait me pr&ecirc;ter une chambre par crainte de ne jamais &ecirc;tre pay&eacute;. Je n&#039;ai m&ecirc;me pas pu loger dans des &eacute;curies, avaient-ils peur que je vole un cheval ? Eh bien c&#039;est stupide ! </font><strong><font color="#FFFF44">Un poney &eacute;ventuellement, mais un cheval vous n&#039;y pensez pas !</font></strong></font></div><div class="post_line"><font color="#4CEA5E"></div><div class="post_line">Alors que je parcourais la for&ecirc;t de Champerlian &agrave; la recherche de quelques fruits pour me remplir l&#039;estomac, j&#039;aper&ccedil;us un groupe de bandits et apr&egrave;s quelques &eacute;changes tout &agrave; fait cordiaux - une fois qu&#039;ils furent certains que je n&#039;eusse rien &agrave; d&eacute;rober - ils m&#039;accept&egrave;rent parmi eux et alors commen&ccedil;a pour moi une vie sauvage de libert&eacute; et de profit. Ah qu&#039;il &eacute;tait bon de se remplir les poches sans jamais se tuer &agrave; la t&acirc;che, il me suffisait alors d&#039;attirer quelques voyageurs - ne suivez jamais un Leprechaun en for&ecirc;t ! - et mes nouveaux amis faisaient le reste, souvent uniquement en montrant leurs armes fraichement aff&ucirc;t&eacute;es devant lesquelles les pauvres victimes l&acirc;chaient leurs bourses...</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Mais je suis un personnage ambitieux et je me satisfais rarement pleinement de ma situation ! A moins que cela ne soit simplement un don pour me mettre dans le p&eacute;trin. Quoiqu&#039;il en soit il me prit l&#039;id&eacute;e de devenir chef de ce petit groupe et je proposais &agrave; celui en place un d&eacute;fi pour nous d&eacute;partager afin de pouvoir prendre sa place. <strong><font color="#FFFA1E">Chasser un ours blanc !</font></strong> Oh je ne suis pas fou, je savais n&#039;avoir aucune chance de tuer ou de capturer seul un de ces colosses des neiges &agrave; la force titanesque. Je comptais attraper un jeune ourson ou alors faire en sorte que mon adversaire ait un malencontreux accident car apr&egrave;s tout, les montagnes enneig&eacute;es o&ugrave; le d&eacute;fi prenait place pouvaient se montrer dangereuses pour ce bandit qui n&#039;avait l&#039;habitude que de la for&ecirc;t.</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Nous nous rend&icirc;mes donc dans ces fameuses montagnes et part&icirc;mes chacun de notre c&ocirc;t&eacute;. D&egrave;s la premi&egrave;re apr&egrave;s-midi je me mis &agrave; chercher un lieu tranquille dans lequel me reposer, car le voyage f&ucirc;t des plus &eacute;reintants voyez-vous ? Oh je remerciai les dieux de m&#039;avoir accord&eacute; leur b&eacute;n&eacute;diction lorsque je vis ces petits ursid&eacute;s sans d&eacute;fense dans la premi&egrave;re grotte que je visitai, pensant alors gagner le d&eacute;fi gr&acirc;ce &agrave; ma chance l&eacute;gendaire. Je me revois encore effectuer quelques pas de Kapka - une danse traditionnelle d&#039;Altir - afin de mieux savourer ma victoire anticip&eacute;e. Mais vous connaissez le proverbe n&#039;est-ce-pas ? <strong><font color="#FFFA1E">Ne jamais vendre la peau de l&#039;ourson avant d&#039;avoir eu &agrave; faire &agrave; sa m&egrave;re !</font></strong> Car que s&#039;est il pass&eacute; ? Je vous le donne en mille - Emile - la maman arriva derri&egrave;re moi et poussa un grognement &agrave; m&#039;en faire fr&eacute;tiller les rouflaquettes !</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Hahaha ! Je n&#039;ai jamais couru aussi vite de ma vie ! Enfin il faudrait comparer avec la fois par un sanglier trop endurant &agrave; mon go&ucirc;t. L&#039;ourse me poursuivait dans la neige alors que je d&eacute;valais une pente en tentant d&#039;&eacute;chapper au sanglier. Bref, j&#039;ai rarement couru aussi vite en tout cas et peut-&ecirc;tre la matrone, bien que jalouse de sa prog&eacute;niture, s&#039;est elle lass&eacute;e en ne me jugeant pas digne des efforts qu&#039;il lui faudrait d&eacute;ployer pour me d&eacute;vorer. Enfin c&#039;est ce que je cru de prime abord mais savez-vous que les Ours des montagnes d&#039;Ornanie sont particuli&egrave;rement intelligents ? Ils chassent et traquent en meute, comme des loups ! Et chaque fois que je souhaitais quitter ces contr&eacute;es enneig&eacute;es, je voyais au loin un colosse blanc &agrave; quatre pattes pr&ecirc;t &agrave; m&#039;accueillir. J&#039;ai bien cr&ucirc; mourir de froid et de faim l&agrave;-bas...</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E"><strong><font color="#FFFA1E">Mais Balou un jour, Balou toujours ! A chaque probl&egrave;me sa solution, et s&#039;il n&#039;existe aucun probl&egrave;me alors cr&eacute;ons les !</font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Au pied de ces montagnes se trouve un grand lac glacial pr&egrave;s duquel vivent des phoques. Il s&#039;est mis en place l&agrave;-bas un commerce des plus &eacute;tranges : les phoques am&egrave;nent r&eacute;guli&egrave;rement des poissons du lac aux ours et ces derniers les prot&egrave;gent des pr&eacute;dateurs - en plus de leur laisser la vie sauve &eacute;videmment. Alors j&#039;ai d&eacute;cid&eacute; de les accompagner, de p&ecirc;cher avec eux, de dormir avec eux et j&#039;ai pass&eacute; deux semaines in-croy-ables. Quoi de plus mignon qu&#039;&ecirc;tre r&eacute;veill&eacute; par un jeune phoque qui frotte son museau contre votre torse au petit matin ? Notez que c&#039;est tout de suite beaucoup plus d&eacute;sagr&eacute;able lorsqu&#039;il fait encore nuit noire et qu&#039;il vous apporte comme cadeau un poisson cru &agrave; moiti&eacute; d&eacute;vor&eacute;. Oh je me suis vraiment fait des amis l&agrave; bas, savez-vous que je parle couramment le phoque ? Je pourrai vous faire une d&eacute;monstration bien qu&#039;il soit possible que je sois un petit peu rouill&eacute; &agrave; pr&eacute;sent. En tout cas, apr&egrave;s avoir &eacute;t&eacute; adopt&eacute; par cette petite tribu, au bout de deux semaines je me risquai &agrave; apporter du poisson aux Ours et ces derniers l&#039;accept&egrave;rent comme s&#039;ils m&#039;avaient totalement oubli&eacute;. Et c&#039;est ainsi que je pu continuer mon p&eacute;riple au del&agrave; des montagnes et loin de l&#039;Ornanie !</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA339">Parfois je me demande tout de m&ecirc;me si ces Ours chassaient vraiment au meute en barrant toute sortie &agrave; leur proie de fa&ccedil;on organis&eacute;e ou si j&#039;ai &eacute;t&eacute; victime de mon sens de l&#039;orientation d&eacute;plorable. Et si j&#039;&eacute;tais simplement tomb&eacute; &agrave; de multiples reprises sur le m&ecirc;me vieil Ours endormi apr&egrave;s m&#039;&ecirc;tre perdu en cherchant la sortie des montagnes ?</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">J&#039;ai appris quelques mois plus tard que mes anciens compagnons qui n&#039;avaient jamais &eacute;t&eacute; attrap&eacute;s pour leurs crimes forestiers avaient &eacute;t&eacute; mis au trou pour braconnage en montagne ! Et le commissaire local a demand&eacute; &agrave; ce qu&#039;ils soient interdits de boisson car ils criaient que c&#039;&eacute;tait la faute d&#039;un Leprechaun de la for&ecirc;t ! Hahaha.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ellyria">Cdte. Ellyria</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11387.jpg" style="width:102px;height:128px" alt="Avatar" /><br />02/11/1021 ETU 00:17<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D288791', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal288790')">Détails</a> <a href="javascript:warnpost(288790)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal288790" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=288790',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#4CEA5E">- Des orties magiques pour fabriquer un talisman ? Qu&#039;est ce que c&#039;est encore que &ccedil;a ?</font></div><div class="post_line"><font color="#5593BD">- Au temple de Roublis ils m&#039;ont assur&eacute; que les orties qui poussent sur certaines plan&egrave;tes du syst&egrave;me 13 attirent la chance, comme les tr&egrave;fles &agrave; quatre feuilles !</font></div><div class="post_line"><font color="#4CEA5E">- Les tr&egrave;fles &agrave; quatre feuilles ? Mais non, &ccedil;a ne fonctionne pas comme cela, ils indiquent simplement la pr&eacute;sence de Leprechauns qui...</font></div><div class="post_line"></div><div class="post_line"><em><font color="#0074D9">M&eacute;tra&iuml;s </font></em><em><font color="#0074D9">n&#039;&eacute;coutait d&eacute;j&agrave; plus le petit </font></em><em><font color="#0074D9">homme</font></em><em><font color="#0074D9"> et observait attentivement le sachet d&#039;herbes s&eacute;ch&eacute;es qu&#039;il avait achet&eacute; une heure plus t&ocirc;t.</font></em></div><div class="post_line"></div><div class="post_line">-Belan&eacute; daarth M&eacute;tra&iuml;s. Tu d&eacute;penses notre argent en porte-bonheur maintenant ? Seuls nos efforts et l&#039;aide de Sliatdaeh garantiront notre r&eacute;ussite, c&#039;est pourquoi nous devons chaque jour l&#039;honorer et lui demander conseil.</div><div class="post_line"><font color="#5593BD">-Ta d&eacute;votion est admirable Ellyria, mais&nbsp;plus tard pendant que tu t&#039;amuseras sur les champs de bataille, moi je dirigerai notre tribu, alors je dois mettre toutes les chances de mon c&ocirc;t&eacute;. Ne n&eacute;gliger aucun dieu ni aucune croyance. Les disciples de Sliatdaeh&nbsp; meurent aussi souvent que les autres et ne compte pas sur moi pour jeter les d&eacute;s comme tu le fais lorsque je dois prendre des d&eacute;cisions !</font></div><div class="post_line"></div><div class="post_line"><em><font color="#1E92F7">La soeur du jeune homme se retint de r&eacute;pondre, les yeux grands ouverts, visiblement scandalis&eacute;e par ses derni&egrave;res paroles. </font></em></div><div class="post_line"></div><div class="post_line"><font color="#5593BD">Ne crois tu pas que cela fait partie du r&ocirc;le d&#039;un dirigeant que d&#039;essayer tous les moyens imaginables pour lui apporter la chance, Balou ?</font></div><div class="post_line"></div><div class="post_line"><font color="#1E92F7"><em>Un sourire jovial se dessina sur le visage de Balou lorsque la question lui f&ucirc;t pos&eacute;e.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Et bien je dirais que votre meilleure chance &agrave; tous les deux, c&#039;est de rester soud&eacute;s et d&#039;arr&ecirc;ter de vous disputer. Je serai combl&eacute; si notre imperturbable future cheffe de guerre voulait bien arr&ecirc;ter de s&#039;indigner &agrave; chaque fois qu&#039;elle d&eacute;couvre que tous ne partagent pas sa foi en Sliatdaeh. Allez Ellyria, &eacute;coute moi et entends mon histoire, je sais que tu les adores. Quant &agrave; toi M&eacute;tra&iuml;s, sais-tu que dans certains pays on dit que capturer un Leprechaun porte chance ? Veux-tu entendre l&#039;histoire o&ugrave; l&#039;un des candidats d&#039;Oriannie orientale m&#039;a captur&eacute; pour lui faire gagner une &eacute;lection ?</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E"><font color="#FFA339">---</font></font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Lorsque je suis arriv&eacute; en Oriannie orientale pour la premi&egrave;re fois, je devais alors avoir &agrave; peine une trentaine d&#039;ann&eacute;e et Orbal le vieux - je me demande quel &eacute;tait son nom lorsqu&#039;il &eacute;tait plus jeune -, suzerain du pays &eacute;tait gravement malade. J&#039;avais eu la chance de rencontrer l&#039;homme lorsqu&#039;il visitait mon Irlande natale, un bon bougre si vous voulez mon avis bien qu&#039;un peu soupe au lait. Sentant la faucheuse se rapprocher chaque jour, il avait souhait&eacute; organiser les &eacute;lections d&eacute;signant son successeur avant d&#039;y passer pour s&#039;assurer que son fils prenne la rel&egrave;ve. Oui, c&#039;est un syst&egrave;me politique &eacute;trange ou le peuple vote mais c&#039;est au final toujours le fils du pr&eacute;c&eacute;dent souverain qui lui succ&egrave;de. Je ne saurais pas vous d&eacute;tailler le fonctionnement ni vous dire pourquoi ils votent, mais c&#039;est un fait, ils votent.</div><div class="post_line"></font></div><div class="post_line"><font color="#4CEA5E">Aussit&ocirc;t la nouvelle annonc&eacute;e, les diff&eacute;rents candidats pr&eacute;tendant au tr&ocirc;ne d&#039;Oriannie ont commenc&eacute; leur campagne avec l&#039;espoir fou de devenir Suzerain &agrave; la place du Prince l&eacute;gitime. Un espoir fou, un Leprechaun qui arrive au d&eacute;but de l&#039;&eacute;lection ? Il n&#039;en faut pas plus &agrave; certains pour y voir un signe de bonne fortune - et je ne les en bl&acirc;me pas - et penser pouvoir renverser l&#039;ordre &eacute;tabli &agrave; l&#039;aide de quelques voeux.</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">C&#039;est Auguste le Fou - surnom qu&#039;il gagna apr&egrave;s la m&eacute;saventure que je vous conte actuellement, qui fut le premier &agrave; me mettre la main dessus. Si j&#039;ai bien compris ils &eacute;taient 3 ou 4 groupes &agrave; vouloir me capturer mais je n&#039;ai eu ni la chance ni l&#039;honneur de rencontrer les autres. J&#039;&eacute;tais alors dans une taverne de la Capitale, Dana&iuml;, une ville merveilleuse ou l&#039;alcool de past&egrave;que coule &agrave; flot et ou les femmes, bien qu&#039;elles n&#039;&eacute;galent ni votre charme ni la beaut&eacute; de notre championne, sont toutes plus ravissantes les unes que les autres. J&#039;avais bu plus que je n&#039;aurais du et ayant pay&eacute; une fille pour dormir &agrave; mes c&ocirc;t&eacute;s - il faut bien que jeunesse se fasse et la flamme qui m&#039;animait &eacute;tait alors bien plus difficile &agrave; contenir qu&#039;aujourd&#039;hui - nous nous retrouvions &agrave; deux dans ma chambre. Bah, l&#039;alcool ne m&#039;a jamais r&eacute;ussi et je me suis endormi avant d&#039;avoir eu le temps de faire honneur &agrave; la demoiselle. Cette derni&egrave;re, sans doute par professionnalisme ou alors saisissant la chance d&#039;avoir un lit propre et gratuit pour la nuit, a tout de m&ecirc;me dormi avec moi en tout bien tout honneur. C&#039;est peu avant l&#039;aube qu&#039;Auguste et sa bande ont d&eacute;barqu&eacute; dans la chambre. S&#039;en suivi un combat m&eacute;morable ou mes seuls faits d&#039;arme furent de pousser un cri plus aigu que celui de ma compagne d&#039;un soir et de casser le nez d&#039;un des malandrins en me d&eacute;battant alors qu&#039;ils me gliss&egrave;rent dans un sac.</font></div><div class="post_line"><font color="#1E92F7"><em></div><div class="post_line">En &eacute;voquant ce souvenir, le Leprechaun marqua une pause et se massa la nuque. Il &eacute;tait encore jeune &agrave; l&#039;&eacute;poque et on ne s&#039;habitue pas &agrave; &ecirc;tre mis brutalement dans un sac avant la </em></font></div><div class="post_line"><font color="#1E92F7"><em>quatorzi&egrave;me ou la quinzi&egrave;me fois.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Je fus lib&eacute;r&eacute; quelques heures plus tard et sans m&ecirc;me m&#039;offrir un petit-d&eacute;jeuner Auguste m&#039;apostropha :</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA339">- Hey le lutin ! Quand on te chope on a bien le droit &agrave; trois voeux c&#039;est &ccedil;a ? Alors je veux que tu me fasses gagner les &eacute;lections d&#039;Oriannie, que tu me rendes riche et que tu me soignes le bouton que j&#039;ai sur le cul !</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Que voulez-vous ? Le manque de connaissances des peuples communs concernant les Leprechauns se traduit souvent par la confusion avec les lutins ou de Djinns, car ce sont bien ces derniers qui accordent 3 voeux lorsqu&#039;on les trouve. Mais les Djinns n&#039;existent pas, qui peut raisonnablement croire &agrave; des cr&eacute;atures qui vivent dans des lampes et accordent trois voeux lorsqu&#039;on les trouve ? Apr&egrave;s avoir soign&eacute; son furoncle - Dieu que j&#039;aurais pr&eacute;f&eacute;r&eacute; devoir lui retirer une &eacute;pine des pieds - , je fis tous les efforts du monde pour lui expliquer que les Leprechauns aident sans qu&#039;on ait besoin de les capturer et que la violence n&#039;est pas la meilleure des mani&egrave;res pour demander un service, j&#039;eu uniquement le droit &agrave; la r&eacute;ponse suivante :</font></div><div class="post_line"></div><div class="post_line"><font color="#1E92F7"><font color="#FFA339">- Ouais mais maintenant que je t&#039;ai captur&eacute; t&#039;es &agrave; moi et tu me dois trois voeux ! Enfin encore deux</font> - ajouta-t-il en se massant l&#039;arri&egrave;re train.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Ah noble M&eacute;tra&iuml;s, s&#039;il est des chefs comme vous qui d&eacute;gagent une telle aura de magnificence qu&#039;aucun service &agrave; rendre ne serait une corv&eacute;e, la vie d&#039;un Leprechaun ne se r&eacute;sume malheureusement pas &agrave; des rencontres aussi agr&eacute;ables et il faut parfois utiliser nos talents pour satisfaire des personnes plus.. rustres, surtout lorsqu&#039;elles sont accompagn&eacute;es d&#039;une dizaine de brutes arm&eacute;es. J&#039;ai donc senti le potentiel du gaillard devant moi et lui ai promis qu&#039;il gagnerait les &eacute;lections et qu&#039;il s&#039;enrichirait s&#039;il consentait &agrave; suivre mes conseils.</font></div><div class="post_line"><font color="#4CEA5E">J&#039;imagine que vous voyez d&eacute;j&agrave; la fin de mon histoire arriver et ne ferait donc pas durer le suspens trop longtemps. Je n&#039;avais &eacute;videmment aucun moyen de faire d&#039;un arri&eacute;r&eacute; pareil le nouveau Seigneur d&#039;Oriannie, en revanche je connaissais tr&egrave;s bien le patron de l&#039;&eacute;mission locale &quot;Dis Nedkon&quot; qui consiste &agrave; faire participer des candidats &agrave; leur insu &agrave; un grand entretien &agrave; la fin du quel les spectateurs votent pour le plus &quot;amusant&quot;. Je reconnais que cela n&#039;est gu&egrave;re charitable de se moquer des lacunes d&#039;autrui, mais il s&#039;agit d&#039;humour Leprechaun, d&#039;ailleurs le patron en question est l&#039;un des n&ocirc;tres.</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E"><font color="#FFFA1E"><strong>Ah qu&#039;est ce que j&#039;ai ri ce soir l&agrave; !</strong></font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#9DF9FF"><font color="#4CEA5E">Je vous le donne en mille : Auguste a gagn&eacute; haut la main cette &eacute;lection l&agrave; ! Fier comme un coq, pompeux et arrogant gr&acirc;ce &agrave; la certitude que je lui avais donn&eacute; de finir avec un titre &agrave; sa hauteur avant la fin de la soir&eacute;e s&#039;il acceptait de faire sa promo en direct, il nous a sorti le grand jeu ! Ainsi donc, Auguste a bien gagn&eacute; une &eacute;lection et fut surnomm&eacute; &quot;le Fou&quot; apr&egrave;s cette soir&eacute;e. Encore un voeux exauc&eacute; par Balou- c&#039;est moi -.</font></font></div><div class="post_line"></div><div class="post_line"><strong><font color="#FFFA1E">Et pour la richesse me demanderez-vous ?</font></strong></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Eh bien je consid&egrave;re avoir donn&eacute; une bonne le&ccedil;on &agrave; ce galapiat ! Une le&ccedil;on est toujours une exp&eacute;rience et un - petit - pas vers la sagesse &agrave; laquelle nous aspirons tous. C&#039;est donc une sorte d&#039;enrichissement personnel. Merci qui ? Merci Balou.</font></div><div class="post_line"><font color="#4CEA5E">Lorsqu&#039;il se rendit compte de la supercherie, Auguste et ses hommes revinrent vers moi sans doute dans le but &agrave; peine dissimul&eacute; de me flanquer une bonne racl&eacute;e. Je les revois encore courir dans la foule occup&eacute;e &agrave; acclamer l&#039;ancien Prince, nouveau Roi, pour essayer de me rattraper. Mais rattraper un Leprechaun dans une foule ? Haha, j&#039;imagine que cela a fait office d&#039;une seconde le&ccedil;on, ils me couraient apr&egrave;s en me traitant de menteur et d&#039;escroc. Et savez-vous ce que je leur ai r&eacute;pondu ? Ce que j&#039;ai cri&eacute; &agrave; la foule ?</font></div><div class="post_line"></div><div class="post_line"><strong><font color="#FFFA1E">Balou ne racontre pas de Balivernes sauf lorsqu&#039;il te Berne !</font></strong></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Et l&agrave; pour le coup, j&#039;avais bern&eacute; Auguste le Fou .</font></div><div class="post_line"><font color="#4CEA5E">Bien. Je pense que j&#039;en ai termin&eacute; pour cette fois.</font></div><div class="post_line"><font color="#4CEA5E">Alors jette ces herbes &agrave; pr&eacute;sents. Et toi Ellyria souris, souris car tu es bien plus belle ainsi.</font></div><div class="post_line"><font color="#4CEA5E">Mes princes, j&#039;esp&egrave;re que mon histoire a &eacute;t&eacute; &agrave; votre go&ucirc;t et si j&#039;ai pu vous divertir quelques instants, permettez moi de vous en remercier.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ellyria">Cdte. Ellyria</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11387.jpg" style="width:102px;height:128px" alt="Avatar" /><br />08/11/1021 ETU 01:49<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D289538', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal289536')">Détails</a> <a href="javascript:warnpost(289536)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289536" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289536',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#1E92F7">C&#039;est &agrave; une Ellyria adulte que Balou s&#039;adresse cette fois. L&#039;Imp&eacute;ratrice des Itoriens est allong&eacute;e, le dos coll&eacute; au sol de son poste de commandement et semble r&eacute;fl&eacute;chir. Le Leprechaun est assis dans son fauteuil situ&eacute; dans un coin de la pi&egrave;ce.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">- Et &ccedil;a te ne g&ecirc;ne pas ?</font></div><div class="post_line">- Non. C&#039;est du pass&eacute;.</div><div class="post_line">- <font color="#4CEA5E">Tu vas commercer avec lui comme si de rien n&#039;&eacute;tait, et s&#039;il recommence ?</font></div><div class="post_line">- Et bien il recommencera, voil&agrave; tout.</div><div class="post_line"></div><div class="post_line"><em><font color="#1E92F7">Un silence de quelques secondes se fit et s&#039;allongea jusqu&#039;&agrave; devenir pesant dans l&#039;atmosph&egrave;re de la pi&egrave;ce.</font></em></div><div class="post_line"></div><div class="post_line">- Je ne suis pas Rh&eacute;dis, je n&#039;ai pas vocation &agrave; juger mon prochain. Je ne suis pas Xilro, je suis incapable de modifier le pass&eacute;... Tout ce que je peux faire c&#039;est de l&#039;accepter comme il est et de l&#039;aider &agrave; trouver la voie vers son destin. Il m&#039;a dit souhaiter vie et libert&eacute;, je le crois.</div><div class="post_line"><font color="#4CEA5E">- Donc Deano a bombard&eacute; des centaines de milliards d&#039;individus et tu comptes l&#039;aider maintenant ?</font></div><div class="post_line">- C&#039;est la guerre Balou. Parfois il y a des morts.</div><div class="post_line"><font color="#4CEA5E">- Non non non. Cela m&#039;&eacute;tonne de toi Ellyria. Ce n&#039;est pas &ccedil;a la guerre.. C&#039;est.. C</font><font color="#4CEA5E">&#039;est comme ce qu&#039;il s&#039;est pass&eacute; en Odyss&eacute;e, laisse moi te raconter quelque chose.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA339">---</font></div><div class="post_line"></div><div class="post_line"><strong><font color="#FFFA1E">J&#039;&eacute;tais l&agrave; lors de la chute de l&#039;empire d&#039;Amaekton.</font></strong></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Je te raconte cela comme si cela avait la moindre importance, toi qui &agrave; pr&eacute;sent as le pouvoir de g&eacute;rer des milliards d&#039;individus, toi qui vois en lui un simple commer&ccedil;ant, toi qui r&egrave;gne sur des dizaines de mondes... Comment pourrais-tu avoir le temps de t&#039;attarder sur la chute d&#039;un empire de quelques millions d&#039;habitants ? Tu aimes mes histoires car elles te font sourire ? Alors laisse moi te raconter celle-ci mais je te pr&eacute;viens, certaines sont moins divertissantes que d&#039;autres...</div><div class="post_line"></div><div class="post_line">J&#039;y &eacute;tais. J&#039;ai quasiment 200 ans&nbsp; Elly, j&#039;ai vu des hommes mourir de leur b&ecirc;tise et d&#039;autres de la cruaut&eacute; ou de l&#039;avarice de leurs semblables. J&#039;ai vu des parents perdre leur enfant et des soeurs enterrer leurs fr&egrave;res tomb&eacute;s dans des guerres qui les d&eacute;passent et dans lesquelles ils n&#039;avaient rien &agrave; gagner. Et je me souviens de chaque nom, de chaque visage de ceux que j&#039;ai vu mourir, car cela fait partie du r&ocirc;le de Leprechaun. Nous ne sommes pas uniquement des porteurs d&#039;espoir et des emp&ecirc;cheurs de tourner en rond, les Leprechauns sont les conteurs d&#039;histoires pass&eacute;es mais ils sont &eacute;galement des gardiens de la m&eacute;moire. Et nous finissons &eacute;ventuellement par d&eacute;velopper une certaine protection, une sorte d&#039;insensibilit&eacute; face &agrave; l&#039;horreur car c&#039;est la seule chose qui nous emp&ecirc;che de sombrer dans la folie.</font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Mais &ccedil;a ? La chute de l&#039;empire d&#039;Amaekton n&#039;a pas &eacute;t&eacute; une guerre. Ca a &eacute;t&eacute; un massacre, une boucherie. J&#039;ai vu les hordes d&#039;Elekh s&#039;abattre sur des villages de civils, j&#039;ai vu les tireurs cannibales d&#039;Apakhr se repaitre de leur victime. <strong><font color="#FFFA1E">Ce n&#039;&eacute;tais pas une guerre, Imp&eacute;ratrice.</font></strong> C&#039;&eacute;taient les non-morts qui qui se l&egrave;vent pour se venger des semi-vivants, c&#039;&eacute;taient les aberrations de Skartrem qui mutilent et &eacute;ventrent, c&#039;&eacute;taient aussi l&#039;av&egrave;nement des Rois soricers et de leurs chiens-cauchemar.</div><div class="post_line"></div><div class="post_line">J&#039;ai vu des centaines de milliers d&#039;innocents mourir en quelques dizaines d&#039;heures, j&#039;ai vu des Leprechauns h&eacute;b&eacute;t&eacute;s par la douleur et tomber de chagrin, savez-vous qu&#039;il na&icirc;t &agrave; peine une dizaine de Leprechaun tous les deux ans ? Nous nous reproduisons peu mais nous mourrons lentement. La folie et la douleur sont parmi les rares choses qui nous tuent. Lorsque Amaeekton a &eacute;t&eacute; frapp&eacute;e, nous avons perdu 200 des n&ocirc;tres, soit plus des deux tiers de notre esp&egrave;ce. Nous avons tout donn&eacute; pour l&#039;en emp&ecirc;cher Ellyria, tout. C&#039;est l&#039;une des trois seules fois dans l&#039;histoire o&ugrave; les Leprechauns se sont r&eacute;unis : pour &eacute;viter un massacre. Et j&#039;ai &eacute;chou&eacute;, nous avons &eacute;chou&eacute;. <strong><font color="#FFFA1E">Ce n&#039;&eacute;tait pas la guerre contre laquelle nous nous battions, c&#039;&eacute;tait l&#039;enfer.</font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#4CEA5E">Je ne juge pas les soldats et j&#039;accepte toujours d&#039;accorder les voeux les moins charitables. Je t&#039;ai d&eacute;j&agrave; racont&eacute; la fois ou j&#039;ai particip&eacute; au si&egrave;ge de Delrish , je me suis &eacute;galement battu dans des duels d&#039;&eacute;p&eacute;es et il m&#039;est arriv&eacute; de prendre des vies. Mais cela va au del&agrave; de ce que je peux cautionner, bien bien au del&agrave;.&nbsp;Rolyan, Elisabeth, Trichy et tous les autres..</font></div><div class="post_line"><font color="#FFA339"></div><div class="post_line">Quand je ferme les yeux je revois leurs visages hurlants, paralys&eacute;s par la terreur de ce leurs proches ont subi devant leurs yeux. Quand je suis seul j&#039;entends leurs cris, des cris de d&eacute;tresse et d&#039;horreur, les cris que seuls ceux qui savent qu&#039;ils vont subir ce que personne ne m&eacute;rite, les pleurs d&#039;une m&egrave;re frapp&eacute;e d&#039;effroi en voyant son b&eacute;b&eacute; aux mains de ses bourreaux.</font></div><div class="post_line"></div><div class="post_line"><font color="#FFA339"><font color="#4CEA5E">Ce n&#039;est pas &ccedil;a la guerre, Ellyria. <strong><font color="#FFFA1E">Ce Deano n&#039;est pas un guerrier, c&#039;est un monstre.</font></strong></div><div class="post_line"></font></font></div><div class="post_line"><font color="#4CEA5E">Et en Odyss&eacute;e ? Je savais &agrave; quoi m&#039;attendre, c&#039;&eacute;tait un autre bourreau. Les noms changent mais les proc&eacute;d&eacute;s restent les m&ecirc;mes. Il nous avait pr&eacute;venus. Faveur d&#039;un &ecirc;tre &agrave; qui il restait une part d&#039;humanit&eacute; ou mal&eacute;diction cruelle m&#039;incitant &agrave; mettre en place tout ce que je pouvais pour sauver des &ecirc;tres qui n&#039;avaient aucune id&eacute;e de ce qui les attendaient ? Je savais qu&#039;il &eacute;tait impossible d&#039;&eacute;vacuer autant de monde en 48h.</font></div><div class="post_line"><font color="#4CEA5E">Aujourd&#039;hui on tu me demandes d&#039;accepter &ccedil;a. J&#039;ai consult&eacute; les archives Disciple de Sliatdaeh , l&#039;explosion ne tue pas les civils, ou uniquement une petite partie. Ce qui tue ce sont les radiations. Ce qui tue ce sont les famines quand plus rien ne pousse, la pauvret&eacute; quand tout a &eacute;t&eacute; retir&eacute;. Ce a tu&eacute; tous ces habitants, c&#039;est la douleur, la souffrance et la folie d&#039;un homme qui s&#039;il n&#039;avait pas &eacute;t&eacute; soutenu&nbsp;par des dirigeantes comme toi n&#039;aurait probablement jamais d&eacute;pass&eacute; le stade de petit tyran sectoriel, souhaite tu devenir la Lumi&egrave;re Sombre de Souvenir ?</font></div><div class="post_line"><font color="#FFA339"><font color="#4CEA5E">Aujourd&#039;hui on me demande de ne pas intervenir contre celui capable de tuer des centaines de milliards de personnes sur un coup de t&ecirc;te. Je suis certain que tu as appris &agrave; &ecirc;tre insensible &agrave; la mort de quelques individus, nous l&#039;avons tous appris. Mais des centaines de milliards Ellyria ? Si tu es encore capable apr&egrave;s cela de regarder Deano dans les yeux sans penser &agrave; ce qu&#039;il a d&eacute;clench&eacute; , tu es plus forte que bien des rois que l&#039;on n&#039;a nomm&eacute; &quot;le Fou&quot; ou &quot;le Cruel&quot;.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#FFA339">---</font></div><div class="post_line"></div><div class="post_line"><em><font color="#1E92F7">Elle soupira profond&eacute;ment et pris son temps pour expirer l&#039;air qui avait rempli ses poumons.</font></em></div><div class="post_line"></div><div class="post_line">- C&#039;est du pass&eacute;, Balou. Les massacres inutiles m&#039;attristent mais c&#039;est le futur que nous devons voir, sur lequel nous devons travailler. Le reste.. n&#039;a pas d&#039;importance.</div><div class="post_line"><font color="#4CEA5E">- Et si dans le futur il se mettait &agrave; recommencer ?</font></div><div class="post_line">- Je ne le laisserai pas faire.</div><div class="post_line"><font color="#4CEA5E">- Et si c&#039;&eacute;tait son Destin, guid&eacute; par Sliatdaeh, de recommencer ?</font></div><div class="post_line">- S&#039;il est guid&eacute; par sa voie v&eacute;ritable, alors tu connais ma r&eacute;ponse.</div><div class="post_line"><font color="#4CEA5E">- Et je ne l&#039;aime pas.</font></div><div class="post_line">- Tu en as le droit.</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15989&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15989" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15989" name="d_reply_15989" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15989');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15989'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Histoires d&#039;un vieil homme</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

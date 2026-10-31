@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17533 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>In-Extr&ecirc;mis !</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > In-Extr&ecirc;mis !</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />15/03/1025 ETU 18:53</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313231', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313224')">Détails</a> <a href="javascript:warnpost(313224)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313224" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313224',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#2ecc40">iPlan&egrave;te Chlorade : Secteur 2 / Syst&egrave;me 9 / Coordonn&eacute;e 1&nbsp;</font></div><div class="post_line"></div><div class="post_line">Sanglots ...</div><div class="post_line"></div><div class="post_line">D&#039;un enfant perdu destin&eacute; a mourir, abandonn&eacute;e volontairement par ses parents.</div><div class="post_line"></div><div class="post_line">Il &eacute;tait le mal aim&eacute;, errant dans les rues sanglotant a chaudes larmes... Son index dans la bouche, du haut de ses 5 ans, 5 ans de vie, maltrait&eacute;, pour finir ainsi alors que l&#039;apocalypse arrive...</div><div class="post_line"></div><div class="post_line">Marchant au hasard, ne sachant ou aller dans les avenues d&eacute;sertes de toute circulation, tous le monde parti, ses sanglots r&eacute;sonnent, serrant son nounours contre lui, sa seule&nbsp; consolation, avan&ccedil;ant ainsi, regardant de tous cot&eacute;s, cherchant &agrave; apercevoir quelqu&#039;un, son visage rougi, ses yeux gonfl&eacute;s par les larmes ...Seuls, ses sanglots r&eacute;sonnent quelque peu....Mais, il ne reste plus personne...Ou presque !&nbsp;</div><div class="post_line"></div><div class="post_line">A deux rues de l&agrave;, marchant rapidement, une jeune femme, approche, jeune femme ? Si l&#039;on veut, en fait, une jeune Clone, elle aussi regarde de tous cot&eacute;s lorsque...La voila qui s&#039;arr&ecirc;te...Qui &eacute;coute...Qui entend ...Des pleurs ? Des pleurs d&#039;enfants ?&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center"><font size="4"><font color="#9df9ff">https://i.pinimg.com/736x/56/2f/b8/562fb8e40a6782d51b8db0007b769c26.jpg</font></div><div class="post_line"></div><div class="post_line"></font><font color="#9df9ff">Kemisawa-426 H&ocirc;tesse de la salle de d&eacute;tente. (Station Orbitale Mercury Alpha)</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="left">Elle coure, elle voit l&#039;enfant, l&#039;enfant l&#039;aper&ccedil;oit, coure vers elle, Kemisawa le re&ccedil;oit, accroupie,&nbsp;dans ses bras, lui et son nounours...Sans se douter qu&#039;une ombre les aper&ccedil;oit a son tour, une ombre venue du ciel...une silhouette volante...</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">H&eacute; bien mon petit bonhomme, on t&#039;as oubli&eacute; l&agrave; ?</font> Fait Kemisawa</div><div class="post_line"></div><div class="post_line"><font color="#e8c500">O ou... Oui, mes parents m&#039;ont laiss&eacute; p ...parce que, ils m&#039;aimaient pas, ils pr&eacute;f&eacute;raient ma soeur !</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Mais ne dit pas des choses pareilles je crois tout simplement que ...</font></div><div class="post_line"></div><div class="post_line"><font color="#e8c500">Non c&#039;est vrai, ils m&#039;ont envoy&eacute;&nbsp;chercher mon nounours en riant, quand je suis revenu, ils riaient dans l&#039;a&eacute;ro mobile et ils sont partis en se moquant de moi&nbsp;</font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"></div><div class="post_line">Les yeux de Kemisawa se pliss&egrave;rent en les maudissant silencieusement....</div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#9df9ff">Ton nom ? Comment tu t&#039;appelle ?</font><font color="#e8c500">&nbsp;</font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#e8c500">Sethann M&#039;dame !</div><div class="post_line"></font></div><div class="post_line"><font color="#9df9ff">Ecoute ! Sethann, Je suis Kemisawa&nbsp;Je ...Tu vas rester avec moi dor&eacute;navant d&#039;accord ? On ne se quittera plus, allez fait moi un gros c&acirc;lin va, on va essayer de s&#039;en sortir et ...</font></div></div><div class="post_line"><div align="left"></div><div class="post_line">L&#039;ombre atterrie pr&egrave;s d&#039;eux ...Une jeune femme en combinaison moulante noire, Kemisawa la reconnue imm&eacute;diatement ...</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Blackforce ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#e8b6ef"><font size="4">https://i.pinimg.com/736x/33/72/31/3372317229a76baf674096377e8ba268.jpg</div><div class="post_line"></div><div class="post_line">Blackforce (Super H&eacute;ro&iuml;ne)</font></font></div></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Oui ! Se tirer de cette plan&egrave;te, ce n&#039;est pas dur mais ensuite, je ne sait pas !</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Mais il faudrait d&eacute;j&agrave; une navette pour ce faire !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Oui j&#039;en ai une justement mais apr&egrave;s ? On mourra quand m&ecirc;me ! Tous&nbsp; les tunnels de transfert de tout les souterrains&nbsp;ont &eacute;t&eacute; utilis&eacute;s et d&eacute;truits comme d&#039;habitude par Steffey ! Et je suppose que c&#039;est pareil pour toutes les autres plan&egrave;tes, autant rester mourir ici.</font></div><div class="post_line"></div><div class="post_line">Kemisawa &eacute;carquilla ses yeux tout en se relevant, elle agita la main en direction de Blackforce&nbsp; ....<font color="#9df9ff">NOOOooon non non ! Attendez ! Attendez ! Attendez ! ...Il en reste deux, je sait ou, si vous avez une navette, on peut s&#039;en sortir tous ensembles venez !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Comment cela il en reste deux ? Ce n&#039;est pas possible voyons !</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Mais si, deux n&#039;ont pas &eacute;t&eacute; d&eacute;truits, sur la station Orbitale Mercury Alpha ! Steffey a dit que c&#039;&eacute;tait inutile, sur les plan&egrave;tes oui ! Afin qu&#039;ils ne tombent pas aux mains des pirates mais l&agrave;...L&agrave; ! C&#039;&eacute;tait diff&eacute;rent parce que il s&#039;agit d&#039;une station orbitale ! La station sera d&eacute;truite avec l&#039;Apocalypse, et les tunnels de transfert avec, vous comprenez ? Pas besoin de les faires exploser !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Je vois oui alors allons y sans perdre un instant, venez, la navette se trouve a quelques rues d&#039;ici ! allons nous en vite !</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Il y aura de la place pour nous trois ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e8c500">Quatre</font> fit la voix plaintive du petit gar&ccedil;on <font color="#e8c500">Il y a mon nounours !</font></div><div class="post_line"></div><div class="post_line">Black force attendrie fit avec un sourire en coin, <font color="#e8b6ef">T&#039;inqui&egrave;te pas mon bonhomme, c&#039;est une navette a huit places allez viens ! Partons vite d&#039;ici&nbsp;</font></div><div class="post_line">Kemisawa le porta dans ses bras avec le nounours, elle suivie Blackforce...Quelques instants plus tard, ils s&#039;envolaient pour la station Mercury Alpha,&nbsp;&nbsp;</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />15/03/1025 ETU 19:28</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313234', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal313232')">Détails</a> <a href="javascript:warnpost(313232)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313232" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313232',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Ils p&eacute;n&eacute;tr&egrave;rent dans la station Orbitale ... Gr&acirc;ce a Kemisawa, et son code d&#039;acc&egrave;s....</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Venez !</font> Fit elle, <font color="#9df9ff">Je connait toute la base par c&oelig;ur !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Faisons vite, par les Hublot je crois que toute la galaxie est en train de s&#039;illuminer l&agrave;, c&#039;est encore loin mais il n&#039;y a plus de temps a perdre...</font></div><div class="post_line"></div><div class="post_line">Ils coururent dans les couloirs, Kemisawa s&#039;arr&ecirc;tant bri&egrave;vement devant la salle de d&eacute;tente, regarda sa coll&egrave;gue inanim&eacute;e,, assise par terre, la t&ecirc;te pench&eacute;e en&nbsp;avant, les yeux clos&nbsp;&nbsp;mais elle, &eacute;tait synth&eacute;tique, en rade d&#039;&eacute;nergie sans aucun doute...&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center">https://i.pinimg.com/736x/a6/a0/f1/a6a0f1f782fdac39dc43c4dbd4dd3d90.jpg</div></div><div class="post_line"></div><div class="post_line">Les souvenirs lui revint, des souvenirs heureux, combien de temps avait elle pass&eacute;e ici ?</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Vous venez ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Ces pens&eacute;es s&#039;arr&ecirc;t&egrave;rent net, toujours portant Sethann dans les bras avec son nounours.</div><div class="post_line"></div><div class="post_line"><font color="#e8c500">La Dame...Elle est morte ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">D&eacute;sactiv&eacute;e Sethann ! D&eacute;sactiv&eacute;e ! C&#039;est une robotique, nous ne pouvons plus rien pour elle d&eacute;sormais</font></div><div class="post_line"></div><div class="post_line">Elle se remit a courir, vers le labo...</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">C&#039;est l&agrave; !&nbsp;</font>fit elle, <font color="#9df9ff">Le SAS est ouvert, entrons ...</font></div><div class="post_line"></div><div class="post_line">Effectivement, un tunnel de transfert &eacute;tait l&agrave;, bien en &eacute;vidence, elle posa Sethan, se pr&eacute;cipita vers le tableau de commande, fit quelques v&eacute;rifications, mainte et mainte fois, elle avait vu cet appareillage, vu le r&eacute;glage, l&#039;utilisation, elle savait comment le programmer, et de toute fa&ccedil;on, il &eacute;tait inutile de le r&eacute;gler, Steffey, l&#039;avait laiss&eacute; en l&#039;&eacute;tat, il n&#039;y avait plus qu&#039;a simplement l&#039;activer, le r&eacute;glage &eacute;tant d&eacute;j&agrave; fait ...</div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Tu est pr&ecirc;t mon bonhomme ? ...Blackforce ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Allons y !</font> R&eacute;pondit elle tendue.</div><div class="post_line"></div><div class="post_line"><div align="center"><strong><font size="5"><font color="#ffffff">https://i.pinimg.com/736x/f1/17</font><font color="#e8b6ef">/ac/f117acba9b9c768ab</font><font color="#1e92f7">f280b75cb56cca0.jpg</font></font></strong></div></div><div class="post_line"></div><div class="post_line">Le Tunnel activ&eacute;, ils rentr&egrave;rent alors dans l&#039;ovale d&#039;&eacute;nergie et disparurent ainsi tous les trois, Sethann serrant toujours contre lui, son nounours ... Tandis que ...</div><div class="post_line"></div><div class="post_line">A l&#039;ext&eacute;rieur de la station, la lueur devenait de plus en plus vive ...</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17533&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17533" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17533" name="d_reply_17533" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17533');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17533'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > In-Extr&ecirc;mis !</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

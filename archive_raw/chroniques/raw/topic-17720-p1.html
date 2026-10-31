@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17720 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Renaissance...</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Renaissance...</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Survivors">Cdt. Survivors</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/12656.jpg" style="width:128px;height:77px" alt="Avatar" /><br />31/10/1025 ETU 07:44</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal316985')">Détails</a> <a href="javascript:warnpost(316985)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316985" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316985',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#bbbbbb"><strong><font size="4">Souvenir&hellip;</font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">L&rsquo;&eacute;quipage du <strong>vaisseau Amiral Galactica</strong> suivait attentivement l&rsquo;avance de celui-ci dans le Trou de Vers. Trois ann&eacute;es compl&egrave;tes &agrave; l&rsquo;int&eacute;rieur sans connaitre la destination. Trois ann&eacute;es &agrave; subir chacune des fluctuations de celui-ci, les chocs lorsque les vaisseaux dans leur vitesse d&eacute;mentielle se rapproche trop pr&egrave;s des bords et sont repouss&eacute;s avec force au centre de celui-ci. Le navire Amiral et les trois gigantesques vaisseaux Ruche qui l&rsquo;accompagne, tenaient le coup mais pour combien de temps encore. L&rsquo;attente devenait de moins en moins supportable pour le personnel &eacute;veill&eacute; m&ecirc;me s&rsquo;il y avait les phases d&rsquo;hibernation. Trente ann&eacute;es de navigation, trois &eacute;veill&eacute;es pour chaque personne participant au fonctionnement des vaisseaux.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Eric debout face &agrave; la baie vitr&eacute;e, &eacute;tait plong&eacute; dans ces pens&eacute;es. Il revivait cette journ&eacute;e o&ugrave; son oncle, le Shogun Drako l&rsquo;avait convoqu&eacute; &agrave; son bureau sur le vaisseau Amiral de la flotte <strong>Survivors</strong>.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Alors, jeune Lieutenant insouciant, il ne pensait qu&rsquo;aux combats &agrave; bord de sa Corvette et aux phases de repos dans les ports spatiaux avec les filles, pas de casse t&ecirc;te, bagarre et sexe. Il commandait une escadre&nbsp;et pistait les flottes Brigandes de syst&egrave;me en syst&egrave;me. La belle vie en somme&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">He oui, ce fameux jour lui revenait en boucle. Il se revoyait en approche du vaisseau Amiral l&rsquo;<strong>Arcadia</strong>, accompagn&eacute; de&nbsp; son second et ami le lieutenant Vladimir Hoskir.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Equipage ROGUE-XR1 et XR2 &agrave; Arcadia pour contact.</font><font color="#bbbbbb"> Envoya Eric dans son micro.</font></div><div class="post_line"><font color="#e8b6ef">- Arcadia vous &eacute;coute&hellip;</font></div><div class="post_line"><font color="#fff5b3">- Demandons autorisation apponter, objet convocation par le Shog&hellip;.</font></div><div class="post_line"><font color="#e8b6ef">- Nous sommes au courant Lieutenant Cortez, le Shogun vous attend.</font><font color="#bbbbbb"> R&eacute;pondit vivement l&rsquo;officier de quart du vaisseau.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">La voix de son ami se fit entendre.</font></div><div class="post_line"><font color="#c0f0c6">- Eh bien mon grand, tu est attendu comme le loup blanc.</font></div><div class="post_line"><font color="#fff5b3">- Je me demande bien ce qu&rsquo;ils me veulent !</font><font color="#bbbbbb"> r&eacute;pondit Eric passant dans sa t&ecirc;te&nbsp;les derni&egrave;res actions de d&eacute;sob&eacute;issances qu&rsquo;il avait bien pu faire.</font></div><div class="post_line"><font color="#c0f0c6">- Bon d&eacute;p&ecirc;che toi, ne les fais pas attendre, tu sais que le vieux n&rsquo;est pas toujours tr&egrave;s patient. On se retrouve devant une binoche au bar. Il parait d&rsquo;ailleurs que la serveuse est superbe. Dommage pour toi, je vais prendre de l&rsquo;avance.</font></div><div class="post_line"><font color="#fff5b3">- Moque toi, je me rattraperai, faux fr&egrave;re !</font><font color="#bbbbbb"> R&eacute;pondit Eric tout en posant son vaisseau.&nbsp;</font></div><div class="post_line"><font color="#fff5b3">- A tout de suite&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Eric suivait le marine qui l&rsquo;avait pris en charge &agrave; son arriv&eacute;e. D&eacute;s que le garde devant la porte les vit arriver, il frappa, ouvrit et salua. Eric lui rendit le salut et entra.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Assis derri&egrave;re un large bureau, son oncle releva la t&egrave;te, lui rendit un petit geste amical &agrave; son salut et lui dit.</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- Assis toi Eric, comment vas-tu ?</font></div><div class="post_line"><font color="#fff5b3">- Tr&egrave;s bien mon oncle, vous vouliez me voir ?</font></div><div class="post_line"><font color="#b3d5f4">- Oui, l&rsquo;affaire est d&rsquo;importance. Je ne vais pas y aller par quatre chemins. Tu sais que je n&rsquo;ai pas d&rsquo;h&eacute;ritiers directs et par droit du sang, tu es destin&eacute; &agrave; devenir mon successeur &agrave; la t&ecirc;te de notre nation.</font><font color="#bbbbbb"> Drako fit une pause. Eric en profita.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Je sais cela mon oncle, mais nous avons encore du temps et vous savez que ce n&rsquo;est pas vraiment mon souhait, peut-&ecirc;tre d&rsquo;autres cousins seraient-ils plus aptes, et j&hellip;</font></div><div class="post_line"><font color="#b3d5f4">- Je sais tout cela Eric, nous en avons d&eacute;j&agrave; parl&eacute; mais le temps presse, &eacute;coute ce que j&rsquo;ai &agrave; dire.</font><font color="#bbbbbb"> R&eacute;pondit le Shogun agac&eacute; de la tournure de la conversation.&nbsp;</font><font color="#bbbbbb">Eric comprit &agrave; la voix que le moment n&rsquo;&eacute;tait plus au dialogue.&nbsp;Il se tue.</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- Depuis quelques d&eacute;cennies maintenant, nos scientifiques annoncent la fin de notre Galaxie. L&rsquo;Apocalypse tel qu&rsquo;ils la nomment va frapper avec sa destruction de mondes, d&rsquo;ouragans solaires, de pluies d&rsquo;ast&eacute;ro&iuml;des, d&rsquo;implosions de soleil et bien d&rsquo;autre. D&eacute;j&agrave; certaines plan&egrave;tes d&eacute;vient de leur orbite partout dans la galaxie au risque d&rsquo;en percuter d&rsquo;autres et un secteur au centre vient de disparaitre d&rsquo;un trait de crayons. A plus ou moins br&egrave;ve &eacute;ch&eacute;ance la vie ici va disparaitre. </font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- Nous avons anticip&eacute; ces faits et commenc&eacute; la construction d&rsquo;immenses vaisseaux ruches mais cela va demander du temps et nous n&rsquo;en avons plus beaucoup. Nous savons d&eacute;j&agrave; que tout le monde ne sera pas sauv&eacute;. Par&nbsp;ailleurs certains ne veulent pas partir. </font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- A l&#039;heure o&ugrave; je te parle, une premi&egrave;re flottille&nbsp;est pr&ecirc;te &agrave; partir, 1 milliard d&rsquo;&ecirc;tres en hibernation y sont pr&eacute;sents.</font></div><div class="post_line"><font color="#fff5b3">- Mince, je ne pensais pas que nous en &eacute;tions l&agrave; !</font><font color="#bbbbbb"> Intervint Eric abasourdi.</font></div><div class="post_line"><font color="#b3d5f4">- Oui, l&rsquo;information circule mais amoindrie pour &eacute;viter un affolement trop important des populations. Toujours est-il que tu seras &agrave; la t&ecirc;te de celle-ci. A partir de ce moment, tu es nomm&eacute; au grade de <strong>Commandeur</strong>.</font></div><div class="post_line"><font color="#fff5b3">- Mais&hellip;</font></div><div class="post_line"><font color="#b3d5f4">- Pas de mais Eric, tu appareilles demain. Nos chercheurs viennent de d&eacute;couvrir un trou de vers, vous allez le prendre en esp&eacute;rant qu&rsquo;il vous m&egrave;nera vers une nouvelle galaxie. Si vous vous en sortez, vous devrez vous d&eacute;brouillez seuls avec les moyens du bord. Quelques chasseurs, Fr&eacute;gates et navettes, c&rsquo;est tout ce que nous avons pu ajouter. Tu disposeras aussi en plus des cinq Ruches, d&rsquo;un vaisseau Amiral derni&egrave;re g&eacute;n&eacute;ration.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Mais, mon oncle pourquoi pas vous ?</font></div><div class="post_line"><font color="#b3d5f4">- Non je dois superviser la suite ici&hellip; d&eacute;p&ecirc;ches toi de rejoindre ton commandement Eric, ton ami Vladimir t&rsquo;accompagnera.</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Eric, comme un zombi se leva, salua, s&rsquo;appr&ecirc;tant &agrave; sortir&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- Ah j&rsquo;oubliai Eric, ta camarade de promotion &agrave; l&rsquo;&eacute;cole spatiale, la Lieutenant Alix Delwood sera ton second</font></div><div class="post_line"><font color="#fff5b3">- Quoi,&nbsp;oh non, piti&eacute;, pas elle, c&rsquo;est une Elfe et Princesse de surcroit !</font><font color="#bbbbbb"> Dit il mimant des gestes hautains, d&eacute;daigneux. Et il ajouta.</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">- Je ne pourrais jamais la supporter&hellip;</font></div><div class="post_line"><font color="#b3d5f4">- Il le faudra, c&rsquo;est une tr&egrave;s bonne combattante,&nbsp;</font><font color="#b3d5f4">une bonne diplomate&nbsp;</font><font color="#b3d5f4">avec </font><font color="#b3d5f4">d&#039;importantes connaissances scientifiques. Elfe de par sa m&egrave;re, elle poss&egrave;de la m&eacute;moire ancestrale des siens et donc des Survivors. Pour la survie de notre nation vous devrez vous entendre. Et pour finir, l&rsquo;Amiral Elton Aulbright sera aussi de la partie. Il vous accompagne comme conseiller&hellip;</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Sans voie, abattu, Eric quitta la pi&egrave;ce avec l&rsquo;impression qu&rsquo;une chape de plomb venait de lui tomber sur les &eacute;paules&hellip;</font></div><div class="post_line"><font color="#bbbbbb">Le Shogun le regarda partir, &eacute;mu. Il est plus fort qu&rsquo;il ne croit, se dit-il,&nbsp;je regrette d&rsquo;avoir &eacute;t&eacute; si dur mais je n&rsquo;avais pas le choix. La Nouvelle Nation Survivors va avoir besoin de lui&hellip; Que dieu te garde Eric&hellip;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Survivors">Cdt. Survivors</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/12656.jpg" style="width:128px;height:77px" alt="Avatar" /><br />05/11/1025 ETU 21:21</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal317010')">Détails</a> <a href="javascript:warnpost(317010)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal317010" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=317010',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><u><font size="5">L&rsquo;Arriv&eacute;e&hellip;</font></u></strong></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Eric entra d&rsquo;un pas h&eacute;sitant dans le poste de Commandement, essayant de se tenir &agrave; tout ce qu&rsquo;il pouvait. Le vaisseau &eacute;tait ballot&eacute; dans tous les sens comme un navire sur une mer d&eacute;chain&eacute;e. Les alarmes s&rsquo;&eacute;taient d&eacute;chain&eacute;es avant d&rsquo;&ecirc;tre interrompues mais des lumi&egrave;res rouges continuaient &agrave; clignoter. Le garde de service &agrave; l&rsquo;entr&eacute;e tenta un garde &agrave; vous et un salut qui faillirent se terminer au sol. Il annon&ccedil;a tout de m&ecirc;me.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">- Commandeur&hellip; sur la&hellip; Passerelle.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">A ses mots, La Capitaine Delwood se retourna du si&egrave;ge de copilote qu&rsquo;elle occupait. </font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- Bonjour Commandeur, vous avez fait un bon somme ? </font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Qu&rsquo;est ce que &ccedil;a&nbsp;peut lui&nbsp;faire ?</font><font color="#44b8ff"> Pensa t-il tr&egrave;s fort, mais il pr&eacute;f&eacute;ra se taire au vu des &eacute;v&eacute;nements en cours. On avait probablement donn&eacute; des ordres pour le sortir de son caisson d&rsquo;hibernation.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Que se passe t-il ?</font><font color="#44b8ff"> Articula t-il avec difficult&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">C&rsquo;est l&rsquo;Amiral Aulbright qui r&eacute;pondit. Eric ne l&rsquo;avait pas vu, assis devant la Console Radar, l&rsquo;officier radariste &agrave; ces cot&eacute;s.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">- Nous ne savons pas vraiment, le tunnel semble s&rsquo;agrandir. Il devient instable. Notre vitesse est toujours la m&ecirc;me mais la trajectoire du vaisseau est de moins en moins lin&eacute;aire. Personnellement, je suis tent&eacute; de croire et d&#039;esp&eacute;rer que nous arrivons au bout du voyage.</font></div><div class="post_line"><font color="#ffff00">- Comment cela au bout ?</font><font color="#44b8ff"> R&eacute;p&eacute;ta Eric qui manifestement avait des difficult&eacute;s &agrave; reprendre ses esprits.</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- Pour faire rapide,</font><font color="#44b8ff"> continua Delwood sur un ton condescendant comme si elle s&rsquo;adressait &agrave; un ben&ecirc;t,&nbsp;</font><font color="#72ff84">nous allons sortir du Vers.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Au moment o&ugrave; les mots &eacute;taient prononc&eacute;s, le noir rempla&ccedil;a les couleurs vives et color&eacute;es du tunnel, le vaisseau ralenti puis se stabilisa. Enfin l&rsquo;espace apparut avec ces multitudes d&rsquo;&eacute;toiles. Dans la salle, un silence impressionnant, tout le personnel s&rsquo;&eacute;tait lev&eacute; pour se rapprocher de la baie et admirer la vue. Puis toutes les voix se firent entendre dans un m&ecirc;me ensemble d&rsquo;&eacute;tonnement, de joie et de commentaires.</font></div><div class="post_line"><font color="#44b8ff">Eric reprenant doucement ses esprits, se rapprocha de l&rsquo;avant.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">-</font><font color="#ffff00"> Bon, si vous le voulez bien, que chacun regagne son poste, nous allons avoir besoin de tous.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Quelques minutes plus tard, les esprits revenus.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Console Radar, </font><font color="#44b8ff">demanda Eric. </font><font color="#ffff00">Avez-vous des contacts avec les vaisseaux Ruches ?</font></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">- Oui Commandeur,&nbsp; ils viennent d&rsquo;&eacute;merg&eacute; comme nous. Ils sont un peu en retrait et si nous pivotons nous les verront. Nous avons fr&ocirc;l&eacute; la catastrophe avec le dernier qui a failli percuter le pr&eacute;c&eacute;dent mais un &eacute;vitement a r&eacute;ussi gr&acirc;ce &agrave; l&rsquo;habilit&eacute; du pilote.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Merci, faites moi rapidement un bilan des plan&egrave;tes susceptibles de nous int&eacute;resser que nous puissions envoyer la reconnaissance. Pilote, vous restez en stationnaire !</font></div><div class="post_line"><font color="#fbb8ec">- Bien Commandeur.</font></div><div class="post_line"><font color="#ffff00">- Trans !</font></div><div class="post_line"><font color="#b3d5f4">- A vos ordres, commandeur !</font></div><div class="post_line"><font color="#ffff00">- Contactez la Cellule Hibernation, je veux que tous les pilotes des escadrons de chasse et ceux des navettes de reconnaissance soient r&eacute;veill&eacute;s le plus rapidement possible. </font><font color="#44b8ff">Puis se retournant vers Aulbright</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Amiral, passez toute la flotte en CODE ORANGE.</font><font color="#44b8ff"> La Capitaine Delwood qui s&rsquo;entretenait avec le pilote, tourna la t&ecirc;te et intervint.</font></div><div class="post_line"><font color="#72ff84">- Commandeur, n&rsquo;est ce pas pr&eacute;matur&eacute;. je ne vois aucun signe permettant de penser que nous sommes en danger.</font></div><div class="post_line"><font color="#ffff00">- Nous ne savons pas o&ugrave; nous sommes et qui nous risquons de rencontrer. Simple mesure de s&eacute;curit&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Quelques heures plus tard, Eric &eacute;tait en grande conversation avec toute l&rsquo;&eacute;quipe dirigeante et les scientifiques responsables de la colonisation. Autour d&rsquo;une table tridimensionnelle de repr&eacute;sentation d&rsquo;une zone cibl&eacute;e de l&rsquo;espace, les avis allaient bon train. Allister, le responsable colonisation montrait &agrave; l&rsquo;aide d&rsquo;un stylo laser un groupe de plan&egrave;tes sur un point.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">-</font><font color="#ffc0cb"> Ces quatre plan&egrave;tes sont relativement proches les unes des autres. Les instruments nous indiquent qu&rsquo;elles sont &agrave; priori aptes &agrave; la vie. Mais bien sur, il faut au pr&eacute;alable envoyer des &eacute;quipes sur place pour plus d&rsquo;informations. Sont-elles compatibles &agrave; la vie ? Sont-elles habit&eacute;es par une vie intelligente ou non ? Peut-&ecirc;tre m&ecirc;me une civilisation puissante, m&ecirc;me si nos instruments n&rsquo;affichent aucun mouvement qui pourraient nous y faire penser.</font></div><div class="post_line"><font color="#72ff84">- Peut-&ecirc;tre devrions nous nous rapprocher avec les Ruches,</font><font color="#44b8ff"> commen&ccedil;a Alix.</font></div><div class="post_line"><font color="#ffff00">- Pas question, nous ne bougeons pas !</font><font color="#44b8ff"> R&eacute;pondit Eric d&rsquo;une voix un peu forte, surprenant les autres. Son ami Vladimir Hoskir qui venait de les rejoindre lui fit un petit signe, l&rsquo;air de dire, on se calme.</font></div><div class="post_line"><font color="#44b8ff">Se reprenant Eric ajouta.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- He, je pr&eacute;f&egrave;re que nous restions un peu &agrave; l&rsquo;&eacute;cart en attendant les r&eacute;sultats des patrouilleurs. Les Ruches ont peu de protections et seront difficiles &agrave; d&eacute;fendre. Face &agrave; une attaque, elles ne tiendront pas longtemps et le Galactica ne pourra&nbsp;assurer la d&eacute;fense de toutes.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Vladimir regardant Eric, demanda,</font></div><div class="post_line"></div><div class="post_line"><font color="#c0f0c6">- Puis-je faire parti de l&rsquo;&eacute;quipe reconnaissance ?</font></div><div class="post_line"><font color="#ffff00">- Mieux, tu en prends le Commandement. Cinq navettes que tu accompagneras avec dix Chasseurs.</font></div><div class="post_line"><font color="#c0f0c6">- Ok, &ccedil;a marche.</font><font color="#44b8ff"> R&eacute;pondit Vladimir faisant un clin d&rsquo;&oelig;il &agrave; son ami.</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17720&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17720" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17720" name="d_reply_17720" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17720');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17720'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Renaissance...</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

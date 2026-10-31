@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16554 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>l&#039;attente</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > l&#039;attente</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />18/11/1022 ETU 11:46</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D296448', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal296446')">Détails</a> <a href="javascript:warnpost(296446)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296446" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296446',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#17b529"><strong><em>SECTEUR 1&nbsp; Quelque part dans le syst&egrave;me 1 sur une plan&egrave;te d&eacute;sertique ......</em></strong></font></div><div class="post_line"></div><div class="post_line"><em>un vaisseau de transport s&#039;&eacute;crase sur cette lune, une grande mer sans mar&eacute;es, de grandes plages,&nbsp;des d&eacute;serts et des rocheuses partout, le jour ne se levant pas vraiment, laissant apparaitre un ciel &eacute;ternel&nbsp;de couchant,&nbsp;la plan&egrave;te apparaissant de grande taille,&nbsp;et de jolies couleurs se m&eacute;langeant dans le ciel....</em></div><div class="post_line"></div><div class="post_line"><em>2 silhouettes sortant de l&#039;&eacute;pave .....Une seule capsule de sauvetage .....Une seule place ......une conversation.....La Capsule d&eacute;colle, l&#039;autre silhouette attendra......</em></div><div class="post_line"></div><div class="post_line"><em>Que peut il se passer dans la galaxie,.....Combien de destins se sont ils ainsi jou&eacute;s ? ....Que d&#039;histoires se sont d&eacute;roul&eacute;es dans cette immensit&eacute; &eacute;toil&eacute; de l&#039;espace si vaste ! Et pourtant emprunt de solitudes si grandes ?</em></div><div class="post_line"></div><div class="post_line"><em><font color="#17b529"><strong>6 ANS PLUS TARD :</strong></font></em></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#e8b6ef"><font size="5"><strong>https://www.youtube.com/watch?v=H_JbhI7fk0g</div><div class="post_line"></div><div class="post_line"></strong></font></font>(Musique de circonstance)</div></div><div class="post_line"></div><div class="post_line">Un vaisseau se pose, sur une plage,&nbsp;un humain, son nom est Monthy, un jeune homme brun,&nbsp;sort du vaisseau ......Au loin, une silhouette se d&eacute;tache....Marche vers lui......</div><div class="post_line">Il n&#039;en crois pas ses yeux ....Bey Ho, une belle jeune femme au teint bronz&eacute;e, de longs cheveux noirs luisants, nou&eacute;s en une natte, la taille fine, une allure sportive,&nbsp;les v&ecirc;tements blancs, aux large manches aux avants bras, apparaissant telle une ange .</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Bey-ho ?? C&#039;est toi ? Mais on croyaient que tu &eacute;tait morte !</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Non ! Cela fait 6 ans que j&#039;attend ici le retour de Greyson !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Monthy la regarde lentement, <font color="#ffff00">Greyson ? ......</font>Il l&#039;a regarde sans bien comprendre....</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Mais dit moi ? Comment as tu surv&eacute;cue&nbsp;?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Il y a une mer ici, pas de mar&eacute;e mais plein de poissons savoureux, un peu de chasse aussi, je me suis fait &eacute;galement une petite maison de pierres, mais tu est l&agrave; maintenant, tu va me ramener dit ? ......Je suppose que Greyson n&#039;a pas du survivre, cela fait des ann&eacute;es maintenant .....Dire que l&#039;on devaient se marier mais il a fallu que ce stupide accident ......</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Votre vaisseau s&#039;est &eacute;cras&eacute; ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Oui la carcasse est l&agrave; a quelques kilom&egrave;tres plus en aval .........Quand on s&#039;est &eacute;cras&eacute;s, on avaient rien mais il ne restait qu&#039;une seule capsule et il &eacute;tait pilote, pas moi, alors c&#039;est lui qui est parti avec, il devait revenir avec des secours.....6 ans que je l&#039;attend mais je ne me fait plus d&#039;illusions maintenant.....Il a du disparaitre, une chance que tu m&#039;ai retrouv&eacute;e !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Heu .....Bey ho ! ......</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Mais maintenant tu va me ramener, &agrave; la compagnie, ils ont du me trouver un rempla&ccedil;ant n&#039;est ce pas ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Hum ! Bey Ho ! Je voudrait te dire .......</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je vivrait dans son souvenir et ....Mais tu allait dire quelque chose ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Bey ho ! .....Je ne sait pas comment te dire cela mais ......</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Mais ? ....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Celui qui t&#039;as remplac&eacute;........C&#039;est Greyson !</font></div><div class="post_line"></div><div class="post_line">Bey Ho &eacute;carquilla les yeux de surprise, s&#039;appuya sur un rocher et finie par s&#039;assoir dessus en accusant le choc .....<font color="#1e92f7">Il est toujours vivant ? Mais ....Mais comment .....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Et c&#039;est pas tout j&#039;en ai peur ......Quand il est revenu il &eacute;tait au bras d&#039;une blonde hautaine, au bout de 2 ans au moins,&nbsp;il nous as dit que tu avais disparue, il a donc pris ta place avec cette bonne femme&nbsp;.....Je t&#039;avouerais que je l&#039;aime pas du tout celle l&agrave; ! Ils se sont mari&eacute;s, Ils ont trois enfants, tu verrais cela, ils sont infernaux et mal &eacute;lev&eacute;s, ils &eacute;nervent tous le monde, mais Ils sont couverts par leur m&egrave;re, je ne sait ou il est all&eacute; la chercher celle l&agrave; mais c&#039;est pas un cadeau je te jure !</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Et quand il est revenu, au bout de 2 ans ? C&#039;est bien cela ? ....Vous l&#039;avez cru ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">On avait pas de raisons &agrave; ce moment de douter de lui ! .......A ce qu&#039;il parait, vous &eacute;tiez en exploration ......Afin de coloniser pour le compte de la compagnie dans une zone d&eacute;serte ......</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Et il en a bien profit&eacute;&nbsp;pour se tenir au vert pendant 2 ans et faire croire a ma disparition ? Alors que moi j&#039;attendait son retour ici .......</font>Bey Ho murmura .....<font color="#1e92f7">Mais quel salaud !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ca, il s&#039;est bien foutu de toi et..... De nous aussi&nbsp;c&#039;est sur !</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Mais comment est tu arriv&eacute; ici ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Suite a ta disparition, le temps a pass&eacute; et le projet de colonie &agrave; &eacute;t&eacute; abandonn&eacute; pendant un temps mais l&agrave;, nous avons &eacute;t&eacute; oblig&eacute;s de reprendre l&#039;id&eacute;e, alors je me suis dit pourquoi pas reprendre &agrave; l&#039;endroit qui a &eacute;t&eacute; abandonn&eacute; et .....Pourquoi pas du m&ecirc;me coup, retrouver l&#039;&eacute;pave de votre vaisseau si il y en avait une bien sur !</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Et tu as bien fait ! je ne te remercierais jamais assez tu sait ! 6 ans !! 6&nbsp;longues ann&eacute;es ! Tu te rend compte ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">En approchant, j&#039;ai d&eacute;tect&eacute; de l&#039;&eacute;nergie .....Je me suis pos&eacute; et .....</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Et voila oui, j&#039;ai gard&eacute;e et r&eacute;ussie a sauvegarder certains objets qui m&#039;ont &eacute;t&eacute; fort utiles !</font> Bey Ho se r&eacute;fugia dans ses bras, Monthy la c&acirc;lina un moment puis reprit</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Et maintenant ? On va rentrer ? Que compte tu faire apr&egrave;s ?&nbsp;</font></div><div class="post_line"></div><div class="post_line">Elle redevint s&eacute;rieuse et regarda vers le lointain puis r&eacute;pondit .....<font color="#1e92f7">R&eacute;gler certaines choses, C&#039;est moi qui vais m&#039;en charger .....A ma mani&egrave;re ! .....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Tu ...Ne vas pas ....Faire une chose que tu pourrais regretter apr&egrave;s hein ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Bey Ho le regarda pensivement mais ne r&eacute;pondit pas et changea de conversation ......<font color="#1e92f7">Ensuite ! je tiens&nbsp;&agrave; revenir et entretenir la maison de pierre, cela pourrait &ecirc;tre int&eacute;ressant de la conserver, J&#039;ai quand m&ecirc;me pass&eacute;e du temps ici !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Comme tu veut mais ....Dit moi au fait, pourquoi vous vous &ecirc;tes &eacute;cras&eacute;s ? ...</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">J&#039;ai crue jusqu&#039;ici &agrave; un accident mais maintenant .......On va en reparler de &ccedil;a aussi crois moi ! Allons y maintenant ! ......</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />19/11/1022 ETU 04:23</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D296450', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal296449')">Détails</a> <a href="javascript:warnpost(296449)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296449" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296449',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Champagne ! .......Vautr&eacute; sur un lit avec No&eacute;mie la blonde, tous les deux en tenues l&eacute;g&egrave;res.......Et surtout ne s&#039;attendant pas au Ma&euml;lstrom qui n&#039;allait pas tarder &agrave; rentrer .....</div><div class="post_line"></div><div class="post_line">Dans cette villa luxueuse ....</div><div class="post_line"></div><div class="post_line">La porte s&#039;ouvrit &agrave; toute vol&eacute;e, surprenant ainsi Greyson et sa blonde, ses yeux &agrave; lui s&#039;agrandirent quand il aper&ccedil;u Bey Ho arm&eacute;e d&#039;un Pistolet Flascher&nbsp; suivi de pr&egrave;s par Monthy qui lui, visiblement, n&#039;&eacute;tait pas arm&eacute;&nbsp;......</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Surprise !!</font>&nbsp;&nbsp;</div><div class="post_line"></div><div class="post_line">Greyson se redressa et se mit assis sur le bord du lit tout en posant la coupe sur la table de nuit mais ne quittant pas des yeux Bey Ho&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3">Heuu ....Attend ! Attend je vais t&#039;explqu.......</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Hooo non de gr&acirc;ce ! ne me fait pas ce coup l&agrave; Greyson, ne me sort pas ce num&eacute;ro de ....Ce n&#039;est pas ce que tu crois ! Ne te fait pas plus minable que tu ne l&#039;est d&eacute;j&agrave; ! C&#039;est bien suffisant comme &ccedil;a !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3">....Que vas tu faire avec ce Flascher ? Tu vas nous tuer tous les deux ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">T<font color="#1e92f7">e tuer ! .......Te tuer ??? .....</font>Bey ho souffla doucement en souriant tout en faisant non de la t&ecirc;te lentement ......</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">SSSSSssss ......Mon pauuuuvre ami ! Il y a 6 ans de cela j&#039;aurais pu le faire si j&#039;avais su que tu me trompait oui ! Sans doute que j&#039;aurais pu le faire ! Mais aujourd&#039;hui, j&#039;arrive 6 ans trop tard !&nbsp; Te tuer maintenant serait parfaitement Pu&eacute;rile, ridicule et je dirais m&ecirc;me, Pitoyable ! Je ne m&#039;abaisserais pas &agrave; cela !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je doit dire m&ecirc;me que si tu &eacute;tait arriv&eacute; au bout de 6 ans,&nbsp; je n&#039;aurais plus rien &eacute;prouv&eacute;e pour toi ! En fait, pour dire la v&eacute;rit&eacute;,&nbsp;Notre amour est mort dans le crash du vaisseau ....Et moi qui t&#039;attendait comme une idiote !</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Ce vaisseau de la compagnie ......Que tu as si joliment d&eacute;truit !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3">D&eacute;truit ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Ha oui ! C&#039;est vrai, je ne t&#039;ai pas dit ! Des mon retour bien sur, il y a eu une commission d&#039;enqu&ecirc;te, Gr&acirc;ce &agrave; mes indications, on a retrouv&eacute;s facilement l&#039;&eacute;pave de notre vaisseau ........Et bien sur les restes de ta belle bombe a retardement plac&eacute;e dans la salle d&#039;ing&eacute;nierie ......</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Voila comment je r&eacute;sume les faits .....Moi Digne fille de mon p&egrave;re qui devait me retrouver &agrave; la t&ecirc;te de la compagnie, le jour ou ce projet a&nbsp; commenc&eacute;, bien sur tu t&#039;est port&eacute; volontaire, on s&#039;aimait et ton plan &eacute;tait facilement r&eacute;alisable .....</font></div><div class="post_line"><font color="#1e92f7">aller explorer une belle plan&egrave;te ......C&#039;&eacute;tait pour y installer une colonie .......mais tu ne t&#039;est pas dirig&eacute; vers la plan&egrave;te mais sur sa lune, il faut dire que c&#039;&eacute;tait une occasion en or pour toi pas vrai ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Apr&egrave;s une nuit brulante entre nous, moi endormie, tu t&#039;est relev&eacute; et tu&nbsp;n&#039;avais plus qu&#039;a placer la bombe .....Boum ! le crash ! et comme tu &eacute;tait le seul pilote ......</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Mais h&eacute;las pour toi ! sur cette lune, il y avait de la nourriture, de quoi vivre, de l&#039;eau aussi ! Et moi persuad&eacute;e que tu &eacute;tait mort en voulant me sauver ! j&#039;ai &eacute;t&eacute; b&ecirc;te ! Je sait ! tu aurais du v&eacute;rifier de la nature exacte de la plan&egrave;te pauvre idiot .....</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Apr&egrave;s quoi ! Tu as attendu 2 ans avant de remonter &agrave; la surface, il fallait bien faire croire parfaitement &agrave; un d&eacute;sastre et comme tu &eacute;tait mon fianc&eacute;, rien de plus facile pour toi de me remplacer pas vrai ? ....Et aujourd&#039;hui, je te trouve avec ta pouf de Blondasse</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">HEE HOO JE VOUS PERMET PAS DE .....</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">TOI LA FERME&nbsp; !!! LA FERME JE TE DIT !!</font>&nbsp;Hurla Bey Ho en la braquant avec son Flascher <font color="#1e92f7">C EST UN BON CONSEIL QUE JE TE DONNE SURTOUT LA FERME COMPRIS ?!!&nbsp;</font></div><div class="post_line"></div><div class="post_line">De peur, Noh&eacute;mie se recula le dos au mur et se tint coite, Bey Ho reporta son regard sur Greyson et reprit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">C&#039;&eacute;tait bien calcul&eacute; .....Sauf que&nbsp;</font></div><div class="post_line"></div><div class="post_line">Greyson baissait les yeux mais elle reprit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Tout &agrave; l&#039;heure ....Il y a eu une r&eacute;union extraordinaire du conseil d&#039;administration.........On t&#039;a trouv&eacute; un rempla&ccedil;ant .......</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3">Hein ? qui ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Bey Ho savait qu&#039;il savait ........Il savait que dor&eacute;navant, c&#039;&eacute;tait la fin pour lui, fini de parader, de s&#039;offrir les a&eacute;ro mobiles de luxe ou .....cette belle villa avec piscine&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Tu ne devine pas ?</font> Elle se retourna vers Monthy .......</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Monthy !</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Greyson regarda Monthy qui le fixait, nonchalamment le dos appuy&eacute; au mur, les mains dans les poches, celui ci haussa les sourcils bri&egrave;vement d&#039;un air amus&eacute;, un sourire en coin ...</div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3">TU N EST QU UNE .......</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">UNE QUOI ? HEIN GRESON ? UNE QUOI ? C EST TOI QUI TE PREPARE A ME DIRE UNE INSULTE ? TOI QUI M A ABANDONNNEE PENDANT 6 ANS EN ESPERANT QUE JE DISPARAISSE ? ....HEIN ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Silence total ........Mais tout a coup deux chuintements puis 4 coups sourds, sourds et &eacute;touff&eacute;s venant de l&#039;ext&eacute;rieur, des porti&egrave;res d&#039;a&eacute;ro mobiles.....</div><div class="post_line"></div><div class="post_line">Bey Ho bascula la t&ecirc;te en arri&egrave;re, tout sourire,&nbsp;une m&egrave;che de cheveux tombant en pointe en travers de son visage bronz&eacute; .....Ses yeux l&eacute;g&egrave;rement tourn&eacute;s de cot&eacute; .....</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je crois que l&#039;on viens te chercher Greyson, la police il me semble .......Tu sait ? J&#039;ai entendu le t&eacute;moignage des autres employ&eacute;s de la compagnie, ils en ont marre ! Marre de tes sales petits monstres ! Qui courent dans les couloirs du bureau en faisant n&#039;importe quoi, crachant au visage, donnant coup de pieds ou poings et leurs volant m&ecirc;me de l&#039;argent ou des objets personnels, sans jamais avoir de remontrance car bien sur, leur ch&egrave;re Maman couvre ses petits affreux monstres ch&eacute;ris.</font>&nbsp;</div><div class="post_line"></div><div class="post_line">T<font color="#1e92f7">u sait ? Quelqu&#039;un m&#039;a dit un jour qu&#039;un scorpion qui se met en couple avec un autre scorpion, ne peut avoir comme enfants ....Que des scorpions, tout bien r&eacute;fl&eacute;chie, je pense qu&#039;il avait fichtrement raison !</font></div><div class="post_line"></div><div class="post_line">No&eacute;mie se mordit la l&egrave;vre tout en baissant les yeux !</div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3">La police ? Et pourquoi la Police ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Bey Ho gloussa ....<font color="#1e92f7">POURQUOI&nbsp; ? Tu ose le demander ? Abandon&nbsp; et mise en danger de la vie d&#039;autrui pour ne pas dire tentative de meurtre, autrement dit moi&nbsp;! Spoliation, escroqueries sans parler de l&#039;acte de Sabotage sur le vaisseau de la compagnie,</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Elle s&#039;arr&ecirc;ta sur place en levant un index en l&#039;air ........<font color="#1e92f7">Ho j&#039;oubliais.....</font>Elle se retourna narquoise ....<font color="#1e92f7">Tu est vir&eacute; !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc6c3">TU NE PEUT PAS ME FAIRE CA !!&nbsp;COMMENT ....CO ...COMMENT JE VAIS VIVRE MOI ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Bey Ho ricana et reprit .....<font color="#1e92f7">C&#039;est vrai qu&#039;a part escroquer les gens et les spoliant, tu ne sait pas faire grand chose !</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Autant te dire de suite, il ne vas rien te rester du tout car il va falloir que tu paye pour rembourser tous le monde et en 6 ans, tu as fait fort&nbsp;donc cette maison, ton a&eacute;ro mobile et tout le reste que tu as d&eacute;pens&eacute; .......Fini !! .....Envol&eacute; ! .....Tout sera vendu !......Mais rassure toi ! Tu ne vas pas &ecirc;tre &agrave; la rue ! NOOOOooon ! Juste une jolie cellule de 2 m&egrave;tres sur trois avec une jolie fen&ecirc;tre &agrave; barreaux avec vue sur la cour de la prison ......</font></div><div class="post_line"></div><div class="post_line">Des pas r&eacute;sonn&egrave;rent dans la cage d&#039;escalier&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Bon je te quitte ! Monty on y va, je ne veut pas trop assister &agrave; cela ......</font></div><div class="post_line"></div><div class="post_line">Ils rencontr&egrave;rent les Policiers qui montaient, ils les salu&egrave;rent en souriant, ils r&eacute;pondirent de m&ecirc;me .....</div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">C&#039;est encore un &eacute;tage .....la Porte est ouverte,&nbsp;impossible de la manquer</font></div><div class="post_line"><font color="#fff5b3">&nbsp;</font></div><div class="post_line">Merci Mademoiselle Bey .....</div><div class="post_line"></div><div class="post_line">la suite ! .....</div><div class="post_line"></div><div class="post_line">La suite ?....Elle n&#039;est pas difficile a deviner....Monthy rempla&ccedil;a Greyson efficacement, les employ&eacute;s soulag&eacute;s d&#039;&ecirc;tre d&eacute;barrass&eacute;s de No&eacute;mie et de ses monstres&nbsp;</div><div class="post_line"></div><div class="post_line">Monthy fini par se rapprocher inexorablement de Bey Ho ...Puis un jour, finirent par se marier et fond&egrave;rent ainsi une belle famille d&#039;enfants tr&egrave;s courtois ......Comme on dit dans les contes pour enfants, ils se mari&egrave;rent et .........Mais bien sur vous connaissez la suite &eacute;videmment.</div><div class="post_line"></div><div class="post_line">Pour Greyson et No&eacute;mie ce ne fut pas du tout la m&ecirc;me chansonnette, accus&eacute; de plusieurs chefs d&#039;accusation, au proc&egrave;s, pour Greson et No&eacute;mie qui fut appel&eacute;e comme simple t&eacute;moin,&nbsp;ce fut une belle s&eacute;ance d&#039;insultes, de jurons et d&#039;accusations entre les deux ......Au final, Greyson coupable et direction la cellule pour plusieurs ann&eacute;es......</div><div class="post_line"></div><div class="post_line">En cons&eacute;quence, No&eacute;mie demanda bien &eacute;videmment le divorce, elle n&#039;eue aucun mal a avoir la garde des enfants, il lui restait pas mal de bijoux qui, eux, lui appartenait vraiment, pour gagner la garde, &ecirc;tre riche, c&#039;est pratique,&nbsp;quand &agrave; l&#039;affaire elle m&ecirc;me, elle ressortie libre&nbsp;car, dans le fond, que pouvait on lui reprocher ......Sinon d&#039;avoir sem&eacute;e le d&eacute;sordre dans les couloirs des bureaux de la compagnie. et puis, de son mari, elle ne voulait plus en entendre parler !</div><div class="post_line"></div><div class="post_line">H&eacute; !........ Bien sur ! Il ne repr&eacute;sentait plus rien en finances, il fallait bien qu&#039;elle aille profiter d&#039;un autre pigeon ailleurs ! Quitte &agrave; en ramasser le plus possible .......</div><div class="post_line"></div><div class="post_line">Bey Ho au final, avait totalement raison, quand deux scorpions se mette en couple.....Cela ne tient pas longtemps........</div><div class="post_line"></div><div class="post_line">Du couple, en G&eacute;n&eacute;ral, il n&#039;en reste pratiquement plus rien n&#039;est il pas ? ..........</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center"><strong><font color="#e8b6ef"><font size="5">https://www.youtube.com/watch?v=H_JbhI7fk0g</font></font></strong></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16554&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16554" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16554" name="d_reply_16554" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16554');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16554'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > l&#039;attente</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

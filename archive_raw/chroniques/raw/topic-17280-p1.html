@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17280 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Open Bar : Secteur 6</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Open Bar : Secteur 6</p>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=17280&c_forum_page=1&c_page=2">2</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=17280&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />22/06/1024 ETU 22:12</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal308900')">Détails</a> <a href="javascript:warnpost(308900)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308900" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308900',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="7"><u>DERIVES SECTAIRES</u></font></font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center">Le Secteur 6, autrefois un havre de recherche et d&#039;innovation au sein de la civilisation theniane, s&#039;est transform&eacute; en un territoire impr&eacute;gn&eacute; de d&eacute;rives sectaires. L&#039;influence de croyances d&eacute;viantes et de pratiques occultes y a prosp&eacute;r&eacute;, cr&eacute;ant une atmosph&egrave;re de mysticisme perverti et de domination mentale. Ce secteur, est entour&eacute; de montagnes mena&ccedil;antes et de for&ecirc;ts &eacute;paisses, isol&eacute; du reste de la soci&eacute;t&eacute; theniane par des barri&egrave;res naturelles et technologiques.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">Les rues de ce secteur, autrefois anim&eacute;es par des scientifiques et des ing&eacute;nieurs, sont maintenant occup&eacute;es par des groupes sectaires v&ecirc;tus de robes c&eacute;r&eacute;monielles, arborant des symboles &eacute;sot&eacute;riques. Les b&acirc;timents, autrefois des laboratoires et des centres de recherche, ont &eacute;t&eacute; convertis en temples obscurs et en sanctuaires d&eacute;di&eacute;s &agrave; des divinit&eacute;s inconnues. Les murs sont recouverts de graffitis cryptiques, et l&rsquo;air est impr&eacute;gn&eacute; de chants hypnotiques et de murmures incessants.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">Les d&eacute;rives sectaires dans le Secteur 6 ont pris des formes vari&eacute;es et inqui&eacute;tantes. Les groupes les plus influents pratiquent des rituels obscurs, pr&eacute;tendant communier avec des entit&eacute;s extraterrestres ou des esprits anciens. Ces rituels impliquent souvent des sacrifices symboliques, des s&eacute;ances de transe collective, et l&rsquo;utilisation de technologies d&eacute;tourn&eacute;es pour induire des &eacute;tats de conscience alt&eacute;r&eacute;s. Des drogues psychotropes et des dispositifs de stimulation c&eacute;r&eacute;brale sont employ&eacute;s pour manipuler les esprits faibles, les enr&ocirc;lant dans des cultes et des actions&nbsp;toujours plus radicales.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">Les leaders sectaires, exploitent les d&eacute;sirs de leurs adeptes de trouver un sens et un but dans un univers chaotique. Ils promettent des r&eacute;v&eacute;lations spirituelles et une protection contre les t&eacute;n&egrave;bres croissantes de l&rsquo;univers. Cependant, sous la surface de leurs promesses, se cachent des pratiques abusives et un contr&ocirc;le mental oppressif. Les adeptes sont souvent soumis &agrave; des conditions de vie extr&ecirc;mes, forc&eacute;s de renoncer &agrave; leur individualit&eacute; et &agrave; leur libre arbitre.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">Les adeptes sont forc&eacute;s de faire des choix sous une pression extr&ecirc;me, souvent priv&eacute;s de sommeil et de nourriture pour briser leur volont&eacute;. Les leaders sectaires utilisent des technologies d&eacute;tourn&eacute;es pour contr&ocirc;ler les esprits, rendant toute opposition pratiquement impossible. Ces pratiques abjectes menacent non seulement la stabilit&eacute; de notre soci&eacute;t&eacute;, mais aussi la vie et la libert&eacute; de nos concitoyens.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">Le commandant Veloran, un leader respect&eacute; au sein de la Conscience Collective Ancr&eacute;, observe avec une inqui&eacute;tude croissante la d&eacute;gradation du Secteur 6. Conscient des dangers que repr&eacute;sentent ces d&eacute;rives sectaires non seulement pour les individus impliqu&eacute;s mais aussi pour la stabilit&eacute; de toute la civilisation theniane, il d&eacute;cide qu&#039;une intervention est n&eacute;cessaire. Apr&egrave;s des d&eacute;lib&eacute;rations intenses avec les membres &eacute;minents de la CCA, Veloran &eacute;labore un plan audacieux pour reprendre le contr&ocirc;le du secteur.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">L&#039;op&eacute;ration pour ouvrir le Secteur 6 est planifi&eacute;e avec pr&eacute;cision. Veloran d&eacute;ploie une force combin&eacute;e de drones de surveillance, d&#039;unit&eacute;s de s&eacute;curit&eacute; robotis&eacute;es, et de sp&eacute;cialistes en cybern&eacute;tique pour neutraliser les technologies d&eacute;tourn&eacute;es utilis&eacute;es par les sectes. L&#039;objectif est de d&eacute;sactiver les dispositifs de contr&ocirc;le mental et de perturber les rituels occultes sans causer de dommages excessifs aux adeptes eux-m&ecirc;mes.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">Le jour de l&#039;op&eacute;ration, le Secteur 6 est envelopp&eacute; dans une tension palpable. Les drones de surveillance survolent silencieusement les rues, tandis que les unit&eacute;s de s&eacute;curit&eacute; avancent m&eacute;thodiquement, d&eacute;sactivant les pi&egrave;ges technologiques et dispersant les foules sectaires. Les leaders sectaires, pris de panique, tentent de rallier leurs fid&egrave;les pour une derni&egrave;re r&eacute;sistance, mais les forces de Veloran, bien entra&icirc;n&eacute;es et d&eacute;termin&eacute;es, avancent sans rel&acirc;che.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">Des confrontations &eacute;clatent, m&ecirc;lant technologie et occultisme dans un spectacle de lumi&egrave;res et de sons hallucinants. Les dispositifs de contr&ocirc;le mental sont d&eacute;sactiv&eacute;s, lib&eacute;rant les adeptes de leur emprise. Beaucoup d&#039;entre eux, d&eacute;sorient&eacute;s et confus, sont pris en charge par des &eacute;quipes m&eacute;dicales et psychologiques, pr&eacute;par&eacute;es &agrave; les aider &agrave; r&eacute;int&eacute;grer la soci&eacute;t&eacute; theniane.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">Avec l&#039;ouverture du Secteur 6, Veloran et son &eacute;quipe se concentrent sur la r&eacute;habilitation des anciens adeptes. Des programmes de d&eacute;programmation mentale et de soutien psychologique sont mis en place, visant &agrave; restaurer leur libre arbitre et &agrave; leur offrir une nouvelle perspective de vie. Des mentors et des philosophes virtuels sont d&eacute;ploy&eacute;s pour guider ces individus &agrave; travers une p&eacute;riode de transition difficile, les aidant &agrave; reconstruire leur identit&eacute; et &agrave; retrouver un sens &agrave; leur existence.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">La r&eacute;ussite de l&#039;op&eacute;ration d&#039;ouverture du Secteur 6 marque un tournant pour la civilisation theniane. Elle d&eacute;montre la d&eacute;termination de la Conscience Collective Ancr&eacute; &agrave; prot&eacute;ger ses membres contre les influences destructrices et &agrave; maintenir l&#039;unit&eacute; et la stabilit&eacute; de la soci&eacute;t&eacute; du secteur 6. Le commandant Veloran est acclam&eacute; pour son leadership et son courage, et la r&eacute;habilitation du Secteur 6 devient un symbole de renouveau et d&#039;espoir pour un avenir meilleur.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center">L&#039;ombre des d&eacute;rives sectaires est dissip&eacute;e, remplac&eacute;e par une lumi&egrave;re nouvelle de solidarit&eacute; et de r&eacute;silience. Les Thenians, unis par cette victoire, se pr&eacute;parent &agrave; affronter les d&eacute;fis de l&#039;univers avec une d&eacute;termination renouvel&eacute;e et une foi in&eacute;branlable en leur capacit&eacute; &agrave; surmonter les t&eacute;n&egrave;bres croissantes qui les entourent.</div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="6"><u>Abolir&nbsp;la secte en&nbsp;Secteur 6 et Restaurer l&#039;Ordre</u></font></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="3">La situation dans le Secteur 6 est critique. Les d&eacute;rives sectaires y ont pris des proportions alarmantes, mena&ccedil;ant notre civilisation et notre qu&ecirc;te commune. Nous avons besoin de votre courage, de votre expertise et de votre d&eacute;termination pour contrer cette menace.</font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff0000"><font size="3">Nous vous appelons &agrave; vous rassembler imm&eacute;diatement. Votre pr&eacute;sence est essentielle pour r&eacute;tablir l&#039;ordre, lib&eacute;rer nos concitoyens de l&#039;emprise sectaire et assurer la stabilit&eacute; de notre soci&eacute;t&eacute;. Rejoignez-nous&nbsp;pour pr&eacute;parer une offensive d&eacute;cisive.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000"><font size="3">De plus, nous annon&ccedil;ons que la colonisation de ce secteur est </font><font size="5"><u>OUVERT A TOUS CEUX QUI SOUHAITENT RETABLIR L&#039;ORDRE</u></font><font size="3"> et contribuer &agrave; la renaissance du Secteur. Votre engagement et votre esprit de solidarit&eacute; seront les cl&eacute;s de notre succ&egrave;s.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000"><font size="3">L&#039;heure est grave. Ensemble, nous surmonterons cette &eacute;preuve et prot&eacute;gerons l&#039;avenir de notre peuple.</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000"><font size="3">Pour l&#039;honneur du Secteur 6</font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000"><font size="3">Commandant Veloran</font></font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />22/06/1024 ETU 22:55</td><td class="post_right"><div class="posthead">Score&nbsp;: 9 <a href="javascript:toggle_bloc('cal308901')">Détails</a> <a href="javascript:warnpost(308901)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308901" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 6<br />conteur formidable : 2<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308901',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">&nbsp;Blasph&egrave;me, h&eacute;r&eacute;sie et mensonge..&nbsp;</div><div class="post_line"></div><div class="post_line">Beau manipulateur, tout le secteur vie main dans main, et se serrent les coude.</div><div class="post_line"></div><div class="post_line">Bien a vous, ch&egrave;re lecteur, en esp&eacute;rant vous ne donnerez pas raison.. A cette &quot;Chose&quot; qui ne r&eacute;pond a aucun de&nbsp; nos message,</div><div class="post_line">on pourrait croire qu&#039;il vie dans c&#039;est r&ecirc;ve..&nbsp;&nbsp;Et ose venir dire se genre de chose, encore une fois sans parler a qui que se soit .</div><div class="post_line"></div><div class="post_line">Je vous laisse d&eacute;cidez de venir parler a d&#039;autre personne du secteur pour prouver qu&#039;il n&#039;est qui langue de vip&egrave;re.</div><div class="post_line"></div><div class="post_line">Bien a vous.&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />23/06/1024 ETU 00:25</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D308905', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308902')">Détails</a> <a href="javascript:warnpost(308902)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308902" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308902',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Bande-son : Evgueni Galperine Triumph Of Saint-Laurent&nbsp;</div><div class="post_line"></div><div class="post_line">Dans l&#039;atmosph&egrave;re solennelle de la salle de commandement, Veloran, son regard durci par les &eacute;preuves, s&#039;adressa &agrave; l&#039;auditoire compos&eacute; de commandants fatigu&eacute;s mais r&eacute;solus. Autour d&#039;eux, les &eacute;crans lumineux projetaient des rapports alarmants, r&eacute;v&eacute;lant une s&eacute;rie d&#039;intimidations et d&#039;attaques insidieuses qui avaient marqu&eacute; chaque &eacute;tape de leur expansion galactique.</div><div class="post_line"></div><div class="post_line">&quot;Mes camarades, commen&ccedil;a-t-il d&#039;une voix empreinte de gravit&eacute;, nous poss&eacute;dons seulement 14 plan&egrave;tes, au d&eacute;part&nbsp;chaque nouvelle plan&egrave;te que nous avons conquise a &eacute;t&eacute; accueillie non pas par la paix, mais par une s&eacute;rie d&#039;intimidations implacables. &Agrave; chaque avanc&eacute;e, nous avons re&ccedil;u des menaces virulentes, des provocations qui ont cherch&eacute; &agrave; nous affaiblir et&nbsp;&agrave; nous diviser.</div><div class="post_line"></div><div class="post_line">Les visages autour de lui affichaient une tension palpable, chacun ayant vu de pr&egrave;s les cons&eacute;quences de ces actes d&#039;hostilit&eacute;:</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">-Pillages impitoyables</font></div><div class="post_line"><font color="#ff0000">-Piratages malveillants,&nbsp;</font></div><div class="post_line"><font color="#ff0000">-Bombardements</font></div><div class="post_line"><font color="#ff0000">-Harc&egrave;lement continu , intimidations multiples</font></div><div class="post_line"></div><div class="post_line">Nos colonies nouvellement &eacute;tablies ont &eacute;t&eacute; soumises &agrave; un feu crois&eacute; de destruction et de chaos orchestr&eacute;s par des mains anonymes mais n&eacute;anmoins implacables.</div><div class="post_line"></div><div class="post_line">Veloran scrutait la carte du Secteur 6 avec une satisfaction m&ecirc;l&eacute;e de gravit&eacute;. Les rapports alarmants et les attaques r&eacute;p&eacute;t&eacute;es avaient impos&eacute; une r&eacute;alit&eacute; brutale : la prise de la capitale dissidente &eacute;tait devenue une n&eacute;cessit&eacute; urgente pour restaurer l&#039;ordre.</div><div class="post_line"></div><div class="post_line">Les provocations incessantes et les man&oelig;uvres sournoises nous ont contraints &agrave; agir avec une <font color="#ff0000"><font size="5">fermet&eacute; absolue.</font></font> La conqu&ecirc;te de la capitale du Secteur 6 n&#039;&eacute;tait pas une simple ambition, mais un imp&eacute;ratif crucial pour ramener la <font color="#005dc2"><font size="5">paix et la s&eacute;curit&eacute; </font></font>dans notre expansion galactique.</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ff0000">--------------------- ------------------------ ------------------------- ----------------------- ------------------------- ----------------------------- ----------------------</font></div></div><div class="post_line"></div><div class="post_line">Autour de lui, les visages fatigu&eacute;s mais r&eacute;solus acquiesc&egrave;rent silencieusement. Chacun comprenait que l&#039;avenir de leurs colonies nouvellement acquises d&eacute;pendait de l&#039;&eacute;limination de cette menace dissidente. Les images des ravages et du chaos sem&eacute;s par les factions rebelles r&eacute;sonnaient encore dans leurs esprits, alimentant leur d&eacute;termination.</div><div class="post_line"></div><div class="post_line">&quot;Les <font color="#ff0000"><font size="4">sabotages</font></font>, les<font color="#ff0000"><font size="5"> piratages,&nbsp;</font></font><font size="5"><font color="#ffffff">les</font> </font><font size="5"><font color="#ff0000">bombardements,</font></font>&nbsp;les <font color="#e82a1f"><font size="5">attaques insidieuses</font></font> &nbsp;devaient cesser,&quot; poursuivit-il. &quot;Nous avons d&ucirc; agir en capturant leur centre de pouvoir et en d&eacute;mantelant leurs r&eacute;seaux de soutien pour assurer la stabilit&eacute; de nos territoires et la s&eacute;curit&eacute; de nos citoyens.<font size="4"> <font color="#005dc2">C&#039;&eacute;tait la seule voie vers une paix durable.&quot;</font></font></div><div class="post_line"></div><div class="post_line">Les images des plan&egrave;tes en flammes, des cit&eacute;s en ruines et des populations en d&eacute;tresse hantaient l&#039;esprit de tous pr&eacute;sents. Veloran poursuivit, son regard per&ccedil;ant scrutant les r&eacute;actions de ses pairs ;</div><div class="post_line"></div><div class="post_line"><font color="#ff0000">-Les pillages r&eacute;p&eacute;t&eacute;s</font></div><div class="post_line"><font color="#ff0000">-Le hacking de nos syst&egrave;mes&nbsp;</font></div><div class="post_line"><font color="#ff0000">-Les sabotages et bombardements de nos infrastructures essentielles</font></div><div class="post_line"><font color="#ff0000">-Les assaut r&eacute;p&eacute;t&eacute; sur nos flottes</font></div><div class="post_line"><font color="#ff0000">-les invasions</font></div><div class="post_line"></div><div class="post_line">R&eacute;cemment, notre empire a &eacute;t&eacute; confront&eacute; &agrave; cinq tentatives d&#039;invasions coordonn&eacute;es qui ont secou&eacute; la moiti&eacute; de nos plan&egrave;tes strat&eacute;giques &agrave; travers la galaxie. Ces assauts m&eacute;thodiques et bien orchestr&eacute;s ont mis en lumi&egrave;re une menace sournoise qui d&eacute;fie notre s&eacute;curit&eacute; et notre stabilit&eacute;.</div><div class="post_line"></div><div class="post_line">Tout cela a &eacute;t&eacute; con&ccedil;u pour nous affaiblir, pour nous rappeler la fragilit&eacute; de notre existence dans cet univers impitoyable.</div><div class="post_line"></div><div class="post_line">Un silence lourd s&#039;abattit sur la salle, bris&eacute; seulement par le bourdonnement distant des ordinateurs et les respirations retenues des commandants. Dans les yeux de Veloran brillait une d&eacute;termination in&eacute;branlable, une promesse tacite de mettre fin &agrave; ces temps troubl&eacute;s et de restaurer l&#039;honneur de leur peuple.</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ff0000">--------------------- --------&nbsp; &nbsp; ----------------------------------- -----------&nbsp; --------------------------&nbsp; &nbsp; ----------------------------------&nbsp; &nbsp; -------------------------</font></div></div><div class="post_line"></div><div class="post_line">Nous ne pouvons plus rester passifs face &agrave; cette menace. Nous devons agir avec une fermet&eacute; in&eacute;branlable pour &eacute;radiquer ces forces sectaires, pour assurer la s&eacute;curit&eacute; de nos citoyens et pour restaurer l&#039;int&eacute;grit&eacute; de notre empire. Chaque attaque, chaque acte de sabotage, renforce notre d&eacute;termination &agrave; d&eacute;fendre notre mode de vie et nos valeurs.</div><div class="post_line"></div><div class="post_line">Je vous appelle tous &agrave; vous unir dans cette lutte cruciale. D&eacute;non&ccedil;ons ceux qui cherchent &agrave; diviser et &agrave; affaiblir notre empire. Renfor&ccedil;ons nos d&eacute;fenses, consolidons notre unit&eacute; et faisons preuve d&#039;une vigilance constante face &agrave; cette menace insidieuse.</div><div class="post_line"></div><div class="post_line">Ensemble, nous pouvons triompher de ces forces obscures. Ensemble, nous restaurerons la paix et la prosp&eacute;rit&eacute; pour chaque citoyen de notre empire. Que notre d&eacute;termination soit notre bouclier et notre solidarit&eacute; notre force.</div><div class="post_line"></div><div class="post_line">Pour la grandeur de notre empire et la s&eacute;curit&eacute; de notre avenir, engageons-nous aujourd&#039;hui &agrave; &eacute;liminer les forces sectaires qui cherchent &agrave; nous diviser.</div><div class="post_line"></div><div class="post_line">Veloran</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Hamilton">Cdt. Hamilton</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/4408.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:16<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308903')">Détails</a> <a href="javascript:warnpost(308903)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308903" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308903',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">pfffff</div><div class="post_line">Ils arrivent....</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Pffffff</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ydal+Karfrenn">Cdt. Ydal Karfrenn</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/12268.jpg" style="width:127px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:18</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal308904')">Détails</a> <a href="javascript:warnpost(308904)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308904" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308904',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">[Courtoisie] Bonjour &agrave; tous, peuples des secteurs ext&eacute;rieurs. Nous sommes actuellement dans une position compliqu&eacute;e. </div><div class="post_line"></div><div class="post_line">[Imp&eacute;ratif] Substrat linguistique simplifi&eacute;.</div><div class="post_line"></div><div class="post_line">Initialisation BIOCOM.pvi(SLS)...</div><div class="post_line">pr&ecirc;t:_</div><div class="post_line">autoris&eacute;...</div><div class="post_line">connexion...</div><div class="post_line">\Root\?_</div><div class="post_line">\Root\RETOUR MWP//bin/loc/substrat</div><div class="post_line">622818 entr&eacute;es trouv&eacute;es</div><div class="post_line">Traitement...</div><div class="post_line">Patientez...</div><div class="post_line">Patientez...</div><div class="post_line">Patientez&hellip;</div><div class="post_line"></div><div class="post_line">Je me permets de transmettre ce message qui parle, je le pense, au nom de beaucoup de commandants de mon secteur, le secteur 6.</div><div class="post_line"></div><div class="post_line">Tr&egrave;s t&ocirc;t, nous sommes rentr&eacute;e en contact avec de nombreux commandants tr&egrave;s coop&eacute;ratifs et fil de discussion, nous avons form&eacute; une assembl&eacute;e sectorielle avec le Gardien de l&#039;&Eacute;clipse Joruus, l&#039;Himmlischer Kaiser Mozart, MoustacheMan, le Capitaine Surcouf, le Grand Ch&ecirc;ne Mojo, le Grand Oracle des Orbes Jumelles Somenklatoor et le Pr&ecirc;cheur Seh L&#039;Oracle Infini. Cette assembl&eacute;e, ouverte &agrave; tous les commandants du secteur souhaitant collaborer ensemble pour un avenir meilleur, a mis en place de nombreux plans de collaboration technologique et &eacute;conomique visant au d&eacute;veloppement des nations les plus faibles et &agrave; une juste r&eacute;partition des biens. </div><div class="post_line"></div><div class="post_line">Tout ce qu&rsquo;a dit la conscience collective Thenian est faux. Le secteur 6 n&rsquo;a jamais &eacute;t&eacute; un havre de paix scientifique sous la coupe de la civilisation thenian. Le secteur n&#039;a jamais &eacute;t&eacute; rong&eacute; par de quelconques d&eacute;rives sectaire. Bien qu&#039;il existe en effet deux nations th&eacute;ocratiques au sein de notre secteur, chaque nation est ind&eacute;pendante et aucune religion n&#039;a jamais &eacute;t&eacute; impos&eacute;e &agrave; un peuple. Ma nation, la Hi&eacute;rarchie Neras dispose d&#039;une spiritualit&eacute; qui lui est propre comme tous les peuples du secteur. </div><div class="post_line"></div><div class="post_line">Thenian a ignor&eacute; nos premiers contacts et transgresser les r&egrave;gles tacites de notre communaut&eacute;. Il s&#039;est empar&eacute; de plan&egrave;tes situ&eacute;es dans l&#039;espace natales de certains peuples, bloquant leur d&eacute;veloppement. Ainsi, face &agrave; cette expansion agressive, des commandants comme le Pr&ecirc;cheur Seh L&#039;Oracle Infini qui &eacute;tait lui-m&ecirc;me victime de cette expansion, a r&eacute;agit. Le Pr&ecirc;cheur Seh L&#039;Oracle Infini n&#039;a re&ccedil;u en r&eacute;ponse que des insultes. &Eacute;tonnant, venant d&#039;une entit&eacute; qui se dit &ecirc;tre un exemple de bon sens et de civilisation, n&rsquo;est ce pas ? Je vous joins d&#039;ailleurs la conversation qui m&#039;a &eacute;t&eacute; transmise par le Pr&ecirc;cheur Seh L&#039;Oracle Infini. </div><div class="post_line"></div><div class="post_line">Fichier : [PREUVE]</div><div class="post_line"></div><div class="post_line">En r&eacute;ponse &agrave; cela, les peuples victimes ont demand&eacute; de l&rsquo;aide &agrave; des membres de l&rsquo;assembl&eacute;e sectorielle et nous avons r&eacute;pondu. Nos forces ont commenc&eacute; &agrave; d&eacute;manteler les possessions de l&rsquo;entit&eacute; Thenian. Sentant sa fin arriver, Thenian a envoy&eacute; toutes ses forces pour prendre la capitale de notre secteur. Il en a pris le contr&ocirc;le, exclu les membres de l&rsquo;assembl&eacute;e sectorielle et ouvert le secteur avant de renommer la plan&egrave;te CLOWN. Quelle autre preuve vous faut-il pour savoir que l&rsquo;entit&eacute; Thenian est malveillante ? </div><div class="post_line"></div><div class="post_line">Fichier : [CAPITALE SECTORIELLE]</div><div class="post_line"></div><div class="post_line">En r&eacute;sum&eacute;, ceci est une r&eacute;action d&eacute;sesp&eacute;r&eacute;e de la part de la conscience collective Thenian. Une r&eacute;action de survie face &agrave; notre ultimatum. Cette entit&eacute; cherche &agrave; impliquer des peuples ext&eacute;rieurs, car il s&#039;agit l&agrave; de sa seule solution de survie. Seule, elle ne survivra pas. Alors je vous prie de ne pas &eacute;couter ses mensonges. Cette entit&eacute; est malveillante. </div><div class="post_line"></div><div class="post_line">J&rsquo;invite aussi tous les commandants mon secteur soutenant mon discours &agrave; afficher leur soutiens ici m&ecirc;me. </div><div class="post_line"></div><div class="post_line">Fin de t&acirc;che BIOCOM.pvi(SLS)...</div><div class="post_line"></div><div class="post_line">[Exaltation] Dans l&#039;espoir d&#039;un avenir fructueux pour nos civilisations.</div><div class="post_line"></div><div class="post_line">[Nomination] Hi&eacute;rarch Ydal Karfrenn.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Log+le+Synth%C3%A9tique">Cdt. Log le Synth&eacute;tique</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/12291.jpg" style="width:125px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:26</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal308906')">Détails</a> <a href="javascript:warnpost(308906)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308906" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308906',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Encore un enfant arriver au pouvoir avec une cuill&egrave;re en argent dans la bouche..</div><div class="post_line"></div><div class="post_line">J&#039;esp&egrave;re qu&#039;il pourra comprendre, qu&#039;il n&#039;est pas fait pour &ccedil;a.</div><div class="post_line"></div><div class="post_line">Tout mon soutient, au alli&eacute;.</div><div class="post_line"></div><div class="post_line">Log&nbsp;</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ydal+Karfrenn">Cdt. Ydal Karfrenn</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/12268.jpg" style="width:127px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:28</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal308907')">Détails</a> <a href="javascript:warnpost(308907)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308907" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308907',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">[FICHIER] = PREUVE</div><div class="post_line"></div><div class="post_line">FICHIER :&nbsp;https://image.noelshack.com/fichiers/2024/25/6/1719069920-image-2024-06-22-172518132.png</div><div class="post_line">FICHIER : https://image.noelshack.com/fichiers/2024/25/6/1719069909-image-2024-06-22-172504806.png</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yun-Yun+La+Lune">Cdte. Yun-Yun La Lune</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12288.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:33</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal308908')">Détails</a> <a href="javascript:warnpost(308908)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308908" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308908',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Hihi, coucou je suis Yun-Yun Yuna !!</div><div class="post_line"></div><div class="post_line">Pr&ecirc;tresse Lunaire a mon insu.. Je pr&eacute;f&egrave;res les &eacute;toile !!</div><div class="post_line"></div><div class="post_line">Et je voie que mon ami Log Partage c&#039;est vision des chose, donc je vais faire de m&ecirc;me !! &quot;Hihi&quot;</div><div class="post_line"></div><div class="post_line">Nous venons du secteur 7, et je partagerai tout c&#039;est dit avec ma co.. coaa... co-a-li-tion..</div><div class="post_line">Coalition !!</div><div class="post_line"></div><div class="post_line">Vous &ecirc;tes&nbsp;tous les bienvenue sauf pour toi Th.. Then.. Thenchiant.&nbsp;&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />23/06/1024 ETU 00:38</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal308909')">Détails</a> <a href="javascript:warnpost(308909)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308909" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308909',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">En tant que civilisation Thenian, nous consid&eacute;rons qu&#039;il est impossible d&#039;instaurer une communication avec des peuples dont les m&eacute;thodes sont archa&iuml;ques et les valeurs bas&eacute;es sur la domination. Nos avanc&eacute;es technologiques et nos principes de coop&eacute;ration &eacute;quitable sont fondamentalement incompatibles avec leurs perspectives r&eacute;trogrades.</div><div class="post_line"></div><div class="post_line">&nbsp;La plan&egrave;te a &eacute;t&eacute; renomm&eacute;e &quot;Clown&quot; non seulement en hommage &agrave; son pr&eacute;c&eacute;dent possesseur, mais aussi en reconnaissance de la facilit&eacute; avec laquelle elle a &eacute;t&eacute; conquise.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Scamrekx">Cdt. Scamrekx</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/12305.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:39</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308910')">Détails</a> <a href="javascript:warnpost(308910)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308910" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308910',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Je r&eacute;pond pr&eacute;sent, comme mets amies Log et Yuna.</div><div class="post_line"></div><div class="post_line">Pour moi la guerre&nbsp;peut devenir un tr&egrave;s bon, moyen de faire de l&#039;argent.</div><div class="post_line"></div><div class="post_line">Comme vous l&#039;avez comprit je suis le marchand de la Coalition &quot;Les V&quot;.</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=17280&c_forum_page=1&c_page=2">2</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=17280&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Open Bar : Secteur 6</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

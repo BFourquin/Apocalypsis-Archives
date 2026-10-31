@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15161 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Rituels pour un Babou</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Rituels pour un Babou</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yulia+Ulan-Sternberg">Cdte. Yulia Ulan-Sternberg</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/10816.jpg" style="width:96px;height:128px" alt="Avatar" /><br />30/07/1020 ETU 00:33</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal277741')">Détails</a> <a href="javascript:warnpost(277741)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal277741" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=277741',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Depuis que la division Folle s&#039;&eacute;tait pos&eacute;e Urghan, et que le Khanat avait &eacute;t&eacute; proclam&eacute; par sa leader la baronne Yulia Ulan-Sternberg, Nazar Illich Naumenko avait sans cesse et avec une grande r&eacute;gularit&eacute; d&#039;intensit&eacute;, &eacute;t&eacute; surpris par le peuple des steppes, par la nouvelle religion de sa sup&eacute;rieure et par la mani&egrave;re toute particuli&egrave;re dont, tout en pr&ocirc;nant un primitivisme d&eacute;brid&eacute; et un chaos d&eacute;complex&eacute;, ceux-l&agrave; continuaient d&#039;&ecirc;tre particuli&egrave;rement m&eacute;ticuleux et organis&eacute;s. Si organis&eacute;s, en fait, que lui-m&ecirc;me, officier sup&eacute;rieur de la vieille &eacute;cole, incapable de croyance religieuse, fondamentalement inapte aux comportements primitifs, avait encore une place dans leur nouvelle soci&eacute;t&eacute;. Le Roi soit lou&eacute;, et avec lui le syncr&eacute;tisme instaur&eacute; par la Khatan.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">En tout cas, c&#039;&eacute;tait probablement du fait de son aspect d&eacute;finitivement vieille &eacute;cole que Nazar avait &eacute;t&eacute; envoy&eacute; g&eacute;rer la mission religieuse &agrave; proximit&eacute; de la capitale galactique. La Khatan le savait, si elle voulait faire bonne impression aupr&egrave;s des peuples galactiques, elle allait avoir besoin d&#039;un individu terre &agrave; terre, capable de traduire les folies de ses pr&ecirc;tres en propos coh&eacute;rents. En &ccedil;a, Nazar le savait, il &eacute;tait une interface entre le monde du Roi et le monde des hommes.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Cela ne le d&eacute;rangeait pas vraiment. Au contraire : il comprenait bien l&#039;honneur qu&#039;on lui faisait. Aussi, malgr&eacute; sa relative &eacute;tanch&eacute;it&eacute; &agrave; toute forme de croyance, il appr&eacute;ciait les d&eacute;bats que pouvaient soulever les pr&ecirc;tres, et l&#039;exercice intellectuel et mat&eacute;riel que composait l&#039;organisation de rituels et sacrifices. Il avait eu une grande discussion &agrave; ce propos avec la gourou Chan So-Hyon. Une femme s&eacute;v&egrave;re et fanatique, cheffe de la d&eacute;l&eacute;gation religieuse devant s&#039;occuper de soigner le gouverneur galactique.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#5593BD">Naturellement, oui. Si les animaux et esclaves que nous avons amen&eacute;s ne sont pas suffisants il faudra n&eacute;cessairement piocher dans la population de la colonie qui nous a &eacute;t&eacute; remise. Cependant comprenez bien l&#039;importance diplomatique de cette mission, Chan. Nous repr&eacute;sentons le Khanat, la Baronne.</font></div></div><div class="post_line"><div align="justify">- <font color="#e8b6ef">La Khatan.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il acquies&ccedil;a doucement.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#5593BD">La Khatan, oui. Nos devons offrir une bonne image &agrave; la galaxie. Je sais qu&#039;il est essentiel que vous arriviez &agrave; soigner le gouverneur, mais si nous le faisons en tuant des centaines, des milliers d&#039;esclaves ? Vous vous rendez bien compte qu&#039;il y aura des observateurs. Des journalistes, des cam&eacute;ras, d&#039;autres commandants. Le Roi est amoral, mais les autres peuples, eux, non. Si nous commen&ccedil;ons &agrave; tuer des gens, &agrave; les d&eacute;vorer et &agrave; tracer de grands cercles avec leur sang...</font></div></div><div class="post_line"><div align="justify">-<font color="#e8b6ef"> Telle est notre voie. Si nous voulons &ecirc;tre s&ucirc;rs de soigner le gouverneur, il faut lui attirer les gr&acirc;ces du Roi.</font></div></div><div class="post_line"><div align="justify">-<font color="#5593BD"> La Khatan va pourtant d&eacute;j&agrave; le prier.</font></div></div><div class="post_line"><div align="justify">-<font color="#e8b6ef"> Elle priera, oui. Pour le don des Polyglottes. Notre mission est de le soigner. Et pour ce faire nous noierons les impurs dans leur sang pour purifier la terre et appeler les forces ext&eacute;rieures.</font></div></div><div class="post_line"><div align="justify">-<font color="#5593BD"> Oui, oui... Mais nous avons une opportunit&eacute; unique de briller, quand les regards se poseront sur nous, il ne faudra pas que nous passions pour des barbares.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il avait lev&eacute; les mains dans un signe de d&eacute;faite. A ce moment pr&eacute;cis, un serviteur p&eacute;n&eacute;tra le petit salon pour annoncer que la flotte &eacute;tait arriv&eacute;e en orbite de Baboubaaa, la plan&egrave;te transmise au Khanat par le gouvernement galactique, qui devait accueillir la d&eacute;l&eacute;gation religieuse et une grande partie des rituels pr&eacute;liminaires. Nazar remercia le serviteur et le cong&eacute;dia d&#039;un signe avant de se prendre la t&ecirc;te entre les mains. Que faire. Face &agrave; lui, Chan So-Hyon le fixait patiemment. Toute fanatique qu&#039;elle &eacute;tait, elle comprenait bien le r&ocirc;le de l&#039;officier et &eacute;vitait soigneusement de confondre son empressement &agrave; arrondir les angles avec les autres peuples pour une forme d&#039;h&eacute;r&eacute;tisme. Apr&egrave;s quelques instants, Nazar se redressa.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#5593BD">J&#039;ai peut-&ecirc;tre une id&eacute;e. Chan, qu&#039;est-ce qui importe, dans vos rituels ? Le sacrifice en lui-m&ecirc;me ? La consommation de la chair ? Les danses ?</font></div></div><div class="post_line"><div align="justify">-<font color="#e8b6ef"> C&#039;est un ensemble, monsieur Naumenko.</font>&quot; Elle eut un petit rire qu&#039;elle cacha d&#039;une main. &quot;<font color="#e8b6ef">Quelle id&eacute;e vous a souffl&eacute; le vent ?</font></div></div><div class="post_line"><div align="justify">- <font color="#5593BD">Les esclaves et prisonniers qui seront utilis&eacute;s dans le rituel, est-il absolument n&eacute;cessaire qu&#039;ils soient clairement identifiables comme des humains ?</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La gourou plissa les yeux, penchant un peu la t&ecirc;te sur le c&ocirc;t&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#e8b6ef">Continuez ?</font></div></div><div class="post_line"><div align="justify">- <font color="#5593BD">&Eacute;corchons les corps, coupons les membres et la t&ecirc;te. Rendons-les m&eacute;connaissables et indiff&eacute;renciables et carcasses d&#039;animaux. Personne ne posera de question, notre image sera sauve et votre rituel tout puissant pourra avoir lieu.</font></div></div><div class="post_line"><div align="justify">- <font color="#e8b6ef">La peur du sang, monsieur Naumenko, tend &agrave; provoquer la peur de la chair.</font></div></div><div class="post_line"><div align="justify">-<font color="#5593BD"> Je ne comprends pas.</font></div></div><div class="post_line"><div align="justify">- <font color="#e8b6ef">Je demanderai &agrave; ce que les pr&ecirc;tres pr&eacute;parent les corps et ex&eacute;cutent les premi&egrave;res ablutions dans des rituels priv&eacute;s. L&#039;Invocation publique - rituel pr&eacute;liminaire essentiel, - aura lieu ensuite. Apr&egrave;s quoi seulement nous irons &agrave; la rencontre du gouverneur pour exorciser son mal. Qu&#039;en pensez-vous ?</font></div></div><div class="post_line"><div align="justify">-<font color="#5593BD"> Cela me va. Pensez &agrave; me faire transmettre toutes vos d&eacute;cisions et toutes les &eacute;tapes du rituel, m&ecirc;me si je ne comprends pas exactement ce que vous faites, je sais reconna&icirc;tre ce qui alertera ou non la communaut&eacute; internationale.&quot;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La gourou se leva et son si&egrave;ge et lui embrassa le front.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#e8b6ef">Vous &ecirc;tes notre ange gardien.</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Puis elle quitta les lieux, se dirigeant vers le hangar &agrave; navette. Dans l&#039;heure qui suivit, l&#039;ensemble de la d&eacute;l&eacute;gation s&#039;&eacute;tait pos&eacute;e sur la plan&egrave;te. Nazar fut nomm&eacute; gouverneur plan&eacute;taire par d&eacute;cret, les pr&ecirc;tres firent l&rsquo;inventaire de leurs produits rituels et la gourou, elle, fit le tour des lieux susceptibles d&rsquo;accueillir le rituel d&#039;invocation. On accueillait d&eacute;j&agrave; les curieux de toute origine. Le culte du Roi aimait se donner en spectacle.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yulia+Ulan-Sternberg">Cdte. Yulia Ulan-Sternberg</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/10816.jpg" style="width:96px;height:128px" alt="Avatar" /><br />30/07/1020 ETU 02:13</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D277744', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal277742')">Détails</a> <a href="javascript:warnpost(277742)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal277742" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=277742',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Il fallut moins d&#039;un cycle pour tout organiser. Au final ce n&#039;&eacute;tait pas si compliqu&eacute;, un rituel bien pr&eacute;par&eacute; pouvait se mettre en place tr&egrave;s rapidement et la plus grande difficult&eacute; avait &eacute;t&eacute; d&#039;acheminer l&#039;ensemble des prisonniers condamn&eacute;s pour peine grave de la plan&egrave;te jusqu&#039;&agrave; la flotte. Babouaaa, comme chaque plan&egrave;te soumise au Khanat, voyait une grande partie &ndash; sinon l&#039;ensemble &ndash; de ses prisonniers envoy&eacute;s en orbite o&ugrave; ils &eacute;taient tri&eacute;s dans de grands vaisseaux p&eacute;naux. Destin&eacute;s &agrave; devenir des esclaves, des soldats, &ecirc;tres recycl&eacute;s en biomasse, destin&eacute;s aux sacrifices, etc.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Au sol, on avait d&eacute;cid&eacute; que le rituel aurait lieu dans une large plaine aride situ&eacute;e &agrave; proximit&eacute; de la plus grande m&eacute;tropole plan&eacute;taire. Les lieux &eacute;taient magnifiques, assez similaires aux antiques steppes d&#039;Urgan &agrave; &ccedil;a pr&egrave;s que la terre y &eacute;tait orang&eacute;e. Une &eacute;tendue de terre s&egrave;che et st&eacute;rile, ponctu&eacute;e de plantes grises et cern&eacute;e de montagnes dont les sommets les plus hauts se couvraient d&#039;un blanc &eacute;clatant se d&eacute;tachant nettement sur le ciel bleu. Ici il n&#039;y avait jamais la moindre perturbation, jamais la moindre pluie. Pas ou peu de vent, une chaleur &eacute;touffante. Les routes traversant ces terres &eacute;taient abandonn&eacute;es, tous les trajets se faisaient pas train. </div></div><div class="post_line"></div><div class="post_line"><div align="justify">Il y avait comme une atmosph&egrave;re de fin du monde et c&#039;&eacute;tait sp&eacute;cifiquement ce que cherchaient les serviteurs du Roi.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Install&eacute; sur un petit v&eacute;hicule volant se d&eacute;p&ecirc;chant de rejoindre l&#039;emplacement choisi pour le rituel, Nazar et Chan observaient les pr&ecirc;tres qui s&#039;&eacute;chinaient &agrave; terminer les derniers pr&eacute;paratifs. On &eacute;rigeait d&#039;immenses mats couverts de cha&icirc;nes, des croix surmontant des b&ucirc;chers, creusait des sillons dans le sol selon de complexes motifs spiraux. Des grands encensoirs avait &eacute;t&eacute; enfonc&eacute; dans la terre s&egrave;che, charg&eacute;s de plantes divers qu&#039;embrasaient des femmes v&ecirc;tues de rouge. Quelques chants rituels, distants, avaient &eacute;t&eacute; entam&eacute;s par quelques fid&egrave;les solitaires.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&quot;<font color="#5593BD">Alors tout est pr&egrave;s ?</font></div><div class="post_line">- <font color="#e8b6ef">Bient&ocirc;t.</font></div><div class="post_line">-<font color="#5593BD"> Et en tant que gourou vous comptez leur faire un discours ? Leur expliquer ce qui va se passer ?...</font></div><div class="post_line">- <font color="#e8b6ef">Ah. Ahah.&quot;</font></div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle pivota vers Nazar, le fixant d&#039;un air parfaitement neutre.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&quot;<font color="#e8b6ef">Le Roi et ses dons ne sont pas une attraction. </font></div><div class="post_line">-<font color="#5593BD"> Mais vous aimeriez attirer de nouveaux fid&egrave;les, non ?</font></div><div class="post_line">-<font color="#e8b6ef"> Fid&egrave;les.</font>&quot;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle sembla r&eacute;fl&eacute;chir et lui offrit un sourire d&eacute;sarmant.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&quot;<font color="#e8b6ef">Ne sont pas des fid&egrave;les ceux qui voient les choses telles qu&#039;elles sont. Si ce rituel peut ouvrir les yeux &agrave; une plus large population, c&#039;est qu&#039;il devait en &ecirc;tre ainsi. Mais je ne ferai pas de discours, non. Il n&#039;y aura aucune explication. La raison est l&#039;ennemie du Roi.</font></div><div class="post_line">- <font color="#5593BD">Ils risquent de prendre peur.</font></div><div class="post_line">- <font color="#e8b6ef">Vous, Nazar, &ecirc;tre un pessimiste.</font>&quot;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Ils en rest&egrave;rent l&agrave;, et le v&eacute;hisol se posa. Chan bondit au sol et se dirigea vers un groupe de pr&ecirc;tres charg&eacute;s de la pr&eacute;parer. Nazar qui savait pr&eacute;cis&eacute;ment ce qui allait avoir lieu, ne put retenir une nette mimique de d&eacute;go&ucirc;t en repensant aux d&eacute;tails de la c&eacute;r&eacute;monie. Il d&eacute;tourna le regard et demanda au programme pilotant le v&eacute;hisol d&#039;aller le poser plus loin, l&agrave; o&ugrave; les o&ugrave; on accueillait les observateurs &eacute;trangers.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Quelques heures pass&egrave;rent, le soleil se coucha, et la c&eacute;r&eacute;monie put d&eacute;buter.</div></div><div class="post_line"></div><div class="post_line"><div align="center">------------</div></div><div class="post_line"></div><div class="post_line"><div align="right">&quot;<a href="https://youtu.be/uT_v26acyL0" target="_blank" rel="nofollow">Hurlent, hurlent les anciens</a>,</div></div><div class="post_line"><div align="right">Et voyez comme ils meurent !</div></div><div class="post_line"><div align="right">Les v&eacute;n&eacute;rables et les grands,</div></div><div class="post_line"><div align="right">S&#039;&eacute;rigent. Priez le Roi !&quot;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La C&eacute;r&eacute;monie commen&ccedil;a par une d&eacute;clamation, chant&eacute;e d&#039;une voix forte et m&eacute;lodieuse par Chan So-Hyon. Un morceau de po&eacute;sie lugubre, en urghan classique, qui raisonna longuement dans la plaine vide. On avait v&ecirc;tu la gourou d&#039;un genre de large kimono blanc et attach&eacute;s ses cheveux en une unique queue de cheval partant du haut de son cr&acirc;ne pour se d&eacute;verser sur ses &eacute;paules. Face &agrave; elle une for&ecirc;t de mats d&#039;o&ugrave; pendaient des carcasses d&#039;animaux de ferme et, coinc&eacute;s dans d&#039;&eacute;tranges n&oelig;uds de cha&icirc;nes, des amalgames de chair dont le sang s&rsquo;&eacute;gouttait au sol. Un silence, puis la femme poussa un cri guerrier, et les pr&ecirc;tres apparurent, arm&eacute;s de torches&nbsp;: ils embras&egrave;rent certains des mats, rendant clairement visibles les hommes de paille que l&#039;on avait offert en sacrifice au Roi&nbsp;: des &eacute;pouvantails sinistres, dont les habits imbib&eacute;s de graisses animales, devinrent rapidement des manteaux de feu. La gourou se mit en marche, continuant de chanter. D&#039;autres voix vinrent &agrave; la rencontre de la sienne, formant d&#039;&eacute;l&eacute;gantes harmonies accompagn&eacute;e de percussions et cordes traditionnelles. La fum&eacute;e des b&ucirc;chers et des encensoirs se d&eacute;versait au sol comme un liquide visqueux, une odeur indescriptible la suivait.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Install&eacute;e sur une colline, Nazar fixait la sc&egrave;ne. De temps &agrave; autre, il se retournait pour fixer l&#039;expression des diff&eacute;rents observateurs &eacute;trangers. Qu&#039;en pensaient-ils&nbsp;? Quel pouvait bien &ecirc;tre leur avis sur la question&nbsp;? </div></div><div class="post_line"></div><div class="post_line"><div align="justify">De toute fa&ccedil;on ce n&#039;&eacute;tait plus de son ressort. Tout ce qu&#039;il pouvait faire c&#039;&eacute;tait attendre que &ccedil;a se termine. Il inspira et se for&ccedil;a &agrave; garder son calme. L&#039;air &eacute;tait &eacute;lectrique.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La gourou s&#039;&eacute;tait arr&ecirc;t&eacute;e. Face &agrave; elle, un petit escalier creus&eacute; dans la terre et descendant dans la tranch&eacute;e. Elle poussa un, deux, trois petits cris, &eacute;carta les bras. Trois femmes v&ecirc;tues de robes approch&egrave;rent aussit&ocirc;t, amenant avec elles un large bovin aux cornes sci&eacute;es. La b&ecirc;te fut pr&eacute;sent&eacute;e face &agrave; Chan, qui s&#039;inclina. Les femmes firent ensuite s&#039;incliner l&#039;animal, puis se saisir chacune d&#039;un couteau en forme de croix pour l&#039;abattre, lui ouvrant la gorge, les yeux et le ventre. Quelques &eacute;clats de sangs atteignirent le kimono blanc Chan. Les femmes utilis&egrave;rent des petits bols de terre pour r&eacute;cup&eacute;rer le sang de l&#039;animal, d&eacute;v&ecirc;tirent la gourou &ndash; faisant tomber son kimono au sol et r&eacute;v&eacute;lant une peau marqu&eacute;e par des scarifications rituelles &ndash;&nbsp; et entreprirent de couvrir son corps de runes divers semblant issues de nombreuses cultures. Des croix de l&#039;Homme J&eacute;sus de Columbia aux mots secrets des Cinq Anciens. </div></div><div class="post_line"></div><div class="post_line"><div align="justify">Nazar nota avec satisfaction que cette partie du rituel avait &eacute;t&eacute; largement &eacute;dulcor&eacute;e.</div></div><div class="post_line"></div><div class="post_line"><div align="justify"><a href="https://youtu.be/bojPTXPvGCA" target="_blank" rel="nofollow">Au m&ecirc;me moment</a>, des pr&ecirc;tres avaient commenc&eacute; &agrave; ouvrir les diff&eacute;rentes carcasses accroch&eacute;s aux mats, laissant leur sang se d&eacute;verser dans les sillons, dessinant peu &agrave; peu ce qui devait &ecirc;tre une large rune rappelant clairement un pentacle &eacute;sot&eacute;rique. La gourou embrassa le front de chacune des trois femmes puis s&#039;engagea dans la tranch&eacute;e. Ce fut alors que Nazar commen&ccedil;a &agrave; remarquer certaines choses anormales. Pas en &ccedil;a qu&#039;elles n&#039;&eacute;taient pas pr&eacute;vues, mais en &ccedil;a qu&#039;elles semblaient d&eacute;montrer que le rituel se passait bien et, par cons&eacute;quent, que la &laquo;&nbsp;magie&nbsp;&raquo; du roi allait bient&ocirc;t faire effet.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">En effet, malgr&eacute; l&#039;abondance d&#039;animaux (et d&#039;humains) sacrifi&eacute;s, il n&#039;y avait th&eacute;oriquement pas assez de sang pour remplir l&#039;int&eacute;gralit&eacute; des sillons. Et encore moins pour les remplir &agrave; raz-bord. Pourtant, alors que la gourou continuait de se diriger au centre du trac&eacute; mystique, le sang avait atteint ses genoux, puis ses hanches, puis s&#039;&eacute;tait stabilis&eacute; en bas de son dos. Elle baignait dans quelque-chose qui ne pouvait pas venir des sacrifices. Il y en avait trop, tout simplement.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">L&#039;officier se sentit prit d&#039;une violente naus&eacute;e, quelques-chose d&#039;acide essayait de remonter son &oelig;sophage. Il chassa la sensation et grima&ccedil;a.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Les chants et la musique, tout s&#039;intensifia. Chan &eacute;tait d&eacute;sormais au centre du trac&eacute; mystique, &agrave; l&#039;intersections de tranch&eacute;es traversant de part et d&#039;autre le cercle, tranch&eacute;es aux extr&eacute;mit&eacute;s desquelles s&#039;amass&egrave;rent les pr&ecirc;tres.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Autour d&#039;eux, la fum&eacute;e tourbillonnait, quittant peu &agrave; peu le sol pour former comme un mur. Bizarrement, on pouvait parfaitement percevoir ce qui se d&eacute;roulait de l&#039;autre c&ocirc;t&eacute;. Les pr&ecirc;tres descendaient les uns apr&egrave;s les autres dans les tranch&eacute;s. La gourou, pour sa part, c&#039;&eacute;tait agenouill&eacute; dans le sang. Seul son visage d&eacute;passait &agrave; la surface. Les pr&ecirc;tres s&#039;inclin&egrave;rent, s&#039;abaiss&egrave;rent et se redress&egrave;rent, saisissant des larges cordes qu&#039;ils soulev&egrave;rent. Les cordes allaient de part et d&#039;autres des sillons, en passant par le centre. Lorsqu&#039;ils soulev&egrave;rent les cordes, les pr&ecirc;tres soulev&egrave;rent par la m&ecirc;me la gourou, qui leur &eacute;tait inexplicablement attach&eacute;e. Et les pr&ecirc;tres tir&egrave;rent.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">C&#039;&eacute;tait la partie du rituel que Nazar ha&iuml;ssait le plus. Pourtant c&#039;&eacute;tait aussi celle qui, de ce qu&#039;il avait compris, &eacute;tait la plus essentielle, centrale. Les serviteurs du Roi essayaient d&#039;invoquer &laquo;&nbsp;Les puissances ext&eacute;rieures&nbsp;&raquo;, faire appel &agrave; des forces &eacute;tranges dans le but de les amener jusqu&#039;au gouverneur galactique. Pour ce faire, il fallait un r&eacute;ceptacle, et ce r&eacute;ceptacle devait &ecirc;tre pr&eacute;par&eacute;.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Comme bien souvent avec le roi, cette pr&eacute;paration passait par une forme crasse de souffrance.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Les pr&ecirc;tres tir&egrave;rent sur les cordes. Chacun leur tour, suivant un rythme d&rsquo;abord lent, puis rapide, un rythme qui devait imiter celui d&#039;un c&oelig;ur paniquant, voir d&#039;un arr&ecirc;t cardiaque. Un rythme d&#039;abord ordonn&eacute;, mais qui finirait invariablement par devenir chaotique, par muter de la pire fa&ccedil;on possible. Et au milieu du cerle, la gourou &eacute;tait tir&eacute;e de part en part, essayant vaguement de r&eacute;sister puis abandonnant avec un cri &eacute;touff&eacute; de souffrance. Son corps &eacute;tait ballott&eacute;, malemn&eacute;. Sans r&eacute;pit. Les chants s&#039;accentuaient, toujours et encore. Ce qui avait &eacute;t&eacute; une musique devenait un ensemble de cris rituels. D&#039;&eacute;vocations rituelles Les murs de fum&eacute;e continuaient de monter. Suivant leur ascension, Nazar leva les yeux et&hellip;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La lune.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle &eacute;tait immense. D&eacute;vorait une partie enti&egrave;re du ciel. Sa surface comme d&eacute;vor&eacute;e par la l&egrave;pre, filandreuse comme une chair malade. Ce n&#039;&eacute;tait pas normal, probablement un effet des encens. L&#039;officier voulu se lever mais en fut incapable. Pour une raison ou une autre, il se sentait parfaitement serein, ce qui l&#039;alarma plus encore. </div></div><div class="post_line"></div><div class="post_line"><div align="justify">Puis, incapable de quitter l&#039;astre des yeux, une simple pens&eacute;e lui vint.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Son palais. Il observait Son palais.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Puis une d&eacute;flagration. Puis un hurlement. Un hurlement terrible. Il crut voir un &eacute;clair traverser le ciel et s&#039;abattre sur la gourou. Il crut voir une ville mutante, incompr&eacute;hensible, projet&eacute;e par l&#039;&eacute;clat sur les murs de fum&eacute;e. Il crut perdre conscience.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line">La fum&eacute;e s&#039;&eacute;tait dissip&eacute;e et le jour commen&ccedil;ait doucement &agrave; se lever. Autour de lui, les observateurs semblaient plong&eacute;s dans un m&eacute;lange confus de perplexit&eacute; et de peur. Plus bas, les b&ucirc;chers finissaient de se consumer. Les sillons &eacute;taient presque vides. Plusieurs pr&ecirc;tres entouraient une Chan So-Hyon boitillante, couverte de plusieurs couches de manteaux, les yeux &eacute;carquill&eacute;s, progressant doucement mais s&ucirc;rement vers une navette. Comme si elle sentait le regard de l&#039;officier, elle s&#039;arr&ecirc;ta pour lentement pivoter dans sa direction. Et lui sourit. Alors Nazar fut s&ucirc;r que le rituel s&#039;&eacute;tait bien pass&eacute;, et qu&#039;il ne restait plus qu&#039;une chose &agrave; faire.</div><div class="post_line"></div><div class="post_line"><div align="justify">Amener la gourou au gouverneur. Faire ce qui devait &ecirc;tre fait.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yulia+Ulan-Sternberg">Cdte. Yulia Ulan-Sternberg</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/10816.jpg" style="width:96px;height:128px" alt="Avatar" /><br />31/07/1020 ETU 03:58</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal277769')">Détails</a> <a href="javascript:warnpost(277769)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal277769" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=277769',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Pour Nazar, la publication par le gouvernement d&#039;int&eacute;rim de la position de Babou avait chang&eacute; ce qui s&#039;appr&ecirc;tait &agrave; &ecirc;tre un succ&egrave;s en une catastrophe n&#039;attendant plus que son aboutissement logique. On risquait &ndash; c&#039;&eacute;tait bien le pire &ndash; on risquait de leur couper l&#039;herbe sous le pied. Inacceptable. Pourtant, Chan So-Hyon demeurait confiante. Peut-&ecirc;tre se disait-elle que ce qui devait arriver aurait lieu. Que si l&#039;heure n&#039;&eacute;tait pas &agrave; la victoire des serviteurs du Roi, il faudrait l&#039;accepter.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Nazar, cependant, ne l&#039;entendait pas de cette oreille. La Khatan leur avait donn&eacute; une mission. Cette mission serait accomplie. L&#039;alternative n&#039;&eacute;tait pas envisageable.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La navette d&eacute;colla de Babouaaa, p&eacute;n&eacute;tra dans le ventre d&#039;un large croiseur de guerre qui bondit aussit&ocirc;t dans l&#039;espace-subspatial, se dirigeant vers la capitale. Voyage long d&#039;un cycle qu l&#039;officier passa &agrave; surveiller attentivement tous les rapports indiquant d&#039;&eacute;ventuelles &eacute;volutions de la situation. Chan, pour sa part, r&eacute;cup&eacute;rait dans sa cabine. Elle avait accept&eacute; de laisser des m&eacute;decins - pas des pr&ecirc;tres - s&#039;occuper de ses plaies, fractures et contusions, convenant que si elle venait &agrave; en mourir elle ne pourrait pas soigner le gouverneur.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">L&#039;arriv&eacute;e du croiseur en orbite de la capitale fut pr&eacute;c&eacute;d&eacute; d&#039;un message envoy&eacute; directement aux autorit&eacute;s portuaires : &quot;<font color="#5593BD">Convoi M&eacute;dical urgent en approche : Descendrons avec ou sans autorisation</font>&quot;. Une id&eacute;e de Nazar. Sur Novoyevsk la strat&eacute;gie de l&#039;homme fort marchait une fois sur deux. Il serra les dents, croisa les doigts...</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Fort heureusement les autorit&eacute;s se montr&egrave;rent aussi coop&eacute;ratives que pr&eacute;vu. Le gouverneur par int&eacute;rim avait d&ucirc; donner des instructions.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Le croiseur de bataille traversa ainsi les lignes de d&eacute;fenses, contournant &agrave; pleine vitesse les queues de vaisseaux civils coinc&eacute;s aux stations douani&egrave;res, et s&#039;immobilisa brutalement, toutes r&eacute;trofus&eacute;es actives, en orbite basse de la capitale galactique. Simultan&eacute;ment, le ventre du vaisseau s&#039;ouvrit et cracha une pluie de navettes qui fonc&egrave;rent vers la surface. On aurait dit une man&oelig;uvre militaire. Dans l&#039;id&eacute;e, il y avait de &ccedil;a. Les petits vaisseaux se dispers&egrave;rent au quatre coins du globe, soit dans des zones sauvages, soit dans des petits ports civils, soit directement &agrave; proximit&eacute; de quartiers religieux ou diplomatiques. Seul un des appareils, cependant, contenait Chan et Nazar. et cet appareil se posa aux coordonn&eacute;es indiqu&eacute;es par Claude. </div></div><div class="post_line"></div><div class="post_line"><div align="justify">Une fois au sol, la navette s&#039;ouvrit pour laisser passer Chan, soutenue par plusieurs pr&ecirc;tres, quelques esclaves transportant du mat&eacute;riel, Nazar et trois hommes de la division folle. L&#039;officier attrapa aussit&ocirc;t son commlink pour passer un appel.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#5593BD">Nous sommes pos&eacute;s. Je sais qu&#039;ils savent. O&ugrave; sont les spiderbabous ? Je ne veux pas perdre une minute de plus.</font>&nbsp;&raquo; Il attendit, acquies&ccedil;a. &laquo;<font color="#5593BD">&nbsp;Allons-y alors.</font>&nbsp;&raquo; Et passa devant les religieux, leur faisant signe de les suivre.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Ce comportement, vaguement exp&eacute;ditif, fut &agrave; peine polic&eacute; lorsque l&#039;officier rencontra l&#039;escorte promise par les autorit&eacute;s plan&eacute;taires. Il les salua, justifia bri&egrave;vement si n&eacute;cessaire sa pr&eacute;sence, puis tonna que l&#039;on am&egrave;ne imm&eacute;diatement la Gourou dans les sous-sols, pour qu&#039;elle puisse y faire son &oelig;uvre.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Finalement, la petite escorte termina dans une cage d&#039;ascenseur devant th&eacute;oriquement les mener jusqu&#039;au dirigeant comateux.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font color="#5593BD">&nbsp;Chan, je n&#039;ai pas eu le temps de m&#039;int&eacute;resser au rituel d&#039;exorcisme du mal. Rassurez-moi, il n&#039;y a rien en son sein que j&#039;aurai d&ucirc; expurger&nbsp;?</font></div><div class="post_line">&ndash;&nbsp;<font color="#e8b6ef">Vous verrez bien, non&nbsp;? Pourquoi vous en inqui&eacute;tez maintenant.</font></div><div class="post_line">&ndash;&nbsp;<font color="#5593BD">&Ccedil;a passe le temps.</font></div><div class="post_line">&ndash;&nbsp;<font color="#e8b6ef">Ah&nbsp;?&hellip; C&#039;&eacute;tait donc &ccedil;a depuis le d&eacute;but. </font>&raquo;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Petit sourire amus&eacute;.</div></div><div class="post_line"><div align="justify"></div><div class="post_line">&laquo;<font color="#5593BD">&nbsp;Vous ne vous ne &eacute;tiez pas rendu compte&nbsp;?</font>&nbsp;&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La gourou h&eacute;sita. Sa peau &eacute;tait sensiblement plus p&acirc;le depuis la c&eacute;r&eacute;monie, ses veines se dessinaient nettement &agrave; sa surface.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;&nbsp;<font color="#e8b6ef">Cette fois, si cela vous convient, je ferai un discours.</font>&nbsp;&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Ils se sourirent de plus belle, les portes de l&#039;ascenseur s&#039;ouvrirent&nbsp;: tout le monde d&eacute;barqua dans la salle.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yulia+Ulan-Sternberg">Cdte. Yulia Ulan-Sternberg</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/10816.jpg" style="width:96px;height:128px" alt="Avatar" /><br />01/08/1020 ETU 06:41</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal277789')">Détails</a> <a href="javascript:warnpost(277789)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal277789" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=277789',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font size="1"><a href="https://www.apocalypsis.org/assemblee/viewtopic?c_topic=15158&amp;c_forum_page=1&amp;c_page=4" target="_blank" rel="nofollow">[Suite aussi post&eacute;e &agrave; l&#039;Assembl&eacute;e.]</a></font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&laquo; <font color="#5593BD">Faites place ! De l&#039;air, de l&#039;air pour le malade ! </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">La voix puissante d&#039;un homme habitu&eacute; &agrave; diriger. Autoritaire mais pas agressif, Nazar Illich Naumenko fit un grand geste de bras. L&#039;officier, v&ecirc;tu d&#039;un &eacute;l&eacute;gant manteau et coiff&eacute; d&#039;une casquette, venait de d&eacute;barquer d&#039;un ascenseur donnant sur la salle, manifestement guid&eacute; par une troupe de garde babous, il &eacute;tait &agrave; la t&ecirc;te de trois soldats, quelques hommes et femmes habill&eacute;s de robes color&eacute;es, de serviteurs, et accompagn&eacute; par une asiatique &agrave; la peau bl&ecirc;me, maladive, dont le visage &eacute;tait couvert de peinture tribale.&nbsp; La gourou Chan So-Hyon. Celle-l&agrave; leva les mains en signe d&rsquo;apaisement et fit signe &agrave; l&#039;officier de se calmer. Il obtemp&eacute;ra.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#5593BD">Conform&eacute;ment aux promesses de la Khatan, nous sommes ici pour aider monsieur&hellip; L&#039;ancien gouverneur. </font>&raquo; Vague grimace : la nouvelle concernant la passation de pouvoir avait &eacute;t&eacute; rendue publique une fois l&#039;escorte urghan enfonc&eacute;e dans les sous-sols plan&eacute;taires. Au fond de lui, Nazar craignait que le nouveau gouvernement ne l&#039;emp&ecirc;che de partir une fois Babou soign&eacute;. &Agrave; c&ocirc;t&eacute; de lui, Chan repris d&#039;une voix guillerette.</div><div class="post_line">&ndash; <font color="#e8b6ef">Et nos rituels pr&eacute;paratifs ayant &eacute;t&eacute; men&eacute;s publiquement personne ici n&#039;ignorait vraiment que nous allions venir, inutile de nous attarder sur ce point, oui. Nazar ?&hellip;</font></div><div class="post_line">&ndash; <font color="#5593BD">S&rsquo;il vous pla&icirc;t : veuillez vous &eacute;carter, nous allons proc&eacute;der &agrave; l&#039;exorcisme. C&#039;est une t&acirc;che compliqu&eacute;e...</font></div><div class="post_line">&ndash;<font color="#e8b6ef"> Qui ne doit en aucun cas &ecirc;tre perturb&eacute;e. Tout &agrave; fait. </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Les soldats et Nazar se plac&egrave;rent aussit&ocirc;t autour du lit o&ugrave; &eacute;tait install&eacute; Babou, formant un petit cordon de s&eacute;curit&eacute;. De leur c&ocirc;t&eacute;, les pr&ecirc;tres avaient entam&eacute; l&#039;installation de tout un mat&eacute;riel chamanique, d&eacute;ballant minutieusement encensoirs, statuettes et st&egrave;les hors de caisses jusque-l&agrave; port&eacute;es par des genres de serviteurs dont les traits humains avaient laiss&eacute;s place &agrave; d&#039;&eacute;tranges mutations iris&eacute;es. Chan, install&eacute;e devant le lit, avait joint les mains, doigts sur la paume de l&#039;autre, au niveau de son c&oelig;ur. Elle commen&ccedil;ait d&eacute;j&agrave; &agrave; chuchoter des incantations.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#e8b6ef">Hm. </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">D&eacute;sormais elle ne parlait plus une langue commune, cependant l&#039;urghan ancien avait &eacute;t&eacute; ajout&eacute; aux bases de donn&eacute;es galactiques d&egrave;s l&#039;ouverture du secteur sept, ce qui rendit la plupart de ses paroles traductibles.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#e8b6ef">Une mauvaise &eacute;nergie. Quelque-chose&hellip; </font>&raquo; Elle marqua un temps. &laquo; <font color="#e8b6ef">Ils ont d&eacute;j&agrave; essay&eacute; de le soigner et cela n&#039;a pas fonctionn&eacute;. Il y a des magies, ici, h&eacute;r&eacute;tiques. Ennemies. </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">L&#039;un des pr&ecirc;tres approcha, inclinant la t&ecirc;te.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; Est-il trop tard ?</div><div class="post_line">&ndash; <font color="#e8b6ef">Pas encore, le Roi veille.</font></div><div class="post_line">&ndash; Louons sa protection.</div></div><div class="post_line"><div align="justify">&ndash; <font color="#e8b6ef">Ch&eacute;rissons ses louanges.</font> &raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle n&#039;ajouta rien. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">D&eacute;sormais le lit &eacute;tait entour&eacute; de tapis de sol en poil dru. Un autel avait &eacute;t&eacute; plac&eacute; &agrave; c&ocirc;t&eacute; de Babou et les pr&ecirc;tres, munis d&#039;encensoirs qu&#039;ils faisaient lentement osciller, entam&egrave;rent un chant guttural et atonal, un drone unique et grave. La pi&egrave;ce s&#039;emplissait peu &agrave; peu de fum&eacute;e odorante. Chan So-Hyon semblait satisfaite. Elle ferma les yeux et murmura, tr&egrave;s vite, pour elle-m&ecirc;me, une incantation qui s&#039;amplifia inexplicablement. La voix susurr&eacute;e de la femme maladive devint rapidement un chant largement audible, t&eacute;moignant d&#039;une puissance qui ne pouvait pas appartenir &agrave; la gourou. Pas dans son &eacute;tat de sant&eacute;.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#e8b6ef"><font size="2">J&#039;en appelle au Seigneur des Secrets. Au Seigneur des louanges, au Seigneur des terreurs, au Seigneur des nuits et du jour.</font> J&#039;en appelle aux lunes, j&#039;en appelle aux &eacute;toiles, j&#039;en appelle &agrave; la peur de nos a&icirc;n&eacute;s, aux caresses de nos m&egrave;res, aux cris des anc&ecirc;tres. <font size="3">J&#039;en appelle au Roi en Rouge, j&#039;en appelle &agrave; lui qui veille. </font><font size="4">J&#039;en appelle &agrave; la chair, qui est mall&eacute;able, &agrave; l&#039;esprit, qui est mall&eacute;able, &agrave; la m&eacute;moire, qui n&#039;existe pas, aux souvenirs, qui n&#039;existent plus.</font> </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle prit une large inspiration. L&#039;air s&#039;&eacute;tait opacifi&eacute;, plein d&#039;une fum&eacute;e aux airs de brume qui, &agrave; force d&#039;emplir la salle, cachait tout ce qui aurait pu &ecirc;tre vu. Ne restait que le son. D&eacute;sormais la voix de la gourou &eacute;tait r&eacute;verb&eacute;r&eacute;e dans l&#039;infini, des chants lointains s&#039;y joignaient.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&ndash;<font size="4"> <font color="#e8b6ef">J&#039;en appelle &agrave; toi, &Ocirc; Khatan ! J&#039;en appelle &agrave; toi, gardienne des secrets, gardienne des louanges, gardienne des terreurs ! J&#039;en appelle &agrave; ton ma&icirc;tre, &Ocirc; Khatan ! J&#039;en appelle &agrave; lui !</font></font> &raquo; </div></div><div class="post_line"></div><div class="post_line"><div align="justify">Et criant soudainement.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font size="5"> <font color="#e8b6ef">J&#039;en appelle &agrave; celui qui Soigne ! Celui qui Maudit ! Celui qui Sauve ! &Ocirc;, Discordia !</font></font> &raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Des cris et rires suivirent la derni&egrave;re incantation. Et &agrave; tous les pr&ecirc;tres de reprendre en c&oelig;ur. &Ocirc;, Discordia.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#e8b6ef"><font size="5">&Ocirc; Discordia !</font></font> &raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Ils reprirent &agrave; nouveau. La brume s&#039;opacifiait toujours et encore. Peu &agrave; peu, elle quitta le jaune sale de l&#039;&eacute;clairage n&eacute;on, se dirigeant vers des teintes inexplicables, &eacute;carlates. La femme inspira, put &agrave; peine entamer un dernier &laquo; &Ocirc; Discordia ! &raquo; avant d&#039;&ecirc;tre, brutalement, interrompu par une d&eacute;flagration puissante. L&#039;espace d&#039;un instant, tous les spectateurs purent clairement discerner des paysages surr&eacute;alistes, comme projet&eacute;s sur la fum&eacute;e. Des landes immenses, entourant un crat&egrave;re. Une forteresse insens&eacute;e perch&eacute;e au sommet d&#039;une pyramide noire. Des millions de figures, encapuchonn&eacute;es, rouges, traversant l&#039;espace et le temps. Et un ciel, ressemblant &agrave; un amalgame putr&eacute;fi&eacute; de chair. Des yeux immense perch&eacute;s comme des nuages, fixant le monde, et au sein de leur pupille, des labyrinthes blancs &eacute;pur&eacute;s. L&#039;image passa, la femme poussa un rugissement de douleur, les pr&ecirc;tres tinrent bon, r&eacute;p&eacute;tant toujours et encore leurs formules magiques.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Une nouvelle d&eacute;flagration, ce fut comme si quelque-chose d&#039;inexplicable, &agrave; la fois &eacute;nergie et chair, avait &eacute;t&eacute; projet&eacute; hors de Chan pour p&eacute;n&eacute;trer Babou, lui fouettant le corps dans un grondement terrible.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Et d&#039;un coup, d&#039;un seul, tout redevint normal.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">L&#039;&eacute;cran de fum&eacute;e se dissipa, les encensoirs, &eacute;teints par un courant d&#039;air. Les pr&ecirc;tres, le tapis, l&#039;autel, tout &eacute;tait comme avant. Babou sur son lit, comme si rien ne s&#039;&eacute;tait pass&eacute;, et Chan oscilla quelques instants, du sang plein la bouche et le nez, avant de tomber &agrave; genoux, hoquetant. Nazar brisa aussit&ocirc;t sa formation pour attraper la gourou, s&#039;assurant qu&#039;elle allait bien. La femme eut un nouveau hoquet, &eacute;carquilla les yeux, et l&#039;officier lui pressa le ventre d&#039;un geste expert, lui faisan cracher un &eacute;pais caillot de sang. Elle avala aussit&ocirc;t une grande gorg&eacute;e d&#039;air. Puis, d&#039;un ton guilleret quoi qu&#039;endolori, celui d&#039;une personne s&#039;appr&ecirc;tant &agrave; sombrer dans l&#039;inconscience avec la certitude d&#039;avoir bien fait :</div></div><div class="post_line"></div><div class="post_line"><div align="justify"><font size="2">&laquo;<font color="#e8b6ef"> Il a r&eacute;pondu. C&#039;est fait</font>. </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Nazar ne dit rien, se for&ccedil;ant &agrave; acquiescer avant de pivoter vers les membres de l&#039;escorte Urghan.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#5593BD">Nous partons.</font> &raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Puis, pour tous ceux qui n&#039;en &eacute;taient pas, avec un peu d&rsquo;amertume :</div></div><div class="post_line"></div><div class="post_line">&laquo;<font color="#5593BD"> Le spectacle est termin&eacute;. J&#039;esp&egrave;re que vous en avez eu pour votre argent.</font> &raquo;</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15161&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15161" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15161" name="d_reply_15161" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15161');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15161'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Rituels pour un Babou</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

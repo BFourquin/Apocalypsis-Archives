@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15486 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Le Protectorat de Zvra</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Le Protectorat de Zvra</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lakshm%C3%AE+Kayal">Cdte. Lakshm&icirc; Kayal</a><br>Prestige de chroniqueur&nbsp;: 68<br /><br /><img src="/avatars/11063.jpg" style="width:95px;height:128px" alt="Avatar" /><br />03/03/1021 ETU 02:49</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D283276', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal283271')">Détails</a> <a href="javascript:warnpost(283271)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283271" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283271',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">&laquo;<font color="#bbbbbb"> <font color="#ffc6c3"><strong>Aux autorit&eacute;s du Gouvernement D&eacute;mocratique Libre Svra.</strong></font></font></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#ffc6c3"><strong>La Lumineuse Lionne de Barakhan en personne vient vous honorer de sa pr&eacute;sence &eacute;mancipatrice. La lib&eacute;ratrice de notre peuple se fera lib&eacute;ratrice du v&ocirc;tre. Abaissez vos boucliers atmosph&eacute;riques. D&eacute;chargez vos canons. Faites place.</strong></font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"><font color="#bbbbbb"><font color="#ffc6c3"><strong>Nous arrivons.</strong></font> </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Tout s&#039;&eacute;tait fait tr&egrave;s silencieusement. Sans d&eacute;claration de guerre, sans grande annonce &agrave; l&#039;assembl&eacute;e galactique, sans un tir. Une action silencieuse, bel exemple de politique de la canonni&egrave;re. Les vell&eacute;it&eacute;s de tout un gouvernement &eacute;touff&eacute;es sous un oreiller et sans personne pour le remarquer avant qu&#039;il ne soit trop tard. Peut-&ecirc;tre, en fait, que m&ecirc;me si la galaxie avait su elle n&#039;aurait rien fait.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Qui aurait &eacute;t&eacute; pr&ecirc;t &agrave; mourir pour Svra, apr&egrave;s tout ?</div></div><div class="post_line"></div><div class="post_line"><div align="justify">On avait ainsi vu des flottes converger en syst&egrave;me. Tous les vaisseaux barakhans qui n&#039;&eacute;taient pas engag&eacute;s dans une mission coloniale ou de d&eacute;fense du territoire, en fait. Et au centre de leur formation le Rajni Sarrav, porte-&eacute;tendard de la Lumineuse Lionne. Il devint d&egrave;s-lors &eacute;vident pour tous les observateurs que quelque-chose se passait. La chose se pr&eacute;cisa lorsque les flottes arriv&egrave;rent en orbite de Svra. Et puis&hellip;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Plus rien. On aurait pu s&#039;attendre &agrave; une invasion, &agrave; un bombardement orbital d&#039;une extr&ecirc;me violence. Peut-&ecirc;tre m&ecirc;me &agrave; un blocus. Mais rien de tout &ccedil;a. Les forces de d&eacute;fense en orbite laiss&egrave;rent les troupes barakhans se positionner, il sembla y avoir quelques passages de navettes, et pour un temps ce fut &agrave; peu pr&egrave;s tout.</div></div><div class="post_line"></div><div class="post_line"><div align="center">------</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Lakshm&icirc; Kayal observait Zvra. Son unique continent, son climat temp&eacute;r&eacute;. Le grand &eacute;cran d&#039;affichage holographique install&eacute; au c&oelig;ur de son centre de commandement lui permettait d&#039;obtenir en direct de nombreuses informations transmises par les r&eacute;seaux publics, les services diplomatiques, l&#039;intelligence militaire et le gouvernement local. Elle poussa un soupir lorsqu&#039;une notification rouge interrompit sa lecture attentive des rapports sur la culture locale pour lui indiquer qu&#039;on cherchait &agrave; la contacter. Elle accepta la communication d&#039;un geste. La structure holographique disparue bri&egrave;vement puis fut remplac&eacute;e par une reconstitution du visage rigide d&#039;un homme dont l&rsquo;&oelig;il gauche avait &eacute;t&eacute; remplac&eacute; par un implant.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font color="#b3d5f4"> Lakshm&icirc;. </font></div></div><div class="post_line"><div align="justify">Il la salua d&#039;un signe de t&ecirc;te qu&#039;elle lui rendit par automatisme.</div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Molkov. C&#039;en est o&ugrave; ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Les autorit&eacute;s ont termin&eacute; de nous transmettre les d&eacute;tails de s&eacute;curit&eacute; ainsi que le point d&rsquo;atterrissage. &Eacute;coutes. Tu es s&ucirc;r de vouloir descendre ?</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#ffdbbb"> Quoi, tu penses qu&#039;on va encore tenter de me tuer ?</font> Elle afficha un sourire creux, puis &eacute;vacua la question d&#039;un geste de main. <font color="#ffdbbb">Ce n&#039;est pas pour moi, mon vieux. C&#039;est pour eux. J&#039;veux pas les humilier. Je viens en amie, en personne. Je fais le d&eacute;placement pour leur montrer qu&#039;ils comptent pour nous. Que nous ne sommes pas l&agrave; pour chasser un gouvernement mais pour lib&eacute;rer un peuple.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Personne ne le prendra comme &ccedil;a, et tu le sais. Ce genre de pratique &ccedil;a marchait du temps des gangs. Mais &agrave; l&#039;&eacute;chelle d&#039;une nation ils te verront juste comme une ennemie venue parader sur les d&eacute;combres de leur dignit&eacute;.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Je sais ce que je fais. </font>Ton particuli&egrave;rement sec. Elle se passa une main sur le visage et prit une grande inspiration.<font color="#ffdbbb"> &Eacute;coutes, on en a d&eacute;j&agrave; parl&eacute;. La commindante a un charisme personnel. Cette vieille femme m&egrave;ne son peuple depuis une &eacute;ternit&eacute;. Ils ont l&#039;habitude de lui ob&eacute;ir, &agrave; ce stade c&#039;est presque grav&eacute; dans leur cerveau.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Alors on compte sur son prestige personnel pour tenir les populations tranquilles ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Eh bien&hellip; Sur son prestige personnel, sur les ennemis de l&#039;ancien gouvernement qu&#039;on inclura &agrave; l&#039;&eacute;quation et sur un putain de gros dispositif policier. Ouais.</font> Elle fit se mat&eacute;rialiser un cade holographique contenant les effectifs exacts de la flotte barakhan puis l&#039;envoya par une br&egrave;ve manipulation &agrave; son interlocuteur qui pu le voir appara&icirc;tre sous ses yeux. <font color="#ffdbbb">Voil&agrave;. Une arm&eacute;e d&#039;occupation, c&#039;est le terme que tout le monde utilisera, &agrave; tous les coups. Connards. Avec &ccedil;a nous avons de quoi tenir les six mondes le temps que la police locale se r&eacute;organise, que la situation se stabilise.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Bon. Et la suite du plan ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">D&#039;apr&egrave;s la vieille il lui reste trente ans &agrave; vivre. En trente ans on peut former de nouveaux cadres. Mettre en place une r&eacute;volution culturelle ou nationale. Restaurer un semblant de morale dans cette esp&egrave;ce de micro-dictature imp&eacute;rialiste tout en laissant &agrave; Lali les mains libres pour &quot;pr&eacute;server le Zbra&quot;, sa culture ancestrale. C&rsquo;est le plus int&eacute;ressant : on laissera &agrave; la tauli&egrave;re le loisir de sauver son peuple comme elle l&#039;entend, tout en supervisant de loin pour que &ccedil;a aille dans le bon sens, point de vue du reste de la galaxie. Reste &agrave; voir si &ccedil;a donnera un r&eacute;gime r&eacute;ac&#039; ou une esp&egrave;ce de nouveau d&eacute;part pour eux. En tout cas une fois qu&#039;on aura la jeunesse on aura tout gagn&eacute;.</font></div></div><div class="post_line"><div align="justify">&ndash;<font color="#b3d5f4"> Tout gagn&eacute; ? Vraiment ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Tu m&#039;a tr&egrave;s bien compris. Le protectorat ne sera plus utile. Barakhan se retirera.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Non, non Lakshm&icirc;. &Eacute;coutes, tu n&#039;y es pas du tout, c&#039;est toi qui ne comprends pas. </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Pas une once d&#039;agressivit&eacute;. Le conseiller de toujours semblait simplement las.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#b3d5f4">Ce que nous sommes en train de leur faire, Nos Bienfaiteurs nous l&#039;ont fait. </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Instant de silence. Le visage de la Lionne se crispa sensiblement. Molkov continua, imperturbable.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#b3d5f4">D&eacute;manteler un gouvernement jug&eacute; trop agressif, imposer un protectorat. Nous sommes en train de faire la m&ecirc;me chose, et pour les m&ecirc;mes raisons.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Tais-toi. Tu sais que &ccedil;a n&#039;a rien de comparable.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Explique-moi alors.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Tu le sais. Je ne viens pas... Bordel ! Comment tu peux sortir un truc aussi con ? Je ne viens pas scarifier leur putain de plan&egrave;te, exterminer leur culture ou que sais-je ! Je ne viens pas castrer chimiquement le moindre de leurs habitants, raser leurs flottes, exterminer leurs scientifiques. Je ne vais pas laisser les populations s&#039;entasser et crever ! Foutre des stations de pompage &agrave; l&rsquo;embouchure de chaque fleuve et tout exp&eacute;dier en orbite !</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Mais tu viens priver un peuple de sa dignit&eacute;, de sa capacit&eacute; &agrave; choisir.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">Ta gueule. Bordel. Ce n&#039;est pas ce que nous venons faire. Nous sommes ici pour donner aux svrayens les moins extr&eacute;mistes un moyen de s&#039;exprimer. Nous sommes des lib&eacute;rateurs. Jamais des oppresseurs. Jamais. T&#039;entends &ccedil;a Molkov ? </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle allait ajouter quelque-chose lorsqu&#039;une nouvelle notification d&#039;appel apparut. Elle d&eacute;crocha, sans prendre le temps de se calmer. Une jeune officier se mat&eacute;rialisa et, constatant de la t&ecirc;te particuli&egrave;rement morose de sa cheffe, d&eacute;glutit bruyamment.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font color="#c0f0c6"> Votre navette est pr&ecirc;te, Lumineuse Lionne. Heu&hellip; Je peux demander aux hommes d&#039;attendre un peu, si besoin.</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#ffdbbb">N&eacute;gatif. J&#039;arrive.</font> &raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">L&#039;officier s&#039;inclina avant de se d&eacute;connecter. Lakshm&icirc; se leva de son si&egrave;ge et lan&ccedil;a un dernier regard &agrave; son interface holographique, Molkov la fixait d&#039;un air plat.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">Jamais des oppresseurs. Tu m&#039;as compris ?</font></div></div><div class="post_line"><div align="justify">&ndash; <font color="#b3d5f4">Je voulais simplement en &ecirc;tre s&ucirc;r. Mais je te fais confiance, g&eacute;n&eacute;ralissime. </font>&raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Elle grogna et mit fin &agrave; l&#039;appel, puis quitta le poste de commandement pour les hangars. Molkov &eacute;tait comme sa conscience. Elle pouvait le ha&iuml;r mais pas l&#039;ignorer. Non pas que le ha&iuml;ssait, d&#039;ailleurs. C&#039;&eacute;tait bien tout le probl&egrave;me. Mais le type arrivait &agrave; &ecirc;tre &agrave; la fois plus pragmatique et plus id&eacute;aliste qu&#039;elle, selon les sujets. Jamais les m&ecirc;mes, naturellement. Ce qui en faisait un excellent conseiller, il voyait parfaitement ses propres angles morts et inversement. Le souci c&#039;&eacute;tait qu&#039;elle prenait les d&eacute;cisions seule, et qu&#039;elle avait la sensation &ndash; probablement fauss&eacute;e et due &agrave; la combinaison du stress et des drogues &ndash; d&#039;&ecirc;tre constamment remise en question.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">C&#039;&eacute;tait &eacute;trange. Elle &eacute;tait la premi&egrave;re &agrave; dire qu&#039;elle n&#039;avait rien &agrave; faire &agrave; la t&ecirc;te d&#039;un Etat, mais refusait pour autant qu&#039;on critique son action. La Lionne consid&eacute;ra bri&egrave;vement la question et la remisa &agrave; l&#039;&eacute;cart dans son esprit. Elle n&#039;avait pas le temps pour ce genre de consid&eacute;ration. Pas aujourd&#039;hui, en tout cas.</div></div><div class="post_line"></div><div class="post_line"><div align="center">------</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Lakshm&icirc; observait l&#039;horizon et la forme imposante du District capitole qui se dessinait de plus en plus distinctement alors que sa navette en approchait &agrave; vitesse subsonique. Autour de l&#039;appareil, plusieurs escadrons de chasseurs et des barges de d&eacute;barquement. La Lionne se redressa et attrapa un inhalateur de jet, qu&#039;elle porta &agrave; sa bouche.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo; <font color="#ffdbbb">Souvenez-vous, les gars. Nous sommes ici en amis.</font> &raquo; Elle inhala, prenant une grande inspiration et fermant les yeux. Elle ne ressentait rien. Ces doses standards de drogue lui semblaient presque hom&eacute;opathiques, depuis peu.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font color="#ffdbbb"> En amis. Et en lib&eacute;rateurs...</font> &raquo;</div></div><div class="post_line"></div><div class="post_line"><div align="justify"><a href="https://youtu.be/ZWGwNg2B_MY" target="_blank" rel="nofollow">La marche r&eacute;gimentaire des Lions</a>, dont le titre pouvait grossi&egrave;rement se traduire par &ldquo;En avant, continuez d&rsquo;avancer&rdquo;, r&eacute;sonnait sur tout le district capitole. Celui qui avait organis&eacute; l&rsquo;arriv&eacute;e des troupes de lib&eacute;ration n&rsquo;avait probablement pas re&ccedil;u le m&eacute;mo de la G&eacute;n&eacute;ralissime concernant la relative bienveillance qui devait d&eacute;couler de la c&eacute;r&eacute;monie, et avait plut&ocirc;t opt&eacute; pour une imposante d&eacute;monstration de force. Qu&rsquo;importe que barakhan soit ha&iuml;s, tant qu&rsquo;elle &eacute;tait crainte.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Et elle le serait, crainte. Elle le serait.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Les avenues et principales art&egrave;res de circulation avaient &eacute;t&eacute; bouch&eacute;es par des forces de police locales. La situation durait plus ou moins depuis la nuit qui avait vu le coup de la commindante Lali contre le nouveau Gouvernement D&eacute;mocratique Libre. Une r&eacute;volution de palais qui n&rsquo;avait pas manqu&eacute; de d&eacute;stabiliser la vie quotidienne au sein de la capitale. Au final l&rsquo;arriv&eacute;e des forces &eacute;trang&egrave;res n&rsquo;&eacute;tait qu&rsquo;une d&eacute;plaisante culmination : des rues vides, parcourues par des v&eacute;hicules d&rsquo;infanterie, des forces locales &eacute;paulant des soldats en patrouille, des drones de surveillance s&rsquo;assurant de l&rsquo;absence de francs-tireurs embusqu&eacute;s ou de partisans. On craignait par-dessus tout une insurrection ou une contre-r&eacute;volution, ce pourquoi on avait d&eacute;cid&eacute; d&rsquo;agir rapidement et sans nuance.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&Agrave; d&rsquo;autres endroits, la situation prenait des aspects plus festifs, comme s&rsquo;il ne s&rsquo;agissait que d&rsquo;une esp&egrave;ce de grosse f&ecirc;te nationale. Et tandis que les troupes &eacute;trang&egrave;res d&eacute;gorgeaient des barges de d&eacute;barquement sur tous les points cl&eacute;s et strat&eacute;giques de la plan&egrave;te, les environs directs du palais gouvernemental avaient &eacute;t&eacute; am&eacute;nag&eacute;s pour une imposante c&eacute;r&eacute;monie. D&eacute;fil&eacute; militaire, gradins pour la population, une poign&eacute;e de photographes et journalistes officiels venus couvrir la lib&eacute;ration plan&eacute;taire. Le silence s&rsquo;imposa enfin lorsque la navette de la Lumineuse Lionne de Barakhan se posa sur sa place attitr&eacute;e, entour&eacute;e de deux autres vaisseaux d&rsquo;o&ugrave; &eacute;merg&egrave;rent plus d&rsquo;une dizaine lions en tenue de combat. Lakshm&icirc; descendit &agrave; terre, le souffle des r&eacute;acteurs qui s&#039;arr&ecirc;taient soulevait son uniforme et des volutes de poussi&egrave;re dont l&rsquo;odeur &acirc;cre emplissait l&rsquo;air. L&#039;atmosph&egrave;re avait quelque-chose de sec, d&rsquo;&eacute;lectrique. Constatant de l&rsquo;ambiance g&eacute;n&eacute;rale, la g&eacute;n&eacute;ralissime leva vaguement le nez pour regarder le passage d&rsquo;une dizaine de chasseurs en formation losange et renifla un peu bruyamment. D&rsquo;accord d&rsquo;accord, c&rsquo;&eacute;tait comme &ccedil;a. Elle joignit les mains dans son dos et s&rsquo;imposa une certaine prestance. Autour d&rsquo;elle, le silence, et ses hommes qui assuraient un p&eacute;rim&egrave;tre de s&eacute;curit&eacute;.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">&laquo;<font color="#ffdbbb"> Hm. Quelle belle journ&eacute;e pour faire le bien. </font>&raquo;</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />11/03/1021 ETU 20:30</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal283896')">Détails</a> <a href="javascript:warnpost(283896)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal283896" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=283896',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Quelque instant Apr&egrave;s que Lali eut rencontr&eacute; en personne Lakshm&icirc;, elle l&rsquo;avait emmen&eacute; dans une base diplomatique &agrave; l&#039;abri des regards dans les montagnes du Sud Est du District De la Capitale</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La grotte &eacute;tait ronde. il y avait au centre une table de gr&egrave;s jaune et tout autours nombre d&rsquo;ordinateur a tube cathodique. Deux jeunes garde arm&eacute;s de revolver se tenaient &agrave; l&#039;entr&eacute;e. Ils devaient avoir dix-sept ans. leur visage encore lisse indiquait leur jeune &acirc;ge. Sur leur torse, en plus de leur nom en zbrayen et en alphabet commun, se trouvait leur grade : o. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Contrairement aux jeunes gardes, Lali avait son visage plein de rides et semblait fatigu&eacute;e. La marque de l&rsquo;impact de balle au sommet de son cr&acirc;ne &eacute;tait d&rsquo;autant plus visible et certaine partie &eacute;tait comme br&ucirc;l&eacute;e. Elle portait une combinaison orange sable, un ch&egrave;che de la m&ecirc;me couleur et son grade et son nom inscrit sur une plaque d&rsquo;un vert uranium.</div></div><div class="post_line"><div align="justify">Lali l&rsquo;invita &agrave; s&#039;asseoir autour d&#039;une table sur laquelle &eacute;tait dispos&eacute;e de nombreuses cartes de la <a href="https://i.pinimg.com/originals/46/27/fc/4627fc9be85e9f55502dd717a6d8f3dc.png" target="_blank" rel="nofollow">r&eacute;gion</a>. Elle sortit une petite bouteille de Molpass et deux verres moyens et les remplit, en entier. Puis un homme arriva. Il portait le m&ecirc;me accoutrement que la commindante et les gardes &agrave; la diff&eacute;rence pr&egrave;s que son grade indiquait : U. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><font color="#ff56ff">Bonjour, Lumineuse Lionne de Barkhan. Je suis le traducteur attitr&eacute;. Vill.</font></div><div class="post_line">Lali regarda le traducteur. Son visage &eacute;tait lac&eacute;r&eacute; de cicatrice et sa peau &eacute;tait &agrave; peine moins s&egrave;che que celle de Lali. Puis se retourna vers&nbsp;Lakshm&icirc;.</div><div class="post_line"><font color="#ffff00">Y glouglou&rsquo;, Y molpass mY pl&ocirc;net alol,&rsquo;tut nY girio glouglou malpass,&rsquo;</font></div><div class="post_line"><font color="#f551ff">Buvez ceci est du molpass, l&rsquo;alcool de la plan&egrave;te, tous les guerriers en boivent.</font></div><div class="post_line"><font color="#ffff00">Y fanc,&rsquo; Y bit&ocirc;t mirt nou Zbra amtle invi hect-agios&rsquo;, Y heptacontakaitetr-agios&rsquo;, Y diji mirt&rsquo;, Y fitigui dY assimbl&eacute;&rsquo;, </font></div><div class="post_line"><font color="#f551ff">Je vais &ecirc;tre franche avec vous, je vais bient&ocirc;t mourir, un ma&icirc;tre du Zbra d&eacute;passe rarement les 100 ans. J&rsquo;ai 74 ans, je suis d&eacute;j&agrave; morte. Je suis fatigu&eacute; de l&rsquo;assembl&eacute;</font></div><div class="post_line">Elle but une gorg&eacute;e. </div><div class="post_line"><font color="#ffff00">Y vi alli droit au but cim vous soy,&rsquo; lY pilitici interpl&ocirc;no Y chie&rsquo;, Y prifire ricivir lY commindant chi mY&rsquo;, </font></div><div class="post_line"><font color="#cf2be7">Je vais aller droit au but, comme vous dites. La politique interplan&eacute;taire commence &agrave; me faire chier. Je pr&eacute;f&egrave;re recevoir les commandants chez moi.</font></div><div class="post_line">Il semblait g&ecirc;n&eacute; de dire &ccedil;a.</div><div class="post_line"></div><div class="post_line">Elle sortit une copie en <a href="https://i.pinimg.com/originals/f0/a8/c3/f0a8c32e42cb5c2c1acc968ca232a5bc.png" target="_blank" rel="nofollow">zbrayen</a> et une en <a href="https://i.pinimg.com/originals/27/46/91/274691df2d914ff5ce3ebc3e676d6ca3.png" target="_blank" rel="nofollow">commun</a> du contrat </div><div class="post_line"><font color="#ffff00">Y zbrain non svrain &lsquo;, lY langue iciclie Y capit&ocirc;le Y lY zbrain,&rsquo; lY dipiti non vili shian&rsquo;,</font></div><div class="post_line"><font color="#f551ff">C&rsquo;est en Zbrayen et non en svrayen. la langue officielle a capitole est le Zbrayen, les d&eacute;put&eacute;s refuse de changer</font></div><div class="post_line"><div align="justify">Elle sortit un couteau fait en un m&eacute;tal noir, il ressemblait a une forme d&rsquo;obsidienne. Sous le manche se trouvait un seau frapp&eacute; des initiales de la commindante. Elle s&#039;entailla profond&eacute;ment la paume de la main et sans sourciller une grosse goutte de sang orange se posa sur la peau de vers qui servait de support pour le trait&eacute; en Zbrayen, Ensuite elle appliqua le seau sur la goutte de sang.&nbsp;Puis recommen&ccedil;a avec l&rsquo;autre main pour le trait&eacute; en commun. Un d&eacute;tail intrigua Lakshm&icirc;, la main avait quasi imm&eacute;diatement cicatris&eacute; et plus de sang coulait de ses mains. Lali changea le seau du couteau avec le signe de Barkhan. La lame encore impr&eacute;gn&eacute;e du sang de la commindante, elle la tendit &agrave; Lakshm&icirc;.</div></div><div class="post_line"><font color="#ffff00">Y fite ti cim Y fit </font></div><div class="post_line"><font color="#f551ff">Allez-y faites comme j&rsquo;ai fait.</font></div><div class="post_line">-----</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lakshm%C3%AE+Kayal">Cdte. Lakshm&icirc; Kayal</a><br>Prestige de chroniqueur&nbsp;: 68<br /><br /><img src="/avatars/11063.jpg" style="width:95px;height:128px" alt="Avatar" /><br />22/03/1021 ETU 06:43</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D284732', 544, 464)">version précédente</a> - Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal284730')">Détails</a> <a href="javascript:warnpost(284730)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal284730" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=284730',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Lakshm&icirc; ne comprenait pas vraiment pourquoi on avait insist&eacute; pour l&#039;amener loin de la capitale. Elle n&#039;avait rien dit, se contentant d&#039;observer bri&egrave;vement ses troupes qui patientaient hors du palais gouvernemental et soupesant ses possibilit&eacute;s. Alors quoi. S&#039;agissait-il d&#039;un pi&egrave;ge ? Elle &eacute;tait incapable d&#039;estimer le degr&eacute;s de fourberie et de fanatisme de Lali. Tout ce qu&#039;elle savait, c&#039;est qu&#039;&agrave; sa place, elle n&#039;aurait pas tent&eacute;e le diable.</div><div class="post_line"></div><div class="post_line">Mais comment en &ecirc;tre s&ucirc;r, exactement ? Comment &ecirc;tre s&ucirc;r que cette balade loin de la ville ne risquait pas de donner lieu &agrave; une tentative particuli&egrave;rement peu savoureuse d&#039;atteinte &agrave; sa vie ? </div><div class="post_line"></div></div><div class="post_line"><div align="justify">La lionne avait fait le trajet avec ses propres gardes du corps. Quatre lions, qui ne dirent rien du voyage et se comportaient, en fait, en bons touristes.</div><div class="post_line">Arriv&eacute;s dans la salle, les Barakhan se dispers&egrave;rent le long des murs et Lakshm&icirc; se dirigea vers le traducteur, dont elle serra la main avant de s&#039;installer face &agrave; Lali, d&eacute;posant pour l&#039;occasion son calot sur la table avec un petit soupir. Elle observa la bouteille qu&#039;on lui pr&eacute;sentait avec curiosit&eacute;. Alors quoi. Ils voulaient lui imposer de boire cet esp&egrave;ce d&#039;alcool a br&ucirc;ler ? Comme la vieille le faisait - et sans s&#039;&eacute;touffer - la Lionne se d&eacute;cida &agrave; l&#039;imiter. Si c&#039;&eacute;tait un poison... Si c&#039;&eacute;tait un poison elle survivrait. Elle avait les meilleurs m&eacute;decins de la Concorde Primosectorielle &agrave; sa disposition, et gardait toujours une fiole de vomitif sur elle. <em>Juste au cas o&ugrave;</em>.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">L&#039;Assembl&eacute;e c&#039;est de la saloperie. Qu&#039;il soit dit que la moiti&eacute; des commandants de cette galaxie sont braves, mais qu&#039;une autre moiti&eacute; est compos&eacute;e d&#039;emmerdeurs. Ils n&#039;y sont pour rien. C&#039;est culturel, ou politique. Chacun voit midi &agrave; sa porte et...</font>&quot; Elle attrapa son verre et avala cul-sent. Parfaitement impassible, elle sentit cependant le reste de sa phrase s&#039;&eacute;touffer puis mourir dans sa gorge. Pire que de l&#039;alcool a br&ucirc;l&eacute;. Ce truc &eacute;tait bien pire. Elle grogna, pour se donner de la contenance, pas question d&#039;offrir le moindre ridicule. Elle re&ccedil;u cependant le reste de la sc&egrave;ne avec moins de calme.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Quoi. <em>M&#039;ouvrir la main </em>?</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle cligna plusieurs fois des yeux, rependant aux quelques notes qu&#039;elle avait lu sur le peuple zbra. Brutaux, militaristes, mat&eacute;rialistes, avec des traditions <em>bizarres</em>. L&#039;espace d&#039;un bref instant la lionne eut envie d&#039;envoyer son interlocutrice se faire foutre. Principalement par lassitude : entre &ccedil;a et les doigts bris&eacute;s, elle commen&ccedil;ait &agrave; en avoir marre, de se d&eacute;truire les mains. Malgr&eacute; tout, Lakshm&icirc; chassa sa premi&egrave;re impulsion et attrapa la lame, imitant sans ciller la commandante. Elle appliqua le sceau sur les deux documents et poussa un nouveau soupire. Un soldat lui apporta un morceau de tissus avec lequel elle s&#039;&eacute;pongea la paume. Cette fois elle grima&ccedil;a.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Eh bien maintenant je ne peux plus dire que ce protectorat s&#039;est fait verser une goute de sang. Pas vrai ?</font>&quot;&nbsp;</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />24/03/1021 ETU 06:20</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal284836')">Détails</a> <a href="javascript:warnpost(284836)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal284836" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=284836',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Le traducteur eut un sourire amus&eacute; et poli envers La Lionne. </div><div class="post_line"><font color="#f551ff">Vous avez raison,&nbsp; si aucune goutte de sang n&rsquo;est vers&eacute;e, alors le document n&rsquo;a aucune valeur officielle. Verser son sang fait partie du protocole. </font></div><div class="post_line"><font color="#ffff00">Y cimpt&eacute; de cit instut lY nation Zvra &amp; Dipendance&rsquo;,Y votre pritiction&rsquo;,Cila Y nou binne niviell pur lY grindeur dY Zbra&rsquo;,</font></div><div class="post_line"><font color="#f551ff">&Agrave; compter de cet instant la Nation Zvra et ces territoires acquis sont sous votre protection. Cela est une bonne nouvelle pour la grandeur du Zbra.</font></div><div class="post_line">Sur les mots du traducteur,&nbsp; Lali se leva et se dirigea vers une sorte de porte fen&ecirc;tre cach&eacute;e par un rideau qu&rsquo;elle ouvrit brusquement. La lumi&egrave;re violette du d&eacute;but de soir&eacute;e, et un sourd bourdonnement venait du sol, La commindante faisait des signes de la main en direction de Lakshm&icirc;. Puis elle montra le poing &agrave; la fen&ecirc;tre, et le bourdonnement se tua. Lorsque la Lionne arriva &agrave; la fen&ecirc;tre, elle vit une foule de soldats en rang.</div><div class="post_line">Au pied de la montagne se trouvaient des soldats en tenue de c&eacute;r&eacute;monie bleu azur. Ils ne poss&eacute;daient comme seule arme un revolver accroch&eacute; &agrave; leur hanche gauche. Il faisait le salut militaire qui consistait &agrave; poser le dos de la main droite ouvert sur son &eacute;paule droite. Le bras gauche &eacute;tait quant &agrave; lui tendu le long de la jambe. Puis un <a href="https://youtu.be/Zbwxri4uHCI" target="_blank" rel="nofollow">chant</a> commen&ccedil;a . L&rsquo;ambiance changea rapidement, il y r&eacute;gnait une ambiance pesante. Pendant que les soldats chantaient, La Lionne regarda vers l&rsquo;est et un millier de soldats portaient au bout de leur bras gauche un engin lanceur ogive atomique avec une charge d&rsquo;installer. Certains soldats avaient de longues tresses qui tombaient sur le c&ocirc;t&eacute; droit de leur bustes. C&rsquo;&eacute;tait des v&eacute;t&eacute;rans. Ils &eacute;taient au milieu des plus jeunes. </div><div class="post_line">Lali &eacute;tait aussi en train de saluer en chantant en commun avec une voix &eacute;trangement grave. Le traducteur &eacute;tait lui aussi en train de chanter mais il &eacute;tait plus en retrait. </div><div class="post_line">A l&rsquo;ouest il y avait des soldats avec la m&ecirc;me posture que les artilleurs mais avec un fusil qui ressemblait au fusil pr&eacute;sent sur le drapeau <a href="https://i.pinimg.com/originals/f6/e4/88/f6e48881dee9807914adb1ac4c335f01.png" target="_blank" rel="nofollow">Zvrayen</a>.</div><div class="post_line">A une centaine de kilom&egrave;tres &agrave; l&#039;ouest, un flash lumineux attira le regard de Lakshm&icirc;. Une explosion atomique avait eu lieu, mais le plus surprenant c&rsquo;est l&rsquo;absence de r&eacute;action de Lali ou de d&rsquo;un quelconque membre de l&rsquo;arm&eacute;e. Elle n&rsquo;avait m&ecirc;me pas d&eacute;tourn&eacute; le regard de la foule de soldats. </div><div class="post_line"></div><div class="post_line">Le chant fini, le traducteur s&rsquo;approcha de La Lionne. </div><div class="post_line"><font color="#f551ff">Voici l&#039;arm&eacute;e interplan&eacute;taire. Il y a le Nou R&eacute;giment Extra-Plan&eacute;taire d&#039;Artillerie Atomique, les Atioum, La 301e L&eacute;gions Coloniale Spatiale, les Manioum, et la 49e Escouade Galactique Tiruelle, les Inioum, escouade dont Lali a fait parti lors de son entr&eacute;e dans la vie active &agrave; ses icos-ago.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lakshm%C3%AE+Kayal">Cdte. Lakshm&icirc; Kayal</a><br>Prestige de chroniqueur&nbsp;: 68<br /><br /><img src="/avatars/11063.jpg" style="width:95px;height:128px" alt="Avatar" /><br />25/03/1021 ETU 04:53</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D284866', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal284860')">Détails</a> <a href="javascript:warnpost(284860)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal284860" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=284860',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">&quot;<font color="#FF30DC">Cela est une bonne nouvelle pour la grandeur du Zbra</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pas exactement ce &agrave; quoi elle s&#039;attendait, mais &ccedil;a n&#039;emp&ecirc;cha pas la g&eacute;n&eacute;ralissime d&#039;acquiescer. Oui. Oui. Voil&agrave; au moins qui devrait vous emp&ecirc;cher de vous suicider une nouvelle fois sur la premi&egrave;re puissance sectorielle, mes agneaux. Vous concernant c&#039;est effectivement une avanc&eacute;e notable. On ne peut pas le nier. Elle afficha un sourire vide et joignit les mains sur la table, un peu g&ecirc;n&eacute;e. Le contrat sign&eacute; il ne lui restait plus qu&#039;&agrave; retourner sur Barakhan et &agrave; d&eacute;l&eacute;guer l&#039;affaire &agrave; un quelconque r&eacute;sident g&eacute;n&eacute;ral. En ce qui concernait Svra, au moins, son boulot &eacute;tait termin&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ce fut du moins ce qu&#039;elle pensa jusqu&#039;&agrave; ce que Lali ne l&#039;invite &agrave; la fen&ecirc;tre, o&ugrave; elle la rejoignit mains dans le dos, observant la foule de soldats. On lui faisait les honneurs militaires. Au final &ccedil;a n&#039;avait rien de surprenant. Elle les observa saluer, puis &eacute;couta le chant avec curiosit&eacute;. Toute la culture de ses h&ocirc;tes semblait tourner autour de la mort. Que ce soit par le massacre, la guerre, l&#039;assassinat ou, comme per&ccedil;u pr&eacute;c&eacute;demment, le suicide et le coup. En un sens Svra tenait probablement de ces peuples tribaux. En d&#039;autres temps Barakhan avait sans doute &eacute;t&eacute; similaire.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La&nbsp;r&eacute;flexion de la Lionne fut interrompue lorsqu&#039;elle remarqua d&#039;une part les lance-roquettes et de l&#039;autre la violente d&eacute;flagration d&#039;une explosion nucl&eacute;aire.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les malades.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et cligna plusieurs fois des yeux, porta une main &agrave; ses lunettes pour les rehausser l&eacute;g&egrave;rement sur son nez. Putain. Les malades. C&#039;est pas possible. Elle se retourna. Lali n&#039;en avait manifestement rien &agrave; foutre et le traducteur continuait de chanter. Ses lions, eux, se contentaient de la fixer. Ils semblaient, en substance, partager sa conclusion.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les chants se termin&egrave;rent, on lui fit la liste des soldats pr&eacute;sents, Lakshm&icirc; continuait de fixer l&#039;explosion nucl&eacute;aire. Elle allait avoir beaucoup de boulot, tr&egrave;s manifestement.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Bon. Elle leva une main et un des lion lui apporta aussit&ocirc;t un m&eacute;gaphone. O&ugrave; qu&#039;elle allait, elle en faisait toujours amener un. Sait-on jamais.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Soldats de l&#039;Arm&eacute;e Interplan&eacute;taire Zvrayenne !</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Autant faire bonne impression. Elle leva un poing par-dessus la fen&ecirc;tre. Sur Salusia fait comme les Salusiens. Ces nuits de doute pass&eacute;es &agrave; visionner les discours des Guides supr&ecirc;mes et tr&egrave;s Glorieux Kamarades du pass&eacute; allaient se r&eacute;v&eacute;ler utiles.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Je viens &agrave; vous en amie, en protectrice et en pourvoyeuse de gloire. Zvra... A &eacute;t&eacute; malmen&eacute;e. L&#039;indiscipline, la faiblesse et le manque de vision de ses anciens gouvernements ont plong&eacute; votre nation dans des ab&icirc;mes dont elle ne saurait sortir seule. Soldats&nbsp;! Votre peuple a &eacute;t&eacute; le grand sacrifi&eacute; de l&#039;incomp&eacute;tence&nbsp;! Et vos armes, trop souvent, ont tir&eacute; dans des guerres sans buts&nbsp;!</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Elle leva le menton, fit un geste en direction du ciel.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Mais... Soldats... Les jours sombres sont termin&eacute;s pour vous. Votre fid&eacute;lit&eacute; sera r&eacute;compens&eacute;e par le Sens. Vous marcherez avec Barakhan telle deux nations s&oelig;urs, et nous vous ouvrirons les portes de la gloire, partageant avec vous un peu de notre succ&egrave;s&nbsp;! Demain, de nouvelles colonies alimenteront votre industrie, vos flottes briseront la menace Brigande, et participeront &agrave; la protection de leur secteur. Svra sera une nation respect&eacute;e. Car Svra est un esprit qui est, et demeure. </div><div class="post_line"></div><div class="post_line">Car vous m&#039;avez donn&eacute; votre confiance, et que je vous offre l&#039;avenir&nbsp;!</font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Le petit discours termin&eacute;, Lakshm&icirc; resta &agrave; la fen&ecirc;tre le temps de constater de l&#039;&eacute;ventuelle r&eacute;action des troupes, puis s&#039;en &eacute;carta, se renfrognant aussit&ocirc;t. Elle lan&ccedil;a un regard en coin &agrave; Lali.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">&quot;<font color="#ffdbbb">Nous allons d&egrave;s maintenant mettre en place l&#039;aide technique, vous me ferez parvenir vos besoins.</font>&quot; Elle s&#039;interrompit et pivota pour de bon vers la commindante. &quot;<font color="#ffdbbb">Je veux que la flotte soit pr&ecirc;tre &agrave; se lancer &agrave; l&#039;assaut du prochain secteur brigand qui ouvrira. Vous me communiquez vos effectifs et une estimation du nombre d&#039;appareils que vous pouvez produire chaque cycle. Quand le moment viendra nous nous coordonnerons.</font>&quot;</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Lali">Cdte. Lali</a><br>Prestige de chroniqueur&nbsp;: 32<br /><br /><img src="/avatars/10532.png" style="width:128px;height:128px" alt="Avatar" /><br />31/03/1021 ETU 00:31</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal285021')">Détails</a> <a href="javascript:warnpost(285021)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285021" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285021',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Surpris par la prise de voix soudaine de Lakshm&icirc;, certains soldats se regard&egrave;rent, mais d&egrave;s que La G&eacute;n&eacute;ralissime eut lev&eacute; le poing, tous tapaient leurs rangers sur le sol et firent un autre salut militaire. La poussi&egrave;re orang&eacute;e du sable se m&ecirc;lait avec le cr&eacute;puscule violet du ciel. La Lionne faisait son discours dans un mortel silence, le conflit se d&eacute;roulant au loin &agrave; l&rsquo;Ouest ne laissait entendre que le silence des vies tomb&eacute;es.</div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Car vous m&#039;avez donn&eacute; votre confiance, et que je vous offre l&#039;avenir !</font></div><div class="post_line"></div><div class="post_line">Sur ses mots et &agrave; l&#039;unisson, l&rsquo;arm&eacute;e pr&eacute;sente trois &ldquo;Ahou&rdquo;, et le bourdonnement de l&rsquo;activit&eacute; repris comme s&rsquo;il ne s&rsquo;&eacute;tait jamais arr&ecirc;t&eacute;.</div><div class="post_line">A la question de Lakshm&icirc;, le traducteur pris la parole :</div><div class="post_line"><font color="#cf2be7">Nous vous transmettons sous format num&eacute;rique l&#039;&eacute;tat de nos forces et nos ressources.</font></div><div class="post_line">Pendant le traducteur formulait sa phrase, Lali &eacute;tait pos&eacute; en tailleur sur la chaise les yeux ferm&eacute;s et une aura jaune autour d&rsquo;elle.</div><div class="post_line"><font color="#ffff00">Kayal ! Votre esprit est troubl&eacute;. Je le ressens en vous.</font></div><div class="post_line">La G&eacute;n&eacute;ralissime n&rsquo;avait pas vu les l&egrave;vres de Lali boug&eacute;es, pourtant sa voix r&eacute;sonnait dans sa t&ecirc;te. Lali fouillait son esprit.&nbsp;Le traducteur semblait dire quelque chose mais elle n&rsquo;entendit rien. Seule la voix de la commindante r&eacute;sonnait dans sa t&ecirc;te. Elle vit le traducteur qui donnait des ordres. Les jeunes soldats arriv&egrave;rent avec un tabouret d&rsquo;un blanc provonnant d&rsquo;un autre temps</div><div class="post_line"><font color="#ffff00">En tant que nation s&oelig;ur comme vous l&rsquo;avez dit, je vous offre un diaporama de l&rsquo;histoire de ma nation.</font></div><div class="post_line"></div><div class="post_line">Elle se sentit tourner de l&rsquo;&oelig;il. Tout autour d&rsquo;elle devint sombre et s&rsquo;&eacute;teignait.</div><div class="post_line"></div><div class="post_line">Elle est dans un d&eacute;sert de sable. Autour d&rsquo;elle, plusieurs soldats, un genou &agrave; terre, la t&ecirc;te entre leur main. Leur uniforme est sali par un sable orange. Il n&rsquo;y avait pas d&rsquo;ombre, juste une pure lumi&egrave;re. Elle l&egrave;ve la t&ecirc;te pour d&eacute;couvrir l&#039;int&eacute;rieur d&rsquo;une explosion, c&rsquo;est la boule de plasma d&rsquo;une explosion de bombe A. La lumi&egrave;re est de plus en plus intense.</div><div class="post_line"></div><div class="post_line">Un homme v&eacute;tu d&rsquo;un simple pagne blanc accroch&eacute; par la gorge, les poignets et les cheville a un mur. Il y a tatou&eacute; en blanc, sur le haut de son torse : </div><div class="post_line">TRA&Icirc;TRE - NE PAS NOURRIR - NE PAS HYDRATER</div><div class="post_line">En face de lui, Lali, dans la m&ecirc;me tenue qu&rsquo;elle porte actuellement, pose le canon de son pistolet sur le sommet du cr&acirc;ne du tra&icirc;tre. Le coup de feu vient de partir. Le cr&acirc;ne chauve de l&rsquo;homme commence &agrave; se fissurer laissant appara&icirc;tre la m&ecirc;me lumi&egrave;re que l&rsquo;explosion qui englobe toute la pi&egrave;ce.</div><div class="post_line"></div><div class="post_line">La lumi&egrave;re. Elle s&rsquo;&eacute;tait r&eacute;veill&eacute;e de ce sombre cauchemar. Assise sur un tabouret, la pi&egrave;ce &eacute;tait baign&eacute;e d&rsquo;une lumi&egrave;re orange qui faisait ressortir les irr&eacute;gularit&eacute;s de la grotte. Lalli &eacute;tait en face d&rsquo;elle, debout, et un sourire fraternel sur son visage </div><div class="post_line"><font color="#ffff00">biyevu chi lY zvrayen&rsquo;, glouglou cit flash&rsquo;,Y disilii dY vous ifligi Y&rsquo;, </font></div><div class="post_line">Lali lui apportait un verre de lait. </div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15486&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15486" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15486" name="d_reply_15486" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15486');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15486'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Le Protectorat de Zvra</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

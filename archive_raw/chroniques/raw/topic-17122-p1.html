@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17122 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Centre des Osill</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Centre des Osill</p>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=17122&c_forum_page=1&c_page=2">2</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=17122&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />25/01/1024 ETU 07:39<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305941')">Détails</a> <a href="javascript:warnpost(305941)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305941" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305941',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Assis sur l&#039;une des nombreuses chaises dans le Quartier G&eacute;n&eacute;ral, Nathan regardait inlassablement les &eacute;toiles d&eacute;filer sous ses yeux. Le Quartier d&#039;amarrage &eacute;tait pr&ecirc;t &agrave; accueillir le visiteur ind&eacute;sirable qui allait arriver dans le Centre des Osill, d&#039;ici quelques minutes. Perplexe, l&#039;homme ne savait pas &agrave; quoi s&#039;attendre. Il jouait sa propre vie &agrave; pile ou face, ce qui n&#039;avait jamais &eacute;t&eacute; dans ses projets. Nathan s&#039;&eacute;tait battu depuis son enfance pour avoir la place la plus importante au c&oelig;ur de l&#039;Arbre M&egrave;re, et aujourd&#039;hui, ses r&ecirc;ves et sa vie risquaient de partir en fum&eacute;e.</div><div class="post_line"></div><div class="post_line">Il aurait tout donn&eacute; pour que ce jour ne vienne jamais, mais c&#039;&eacute;tait impossible. Lui qui pensait pouvoir d&eacute;truire les Alfein lors de l&#039;Apocalypse, il ne verrait peut-&ecirc;tre jamais ce jour arriver. Prenant une &eacute;ni&egrave;me grande inspiration, l&#039;Alfein se releva et fit signe &agrave; Tania de le rejoindre. La jeune brune, depuis son arriv&eacute;e dans le Centre, ne faisait qu&#039;hurler apr&egrave;s ses sujets. Il avait d&ucirc; la faire venir en urgence, apr&egrave;s avoir intercept&eacute; un nouveau Com-X. Nathan avait pris soin d&#039;effacer chaque message, afin que Vallya ne d&eacute;couvre pas sa pr&eacute;sence. Si jamais elle venait &agrave; s&#039;en apercevoir, cela signerait &agrave; tous, leur arr&ecirc;t de mort. Connaissant le sp&eacute;cimen, la Princesse entrerait dans une rage folle, ce qu&#039;il ne souhaitait pas. Il devait &agrave; tout prix garder un semblant de calme sur Osill.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Je ne suis pas du genre patiente ! </font>grogna la brune en croisant les bras et en regardant durement l&#039;homme de haut en bas.</div><div class="post_line"><font color="#e82a1f">Ils ne devraient plus tarder...</font>siffla-t-il, r&eacute;sign&eacute;.</div><div class="post_line"><font color="#44b8ff">J&#039;ai l&#039;impression de devenir une vulgaire infirmi&egrave;re Galactique ! Xho et maintenant, lui ! </font>hurla-t-elle de rage, m&eacute;contente.</div><div class="post_line"><font color="#005dc2">Oui ?&nbsp;</font>s&#039;interposa une voix de l&#039;autre c&ocirc;t&eacute; de la pi&egrave;ce. Xho, les yeux riv&eacute;s sur les commandes, releva la t&ecirc;te en entendant son nom.</div><div class="post_line"><font color="#44b8ff">D&eacute;gage d&#039;ici avant que je d&eacute;cide de te jeter aux Ouvri&egrave;res ! </font>Rouge de rage, Tania regarda Xho partir du Quartier G&eacute;n&eacute;ral, les yeux riv&eacute;s sur le sol.</div><div class="post_line"></div><div class="post_line">Lorsque la porte s&#039;ouvrit, Nathan se retourna pour voir qui venait d&#039;entrer. Les yeux ronds, l&#039;homme prit les devants et se h&acirc;ta de rejoindre Vallya qui venait de rejoindre la table centrale. Habill&eacute;e d&#039;une l&eacute;g&egrave;re robe verte, la Princesse fixa Nathan, avec un regard curieux.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Les Alfein n&#039;arr&ecirc;tent pas de parler qu&#039;un &eacute;tranger va venir dans le Centre... Qui est-ce ?</font> demanda-t-elle.</div><div class="post_line"><font color="#e82a1f">Vally&#039;, tu devrais retourner dans tes appartements...</font> chuchota-t-il &agrave; la blonde en grin&ccedil;ant des dents.</div><div class="post_line"><font color="#ffa500">Pardon ? Pourquoi devrais-je faire une telle chose ? </font>s&#039;indigna la blonde en se relevant.</div><div class="post_line"><font color="#e82a1f">Je ne t&#039;ai jamais rien demand&eacute;, mais s&#039;il te pla&icirc;t, cette fois, &eacute;coute-moi et retourne dans tes appartements...</font></div><div class="post_line"><font color="#ffa500">Nathan ? Tu m&#039;inqui&egrave;tes.</font></div><div class="post_line"></div><div class="post_line">L&#039;homme ferma un instant les yeux, d&eacute;pit&eacute;. Il devait trouver une solution et vite. Si elle d&eacute;couvrait le pot aux roses, tout serait fini.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Pourquoi veux-tu qu&#039;elle parte ?</font> dit Tania en s&#039;interposant entre les deux Alfein.</div><div class="post_line"></div><div class="post_line">&quot;<font color="#e82a1f">Merde</font>,&quot; pensa-t-il avant de balayer du regard la pi&egrave;ce. Il devait trouver une solution et vite ! Rapidement, il prit son amie d&#039;enfance entre ses bras et s&#039;approcha de son oreille afin de lui parler &agrave; l&#039;abri du regard de l&#039;Arbre M&egrave;re.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Joue ton meilleur r&ocirc;le... Je t&#039;en prie, joue la com&eacute;die.</font></div><div class="post_line"></div><div class="post_line">Paniqu&eacute;, Nathan s&#039;&eacute;carta et regarda la porte de l&#039;autre c&ocirc;t&eacute; de la pi&egrave;ce s&#039;ouvrir. Les entrailles nou&eacute;es, l&#039;Alfein posa sa main sur sa bouche, inquiet. Si jamais la Princesse se laissait aller, tout &ccedil;a n&#039;aurait servi &agrave; rien.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />25/01/1024 ETU 17:40<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal305942')">Détails</a> <a href="javascript:warnpost(305942)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305942" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305942',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font size="3">Crik Horne, lieutenant et enseigne personnelle du Grand Amiral Jace Ryzo, pilotait la corvette personnelle du dirigeant Thalwa. A l&rsquo;int&eacute;rieur du vaisseau, une petite &eacute;quipe m&eacute;dicale s&rsquo;aff&eacute;rait autour d&rsquo;une civi&egrave;re sur laquelle gisait un homme roux. Le patient &eacute;tait intub&eacute;, et reli&eacute; &agrave; diff&eacute;rentes machines qui mesuraient les constantes vitales de ce dernier.&nbsp; </font></em></div><div class="post_line"></div><div class="post_line"><em><font size="3">Le lieutenant Horne avait le visage crisp&eacute;, il se retournait r&eacute;guli&egrave;rement vers l&rsquo;arri&egrave;re de l&rsquo;appareil, inquiet pour son sup&eacute;rieur. Le voyage avait &eacute;t&eacute; long, peut-&ecirc;tre trop ? Les m&eacute;decins n&rsquo;avaient pas quitt&eacute; le chevet du Grand Amiral durant l&rsquo;int&eacute;gralit&eacute; du trajet. A deux reprises, les instruments s&rsquo;&eacute;taient emball&eacute;s et le staff m&eacute;dical avait d&ucirc; proc&eacute;der &agrave; des interventions d&rsquo;urgence pour garantir la survie du patient.&nbsp; </font></em></div><div class="post_line"></div><div class="post_line"><em><font size="3">D&eacute;sormais, il touchait au but, et bient&ocirc;t, il l&rsquo;esp&eacute;rait, la vie de Jace Ryzo ne serait plus en danger. Toutefois, une appr&eacute;hension demeurait. En tant qu&rsquo;homme de main du Grand Amiral, Crik Horne n&rsquo;avait aucune l&eacute;gitimit&eacute; &agrave; conna&icirc;tre les relations diplomatiques qu&rsquo;entretenait son sup&eacute;rieur. De ce fait, il ne connaissait que tr&egrave;s vaguement le contexte g&eacute;opolitique galactique. En r&eacute;cup&eacute;rant Jace dans un &eacute;tat aussi critique, il n&rsquo;e&ucirc;t d&rsquo;autres solutions que de contacter la seule personne ext&eacute;rieure &agrave; son peuple, dont il avait connaissance. Et c&rsquo;est ainsi qu&rsquo;il se retrouvait loin de chez lui, dans le confort tr&egrave;s relatif d&rsquo;une corvette, &agrave; esp&eacute;rer ne pas avoir pr&eacute;cipit&eacute; la mort de celui qui &eacute;tait jadis son rival.&nbsp; </font></em></div><div class="post_line"></div><div class="post_line"><em><font size="3">A l&rsquo;approche du Centre, le lieutenant Horne s&rsquo;adressa &agrave; l&rsquo;&eacute;quipage :&nbsp; </font></em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Par&eacute; &agrave; l&rsquo;amarrage, s&eacute;curisez le patient et pr&eacute;parez-vous &agrave; l&rsquo;extraction&rdquo;</font><em>, annon&ccedil;a-t-il gravement.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><em><font size="3">Une fois le sas s&eacute;curis&eacute;, Crik Horne se dirigea hors de la navette, suivi de pr&egrave;s par l&rsquo;&eacute;quipe m&eacute;dicale qui tra&icirc;nait avec elle la civi&egrave;re.&nbsp; </font></em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ffdbbb">&ldquo;Sans assistance des instruments embarqu&eacute;s il ne tiendra pas longtemps, Lieutenant.&nbsp;Nous vous conseillons d&rsquo;&ecirc;tre bref&rdquo;</font><em>, sugg&eacute;ra la chirurgienne r&eacute;f&eacute;rente.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><em><font size="3">Crik Horne lui adressa un hochement de t&ecirc;te entendu, et les invita &agrave; le suivre dans le couloir qui se d&eacute;voilait devant eux. Au fur et &agrave; mesure de leur progression, le militaire distinguait des voix qui s&rsquo;&eacute;levait dans le silence du Centre, qui n&rsquo;&eacute;tait troubl&eacute; que par les bruits de pas de la procession Thalwa. Ces cris qui r&eacute;sonnaient dans les couloirs, s&rsquo;ajoutaient &agrave; la tension que les Thalwas ressentaient d&eacute;j&agrave;, eux qui s&rsquo;avan&ccedil;aient sans d&eacute;fense vers l&rsquo;inconnu. </font></em></div><div class="post_line"></div><div class="post_line"><em><font size="3">Au bout du couloir se dressait une porte devant laquelle Crik Horne s&rsquo;arr&ecirc;ta. Il se retourna lentement vers le staff m&eacute;dical et leur dit ces quelques mots :&nbsp; </font></em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Quoiqu&rsquo;il se passe &agrave; partir d&rsquo;ici, nous le faisons pour<u> assurer la survie du Grand Amiral</u>. Il est celui que Dieu a d&eacute;sign&eacute; pour amener la Paix dans la Galaxie. Soyons courageux comme il a su l&rsquo;&ecirc;tre, et les Thalwas en sortiront plus forts. Que la Paix nous guide&rdquo;</font><em>, termina-t-il solennellement en adressant un salut militaire formel &agrave; son sup&eacute;rieur qui reposait sur la civi&egrave;re. </em></font></div><div class="post_line"></div><div class="post_line"><em><font size="3">C&rsquo;est alors qu&rsquo;il appuya sur le bouton permettant l&rsquo;ouverture des portes, et qu&rsquo;il entra dans cette pi&egrave;ce, le pas d&eacute;termin&eacute;, accompagn&eacute; du staff m&eacute;dical.&nbsp; </font></em></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Lieutenant Horne au rapport. Je vous apporte le Grand Amiral Jace Ryzo, commandant des Forces Arm&eacute;es Thalwas et Repr&eacute;sentant de notre nation &agrave; l&rsquo;&eacute;chelle galactique, d&eacute;sign&eacute; par Dieu en personne pour porter sa parole de Paix dans la Galaxie&rdquo;</font><em>, annon&ccedil;a Crik avec fermet&eacute; tout en se pla&ccedil;ant au garde &agrave; vous au c&ocirc;t&eacute; de la civi&egrave;re. Son regard parcouru la salle, jaugeant les personnes pr&eacute;sentes dans la pi&egrave;ce avant d&rsquo;encha&icirc;ner plus calmement :&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Il est dit que la m&eacute;decine Alfein est l&rsquo;une des meilleures de cette Galaxie. C&rsquo;est pourquoi nous requ&eacute;rons votre appui m&eacute;dical pour sauver la vie&nbsp;de notre dirigeant, qui est dans un &eacute;tat critique.&rdquo;</font></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />25/01/1024 ETU 22:22<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal305949')">Détails</a> <a href="javascript:warnpost(305949)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305949" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305949',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Alors que le lieutenant se pr&eacute;sentait, Tania s&#039;approcha de l&#039;homme, le regard s&eacute;v&egrave;re. Comment osait-il parler d&#039;une autre divinit&eacute; qu&#039;elle ? &Agrave; la fin de sa prise de parole, la d&eacute;esse Alfein croisa les bras, laissant appara&icirc;tre un fin sourire sournois.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Demandez &agrave; votre Dieu de le soigner, dans ce cas</font>, trancha-t-elle, les yeux riv&eacute;s sur son interlocuteur. <font color="#44b8ff">Pourquoi venir ici, si Dieu a d&eacute;sign&eacute; cet homme ? N&#039;est-ce pas le seul &ecirc;tre capable de juger si oui ou non, votre meneur doit mourir ? Si vous tenez tant &agrave; votre Dieu, pourquoi venir voir une autre divinit&eacute; ? D&#039;ailleurs, votre Dieu laisse mourir votre civilisation sans sourciller ? Encore des affabulations !</font></div><div class="post_line"></div><div class="post_line">Tania laissa ses doigts glisser sur les attaches de la civi&egrave;re. Les Thalwas &eacute;taient bien pr&eacute;tentieux pour une civilisation aussi faible. Humant l&#039;air, la brune &eacute;carta les mains pour indiquer au lieutenant de s&#039;&eacute;carter.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Donc, de mon point de vue, c&#039;est &agrave; moi de d&eacute;cider s&#039;il doit vivre ou mourir ? En quoi les Thalwas seraient utiles aux Alfein ? Vous &ecirc;tes de la F&eacute;d&eacute;ration, certes, mais tout aussi inutile que l&#039;est Xho. Croyez-moi, je ne ferai pas deux fois la m&ecirc;me erreur. </font>S&#039;amusa-t-elle en inspectant les blessures du Grand Amiral.</div><div class="post_line"></div><div class="post_line">De son c&ocirc;t&eacute;, Nathan tenait fermement le bras de la princesse qui regardait la sc&egrave;ne d&#039;un &oelig;il assassin. La d&eacute;tresse qu&#039;il lisait en elle devait &agrave; tout prix dispara&icirc;tre si jamais elle voulait qu&#039;il survive. Laisser libre cours &agrave; ses sentiments donnerait une raison suppl&eacute;mentaire &agrave; Tania de ne pas acc&eacute;der &agrave; la requ&ecirc;te du lieutenant. Il n&#039;avait pas d&#039;autre choix que de retenir Vallya qui luttait int&eacute;rieurement. Il se d&eacute;tacha de la femme et alla rejoindre Tania, encore en train de jauger si oui ou non, elle devait les aider.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Je pense que les Thalwas peuvent nous &ecirc;tre utiles dans un futur proche,</font> dit-il rapidement en adressant un signe de t&ecirc;te au lieutenant Horne.</div><div class="post_line"><font color="#44b8ff">Effectivement, il est &eacute;ligible &agrave; devenir une guerri&egrave;re, </font>r&eacute;pliqua la brune, le sourire aux l&egrave;vres.</div><div class="post_line"></div><div class="post_line">Nathan cligna plusieurs fois des yeux, ne comprenant pas de quoi voulait parler Tania. La femme tourna son regard sur Vallya au loin avant de l&acirc;cher un petit rire moqueur.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Tu &eacute;tais contre ses d&eacute;lires de paix &agrave; l&#039;assembl&eacute;e. Ne voudrais-tu pas qu&#039;il aide les Alfein et soit notre bras arm&eacute;?</font></div><div class="post_line"><font color="#e82a1f">Tania, nous parlerons apr&egrave;s de l&#039;&eacute;change !</font> s&#039;impatienta Nathan en prenant soin de ne pas laisser le temps &agrave; Vallya de r&eacute;pliquer.</div><div class="post_line"></div><div class="post_line">Toujours en fixant Vallya, Tania roula des yeux avant de s&#039;esclaffer.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Je d&eacute;cide de l&#039;&eacute;change ! Cette fois, tu n&#039;auras aucun droit de refuser comme tu l&#039;as fait avec Xho, est-ce clair ?</font></div><div class="post_line"><font color="#ffa500">Que veux-tu ? </font>inqui&egrave;te, Vallya se rapprocha de Nathan, peu sereine.</div><div class="post_line"><font color="#44b8ff">Tu le sais tr&egrave;s bien et...</font></div><div class="post_line"><font color="#ffa500">C&#039;est d&#039;accord !</font> r&eacute;pondit la blonde en serrant les poings.</div><div class="post_line"></div><div class="post_line">Nathan, entre les deux femmes, pouvait ressentir le courant &eacute;lectrique qui les liait. Il ne comprenait pas encore l&#039;accord que les femmes venaient de passer, mais il faisait confiance &agrave; Vallya. Tania se tourna vers le lieutenant, souriant de soulagement.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Le contrat est pass&eacute;, vous avez beaucoup de chance, vous savez. Tr&egrave;s bien ! Votre meneur sera sur pied d&#039;ici quelques minutes, voire heures s&#039;il est plut&ocirc;t du genre feignant. L&#039;op&eacute;ration ne sera pas simple, mais il n&#039;y a aucun risque d&#039;&eacute;chec ni de mort pr&eacute;matur&eacute;e. Croyez-moi, je ne me permettrais pas de le laisser mourir.</font> Dit-elle avidement. <font color="#44b8ff">En revanche, il va falloir vous retirer de cette pi&egrave;ce et rejoindre les appartements de Nathan, le temps que je m&#039;occupe de lui. Je suis certaine que Vallya et Nathan seront des h&ocirc;tes parfaits durant cet attente. D&egrave;s qu&#039;il sera reconfectionn&eacute;, vous serez alors libre de venir le voir. Sachez que je ne proc&eacute;derai &agrave; aucune transformation physique ni mentale, je vous en donne ma parole et je peux vous dire, qu&#039;elle vaut de l&#039;or.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />26/01/1024 ETU 07:48<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305951')">Détails</a> <a href="javascript:warnpost(305951)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305951" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305951',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="3"><em>Crik Horne fron&ccedil;a les sourcils en r&eacute;ponse au ton d&eacute;sobligeant de la jeune femme aux cheveux bruns. Qui &eacute;tait-elle pour parler de la sorte ? Alors qu&rsquo;une remarque allait s&rsquo;&eacute;chapper de ses l&egrave;vres, le lieutenant se retint au dernier moment. Bien que cette personne soit visiblement d&eacute;testable, mieux valait botter en touche et r&eacute;primer la contrari&eacute;t&eacute; que ressentait Crik.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Si vous souhaitez des r&eacute;ponses &agrave; vos questions</font><font color="#ffffff">, </font><em>commen&ccedil;a le lieutenant Horne en d&eacute;signant le Grand Amiral d&rsquo;un mouvement de t&ecirc;te,</em> <font color="#4cea5e">c&rsquo;est &agrave; lui qu&rsquo;il faut les poser.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>L&rsquo;enseigne grima&ccedil;a lorsque l&rsquo;Alfein lui signifia de s&rsquo;&eacute;carter de son sup&eacute;rieur. Tout en soufflant du nez, Crik Horne fit un pas de c&ocirc;t&eacute;, et croisa les bras pour s&rsquo;emp&ecirc;cher de lui sauter au cou. Il avait les yeux riv&eacute;s sur les mains de Tania, pr&ecirc;t &agrave; intervenir au moindre mouvement suspect.</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Autour de la table, le personnel m&eacute;dical Thalwa avait recul&eacute; &eacute;galement, et la tension &eacute;tait palpable. Les visages &eacute;taient crisp&eacute;s, et les jambes tremblaient. Visiblement, l&#039;agressivit&eacute; de Tania mettait mal &agrave; l&#039;aise les Thalwas. Crik Horne leva discr&egrave;tement le pouce dans leur direction, pour leur signifier que tout &eacute;tait sous contr&ocirc;le. Coup de bluff, car il n&#039;avait aucune carte &agrave; jouer pour garantir leur s&eacute;curit&eacute; dans cet endroit.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Alors que l&rsquo;Alfein observait Jace Ryzo, allong&eacute; sur la civi&egrave;re, le lieutenant Horne d&eacute;tourna bri&egrave;vement son attention pour adresser un regard interrogateur &agrave; Nathan et Vallya.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Mais qui est donc cette gu&eacute;risseuse ?&rdquo;</font> <em>se demandait int&eacute;rieurement le lieutenant Horne, totalement d&eacute;contenanc&eacute; par l&rsquo;attitude antipathique de Tania. A nouveau, Crik Horne laissa les questions de l&rsquo;Alfein en suspens. Conscient qu&rsquo;un mot de travers de sa part pourrait avoir de graves cons&eacute;quences. Il &eacute;tait pr&eacute;f&eacute;rable de ne rien dire et de laisser la gu&eacute;risseuse&nbsp;lancer ses piques.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Utile ? Guerri&egrave;re ? Bras arm&eacute; ? </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Crik Horne laissa son regard interrogateur parcourir la salle, cherchant une explication dans le regard des personnes pr&eacute;sentes en &eacute;vitant soigneusement celui de Tania. Il n&rsquo;avait aucun &eacute;l&eacute;ment de contexte et se sentait totalement &eacute;tranger &agrave; la discussion, ce qui le mettait profond&eacute;ment en rogne. Cependant, jamais il n&rsquo;aurait perdu son sang-froid, il devait sauver Jace. Il tentait de faire le lien entre toutes les informations qu&#039;il percevait, ce qui &eacute;tait peine perdue. Il s&#039;estima n&eacute;anmoins heureux qu&#039;aucune violence n&#039;ai &eacute;t&eacute; employ&eacute;e pour l&#039;instant.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Pourtant, lorsque l&rsquo;&eacute;change entre les trois Alfein devint plus anim&eacute;, il ne put qu&rsquo;avoir un mauvais pressentiment. Il semblerait qu&rsquo;ils discutaient des termes du sauvetage du Grand Amiral ... Sans l&rsquo;avis des Thalwas. Crik manqua de s&#039;offusquer mais se for&ccedil;a &agrave; rester impassible. Il esp&eacute;rait que les Thalwas &eacute;taient dans les bonnes faveurs d&#039;au moins un des Alfein, et que ce serait celui-ci qui aurait le dernier mot.&nbsp;Le lieutenant d&eacute;croisa ses bras et se gratta un c&ocirc;t&eacute; du cr&acirc;ne, perplexe quant &agrave; la conclusion des n&eacute;gociations.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Lorsque Tania le regarda avec un sourire, il reprit une position plus formelle, et lui adressa un hochement de t&ecirc;te entendu. Visiblement, ils &eacute;taient chanceux. A quel point ? Il n&rsquo;en avait strictement aucune id&eacute;e. L&rsquo;essentiel &eacute;tait assur&eacute; pour l&rsquo;instant, Jace allait &ecirc;tre r&eacute;tabli, et c&rsquo;&eacute;tait un soulagement.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Je souhaiterais que notre chirurgienne r&eacute;f&eacute;rente soit <u>pr&eacute;sente </u>lors de votre op&eacute;ration&rdquo;</font><em>, affirma le lieutenant Horne et jetant un regard &agrave; cette derni&egrave;re qui &eacute;carquilla les yeux de surprise. Crik fron&ccedil;a les sourcils, et la chirurgienne baissa timidement les yeux et attendit le verdict de la gu&eacute;risseuse.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>L&rsquo;enseigne Horne sortit alors de la pi&egrave;ce avec plus d&rsquo;incertitudes et de questions qu&rsquo;&agrave; son arriv&eacute;e. Une fois la porte referm&eacute;e derri&egrave;re le groupe, Crik avan&ccedil;a de quelques pas avant de se retourner vers Nathan, le regard noir :&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Lorsque je vous disais ne pas pouvoir <u>d&eacute;cider </u>de l&rsquo;avenir de mon peuple, j&rsquo;esp&eacute;rais au moins avoir la possibilit&eacute; <u>d&rsquo;exprimer </u>un avis.&rdquo;</font> <em>Maugr&eacute;a-t-il en croisant les bras, dans l&rsquo;attente d&rsquo;une justification convaincante.</em> <font color="#4cea5e">&ldquo;Je m&rsquo;assurerai &agrave; la suite de l&rsquo;op&eacute;ration que rien de suspect ne soit arriv&eacute; au Grand Amiral et vous pouvez &ecirc;tre s&ucirc;r que je serai tr&egrave;s pointilleux. Quelle est cette histoire de contrat dont votre gu&eacute;risseuse parlait ?&rdquo;</font> <em>questionna-t-il en jetant un coup d&rsquo;oeil interrogateur &agrave; la blonde.&nbsp;</em></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />26/01/1024 ETU 18:13<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305952')">Détails</a> <a href="javascript:warnpost(305952)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305952" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305952',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Tania contemple la chirurgienne. La brune semble r&eacute;fl&eacute;chir pendant un instant avant d&#039;hocher la t&ecirc;te pour lui accorder ce droit.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Je pense qu&#039;elle me sera utile. Il me faudra des forces pour le soigner et je suis certaine que suffisamment pr&eacute;par&eacute;e, votre chirurgienne sera excellente !</font> se r&eacute;jouit-elle en indiquant la porte de sortie pour qu&#039;ils puissent tous quitter les lieux. <font color="#44b8ff">Je viendrai vous chercher quand l&#039;op&eacute;ration sera termin&eacute;e. Il faudra en revanche attendre qu&#039;il se r&eacute;veille pour partir du Centre, puisque vous me dites qu&#039;il est le seul &agrave; pouvoir r&eacute;pondre &agrave; mes questions.</font></div><div class="post_line"></div><div class="post_line">Nathan fit signe au Lieutenant et &agrave; l&#039;&eacute;quipe m&eacute;dicale de le suivre. Durant la courte balade jusqu&#039;&agrave; ses appartements, ni Vallya ni Nathan ne prirent la parole pour r&eacute;pondre aux questions de l&#039;homme. L&#039;Alfein semblait perdu en pleine r&eacute;flexion, alors que la Princesse paraissait coup&eacute;e du monde. Elle avan&ccedil;ait sans m&ecirc;me pr&ecirc;ter attention aux paroles du Lieutenant, ne l&#039;entendant s&ucirc;rement pas.</div><div class="post_line"></div><div class="post_line">Arriv&eacute; dans ses appartements, Nathan fit signe au petit groupe de s&#039;asseoir sur les trois canap&eacute;s en cuir rouge pr&eacute;sents au milieu de la pi&egrave;ce. Il apporta plusieurs bouteilles au centre de la table, afin que ses invit&eacute;s puissent se servir &agrave; leur guise. De son c&ocirc;t&eacute;, Vallya ignora la demande de son amie et rejoignit les fen&ecirc;tres donnant sur l&#039;espace. Fig&eacute;e, la blonde contempla les plan&egrave;tes au loin, refusant pour l&#039;instant de rejoindre la discussion.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Si vous ne pouvez d&eacute;cider pour l&#039;avenir de votre peuple, &agrave; quoi bon donner votre avis ? </font>demanda Nathan d&#039;un air taquin avant de siroter tranquillement son verre. <font color="#e82a1f">En revanche, faites tr&egrave;s attention &agrave; vos prochaines paroles,</font> reprit-il avant que le Lieutenant ne tente de r&eacute;pliquer. <font color="#e82a1f">Tania n&#039;est pas une gu&eacute;risseuse, elle est la cr&eacute;atrice des Alfein et &eacute;galement notre meneuse. Vous avez tr&egrave;s bien r&eacute;agi face &agrave; elle, puisque si elle le souhaitait, elle n&#039;aurait qu&#039;&agrave; claquer des doigts pour tous vous envoyer en Enfer. Tania est une D&eacute;esse misanthrope immortelle, un sacr&eacute; m&eacute;lange de narcissisme et d&#039;abus de pouvoir, </font>ironisa l&#039;Alfein en se moquant ouvertement de la brune.</div><div class="post_line"></div><div class="post_line">Nathan se servit &agrave; nouveau avant de porter son regard sur Vallya. La Princesse n&#039;avait pas fait le moindre mouvement depuis qu&#039;elle s&#039;&eacute;tait post&eacute;e devant cette fen&ecirc;tre. Il se demandait encore les termes du contrat qu&#039;elle venait de passer avec Tania. Mais s&#039;il voulait garder le peu de calme qu&#039;il lui restait, il valait mieux pour lui l&#039;ignorer et lui poser la question plus tard.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Lieutenant Horne, </font>reprit-il, Tania n&#039;a qu&#039;une seule parole.<font color="#e82a1f"> Si elle dit r&eacute;tablir votre meneur sans le d&eacute;traquer, alors, c&#039;est ce qu&#039;elle fera. Douter de ses mots pourrait vous conduire directement &agrave; votre mort et celle de votre groupe... Mais, je dois vous informer qu&#039;&agrave; partir de maintenant, vous allez devoir embaucher une nouvelle chirurgienne. Tania ne compte pas se laisser aider, elle parlait plut&ocirc;t... Enfin ! </font>Nathan se racla la gorge avant de reprendre une gorg&eacute;e.<font color="#e82a1f"> Pour continuer &agrave; exister sous cette forme, Tania d&eacute;vore des &ecirc;tres humains. C&#039;est le principe m&ecirc;me des Alfein. Les femmes produisent des enfants et les hommes servent soit de nourriture, soit d&#039;Ouvrier. Alors, il est pr&eacute;f&eacute;rable pour vous de vous faire &agrave; l&#039;id&eacute;e que votre chirurgienne est d&eacute;j&agrave; morte. Une vie contre une autre, n&#039;est-ce pas plut&ocirc;t raisonnable ?</font></div><div class="post_line"></div><div class="post_line">Sur le point de reprendre son monologue, Nathan sentit une main s&#039;abattre sur l&#039;arri&egrave;re de sa t&ecirc;te. Derri&egrave;re lui, Vallya lui lan&ccedil;a un regard noir et se tourna vers le Lieutenant.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Horne, c&#039;est bien &ccedil;a ?</font> La blonde contourna le canap&eacute; et se pla&ccedil;a devant le Lieutenant, la mine pr&eacute;occup&eacute;e. <font color="#ffa500">Je peux vous assurer que Thalw sera bient&ocirc;t entre vos mains... J&#039;ai une question, pourquoi avez-vous contact&eacute; les Alfein ? Les Sages me consid&egrave;rent comme une h&eacute;r&eacute;tique et &ccedil;a m&#039;&eacute;tonnerait qu&#039;ils aient donn&eacute; leur accord pour venir jusqu&#039;ici. J&#039;ai montr&eacute; publiquement mon opposition au Grand Amiral &agrave; l&#039;assembl&eacute;e et je ne vous connais pas.</font></div><div class="post_line"></div><div class="post_line">Quand elle l&#039;avait vue entrer dans le Centre, Vallya s&#039;&eacute;tait imm&eacute;diatement rendu compte qu&#039;il s&#039;agissait du transporteur de la fameuse valise, mais elle ne connaissait rien de lui. Jusqu&#039;&agrave; ce cycle, elle ignorait qu&#039;il s&#039;agissait d&#039;un Lieutenant. En ce moment, elle essayait surtout de voir ce qu&#039;il savait ou non.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Pour cette histoire de contrat, les Thalwas sont hors de danger. Il ne vous lie aucunement aux Alfein... </font>Souffla-t-elle en s&#039;asseyant &agrave; ses c&ocirc;t&eacute;s, le regard perdu. <font color="#ffa500">La demande de Tania me concernait, mais j&#039;ai accept&eacute; ce march&eacute;, alors, le Grand Amiral ne risque rien...</font></div><div class="post_line"></div><div class="post_line">Le visage livide de la blonde faisait clairement comprendre que le contrat qu&#039;elle venait de passer ne lui convenait pas. Toute sa vie, elle s&#039;&eacute;tait battue pour contrer Tania, mais maintenant, elle allait avoir l&#039;obligation de lui c&eacute;der ce qu&#039;elle voulait.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />26/01/1024 ETU 20:26<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305954')">Détails</a> <a href="javascript:warnpost(305954)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305954" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305954',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="3"><em>Le lieutenant comprit &agrave; l&rsquo;absence de r&eacute;ponses &agrave; ses questions que le sujet du contrat &eacute;tait sensible. Il grima&ccedil;a, appr&eacute;hendant d&rsquo;autant plus ce qu&rsquo;il apprendrait par la suite. Son coeur battait la chamade, malheureusement, il prenait conscience qu&rsquo;il avait s&ucirc;rement commis une erreur. La question &eacute;tait alors de savoir &agrave; quel point cette erreur allait &ecirc;tre pr&eacute;judiciable. Au moins, il &eacute;tait persuad&eacute; que la gu&eacute;risseuse ne profiterait pas de son absence pour attenter &agrave; la vie du Grand Amiral, il avait une personne de confiance dans cette salle.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>En entrant dans les quartiers de Nathan, le lieutenant Horne s&rsquo;asseya mais ne toucha &agrave; rien de ce qui &eacute;tait propos&eacute; par les Alfein. Il fut imit&eacute; par le personnel soignant, qui &eacute;tait visiblement ext&eacute;nu&eacute; et inquiet. Crik croisa les bras et fixa l&rsquo;Alfein avec s&eacute;v&eacute;rit&eacute;. Son attitude narquoise et d&eacute;tach&eacute;e ne lui revenait pas. Pourtant, le lieutenant prit sur lui et se retint de r&eacute;pliquer s&egrave;chement.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Une d&eacute;esse ? Le lieutenant Horne leva les yeux au ciel en soufflant du nez, peu convaincu. Cependant il t&acirc;cha de r&eacute;pondre avec calme &agrave; la fin de la tirade de l&rsquo;Alfein :&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Les enfants de Dieu sont &agrave; son image ... Dois-je consid&eacute;rer que les Alfein sont <u>de la m&ecirc;me trempe</u> que cette &ldquo;Tania&rdquo; ?</font> <em>Questionna-t-il de fa&ccedil;on rh&eacute;torique, avant d&rsquo;encha&icirc;ner. </em><font color="#4cea5e">&ldquo;Comment pouvez-vous prendre des d&eacute;cisions justes sans avis ext&eacute;rieur au v&ocirc;tre ? Vous savez <u>ce qui arrive aux tyrans</u> qui ne prennent pas le temps d&rsquo;&eacute;couter leurs sujets ...&rdquo;</font><em>, termina le lieutenant en haussant les &eacute;paules.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Crik Horne ma&icirc;trisait pour le moment ses nerfs, il s&rsquo;en f&eacute;licitait int&eacute;rieurement. Ce n&rsquo;&eacute;tait pas un moment opportun pour un &eacute;cart disciplinaire. Il afficha m&ecirc;me un sourire de fa&ccedil;ade pour para&icirc;tre plus agr&eacute;able &agrave; ses h&ocirc;tes alors qu&rsquo;il &eacute;coutait Nathan continuer la discussion.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Pardon ?&rdquo;</font><em>, l&rsquo;interrompit brutalement l&rsquo;enseigne Horne. Son expression avait radicalement chang&eacute; en quelques instants. Il se leva brusquement de son si&egrave;ge en pointant Nathan du doigt :&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Que Dieu vous maudisse !</font> <em>S&rsquo;emporta Crik en oubliant la ma&icirc;trise de soi dont il faisait preuve il y a encore quelques instants.</em> <font color="#4cea5e">Pourquoi n&rsquo;avoir rien dit avant ?! Vous nous avez tromp&eacute;s ! N&rsquo;avez-vous donc aucun respect pour la vie d&rsquo;une innocente ?!&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Certains membres du personnel m&eacute;dical fondirent en larmes, d&rsquo;autres rest&egrave;rent les yeux &eacute;carquill&eacute;s, en &eacute;tat de choc.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le lieutenant s&rsquo;approcha de Nathan en furie, avant de le saisir par le col et de plonger son regard noir dans le sien.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Je devrais rompre votre cou et jeter vos entrailles dans l&rsquo;Oc&eacute;an, voil&agrave; ce qui serait raisonnable !&rdquo;</font><em>, murmura-t-il rageusement. </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>L&rsquo;intervention de Vallya le fit l&acirc;cher Nathan en pestant contre ce dernier. Le lieutenant Horne s&rsquo;&eacute;loigna alors des Alfein &agrave; grand renfort d&rsquo;injures Thalwas toutes plus exotiques les unes que les autres. Il regagna alors sa place, et t&acirc;cha de reprendre son calme, son visage &eacute;carlate trahissait cependant la col&egrave;re qu&rsquo;il ressentait. C&rsquo;est un regard empreint de fureur qui rencontra celui de la Princesse. Il prit une grande inspiration et tenta de cacher son courroux derri&egrave;re une voix calme mais n&eacute;anmoins l&eacute;g&egrave;rement tremblante de rage.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Le Grand Amiral &eacute;tait &agrave; l&rsquo;article de la mort quand je l&rsquo;ai trouv&eacute;. Je devais lui apporter une information capitale. Et <u>confidentielle</u>,</font> <em>ajouta-t-il pour &eacute;viter le sujet.</em> <font color="#4cea5e">Je l&rsquo;ai emmen&eacute; sur Antipodes en toute discr&eacute;tion, du moins je le pensais. C&rsquo;est l&agrave; que notre peuple a trouv&eacute; refuge. Peu de temps apr&egrave;s notre arriv&eacute;e, quelqu&rsquo;un a attent&eacute; &agrave; sa vie. L&rsquo;assaillant a &eacute;t&eacute; neutralis&eacute; mais notre position &eacute;tait compromise. Nous &eacute;tions sans ressources, il nous fallait de l&rsquo;aide. J&rsquo;ai contact&eacute; la seule personne ext&eacute;rieure aux Thalwas dont j&rsquo;avais connaissance</font><em>, expliqua Crik en d&eacute;signant Vallya d&rsquo;un geste de la main. </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&quot;Les Sages ne sont pas au courant de la pr&eacute;sence du Grand Amiral chez les Alfein. Et <u>ils ne doivent pas l&rsquo;&ecirc;tre</u>&rdquo;</font><em>, insista le lieutenant en regardant d&rsquo;un air grave les deux Alfein.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Lorsque la Princesse indiqua qu&rsquo;elle ne connaissait pas Crik, ce dernier haussa les &eacute;paules.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Nous nous sommes crois&eacute;s&rdquo;</font><em>, r&eacute;pondit simplement l&rsquo;enseigne.</em>&nbsp;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />26/01/1024 ETU 21:50<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal305956')">Détails</a> <a href="javascript:warnpost(305956)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305956" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305956',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Un fin sourire moqueur illumina le visage de Nathan lorsque le lieutenant s&#039;en prit &agrave; son plus beau costume. Comment pouvait-il prendre contact avec les Alfein s&#039;il ignorait les coutumes m&ecirc;me de son peuple ? Les Alfein refl&eacute;taient la mort et le chaos depuis des si&egrave;cles, et jamais le syst&egrave;me qu&#039;il connaissait ne changerait. Depuis la nuit des temps, Nathan ne nourrissait que ses propres ambitions, alors faire l&#039;honneur de changer pour un petit pion sacrifiable ? Certainement pas.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Pourquoi demander l&#039;avis des autres Alfein ? Nous sommes tous libres de faire nos propres choix. Le principe m&ecirc;me de notre existence est de ramener de quoi se sustenter &agrave; notre Arbre M&egrave;re. Plus nous tuons, plus nous &eacute;voluons. Ceux qui souhaitent la paix se voient r&eacute;trograd&eacute;s, enferm&eacute;s et ex&eacute;cut&eacute;s. Vous devez savoir que nous autres, Alfein, ne nous nourrisons pas de viande humaine. Cette coutume est r&eacute;serv&eacute;e &agrave; notre D&eacute;esse.</font> Nathan empoigna le bras de l&#039;homme avant de reculer.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Je pense que vous ne devriez pas menacer votre h&ocirc;te. Il serait fort regrettable que le rouquin se r&eacute;veille et trouve ses troupes gisant &agrave; ses pieds. Vous en conviendrez ?</font> R&eacute;pliqua-t-il amus&eacute; par la situation. <font color="#e82a1f">Pourquoi est-ce que je ne vous ai rien dit ? M&#039;avez-vous pos&eacute; la question ?</font></div><div class="post_line"></div><div class="post_line">Les yeux riv&eacute;s sur le lieutenant, Vallya laissa &eacute;chapper un hoquet de surprise en apprenant qu&#039;un Thalwa avait essay&eacute; de tuer le Grand Amiral. Pourquoi quelqu&#039;un ferait une chose pareille ? Ce peuple ne vivait-il pas en paix ?</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Qui &eacute;tait-il ?</font> Demanda-t-elle inqui&egrave;te. <font color="#ffa500">S&#039;il est vivant, pourriez-vous le transf&eacute;rer dans le Centre ? J&#039;esp&egrave;re au moins que vous savez pourquoi il a fait &ccedil;a !</font></div><div class="post_line"></div><div class="post_line">Vallya n&#039;en revenait pas. Si les Thalwas ont tu&eacute; l&#039;assaillant, alors ils &eacute;taient inconscients. Comment pouvaient-ils laisser cet homme mourir sans avoir aucune r&eacute;ponse ?</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Je m&#039;en souviens tr&egrave;s bien, </font>r&eacute;pondit-il furieusement en se relevant. <font color="#ffa500">Mais combien de fois ai-je r&eacute;p&eacute;t&eacute; au Grand Amiral de ne surtout pas s&#039;approcher des Alfein ! Puisque vous semblez si proche de lui, alors pourquoi n&#039;en &eacute;tiez-vous pas inform&eacute; ?</font></div><div class="post_line"></div><div class="post_line">Effray&eacute;e, Vallya enfouit son visage rouge de col&egrave;re entre ses mains avant de passer ses doigts dans ses cheveux blonds et de reprendre sur le m&ecirc;me ton.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Pendant presque 60 cycles, je me suis efforc&eacute;e de le mettre en retrait ! Tout &ccedil;a, pour que vous finissiez par le jeter dans la gueule du loup ! Alors, &eacute;coutez-moi bien !</font> La Princesse posa son index sur le torse de l&#039;homme, le regard s&eacute;v&egrave;re.<font color="#ffa500"> Si jamais, il venait &agrave; mourir en dehors de ce Centre... Je vous traquerai et je vous tuerai !</font></div><div class="post_line"></div><div class="post_line">Sur cette ultime menace, Vallya sortit de la pi&egrave;ce, ne souhaitant pas continuer le dialogue avec cet &eacute;tranger. Nathan, de son c&ocirc;t&eacute;, servit un verre au lieutenant en souriant joyeusement.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Vous comprenez pourquoi je devais absolument vous aider. Je tiens &agrave; ma vie ! </font>Ria-t-il en d&eacute;signant la boisson. <font color="#e82a1f">Il n&#039;y a aucun poison, ce syst&egrave;me est fait pour les faibles. D&#039;ailleurs, vous avez dit &agrave; Vally&#039; que vous deviez transmettre une information capitale au rouquin ? Je fais en sorte que votre Leader soit sur pied, alors, vous me devez bien &ccedil;a. Il serait dommage d&#039;expliquer &agrave; Tania que le Grand Amiral a d&eacute;shonor&eacute; un des membres Alfein, ne croyez-vous pas ?</font></div><div class="post_line"></div><div class="post_line">Replongeant au fond du fauteuil, Nathan hocha la t&ecirc;te. Il s&#039;attendait &agrave; ce que le lieutenant ne dise rien, alors, il d&eacute;cida d&#039;envoyer une nouvelle pique &agrave; l&#039;homme.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Ou bien... Si je m&#039;adressais aux Sages ? Qu&#039;est-ce que mon information pourrait-elle bien provoquer au sein des troupes Thalwas ? Vous voyez, vous avez souhait&eacute; me menacer, mais contrairement &agrave; vous, j&#039;ai de quoi r&eacute;ellement attaquer et d&eacute;truire l&#039;enti&egrave;ret&eacute; de votre civilisation.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />27/01/1024 ETU 00:01<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305957')">Détails</a> <a href="javascript:warnpost(305957)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305957" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305957',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="3"><em>Le sourire insolent de Nathan aga&ccedil;ait profond&eacute;ment le lieutenant Horne. La perte de la chirurgienne Thalwa embrumait son esprit de col&egrave;re, il devait pourtant se ressaisir rapidement.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;La fa&ccedil;on dont vous gouvernez votre peuple vous regarde. Mais que vos d&eacute;cisions ne se r&eacute;percutent pas sur les Thalwas&rdquo;</font><em>, r&eacute;torqua s&egrave;chement l&rsquo;enseigne. Alors qu&rsquo;il s&rsquo;&eacute;loignait, le lieutenant Horne sentit une r&eacute;sistance sur son bras et tourna rapidement son regard noir vers Nathan. Son poing se serra &agrave; en blanchir ses phalanges, avant de se rel&acirc;cher. La pique de l&rsquo;Alfein fit hausser un sourcil dubitatif au lieutenant qui jaugea l&rsquo;homme en face de lui d&rsquo;un regard.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Vous &ecirc;tes trop faible pour cela&rdquo;</font><em>, r&eacute;pliqua-t-il simplement sans r&eacute;pondre davantage &agrave; ses attaques avant de retirer brusquement son bras de l&rsquo;&eacute;treinte de l&rsquo;Alfein. </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Crik Horne porta alors son attention vers Vallya et ses questions. L&rsquo;inqui&eacute;tude se lisait sur le visage de la jeune femme, mais Crik ne pouvait lui apporter plus d&rsquo;informations. D&rsquo;une voix claire et pr&eacute;cise, il lui exposa son rapport :&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Madame, lorsque j&rsquo;ai trouv&eacute; cet individu masqu&eacute;, v&ecirc;tu de noir, pench&eacute; au-dessus du chevet du Grand Amiral, je n&rsquo;ai pas pris le temps de lui poser de questions, vous le comprenez bien. Son corps flotte actuellement dans l&rsquo;espace sid&eacute;ral entre Antipodes et le Centre. Aucun signe distinctif, rien sur lui, &agrave; part le couteau qu&rsquo;il comptait utiliser sur le Grand Amiral. Lame crant&eacute;e, environ 15 centim&egrave;tres&rdquo;.&nbsp; </font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le lieutenant Horne pin&ccedil;a les l&egrave;vres en voyant Vallya se lever. Elle &eacute;tait en col&egrave;re, et l&rsquo;enseigne ne souhaitait pas se mettre &agrave; dos tous les Alfein de la station. Il acquies&ccedil;a donc sans broncher &agrave; toutes les paroles qu&rsquo;elle pronon&ccedil;a. </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Proche, madame, est &agrave; nuancer</font><em>, commen&ccedil;a l&rsquo;enseigne en levant les bras en signe d&rsquo;apaisement.</em> <font color="#4cea5e">Je suis assign&eacute; &agrave; sa protection, et &agrave; toutes les requ&ecirc;tes que le Grand Amiral me transmet. Je le suis &agrave; distance, en m&rsquo;assurant qu&rsquo;il ne risque rien. En dehors de ce cadre, le Grand Amiral et moi-m&ecirc;me entretenons une relation cordiale, mais il n&rsquo;est pas homme &agrave; se confier &agrave; quelqu&rsquo;un. Sa vie priv&eacute;e ne me concerne nullement, et la diplomatie ne rel&egrave;ve pas de ma fonction. &Agrave; ma connaissance, les Alfein sont en contact avec les Thalwas depuis de nombreux cycles, vous n&rsquo;avez jamais eu d&rsquo;actions offensives envers nous, et la dirigeante Alfein se nomme Vallya. Ce sont les informations sur lesquelles je me suis bas&eacute; pour vous contacter. Je prends note que les Alfein sont en fait sous l&rsquo;&eacute;gide de la &ldquo;D&eacute;esse&rdquo; Tania, qui constitue un danger&quot;</font><em>, conclut Crik en esp&eacute;rant ne pas &eacute;nerver davantage l&rsquo;Alfein devant lui. </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Durant l&rsquo;int&eacute;gralit&eacute; des remontrances de la Princesse, Crik Horne encaissa sto&iuml;quement, le menton bien haut et le regard s&eacute;rieux. Le doigt de la jeune femme appuya sur la poitrine du lieutenant, qui resta impassible. Avant que l&rsquo;officier ne puisse r&eacute;pondre, celle-ci sortit de la pi&egrave;ce.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Alors, Crik souffla longuement, comme pour se d&eacute;charger de la pression que la souveraine lui avait mis durant ces quelques minutes. Heureusement, ce moment d&eacute;sagr&eacute;able &eacute;tait pass&eacute;, mais le pire restait peut-&ecirc;tre &agrave; venir : le regard du lieutenant croisa celui de Nathan.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>&Agrave; nouveau, celui-ci s&rsquo;esclaffa malgr&eacute; la situation tendue. D&rsquo;un geste de la main, l&rsquo;officier d&eacute;clina la boisson et laissa son regard parcourir la pi&egrave;ce, ne pr&ecirc;tant que peu d&#039;int&eacute;r&ecirc;t aux questions de l&rsquo;homme face &agrave; lui.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Son attention se porta sur les m&eacute;decins terrifi&eacute;s qui lui jetaient des regards inquiets. Crik leur sourit dans l&rsquo;espoir de leur redonner du courage lorsqu&rsquo;il entendit Nathan prononcer une phrase qui lui fit tourner imm&eacute;diatement la t&ecirc;te dans sa direction. </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Je ne pense pas que votre amie vous permettrait de mettre en danger le Grand Amiral, je me trompe ?</font><em> Demanda le lieutenant Horne.</em> <font color="#4cea5e">Je vous conseillerais de ne pas mettre votre nez dans les dossiers Thalwas, je m&rsquo;assure personnellement qu&rsquo;aucune information ne s&rsquo;&eacute;bruite.&rdquo;</font></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vallya">Cdte. Vallya</a><br>Prestige de chroniqueur&nbsp;: 168<br /><br /><img src="/avatars/11969.png" style="width:128px;height:128px" alt="Avatar" /><br />27/01/1024 ETU 01:35<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305958')">Détails</a> <a href="javascript:warnpost(305958)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305958" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305958',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Seul avec les Thalwas, Nathan sourit fi&egrave;rement au Lieutenant. Il semblait &eacute;vident que l&#039;Alfein d&eacute;testait le Grand Amiral. En revanche, il avait l&#039;interdiction de le tuer, mais pas d&#039;utiliser des informations contre lui. Nathan sembla enfin se d&eacute;tendre et s&#039;adressa directement aux autres personnes pr&eacute;sentes dans la pi&egrave;ce.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Votre Dieu &agrave; vous, o&ugrave; est-il au juste ? Cach&eacute; dans les profondeurs de votre oc&eacute;an ? Au sommet d&#039;une &icirc;le &agrave; contempler sa d&eacute;sastreuse civilisation ? Pourquoi d&eacute;cidez-vous de prendre son r&ocirc;le ? N&#039;est-ce pas &agrave; lui de choisir qui doit survivre ? Et si... La d&eacute;ch&eacute;ance de votre Grand Amiral n&#039;&eacute;tait qu&#039;une simple punition divine ? Lieutenant Horne,</font> dit-il en se penchant l&eacute;g&egrave;rement en avant, <font color="#e82a1f">malheureusement, je crois que les affaires des Thalwas concernent &eacute;galement les Alfein. Comme moi, vous savez tr&egrave;s bien o&ugrave; Vallya se dirige. Risqueriez-vous la vie de vos hommes et celle de la Princesse pour prot&eacute;ger ces informations ? Imaginez un peu la r&eacute;action de votre Leader en apprenant la nouvelle : un groupe de Thalwas et trois Alfein ex&eacute;cut&eacute;s. Je ne compte pas perdre ma t&ecirc;te dans l&#039;imm&eacute;diat, mais je trouverai bien une solution pour d&eacute;vier ce destin funeste.</font></div><div class="post_line"></div><div class="post_line">Ravi, Nathan se releva du fauteuil et fit signe &agrave; Crik de le suivre, sans que les m&eacute;decins ne l&#039;accompagnent. Il accompagna l&#039;homme dans le couloir et prit la direction du Quartier G&eacute;n&eacute;ral. Les deux hommes s&#039;arr&ecirc;t&egrave;rent devant une grande baie vitr&eacute;e teint&eacute;e. Nathan actionna le bouton vert face &agrave; lui et indiqua au Lieutenant de regarder &agrave; travers.</div><div class="post_line"></div><div class="post_line">D&#039;ici, Horne pouvait suivre l&#039;op&eacute;ration. Tania, pench&eacute;e au-dessus du corps de Jace, les emp&ecirc;chait de voir ce qu&#039;elle faisait. &Agrave; ses c&ocirc;t&eacute;s, la chirurgienne, debout, attendait patiemment.</div><div class="post_line"></div><div class="post_line"><font color="#e82a1f">Le rouquin aurait d&ucirc; vous informer que les Alfein ne touchent pas aux femmes,</font> dit-il hilare en voyant la t&ecirc;te de son invit&eacute;. <font color="#e82a1f">Mais je dois avouer que votre r&eacute;action &eacute;tait exquise ! Contrairement &agrave; vous, les Alfein sont n&eacute;s de la violence de Tania. Perdre l&#039;un de nos proches n&#039;est donc pas d&#039;une grande importance.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Dites-vous que dans cette pi&egrave;ce, personne n&#039;aime Tania. </font>La voix de Vallya se fit entendre derri&egrave;re les deux hommes. La jeune femme soupira avant de reprendre. <font color="#ffa500">Vous apprendrez &agrave; vos d&eacute;pens que Nathan n&#039;est pas une source fiable si vous souhaitez des informations. Je tenais &agrave; m&#039;excuser pour mes propos, mais je compte bien les mettre &agrave; l&#039;&oelig;uvre si jamais il lui arrive quelque chose.</font></div><div class="post_line"></div><div class="post_line">Plus calme que dans les appartements de Nathan, la Princesse sourit l&eacute;g&egrave;rement au Lieutenant pour lui indiquer que la temp&ecirc;te &eacute;tait pass&eacute;e.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Pour votre information, je n&#039;ai jamais dirig&eacute; les Alfein. Nathan ne mentait pas &agrave; ce sujet, nous sommes tous libres de nos choix et de nos actions. Tania est un danger pour nous tous, mais comme vous le voyez, elle peut parfois se montrer utile... Une question me taraude... Si vous &ecirc;tes cens&eacute; &ecirc;tre en charge de sa protection, alors o&ugrave; &eacute;tiez-vous ? Pourquoi n&#039;&eacute;tiez-vous pas &agrave; ses c&ocirc;t&eacute;s lors de l&#039;attaque ?</font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />28/01/1024 ETU 08:59<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305959')">Détails</a> <a href="javascript:warnpost(305959)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305959" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305959',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="3"><em>Assis sur l&rsquo;un des canap&eacute;s, Crik avait d&eacute;cid&eacute; de ne plus pr&ecirc;ter attention &agrave; l&rsquo;insupportable Alfein. Il ne faisait plus qu&rsquo;&eacute;couter vaguement ses moqueries et autres questions destin&eacute;es &agrave; le provoquer. Le personnel m&eacute;dical parut presque offusqu&eacute; en entendant les suppositions de Nathan. L&rsquo;un d&rsquo;eux, un homme d&rsquo;&acirc;ge m&ucirc;r, prit la parole les mains jointes en signe de pri&egrave;re.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ffdbbb">&ldquo;Notre Dieu &agrave; tous r&eacute;side sur Thalw, au plus profond de l&rsquo;Oc&eacute;an, endormi depuis des temps imm&eacute;moriaux, dans l&rsquo;attente de r&eacute;cup&eacute;rer ses forces</font><em>, commen&ccedil;a l&rsquo;homme avec conviction. Il inclina la t&ecirc;te d&rsquo;un air d&eacute;&ccedil;u en entendant l&rsquo;une des questions de Nathan. </em><font color="#ffdbbb">D&eacute;sastreuse ? Est-ce l&agrave; l&rsquo;image que vous avez des Thalwas ? Pourquoi donc ? Nous vivions en paix il y a encore peu ... Vous autres, habitants de la Galaxie, n&rsquo;avez fait qu&rsquo;apporter le chaos et la violence ... Pourquoi &ecirc;tes-vous autant tourn&eacute; vers le conflit ? Avant de se retirer, Dieu a donn&eacute; aux Thalwas des id&eacute;aux &agrave; suivre, et il nous communique ses Volont&eacute;s &agrave; travers les Sages. Jamais il n&rsquo;a &eacute;t&eacute; signifi&eacute; que la m&eacute;decine &eacute;tait contraire aux Volont&eacute;s Divines, et pour le reste ...</font><em>&nbsp;L&rsquo;homme d&eacute;tourna le regard. Ne sachant quoi r&eacute;pondre concernant le Grand Amiral, il se mura dans le silence.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>En entendant &agrave; nouveau son nom, le lieutenant Horne soupira d&rsquo;exasp&eacute;ration, avant de r&eacute;pondre :&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Je ne parlerai jamais sous la menace, sachez-le. Le Grand Amiral sera la seule personne &agrave; qui je confierai cette information. Lui, aura tout le loisir d&rsquo;en faire ce qui lui plaira&rdquo;</font><em>, r&eacute;pondit l&rsquo;officier d&rsquo;un air s&eacute;v&egrave;re.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Alors Nathan lui fit signe de l&rsquo;accompagner et Crik s&rsquo;ex&eacute;cuta, en faisant signe aux soignants de rester dans la pi&egrave;ce. Ceux-ci acquiesc&egrave;rent de la t&ecirc;te sans contredire le lieutenant. D&rsquo;une d&eacute;marche tr&egrave;s formelle, le lieutenant suivit son d&eacute;testable h&ocirc;te &agrave; travers le Centre. Arriv&eacute; devant une grande vitre opaque, l&rsquo;officier croisa les bras sans trop comprendre ce qu&rsquo;il se passait.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Puis il comprit et se rapprocha de la vitre, en essayant d&rsquo;en apercevoir le plus possible. Il ne releva pas l&rsquo;&eacute;ni&egrave;me moquerie de l&rsquo;Alfein, Crik se contenta de r&eacute;pondre d&rsquo;un air d&eacute;tach&eacute; :&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Si vous consid&eacute;rez votre individualisme comme une force, grand bien vous fasse. Ce n&rsquo;est pas notre philosophie. Le Grand Amiral ne fait pas appel &agrave; moi pour &ecirc;tre diplomate, je n&#039;ai pas besoin d&#039;informations de ce genre pour&nbsp;repeindre le sol avec le contenu de votre cr&acirc;ne.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>En entendant une voix suppl&eacute;mentaire mais reconnaissable, le lieutenant Horne se retourna, pour faire face &agrave; la Princesse. Il inclina bri&egrave;vement la t&ecirc;te dans sa direction pour approuver ses paroles.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Madame, inutile de vous excuser, je comprends tout &agrave; fait votre r&eacute;action. Je n&rsquo;h&eacute;siterai pas &agrave; une seule seconde &agrave; sacrifier ma vie pour celle du Grand Amiral.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Surpris par ce sourire inattendu, Crik e&ucirc;t un mouvement de recul, son visage traduisait sa stup&eacute;faction. La question de Vallya le mit cependant mal &agrave; l&rsquo;aise, et sa r&eacute;ponse &eacute;vasive ne laissait pas de doutes quant &agrave; sa volont&eacute; d&rsquo;en dire le moins possible.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Dans sa bienveillance absolue, le Grand Amiral a refus&eacute; que je me sacrifie dans l&rsquo;assaut final contre le Khanat Stellaire. Je devais donc mettre les civils en s&eacute;curit&eacute;, ainsi que les Sages. </font><em>Crik marqua un temps d&rsquo;arr&ecirc;t, comme s&rsquo;il r&eacute;fl&eacute;chissait &agrave; la mani&egrave;re de formuler ses prochaines phrases.</em> <font color="#4cea5e">Certains &eacute;v&egrave;nements m&rsquo;ont heureusement redirig&eacute; vers le Grand Amiral, et j&rsquo;ai assist&eacute; &agrave; la chute de son b&acirc;timent dans l&rsquo;Oc&eacute;an. C&#039;est &agrave; la suite de ce crash que je l&rsquo;ai r&eacute;cup&eacute;r&eacute;, dans l&rsquo;&eacute;tat dans lequel vous l&rsquo;avez vu&rdquo;</font><em>, il termina sa phrase en d&eacute;tournant son regard de la Princesse. Il savait pertinemment que les Alfein continueraient &agrave; creuser le sujet pour en savoir plus, et il ne savait comment satisfaire leur curiosit&eacute; sans r&eacute;v&eacute;ler d&rsquo;informations confidentielles. Sans ajouter un mot de plus, le lieutenant se tourna face &agrave; la vitre, et observa les faits et gestes de Tania.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Comment pouvez-vous &ecirc;tre s&ucirc;r que votre D&eacute;esse ne va pas profiter d&rsquo;&ecirc;tre au contact du Grand Amiral pour abr&eacute;ger ses souffrances ?&rdquo;</font></font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=17122&c_forum_page=1&c_page=2">2</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=17122&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Centre des Osill</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

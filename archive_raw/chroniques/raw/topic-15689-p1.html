@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15689 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Vers une nouvelle religion</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Vers une nouvelle religion</p>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=15689&c_forum_page=1&c_page=2">2</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nexus">Cdt. Nexus</a><br>Prestige de chroniqueur&nbsp;: 58<br /><br /><img src="/avatars/10739.jpg" style="width:128px;height:125px" alt="Avatar" /><br />07/05/1021 ETU 00:12</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D285575', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal285574')">Détails</a> <a href="javascript:warnpost(285574)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285574" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285574',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#17b529">Mes s&oelig;urs et fr&egrave;res, nous voici r&eacute;unis pour la cr&eacute;ation de la religion du grand monsieur tous rouge.</font></div></div><div class="post_line"><div align="center"><font color="#17b529">Convertissez vous a la nouvelle religion.</font></div></div><div class="post_line"><div align="center"><font color="#17b529">Aimez votre maitre !</font></div></div><div class="post_line"><div align="center"><font color="#17b529">Donnez moi vos Leems !</font></div></div><div class="post_line"><div align="center"><font color="#17b529">Laissez moi vous b&eacute;nir mes enfants...</font></div></div><div class="post_line"><div align="center"><font color="#17b529">Je vais vous purifier.</font></div></div><div class="post_line"></div><div class="post_line"><div align="center"><em>Pour chaque convertie un burger offert.</em></div></div><div class="post_line"><div align="center"><em>Offre valable dans tous les&nbsp;Dot Makh Donald&#039;s.</em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ciar%C3%A1n+O%27Hara">Cdt. Ciar&aacute;n O&#039;Hara</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11253.png" style="width:120px;height:128px" alt="Avatar" /><br />07/05/1021 ETU 00:39</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285580')">Détails</a> <a href="javascript:warnpost(285580)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285580" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285580',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">On est ath&eacute;e ici, milles excuses.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nexus">Cdt. Nexus</a><br>Prestige de chroniqueur&nbsp;: 58<br /><br /><img src="/avatars/10739.jpg" style="width:128px;height:125px" alt="Avatar" /><br />07/05/1021 ETU 00:46</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285581')">Détails</a> <a href="javascript:warnpost(285581)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285581" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 2</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285581',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#2ecc40">Allons allons mon enfants, laissez vous tenter par le c&ocirc;t&eacute; obscure de la MACHINE.</font></div><div class="post_line"><font color="#2ecc40">Vous aurez des Burgers et accessoirement le droit de vivre aussi...</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ciar%C3%A1n+O%27Hara">Cdt. Ciar&aacute;n O&#039;Hara</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11253.png" style="width:120px;height:128px" alt="Avatar" /><br />07/05/1021 ETU 01:05</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal285582')">Détails</a> <a href="javascript:warnpost(285582)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285582" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285582',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">On est ath&eacute;e ET vegan. </div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nexus">Cdt. Nexus</a><br>Prestige de chroniqueur&nbsp;: 58<br /><br /><img src="/avatars/10739.jpg" style="width:128px;height:125px" alt="Avatar" /><br />07/05/1021 ETU 01:44</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285586')">Détails</a> <a href="javascript:warnpost(285586)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285586" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 2</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285586',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#2ecc40">Un burger spacevegan alors ?</font></div><div class="post_line"><font color="#2ecc40">Une carotte habill&eacute; d&#039;une feuille de salade, le tous enrob&eacute; de son pain tendre et croustillant...</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ciar%C3%A1n+O%27Hara">Cdt. Ciar&aacute;n O&#039;Hara</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11253.png" style="width:120px;height:128px" alt="Avatar" /><br />07/05/1021 ETU 02:02</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal285587')">Détails</a> <a href="javascript:warnpost(285587)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285587" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285587',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">On me dit &agrave; l&#039;oreillette qu&#039;ils sont aussi intol&eacute;rants aux fibres et au gluten.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nexus">Cdt. Nexus</a><br>Prestige de chroniqueur&nbsp;: 58<br /><br /><img src="/avatars/10739.jpg" style="width:128px;height:125px" alt="Avatar" /><br />07/05/1021 ETU 02:11</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285589')">Détails</a> <a href="javascript:warnpost(285589)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285589" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285589',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#2ecc40">Un cailloux burger, sans pain, sans viande, juste de la pierre.</font></div><div class="post_line"><font color="#2ecc40">Simple efficace et pas cher !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ciar%C3%A1n+O%27Hara">Cdt. Ciar&aacute;n O&#039;Hara</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11253.png" style="width:120px;height:128px" alt="Avatar" /><br />07/05/1021 ETU 02:17</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285590')">Détails</a> <a href="javascript:warnpost(285590)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285590" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285590',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Pas ais&eacute; de croquer des cailloux sans dents.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nexus">Cdt. Nexus</a><br>Prestige de chroniqueur&nbsp;: 58<br /><br /><img src="/avatars/10739.jpg" style="width:128px;height:125px" alt="Avatar" /><br />07/05/1021 ETU 03:10</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal285592')">Détails</a> <a href="javascript:warnpost(285592)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285592" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285592',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#2ecc40">Il faut effectuer un effet de succion avec votre bouche.</font></div><div class="post_line"><font color="#2ecc40">Un l&eacute;ger va et viens de votre langue au tour de l&#039;objet...</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ogbunabali">Cdt. Ogbunabali</a><br>Prestige de chroniqueur&nbsp;: 12<br /><br /><img src="/avatars/11064.png" style="width:128px;height:128px" alt="Avatar" /><br />07/05/1021 ETU 03:55<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285596')">Détails</a> <a href="javascript:warnpost(285596)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285596" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285596',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ff857a">COMPTE TENU DU COEFFICIENT D&#039;ABRASION DE LA LANGUE HUMANOIDE MOYENNE, ET DE LA DURET&Eacute; MOYENNE D&#039;UNE PIERRE DE TYPE <em>BASALTE, </em>SI ON SUPPOSE QU&#039;UN INDIVIDU PEUT LECHER ENVIRON </font><font color="#ffc6c3">40</font><font color="#ff857a"> FOIS PAR MINUTES PENDANT </font><font color="#ffc6c3">10</font><font color="#ff857a"> MINUTES, AVANT DE DEVOIR SE REPOSER </font><font color="#ffc6c3">1</font><font color="#ff857a"> MINUTE ET DE RECOMMENCER, ET CE </font><font color="#ffc6c3">16</font><font color="#ff857a"> HEURES PAR CYCLE, ON ARRIVE A UN TOTAL DE </font><font color="#ffc6c3">34880</font><font color="#ff857a"> COUPS DE LANGUE PAR CYCLE, SOIT UNE ABRASION D&#039;ENVIRON</font><font color="#ffc6c3"> 4</font><font color="#ff857a"> MICROMETRE SUR UNE PIERRE EN FORME DE PARALL&Eacute;L&Eacute;PIPEDE RECTANGLE DE </font><font color="#ffc6c3">20</font><font color="#ff857a"> CM PAR </font><font color="#ffc6c3">15</font><font color="#ff857a">CM PAR 5CM ENVIRON.&nbsp;&nbsp;</font></div><div class="post_line"><font color="#ff857a">IL FAUDRA DONC APPROXIMATIVEMENT</font> <font color="#ffc6c3">12500</font><font color="#ff857a"> CYCLES POUR CONSOMMER ENTIEREMENT VOTRE MAKH&#039;BOULDER.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a">C&#039;EST DONC UN TRES BON MARCH&Eacute; QUI VOUS EST PROPOS&Eacute;, ET IL POSSEDE M&Ecirc;ME L&#039;AVANTAGE D&#039;&Ecirc;TRE TRES PAUVRE EN CALORIES, ET DONC PARFAITEMENT SAIN, EN PLUS D&#039;APPORTER UN SUPPL&Eacute;MENT EN FER BIENVENU, POUR UN &Ecirc;TRE AUSSI P&Acirc;LE QUE VOUS.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff857a"></div><div class="post_line">COMMANDANT DIAKRITIUS, VALIDEZ VOUS CETTE SIMULATION ?</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;<a href="/assemblee/viewtopic?c_topic=15689&c_forum_page=1&c_page=2">2</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Vers une nouvelle religion</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

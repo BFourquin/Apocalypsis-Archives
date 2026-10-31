@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16890 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Asteria : Exploration et observations&quot;</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Asteria : Exploration et observations&quot;</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Straton">Cdt. Straton</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/12042.jpg" style="width:128px;height:128px" alt="Avatar" /><br />01/07/1023 ETU 23:31<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal301656')">Détails</a> <a href="javascript:warnpost(301656)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal301656" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=301656',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#17b529">[Connexion au module de transfert de messages galactiques...]</font></div><div class="post_line"></div><div class="post_line">Module de transfert de chronique galactiques en ligne. ..</div><div class="post_line">Connexion &eacute;tablie...</div><div class="post_line">Syst&egrave;me activ&eacute;. Pr&eacute;paration &agrave; l&#039;envoi de la chronique galactique...</div><div class="post_line"></div><div class="post_line">Code de transmission :FX-2356</div><div class="post_line">Destination : Journal Stellaire de V&eacute;ga Prime</div><div class="post_line"></div><div class="post_line"><u>Fichier sonore joint :&nbsp;Dreamcost - New Theory&nbsp;</u></div><div class="post_line"></div><div class="post_line"><font color="#17b529">Authentification r&eacute;ussie. Acc&egrave;s autoris&eacute; au module de transfert.</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Diffusion du message..</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Les donn&eacute;es techniques recueillies lors de l&#039;exploration d&#039;Ast&eacute;ria par l&#039;&eacute;quipe de Stratonia ont fourni des chiffres fascinants qui ont enrichi notre compr&eacute;hension de cette plan&egrave;te myst&eacute;rieuse. Voici quelques chiffres cl&eacute;s issus de ces mesures pr&eacute;cises :</div><div class="post_line"></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Composition atmosph&eacute;rique</font><font color="#ffffff"> : L&#039;analyse spectrale a r&eacute;v&eacute;l&eacute; que l&#039;atmosph&egrave;re d&#039;Ast&eacute;ria est principalement compos&eacute;e de 76 % d&#039;azote, 21 % d&#039;oxyg&egrave;ne, 2 % de dioxyde de carbone et 1 % d&#039;autres gaz, dont des traces de m&eacute;thane et d&#039;argon.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Topographie</font> <font color="#ffffff">: Les mesures altim&eacute;triques ont r&eacute;v&eacute;l&eacute; des variations significatives dans l&#039;altitude d&#039;Ast&eacute;ria. Les montagnes majestueuses s&#039;&eacute;l&egrave;vent &agrave; des altitudes d&eacute;passant 5 000 m&egrave;tres, tandis que les vall&eacute;es profondes atteignent des profondeurs de plus de 2 000 m&egrave;tres. Les vastes plaines s&#039;&eacute;tendent sur des centaines de kilom&egrave;tres &agrave; des altitudes relativement basses.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Temp&eacute;ratures</font><font color="#ffffff"> : Les enregistrements thermiques ont r&eacute;v&eacute;l&eacute; des variations saisonni&egrave;res des temp&eacute;ratures sur Ast&eacute;ria. Les temp&eacute;ratures moyennes varient de -20 &deg;C en hiver &agrave; 30 &deg;C en &eacute;t&eacute;, avec des extr&ecirc;mes pouvant atteindre -50 &deg;C en hiver et d&eacute;passer les 40 &deg;C en &eacute;t&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Ressources min&eacute;rales : Les &eacute;chantillons pr&eacute;lev&eacute;s ont r&eacute;v&eacute;l&eacute; la pr&eacute;sence abondante de minerai de zirconium, avec des concentrations atteignant 8 % dans certaines zones. Des gisements d&#039;uranium ont &eacute;galement &eacute;t&eacute; d&eacute;couverts, avec des concentrations allant jusqu&#039;&agrave; 4 %, ainsi que des d&eacute;p&ocirc;ts de titane de haute qualit&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Pr&eacute;sence d&#039;eau</font><font color="#ffffff"> : Les mesures de t&eacute;l&eacute;d&eacute;tection et les analyses g&eacute;ologiques ont confirm&eacute; la pr&eacute;sence d&#039;eau sur Ast&eacute;ria. Les lacs et les rivi&egrave;res recueillent des r&eacute;serves d&#039;eau liquide, et des glaces d&#039;eau ont &eacute;t&eacute; d&eacute;tect&eacute;es dans les r&eacute;gions polaires et les hauts plateaux.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Activit&eacute; sismique : </font><font color="#ffffff">Les capteurs sismiques ont enregistr&eacute; une activit&eacute; sismique r&eacute;guli&egrave;re sur Ast&eacute;ria, avec une moyenne de 10 &agrave; 15 tremblements de terre de magnitude sup&eacute;rieure &agrave; 3 sur l&#039;&eacute;chelle de Richter par mois. Les donn&eacute;es sugg&egrave;rent une dynamique tectonique int&eacute;ressante et un potentiel volcanique actif.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Ces chiffres et donn&eacute;es techniques ont &eacute;clair&eacute; notre compr&eacute;hension d&#039;Ast&eacute;ria en r&eacute;v&eacute;lant sa composition atmosph&eacute;rique, sa g&eacute;ologie, ses temp&eacute;ratures, ses ressources min&eacute;rales, la pr&eacute;sence d&#039;eau et son activit&eacute; sismique. Ils ont fourni une base solide pour &eacute;valuer la viabilit&eacute; de l&#039;exploration future et de la colonisation potentielle de cette plan&egrave;te &eacute;nigmatique.</font></div><div class="post_line"></div><div class="post_line"><font color="#ff0000">Rapport des bugs T-45/46&nbsp;li&eacute; aux Androids&nbsp;:</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Alors que les andro&iuml;des de l&#039;exp&eacute;dition intergalactique de Stratonia poursuivaient leurs t&acirc;ches scientifiques avec une pr&eacute;cision imperturbable, quelques situations comiques et des bugs inattendus ont piment&eacute; leur voyage :</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">T-45/</font><font color="#ff0000">&nbsp;Danse des andro&iuml;des </font><font color="#ffffff">: &Agrave; un moment donn&eacute;, un bug de synchronisation se produisit dans les programmes de danse des andro&iuml;des. Au lieu de r&eacute;aliser une chor&eacute;graphie fluide et coordonn&eacute;e, ils commenc&egrave;rent &agrave; effectuer des mouvements saccad&eacute;s et d&eacute;sordonn&eacute;s. Cela donna lieu &agrave; un spectacle surr&eacute;aliste o&ugrave; les andro&iuml;des se tr&eacute;moussaient de mani&egrave;re hilarante, donnant l&#039;impression d&#039;une f&ecirc;te improvis&eacute;e sur le vaisseau spatial.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">T-46/</font><font color="#ff0000">&nbsp;Langage de donn&eacute;es d&eacute;form&eacute;</font><font color="#ffffff"> : Un autre bug provoqua une alt&eacute;ration temporaire du langage de donn&eacute;es utilis&eacute; par les andro&iuml;des pour communiquer entre eux. Les informations se transform&egrave;rent en un flux de mots incompr&eacute;hensibles, donnant lieu &agrave; des &eacute;changes absurdes et d&eacute;routants. Les andro&iuml;des se retrouv&egrave;rent &agrave; discuter de th&eacute;ories philosophiques sur le sens de la vie &agrave; partir de lignes de code mal interpr&eacute;t&eacute;es, ce qui suscita quelques sourires parmi l&#039;&eacute;quipage.</font></div><div class="post_line"></div><div class="post_line"><div align="center"><strong><font size="3"><em><font color="#ffffff">Au fur et &agrave; mesure que l&#039;exp&eacute;dition de Stratonia p&eacute;n&eacute;trait plus profond&eacute;ment dans les myst&egrave;res d&#039;Ast&eacute;ria, une r&eacute;v&eacute;lation surprenante &eacute;claira leur chemin. Cette plan&egrave;te &eacute;nigmatique &eacute;tait habit&eacute;e par des &ecirc;tres magn&eacute;tiques, une forme de vie totalement in&eacute;dite pour les explorateurs interstellaires.</font></em></font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font size="3"><em><font color="#ffffff">Les scientifiques de Stratonia observ&egrave;rent avec &eacute;merveillement comment ces &ecirc;tres, constitu&eacute;s d&#039;un assemblage complexe de mat&eacute;riaux ferromagn&eacute;tiques, interagissaient entre eux et avec leur environnement d&#039;une mani&egrave;re unique. Leur pr&eacute;sence magn&eacute;tique leur permettait de se mouvoir avec une gr&acirc;ce et une fluidit&eacute; qui d&eacute;fiaient les lois de la gravit&eacute;.</font></em></font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font size="3"><em><font color="#ffffff">Les &ecirc;tres magn&eacute;tiques d&#039;Ast&eacute;ria &eacute;taient capables de contr&ocirc;ler leur polarit&eacute; magn&eacute;tique, leur permettant ainsi de s&#039;attirer ou de se repousser mutuellement, cr&eacute;ant des ballets c&eacute;lestes et des interactions fascinantes. Leur magn&eacute;tisme leur conf&eacute;rait &eacute;galement la capacit&eacute; de communiquer et d&#039;&eacute;changer des informations de mani&egrave;re complexe et instantan&eacute;e, gr&acirc;ce &agrave; des interf&eacute;rences magn&eacute;tiques subtiles.</font></em></font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font size="3"><em><font color="#ffffff">Les explorateurs de Stratonia furent subjugu&eacute;s par la beaut&eacute; de cette coexistence magn&eacute;tique. Ils observ&egrave;rent comment les &ecirc;tres magn&eacute;tiques formaient des structures &eacute;tonnantes, des assemblages g&eacute;om&eacute;triques en suspension dans les airs, o&ugrave; chaque entit&eacute; &eacute;tait solidement attach&eacute;e &agrave; ses voisins par des forces d&#039;attraction magn&eacute;tique.</font></em></font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><strong><font size="3"><em><font color="#ffffff">Ces &ecirc;tres magn&eacute;tiques semblaient &eacute;galement interagir avec leur environnement d&#039;une mani&egrave;re symbiotique. Ils &eacute;taient attir&eacute;s par les min&eacute;raux riches en fer pr&eacute;sents sur Ast&eacute;ria, utilisant leur magn&eacute;tisme pour extraire et manipuler ces mat&eacute;riaux, construisant des structures complexes et des habitats intrins&egrave;quement li&eacute;s &agrave; leur nature magn&eacute;tique.</font></em></font></strong></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffffff"><font size="3"><strong><em>La d&eacute;couverte de ces &ecirc;tres magn&eacute;tiques sur Ast&eacute;ria ouvrit de nouvelles perspectives sur la diversit&eacute; de la vie dans l&#039;univers. Leur pr&eacute;sence offrait une vision captivante de l&#039;adaptation et de l&#039;&eacute;volution dans des environnements extraterrestres uniques. Les scientifiques de Stratonia &eacute;tudiaient avec fascination ces &ecirc;tres magn&eacute;tiques, cherchant &agrave; comprendre les myst&egrave;res de leur biologie et de leur comportement, et esp&eacute;rant &eacute;tablir des &eacute;changes de connaissances avec ces &ecirc;tres aux capacit&eacute;s si singuli&egrave;res.</em></strong></font></font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16890&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16890" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16890" name="d_reply_16890" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16890');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16890'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Asteria : Exploration et observations&quot;</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

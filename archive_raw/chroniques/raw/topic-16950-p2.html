@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 16950 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>festival de musique S&eacute;denien</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > festival de musique S&eacute;denien</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16950&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=16950&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />20/07/1023 ETU 07:01</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal302870')">Détails</a> <a href="javascript:warnpost(302870)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302870" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302870',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="4">31 :&nbsp;&nbsp;<font color="#ffdc00">https://www.youtube.com/watch?v=TdxaUJ9J_e</font><font color="#1e92f7">w&amp;list=RDTdxaUJ9J_ew&amp;start_radio=1</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">32 :&nbsp;</font><font color="#ff4136"><font size="4">https</font></font><font size="4">:</font><font color="#ffa339"><font size="4">//www</font></font><font size="4">.</font><font color="#ffff00"><font size="4">youtube</font></font><font color="#2ecc40"><font size="4">.com/watch</font></font><font color="#1e92f7"><font size="4">?v=mDF</font></font><font color="#44b8ff"><font size="4">BTdToRmw&nbsp; &nbsp;</font></font><font color="#ff0000"><font size="6"><strong>+</strong></font></font></div><div class="post_line"></div><div class="post_line"><font size="4">33 :&nbsp;<font color="#ff0000">https://www.</font><font color="#ffff00">youtube</font>.<font color="#fbb8ec">com/watch?v=</font><font color="#ffff00">E2Zlx</font><font color="#ff0000">2cn5bE</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">34 :&nbsp;<font color="#e8b6ef">https://www.youtube</font>.<font color="#fff5b3">com/watch?v</font><font color="#e8b6ef">=-5-yiNEhjno</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">35 :&nbsp;<font color="#ffa339">https://www.youtube</font>.<font color="#2ecc40">com/watch?v=XhzpxjuwZy0</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />21/07/1023 ETU 09:12</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D302915', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal302914')">Détails</a> <a href="javascript:warnpost(302914)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302914" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302914',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="4">36 :&nbsp;<font color="#bbbbbb">https://www.youtube.c</font><font color="#ffdbbb">om/watch?v=W3q8Od5qJio</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">37 :&nbsp;<font color="#ffffff">https://www.youtube.</font><font color="#bbbbbb">com/watch?v=ik1Y88n1Uog</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">38 :&nbsp;<font color="#ffa339">https://www.youtube</font>.<font color="#ffff00">com/wat</font><font color="#ffa339">ch?v=IIHFxeN4BW4</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">39 :<font color="#e86e04">&nbsp;https://www.youtube.co</font><font color="#ffc95f">m/watch?v=RwQ89rnC78Q</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">40 :&nbsp;<font color="#bbbbbb">https://www.</font><font color="#ffffff">youtube.com</font><font color="#bbbbbb">/watch?v</font>=<font color="#ffffff">XCbAEkfXSDE</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />22/07/1023 ETU 05:41</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal302932')">Détails</a> <a href="javascript:warnpost(302932)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302932" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302932',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font size="4">41 :&nbsp;<font color="#ffa339">https://www.youtube</font>.<font color="#ffffff">com/watch?v=kw6ueCPIkc8</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">42 :&nbsp;<font color="#1e92f7">https://www.youtube.com/watch</font><font color="#ffffff">?v=PaY</font><font color="#bbbbbb">RvjoeNyg</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">43 :<font color="#ffffff">&nbsp;https://www.youtube</font>.<font color="#ffa339">com/watch?v=w-rv2BQa2OU</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">44 :&nbsp;<font color="#bbbbbb">https://www.youtube.</font><font color="#ffffff">com/watch?</font>v<font color="#bbbbbb">=djV11Xbc914</font></font></div><div class="post_line"></div><div class="post_line"><font size="4">45 :&nbsp;<font color="#cf2be7">https://w</font><font color="#2ecc40">ww.youtube</font>.<font color="#ffa339">com/wat</font><font color="#1e92f7">ch?v=lLdvpFIPReA</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />23/07/1023 ETU 20:18</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal302961')">Détails</a> <a href="javascript:warnpost(302961)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302961" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302961',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>* Alors que le concert battait son plein sur&nbsp;S&eacute;den IV.&nbsp;Un grand transporteur accompagn&eacute; de 5 chasseurs d&#039;&eacute;lites, arriv&egrave;rent en orbite de la plan&egrave;te... *</em></div><div class="post_line"></div><div class="post_line"><font color="#ff4136">Monsieur, arriver dans H -30min.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Fort bien, ouvrez un canal vers la plan&egrave;te !</font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136">Allez y, Monsieur !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Ici le responsable tactique, de la Nouvelle Conf&eacute;d&eacute;ration Matthew Horner. Nous souhaitons participer &agrave; la grande repr&eacute;sentation sur S&eacute;den IV. Nous avons avec nous un groupe venant tous droit de la capitale Galactique. Nous serons en tout 7 personnes a descendre. Afin d&#039;&eacute;viter le moindre probl&egrave;me diplomatique, personne ne sera arm&eacute;. Comme demand&eacute; &agrave; votre Premier Secr&eacute;taire G&eacute;n&eacute;ral Igor Myur&eacute;vitch nous demandons une escorte militaire pour notre s&eacute;curit&eacute; personnelle. Pouvez-vous nous transmettre les coordonn&eacute;es de la ZA ?</font></div><div class="post_line"></div><div class="post_line">...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />23/07/1023 ETU 22:16</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal302967')">Détails</a> <a href="javascript:warnpost(302967)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302967" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302967',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffa339">Il y a de nombreux astroports partout ici, ensuite c&#039;est fl&egrave;ch&eacute;, vous trouverez vite l&#039;endroit en question, vous serez accompagn&eacute; d&#039;un d&eacute;tachement de Rangers et de deux commissaires ......posez vous sur la piste 38 cela ira parfaitement, nous avons h&acirc;te de vous entendre !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />24/07/1023 ETU 00:09</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal302973')">Détails</a> <a href="javascript:warnpost(302973)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302973" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302973',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffff44">Vous avez entendu ? Direction la piste 38...</font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136">&Agrave; vos ordres !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>* Ainsi les chasseurs quitt&egrave;rent la formation, pour repartir en orbite jusqu&#039;&agrave; la flotte d&#039;escorte. *</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136">Nous amor&ccedil;ons notre descente.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Allez y molo, la peinture est encore fra&icirc;che...&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136">Bien entendu monsieur.&nbsp;</font></div><div class="post_line"><font color="#ff4136">Descente en cours... Arriver d&#039;ici quelques minutes...&nbsp;</font></div><div class="post_line"><font color="#ff4136">&Agrave; tous l&#039;&eacute;quipage veulliez gardez vos ceintures de s&eacute;curit&eacute;s, et vos hublos ferm&eacute;s.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>* Apr&egrave;s 30min de descente dans l&#039;atmosph&egrave;re, le vaisseau se posa sans encombre sur la piste 38... La porte d&#039;embarquement s&#039;ouvra. Le pilote sortie le premier pour inspect&eacute; les environs. Un coup de t&ecirc;te &agrave; droite puis &agrave; gauche. Un tour d&#039;inspection du vaisseau. *</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136">R. A.&nbsp;S. La zone est sur monsieur. Vous pouvez sortir...&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>* L&#039;officier&nbsp;Matthew Horner, sortie alors &agrave; son tours accompagn&eacute; de 6 autres personnes habill&eacute;s de longues capes &agrave; capuches noir. Ne laissant pas d&eacute;voiler leurs identit&eacute;s... *</em></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />24/07/1023 ETU 01:58</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D302993', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal302992')">Détails</a> <a href="javascript:warnpost(302992)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302992" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302992',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">un d&eacute;tachement de trente Rangers en armes, en tenues marron claire et calots sur la t&ecirc;te guid&eacute;s par deux Commissaires s&#039;approch&egrave;rent d&#039;eux lentement....</div><div class="post_line"></div><div class="post_line">les Deux Commissaires en longs manteaux; une double rang&eacute;e de boutons dor&eacute;s&nbsp;les casquettes a visi&egrave;res, s&#039;avanc&egrave;rent en souriant</div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Que la lumi&egrave;re des &eacute;toiles &eacute;clairent&nbsp; votre voie Camarades !&nbsp; Je me pr&eacute;sente, je suis le Commissaire Rada&iuml;vosky, c&#039;est moi qui vous guiderais et je vous souhaite la bienvenue sur Seden,&nbsp;</font></div><div class="post_line"></div><div class="post_line">Ils les accompagn&egrave;rent parmi une foule immense, de toutes races, de toutes cultures et de tous horizons, certains venus avec leurs familles, de au del&agrave; de la galaxie, quelques uns n&#039;&eacute;tant m&ecirc;me pas humains et conversant dans un dialecte &eacute;trange entre eux.</div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">C&#039;est un grand moment pour S&eacute;den Camarade mais croyez moi, vous ne risquiez absolument rien ici ! Ici, seule compte la musique !</font>&nbsp;</div><div class="post_line"></div><div class="post_line">ils se fray&egrave;rent&nbsp;un chemin dans la foule dense , des stands avaient &eacute;t&eacute; dress&eacute;es et nombreux ceux et celles qui venaient, de toutes races,&nbsp;int&eacute;ress&eacute;s par des articles souvenirs, beaucoup d&#039;enfants &eacute;tant int&eacute;ress&eacute;s, quand &agrave; eux, par de petits jouets technologiques jeux holographiques &eacute;ducatifs&nbsp;ou aussi et surtout,&nbsp; beaucoup de friandises que prenaient les parents pour eux.</div><div class="post_line"></div><div class="post_line">Sous le regard amus&eacute;s des rangers hommes comme femmes mais ils n&#039;oubliaient cependant pas de rester tr&egrave;s vigilants, conform&eacute;ment &agrave; leur mission.&nbsp;</div><div class="post_line"></div><div class="post_line">Ils arriv&egrave;rent ainsi devant la grande sc&egrave;ne ronde et large ou se produisaient les groupes, sur tout le pourtour de faisceaux holographiques afin de reproduire les ambiances, les paysages les parfums ou les odeurs m&ecirc;me parfois lorsque soudain .....</div><div class="post_line"></div><div class="post_line">Un groupe s&#039;approcha en souriant, des filles, l&#039;une d&#039;elle, une blonde fit en souriant, en reconnaissant l&#039;un des Commissaires.</div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Эй, ты как? Пусть свет звезд освещает ваш путь Товарищи и удачи вам !</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">(h&eacute; comment allez vous ? Que la lumi&egrave;re des &eacute;toiles &eacute;clairent votre voie Camarades et bon spectacle &agrave; vous !)</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Да, и спасибо, я видел ваше выступление, и вы были действительно фантастическими !&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">(Oui et merci, je vous ai vu vous produire et vous avez &eacute;t&eacute; fantastiques vraiment ! )</font></div><div class="post_line"></div><div class="post_line">R&eacute;pondit il, La blonde le gratifia d&#039;un sourire comme une brune a cot&eacute; !</div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Спасибо тебе друг !</font></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">(Merci Camarade ! )</font></div><div class="post_line"></div><div class="post_line">Rada&iuml;ovsky, se tournant vers ses visiteurs, en souriant, tout fier d&#039;avoir &eacute;t&eacute; abord&eacute; par l&#039;une d&#039;elle,&nbsp;&nbsp;il leurs fit, ....<font color="#ffdbbb">C&#039;est le groupe Silenzium ! Des jeunes femmes musiciennes particuli&egrave;rement dou&eacute;es ! On les admires &eacute;norm&eacute;ment dans notre empire, de grandes vedettes ....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Voila c&#039;est l&agrave; que vous vous produirez, enfin....Votre groupe bien s&ucirc;r......Et comme toujours, un petit cadeau sera fait pour tous les groupes s&#039;&eacute;tant produits ici !</font></div><div class="post_line"></div><div class="post_line">l&#039;un des chanteurs passant avec ses musiciens passa ensuite en leur faisant un petit salut amical tout en souriant ( titre talk talk such a Shame)</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />24/07/1023 ETU 02:58</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal303002')">Détails</a> <a href="javascript:warnpost(303002)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303002" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303002',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>* Alors que le groupe se mettaient en place, Matt s&#039;approcha alors du Commissaire.&nbsp;*</em></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">C&#039;est incroyable de voir tous se monde faire la f&ecirc;te, et pas une once de violence. Je suis vraiment impressionn&eacute; !</div><div class="post_line">Ce&nbsp;groupe Silenzium... Il me semble en avoir d&eacute;j&agrave; entendu parler... Et... &ccedil;a alors, talk talk ?</font></div><div class="post_line"><font color="#ffff44">Votre festival est vraiment r&eacute;ussi, bravo ! C&#039;est un honneur pour Les rebelles qui TraineDehors, de participer a cette &eacute;v&egrave;nement !</font></div><div class="post_line"><font color="#ffff44">Oh, pardon... J&#039;oublier mes devoirs... Maintenant que le groupe est pr&eacute;s, je vais aller l&#039;annoncer. Pardonnez moi un instant !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><em>*L&#039;officier monta alors sur sc&egrave;ne, il prit le micro puis annon&ccedil;a... *</em></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Ladys and Gentleman !</font></div><div class="post_line"><font color="#ffff44">Arriv&eacute; tous droits du Hellfest sur la capitale Galactique !</font></div><div class="post_line"><font color="#ffff44">Je vous demande un tonnerre d&#039;applaudissement pour...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44"><font size="5"><strong>Frank Klepacki et les Fils de l&#039;Apotium.</strong></font></font></div><div class="post_line"></div><div class="post_line"><em>* Ainsi une sir&egrave;ne inqui&eacute;tante se fit entendre, puis des bruits de pas... Et enfin le groupe se d&eacute;voila...*</em></div><div class="post_line"></div><div class="post_line"><a href="https://www.youtube.com/watch?v=TrqQxl5o3eg" target="_blank" rel="nofollow">https://www.youtube.com/watch?v=TrqQxl5o3eg</a></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />24/07/1023 ETU 04:04</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal303004')">Détails</a> <a href="javascript:warnpost(303004)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303004" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303004',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Un tonnerre d&#039;applaudissements se fit entendre accompagn&eacute; d&#039;une mar&eacute;e de clameurs enthousiastes, puis une acclamation a chaque musicien pr&eacute;sent&eacute; ....Ces applaudissements se prolong&egrave;rent encore un moment et les groupes suivants, attendirent par respect, pour monter &agrave; leurs tours....</div><div class="post_line"></div><div class="post_line">Rada&iuml;vosky comme son coll&egrave;gue et tous les rangers &eacute;taient encore a applaudir, Rada&iuml;vosky fit <font color="#ffdbbb">H&eacute; bien quel succ&egrave;s ! bravo &agrave; votre groupe, ils n&#039;ont pas d&eacute;m&eacute;rit&eacute;s non plus bravo !&nbsp;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />24/07/1023 ETU 04:18</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D303008', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal303007')">Détails</a> <a href="javascript:warnpost(303007)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal303007" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=303007',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="left"><font size="4">le groupe suivant monta a son tour, le concert continuait devant un public ravi&nbsp;</font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font size="4">46 :&nbsp;<font color="#ffdbbb">https://www.youtube.</font><font color="#ffffff">com/watch?v=rmHDhAohJlQ</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font size="4">47 :&nbsp;<font color="#fff5b3">https://www.youtube</font><font color="#7fdbff">.com/watch?v</font><font color="#ff0000">=un9K</font><font color="#72ff84">6rHI7PU</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font size="4">48 :&nbsp;<font color="#c0f0c6">https://www.youtube</font>.<font color="#bbbbbb">com/watch?v=-6Xl9tBWt54</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font size="4">49 :&nbsp;<font color="#fffa1e">https://www.youtube.com/</font><font color="#ffffff">watch?v=qORYO0atB6g</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font size="4">50 :&nbsp;<font color="#44b8ff">https://www.youtube</font>.<font color="#ffffff">com/w</font><font color="#bbbbbb">atch?v=aatK_l9Yuyk</font></font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16950&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=16950&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > festival de musique S&eacute;denien</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

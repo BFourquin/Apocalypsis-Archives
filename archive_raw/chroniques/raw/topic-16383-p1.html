@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16383 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>L&#039;exp&eacute;rience du Professeur Steffey</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;exp&eacute;rience du Professeur Steffey</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />07/08/1022 ETU 01:36</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294267', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal294262')">Détails</a> <a href="javascript:warnpost(294262)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294262" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294262',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#fff5b3">https://www.youtube.com/watch?v=g20Pr_fQyzg</font></div></div><div class="post_line"></div><div class="post_line">En orbite......</div><div class="post_line">l&#039;Orbite de la Lune de Valingrade .......La lune de Valingrade justement, avec une belle ceinture de Solars flottants eux m&ecirc;me en orbite, ces sph&egrave;res de cristal orange d&eacute;rivant en orbite et formant ainsi un anneau autour de la lune...</div><div class="post_line"></div><div class="post_line"><font color="#ffa339">https://i.pinimg.com/originals/53/1f/d4/531fd473504c6ed02cd1d47481e11c50.jpg</font></div><div class="post_line"></div><div class="post_line">Le Vaisseau Aurora qui en avait d&eacute;j&agrave; tant v&eacute;cu d&#039;aventures de toute sorte et semblant &ecirc;tre &eacute;ternel, qui un jour avait trouv&eacute; son double sortant d&#039;une dimension parall&egrave;le, (ancienne galaxie) avait d&eacute;j&agrave; fait cela une fois mais cette fois l&agrave;, l&#039;Aurora ne poss&eacute;dait pas la carrosserie sp&eacute;ciale sign&eacute; Balthazar Steffey ......</div><div class="post_line"></div><div class="post_line">Noir pour l&#039;instant, l&#039;espace &eacute;tait bien noir de ce cot&eacute; ci de Valingrade, Steffey l&#039;avait fait expr&egrave;s, il adorait m&eacute;nager l&#039;effet qui allait suivre .....</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Qu&#039;attendez vous Professeur ?</font> Demanda le Commandant de bord du croiseur .....</div><div class="post_line"></div><div class="post_line">Steffey sourit en coin malicieux et lui r&eacute;pondit .........<font color="#ffff00">Le bon moment tout simplement !</font></div><div class="post_line"></div><div class="post_line">En effet, voila quelques heures qu&#039;ils &eacute;taient l&agrave; mais fixe, la station orbitale de l&#039;autre cot&eacute; de la plan&egrave;te, elle m&ecirc;me en orbite&nbsp;allait arriver bien plus tard ce qui ne posait aucun probl&egrave;me, vu que Steffey avait fait ses calculs d&#039;une exactitude et d&#039;une pr&eacute;cision chirurgicale comme d&#039;habitude, cela lui avait pris du temps, beaucoup de temps, compte tenu que Steffey avait une sainte horreur qu&#039;il puisse y avoir une quelconque erreur, il avait donc refait les calculs trois fois de suite.</div><div class="post_line">Maintenant il &eacute;tait pr&ecirc;t et avait presque h&acirc;te de tester l&#039;effet du blindage .....Excit&eacute; comme un enfant devant son nouveau jouet .....</div><div class="post_line"></div><div class="post_line">Steffey ne changerais plus, Steffey l&#039;inventeur, Steffey l&#039;Immortel a la suite d&#039;une exp&eacute;rience qui avait pris un sens in attendu et qui avait rendu immortel lui m&ecirc;me mais aussi quatre autres personnes qui, depuis, le suivaient d&#039;apocalypse en apocalypse ....Comme une bande de H&eacute;ros, ils &eacute;taient donc six .....Oui six en comptant une entit&eacute; robotique sauv&eacute; de justesse par l&#039;un d&#039;eux ......De tout cela, Steffey s&#039;en rappelait .....Mais ici, qui donc se souvenait de tout cela encore ? Sans doute personne et puis quoi ? La belle affaire ! Pour l&#039;heure seule comptait cette merveilleuse exp&eacute;rience !</div><div class="post_line">Lorsque ! Steffey vit en souriant, un autre vaisseau arriver, il sourit en reconnaissant le vaisseau, quand on parlait d&#039;immortels, ils n&#039;&eacute;taient jamais tr&egrave;s loin .....</div><div class="post_line"></div><div class="post_line">Steffey pris le Com (Communicateur, Portable) et fit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Vous n&#039;avez pas pu vous emp&ecirc;cher de venir voir le spectacle n&#039;est ce pas ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Une voix F&eacute;minine r&eacute;pondit ....</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Bien sur Prof ! Et comment donc vous pens.....H&eacute;&eacute; !!! Ne touche pas &agrave; &ccedil;a toi !!</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Une voix masculine de protestation se fit entendre :<font color="#ffffff"> Quoi ? Quoi ? Dit donc ? je suis le pilote oui ou non ?</font>&nbsp;</div><div class="post_line"><font color="#72ff84">Oui mais c&#039;est moi qui supervise figure toi !</font>&nbsp;</div><div class="post_line"><font color="#ffffff">Haaa tiens !!! Alors celle l&agrave; c&#039;est la meilleure de l&#039;ann&eacute;e ! Tu veut que je te dise !!&nbsp;</font></div><div class="post_line"><font color="#e8b6ef">Assez vous deux !! Rhooo ! Irr&eacute;cup&eacute;rables ces deux l&agrave; ! Heyy Prof ! Ici Skay avec Reccord comment va ? comme vous voyez ! Ici cela n&#039;a gu&egrave;re chang&eacute; ! l&#039;&eacute;quipage est .....Comment dire ......Egal a lui m&ecirc;me hahaha !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Steffey rit &agrave; son tour reconnaissant bien l&agrave;, les petites disputes habituelles de Jade et Drake&nbsp;et fit <font color="#ffff00">H&eacute; bien ma ch&egrave;re Skay bonjour &agrave; la tireuse d&#039;&eacute;lite de s&oelig;ur, Noella !</font></div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Elle est l&agrave; aussi et bien sur les deux sp&eacute;cialistes en chamailleries Drake le pilote Galarien et Jade la Kr&ocirc;ne, ils s&#039;adore pourtant mais j&#039;ai cess&eacute;e de faire la police interstellaire entre eux depuis longtemps, on ne les changeras plus maintenant je pense !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Excellent excellent ! Et un petit salut &eacute;galement a Reccord, toujours l&agrave; ?&nbsp;</font></div><div class="post_line"></div><div class="post_line">Une petite voix de robot lui r&eacute;pondit&nbsp;</div><div class="post_line"></div><div class="post_line">Reccord, entit&eacute; Robotique :</div><div class="post_line"></div><div class="post_line"><div align="center">https://mymodernmet.com/wp/wp-content/uploads/2021/05/matt-dixon-digital-robot-illustrations-12.jpg</div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">(Historique de Reccord :&nbsp;Entit&eacute; robotique, &agrave; la base, c&#039;&eacute;tait un robot jouet, abandonn&eacute; par un petit gar&ccedil;on &agrave; cause d&#039;une apocalypse, il fut pourchass&eacute; par des pirates ivres, alors que tous le monde avait fuit, mais il parvient cependant &agrave; s&#039;&eacute;chapper, il commen&ccedil;a alors &agrave; errer lorsque qu&#039;il tomba sur Skay pr&eacute;parant son vaisseau afin de s&#039;&eacute;chapper a son tour, Skay, Drake, Noella et Jade&nbsp; surent le rassurer et Skay, elle, le reprogramma pour en faire son auxiliaire r&eacute;parateur en ing&eacute;nierie de vaisseaux, depuis, ils ne se quittent plus !)</font></div></div><div class="post_line"></div><div class="post_line"><font color="#bbbbbb">Et comment professeur, toujours bon pied de m&eacute;tal et bonne acuit&eacute; visuelle !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Parfait !&nbsp;Il n&#039;y a plus qu&#039;a assister au spectacle je voit d&eacute;j&agrave; que de ce cot&eacute;, le jour se l&egrave;ve lentement ......</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />09/08/1022 ETU 20:15</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294302', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal294300')">Détails</a> <a href="javascript:warnpost(294300)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294300" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294300',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong><font color="#e8b6ef"><font size="4">https://www.youtube.com/watch?v=SfjGtSzPQ6s&amp;list=PL0ZZBxzVjYYG8kl9ROYlHGht5dvLMdGbR&amp;index=29</font></font></strong></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Les premi&egrave;res lueurs de l&#039;aube .....</div><div class="post_line"></div><div class="post_line">Les premiers rayons du soleil atteignaient toutes les r&eacute;gions, l&#039;oc&eacute;an, le continent, le soleil allait apparaitre mais un &eacute;clat plus grand commen&ccedil;a &agrave; gagner......Comme une immense vague orange, qui se mit &agrave; luire, brillante, intense, extr&ecirc;mement lumineuse......Le pilote selon la demande de Steffey, fit descendre le vaisseau ......</div><div class="post_line"></div><div class="post_line">Tous les cristaux brillaient intens&eacute;ment, les deux vaisseaux sembl&egrave;rent ainsi, se poser comme deux oiseaux sur un fleuve ressemblant &agrave; un fleuve de lave en fusion...... Semblant comme voguer sur une mer de feu, avan&ccedil;ant au ralenti, le spectacle &eacute;tait f&eacute;&eacute;rique, de temps en temps quelques petits bruits l&eacute;gers se firent entendre dans la partie basse du vaisseau&nbsp;, les cristaux heurtant de fa&ccedil;on l&eacute;g&egrave;re sur la coque, certains furent r&eacute;cup&eacute;r&eacute;s au passage....Dans la salle de commandement, l&#039;illusion d&#039;avancer sur une mer de lave &eacute;tait du plus bel effet, observ&eacute;s par tous, hommes comme femmes d&#039;&eacute;quipage, &eacute;merveill&eacute;s du spectacle.</div><div class="post_line"></div><div class="post_line">Ils observ&egrave;rent le spectacle magnifique en silence, tous &eacute;taient captiv&eacute;s, m&ecirc;me Reccord dans l&#039;autre vaisseau,&nbsp;qui enregistrait ce moment pour le garder ind&eacute;finiment.....</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Parfait et maintenant ! Agent Ing&eacute;ne ! Vous pouvez commencer</font> fit Steffey&nbsp;</div><div class="post_line"></div><div class="post_line">L&#039;ing&eacute;nieur commen&ccedil;a &agrave; pianoter sur un clavier antigrav ......</div><div class="post_line"></div><div class="post_line">Pendant qu&#039;il &eacute;tait &agrave; l&#039;ouvrage, Steffey reprit ....<font color="#ffff00">Et maintenant ma ch&egrave;re amie Skay, vous allez me rendre un petit service, vous allez pouvoir me dire si l&#039;exp&eacute;rience sur le vaisseau a r&eacute;ussie ou non ......</font></div><div class="post_line"></div><div class="post_line">En effet, l&#039;ing&egrave;ne venait de terminer de pianoter lorsque le vaisseau entier changea compl&egrave;tement de couleur, devenant lui m&ecirc;me d&#039;une couleur orange et brillante, aux mille reflets changeants constamment.</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Cela &agrave; March&eacute; Prof ! Bravo ! on dirait un vaisseau de lave C&#039;est .....C&#039;est .....Extraordinaire !</font></div><div class="post_line"></div><div class="post_line">Steffey souriait amus&eacute; comme un enfant, regardant les autres membres d&#039;&eacute;quipage qui applaudissaient ......</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">H&eacute; bien Bravo Professeur ! ! Une belle r&eacute;ussite vraiment ! Vous savez que cette exp&eacute;rience est suivie de la plan&egrave;te par tout un tas d&#039;astronomes ? Vous allez devenir c&eacute;l&egrave;bre !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Je vous remercie mais je n&#039;&eacute;tais pas le seul &agrave; avoir travaill&eacute; dessus et puis moi ! Vous savez, la c&eacute;l&eacute;brit&eacute; ......</font></div><div class="post_line"></div><div class="post_line">Le Commandant se leva&nbsp;et vint lui serrer la main en riant ....Alors que la station fit son apparition pour assister juste a temps au prodige......</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Il est temps Commandant, il faut lib&eacute;rer le champ pour la station........</font></div><div class="post_line"></div><div class="post_line">Le vaisseau sembla alors s&#039;envoler du fleuve apparaissant comme en fusion pour gagner l&#039;espace, suivit par le vaisseau de Drake et Jade, le vaisseau de Steffey prit une couleur plus normale .....</div><div class="post_line"></div><div class="post_line">Cette exp&eacute;rience allait rester dans les banques m&eacute;morielles de Reccord, mais aussi dans toutes les m&eacute;moires, il n&#039;y avait d&#039;ailleurs pas que Reccord pour avoir, semble il, enregistr&eacute; ses images, d&#039;autres membres d&#039;&eacute;quipage, avaient r&eacute;ussis &agrave; tout enregistrer ......</div><div class="post_line"></div><div class="post_line">Pour ce cot&eacute; ci de la plan&egrave;te ........Une nouvelle journ&eacute;e commen&ccedil;ait ........</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16383&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16383" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16383" name="d_reply_16383" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16383');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16383'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;exp&eacute;rience du Professeur Steffey</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

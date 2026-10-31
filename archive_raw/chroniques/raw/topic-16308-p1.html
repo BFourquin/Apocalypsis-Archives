@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16308 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Carnet de bord</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Carnet de bord</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astery">Cdte. Astery</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11417.jpg" style="width:123px;height:128px" alt="Avatar" /><br />17/07/1022 ETU 01:00</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal293505')">Détails</a> <a href="javascript:warnpost(293505)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293505" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293505',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><strong><font color="#72ff84">~ Vendredi 15 juillet&nbsp;~</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffff00"><strong><u>11h15</u></strong></font></div></div><div class="post_line"><div align="justify">Ca fait d&eacute;j&agrave; une demi-heure que je fixe la feuille sans me d&eacute;cider comment commencer. Cher journal ? Bof, j&#039;ai plus 15 ans... Et puis c&#039;est plut&ocirc;t un carnet de bord qu&#039;un journal intime d&#039;ailleurs, mais comptez pas sur moi pour la jouer fa&ccedil;on protocole scientifique, &ccedil;a va vite me gonfler. Bon, du coup je cherchais une intro classe, c&#039;est plut&ocirc;t rat&eacute;... mais &ccedil;a a le m&eacute;rite de briser le syndrome de la page blanche ! </div></div><div class="post_line"><div align="justify">Alors, je me lance : Je m&#039;appelle <strong><font color="#ffa500">Astery</font></strong>, et ceci est mon journal de bord. J&#039;&eacute;cris depuis mon vaisseau, et je fuis secr&egrave;tement la Galaxie Souvenir. Je suis en fuite pour deux raisons : premi&egrave;rement, j&#039;ai acquis la conviction au fil de mon enqu&ecirc;te et de mes r&eacute;cents voyages, qu&#039;une v&eacute;ritable apocalypse &eacute;tait sur le point de s&#039;abattre sur Souvenir. Et je n&#039;ai aucune envie d&#039;&ecirc;tre sur place quand &ccedil;a arrivera. Je fuis aussi parce que je voulais pr&eacute;venir l&#039;ensemble de la Galaxie de la catastrophe. Mais &ccedil;a a affol&eacute; ma hi&eacute;rarchie qui a tout fait pour me faire taire. Pourquoi ? C&#039;est une partie du myst&egrave;re sur lequel je devrais enqu&ecirc;ter... </div></div><div class="post_line"><div align="justify">Avec mon &eacute;quipe, nous &eacute;tions sur le point de publier un num&eacute;ro pirate du magazine <font color="#ff4136"><strong>SCOOP</strong></font>, mais &quot;on&quot; nous a retrouv&eacute;. Nous avons r&eacute;ussi &agrave; nous &eacute;chapper, in extremis. Pour compliquer la t&acirc;che de ces gros lourdauds de militaires qui nous collaient au train, on a d&eacute;cid&eacute; de faire plusieurs &eacute;quipes de 1 (me regardez pas comme &ccedil;a, c&#039;&eacute;tait pas mon id&eacute;e). Voil&agrave; comment je me retrouve &agrave; pr&eacute;sent, seule dans un vaisseau furtif, assise &agrave; une petite table face &agrave; mon carnet pendant que l&#039;auto-pilote me conduit je-ne-sais-o&ugrave;. Vers mon destin, &ccedil;a sonnerait joliment dramatique dans le r&eacute;cit, mais honn&ecirc;tement j&#039;esp&egrave;re juste qu&#039;il ne va pas m&#039;envoyer dans un ast&eacute;ro&iuml;de. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Je d&eacute;cide d&#039;entamer ce carnet pour laisser une trace de moi, au cas o&ugrave; je finirais justement dans un ast&eacute;ro&iuml;de. Mais aussi parce que je suis journaliste et que &eacute;crire, c&#039;est &agrave; peu pr&egrave;s tout ce que je sais faire. Et comme je ne suis pas press&eacute;e d&#039;aller me fourrer dans le caisson de cryog&eacute;nisation, je m&#039;attend &agrave; devoir m&#039;occuper pour tuer le temps. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">D&#039;ailleurs je vais commencer par faire le tour du vaisseau, histoire de voir un peu ce qu&#039;il y a. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">11h45</font></u></strong></div></div><div class="post_line"><div align="justify">Voil&agrave;, j&#039;ai fait le tour du vaisseau. C&#039;est un tout petit vaisseau en fait. </div></div><div class="post_line"><div align="justify">Plut&ocirc;t bien fichu, je dois reconna&icirc;tre, en tout cas il a l&#039;air assez r&eacute;cent, ce qui me rassure un peu. J&#039;ai vu la cabine de pilotage, bourr&eacute;e de boutons et d&#039;&eacute;crans, mais en principe je n&#039;aurais pas trop &agrave; y mettre les pieds vu que l&#039;engin est cens&eacute; se conduire tout seul. J&#039;ai vu aussi une sorte de petit salon o&ugrave; je pourrais me retrouver avec moi m&ecirc;me pour d&eacute;briefer mes fins de journ&eacute;e. Si l&#039;ambiance s&#039;y pr&ecirc;te, je pourrais m&ecirc;me me distraire avec quelques parties de Solitaire. De belles soir&eacute;es en perspective ! Dans ce salon, il y a un distributeur qui reconstitue des boissons &agrave; partir de comprim&eacute;s solubles - si je survis &agrave; l&#039;ast&eacute;ro&iuml;de je ne sais pas en revanche si je vais survivre &agrave; &ccedil;a. En plus j&#039;ai tir&eacute; sur un levier en pensant que &ccedil;a sortirait des gla&ccedil;ons, et &agrave; la place &ccedil;a m&#039;a projet&eacute; une dizaine de fraises tagada au visage. Qui a eu l&#039;id&eacute;e d&#039;installer &ccedil;a ? </div></div><div class="post_line"><div align="justify">J&#039;ai aussi vu la &quot;chambre&quot; avec la cabine de cryog&eacute;nisation. Je sais que c&#039;est cens&eacute; &ecirc;tre s&ucirc;r, &eacute;prouv&eacute;, test&eacute;, valid&eacute;, ce truc me fiche le bourdon donc j&#039;ai vite referm&eacute; la porte. Enfin, j&#039;ai d&eacute;nich&eacute; une petite pi&egrave;ce avec des instruments de torture - pardon, des &eacute;quipements sportifs. Gentils ing&eacute;nieurs, qui ont m&ecirc;me pens&eacute; &agrave; l&#039;entretien de mon <em>summer body</em> ! </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">13h10</font></u></strong></div></div><div class="post_line"><div align="justify">Un jour, j&#039;avais lu un article expliquant que les spationautes envoy&eacute;s sur des missions au long cours suivaient rigoureusement une routine de sport quotidienne, pour maintenir la machine corporelle en bon &eacute;tat de fonctionnement. C&#039;est pas que &ccedil;a m&#039;enchante, mais je me suis dit que je devrais peut-&ecirc;tre suivre leur exemple. </div></div><div class="post_line"><div align="justify">Alors je suis all&eacute;e transpirer un peu sur une de ces machines, et contre toute attente, &ccedil;a m&#039;a fait du bien. Je me suis sentie plus apais&eacute;e, et l&#039;esprit clair. Maintenant, je r&ecirc;ve d&#039;une bonne douche, j&#039;ai justement cru voir une cabine &agrave; c&ocirc;t&eacute; de la salle de sport. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffff00"><u><strong>13h45</strong></u></font></div></div><div class="post_line"><div align="justify">Je crois que tout Souvenir m&#039;a entendue hurler ; en tout cas si vous avez capt&eacute; un son inhumain vers 13h30 le 15/07/1022 ETU, c&#039;&eacute;tait moi. S&eacute;rieusement, &agrave; quel moment une cabine de douche est cens&eacute;e provoquer la pire frayeur d&#039;une vie ? Sur la porte, c&#039;&eacute;tait marqu&eacute; : &quot;cette cabine est &eacute;quip&eacute;e de la toute derni&egrave;re technologie de recyclage et &eacute;puration automatique d&#039;eau ; veuillez garder bras et jambes &agrave; l&#039;int&eacute;rieur et patientez jusqu&#039;&agrave; la fin du programme&quot;. Je me suis d&#039;abord dit que, bon, une notice explicative pour utiliser une douche, c&#039;est pas banal. Mais avec le recul, &ccedil;a aurait d&ucirc; me mettre la puce &agrave; l&#039;oreille. En v&eacute;rit&eacute;, &ccedil;a avait bien commenc&eacute; avec une sorte de brume bien rafraichissante, mais ensuite tout un tas de brosses et d&#039;&eacute;ponges ont jailli du mur, l&agrave; j&#039;ai cri&eacute; de surprise et je n&#039;aurais pas d&ucirc;. J&#039;ai aval&eacute; au moins un litre d&#039;eau savonneuse, j&#039;en avais plein les yeux, et juste quand j&#039;ai eu l&#039;impression de reprendre mon souffle, j&#039;ai repris un seau d&#039;eau sur la t&ecirc;te qui a achev&eacute; de me noyer. Je suis ressortie de l&agrave; en pestant, crachotant, la peau &agrave; vif et les yeux en pleurs, on aurait dit un caniche miteux qui sort du toilettage. A cet instant, j&#039;&eacute;tais soulag&eacute;e de voyager seule. </div></div><div class="post_line"><div align="justify">Est-ce que je peux m&#039;autoriser &agrave; esp&eacute;rer trouver de quoi manger sur ce vaisseau du diable ? J&#039;esp&egrave;re juste qu&#039;ils ont pr&eacute;vu autre chose que des fraises tagada...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffff00"><u><strong>14h00</strong></u></font></div></div><div class="post_line"><div align="justify">J&#039;ai trouv&eacute; quelque dans le petit salon : c&#039;est une machine au mur, avec une inscription dessus : &quot;<font color="#c3ffff">rations de voyage</font>&quot;. Je pense que je suis sur la bonne voie. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">14h02</font></u></strong></div></div><div class="post_line"><div align="justify">Le probl&egrave;me c&#039;est que je n&#039;ai pas la moindre id&eacute;e de commencer faire fonctionner ce truc. Le traumatisme de la douche est encore r&eacute;cent. </div></div><div class="post_line"><div align="justify">Je voudrais juste un jambon beurre, s&#039;il vous plait...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">14h05</font></u></strong></div></div><div class="post_line"><div align="justify">Bon, je me lance, je vais pas rester planter l&agrave; &agrave; mourir de faim. Ce qui m&#039;inqui&egrave;te, c&#039;est que j&#039;esp&eacute;rais trouver une sorte de distributeur, avec des boutons genre... &quot;<font color="#ff857a">spaghettis bolognaise</font>&quot;, ou &quot;<font color="#ffc0cb">cordon bleu - coquillette</font>&quot;... En fait, il n&#039;y a qu&#039;un seul bouton. C&#039;est quoi le concept ? Il y a un chef cuisinier planqu&eacute; derri&egrave;re la machine qui cuisine des repas selon l&#039;inspiration du moment ? Ou plus vraisemblablement, il y a un seul casse-cro&ucirc;te pr&eacute;vu et je me pr&eacute;pare &agrave; avaler chaque jour la m&ecirc;me chose... </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">14h07</font></u></strong></div></div><div class="post_line"><div align="justify">C&#039;est encore pire que ce que je pensais. J&#039;ai pris mon courage &agrave; un doigt et j&#039;ai press&eacute; le bouton avec appr&eacute;hension. La machine a comme &quot;scann&eacute;&quot; mon doigt puis elle s&#039;est mise a ronronner. Je me suis recul&eacute;e par pr&eacute;caution, et au bout de quelques secondes, elle a crach&eacute; un petit comprim&eacute; dans une coupelle. Je me suis suis rapproch&eacute;e, et j&#039;ai pris la g&eacute;lule dans la main. C&#039;est... difficile &agrave; d&eacute;crire. C&#039;est l&eacute;g&egrave;rement color&eacute;, un genre de bleu iris&eacute;, &ccedil;a a la taille d&#039;un caramel rond mais c&#039;est un peu mou. <em>C&#039;est une blague ?</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">14h15</font></u></strong></div></div><div class="post_line"><div align="justify">J&#039;ai toujours mon bonbon-repas dans la main, j&#039;arrive pas &agrave; me d&eacute;cider &agrave; avaler ce truc.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">14h17</font></u></strong></div></div><div class="post_line"><div align="justify">Je suis &agrave; un stade de ma vie o&ugrave; je dois d&eacute;cider entre mourir &eacute;cras&eacute;e contre un ast&eacute;ro&iuml;de, mourir dans une cabine cryog&eacute;nis&eacute;e, mourir de de faim, ou mourir empoisonn&eacute; par un comprim&eacute; non identifi&eacute;. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ffff00"><u>14h20</u></font></strong></div></div><div class="post_line"><div align="justify">J&#039;ai aval&eacute; le bonbon. Ou plut&ocirc;t, j&#039;ai croqu&eacute; dedans et il a fondu dans ma bouche. Sur le coup, il ne s&#039;est pas pass&eacute; grand chose, &ccedil;a n&#039;a pas sp&eacute;cialement de go&ucirc;t ; mais au bout de quelques secondes, il s&#039;est pass&eacute; quelque chose d&#039;incroyable : j&#039;ai ressenti une vague d&#039;&eacute;nergie, accompagn&eacute;e d&#039;une sensation de sati&eacute;t&eacute;. Alors que je n&#039;ai quasiment rien mang&eacute; ! Je n&#039;ai aucune id&eacute;e du fonctionnement de ces g&eacute;lules mais j&#039;ai l&#039;impression que &ccedil;a remplit parfaitement son r&ocirc;le de substitut de repas. Je pense que la sensation de manger va vite me manquer, mais au moins, je ne devrais pas mourir de faim - &ccedil;a fait d&eacute;j&agrave; une mort de moins. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div><div class="post_line"><font color="#72ff84"><strong>~ Samedi 16 juillet&nbsp;~</div><div class="post_line"></strong></font></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">9h30</font></u></strong></div></div><div class="post_line"><div align="justify">Je me suis install&eacute;e dans la cabine de pilotage. Finalement, c&#039;est le seul endroit o&ugrave; il y a une vue sur l&#039;ext&eacute;rieur du vaisseau, au travers du vitrage blind&eacute;. J&#039;ai mis mon casque sur les oreilles, et &ccedil;a fait d&eacute;j&agrave; une bonne heure que j&#039;observe l&#039;espace autour de moi. Je vois les &eacute;toiles et les plan&egrave;tes d&eacute;filer en autant de points lumineux qui ponctuent l&#039;obscurit&eacute;. </div></div><div class="post_line"><div align="justify">C&#039;est comme si je prenais seulement maintenant la mesure de ce qui m&#039;arrive. Je quitte la Galaxie qui m&#039;a vue na&icirc;tre... J&#039;avance vers une nouvelle Galaxie inconnue, dont je ne connais ni les habitants, ni les codes, ni m&ecirc;me d&#039;ailleurs s&#039;il y a d&eacute;j&agrave; de la vie &eacute;volu&eacute;e. </div></div><div class="post_line"><div align="justify">Emportant avec moi seulement quelques bricoles, ce carnet, un peu de musique, mais surtout le plus pr&eacute;cieux : mes <font color="#72ff84">Souvenirs</font>. </div><div class="post_line">Le <font color="#72ff84">Souvenir </font>de celles et ceux que j&#039;ai crois&eacute; et qui ont particip&eacute; &agrave; faire de moi celle que je suis. </div></div><div class="post_line"><div align="justify">Ai-je &eacute;t&eacute; appr&eacute;ci&eacute;e dans cette vie ? Aim&eacute;e ? Ceux qui ont compt&eacute; pour moi, qui ne sont plus l&agrave; aujourd&#039;hui... seraient-ils fiers de la personne que je suis aujourd&#039;hui ? Peut-&ecirc;tre, s&#039;ils ne m&#039;ont pas vue sous la douche tout &agrave; l&#039;heure.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">10h12</font></u></strong></div></div><div class="post_line"><div align="justify">Ce sont peut-&ecirc;tre les derniers mots que j&#039;&eacute;cris dans ce carnet. La sir&egrave;ne du vaisseau s&#039;est d&eacute;clench&eacute;e, et un message sonore a retenti. </div></div><div class="post_line"><div align="justify">&quot;Perturbation cataclysmique &agrave; l&#039;&eacute;chelle galactique en approche. Pour &eacute;chapper aux perturbations et &agrave; la destruction, le passage en vitesse supraluminique est imminent. Veuillez rejoindre vos modules de cryog&eacute;nisation sans d&eacute;lai&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">La bonne nouvelle, c&#039;est que le vaisseau a l&#039;air de savoir ce qu&#039;il fait. </div></div><div class="post_line"><div align="justify">La mauvaise nouvelle, c&#039;est que je vais devoir me mettre dans la cabine de cryog&eacute;nisation. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">10h15</font></u></strong></div></div><div class="post_line"><div align="justify">Je laisse le carnet &agrave; c&ocirc;t&eacute; du module, en esp&eacute;rant pouvoir bient&ocirc;t reprendre le fil de mon r&eacute;cit. J&#039;aurais aim&eacute;, au cas o&ugrave; ce ne soit pas le cas, conclure mon r&eacute;cit par quelques mots bien inspir&eacute;s, avec un&nbsp;sens profond qui marquerait la post&eacute;rit&eacute;. Mais j&#039;ai la trouille de ce caisson de cryog&eacute;nie et le d&eacute;compte qui s&#039;est enclench&eacute; dans le vaisseau n&#039;est pas pour me d&eacute;tendre. J&#039;ai litt&eacute;ralement du flan dans la t&ecirc;te. </div><div class="post_line"></div><div class="post_line">Alors... Bon vent. Et &agrave; tr&egrave;s vite, j&#039;esp&egrave;re.<font color="#ffc0cb"> Bisous.</font> </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center">- - - - - - - -&nbsp;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font color="#bbbbbb"><em>Seabirds fly the salty wind</em></font></div></div><div class="post_line"><div align="center"><font color="#bbbbbb"><em>East to South, North to West</em></font></div></div><div class="post_line"><div align="center"><font color="#bbbbbb"><em>See us go, as they go, across the borderlines</em></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#bbbbbb"><em>Seabirds fly the salty wind</em></font></div></div><div class="post_line"><div align="center"><font color="#bbbbbb"><em>East to South, North to West</em></font></div></div><div class="post_line"><div align="center"><font color="#bbbbbb"><em>Can we go, as they go, across the borderlines ?</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astery">Cdte. Astery</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11417.jpg" style="width:123px;height:128px" alt="Avatar" /><br />20/07/1022 ETU 22:40</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal293704')">Détails</a> <a href="javascript:warnpost(293704)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293704" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293704',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><strong><font color="#72ff84">~ Jour 0 ~&nbsp;&nbsp;</font></strong><font color="#ffff00"><em>heure ?</em></div><div class="post_line"></font></div></div><div class="post_line"><div align="justify"><font color="#ffa500"><font size="6">EN VIE !!</font></font> <font color="#ff56ff"><font size="3"><strong>Je suis en vie !</strong></font></font> Oh la vache, ce que c&#039;est bon. Je ne crois pas avoir d&eacute;j&agrave; ressenti quelque chose d&#039;aussi fort. J&#039;ai envie de hurler mon soulagement aux astres, d&#039;embrasser la premi&egrave;re personne que je croise, de danser &agrave; poil jusqu&#039;&agrave; &eacute;puisement puis me laisser tomber dans l&#039;herbe avec un sourire b&ecirc;te. </div></div><div class="post_line"><div align="justify">Je reviens, je suis bien trop excit&eacute;e pour &eacute;crire plus longtemps !</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div><div class="post_line"><strong><u><font color="#ffff00">15h54</font></u></strong></div></div><div class="post_line"><div align="justify">Alors. Il y a quelque chose que je n&#039;avais pas anticip&eacute;, c&#039;est que &quot;l&#039;&eacute;puisement&quot; arrive vite apr&egrave;s un s&eacute;jour en cellule de cryog&eacute;nie. Au bout de m&ecirc;me pas, quoi, deux minutes ? Mes jambes ont flanch&eacute; et je me suis &eacute;tal&eacute;e au sol comme une cr&ecirc;pe. J&#039;ai juste eu le temps de tendre la main vers un sac en papier et j&#039;ai vomi tout ce que j&#039;avais dans le ventre - c&#039;est &agrave; dire, pas grand chose. </div></div><div class="post_line"><div align="justify">Je me d&eacute;cerne la manifestation de joie la plus naze de toute l&#039;histoire de l&#039;humanit&eacute; !</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Je vais int&eacute;rioriser mon bonheur et me diriger sagement vers le distributeur &agrave; g&eacute;lule, je crois que c&#039;est mieux. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><u><font color="#ffff00"><strong>16h12</strong></font></u></div></div><div class="post_line"><div align="justify">Cette petite machine est vraiment un bijou. Franchement, elle paie pas de mine, mais ce qu&#039;elle produit est fascinant. Cette fois, la g&eacute;lule &eacute;tait jaune d&#039;or et j&#039;ai l&#039;impression qu&#039;elle m&#039;a apport&eacute; exactement ce dont mon organisme avait besoin. Alors que je m&#039;&eacute;tais r&eacute;veill&eacute;e avec un joli mal de t&ecirc;te, une naus&eacute;e en arri&egrave;re plan et surtout, la sensation d&eacute;concertante de ne plus &ecirc;tre bien ajust&eacute;e dans ma propre peau - tout &agrave; disparu en quelques instants. </div></div><div class="post_line"><div align="justify">Je suis &agrave; nouveau fra&icirc;che et en possession de tous mes moyens ! Je d&eacute;cide quand m&ecirc;me de ne pas renouveler ma tentative de danse de la joie, je pense que j&#039;ai largement atteint mon quota de ridicule dans ce vaisseau. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">...J&#039;esp&egrave;re qu&#039;il n&#039;y a pas d&#039;archives de vid&eacute;o-surveillance ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">16h35</font></u></strong></div></div><div class="post_line"><div align="justify">Bon. Il serait temps de s&#039;atteler aux choses s&eacute;rieuses. Si je me fie &agrave; l&#039;absence de son et de vibration du vaisseau, on a atterri quelque part. Je vais faire un tour dans la cabine de pilotage pour r&eacute;cup&eacute;rer toutes les informations possibles, et surtout, profiter de la vue pour jeter un &oelig;il &agrave; l&#039;ext&eacute;rieur !</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">17h50</font></u></strong></div></div><div class="post_line"><div align="justify">Ce sont peut-&ecirc;tre les derniers mots que j&#039;&eacute;cris dans ce carnet. </div><div class="post_line">J&#039;ai &agrave; peine pouss&eacute; la porte de la cabine, que j&#039;ai &eacute;t&eacute; aveugl&eacute;e par de puissants faisceaux lumineux dirig&eacute;s vers mon vaisseau. J&#039;ai plaqu&eacute; mon bras pour prot&eacute;ger mes yeux et apr&egrave;s quelques instants, j&#039;ai fini par discerner quelque chose au travers du vitrage. Mon vaisseau est bien pos&eacute; quelque part, mais il est surtout encercl&eacute; par des militaires et des fourgons blind&eacute;s &agrave; perte de vue. Bon, ok, ma vue est assez limit&eacute;e, mais &agrave; 10m autour du vaisseau, je m&#039;excuse, c&#039;est &agrave; perte de vue. </div></div><div class="post_line"><div align="justify">Comme j&#039;&eacute;tais &agrave; poil, et que j&#039;ai aussi un peu paniqu&eacute;, j&#039;ai referm&eacute; la porte et je me suis r&eacute;fugi&eacute;e dans le salon. J&#039;ai le c&oelig;ur qui bat comme s&#039;il voulait &eacute;clater contre mes c&ocirc;tes. Je fais quoi, maintenant ?</div><div class="post_line"> </div></div><div class="post_line"><div align="justify">Si j&#039;attend, ils vont peut-&ecirc;tre faire exploser mon vaisseau par pr&eacute;caution.</div></div><div class="post_line"><div align="justify">Si je sors, ils vont peut-&ecirc;tre me tirer dessus par pr&eacute;caution. Ou m&#039;attraper et me jeter dans une cage. Par pr&eacute;caution. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">18h15</font></u></strong></div></div><div class="post_line"><div align="justify">D&eacute;j&agrave;, je me suis rhabill&eacute;e. Que je sois explos&eacute;e, fusill&eacute;e ou captur&eacute;e, j&#039;aime mieux que ce soit avec des v&ecirc;tements. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">18h30</font></u></strong></div></div><div class="post_line"><div align="justify">J&#039;ai piqu&eacute; une serviette dans le placard &agrave; c&ocirc;t&eacute; des douches. C&#039;est ce que j&#039;ai de mieux comme drapeau blanc. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">18h32</font></u></strong></div></div><div class="post_line"><div align="justify">&quot;<em>Salut, je viens en paix</em>&quot;, c&#039;est suffisant pour &eacute;viter la fusillade&nbsp;?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">18h40</font></u></strong></div></div><div class="post_line"><div align="justify">J&#039;ai &eacute;labor&eacute; un plan d&#039;action dans ma t&ecirc;te. Je vais d&#039;abord ouvrir doucement la porte lat&eacute;rale, en faisant juste sortir mon drapeau-serviette. S&#039;ils tirent dessus, je serais renseign&eacute;e sur leur niveau de nervosit&eacute;. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">18h42</font></u></strong></div></div><div class="post_line"><div align="justify">Et si, sur cette plan&egrave;te, la serviette blanche &eacute;tait le symbole de la d&eacute;claration de guerre ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">18h50</font></u></strong></div></div><div class="post_line"><div align="justify">Allez, je me lance. J&#039;ai pris plusieurs grandes inspirations, j&#039;ai pris mon drapeau-serviette, et je vais affronter mon destin. Je glisse ce carnet dans ma poche, et j&#039;esp&egrave;re avoir de bonnes nouvelles &agrave; raconter tr&egrave;s vite.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astery">Cdte. Astery</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11417.jpg" style="width:123px;height:128px" alt="Avatar" /><br />22/07/1022 ETU 22:32</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293790')">Détails</a> <a href="javascript:warnpost(293790)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293790" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293790',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#72ff84"><font size="4">~ Jour 1&nbsp;~</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">11h30</font></u></strong></div></div><div class="post_line"><div align="justify">Salut, journal ! </div></div><div class="post_line"><div align="justify">Je suis en vie, toujours ! Et m&ecirc;me mieux que &ccedil;a, je ne suis pas dans un cage et ne m&#039;a pas jet&eacute;e dans un trou. Au contraire, j&#039;&eacute;cris actuellement depuis une suite tout confort, avec fauteuils douillets, mini-bar et tout l&#039;&eacute;quipement technologique n&eacute;cessaire. Je suis dans une tour, pas aussi haute que ce qui se faisait sur <font color="#ff56ff">Alpha-Bay</font>, mais bien assez pour avoir une vue &agrave; 360&deg; sur les alentours. Je surplombe une jolie petite ville entour&eacute;e par des collines, c&#039;est plut&ocirc;t verdoyant et accueillant. Mais je ne vais pas parler que du panorama, il faut quand m&ecirc;me que je te raconte comment j&#039;en suis arriv&eacute;e l&agrave;, parce que c&#039;est folklorique. </div></div><div class="post_line"><div align="justify"></div><div class="post_line"><div align="center">* * *&nbsp;</div></div><div class="post_line"></div></div><div class="post_line"><div align="justify">Reprenons l&agrave; o&ugrave; j&#039;en &eacute;tais ; recroquevill&eacute;e d&#039;angoisse derri&egrave;re la porte lat&eacute;rale du vaisseau, je serrais fort mon drapeau-serviette contre moi, cherchant le courage de mettre un pied dehors. C&#039;est ce que j&#039;ai fini par faire, enfin presque : j&#039;ai sorti la serviette. Pas de tir. </div></div><div class="post_line"><div align="justify">J&#039;ai sorti le bras - pas de tir. Il y a eu quelques &eacute;clats de voix dans une langue inconnue, mais rien de plus. Alors j&#039;ai sorti le pied, puis je me suis gliss&eacute;e dehors tout enti&egrave;re. J&#039;ai lev&eacute; les bras en l&#039;air et j&#039;ai ferm&eacute; les yeux en criant &quot;<font color="#ffa500"><font size="4">Je viens en paix, ne tirez pas !</font></font>&quot;</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Bon, si je suis honn&ecirc;te, c&#039;&eacute;tait plut&ocirc;t &quot; <font color="#ffa500">Jvienenp&eacute;ntir&eacute;pa&nbsp;</font>&quot; mais vu qu&#039;on parle pas la m&ecirc;me langue de toute fa&ccedil;on, &ccedil;a a pas chang&eacute; grand chose. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Au d&eacute;but, ils &eacute;taient m&eacute;fiants. Le temps s&#039;est arr&ecirc;t&eacute;, tout le monde a retenu son souffle et honn&ecirc;tement, je ne sais pas qui de moi, ou eux, &eacute;tait le plus inquiet. J&#039;ai appris plus tard que c&#039;&eacute;tait la premi&egrave;re fois qu&#039;un truc venu de l&#039;espace atterrissait sur leur plan&egrave;te, donc avec le recul, je les comprend. Mais ils n&#039;osaient pas trop s&#039;approcher de moi, malgr&eacute; les ordres que semblaient aboyer leurs sup&eacute;rieurs. Qui n&#039;en menaient pas bien plus large non plus, puisqu&#039;ils restaient eux-m&ecirc;me planqu&eacute;s &agrave; l&#039;arri&egrave;re de leur fourgon blind&eacute;s.</div></div><div class="post_line"></div><div class="post_line"><div align="justify">Comme je reprenais peu &agrave; peu mes esprits, j&#039;ai r&eacute;alis&eacute; qu&#039;en plus de repr&eacute;senter une menace potentielle par mon statut d&#039;alien, je les d&eacute;passais aussi tous d&#039;au moins 60 cm. En gros, ils m&#039;arrivent au nombril pour les plus grands d&#039;entre eux. Ils ont fini par me faire descendre de la passerelle &agrave; force de grands gestes, puis ils m&#039;ont men&eacute;e vers un de leur fourgon en me poussant du bout de leur arme. Je gardais les bras lev&eacute;s et j&#039;&eacute;tais concentr&eacute;e pour ne faire aucun mouvement brusque, un sursaut de g&acirc;chette est si vite arriv&eacute;...</div></div><div class="post_line"><div align="justify">J&#039;ai eu un moment de doute quand je suis arriv&eacute;e devant le v&eacute;hicule, et que j&#039;ai compris qu&#039;ils voulaient me faire grimper dedans ; j&#039;ai vu le doute dans leurs yeux aussi, mais ils m&#039;ont donn&eacute; des petits coups de crosse sur la jambe pour insister. Je me suis donc pli&eacute;e en deux pour m&#039;ins&eacute;rer &agrave; l&#039;int&eacute;rieur et ils ont imm&eacute;diatement claqu&eacute; la porte sur moi. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Heureusement, le trajet n&#039;a pas &eacute;t&eacute; long et quand les portes arri&egrave;res du fourgon se sont r&eacute;ouvertes, j&#039;&eacute;tais devant un b&acirc;timent imposant, en pierres blanches et surmont&eacute; de nombreux drapeaux. Je n&#039;ai pas encore compl&egrave;tement compris sa fonction, mais je pense que c&#039;est une sorte de Parlement ou un lieu de Conseil, parce que j&#039;ai &eacute;t&eacute; men&eacute;e devant un h&eacute;micycle o&ugrave; si&eacute;geaient de nombreuses personne v&ecirc;tues de ce qui semblaient &ecirc;tre des tenues officielles.</div><div class="post_line"> </div></div><div class="post_line"><div align="justify">Et l&agrave;, ils se sont mis &agrave; parler. Tous, plus ou moins en m&ecirc;me temps, plus ou moins calmement. Certains ont cri&eacute; aussi, en me pointant du doigt. Je ne comprenais pas un mot &agrave; ce stade, mais j&#039;avais confiance en mon petit traducteur implant&eacute; au niveau du tympan - l&#039;<font color="#72ff84">Ins&#039;trad&trade;</font>, petit gadget ultra pratique dont &eacute;taient &eacute;quip&eacute;s tous les journalistes et reporters d&#039;Alpha Bay. Je savais qu&#039;il &eacute;tait en train de mouliner comme un fou pour capter les mots, les phrases, les subtilit&eacute;s de ce langage encore inconnu. </div></div><div class="post_line"><div align="justify">Effectivement, au bout de quelques minutes, j&#039;ai commenc&eacute; &agrave; saisir &agrave; la vol&eacute;e quelques paroles, encore noy&eacute;es dans un flot de charabia. Puis l&#039;ensemble est devenu de plus en plus intelligible, et au bout d&#039;une demi-heure, je comprenais leur discours dans sa quasi-totalit&eacute;. </div></div><div class="post_line"><div align="justify">Je n&#039;ai aucune id&eacute;e du fonctionnement pr&eacute;cis de mon implant de traduction - il faudrait regarder dans les documents que j&#039;ai ramen&eacute; d&#039;Alpha-Bay - mais en gros, il interf&egrave;re directement avec les aires c&eacute;r&eacute;brales par ondes &eacute;lectromagn&eacute;tiques. Donc la traduction est imm&eacute;diatement capt&eacute;e par mon cerveau, mais la vraie prouesse, c&#039;est que lorsque je veux &agrave; mon tour m&#039;exprimer, mes paroles sont instantan&eacute;ment traduites dans ma t&ecirc;te et je &quot;r&eacute;pond&quot; directement dans la langue de mon interlocuteur. Fascinant, hein ? Au d&eacute;but c&#039;est d&eacute;routant. Parce qu&#039;on s&#039;entend prononcer des mots inconnus. Mais &agrave; force on finit par oublier. </div></div><div class="post_line"><div align="justify">Tout &ccedil;a pour dire que ce petit implant a notablement facilit&eacute; les choses, puisque j&#039;ai pu &agrave; mon tour m&#039;exprimer et leur expliquer mon histoire. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">A partir de l&agrave;, ce n&#039;&eacute;tait plus la m&ecirc;me ambiance. La m&eacute;fiance a laiss&eacute; place &agrave; une curiosit&eacute; sans bornes, et ils se sont mis &agrave; me questionner sur tout et n&#039;importe quoi. Ma plan&egrave;te d&#039;origine, mon peuple, mon &acirc;ge, la Galaxie Souvenir, la catastrophe, Scoop, le contenu de mon vaisseau, mes connaissances, mes projets, ma boisson pr&eacute;f&eacute;r&eacute;e et si, l&agrave; d&#039;o&ugrave; je venais, tout le monde &eacute;tait aussi grand que moi. Ils ont fait des yeux effar&eacute;s quand je leur ai dit que je faisais partie des moyens - voire petits - sur Alpha-Bay... </div></div><div class="post_line"><div align="justify">Leurs questions ont commenc&eacute; &agrave; me filer le tournis et je crois qu&#039;ils ont fini par s&#039;en rendre compte parce qu&#039;ils ont mis fin &agrave; la s&eacute;ance pour m&#039;escorter vers la suite o&ugrave; je suis &agrave; pr&eacute;sent install&eacute;e. Si j&#039;ai bien compris, la plan&egrave;te o&ugrave; je me trouve se nomme <font color="#44b8ff">Arkanes</font>, et ses habitants sont les <font color="#68c4e8">arkaniens</font>. Jusque l&agrave;, ...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ah, je dois faire une pause, j&#039;entend frapper &agrave; la porte.</div><div class="post_line"> </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">12h15</font></u></strong></div></div><div class="post_line"><div align="justify">Mon traducteur est hyper pratique, mais faut reconna&icirc;tre que c&#039;est pas encore parfait. Je devrais peut-&ecirc;tre faire une mise &agrave; jour ?</div></div><div class="post_line"><div align="justify">Tout &agrave; l&#039;heure, j&#039;ai essay&eacute; d&#039;&eacute;changer quelques mots avec l&#039;arkanien qui &eacute;tait venu frapper &agrave; ma porte. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb">- La bonne journ&eacute;e, Astery !</font></div></div><div class="post_line"><div align="justify"><font color="#ffa500">- Le pareil. </font></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb">- Je viens voir si toute la disposition est &agrave; votre convenance. </font></div></div><div class="post_line"><div align="justify"><font color="#ffa500">- Le splendeur, vraiment !</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Tu vois ce que je veux dire ? On comprend l&#039;id&eacute;e g&eacute;n&eacute;rale, mais c&#039;est encore bien gal&egrave;re. Lui, il a continu&eacute;,&nbsp;imperturbable... </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb">- Parfait. Comme de bien entendu, j&#039;ai des v&ecirc;tements cherch&eacute;s dans l&#039;intrins&egrave;que de vaisseau v&ocirc;tre. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Il m&#039;a tendu un paquet de v&ecirc;tements et il a tourn&eacute; les talons sur un dernier sourire chaleureux. Oui, parce que bien s&ucirc;r, aucun de leurs v&ecirc;tements n&#039;est &agrave; ma taille, j&#039;avais donc d&ucirc; les envoyer chercher des affaires dans mon vaisseau...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">12h25</font></u></strong></div></div><div class="post_line"><div align="justify">Du coup je porte actuellement une sorte de surv&ecirc;tement assez immonde, orange vif avec un gros logo du <font color="#bbbbbb"><strong>C.E.S.A.B.</strong></font>* en gris dans le dos. </div><div class="post_line">&quot;Le grande classe&quot;, non ?</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div><div class="post_line"><font size="1">*C.E.S.A.B = Centre d&#039;Etudes Spatiales d&#039;Alpha-Bay</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astery">Cdte. Astery</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11417.jpg" style="width:123px;height:128px" alt="Avatar" /><br />24/07/1022 ETU 00:31</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal293833')">Détails</a> <a href="javascript:warnpost(293833)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293833" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293833',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#72ff84"><font size="4">~ Jour 2 ~</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">8h45</font></u></strong></div></div><div class="post_line"><div align="justify">On m&#039;a assur&eacute; que des commandes avaient &eacute;t&eacute; pass&eacute;es pour confectionner des v&ecirc;tements &agrave; ma taille. Je suis soulag&eacute;e, je n&#039;ai aucune envie de me balader encore longtemps dans la ville avec ces surv&ecirc;ts difformes. Et encore moins aller &agrave; la rencontre d&#039;autres civilisations galactiques...</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">A ce sujet, je crois que je me suis mis d&eacute;finitivement les arkaniens dans la poche hier : je suis all&eacute;e faire un tour dans mon vaisseau, escort&eacute;e d&#039;un petit groupe d&#039;ing&eacute;nieurs et de m&eacute;caniciens, et on l&#039;a litt&eacute;ralement d&eacute;soss&eacute;. On a d&eacute;mont&eacute; les radars, les modules de communication, les &eacute;metteurs, les r&eacute;cepteurs bref : tout ce qui comporte de pr&egrave;s ou de loin la trace d&#039;une technologie d&#039;Alpha-Bay. </div></div><div class="post_line"><div align="justify">Et, bien s&ucirc;r, le plus important &agrave; mes yeux : cinq serveurs sur lesquels &eacute;taient archiv&eacute;es, compress&eacute;es, les connaissances et les savoirs technologiques de mon ancienne civilisation. </div></div><div class="post_line"><div align="justify">Un gros travail de traduction et d&#039;adaptation attend les chercheurs arkaniens, mais j&#039;en suis convaincue : avec &ccedil;a, je vais leur faire gagner un temps pr&eacute;cieux - et surtout &eacute;conomiser un bon paquet de Leems dans leurs futures travaux. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Nous avons tout transf&eacute;r&eacute; dans les labos arkaniens, et je les ai aid&eacute; &agrave; traduire un premier dossier sur la propulsion spatiale. Alors moi, il faut pas me demander &agrave; quoi sert ce que j&#039;ai traduit, mais les ing&eacute;nieurs arkaniens, j&#039;ai cru qu&#039;ils allaient imploser de joie. Une fois ma traduction achev&eacute;e, je me suis install&eacute;e dans un coin avec une infusion pour essayer de calmer mon mal de t&ecirc;te. Je les ai regard&eacute;s d&#039;un air amus&eacute; gesticuler dans tous les sens, gratter des lignes de chiffres et de formules sur leurs grands tableaux et m&ecirc;me se sauter dans les bras. </div></div><div class="post_line"><div align="justify">J&#039;ai appris plus tard dans la soir&eacute;e que je venais de leur apporter, en deux heures de travail, la clef de travaux qu&#039;ils menaient depuis une dizaine d&#039;ann&eacute;e. Il leur manquait un petit quelque chose pour envoyer leurs vaisseaux dans l&#039;hyperespace, et la r&eacute;ponse se trouvait dans les archives d&#039;Alpha-Bay.&nbsp; </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aujourd&#039;hui, je vais tenter de faire fonctionner le communicateur sectoriel, je sens qu&#039;on n&#039;est pas au bout de nos &eacute;motions ! </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffff00"><strong><u>11h30</u></strong></font></div></div><div class="post_line"><div align="justify">Les machines qui composaient le cockpit de mon vaisseau ont &eacute;t&eacute; apport&eacute;es dans la grande salle de conf&eacute;rence du P&ocirc;le Technologique Arkanien. Le radar, l&#039;holotransmetteur, l&#039;holopad... tout est l&agrave;. Je profite que l&#039;amphith&eacute;&acirc;tre se remplisse pour griffonner ces quelques mots. Pour moi, c&#039;est la routine, mais j&#039;ai conscience pour les arkaniens, le moment est historique. La session va d&#039;ailleurs &ecirc;tre retransmise en direct sur toutes les cha&icirc;nes de la plan&egrave;te. Je n&#039;ai mis les pieds que depuis deux jours sur Arkanes, et mon visage va d&eacute;j&agrave; &ecirc;tre connu par des milliards d&#039;&acirc;mes ! Si je m&#039;attendais &agrave; &ccedil;a... </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">11h50</font></u></strong></div></div><div class="post_line"><div align="justify">Bon. Le radar a fonctionn&eacute;. Il s&#039;est allum&eacute;, et on a localis&eacute; avec pr&eacute;cision les plan&egrave;tes qui composent notre syst&egrave;me proche. A quelques heures supraluminiques d&#039;Arkanes, certaines semblent peupl&eacute;es - en tout cas j&#039;ai une signature spatiale. Comebur-7... c&#039;est le nom de la plus proche. Explosion d&#039;&eacute;motion dans l&#039;Amphith&eacute;&acirc;tre. Le responsable de l&#039;unit&eacute; de recherche m&#039;a alors demand&eacute; : </div></div><div class="post_line"><div align="justify"><font color="#44b8ff">&quot; Astery, c&#039;est le possible d&#039;entrer dans une communication avec cette peuple ? &quot;</font></div></div><div class="post_line"><div align="justify"><font color="#ffa500">&quot; Affirmatif &quot;</font></div></div><div class="post_line"><div align="justify">J&#039;ai r&eacute;pondu avec un sourire et j&#039;ai enregistr&eacute; un premier message &agrave; destination de ce voisin sectoriel. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">12h30</font></u></strong></div></div><div class="post_line"><div align="justify"><em>Bon bon bon.</em> Ce n&#039;est pas parce qu&#039;on envoie un message qu&#039;on re&ccedil;oit une r&eacute;ponse, &ccedil;a non plus &ccedil;a ne me change pas trop. Il y a d&eacute;cidemment des lois qui semblent d&eacute;passer les fronti&egrave;res des galaxies ! </div></div><div class="post_line"><div align="justify">Pas moyen de savoir &agrave; ce stade si c&#039;est mon transmetteur qui d&eacute;conne, ou si c&#039;est les gars d&#039;en face qui font la sourde oreille. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">12h50</font></u></strong></div></div><div class="post_line"><div align="justify">Peut-&ecirc;tre qu&#039;ils sont eux aussi compl&egrave;tement euphoriques en ce moment dans un amphi, et qu&#039;ils sont encore trop dans l&#039;&eacute;motion pour r&eacute;pondre ? </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">13h30</font></u></strong></div></div><div class="post_line"><div align="justify">J&#039;ai renvoy&eacute; un message, en demandant poliment de bien r&eacute;pondre s&#039;il vous plait si le message &eacute;tait capt&eacute;, merci. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Je sens que la d&eacute;ception est palpable chez mes petits arkaniens, je vous pr&eacute;viens, s&#039;il y en a un qui se met &agrave; pleurer je vais pas savoir g&eacute;rer. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">14h12</font></u></strong></div></div><div class="post_line"><div align="justify"><em><font size="4">Bon.</font></em> Bon bon bon ! <font color="#ffa500">L&#039;adaptation !</font> C&#039;est ce que j&#039;ai dit au chef des chercheurs - le pauvre, il en est d&eacute;j&agrave; &agrave; son dixi&egrave;me caf&eacute; et il patiente sur une chaise &agrave; c&ocirc;t&eacute; de moi, en fixant l&#039;holopad comme s&#039;il s&#039;attendait &agrave; ce que les habitants de la Comebur-7 surgissent de l&#039;&eacute;cran &agrave; tout moment. </div></div><div class="post_line"><div align="justify">J&#039;ai d&eacute;cid&eacute; qu&#039;il &eacute;tait temps de remettre un peu de baume au c&oelig;ur &agrave; mon public, et &agrave; mes milliards d&#039;auditeurs en direct je le rappelle, j&#039;ai un show &agrave; assurer ! J&#039;ai point&eacute; en surjouant <font size="1">(&agrave; peine)</font> l&#039;excitation, un petit point sur le radar portant une nouvelle signature spatiale. Un vaisseau cette fois. Un vaisseau d&#039;une autre civilisation. A ce stade je ne sais pas encore si son syst&egrave;me est &eacute;loign&eacute; du n&ocirc;tre, mais tout est bon &agrave; prendre !</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">14h30</font></u></strong></div></div><div class="post_line"><div align="justify">Le message est envoy&eacute; &agrave; la navette. Je croise les doigts et les orteils, je supplie qu&#039;on me r&eacute;ponde parce que l&agrave; je le sens, mon auditoire est au bord de la d&eacute;pression. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">15h15</font></u></strong></div></div><div class="post_line"><div align="justify">Un petit son. Tout clair, tout mignon. Le son bien connu du com-x dans la bo&icirc;te de r&eacute;ception. Je l&#039;ai ouvert, j&#039;ai pris un air solennel en me levant, et j&#039;ai annonc&eacute; : </div></div><div class="post_line"><div align="justify"></div><div class="post_line"><div align="center"><font color="#ffa500">&quot; Le ceci, mesdames, messieurs, est une r&eacute;ponse de civilisation autre que v&ocirc;tre. &quot;</font></div></div><div class="post_line"></div></div><div class="post_line"><div align="justify">Et j&#039;ai enclench&eacute; le bouton lecture devant un auditoire bouche-b&eacute;e, trop occup&eacute; &agrave; fixer la transmission sur l&#039;&eacute;cran g&eacute;ant pour penser &agrave; respirer. </div></div><div class="post_line"><div align="justify">J&#039;ai un petit sens inn&eacute; du drama, non ? Je devrais peut-&ecirc;tre me r&eacute;orienter dans le show holovisuel.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><u><font color="#ffff00">16h30</font></u></strong></div></div><div class="post_line"><div align="justify">Je crois que ce sont les derniers mots que je vais &eacute;crire ce soir, mais pas parce que je vais mourir cette fois - encore que... Une mort par suffocation sous l&#039;&eacute;crasement de centaines d&#039;arkaniens en liesse, &ccedil;a se peut toujours. </div><div class="post_line">L&#039;ambiance ici ne permet plus d&#039;&eacute;crire grand chose, en t&eacute;moigne d&#039;ailleurs l&#039;&eacute;tat de cette page. Je glisse donc quelques mots entre les jets de boisson, les bousculades, les trucs qui volent en g&eacute;n&eacute;ral pour confirmer que cette premi&egrave;re entr&eacute;e en communication est un succ&egrave;s pour les arkaniens. Ca s&#039;embrasse, &ccedil;a rit, &ccedil;a pleure (mais de joie alors &ccedil;a va) et &agrave; en juger par le regard que me lancent certains, on va pas tarder &agrave; me demander en mariage. Bref, c&#039;est la f&ecirc;te. </div></div><div class="post_line"><div align="justify">Je partage leur bonheur bien s&ucirc;r, c&#039;est toujours &eacute;mouvant de participer &agrave; un moment historique. J&#039;esp&egrave;re juste... Voil&agrave;, j&#039;esp&egrave;re simplement que ce <font color="#72ff84">Xocoatl </font>qui nous a r&eacute;pondu, est un chic type... et que je ne les ai pas mis sur la route d&#039;un tar&eacute; sanguinaire. </div></div><div class="post_line"><div align="justify">Allez, soyons optimistes !</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16308&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16308" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16308" name="d_reply_16308" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16308');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16308'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Carnet de bord</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

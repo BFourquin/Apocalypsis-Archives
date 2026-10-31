@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16358 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Les aventures de D&eacute;d&eacute; dans le cyberspace</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Les aventures de D&eacute;d&eacute; dans le cyberspace</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Saphir+Macrotech">Cdt. Saphir Macrotech</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/11648.png" style="width:110px;height:128px" alt="Avatar" /><br />27/07/1022 ETU 02:04</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D293984', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal293981')">Détails</a> <a href="javascript:warnpost(293981)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293981" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293981',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Il fallait se rendre &agrave; l&rsquo;&eacute;vidence, pour autant qu&#039;elle puisse l&#039;&ecirc;tre dans l&#039;esprit m&eacute;chamment coca&iuml;n&eacute; et qui sait quoi d&#039;autre encore de D&eacute;d&eacute;. La plan&egrave;te, Lux, &eacute;tait comme une maison abandonn&eacute;e par ses habitants. Hors les maisons ne meurent pas. Quand on les abandonne, elles attendent. Et peut-&ecirc;tre, m&ecirc;me, r&ecirc;vaient en attendant l&#039;instant o&ugrave; l&#039;on y p&eacute;n&eacute;trere &agrave; nouveau. Qui sait ce &agrave; quoi elles pensaient, silencieuses, lorsque leurs fondations s&#039;affaissaient dans un sol trop meuble, que leur peinture s&#039;&eacute;caillait le long de moisissures noires. Cauchemardaient-elles ? Ou avaient-elles pleinement conscience de la situation ? </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Aucun &ecirc;tre intelligent ne pouvait restait sain d&#039;esprit face &agrave; l&#039;absolue r&eacute;alit&eacute;. Il y avait dans toute intelligence une importante dose de mystique. Et en un sens, m&ecirc;me les animaux les plus primitifs r&ecirc;vaient.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et Lux attendait. Une sph&egrave;re d&#039;un noir absolu, qu&#039;on devinait aux filaments iris&eacute;s, r&eacute;seaux de tout genre, machines, ic&ocirc;nes, qui l&rsquo;enserraient comme des racines. C&#039;&eacute;tait peut-&ecirc;tre une plan&egrave;te unique en son genre, du point de vue du cyberspace. Elle n&#039;&eacute;tait pas de ces sph&egrave;res presque invisibles, inhabit&eacute;es, o&ugrave; l&#039;on avait laiss&eacute; quelques antennes relais, sondes mineuses. Ce n&#039;&eacute;tait pas non-plus l&#039;une de ces m&eacute;tropoles immenses, que l&#039;on ne pouvait comprendre qu&#039;&agrave; l&#039;aide de filtres, comme des lunettes aidant &agrave; regarder la lumi&egrave;re aveuglante du soleil : ces autoroutes d&#039;informations o&ugrave; tout brillait, tout bougeait, des fourmili&egrave;res insens&eacute;es o&ugrave; l&#039;on pouvait se fondre, se camoufler sous les informations puis, au moment opportun, attaquer ses proies, dispara&icirc;tre dans le chaos. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Quoi que Lux avait sans doute &eacute;taient de celles-l&agrave;, avant. Maintenant c&#039;&eacute;tait autre-chose. Un monde de sinistre silence. Le genre de silence que l&#039;on ne trouve habituellement qu&#039;aux confins du net. Derri&egrave;re les murs noirs de donn&eacute;es, sous les G.L.A.C.E protectrices, pour tenir &eacute;loign&eacute;es les virus, les programmes, les d&eacute;chets inattendus de la soci&eacute;t&eacute; num&eacute;rique. Ce silence de cimeti&egrave;re num&eacute;rique, sur lesquels veillaient intelligences, utilisateurs, d&#039;autre-choses encore. Ce silence que l&#039;on ne devait sans doute qu&#039;&agrave; la crainte qu&#039;au premier bruit, tout les pr&eacute;dateurs sortent du bois.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">L&#039;ensemble &eacute;tait parfaitement mort au premier coup d&rsquo;&oelig;il, quoi qu&#039;on devinait ensuite le d&eacute;placement lent, ou r&eacute;gulier, ou m&eacute;canique, de ce qui devait &ecirc;tre autant de drones, machines solitaires, rames de m&eacute;tro automatis&eacute;es, ventilations, &eacute;lectrom&eacute;nager intelligent, qui sait quoi d&#039;autre.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">En termes de point d&rsquo;int&eacute;r&ecirc;t il y en avait partout sur la plan&egrave;te. C&#039;&eacute;tait comme une Vall&eacute;e des rois de l&#039;Information, qui couvrait non pas un petit carr&eacute; de d&eacute;sert oubli&eacute;, mais l&#039;immensit&eacute; de trois continents. Tout de m&ecirc;me, la structure du r&eacute;seau t&eacute;moignait des &eacute;carts de richesses. Et en se fiant aux concentrations de filaments, de lumi&egrave;re, on pouvait deviner o&ugrave; &eacute;taient les capitales r&eacute;gionales, les m&eacute;tropoles les plus importantes. Glissant le long d&rsquo;un flux entrant, D&eacute;d&eacute; passa par un satellite, atteint la surface. Dans une ville noire, amorphe, &eacute;clair&eacute;e de filament color&eacute;s. Dans le cyberspace tout est information, tout est instantan&eacute;. Les &eacute;carts g&eacute;ographiques disparaissent au profit de l&#039;instantan&eacute;. Les villes et les villages forment une seule et immense m&eacute;tropole incongrue. Seuls les lieux hautement connect&eacute;s, comme les immenses capitales, existaient selon un plan correspondant &agrave; leur espacement r&eacute;el, dans le &quot;meatspace&quot;. Puisque chaque b&acirc;timent &eacute;tait connect&eacute;, on pouvait y deviner des formes, des rues, des choses correspondant pour l&#039;essentiel &agrave; un semblant de raison humaine. Enfin ce n&#039;&eacute;tait pas &agrave; proprement dit ce qu&#039;on voyait, mais c&#039;&eacute;tait ce qu&#039;un decker talentueux devinait sans mal. </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ici, il y avait de tout. Devantures de magasins, ordinateurs en veille, drones, v&eacute;hicules. Malgr&eacute; la diff&eacute;rence de normes, l&#039;informatique Lux&eacute;en utilisait les m&ecirc;mes bases que celle des autres civilisations humaines de la galaxie. Les adaptateurs faisant leur office, D&eacute;d&eacute; pouvait y circuler sans mal, et interpr&eacute;ter ce qu&#039;il voyait. De nombreuses ic&ocirc;nes d&#039;alerte t&eacute;moignaient du d&eacute;labrement qui faisait suite &agrave; l&#039;abandon des infrastructures par leurs op&eacute;rateurs humains. Du reste, D&eacute;d&eacute; constatait que de nombreuses ic&ocirc;nes inconnues constellaient les rues, avenues, structures et b&acirc;timent de la cit&eacute; fant&ocirc;me. D&#039;une part elles n&#039;&eacute;taient pas d&eacute;finies, il ne semblait pas y avoir d&#039;index, de d&eacute;finition explicitant leur r&ocirc;le ou &agrave; quoi elles correspondaient, de l&#039;autre les adaptateurs du hacker n&#039;y comprenaient rien non-plus. Ces ic&ocirc;nes, cependant, &eacute;taient reli&eacute;es &agrave; une structure plus lointaine. Des r&eacute;seaux que l&#039;on pouvait traverse dans un sens ou dans l&#039;autre, mais qui ne semblait pas contenir d&#039;information. La position de ce genre de noeud r&eacute;seau semblait s&#039;&eacute;loigner de ce qui composait la ville &agrave; proprement parler, pour se diriger vers le nord.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Soudain, D&eacute;d&eacute; eut l&#039;intime conviction qu&#039;il n&#039;&eacute;tait pas tout &agrave; fait seul, dans cet espace fant&ocirc;me.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=D%C3%A9d%C3%A9+Gueul%C3%A9">Cdt. D&eacute;d&eacute; Gueul&eacute;</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/11641.jpg" style="width:128px;height:128px" alt="Avatar" /><br />31/07/1022 ETU 07:14<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal294118')">Détails</a> <a href="javascript:warnpost(294118)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294118" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294118',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">D&eacute;d&eacute; est un vieux briscard de la plong&eacute;e cyberspatiale. Et m&ecirc;me s&#039;il lui reste toute une palette de r&eacute;seaux aliens &agrave; d&eacute;couvrir maintenant que la galaxie est ouverte, il commence &agrave; savoir &agrave; quoi ressemblent les r&eacute;seaux humains. Le plan des villes, des quartiers, des foyers ; les serveurs gouvernementaux, des entreprises, des particuliers ; ce sont toujours des fourmili&egrave;res ultra-&eacute;veill&eacute;es. &Ccedil;&agrave; et l&agrave;, si tu as l&#039;habitude et un peu de nez, tu peux trouver des spots morts, o&ugrave; le hacker averti aime se cacher pour &eacute;chapper &agrave; la surveillance des bots et des op&eacute;rateurs humains. Sous les p&eacute;taoctets d&#039;activit&eacute;, des r&eacute;seaux toujours en place, mais sans utilisateurs. Ils se rep&egrave;rent assez facilement quand on en a l&#039;habitude : ils tournent toujours, &agrave; vide, envoient les m&ecirc;mes requ&ecirc;tes en boucle, circulairement, pur r&eacute;sultat de machines dont le processus automatique n&#039;a pas &eacute;t&eacute; arr&ecirc;t&eacute;. Et ce sont toujours des petits points assez marginaux.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Jamais des ville enti&egrave;re.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Pas un PC, pas un portable d&#039;allum&eacute;, pas une interface personnelle en marche. Il bondit de node en node, ne trouve que des serveurs, ne rencontre que des bots. Pas &acirc;me qui vive. Rien. Il est entr&eacute; dans le cyberespace d&#039;une putain de cit&eacute; fant&ocirc;me.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA500">&laquo; L&egrave;ve les yeux D&eacute;d&eacute;,</font> fait la voix de G&eacute;g&eacute; dans les capteurs audios du pirate. <font color="#FFA500">Tu vois la tour l&agrave;-bas ? &raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ah. Vous n&#039;&ecirc;tes pas tous familiers avec G&eacute;g&eacute; Ladalle, &laquo; le hacker le plus ambitieux de ce coin de la plan&egrave;te. D&eacute;vor&eacute; par une faim inversement proportionnelle &agrave; sa corpulence de phasme. &raquo; Accessoirement, aide op&eacute;ratoire de D&eacute;d&eacute;.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><font size="3"><a href="https://www.youtube.com/watch?v=mYwH4mfz898" target="_blank" rel="nofollow">♫</a></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Les pupilles de ce dernier se dilatent tandis qu&#039;il fixe l&#039;horizon num&eacute;rique. Il est dans un cimeti&egrave;re num&eacute;rique. Un tombeau digital. Et &ccedil;a bouillonne dans sa t&ecirc;te, un spectacle hallucinant pour son cerveau surcok&eacute;, au bord de la rupture.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">&laquo; Y&#039;A PERSONNE G&Eacute;G&Eacute;,</font> il hurle. <font color="#FF4136">Y SONT TOUS MORTS EN FAIT !!</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#4CEA5E">- Mais combien de temps il met &agrave; m&eacute;taboliser ce con ? &raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Et &ccedil;a, c&#039;est Coco, Coco D&eacute;ine. &laquo; La m&eacute;dic la plus minutieuse de ce coin de la plan&egrave;te. [...] Coco est douze fois plus comp&eacute;tente que n&#039;importe quel chirurgien de campagne &raquo; et charg&eacute;e de superviser ses <em>vitals</em>. Notamment quand D&eacute;d&eacute; plonge en &eacute;tant compl&egrave;tement cam&eacute;, comme l&agrave;, comme &agrave; chaque fois.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FFA500">&laquo; D&eacute;d&eacute;, </font>G&eacute;g&eacute; supplie, au bord de la faillite nerveuse,<font color="#FFA500"> D&eacute;d&eacute; &eacute;coute-moi, faut lever les yeux, D&eacute;d&eacute; regarde. Y&#039;a une tour en face de toi. Faut y aller D&eacute;d&eacute;, D&eacute;d&eacute; c&#039;est la filiale bancaire de Saphir Macrotech. D&eacute;d&eacute; putain, t&#039;&eacute;coutes ? T&#039;&Eacute;COUTES ?! &raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Non, D&eacute;d&eacute; n&#039;&eacute;coute pas. Il s&#039;&eacute;loigne du butin tant esp&eacute;r&eacute;, se dirige vers les serveurs d&#039;un autre immeuble. Un centre m&eacute;diatique, dont les blocs de donn&eacute;es sont gros comme cinq p&acirc;t&eacute;s de maisons. C&#039;est une pyramide, la pyramide d&#039;un peuple tout entier, et lui, son d&eacute;couvreur-pilleur, il va l&#039;ouvrir, ouais.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">&laquo; TA GUEULE TOI, QUEL EST CE MYST&Egrave;RE EN FAIT ??!! &raquo;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Parce que le hacker, venu d&eacute;pouiller un r&eacute;seau laiss&eacute; sans surveillance, n&#039;en a plus rien &agrave; foutre de l&#039;argent. Ce qui obs&egrave;de son cerveau baign&eacute; de noradr&eacute;naline, c&#039;est de trouver une putain d&#039;archive qui lui dirait ce qui s&#039;est putain de pass&eacute; pour que tous ces putains de gens disparaissent comme &ccedil;a du putain de r&eacute;seau de cette putain de ville.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#FF4136">&laquo; PUTAIN. &raquo;</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Saphir+Macrotech">Cdt. Saphir Macrotech</a><br>Prestige de chroniqueur&nbsp;: 55<br /><br /><img src="/avatars/11648.png" style="width:110px;height:128px" alt="Avatar" /><br />02/08/1022 ETU 01:44</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294152', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal294148')">Détails</a> <a href="javascript:warnpost(294148)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294148" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294148',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Un centre m&eacute;diath&egrave;que, et le terme &eacute;tait faible. On le devait &agrave; une politique publique de l&rsquo;Organe, l&rsquo;une des seules, en fait, qu&#039;elle avait men&eacute;e de sa longue existence, principalement occup&eacute;e par la taxation les habitants de Lux sans leur donner en retour quoi que ce soit d&rsquo;autre qu&rsquo;une vague promesse de protection. La situation avait &eacute;volu&eacute;e, &agrave; un moment ou un autre, avec l&rsquo;arriv&eacute;e d&rsquo;une nouvelle garde de &laquo;&nbsp;jeunes&nbsp;&raquo; individus &agrave; la t&ecirc;te du syndicat, amenant &agrave; la cr&eacute;ation d&rsquo;un certain nombre de structures plus ambitieuses.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Cette &laquo;&nbsp;pyramide&nbsp;&raquo;, pour reprendre le terme qu&rsquo;avait employ&eacute; D&eacute;d&eacute;, &eacute;tait ainsi connect&eacute;e &agrave; d&rsquo;autres structures du m&ecirc;me ordre par des r&eacute;seaux rapides m&ecirc;lant fibres et d&rsquo;enchev&ecirc;trement quantiques. Ce qui &eacute;tait, d&rsquo;un point de vue mat&eacute;riel, un immense b&acirc;timent devenait, d&rsquo;un point de vue virtuelle, un impressionnant agglom&eacute;rat de serveurs, dispos&eacute;s &agrave; des milliers de kilom&egrave;tres les uns des autres mais accol&eacute;s par la rapidit&eacute; du r&eacute;seau. L&#039;ensemble&nbsp; formant comme une nouvelle biblioth&egrave;que d&rsquo;Alexandrie. Un lieu d&rsquo;o&ugrave; l&#039;on pouvait consulter des informations dispers&eacute;es au quatre coins de la plan&egrave;te. En termes bassement prosa&iuml;ques, il s&rsquo;agissait du plus grand r&eacute;seau de m&eacute;diath&egrave;que que l&rsquo;on puisse imaginer &agrave; l&rsquo;&eacute;chelle d&rsquo;une plan&egrave;te.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Ce que ne savait pas D&eacute;d&eacute; - ce qu&#039;il ne pouvait probablement pas savoir, en fait - c&#039;&eacute;tait qu&#039;en se dirigeant comme il le faisait vers les connaissances, &eacute;pargnant les comptes bancaires du Consortium, il s&#039;&eacute;tait aussi &eacute;pargn&eacute; une confrontation des plus d&eacute;sagr&eacute;ables avec les syst&egrave;mes de s&eacute;curit&eacute; de la ville fant&ocirc;me, qui n&#039;auraient pas manqu&eacute; de changer - ou d&#039;essayer de changer - son cr&acirc;ne en marmite et son cerveau en soupe.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Alors le hacker entra. Comme un &eacute;gyptologue brisant le sceau d&#039;une tombe antique. Mais celle-l&agrave; ne l&#039;&eacute;tait pas, et un peu de recul lui aurait sans doute permis de comprendre qu&#039;il &eacute;tait plus proche d&#039;un enqu&ecirc;teur arrivant sur les lieux d&#039;un crime. Le sang encore frais maculant les murs, le corps, patientant sur le lieu de sa mort, attendant qu&#039;on le d&eacute;place, ou que les mouches le d&eacute;vorent.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Face &agrave; D&eacute;d&eacute; s&#039;&eacute;tendaient des rang&eacute;es et des rang&eacute;es de serveurs, &eacute;tiquet&eacute;s par un syst&egrave;me d&rsquo;ic&ocirc;nes et parcourus par des programmes autonomes qui, &agrave; une &eacute;poque, devaient prendre en charge les utilisateurs connect&eacute;s via des bornes d&#039;acc&egrave;s ou des versions l&eacute;gales (et brid&eacute;es) des decks de plonger. Il y avait de tout. Histoire lointaine, politique de l&#039;Organe, Th&eacute;orie sur la vie alien, th&eacute;orie sur la nature du Soma - quoi que puisse d&eacute;signer le terme... Bien entendu, tout n&#039;&eacute;tait pas disponible aussi facilement, et on pouvait deviner que des secteurs entiers &eacute;taient inaccessibles sans un certain niveau d&#039;accr&eacute;ditation.</div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16358&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16358" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16358" name="d_reply_16358" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16358');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16358'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Les aventures de D&eacute;d&eacute; dans le cyberspace</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17551 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>le songe du cristal</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > le songe du cristal</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Prydain">Cdt. Prydain</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12541.jpg" style="width:85px;height:128px" alt="Avatar" /><br />02/05/1025 ETU 04:27</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313389', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313388')">Détails</a> <a href="javascript:warnpost(313388)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313388" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313388',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong>Dans les ombres du blizzard</strong>, souffle les notes cristallines de l&#039;&eacute;cho de jadis ; des voix &eacute;th&eacute;r&eacute;es semblent chuchoter et l&#039;on dit parmi les voyageurs, qu&#039;il ne faut point &eacute;couter les sirenes du froid, elles vous perdent et vous finissez, &eacute;treints de leurs mains glac&eacute;s, sourires fig&eacute;s, dans le froid et la neige... </div><div class="post_line">Un observateur contemple le craquement du feu de camp, dans la nuit glac&eacute;e. Drap&eacute; de bleu-glace, il n&#039;est pas visible et observe le convoi des voyageurs qui entre dans ses terres. Ses pas l&eacute;gers ne laissent aucune trace sur la neige, et il rebrousse chemin, d&#039;un pas assur&eacute;. </div><div class="post_line">Un guetteur a cru percevoir quelque chose.. il faut dire qu&#039;il ya peut &ecirc;tre des Voormis..<font color="#7fdbff"><font size="4">des cr&eacute;atures de neiges et de cristal-cha&icirc;r..</font></font></div><div class="post_line">&nbsp;</div><div class="post_line"><strong>Le ciel &eacute;toil&eacute; se r&eacute;v&eacute;rb&egrave;re</strong> &eacute;trangement sur l&#039;&eacute;tendue immacul&eacute;e du froid mortel. Le souffle du vent hulule, dans le silence gris de la nuit. Les voyageurs frissonnent, tentant maladroitement de vivifier le brasier de leur brasero.&nbsp;</div><div class="post_line">Des pas et de l&#039;ombre, des yeux rouges scintillent dans les t&eacute;n&egrave;bres, escarboucles de rubis, bient&ocirc;t &eacute;vanouis dans la tourmente des flocons de neige, qui descendent du ciel, &eacute;pais et froids comme d&#039;&eacute;tranges baisers, appelant l&#039;ultime sommeil. Il ne faut pas s&#039;&eacute;loigner du feu.. il ne faut pas s&#039;aventurer sans lumi&egrave;re dans le noir, tout autant que dans le vide de l&#039;espace, sans prendre conscience que le voyage est incertain. Des mirages de glace. Des son &eacute;touff&eacute;s, doux mais froids. Le frisson prot&egrave;ge, la langeur emporte.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Prydain">Cdt. Prydain</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12541.jpg" style="width:85px;height:128px" alt="Avatar" /><br />02/05/1025 ETU 07:55</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313396', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313395')">Détails</a> <a href="javascript:warnpost(313395)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313395" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313395',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Pendant dans ce temps, la morosit&eacute; emplissait la capitale des Eldarans et un peu partout sur la plan&egrave;te. Le vieux <strong><font color="#5593bd">Kandor</font></strong>(ou roi) r&eacute;gnait depuis plus d&#039;un si&egrave;cle et son gouvernement se faisait moins performant, l&#039;usure du pouvoir. La corruption et le favoritisme &eacute;tait pr&eacute;gnant; les perspectives &eacute;conomiques..gu&egrave;re r&eacute;jouissantes.. la violence et la d&eacute;fiance, la peur d&#039;un d&eacute;clin annonc&eacute;... un sentiment mi-aigre mi-doux flottait dans l&#039;air humide de la pluie tombante. Beaucoup pensaient que les favoris en titre pour la Succession n&#039;&eacute;taient pas &agrave; la mesure de la charge. Le vieux souverain allait il d&eacute;signer le bon successeur ? Les vieux rites allaient-ils encore fonctionner ? on savait que parfois un grain de sable pouvait enrayer la machine..</div><div class="post_line"><a href="https://media.discordapp.net/attachments/944215930391638026/1333101533277061241/a_trip_to_the_theatre_by_peteamachree_d4icz1m-fullview.jpg?ex=6814e98d&amp;is=6813980d&amp;hm=4b258536373dfbc1d8bd6259ac929e8617f4c6a49ca95641e3f0589027c0b9ec&amp;=&amp;format=webp&amp;width=1343&amp;height=810" target="_blank" rel="nofollow">capitale</a></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Prydain">Cdt. Prydain</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12541.jpg" style="width:85px;height:128px" alt="Avatar" /><br />02/05/1025 ETU 08:12</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313398', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313397')">Détails</a> <a href="javascript:warnpost(313397)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313397" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313397',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">En effet <font color="#4cea5e">le vieux souverain ne pouvait se d&eacute;faire d&#039;une profonde m&eacute;lancolie</font>, du sentiment de vide, devant le d&eacute;clin annonc&eacute;. Les quatres successeurs s&#039;&eacute;taient r&eacute;v&eacute;l&eacute;s d&eacute;cevants, tant dans l&#039;exercice de leurs missions minist&eacute;rielles que par tout un tas d&#039;autres choses ; l&#039;un ou l&#039;autre,<font color="#f012be"> leurs visages se fondaient et formaient l&#039;ab&icirc;me terrible vers lequel la soci&eacute;t&eacute; se dirigeait</font>.&nbsp;</div><div class="post_line">Que faire ? il faudrait refaire une<font color="#17b529"> Visitation</font> mais le rituel &eacute;tait complexe ; les Pr&eacute;tendants ne se laisseraient pas faire, eux qui promettaient de s&#039;&eacute;charper &agrave; peine sa d&eacute;pouille d&eacute;pos&eacute;e dans le mausol&eacute;e.. un jour..bient&ocirc;t. </div><div class="post_line">Il comptait encore des fid&egrave;les, des gens qui ob&eacute;issaient &agrave; ses volont&eacute;s , sans trahir. <font color="#9a00b2">Des ritualistes</font> avaient prospect&eacute;, toute la plan&egrave;te, dans le plus grand secret. Les pr&eacute;tendants n&#039;en avait rien su. Il regardait la liste des profils qu&#039;on lui avait remis et deux semblaient se d&eacute;tachaient. C&#039;&eacute;tait d&eacute;cid&eacute; il les feraient venir au <font color="#5593bd">Palais</font>, pour le rituel. Il choisirait celui qui l&#039;emporterait. Il couperait l&#039;herbe sous le pieds des f&eacute;lons. Mais aurais t-il la force d&#039;imposer son successeur ? </div><div class="post_line"><font color="#9df9ff"><strong>Le songe du cristal</strong></font> r&eacute;velerait la nature de son h&eacute;ritier. Il avait eu tort bien des ann&eacute;es auparavant d&#039;avoir voulu r&eacute;former la s&eacute;lection et le rituel. Il le le reconnaissait, tout en toussotant, et inondant de sang son mouchoir. Il devait r&eacute;parer sa faute, pour &eacute;viter la ruine.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Prydain">Cdt. Prydain</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12541.jpg" style="width:85px;height:128px" alt="Avatar" /><br />02/05/1025 ETU 18:48</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313406', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313404')">Détails</a> <a href="javascript:warnpost(313404)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313404" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313404',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Dans la solitude de ses appartements, au coeur du Palais, <font color="#005dc2">le Vieux Kandor</font>, feuilletait un livre, un carnet..<font color="#9a00b2"><strong>Ses M&eacute;moires.</strong></font></div><div class="post_line"><font color="#0074d9"><strong>Un guide pour le successeur qui viendrait, il l&#039;avait compos&eacute; bien </strong></font><font color="#0074d9"><strong>des ann&eacute;es auparavant, il avait rajout&eacute; des compl&eacute;ments, des annotations diverses, son sentiment sur telle ou telle chose, il avait voulu montrer que l&#039;exercice du pouvoir ne fait pas disparaitre les contradictions personnelles, les errements de la pens&eacute;e, les erreurs. </strong></font></div><div class="post_line"><font color="#0074d9"><strong>Il s&#039;&eacute;tait toujour</strong></font>s d&eacute;fi&eacute;, et &agrave; raison, des personnalit&eacute;s ayant la vanit&eacute; de se croire infaillible.&nbsp; </div><div class="post_line"><font color="#e82a1f">Les Pr&eacute;tendants</font> n&#039;en doutaient pas un instant, <font color="#ff4136">chacuns d&#039;eux se croyait infaillible !</font> Leur indignit&eacute; le taraudait, les signes de la d&eacute;cadence &eacute;taient l&agrave; tout autour de lui, de son fait d&#039;abord ! et du fait des autres aussi ! </div><div class="post_line">Le coeur du peuple, comme un organisme g&eacute;ant, battait et lorsqu&#039;il contemplait la cit&eacute; &agrave; ses pieds, qu&#039;il croisait le regard des gens qui l&#039;entourait - des communs, aux serviteurs de l&#039;Etat, aux qu&eacute;mandeurs lors des auditions publiques, aux politiques, comme aux c&eacute;l&eacute;brit&eacute;s du moment.. aux visages d&#039;inconnus un court instant aper&ccedil;us, par la fen&ecirc;tre du carrosse.. <font color="#0074d9">le vieux Kandor</font> frissonnait.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Prydain">Cdt. Prydain</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12541.jpg" style="width:85px;height:128px" alt="Avatar" /><br />02/05/1025 ETU 19:14</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313408', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313407')">Détails</a> <a href="javascript:warnpost(313407)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313407" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313407',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#c0f0c6">Peut-&ecirc;tre &eacute;tais -t- il trop tard ?</font> peut-&ecirc;tre que sa soif de r&eacute;formes et <font color="#e86e04">d&#039;audace</font>, comme il disait alors, avait mis &agrave; terre le rituel sacr&eacute;. Apr&egrave;s tout, il avait eu tort d&#039;aller contre les r&egrave;gles ancestrales. <font color="#e82a1f">Il avait eu tort de vouloir faire autrement</font>. D&#039;autres avant lui avaient tent&eacute; des exp&eacute;riences politiques, toutes avaient mal finies. <font color="#005dc2">Lorsque le vent de l&#039;histoire s&#039;emporte contre vous, tel un f&eacute;tu de paille, vous &ecirc;tes emport&eacute; au lointain, vers l&#039;abime.</font></div><div class="post_line">Il n&#039;avait point dormi, car demain, &eacute;tais le grand jour de la <font color="#17b529">Visitation</font>. Tout &eacute;tais pr&ecirc;t pour les recevoir. Il avait &eacute;loign&eacute; ces idiots de pr&eacute;tendants, aux quatres coins de la plan&egrave;te, il leur couperait l&#039;herbe sous le pied. <font color="#9a00b2">Il devait accomplir son devoir.</font> </div><div class="post_line">Une sentence royale, connue et fameuse, d&#039;une ancienne souveraine, disait &quot; <font color="#005dc2">Ne jamais se plaindre, ne jamais prononcer de paroles hasardeuses, agir en monarque, dans l&#039;int&eacute;r&ecirc;t des si&egrave;cles &agrave; venir, garder la hauteur de vues au del&agrave; des camps jaloux, voir loin comme le capitaine sur son navire, sentant la mer et les embruns </font>&quot;.. la grande reine avait r&eacute;gn&eacute;e 230 ans, c&#039;&eacute;tait un mod&egrave;le de gouvernance &eacute;clair&eacute;e d&#039;il ya sept si&egrave;cles. </div><div class="post_line"><font color="#9a00b2">Des larmes coul&egrave;rent de ses joues, en pensant que peut-&ecirc;tre il avait terriblement &eacute;chou&eacute;.</font></div><div class="post_line">Il se ressaisit et ayant fini de se pr&eacute;parer, il suivit d&#039;un pas solennel, les naquets qui le pr&eacute;c&eacute;daient, lui ouvrant les portes et s&#039;inclinant, le son d&#039;airain de la marche du roi, <font color="#ff0000">l&#039;emportait vers le destin et la d&eacute;cision qui d&eacute;ciderait de son sort, de sa post&eacute;rit&eacute;. Serait il du panth&eacute;on des GRANDS&nbsp; ou du tableau des Sinistres ?</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Prydain">Cdt. Prydain</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12541.jpg" style="width:85px;height:128px" alt="Avatar" /><br />10/05/1025 ETU 07:13</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313552', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal313551')">Détails</a> <a href="javascript:warnpost(313551)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313551" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313551',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#2ecc40">Le jour de la Visitation.</font></div><div class="post_line">Le Kandor &eacute;tait dissimul&eacute; derri&egrave;re une fresque murale qui donnait l&#039;impression, &agrave; celui qui l&#039;observait, d&#039;&ecirc;tre devant <font color="#e8b6ef">un soleil d&#039;or.</font> </div><div class="post_line">Ils &eacute;taient au nombre de deux, comme le stipulait la tradition. Deux personnalit&eacute;s que le <font color="#7fdbff">cristal songe</font>, un artefact de cristal vivant, avait d&eacute;tect&eacute;, en &eacute;mettant une pulsation bleut&eacute;e. La pierre avait &eacute;mis une vision &agrave; ceux qui la transportaient dans un coffre herm&eacute;tique. Seul le Kandor et les H&eacute;ritiers d&eacute;sign&eacute;s par la pierre pouvaient la regarder sans devenir aveugle.&nbsp;</div><div class="post_line">******************************************************************************************************************************************************* </div><div class="post_line"><font color="#7fdbff">Prydain : un jeune nordique dont la famille &eacute;tait des marchands et des artistes itin&eacute;rants. Sa jeunesse pouvait surprendre, mais son visage per&ccedil;ant et sa chevelure d&#039;or roux, ses v&ecirc;tements bleus, </font>et ses traits faisaient de lui un Voordan, soit un sang-m&ecirc;l&eacute; des Voormis, dont on disait que les habitants polaires descendaient. Le Cristal avait envoy&eacute; des songes le d&eacute;signant et guidant jusqu&#039;&agrave; lui, il avait fait de m&ecirc;me pour : ********************************************************************************************************</div><div class="post_line"><font color="#e82a1f">Endoma</font> : <font color="#ffa339">une habitante du sud qui avait un certain nombre d&#039;ann&eacute;es de plus que l&#039;autre pr&eacute;tendant, elle aurait pu &ecirc;tre sa m&egrave;re. Une figure notable et chef de village, dans le d&eacute;sert lointain de Turan, o&ugrave; les dunes de sables s&#039;&eacute;tendaient &agrave; perte de vue. </font></div><div class="post_line">***********************************************</div><div class="post_line">L&#039;un et l&#039;autre auraient leur vie chang&eacute;e profond&eacute;ment. L&#039;un ou l&#039;une serait <font color="#72ff84">Kandor,</font> <font color="#ffffff">l&#039;autre serait </font><font color="#e8c500">le Primat.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Prydain">Cdt. Prydain</a><br>Prestige de chroniqueur&nbsp;: 6<br /><br /><img src="/avatars/12541.jpg" style="width:85px;height:128px" alt="Avatar" /><br />10/05/1025 ETU 18:37</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D313556', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal313554')">Détails</a> <a href="javascript:warnpost(313554)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal313554" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=313554',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#0074d9">Le Kandor vint voir les deux d&eacute;sign&eacute;s, qui ne disaient mot en sa pr&eacute;sence. Avant sa venue, ils avaient discut&eacute; entre eux, ce qui &eacute;tait bon signe. Il avait surpris quelques bribes, avant de quitter son alc&ocirc;ve secr&egrave;te. Et alors les souvenirs de sa propre </font><font color="#008000">Visitation </font><font color="#0074d9">lui revinrent en m&eacute;moire. </font></div><div class="post_line"><font color="#0074d9">********************************* &nbsp;<strong><font size="4">&nbsp;<a href="https://youtu.be/bXkyCFSLAFw?si=Q7ieyLe72l34y" target="_blank" rel="nofollow">musique du cristal-songe</a></font></strong></font></div><div class="post_line"><font color="#0074d9"><strong><font size="4"><a href="https://youtu.be/bXkyCFSLAFw?si=Q7ieyLe72l34y" target="_blank" rel="nofollow"></a></font></strong></font></div><div class="post_line">En chemin, dans le court d&eacute;dale du passage secret, le Kandor fut rejoint par le Primat, qui &eacute;tait originaire des terres des iles d&#039;Orient. Eux-m&ecirc;mes avaient succ&eacute;d&eacute; &agrave; un duo f&eacute;minin qui avait bien &oelig;uvr&eacute;, et devant les erreurs qu&#039;il avait commises durant son r&egrave;gne, il se sentait coupable. Lorsque la pierre aurait d&eacute;sign&eacute; le nouveau Kandor et le nouveau Primat, alors le temps serait venu du Grand Sommeil. L&#039;endormissement survenait quasiment &agrave; la fin du rituel. </div><div class="post_line"><font color="#72ff84">Un &eacute;trange rituel qui faisait appel &agrave; des sortes de pouvoir parapsychiques et d&#039;onirisme, de corps astral.</font> En effet,<font color="#005dc2"> le Cristal-Songe</font>, provoquait une sorte de torpeur &eacute;veill&eacute;e, une projection de l&#039;esprit dans l&#039;espace-temps et le r&ecirc;ve.&nbsp; &Agrave; l&#039;issue de cet &eacute;trange catatonie, qui durait <font color="#9a00b2">60 minutes</font>, le temps semblait d&eacute;form&eacute; pour les quatre participants : le Kandor, le Primat et les deux successeurs. Un temps qui paraissait s&#039;&eacute;tirer sur des g&eacute;n&eacute;rations, donnant l&#039;impression d&#039;immortalit&eacute; et de conscience &eacute;veill&eacute;e, que seuls les esprits immortels et sup&eacute;rieurs peuvent connaitre.</div><div class="post_line">Le destin allait s&#039;abattre sur eux, les rayons bleus semblables &agrave; des sortes de laser les baignaient tous d&eacute;j&agrave;.<font color="#0074d9"> Le Kandor et le Primat avaient soulev&eacute; le voile de Kregora qui recouvrait la pierre cristal.</font> <font color="#d900a7">La lumi&egrave;re vive les inondait de son irradiance mortelle</font>, pour ceux qui n&#039;&eacute;taient point d&eacute;sign&eacute;s. <font color="#ff0000">Les portes de la salle &eacute;taient closes et gard&eacute;es de l&#039;ext&eacute;rieur</font>. Mais en un sens, m&ecirc;me si quelqu&#039;un avait voulu perturber le rituel, la chose eut &eacute;t&eacute; impossible, car la Pierre Songe recouvrit de sa lumi&egrave;re brumeuse et aveuglante, les quatre piliers vivants. Nul ne pouvait les approcher ni les d&eacute;ranger sans mourir horriblement. C&#039;&eacute;tait dis t-on comme de regarder une &eacute;toile et de vouloir la saisir. <font color="#005dc2">Une &eacute;trange pulsation retenti.</font> **</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17551&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17551" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17551" name="d_reply_17551" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17551');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17551'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > le songe du cristal</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

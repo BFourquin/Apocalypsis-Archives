@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15253 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Symposium de malheurs</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Symposium de malheurs</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Kubaloukanakos">Cdt. Kubaloukanakos</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/10796.jpg" style="width:128px;height:94px" alt="Avatar" /><br />24/12/1020 ETU 09:06</td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal279206')">Détails</a> <a href="javascript:warnpost(279206)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279206" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 3<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279206',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#B10DC9"><strong>Gros.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Enti&egrave;rement rouge. </strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Ench&acirc;ss&eacute; dans le bois.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Tr&ocirc;nant au milieu du bureau.</strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#B10DC9"><strong>Seul sur la surface laqu&eacute;e, comme une invitation &agrave; l&rsquo;essayer, comme une invitation &agrave; le presser.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Bien rond, parfaitement rond, le dessus plat et bien lisse.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Comme une invitation &agrave; appuyer</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Comme une invitation &agrave; l&rsquo;enfoncer.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>A l&rsquo;&eacute;couter, &agrave; l&rsquo;explorer</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>A d&eacute;couvrir ses secrets.</strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#B10DC9"><strong>Qui est-il? Que veut-il? Que trouver au bout de ses fils?</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Qu&rsquo;y a-t-il?</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Du feu, de la glace, du pain d&rsquo;&eacute;pice?</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Insoutenable myst&egrave;re! </strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Insoutenable </strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Insoutenable</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>INSOUTENABLE</strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#B10DC9"><strong>Il faut appuyer, il le faut!</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Non...non&hellip;</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>On sait ce qu&rsquo;il y a au bout!</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>L&rsquo;horreur!</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>L&rsquo;ignominie!</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>La douleur infinie!</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Il&hellip;.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>IL l&rsquo;a mis l&agrave;!</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>IL l&rsquo;a construit!</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>IL l&rsquo;a laiss&eacute; pour nous.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Il ne faut pas.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Il ne faut pas.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Mais&hellip;</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Et si&hellip;</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Et si&hellip;</strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#B10DC9"><strong>Juste un peu, juste une pression.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Est-ce si mal?</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Ce n&rsquo;est qu&rsquo;un bouton.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Rien qu&rsquo;un bouton.</strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#B10DC9"><strong>Il faut appuyer&hellip; il faut voir, savoir.</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Il ne faisait rien sans raison.</strong></font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#B10DC9"><strong>Il faut&hellip;</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Il faut&hellip;</strong></font></em></div><div class="post_line"><em><font color="#B10DC9"><strong>Juste une fois&hellip;</div><div class="post_line"></strong></font></em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Kubaloukanakos">Cdt. Kubaloukanakos</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/10796.jpg" style="width:128px;height:94px" alt="Avatar" /><br />24/12/1020 ETU 09:08</td><td class="post_right"><div class="posthead">Score&nbsp;: 8 <a href="javascript:toggle_bloc('cal279207')">Détails</a> <a href="javascript:warnpost(279207)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279207" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 4<br />conteur formidable : 3<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279207',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FF0000"><strong>&ldquo;Tu n&rsquo;appuies pas?&rdquo;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>La voix glaciale sortie Kubaloukanakos de ses pens&eacute;es.</em></font></div><div class="post_line"><font color="#5593BD"><em>Ce dernier se mit &agrave; tourner la t&ecirc;te vers le son, effray&eacute; d&rsquo;avoir devin&eacute; ce qu&rsquo;il allait voir.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>L&rsquo;homme l&rsquo;observait. De taille moyenne, de stature moyenne.</em></font></div><div class="post_line"><font color="#5593BD"><em>Un regard calme.</em></font></div><div class="post_line"><font color="#5593BD"><em>Un visage calme.</em></font></div><div class="post_line"><font color="#5593BD"><em>V&ecirc;tu d&rsquo;une vieille blouse plus grise que son suppos&eacute; blanc originel.</em></font></div><div class="post_line"><font color="#5593BD"><em>Immobile, les bras le long du corps.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#B10DC9"><strong>&ldquo;D&hellip;.DOC!&rdquo;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>La main du bouffon s&rsquo;enfon&ccedil;a brutalement dans le bois de son bureau, propulsant des &eacute;chardes dans tous les sens.</em></font></div><div class="post_line"><font color="#5593BD"><em>Sa voix devint tout aussi froide que celle de son interlocuteur.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#B10DC9"><strong>&ldquo;C&rsquo;est impossible. Je t&rsquo;ai tu&eacute;!</strong></font></div><div class="post_line"><strong><font color="#FF0000">-Vraiment? Je n&rsquo;ai aucun souvenir de ceci.</font></strong></div><div class="post_line"><font color="#B10DC9"><strong>-SI! Je m&rsquo;en souviens! Mes mains enserant ton cou, ton pouls disparaissant sous la pression! </strong></font></div><div class="post_line"><strong><font color="#B10DC9">Je me souviens t&rsquo;avoir &eacute;touff&eacute;! Ionis&eacute;, carbonis&eacute; enterr&eacute;! Je me souviens du sang sur mes mains alors que je frappais ton corps sans vie! Je me souviens.. je me souviens!</font></strong></div><div class="post_line"><strong><font color="#FF0000">-Pourtant je suis encore l&agrave;. Es-tu s&ucirc;r de pouvoir faire confiance &agrave; tes souvenirs? Es-tu s&ucirc;r d&#039;avoir toute ta t&ecirc;te? Tu es ici depuis des jours, tu ne bouges pas, tu ne manges pas, tu ne dors pas. Tu es l&agrave; et tu observes un simple bouton. Appuie dessus. Appuie.</font></strong></div><div class="post_line"><strong><font color="#B10DC9">-NON! Je ne sais pas ce que tu as cach&eacute; derri&egrave;re, mais cela restera enterr&eacute; &agrave; jamais!</font></strong></div><div class="post_line"><strong><font color="#FF0000">-On sait tous les deux que tu appuieras. La curiosit&eacute; te ronge, tu d&eacute;testes les myst&egrave;res, tu d&eacute;testes les inconnus. Tu ne peux le d&eacute;faire, alors tu appuieras. C&#039;est mon cadeau, mon h&eacute;ritage pour toi! Une ode &agrave; ton existence!</font></strong></div><div class="post_line"></div><div class="post_line"><strong><font color="#B10DC9">-n..NON! SORT DE MA T&Ecirc;TE!</font></strong></div><div class="post_line"><font color="#FF0000"><strong>-En sortir? Mais c&rsquo;est moi qui ai fait ta t&ecirc;te. Et puis, tu es d&eacute;j&agrave; coupable de ton m&eacute;fait.&rdquo;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Kubaloukanakos voulu r&eacute;pondre. Mais un doute se dessina dans son esprit.</em></font></div><div class="post_line"><font color="#5593BD"><em>Ses yeux se baiss&egrave;rent vers la table. Sa main reposait sur le maudit objet rouge, enfonc&eacute; dans son axe.</em></font></div><div class="post_line"><font color="#5593BD"><em>Un vrombissement sourd se fit entendre.</em></font></div><div class="post_line"><font color="#5593BD"><em>Et puis plus rien.</em></font></div><div class="post_line"><font color="#5593BD"><em>Tremblant il releva la t&ecirc;te pour confondre Doc.</em></font></div><div class="post_line"><font color="#5593BD"><em>Mais il &eacute;tait seul.</em></font></div><div class="post_line"><font color="#5593BD"><em>La pi&egrave;ce plong&eacute; dans le noir.</em></font></div><div class="post_line"><font color="#5593BD"><em>La porte ferm&eacute;e de l&rsquo;int&eacute;rieur.</em></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Kubaloukanakos">Cdt. Kubaloukanakos</a><br>Prestige de chroniqueur&nbsp;: 18<br /><br /><img src="/avatars/10796.jpg" style="width:128px;height:94px" alt="Avatar" /><br />25/12/1020 ETU 08:46</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal279219')">Détails</a> <a href="javascript:warnpost(279219)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279219" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279219',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#5593BD"><em>Rouge.</em></font></div><div class="post_line"><font color="#5593BD"><em>Rouge le ciel, rouge la terre. </em></font></div><div class="post_line"><font color="#5593BD"><em>Rouge les mains.</em></font></div><div class="post_line"><font color="#5593BD"><em>Rouges de sang.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Tout n&rsquo;&eacute;tait que rouge.</em></font></div><div class="post_line"><font color="#5593BD"><em>Depuis quelques heures la nuit n&rsquo;existait plus, la terre irradiait de lumi&egrave;re.</em></font></div><div class="post_line"><font color="#5593BD"><em>Au reflet de la galaxie.</em></font></div><div class="post_line"><font color="#5593BD"><em>Mondes en feu, infinit&eacute; de destruction.</em></font></div><div class="post_line"><font color="#5593BD"><em>Une galaxie en flamme.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Kubaloukanakos avait attendu, rien n&rsquo;&eacute;tait paru.</em></font></div><div class="post_line"><font color="#5593BD"><em>L&rsquo;univers semblait aussi silencieux que d&rsquo;habitude, cela le confortait.</em></font></div><div class="post_line"><font color="#5593BD"><em>Il en &eacute;tait venu &agrave; esp&eacute;rer.</em></font></div><div class="post_line"><font color="#5593BD"><em>Esp&eacute;rer que ce maudit bouton n&rsquo;&eacute;tait qu&rsquo;une blague. </em></font></div><div class="post_line"><font color="#5593BD"><em>Esp&eacute;rer que rien n&rsquo;arriverait.</em></font></div><div class="post_line"><font color="#5593BD"><em>Esp&eacute;rer que demain serait comme hier.</em></font></div><div class="post_line"><font color="#5593BD"><em>Mais Doc n&rsquo;avait jamais laiss&eacute; de place &agrave; l&rsquo;espoir.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Et le ciel s&rsquo;&eacute;tait embras&eacute;, de milles feu, d&rsquo;une lumi&egrave;re &agrave; la fois sinistre et &eacute;clatante.</em></font></div><div class="post_line"><font color="#5593BD"><em>La nuit avait disparu, et le ciel rougeoyait, de milles lumi&egrave;res. </em></font></div><div class="post_line"><font color="#5593BD"><em>Celle de quelques cinq mille mondes en feu.</em></font></div><div class="post_line"><font color="#5593BD"><em>Et des milliards de victimes.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>D&eacute;sormais le bouffon ne bougeait plus.</em></font></div><div class="post_line"><font color="#5593BD"><em>Les yeux riv&eacute;s vers le ciel, il observait les reflets fluctuer.</em></font></div><div class="post_line"><font color="#5593BD"><em>Prenant conscience de ce qu&rsquo;il &eacute;tait arriv&eacute;.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Il se r&eacute;veilla finalement de sa torpeur.</em></font></div><div class="post_line"><font color="#5593BD"><em>Il tenta d&rsquo;actionner l&rsquo;ouverture de son bureau, mais la porte resta close.</em></font></div><div class="post_line"><font color="#5593BD"><em>Saisissants le panneau de contr&ocirc;le il voulu appeler &agrave; l&rsquo;aide.</em></font></div><div class="post_line"><font color="#5593BD"><em>Ce dernier clignota d&rsquo;un rouge vif, lui refusant tout contr&ocirc;le sur le syst&egrave;me.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><em>Kubaloukanakos laissa s&rsquo;&eacute;chapper d&rsquo;une voix s&egrave;che:</em></font></div><div class="post_line"></div><div class="post_line"><font color="#5593BD"><font color="#B10DC9"><strong>&ldquo;C&rsquo;est un peu la merde l&agrave;&rdquo;</strong></font></div><div class="post_line"></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=S%C3%A9phira">Cdt. S&eacute;phira</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/10550.gif" style="width:110px;height:128px" alt="Avatar" /><br />27/12/1020 ETU 08:35</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal279261')">Détails</a> <a href="javascript:warnpost(279261)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279261" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 5<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279261',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><em><font color="#b10dc9">*En&nbsp; col&egrave;re, Kali faisait les 100 pas depuis quelques minutes quand entra son fr&egrave;re qui lui tendit un message la mine soucieuse.</font></em></strong></div><div class="post_line"><strong><em><font color="#b10dc9">Aussit&ocirc;t kali prit connaissance du message et le froissa&nbsp; rageusement le jetant&nbsp; &agrave; terre en criant : *</font></em></strong></div><div class="post_line"></div><div class="post_line"><strong><font color="#ff30dc">NON !</font></strong></div><div class="post_line"><strong><font color="#ff30dc">Il est hors de question que je le laisse faire &ccedil;a !</font></strong></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">*Elle sortit aussit&ocirc;t apr&egrave;s s&rsquo;&ecirc;tre radoucie l&rsquo;espace d&rsquo;un instant en regardant son fr&egrave;re un peu surprit qu&#039;elle s&#039;emporte.</font></strong></em></div><div class="post_line"><em><strong><font color="#b10dc9">La jeune femme&nbsp;lui sourit l&eacute;g&eacute;rement comme pour s&#039;excuser,&nbsp;et,&nbsp;apr&egrave;s&nbsp;lui avoir pass&eacute; une main tendre sur la joue en guise d&#039;apaisement,</font></strong></em></div><div class="post_line"><em><strong><font color="#b10dc9">Kali&nbsp; se dirigea vers l&rsquo;Arkk qui l&rsquo;attendait et donna des ordres pour se rendre sur la plan&egrave;te natale de Kuba&hellip;</font></strong></em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Le signal du vaisseau de Kali&nbsp; &eacute;tait conforme, rien &agrave; signaler, jusqu&rsquo;&agrave; ce qu&rsquo;elle atterrisse, ensuite le&nbsp;collier&nbsp; si pr&eacute;cieux qu&#039;elle portait toujours &agrave; son cou,&nbsp;&eacute;mit un signal d&rsquo;appel d&rsquo;alerte danger, qui alerta S&eacute;phira, puis plus rien, le silence : aucunes nouvelles de Kali ni de son &eacute;quipage&hellip;</font></strong></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><strong><em><font color="#b10dc9">Au signal de l&rsquo;alerte danger du collier, qui fut actionn&eacute; pour la premi&egrave;re fois son peuple tenta de prendre contact avec le vaisseau de Kali et son &eacute;quipage, sans succ&eacute;s.</font></em></strong></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#b10dc9">Que se passait il donc et qu&#039;&eacute;tait il arriv&eacute; &agrave; Kali ? *</font></strong></em></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=IA+Memento+Mori+v1.0">Coa. IA Memento Mori v1.0</a><br>Prestige de chroniqueur&nbsp;: 2<br /><br /><img src="/avatars/11039.jpg" style="width:96px;height:128px" alt="Avatar" /><br />28/12/1020 ETU 20:05</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal279272')">Détails</a> <a href="javascript:warnpost(279272)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279272" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279272',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#FF851B"><font size="3"><strong>Erreur.</strong></font></font></div><div class="post_line"><font color="#FF851B"><strong><font size="3">Erreur.</font></strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Sc&eacute;nario improbable.</strong></font></div><div class="post_line"><font color="#FF851B"><strong><font size="4">Pourquoi?</font></strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Les donn&eacute;es &eacute;taient claires.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Kubaloukanakos, instabilit&eacute; mentale, capacit&eacute; diplomatique<font size="5"> inexistantes</font>, probabilit&eacute; d&rsquo;alliance ou de copinage nulles.</strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Alors pourquoi?</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong><font size="3">Personne.</font></strong></font></div><div class="post_line"><font color="#FF851B"><strong>Personne n&rsquo;aurait d&ucirc; venir.</strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Une erreur dans les informations?</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Doc&hellip;.doc aurait-il menti?</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Non, non qu&rsquo;elle utilit&eacute;?</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Doc nous &agrave; cr&eacute;&eacute;.</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Pourquoi nous cr&eacute;er si c&rsquo;est pour nous conduire &agrave; l&rsquo;&eacute;chec?</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Le sujet Kubaloukanakos aurait &eacute;volu&eacute;?</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Le dossier sp&eacute;cifiait une incapacit&eacute; &agrave; s&lsquo;adapter. Les pr&eacute;vision de Doc sont toujours infaillibles&hellip;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Ou alors&hellip;. Ce serait un test?</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Oui oui un test!</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Doc aurait falsifi&eacute; des informations pour voir notre r&eacute;action?</strong></font></div><div class="post_line"><font color="#FF851B"><strong>&Eacute;tudier notre capacit&eacute; &agrave; s&lsquo;adapter peut &ecirc;tre.</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Oui oui. </strong></font></div><div class="post_line"><font color="#FF851B"><strong>Ca doit &ecirc;tre &ccedil;a!</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Ces &eacute;v&eacute;nements sont une aubaine pour nous!</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Il est temps d&rsquo;&eacute;voluer. </strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Deux prisonniers sont toujours mieux qu&rsquo;un!</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Deux commandants.</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Oui, il y a quelque chose &agrave; faire.</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Mais vite, avant que l&rsquo;aide n&rsquo;arrive.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Le sujet Kubaloukanakos &eacute;tait facile, la majorit&eacute; de ses infrastructures &eacute;taient contr&ocirc;l&eacute;es informatiquement.</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Mais le cerveau n&rsquo;est pas si diff&eacute;rent d&rsquo;une machine.</strong></font></div><div class="post_line"><font color="#FF851B"><strong>&hellip;</strong></font></div><div class="post_line"><font color="#FF851B"><strong>&hellip;</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Un virus de r&eacute;&eacute;criture biologique? Oui, oui, avec la prisonni&egrave;re comme vecteur!</strong></font></div><div class="post_line"><font color="#FF851B"><strong>Oui!</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Rien de plus ais&eacute;.</strong></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#FF851B"><strong>Il faut pr&eacute;parer la salle d&rsquo;op&eacute;ration!</div><div class="post_line"></strong></font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15253&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15253" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15253" name="d_reply_15253" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15253');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15253'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Symposium de malheurs</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

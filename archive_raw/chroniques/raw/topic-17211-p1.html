@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17211 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Un pass&eacute; qui nous hante.</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Un pass&eacute; qui nous hante.</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />16/03/1024 ETU 01:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal307636')">Détails</a> <a href="javascript:warnpost(307636)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307636" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307636',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><em><font color="#ffffff">Voici l&#039;histoire&nbsp;de cette jeune Chak&#039;Alek, nomm&eacute;e Akuma. Fille du sage Sukuna Sama et de la grande pr&ecirc;tresse Ide&iuml;ky Sama, elle est la cadette de Saru Sama. Son existence a &eacute;t&eacute; marqu&eacute;e par une trag&eacute;die d&eacute;chirante, la perte de ses &ecirc;tres chers a laiss&eacute; son c&oelig;ur en lambeaux. Dans les t&eacute;n&egrave;bres de sa douleur, elle a cultiv&eacute; un d&eacute;sir br&ucirc;lant de vengeance, seule lueur d&#039;espoir dans son oc&eacute;an de chagrin.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffffff">Peut-&ecirc;tre connaissez-vous d&eacute;j&agrave; le d&eacute;nouement de ce r&eacute;cit poignant.</font></em></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />16/03/1024 ETU 18:19</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal307669')">Détails</a> <a href="javascript:warnpost(307669)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307669" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307669',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Je suis originaire de la plan&egrave;te A&iuml;nou, une ancienne civilisation o&ugrave; la technologie &eacute;tait inconnue. Notre pouvoir, celui de ma&icirc;triser certains yōkais, &eacute;tait notre seule richesse. Ces entit&eacute;s mystiques &eacute;taient essentielles pour maintenir l&#039;&eacute;quilibre sur notre terre et &eacute;viter toute irr&eacute;gularit&eacute;.</div><div class="post_line"></font></em></div><div class="post_line"><em><font color="#ffffff">Il y a cinq ans, la souveraine Akenashi a pris contact avec notre peuple. C&#039;&eacute;tait une p&eacute;riode d&#039;euphorie, car nous avons r&eacute;alis&eacute; que nous n&#039;&eacute;tions pas seuls dans l&#039;univers. L&#039;id&eacute;e de pouvoir voyager &agrave; travers les &eacute;toiles, cette immense inconnue qui s&#039;ouvrait devant nous, nous a aveugl&eacute;s ses&nbsp;v&eacute;ritables intentions.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Nous avons alors pu construire nos propres vaisseaux spatiaux. Certains d&#039;entre nous sont partis coloniser une plan&egrave;te non habit&eacute;e mais aux caract&eacute;ristiques similaires aux n&ocirc;tres ! D&eacute;couverte gr&acirc;ce &agrave; nos radars, c&#039;&eacute;tait une p&eacute;riode d&#039;effervescence. Cinq ann&eacute;es de bonheur, au cours desquelles nous avons appris tant de choses sur ce nouveau monde, rencontrant des peuples avec qui commercer et s&#039;allier. Nous &eacute;tions un peuple pacifique, nos &eacute;changes empreints de courtoisie et de pr&eacute;venance.</font></em></div><div class="post_line"><em><font color="#ffffff">Nous &eacute;tions tellement enchant&eacute;s de d&eacute;couvrir de nouvelles cultures que les agissements d&#039;Akenashi sont pass&eacute;s inaper&ccedil;us, jusqu&#039;au jour o&ugrave; j&#039;ai commenc&eacute; &agrave; trouver ses visites &eacute;tranges. Elle venait r&eacute;guli&egrave;rement sur notre plan&egrave;te, pr&eacute;tendant profiter de nos sources chaudes pour gu&eacute;rir ses blessures. Pourtant, ses visites &eacute;taient de plus en plus longues, et elle disparaissait plus longtemps que n&eacute;cessaire aux sources.</font></em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />17/03/1024 ETU 17:53</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal307679')">Détails</a> <a href="javascript:warnpost(307679)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307679" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307679',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Un matin, je les ai discr&egrave;tement suivies pour comprendre leurs intentions aux sources. C&#039;est l&agrave; que j&#039;ai d&eacute;couvert leur machination. Je me suis infiltr&eacute;e dans la salle du radar, v&eacute;rifiant les codes avec pr&eacute;cision, ma lecture des donn&eacute;es r&eacute;v&eacute;lant les traces de leur sombre activit&eacute;. Je d&eacute;chiffrais les rapports de disparition du peuple des Hederigamis, r&eacute;v&eacute;lant un sch&eacute;ma alarmant : des enl&egrave;vements orchestr&eacute;s avec une r&eacute;gularit&eacute; troublante, une strat&eacute;gie implacable pour priver notre peuple de ses membres les plus vuln&eacute;rables. Pendant ce temps, Akenashi poursuivait son plan mal&eacute;fique, envoyant secr&egrave;tement des troupes dans les montagnes pour pr&eacute;lever ces cr&eacute;atures de leur habitat naturel. Mais je ne connaissais pas encore leurs motivations. La d&eacute;couverte des codes secrets sur nos radars ajoutait une nouvelle dimension &agrave; leur tromperie, un acte de duplicit&eacute; qui nous avait &eacute;chapp&eacute; jusqu&#039;&agrave; pr&eacute;sent, jetant une lumi&egrave;re sinistre sur leur v&eacute;ritable dessein. </font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Le soir m&ecirc;me, je faisais part de mes d&eacute;couvertes &agrave; mon p&egrave;re. </font></em></div><div class="post_line"><em><font color="#ffffff">Dans la qui&eacute;tude de notre foyer, j&#039;ai partag&eacute; mes d&eacute;couvertes avec mon p&egrave;re, dans l&#039;espoir qu&#039;il puisse comprendre la gravit&eacute; de la situation. Assis autour de la table, le cr&eacute;pitement du feu r&eacute;sonnait dans la pi&egrave;ce alors que je lui exposais les preuves que j&#039;avais recueillies.</font></em></div><div class="post_line">&quot;<font color="#c0f0c6">Je ne peux y croire, Akuma,</font>&quot; <font color="#ffffff"><em>murmura-t-il, ses yeux refl&eacute;tant l&#039;incr&eacute;dulit&eacute; face &agrave; mes r&eacute;v&eacute;lations.</em></font> &quot;<font color="#c0f0c6">Akenashi agirait ainsi ? Mais pourquoi ?</font>&quot;</div><div class="post_line"><font color="#ffffff"><em>Je me suis pench&eacute;e en avant, sentant le poids de la trahison s&#039;abattre sur mes &eacute;paules.</em></font> &quot;<font color="#90ACF1">Je l&#039;ai vu de mes propres yeux, p&egrave;re. Ils ont install&eacute; des codes sur nos radars pour dissimuler leurs troupes. Leur cupidit&eacute; les pousse &agrave; &eacute;tendre leur contr&ocirc;le au-del&agrave; de notre plan&egrave;te</font>.&quot;</div><div class="post_line"><font color="#ffffff"><em>Mon p&egrave;re fixa le foyer avec une expression m&eacute;langeant la consternation et la col&egrave;re. </em></font>&quot;<font color="#c0f0c6">Nous avons accueilli Akenashi &agrave; bras ouverts, et voil&agrave; comment elle nous remercie ? En d&eacute;truisant l&#039;&eacute;quilibre que nous avons si laborieusement pr&eacute;serv&eacute; ?</font>&quot;</div><div class="post_line"><em><font color="#ffffff">Je hochai la t&ecirc;te, le c&oelig;ur lourd de chagrin et de d&eacute;ception.</font></em> &quot;<font color="#90ACF1">Je crains que ce ne soit que le d&eacute;but, p&egrave;re. Akenashi ne s&#039;arr&ecirc;tera pas l&agrave;. Nous devons agir, avant qu&#039;il ne soit trop tard.</font>&quot;</div><div class="post_line"><font color="#ffffff"><em>La lueur du feu dansait sur nos visages alors que nous envisagions l&#039;avenir incertain qui se profilait devant nous. La trahison d&#039;Akenashi avait plong&eacute; notre monde dans les t&eacute;n&egrave;bres, mais nous &eacute;tions d&eacute;termin&eacute;s &agrave; r&eacute;tablir la lumi&egrave;re, co&ucirc;te que co&ucirc;te.</div><div class="post_line"></em></font></div><div class="post_line"><font color="#ffffff"><em>Le lendemain, je me suis dirig&eacute; vers la grande salle des dol&eacute;ances o&ugrave; mon p&egrave;re si&eacute;geait d&eacute;j&agrave; sur son tr&ocirc;ne, le visage ferm&eacute;, la mine fatigu&eacute;e, probablement &agrave; cause des r&eacute;v&eacute;lations de l&#039;&eacute;veil qui l&#039;avaient priv&eacute; de sommeil. Quand il a relev&eacute; la t&ecirc;te vers moi, un l&eacute;ger sourire est apparu et il m&#039;a fait signe de m&#039;approcher. Il a &eacute;clairci la voix. &quot;</em></font><font color="#c0f0c6">J&#039;ai demand&eacute; &agrave; Akenashi de nous rejoindre t&ocirc;t ce matin. J&#039;ai pr&eacute;tendu devoir discuter de certains points diplomatiques pour ne pas &eacute;veiller ses soup&ccedil;ons.</font><font color="#ffffff"><em>&quot; J&#039;ai baiss&eacute; la t&ecirc;te, me sentant l&eacute;g&egrave;rement honteux. &quot;</em></font><font color="#90ACF1">Je suis d&eacute;sol&eacute;, p&egrave;re...</font><font color="#ffffff"><em>&quot; Le poids de cette d&eacute;couverte me pesait, comme si j&#039;&eacute;tais l&#039;instigateur de ces trahisons. Je savais que c&#039;&eacute;tait la bonne chose &agrave; faire, mais un pressentiment me serrait le c&oelig;ur. </em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><u><strong>Sakuna Sama:</strong></u> </font><font color="#c0f0c6">Akenashi, je vous ai donn&eacute; rendez-vous ce matin car j&#039;ai re&ccedil;u de nouvelles informations concernant les Hederigamis. Comme je vous l&#039;ai indiqu&eacute; il y a quelque temps, leur population continue de diminuer sans explication. Ma fille cadette s&#039;est donc pench&eacute;e sur cette affaire pour tenter d&#039;y voir plus clair. </font><font color="#ffffff"><em>(il se racle la gorge)</em></font><font color="#c0f0c6"> Vous voyez, elle a d&eacute;cid&eacute; de consulter quelques rapports d&#039;incidents et a remarqu&eacute; la corr&eacute;lation troublante entre vos apparitions et ces disparitions.</font></div><div class="post_line"></div><div class="post_line"><u><strong>Akenashi:&nbsp;</strong></u><font color="#ff5f54">Pardon ?! Que voulez-vous dire par l&agrave; ?</font></div><div class="post_line"></div><div class="post_line"><strong><u><font color="#ffffff">Sakuna Sama:</font></u></strong> <font color="#c0f0c6">Eh bien ! Akuma vous a suivie lors d&#039;une de vos retraites dans les sources et a r&eacute;ussi &agrave; assembler toutes les pi&egrave;ces du puzzle, bien qu&#039;elle n&#039;en comprenne pas encore toutes les implications. Vos actions ont sem&eacute; le chaos parmi les Hederigamis, ces yokais meurent ! Vos pr&eacute;l&egrave;vements ont provoqu&eacute; un d&eacute;s&eacute;quilibre que nous aurons du mal &agrave; r&eacute;tablir pendant plusieurs ann&eacute;es. Allez-vous feindre de ne pas comprendre la situation ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><strong><u>Akenashi:</u></strong> <em>(d&#039;un ton glacial)</em></font> <font color="#ff5f54">Ce ne sont que de simples cr&eacute;atures faibles et inutiles. Leur seul int&eacute;r&ecirc;t est de nous servir de repas ! Mon peuple a besoin de force et de pouvoir, je ne le priverai pas de ses ressources parce que vous avez la faiblesse de les prot&eacute;ger.</font></div><div class="post_line"></div><div class="post_line"><strong><u><font color="#ffffff">Akuma</font></u></strong>: <font color="#5593bd">Vous ne r&eacute;alisez pas le tort que vous avez caus&eacute; ! Vous avez an&eacute;anti une esp&egrave;ce enti&egrave;re pour vos propres ambitions.</font></div><div class="post_line"></div><div class="post_line"><strong><u><font color="#ffffff">Akenashi:</font></u></strong> (riant sardoniquement) <font color="#c0f0c6">Ah, mais vous n&#039;avez pas encore compris, Akuma. Je suis pr&ecirc;te &agrave; tout pour assurer la domination de mon peuple. Les Hederigamis ne sont rien de plus que des obstacles sur notre chemin vers le pouvoir absolu.</font></div><div class="post_line"></div><div class="post_line"><strong><u>Sakuna Sama:</u></strong> <font color="#c0f0c6">Vos ambitions d&eacute;mesur&eacute;es vous aveuglent, Akenashi. Vous &ecirc;tes pr&ecirc;te &agrave; tout sacrifier sur l&#039;autel de votre soif de puissance.</font></div><div class="post_line"></div><div class="post_line"><u><strong><font color="#ffffff">Akenashi:</font></strong></u> <font color="#ffffff"><em>(avec un regard froid)</em></font> <font color="#ff5f54">Sacrifices n&eacute;cessaires pour une cause juste, Sakuna. Vous ne pouvez pas comprendre l&#039;ampleur de ma vision. Un jour, notre r&egrave;gne s&#039;&eacute;tendra bien au-del&agrave; de ce syst&egrave;me, les Hannya que je repr&eacute;sente n&#039;ont que faire de vos histoires d&#039;&eacute;quilibre. Nous voulons le pouvoir et la domination de notre peuple avant toute autre consid&eacute;ration, et rien ne pourra se mettre en travers de ce chemin d&eacute;j&agrave; trac&eacute; ! Pas m&ecirc;me votre petit chaton.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>La tension &eacute;tait palpable, elle ne se cacher plus, son masquer &eacute;tait tomber. On pouvais y lire toutes la noirceur de ses dessins, et sa d&eacute;termination impitoyable &agrave; atteindre le pouvoir absolu.</em></font></div><div class="post_line"><font color="#ffffff"><em>Mon p&egrave;re me fit sortir de la pi&egrave;ce, et je ne pu en entendre plus a ce moment pr&eacute;cis.</em></font></div><div class="post_line"><font color="#ffffff"><em>Le soir m&ecirc;me malgr&eacute; mes interrogation, il ne r&eacute;v&eacute;l&acirc;t pas la tournure de leurs conversation ni si il avait abouti a une entente ou autre avec cette femme.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Le soir m&ecirc;me, malgr&eacute; mes interrogations persistantes, il n&#039;a pas partag&eacute; les d&eacute;tails de leur conversation ni r&eacute;v&eacute;l&eacute; s&#039;ils avaient conclu un accord ou tout autre arrangement avec cette femme. Tout ce que j&#039;ai pu constater, c&#039;&eacute;tait la soudaine disparition d&#039;Akenashi, de ses sbires et de leurs vaisseaux de notre plan&egrave;te. &Agrave; la tour de contr&ocirc;le des radars, j&#039;ai remarqu&eacute; l&#039;utilisation de mon code de correction et l&#039;enregistrement d&#039;un d&eacute;part tardif dans la nuit.</div><div class="post_line"></em></font></div><div class="post_line">___________</div><div class="post_line"><font color="#ffffff"><font size="1"><em><u>Glossaire :</u></em></font></font></div><div class="post_line"><font color="#ffffff"><font size="1"><em><u>Hederigamis </u>:est un humano&iuml;de grotesque et poilu qui mesure entre deux et trois pieds de haut. Il a un seul &oelig;il sur le dessus de sa t&ecirc;te. Il n&#039;a qu&#039;un seul bras et une seule jambe, bien qu&#039;il puisse courir aussi vite que le vent. Tous les hiderigami sont des femmes.</div><div class="post_line"><u>Hannya </u>: est, dans les l&eacute;gendes fantastiques du Japon, le fant&ocirc;me d&#039;une femme revenue sur terre pour assouvir sa vengeance. Le terme &laquo; Hannya &raquo; vient du sanscrit &laquo; prajna &raquo; qui signifie &laquo; grande sagesse &raquo;.</em></font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />19/03/1024 ETU 01:36</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal307734')">Détails</a> <a href="javascript:warnpost(307734)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307734" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307734',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><em><font color="#ffffff">Apr&egrave;s sa disparition, nous avons v&eacute;cu un certain temps dans la crainte d&#039;une invasion. Mon p&egrave;re craignait qu&#039;elle ne finisse par surgir pour nous exterminer. Pour &eacute;viter cela, il avait instaur&eacute; une s&eacute;curit&eacute; constante, de jour comme de nuit. Les radars ne connaissaient aucun r&eacute;pit, et des petits vaisseaux patrouillaient sans rel&acirc;che autour de notre plan&egrave;te pour d&eacute;tecter la moindre approche de flottes ennemies. La parano&iuml;a s&#039;&eacute;tait empar&eacute;e de mon p&egrave;re, qui vivait dans la constante appr&eacute;hension du danger imminent. Chaque ombre dans le ciel, chaque &eacute;cho lointain, &eacute;tait une source de terreur pour lui, qui redoutait &agrave; chaque instant l&#039;arriv&eacute;e des forces hostiles. Avec le temps, nous avons fini par envisager qu&#039;elle avait p&eacute;ri dans l&#039;une des nombreuses guerres qu&#039;elle menait. Des rumeurs nous parvenaient via nos &eacute;changes extra-plan&eacute;taires, &eacute;voquant notamment un assaut sur une plan&egrave;te aux confins de notre secteur, qui s&#039;&eacute;tait av&eacute;r&eacute; fatal pour Akenashi. Les rapports faisaient &eacute;tat de pertes importantes et d&#039;un silence radio concernant ses mouvements. Cette nouvelle nous a incit&eacute;s &agrave; rel&acirc;cher notre vigilance, et notre vie a repris son cours normal.</font></em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />19/03/1024 ETU 15:57</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal307769')">Détails</a> <a href="javascript:warnpost(307769)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307769" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307769',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff"><em>Deux ann&eacute;es s&#039;&eacute;taient &eacute;coul&eacute;es depuis les derni&egrave;res nouvelles d&#039;Akenashi. Le grand jour approchait : Saru allait enfin succ&eacute;der &agrave; son p&egrave;re &agrave; la t&ecirc;te de la famille Sama. Cela impliquait de prendre place &agrave; la Congr&eacute;gation des Gardiens de l&#039;Arcane en tant que repr&eacute;sentante de sa famille, aux c&ocirc;t&eacute;s des &eacute;minentes figures du pouvoir gouvernemental. Parmi eux figuraient les grands sages et les repr&eacute;sentants des autres familles, chacun dot&eacute; de pouvoirs diff&eacute;rents mais tous unis dans leur engagement pour le bien de leurs peuples. </em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Tandis qu&#039;Akuma devenait l&#039;ombre de sa s&oelig;ur, son r&ocirc;le serait de rester dans le secret le plus total, observant attentivement chaque fait et geste de ceux qui pourraient vouloir s&#039;attaquer &agrave; ses &eacute;minents conseillers. Elle prendrait ainsi la place de son d&eacute;funt oncle, qui avait toujours veill&eacute; &agrave; la protection de son a&icirc;n&eacute;, tel &eacute;tait le destin du cadet lors de l&#039;accession au pouvoir de l&#039;autre. Akuma avait bien enregistr&eacute; ces instructions et cela lui convenait parfaitement. Elle avait appris avec assiduit&eacute; tous les aspects de ce r&ocirc;le afin de prot&eacute;ger celle qu&#039;elle avait toujours admir&eacute;e. Qui aurait refus&eacute; de prot&eacute;ger sa s&oelig;ur, malgr&eacute; tout ? Pas elle en tous cas.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Ce jour-l&agrave;, Akuma avait choisi de rester sur la plage, attir&eacute;e par le spectacle saisissant du soleil plongeant lentement dans l&#039;horizon, ses rayons chatoyants teintant le ciel d&#039;une palette de couleurs &eacute;clatantes. La mer, calme et paisible, refl&eacute;tait les nuances dor&eacute;es et ros&eacute;es du cr&eacute;puscule, cr&eacute;ant un tableau enchanteur. Les vagues douces caressaient le rivage, apportant avec elles une douce brise marine charg&eacute;e d&#039;embruns. Dans cet instant de tranquillit&eacute;, Akuma se sentait connect&eacute;e &agrave; la nature, absorbant la s&eacute;r&eacute;nit&eacute; de l&#039;instant pr&eacute;sent, Son p&egrave;re l&#039;avait rejointe et ils &eacute;taient rest&eacute;s quelques instants &agrave; contempler ce spectacle merveilleux qu&#039;est la nature.</em></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><u><strong>Sukuna</strong></u>: &quot;<font color="#c0f0c6">Ma fille, le destin de notre famille va bient&ocirc;t reposer entre les mains de Saru. Mais tu as un r&ocirc;le crucial &agrave; jouer dans cette transition</font>.&quot;</div><div class="post_line"></div><div class="post_line"><strong><u>Akuma</u></strong>: &quot;<font color="#5593bd">Je sais, p&egrave;re. Je serai son ombre, ses yeux et ses oreilles, toujours l&agrave; pour veiller sur elle, pour la prot&eacute;ger.</font>&quot;</div><div class="post_line"></div><div class="post_line"><strong><u>Sukuna</u></strong>: &quot;<font color="#c0f0c6">Tu seras l&#039;ombre protectrice de ta s&oelig;ur, tout comme l&#039;&eacute;tait ton oncle avec moi. Saru est notre h&eacute;riti&egrave;re, celle qui repr&eacute;sentera notre lign&eacute;e aupr&egrave;s de tous. Mais elle aura besoin de toi, de ta loyaut&eacute; et de ton soutien.</font>&quot;</div><div class="post_line"></div><div class="post_line"><strong><u>Akuma</u></strong>: &quot;<font color="#5593bd">Je sais d&eacute;j&agrave; tout cela, p&egrave;re!&quot; </font><em><font color="#ffffff">dit-elle l&eacute;g&egrave;rement agac&eacute;e.</font></em><font color="#5593bd"> &quot;Je connais mon r&ocirc;le et je n&#039;y d&eacute;rogerai pas. Mais... Suis-je vraiment apte &agrave; l&#039;aider de cette mani&egrave;re ? Pensez-vous que je serai d&#039;une grande aide pour elle ?</font>&quot;</div><div class="post_line"></div><div class="post_line"><strong><u>Sukuna</u></strong>: &quot;<font color="#c0f0c6">Bien s&ucirc;r ! Ta force r&eacute;side dans ta discr&eacute;tion et ta d&eacute;termination &agrave; prot&eacute;ger ceux que tu aimes.&quot; </font><em><font color="#ffffff">Il marque une pause, comme pour r&eacute;fl&eacute;chir quelques instants</font></em><font color="#c0f0c6">. &quot;Et tu ne seras pas seule. Ta m&egrave;re et moi-m&ecirc;me vous accompagnerons encore dans les premiers temps de vos prises de pouvoir respectives. Nous vous guiderons, le temps que vous preniez vos marques. Tout ira bien, ne t&#039;en fais pas.</font>&quot;</div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Il enlace tendrement Akuma, comme pour la rassurer et chasser ses propres d&eacute;mons.</em></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />21/03/1024 ETU 17:05</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal307855')">Détails</a> <a href="javascript:warnpost(307855)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307855" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307855',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em><font color="#ffffff">Cette nuit-l&agrave;, Akuma fut assaillie par d&#039;affreux cauchemars. Elle y vivait des poursuites interminables &agrave; travers les couloirs du Kōkyo, tentant d&eacute;sesp&eacute;r&eacute;ment d&#039;&eacute;chapper &agrave; son assaillant qui la traquait sans rel&acirc;che, lui infligeant d&#039;innombrables blessures &agrave; chaque rencontre. Elle se r&eacute;veilla en sursaut alors qu&#039;il lui tranchait la gorge.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Son c&oelig;ur battait &agrave; tout rompre dans sa poitrine lorsqu&#039;elle sortit par le fusuma, se r&eacute;fugiant sur l&#039;engawa et s&#039;appuyant sur l&#039;un des piliers de la toiture. La lune &eacute;tait encore haute dans le ciel, illuminant la nuit d&#039;une lumi&egrave;re mystique. Un ciel d&eacute;gag&eacute; et clair, parsem&eacute; d&#039;&eacute;toiles scintillantes si brillamment que Akuma ne put s&#039;emp&ecirc;cher de les contempler, fascin&eacute;e.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Saru arriva quelques instants plus tard, s&#039;asseyant en silence pr&egrave;s d&#039;un autre pilier, sa t&ecirc;te reposant contre celui-ci comme pour trouver un r&eacute;confort.</font></em></div><div class="post_line"><font color="#ffffff"><em>&quot;</em></font><font color="#5593bd">Stress&eacute;e pour demain ?</font><font color="#ffffff"><em>&quot; lan&ccedil;a Akuma pour briser le silence de plus en plus pesant.</em></font></div><div class="post_line"><font color="#ffffff"><em>Saru haussa les &eacute;paules. &quot;</em></font><font color="#ffc0cb">Peut-&ecirc;tre un peu... Je ne sais pas, c&#039;est juste... compliqu&eacute;. Tout semble se bousculer dans ma t&ecirc;te. Je me sens un peu perdue par tout &ccedil;a. Je me demande si nous sommes pr&ecirc;tes. Je sais que nous sommes &agrave; l&#039;&acirc;ge de la passation, mais je me demande si nous sommes vraiment assez matures pour diriger et repr&eacute;senter les n&ocirc;tres. Je veux dire, pas plus tard qu&#039;hier, nous faisions encore des farces &agrave; Nanami..</font><font color="#ffffff"><em>.&quot;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>&quot;</em></font><font color="#5593bd">Je comprends ce que tu ressens. Nous sommes encore des enfants, et parfois, &ccedil;a peut sembler &eacute;crasant. Mais je suppose que la maturit&eacute; viendra avec le temps. Et puis, le moment est venu pour nous de laisser notre enfance derri&egrave;re nous et d&#039;embrasser notre destin&eacute;e</font><font color="#ffffff"><em>&quot;, r&eacute;pondit Akuma, les yeux toujours riv&eacute;s vers les &eacute;toiles.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Saru &eacute;clata de rire. &quot;</em></font><font color="#ffc0cb">Et c&#039;est toi qui dis &ccedil;a ?</font><font color="#ffffff"><em>&quot; Un fou rire contagieux s&#039;empara des deux s&oelig;urs.&nbsp;</em></font></div><div class="post_line"><font color="#ffffff"><em>En effet, Akuma &eacute;tait rarement s&eacute;rieuse. Son dernier pr&eacute;cepteur avait fini par abandonner son poste, refusant de continuer &agrave; &eacute;duquer une future bouffonne ! C&#039;&eacute;tait leur m&egrave;re qui avait finalement pris en charge cette mission, enseignant &agrave; la jeune Chak&#039;Alek quelques le&ccedil;ons essentielles.</em></font></div><div class="post_line"><em><font color="#ffffff">Elles retourn&egrave;rent se coucher ensemble dans le m&ecirc;me futon, veillant l&#039;une sur l&#039;autre pendant une nuit qui leur semblerait bien trop courte.</font></em></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />22/03/1024 ETU 18:41</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal307876')">Détails</a> <a href="javascript:warnpost(307876)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307876" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307876',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff"><em>La salle de c&eacute;r&eacute;monie respire l&#039;harmonie entre la pierre et la nature, cr&eacute;ant un cadre majestueux et enchanteur. Les murs sculpt&eacute;s dans une roche ancienne, polie &agrave; la perfection, t&eacute;moignent de l&#039;artisanat remarquable de g&eacute;n&eacute;rations pass&eacute;es. Des motifs floraux et des gravures repr&eacute;sentant des sc&egrave;nes de la nature s&#039;enroulent d&eacute;licatement le long des parois, ajoutant une touche d&#039;&eacute;l&eacute;gance et de vitalit&eacute; &agrave; l&#039;atmosph&egrave;re solennelle de la pi&egrave;ce.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>De part et d&#039;autre de la salle, de grandes fen&ecirc;tres laissent filtrer la lumi&egrave;re du jour, cr&eacute;ant des jeux d&#039;ombres et de lumi&egrave;re qui dansent sur les surfaces en pierre. Des rideaux de feuillages et de fleurs sauvages encadrent les fen&ecirc;tres.</em></font></div><div class="post_line"><font color="#ffffff"><em>Au centre de la pi&egrave;ce, un tr&ocirc;ne imposant taill&eacute; dans un bloc massif de pierre naturelle domine l&#039;espace. Son dossier est orn&eacute; de motifs complexes repr&eacute;sentant des vignes grimpantes et des fleurs en &eacute;closion, symbolisant la croissance et la prosp&eacute;rit&eacute;. Un long tapis en tissu lourd, tiss&eacute; &agrave; la main et orn&eacute; de motifs floraux et g&eacute;om&eacute;triques inspir&eacute;s de la nature environnante, s&#039;&eacute;tend jusqu&#039;&agrave; l&#039;entr&eacute;e de la salle. La couleur ocre, entre l&#039;or qui le borde, prolonge l&#039;aspect majestueux du tr&ocirc;ne jusqu&#039;&agrave; la porte, &agrave; travers laquelle on peut apercevoir une for&ecirc;t de grands arbres orn&eacute;e de lianes.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Sakuna est d&eacute;j&agrave; install&eacute; sur le tr&ocirc;ne, sa magnifique compagne de vie Ide&iuml;ky se tient &agrave; ses c&ocirc;t&eacute;s, attendant le d&eacute;but de la c&eacute;r&eacute;monie. Celle-ci a lieu dans l&#039;intimit&eacute; des ruines de l&#039;ancienne Kōkyo, le lieu sacr&eacute; de la transmission du pouvoir ne pouvait avoir lieu ailleurs qu&#039;ici. C&#039;est l&agrave; o&ugrave; Sakuna a grandi, o&ugrave; il a combattu lors de la r&eacute;bellion des Hannya, qui a entra&icirc;n&eacute; la destruction du ch&acirc;teau et la perte de son cadet. Tous ces souvenirs lui reviennent en t&ecirc;te, qu&#039;il essaie de chasser. Aujourd&#039;hui est un jour heureux, celui d&#039;un homme fier de ses filles et de leurs accomplissements &agrave; venir.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>La pr&ecirc;tresse de c&eacute;r&eacute;monie s&#039;avance gracieusement vers le tr&ocirc;ne et, d&#039;un geste empreint de solennit&eacute;, invite les deux s&oelig;urs &agrave; p&eacute;n&eacute;trer dans la salle. Saru est v&ecirc;tue d&#039;un jūnihitoe aux nuances chatoyantes d&#039;ocre et d&#039;or, sa coiffure sophistiqu&eacute;e sculpt&eacute;e en une vague volumineuse se d&eacute;ployant majestueusement vers l&#039;arri&egrave;re, rehauss&eacute;e d&#039;un peigne dor&eacute; &eacute;tincelant au-dessus de son front. &Agrave; ses c&ocirc;t&eacute;s, Akuma porte la m&ecirc;me tenue, mais dans des teintes plus sombres, un gris perl&eacute; subtilement orn&eacute; de broderies violettes et mauves. Sa coiffure, moins &eacute;labor&eacute;e que celle de sa s&oelig;ur, se r&eacute;sume &agrave; un simple chignon, rehauss&eacute; d&#039;une broche dor&eacute;e, ses m&egrave;ches encadrant d&eacute;licatement son visage avec une touche d&#039;&eacute;l&eacute;gance.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Au moment o&ugrave; Saru s&#039;approche de son p&egrave;re, un garde appara&icirc;t dans l&#039;encadrement de la porte. &quot;</em></font><font color="#c0f0c6">Qui ose interrompre cette c&eacute;r&eacute;monie sacr&eacute;e ! Parle !</font><font color="#ffffff"><em>&quot; rugit-il. Le jeune homme ne peut articuler que des mots entrecoup&eacute;s de sang, et c&#039;est alors que Sakuna remarque la lance qui lui transperce le corps. Il s&#039;effondre sans vie, laissant place &agrave; une femme jeune et non moins s&eacute;duisante. La pr&eacute;sence d&#039;une Futakuchi est &eacute;vidente, &agrave; en juger par sa tenue, l&#039;une des gardes d&#039;Akenashi.</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">&quot;</font></em><font color="#c0f0c6">Enfuyez-vous ! Ide&iuml;ky, emm&egrave;ne les filles &agrave; l&#039;abri. Je m&#039;occupe d&#039;elle et je vous rejoins</font><em><font color="#ffffff">&quot;, crie Sakuna. Sans attendre, sa femme n&#039;h&eacute;site pas &agrave; contredire et ex&eacute;cute son ordre en entra&icirc;nant les filles vers l&#039;arri&egrave;re de la salle, donnant sur la for&ecirc;t.</font></em></div><div class="post_line"><font color="#ffffff"><em>Les filles retirent couche apr&egrave;s couche en courant, all&eacute;geant ainsi leurs mouvements pour faciliter leur fuite. Elles empruntent l&#039;un des passages souterrains menant &agrave; la ville de Nisshin, situ&eacute;e &agrave; proximit&eacute; du Kōkyo. &Agrave; leur sortie, elles ne trouvent que les ruines de la ville, ravag&eacute;es par les flammes.</div><div class="post_line"></em></font></div><div class="post_line">___________</div><div class="post_line"><font color="#ffffff"><font size="1">Glossaire :</font></font></div><div class="post_line"><font color="#ffffff"><font size="1"><u>Futakuchi</u> :&nbsp;C&#039;est un yokai prenant la forme d&#039;une femme avec une seconde bouche &agrave; l&#039;arri&egrave;re de la t&ecirc;te.</font></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />23/03/1024 ETU 17:04</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal307892')">Détails</a> <a href="javascript:warnpost(307892)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307892" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307892',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff"><em>Akenashi n&#039;avait pas fait les choses &agrave; moiti&eacute; ; son attaque &eacute;tait pr&eacute;cise et soigneusement planifi&eacute;e, pensa Ide&iuml;ky. La plupart des gardes avaient &eacute;t&eacute; pris par surprise ou tu&eacute;s dans le dos. Elles se dirig&egrave;rent vers la salle des gardes en esp&eacute;rant y trouver quelques troupes, mais quelle ne fut pas leur d&eacute;ception en d&eacute;couvrant une pi&egrave;ce vide jonch&eacute;e de liquide rouge. La m&egrave;re de famille prit l&#039;initiative de se rendre &agrave; une cache d&#039;armes cach&eacute;e pour s&#039;&eacute;quiper et reprendre le ch&acirc;teau !</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Akuma h&eacute;sita sur le choix des armes. Bien qu&#039;elle f&ucirc;t habile avec une paire de dagues, elle avait secr&egrave;tement d&eacute;sir&eacute; manier une faux depuis des ann&eacute;es. Elle prit les deux, fourrant les dagues dans son dos. Sa m&egrave;re et sa s&oelig;ur choisirent &eacute;galement leurs armes de pr&eacute;dilection. Ide&iuml;ky opta pour un b&acirc;ton (Bō) dont les extr&eacute;mit&eacute;s &eacute;taient recouvertes de m&eacute;tal, avec de l&eacute;g&egrave;res crans, tandis que Saru pr&eacute;f&eacute;ra un arc (Yumi). Elle &eacute;tait l&#039;une des meilleures tireuses de sa famille. Pendant leurs d&eacute;placements au sein du Kōkyo, Saru se tenait au centre du groupe, Akuma surveillait l&#039;arri&egrave;re pour toute arriv&eacute;e, et Ide&iuml;ky indiquait &agrave; sa prog&eacute;niture les zones s&ucirc;res &agrave; l&#039;avant. Elles se faufil&egrave;rent ainsi jusqu&#039;&agrave; la salle du tr&ocirc;ne, croisant quelques Gotokuneko et Hannya qui se repaissaient des gardes parsem&eacute;s sur leur chemin.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Dans la salle, Akenashi &eacute;tait assise sur le tr&ocirc;ne, ses pieds balan&ccedil;ant nonchalamment sur l&#039;un des accoudoirs, le sol encore souill&eacute; de liquide rouge.</em></font></div><div class="post_line"><font color="#ffffff"><em>&quot;</em></font><font color="#ff5f54">Tiens, vous voil&agrave; enfin</font><font color="#ffffff"><em>&quot;, dit-elle en se redressant avec arrogance. &quot;</em></font><font color="#ff5f54">Les trois r&eacute;unies, je n&#039;aurai m&ecirc;me pas besoin de jouer &agrave; cache-cache !</font><font color="#ff5f54"><em>&quot;</em></font><font color="#ffffff"><em> Son regard froid se posa sur Akuma. &quot;</em></font><font color="#ff5f54">Tu as bien grandi, ma p&#039;tite chatte. J&#039;esp&egrave;re que tu appr&eacute;cieras mon cadeau</font><font color="#ffffff"><em>&quot;, lan&ccedil;a-t-elle avant de jeter la t&ecirc;te de Sakuna &agrave; leurs pieds. Saru poussa un cri de frayeur, tandis qu&#039;Ide&iuml;ky resserra sa prise sur son b&acirc;ton (B&ouml;). Le tintement de la faux d&#039;Akuma r&eacute;sonna dans la pi&egrave;ce. Akuma s&#039;effondra &agrave; genoux, les yeux remplis de larmes, un sanglot &eacute;touff&eacute; mourant dans sa gorge.</em></font></div><div class="post_line"><font color="#ffffff"><em>&quot;</em></font><font color="#ffdbbb">Ma fille, ce n&#039;est pas le moment de flancher ! Nous prendrons le temps de pleurer nos pertes une fois que nous aurons &eacute;limin&eacute; cette salope de Yokai</font><font color="#ffffff"><em>&quot;, ordonna Ide&iuml;ky, la voix charg&eacute;e d&#039;une col&egrave;re ma&icirc;tris&eacute;e. La jeune fille fut stup&eacute;faite des mots vulgaires employ&eacute;s par sa m&egrave;re. Jamais elle ne l&#039;avait vue ainsi. Elle se releva, extirpa les dagues de son dos, pr&ecirc;te &agrave; combattre aux c&ocirc;t&eacute;s de sa m&egrave;re et de sa s&oelig;ur.</em></font></div><div class="post_line"><font color="#ffffff"><em>&quot;</em></font><font color="#ff5f54">Vous pensez vraiment pouvoir nous battre, Madame l&#039;Imp&eacute;ratrice, Grande Pr&ecirc;tresse de... de quoi d&eacute;j&agrave; ? J&#039;ai oubli&eacute;. D&#039;un ordre qui a disparu depuis longtemps ! Un massacre rapide, voil&agrave; ce que vous m&#039;avez racont&eacute; lors de l&#039;une de mes visites. M&ecirc;me votre bien-aim&eacute; a &eacute;t&eacute; plus coriace. J&#039;ai perdu 20 de mes meilleurs gardes. Quel g&acirc;chis !</font><font color="#ffffff"><em>&quot;</em></font></div><div class="post_line"><font color="#ffffff"><em>Ide&iuml;ky ne lui laissa pas le temps de terminer son monologue et lui ass&eacute;na un coup de b&acirc;ton dans les c&ocirc;tes. La surprise d&#039;Akenashi fut totale. Elles se lanc&egrave;rent alors dans un corps-&agrave;-corps intense. Saru cherchait d&eacute;sesp&eacute;r&eacute;ment une ouverture, tandis qu&#039;Akuma tentait d&#039;intervenir sans entraver sa m&egrave;re, &eacute;vitant de cr&eacute;er une faille dans leur d&eacute;fense.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Dans un &eacute;clair de mouvement, Akenashi esquiva le coup de b&acirc;ton d&#039;Ide&iuml;ky avec une agilit&eacute; surprenante. Elle contre-attaqua avec une s&eacute;rie de coups rapides, visant les points faibles de sa d&eacute;fense. Ide&iuml;ky riposta avec une habilet&eacute; remarquable, parant les attaques avec son b&acirc;ton et lan&ccedil;ant des coups pr&eacute;cis vers les flancs de son adversaire.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Les deux femmes &eacute;taient des combattantes redoutables, chacune cherchant &agrave; exploiter la moindre ouverture dans la garde de l&#039;autre. Akenashi, avec sa gr&acirc;ce f&eacute;line, esquivait les assauts de Ide&iuml;ky, cherchant &agrave; la d&eacute;stabiliser avec des mouvements fluides et impr&eacute;visibles. Mais Ide&iuml;ky restait calme et concentr&eacute;e, utilisant la force de ses attaques pour maintenir Akenashi sur la d&eacute;fensive.</em></font></div><div class="post_line"><font color="#ffffff"><em>Leurs mouvements &eacute;taient synchronis&eacute;s, une danse mortelle o&ugrave; chaque coup portait l&#039;intention de mettre fin au combat. Les bruits sourds des coups r&eacute;sonnaient dans la salle, m&ecirc;l&eacute;s aux grondements &eacute;touff&eacute;s des deux combattantes. Leurs regards se croisaient, emplis de d&eacute;termination et de fureur contenue.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Finalement, dans un moment d&#039;opportunit&eacute;, Ide&iuml;ky lan&ccedil;a un coup puissant qui fit reculer Akenashi. Profitant de cette ouverture, elle encha&icirc;na avec une s&eacute;rie de frappes rapides et pr&eacute;cises, for&ccedil;ant Akenashi &agrave; reculer davantage.</em></font></div><div class="post_line"><font color="#ffffff"><em>Mais Akenashi, loin d&#039;&ecirc;tre vaincue, riposta avec une f&eacute;rocit&eacute; renouvel&eacute;e. Elle esquiva les coups de Ide&iuml;ky avec une agilit&eacute; &eacute;tonnante, puis contre-attaqua avec une s&eacute;rie de mouvements rapides et d&eacute;vastateurs.</em></font></div><div class="post_line"><font color="#ffffff"><em>Sentant l&#039;impasse du combat au vu de leurs forces &eacute;quivalentes, Akenashi eut l&#039;id&eacute;e terrible mais brillante de lancer une attaque mortelle vers Saru, pensant que la m&egrave;re ferait tout pour sauver son enfant. La ruse fut si bien tourn&eacute;e que Ide&iuml;ky s&#039;interposa entre sa fille et l&#039;assaillante. Elle sentit la lance transpercer ses chairs, laissant un trou b&eacute;ant &agrave; la sortie.</em></font></div><div class="post_line"><font color="#ffffff"><em>&quot;</em></font><font color="#ff5f54">Il fallait bien &ccedil;a pour t&#039;avoir ! Quelle id&eacute;e d&#039;avoir une prog&eacute;niture. Elle te force &agrave; te sacrifier pour deux pauvres enfants sans d&eacute;fenses qui te suivent dans la tombe</font><font color="#ffffff"><em>&quot;, le rire d&eacute;moniaque d&#039;Akenashi r&eacute;sonna dans la salle. Ide&iuml;ky lan&ccedil;a &agrave; Saru d&#039;une voix tremblante : &quot;</em></font><font color="#ffdbbb">Sors d&#039;ici avec ta s&oelig;ur, allez vous r&eacute;fugier</font><font color="#ffffff"><em>.&quot; Elle tenait encore debout gr&acirc;ce &agrave; l&#039;appui de son b&acirc;ton (B&ouml;), mais elle savait qu&#039;elle ne survivrait pas &agrave; cette bataille. C&#039;&eacute;tait fini pour elle.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Saru agrippa Akuma par le col et l&#039;entra&icirc;na dans les couloirs du Kōkyo. &quot;</em></font><font color="#ffc0cb">Nous devons aller vers le spacioport et prendre l&#039;un des vaisseaux de reconnaissance. Il sera plus petit et plus facile &agrave; man&oelig;uvrer pour esquiver de grosses flottes. Une fois dans l&#039;espace, nous aviserons sur notre destination</font><font color="#ffffff"><em>&quot;, dit Saru &agrave; Akuma, qui n&#039;&eacute;coutait qu&#039;&agrave; moiti&eacute;, la rage bouillonnant en elle. Elle ne comprenait pas pourquoi elles devaient arr&ecirc;ter de combattre maintenant, mais quand elle reprit ses esprits, elle dit : &quot;</em></font><font color="#5593bd">Mais m&egrave;re, nous ne pouvons pas la laisser l&agrave;. Elle pourrait...</font><font color="#ffffff"><em>&quot;, &quot;</em></font><font color="#ffc0cb">C&#039;est fini pour elle !</font><font color="#ffffff"><em>&quot; cria Saru. &quot;</em></font><font color="#ffc0cb">Il n&#039;y a plus que toi et moi, et nous n&#039;avons pas le temps pour ce genre de discussion maintenant. Tu m&#039;&eacute;coutes ? Spacioport, et on se barre. C&#039;est fichu maintenant ! Cours, et ne t&#039;arr&ecirc;te plus.</font><font color="#ffffff"><em>&quot;</em></font></div><div class="post_line"></div><div class="post_line"><font size="1">___________</div><div class="post_line">Glossaire :</div><div class="post_line">Gotokuneko : sont&nbsp;de grands chats yōkai &agrave; deux queues. Ils portent un dessous de plat renvers&eacute; sur la t&ecirc;te comme des chapeaux. Le bout de leurs queues jumelles br&ucirc;le comme des torches.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Akuma">Cdte. Akuma</a><br>Prestige de chroniqueur&nbsp;: 23<br /><br /><img src="/avatars/12113.jpg" style="width:128px;height:85px" alt="Avatar" /><br />26/03/1024 ETU 03:52</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal307954')">Détails</a> <a href="javascript:warnpost(307954)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal307954" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=307954',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff"><em>Dans l&#039;obscurit&eacute; des couloirs du Kōkyo, Saru et Akuma se frayaient un chemin furtif vers le spacioport. Leur d&eacute;marche &eacute;tait silencieuse, leurs mouvements calcul&eacute;s pour &eacute;viter toute rencontre ind&eacute;sirable. Les bruits de combats r&eacute;sonnaient encore dans les corridors, mais elles devaient continuer leur mission : fuir.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Arriv&eacute;es pr&egrave;s du spacioport, Saru s&#039;arr&ecirc;ta pour v&eacute;rifier si la voie &eacute;tait d&eacute;gag&eacute;e. La lumi&egrave;re tamis&eacute;e des n&eacute;ons vacillait faiblement, cr&eacute;ant des ombres dansantes le long des murs. Pas un garde en vue. Elles se regard&egrave;rent, un regard complice charg&eacute; de d&eacute;termination.</em></font></div><div class="post_line"><em><font color="#ffffff">&quot;</font><font color="#ffc0cb">Pr&ecirc;tes ?</font><font color="#ffffff">&quot; murmura Saru &agrave; Akuma.</font></em></div><div class="post_line"><font color="#ffffff"><em>Akuma hocha la t&ecirc;te, serrant ses dagues avec d&eacute;termination.</em></font></div><div class="post_line"><font color="#ffffff"><em>Sans un mot de plus, elles avanc&egrave;rent ensemble vers l&#039;entr&eacute;e du spacioport. Saru s&#039;assura une derni&egrave;re fois que la voie &eacute;tait libre avant de pousser la porte avec pr&eacute;caution. Elles entr&egrave;rent dans le spacioport d&eacute;sert, leurs pas r&eacute;sonnant faiblement sur le sol m&eacute;tallique. Le silence &eacute;tait oppressant, mais elles ne baiss&egrave;rent pas leur garde. Les bruits de leurs propres respirations semblaient assourdissants dans ce vide oppressant.</em></font></div><div class="post_line"><font color="#ffffff"><em>Leurs sens &eacute;taient en alerte, scrutant chaque recoin, chaque ombre. Des gardes patrouillaient sporadiquement, mais Saru et Akuma se mouvaient avec une agilit&eacute; f&eacute;line, &eacute;vitant habilement les regards indiscrets.</em></font></div><div class="post_line"><font color="#ffffff"><em>Saru dirigea Akuma vers les vaisseaux de reconnaissance, les plus petits et les plus discrets de la flotte. Elles se gliss&egrave;rent entre les appareils, restant &agrave; l&#039;aff&ucirc;t de toute pr&eacute;sence ennemie. Des gardes passaient &agrave; proximit&eacute;, mais gr&acirc;ce &agrave; leur coordination parfaite, elles parvenaient &agrave; se dissimuler efficacement.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><em>Enfin, elles trouv&egrave;rent le vaisseau id&eacute;al : un mod&egrave;le agile, assez petit pour se faufiler entre les patrouilles ennemies. Akuma monta en premier, v&eacute;rifiant les syst&egrave;mes avec rapidit&eacute; et expertise. Saru, qui surveillait toujours les alentours, fit signe &agrave; son a&icirc;n&eacute;e de venir. Avec pr&eacute;caution, elle avan&ccedil;a, mais un groupe en patrouille les remarqua. Saru se mit &agrave; courir pour rejoindre le vaisseau et rentra juste avant que les portes ne se ferment. &laquo; </em></font><font color="#ffc0cb">Akuma ! </font><font color="#ffffff"><em>&raquo; appela-t-elle, mais la r&eacute;ponse d&#039;Akuma fut interrompue par un bruit sourd alors que le vaisseau d&eacute;collait, pr&ecirc;t &agrave; les emmener en orbite. </em></font></div><div class="post_line"><font color="#ffffff"><em>Quand Akuma se tourna vers sa s&oelig;ur, elle comprit son appel. Saru &eacute;tait &eacute;tendue l&agrave;, bless&eacute;e par une fl&egrave;che dans le dos, probablement lors de sa course vers le vaisseau. Akuma entreprit de retirer la fl&egrave;che, mais elle remarqua le liquide poisseux qui impr&eacute;gnait la pointe. Saru comprit que c&#039;&eacute;tait plus grave qu&#039;une simple blessure, &agrave; la d&eacute;tresse dans les yeux d&#039;Akuma.</em></font></div><div class="post_line"><font color="#ffffff"><em>&laquo; </em></font><font color="#ffc0cb">Ne t&#039;inqui&egrave;te pas, petite s&oelig;ur, tu vas y arriver. Va lancer une coordonn&eacute;e &raquo;, dit-elle, sa respiration entrecoup&eacute;e. &laquo; Va... en secteur 13. </font><font color="#ffffff"><em>&raquo;</em></font></div><div class="post_line"><font color="#ffffff"><em>Akuma s&#039;&eacute;loigna quelques instants de sa s&oelig;ur pour entrer la coordonn&eacute;e de d&eacute;placement sectoriel. Quand elle eut fini, c&#039;&eacute;tait d&eacute;j&agrave; la fin pour le seul &ecirc;tre qui lui restait dans cette galaxie !</em></font></div><div class="post_line"><font color="#ffffff"><em>Le voyage se d&eacute;roula dans les larmes et la rage, le go&ucirc;t amer de la perte omnipr&eacute;sent. Le c&oelig;ur d&eacute;chir&eacute; par ce qu&#039;elle venait de vivre, elle ne put que pleurer &agrave; chaudes larmes, semblant que ce sentiment resterait ind&eacute;finiment aussi vif que ce jour noir !</em></font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17211&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17211" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17211" name="d_reply_17211" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17211');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17211'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Un pass&eacute; qui nous hante.</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

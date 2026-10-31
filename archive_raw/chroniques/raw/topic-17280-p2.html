@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 17280 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Open Bar : Secteur 6</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Open Bar : Secteur 6</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=17280&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=17280&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Scamrekx">Cdt. Scamrekx</a><br>Prestige de chroniqueur&nbsp;: 3<br /><br /><img src="/avatars/12305.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:42</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal308911')">Détails</a> <a href="javascript:warnpost(308911)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308911" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308911',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">La Commandante de la Coalition n&#039;est pas encore pr&eacute;sente mais elle aidera, fassent a ceux &quot;Clown&quot;.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:43</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308912')">Détails</a> <a href="javascript:warnpost(308912)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308912" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308912',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Merci aux commandant proposant leur aide, prions pour que cette personne n&eacute;fastes disparaisse au plus vite.</div><div class="post_line"></div><div class="post_line">Oracle Infini</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Ydal+Karfrenn">Cdt. Ydal Karfrenn</a><br>Prestige de chroniqueur&nbsp;: 5<br /><br /><img src="/avatars/12268.jpg" style="width:127px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:52</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308913')">Détails</a> <a href="javascript:warnpost(308913)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308913" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308913',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Initialisation BIOCOM.pvi(SLS)...</div><div class="post_line">pr&ecirc;t:_</div><div class="post_line">autoris&eacute;...</div><div class="post_line">connexion...</div><div class="post_line">\Root\?_</div><div class="post_line">\Root\RETOUR MWP//bin/loc/substrat</div><div class="post_line">622827 entr&eacute;es trouv&eacute;es</div><div class="post_line">Traitement...</div><div class="post_line">Patientez...</div><div class="post_line">Patientez...</div><div class="post_line">Patientez&hellip;</div><div class="post_line"></div><div class="post_line">Vous prouvez juste votre condescendance &agrave; l&#039;&eacute;gard des peuples diff&eacute;rents. </div><div class="post_line"></div><div class="post_line">VOUS &ecirc;tes l&rsquo;entit&eacute; pr&ocirc;nant la domination. Vous voulez imposer votre vision du monde aux autres. En jugeant le mode de vie des autres, leurs croyances et en vous emparant de leurs mondes.</div><div class="post_line"></div><div class="post_line">Vous jugez la coop&eacute;ration entre diff&eacute;rentes nations comme une domination ? VOUS &ecirc;tes le dominateur. Vous d&eacute;truisez ce que les autres construisent pour un avenir meilleur en demandant de l&rsquo;aide pour les massacrer. </div><div class="post_line"></div><div class="post_line">Vous avez creus&eacute; votre propre tombe en impliquant les autres peuples de la galaxie. Un mal comme vous ne triomphera pas. Tout le monde voit le mal en vous. C&rsquo;est fini Thenian. Vous avez perdu. </div><div class="post_line"></div><div class="post_line">Fin de t&acirc;che BIOCOM.pvi(SLS)...</div><div class="post_line"></div><div class="post_line">[Nomination] Hi&eacute;rarch Ydal Karfrenn.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />23/06/1024 ETU 00:53</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal308914')">Détails</a> <a href="javascript:warnpost(308914)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308914" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308914',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">C&#039;est absolument fascinant de voir ces 10&nbsp;factions en qu&ecirc;te d&#039;aide ext&eacute;rieure pour &eacute;teindre l&#039;incendie qu&#039;elles ont elles-m&ecirc;mes allum&eacute;. Comme si elles avaient ignor&eacute; les signaux d&#039;alarme &eacute;vidents et maintenant, dans un tour ironique du destin, elles se retrouvent &agrave; solliciter des renforts pour calmer les flammes qu&#039;elles ont imprudemment aliment&eacute;es.</div><div class="post_line"></div><div class="post_line">Alors que leurs flottes convergent, je ne peux m&#039;emp&ecirc;cher de sourire int&eacute;rieurement en me demandant : &quot;Ont-elles s&eacute;rieusement cru que cela se passerait diff&eacute;remment ?</div><div class="post_line"></div><div class="post_line">En attendant de voir comment ils r&eacute;agiront &agrave; ma requ&ecirc;te, je me d&eacute;lecte de ce moment o&ugrave; ceux qui ont sem&eacute; la confusion doivent d&eacute;sormais faire face aux r&eacute;percussions de leurs propres actions. Peut-&ecirc;tre que cette exp&eacute;rience leur servira de le&ccedil;on sur l&#039;importance de la pr&eacute;voyance et de la responsabilit&eacute; dans les affaires interstellaires.</div><div class="post_line"></div><div class="post_line">Veloran</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 00:59</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal308915')">Détails</a> <a href="javascript:warnpost(308915)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308915" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308915',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Si il y a des flammes, c&#039;est bien vous qui la allumer, encore une fois nous somme une douzaine et nous nous somme&nbsp;tous&nbsp;</div><div class="post_line">mit d&#039;accord sur les r&egrave;gles dans le secteur pour &ecirc;tre unifi&eacute; et faire fasse au potentiels ennemie d&#039;autre&nbsp;galaxie lointaine.&nbsp;&nbsp;</div><div class="post_line"></div><div class="post_line">Mais vous &ecirc;tes bien le seul a allez a l&#039;encontre des r&egrave;gles misent en place.</div><div class="post_line"></div><div class="post_line">La seul possibilit&eacute; est que vous disparaissait.&nbsp;&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />23/06/1024 ETU 01:08</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308916')">Détails</a> <a href="javascript:warnpost(308916)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308916" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308916',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Les Thenians ont toujours refus&eacute; de s&#039;allier avec des intimidateurs et des manipulateurs. Notre civilisation a choisi une voie de coop&eacute;ration et de progr&egrave;s mutuel, rejetant fermement toute forme d&#039;exploitation et de restriction impos&eacute;e par ceux qui cherchent &agrave; semer le chaos. Nous croyons en un d&eacute;veloppement &eacute;quitable et pacifique de notre expansion galactique, o&ugrave; chaque civilisation peut prosp&eacute;rer sans la menace constante de l&#039;intimidation ou de la manipulation.</div><div class="post_line"></div><div class="post_line">Je vous assure express&eacute;ment que j&#039;ai bien envoy&eacute; le Bescherelle dont vous avez besoin. Il est en route et devrait arriver tr&egrave;s prochainement &agrave; votre destination.</div><div class="post_line"></div><div class="post_line">Restant &agrave; votre disposition pour toute autre assistance n&eacute;cessaire.</div><div class="post_line"></div><div class="post_line">Cordialement,</div><div class="post_line"></div><div class="post_line">Veloran</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Mojo">Cdt. Mojo</a><br>Prestige de chroniqueur&nbsp;: 2<br /><br /><img src="/avatars/12269.png" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 01:22</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal308917')">Détails</a> <a href="javascript:warnpost(308917)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308917" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308917',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Bonjour tout le monde,</div><div class="post_line"></div><div class="post_line">Nous tenons tout d&#039;abord &agrave; expliquer &agrave; l&#039;ensemble des commandants que notre cher Commandant Thenian est agressif envers les autres peuples vivant dans ce secteur. Nous ne pouvons d&eacute;cid&eacute;ment pas laisser une personne d&eacute;cider qui a le droit de vivre et qui n&#039;en a pas le droit.</div><div class="post_line"></div><div class="post_line">Ensuite, nous avons essay&eacute; de discuter avec ce personnage, mais nous n&#039;avons re&ccedil;u aucune r&eacute;ponse de sa part. Nous lui avons donn&eacute; un laps de temps pour r&eacute;pondre car il &eacute;tait primordial d&#039;avoir une conversation entre peuples civilis&eacute;s, &eacute;tant donn&eacute; qu&#039;il s&#039;&eacute;tait install&eacute; dans notre syst&egrave;me originel et que nous avions per&ccedil;u ses actions comme une menace.</div><div class="post_line"></div><div class="post_line">Comme il n&#039;y a pas eu de r&eacute;ponse, nous avons d&ucirc; faire ce que nous lui avions annonc&eacute; via comX. Le probl&egrave;me est qu&#039;il ne parle &agrave; personne, fait ce qu&#039;il veut, et quand nous l&#039;attaquons, cette civilisation se pose en victime. Les rares fois o&ugrave; il r&eacute;pond, il est agressif ou insultant.</div><div class="post_line"></div><div class="post_line">Il est &eacute;vident qu&#039;il ne faut pas croire tout ce que l&#039;on peut lire, surtout venant d&#039;un peuple comme celui des Thenians.</div><div class="post_line"></div><div class="post_line">Petit message &agrave; l&#039;attention du Commandant Thenian : votre attitude est digne d&#039;un enfant, il serait pr&eacute;f&eacute;rable pour vous d&#039;arr&ecirc;ter de vous faire passer pour la victime et de bien vouloir ouvrir les discussions pour le bien du secteur.</div><div class="post_line"></div><div class="post_line">Sur ce, je vous souhaite bonne continuation.</div><div class="post_line"></div><div class="post_line">Nous vous prions d&#039;agr&eacute;er, les diff&eacute;rentes civilisations de la galaxie, l&#039;expression de nos salutations distingu&eacute;es.</div><div class="post_line"></div><div class="post_line">Le Conseil</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Thenian">Cdt. Thenian</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/12274.jpg" style="width:128px;height:92px" alt="Avatar" /><br />23/06/1024 ETU 01:54</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308918')">Détails</a> <a href="javascript:warnpost(308918)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308918" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308918',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Dans un ton agac&eacute; et sans d&eacute;tour, Veloran s&#039;exprima&nbsp;: &quot;Devrais-je donc r&eacute;ellement exprimer ma gratitude pour les <font color="#ff0000"><font size="6"><u>trente pillages</u></font></font> survenus r&eacute;cemment en seulement deux jours ? C&#039;est tout simplement incroyable, un flot incessant d&#039;attaques qui d&eacute;fie toute logique de coop&eacute;ration et de progr&egrave;s mutuel. Ces actes d&#039;<font color="#ff0000"><font size="6">hostilit&eacute;</font></font> non seulement perturbent notre quotidien mais compromettent s&eacute;rieusement notre capacit&eacute; &agrave; avancer de mani&egrave;re harmonieuse et constructive.</div><div class="post_line"></div><div class="post_line">Il regarda autour de lui, le visage marqu&eacute; par le m&eacute;contentement, ses yeux se posant sur les rapports alarmants qui documentaient chaque incident. Nos opposants se pr&eacute;sentent comme des d&eacute;fenseurs de la libert&eacute; et de la justice, mais ils agissent comme des <font color="#ff0000"><font size="4">oppresseurs </font></font>d&eacute;termin&eacute;s &agrave; saboter nos efforts et &agrave; semer la discorde au sein de notre expansion galactique. Leur obstination &agrave; <font color="#ff0000"><font size="4">piller </font></font>et &agrave;<font color="#ff0000"><font size="5"> harceler</font></font> ne t&eacute;moigne que de leur volont&eacute; de maintenir les thenians dans un &eacute;tat de <font color="#ff0000"><font size="4">fragilit&eacute; </font></font>perp&eacute;tuelle.</div><div class="post_line"></div><div class="post_line">Il fixa l&#039;assembl&eacute;e avec une d&eacute;termination froide, ses yeux&nbsp;fixant l&#039;horizon avec une fermet&eacute; qui exprimait &agrave; la fois la r&eacute;solution face &agrave; l&#039;adversit&eacute; et l&#039;engagement in&eacute;branlable envers sa cause&nbsp;. &quot;Que nos opposants le sachent bien : leurs actes ne resteront pas <font color="#ff0000"><font size="5">impunis</font></font>. Nous r&eacute;pondrons avec la m&ecirc;me d&eacute;termination avec laquelle ils cherchent &agrave; nous <font color="#e82a1f"><font size="4">affaiblir.</font></font></div><div class="post_line"></div><div class="post_line">22/06/1024 ETU 17:52 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-III (21.6.9.1.1).</div><div class="post_line">22/06/1024 ETU 16:52 Strat&eacute;gie <font color="#ff0000">Pillage </font>de notre plan&egrave;te CCA IX-I (21.6.9.1.2). </div><div class="post_line">22/06/1024 ETU 16:52 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-II (21.6.9.1.3). </div><div class="post_line">22/06/1024 ETU 16:50 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IV-III (21.6.2.4.3). </div><div class="post_line">22/06/1024 ETU 16:50 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IV-I (21.6.2.4.1). </div><div class="post_line">22/06/1024 ETU 13:52 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-I (21.6.5.1.4). </div><div class="post_line">22/06/1024 ETU 10:57 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-II (21.6.5.1.2). </div><div class="post_line">22/06/1024 ETU 10:56 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-IV (21.6.5.1.3). </div><div class="post_line">22/06/1024 ETU 10:12 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-I (21.6.5.1.4). </div><div class="post_line">22/06/1024 ETU 10:11 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA II-IV (21.6.2.4.4). </div><div class="post_line">21/06/1024 ETU 23:54 Strat&eacute;gie <font color="#ff0000">Tentative de pillage</font> de notre plan&egrave;te CCA IX-II (21.6.9.1.3). </div><div class="post_line">21/06/1024 ETU 23:30&nbsp;Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-III (21.6.9.1.1). </div><div class="post_line">21/06/1024 ETU 22:25 Strat&eacute;gie <font color="#ff0000">Pillage </font>de notre plan&egrave;te CCA IX-I (21.6.9.1.2). </div><div class="post_line">21/06/1024 ETU 22:20 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-II (21.6.9.1.3). </div><div class="post_line">21/06/1024 ETU 21:58 Strat&eacute;gie<font color="#ff0000"> Pillage</font> de notre plan&egrave;te CCA IV-III (21.6.2.4.3). </div><div class="post_line">21/06/1024 ETU 21:42 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-I (21.6.9.1.2). </div><div class="post_line">21/06/1024 ETU 20:20 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-III (21.6.9.1.1). </div><div class="post_line">21/06/1024 ETU 19:40 Strat&eacute;gie <font color="#ff0000">Pillage </font>de notre plan&egrave;te CCA IX-II (21.6.9.1.3). </div><div class="post_line">21/06/1024 ETU 19:04 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-II (21.6.5.1.2). </div><div class="post_line">21/06/1024 ETU 18:22 Strat&eacute;gie<font color="#ff0000"> Pillage</font> de notre plan&egrave;te CCA IX-I (21.6.9.1.2). </div><div class="post_line">21/06/1024 ETU 17:12 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-I (21.6.9.1.2). </div><div class="post_line">21/06/1024 ETU 16:14 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-I (21.6.9.1.2).</div><div class="post_line">21/06/1024 ETU 15:36 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA IX-I (21.6.9.1.2). </div><div class="post_line">21/06/1024 ETU 14:44 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA VIII-III (21.6.8.3.1). </div><div class="post_line">21/06/1024 ETU 12:40 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-I (21.6.5.1.4).</div><div class="post_line">21/06/1024 ETU 11:52 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-III (21.6.5.1.4).</div><div class="post_line">21/06/1024 ETU 10:24 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-II (21.6.5.1.2).</div><div class="post_line">21/06/1024 ETU 10:22 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-IV (21.6.5.1.3).</div><div class="post_line">21/06/1024 ETU 10:22 Strat&eacute;gie <font color="#ff0000">Pillage</font> de notre plan&egrave;te CCA V-I (21.6.5.1.4).</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 02:04</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal308919')">Détails</a> <a href="javascript:warnpost(308919)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308919" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308919',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Malheureusement, je ne sauvegarde pas c&#039;est ordre.&nbsp;</div><div class="post_line"></div><div class="post_line">Mais nous somme tous attaquer, autant que vous..</div><div class="post_line">Vous cr&eacute;er tout ceci&nbsp;pour &ccedil;a..</div><div class="post_line"></div><div class="post_line">Par contre il est vrai que tout c&#039;est pillage en si peu de temps..</div><div class="post_line">J&#039;en n&#039;es des frisson..</div><div class="post_line">Mais ce n&#039;est pas si difficile de falsifier des document..</div><div class="post_line"></div><div class="post_line">J&#039;invite mets compatriotes&nbsp;du secteur a partagez leur ordre prouvant que nous sommes tous piller, si c&#039;est dernier ne les on&nbsp;pas supprim&eacute;..</div><div class="post_line"></div><div class="post_line">Et oui nous cherchons activement se pilleur.. nous avons des doute , mais nous trouverons bien un jour..</div><div class="post_line"></div><div class="post_line">Provoquez une guerre contre tout un secteur, pour &ccedil;a ?&nbsp;</div><div class="post_line"></div><div class="post_line">Vous n&#039;&ecirc;tes pas sain.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Neil+MacDowell">Cdt. Neil MacDowell</a><br>Prestige de chroniqueur&nbsp;: 40<br /><br /><img src="/avatars/12162.png" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 02:27<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D308922', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal308921')">Détails</a> <a href="javascript:warnpost(308921)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308921" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308921',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><font size="1"><font color="#5593bd">Pssst ! Si vous voulez que nous ayons droit de parole, allez continuer dans une salle de l&#039;Assembl&eacute;e G&eacute;n&eacute;rale. Ici, nous n&#039;avons pas le droit ni d&#039;intervenir, ni d&#039;&ecirc;tre au courant de ce que vous dites. </font><font color="#c3ffff">A part Hamilton, bien s&ucirc;r, qui est au-dessus de toutes les lois !</font><font color="#5593bd">)</font></font></div><div class="post_line"></div><div class="post_line"><font color="#5593bd">Je me suis perdu, excusez-moi.</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=17280&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;<a href="/assemblee/viewtopic?c_topic=17280&c_forum_page=1&c_page=3">3</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Open Bar : Secteur 6</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

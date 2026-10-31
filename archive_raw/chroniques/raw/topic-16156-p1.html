@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16156 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Nouvelle vie</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouvelle vie</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior%E2%80%99back">Cdt. Denior&rsquo;back</a><br>Prestige de chroniqueur&nbsp;: 26<br /><br /><img src="/avatars/11390.jpg" style="width:128px;height:58px" alt="Avatar" /><br />12/12/1021 ETU 20:45</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal291110')">Détails</a> <a href="javascript:warnpost(291110)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal291110" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=291110',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">Denior avait pris place dans le peace figther one. D&rsquo;ordinaire, il voyageait sans escorte, ni flotte, quelque soit le lieu o&ugrave; il se rendait. S&rsquo;il devait &ecirc;tre attaqu&eacute; ou mourir, mieux valait que les victimes soient peu nombreuses. Et seulement des volontaires. Mais cette fois, pour la premi&egrave;re fois depuis longtemps, depuis Esp&eacute;rance, il s&rsquo;&eacute;tait fait accompagn&eacute; d&rsquo;une flotte importante, avec des transporteurs nombreux et une escouade de fr&eacute;gates. Le peace figther one lui m&ecirc;me avait &eacute;t&eacute; arm&eacute; et Denior s&rsquo;&eacute;tait assur&eacute; qu&rsquo;il disposait encore de ses pouvoirs psionniques. Il &eacute;tait dans son bureau, esp&eacute;rant que son p&egrave;re lui parlerait en songe mais, &eacute;tonnamment il restait muet. Ou Denior sourd. Son p&egrave;re lui avait souvent dit qu&rsquo;il lui parlait sans cesse mais que le plus souvent Denior ne l&rsquo;entendait pas, parce qu&rsquo;il &eacute;tait obnubil&eacute; par autre chose. </div></div><div class="post_line">Mais obnubil&eacute; par quoi alors que Denior, Uriel, &eacute;tait clairement dans son r&ocirc;le. Sauver tout un peuple, toute une civilisation se r&eacute;clamant ouvertement de l&rsquo;Eglise &eacute;tait assur&eacute;ment faire le job. Que voulait le P&egrave;re alors? </div><div class="post_line">Prier, le prier encore et encore, faire le vide, ne penser qu&rsquo;aux autres, les aimer autant que soi, c&rsquo;&eacute;tait retrouver son chemin, son oreille.</div><div class="post_line">Denior s&rsquo;&eacute;tait il perdu &agrave; cause de sa participation aux affaires d&rsquo;ici bas ? En tous les cas, ce sauvetage &eacute;tait sans doute terrestre mais aussi spirituel. Denior devait le faire m&ecirc;me si le p&egrave;re ne le voulait pas. Il les sauverait.</div><div class="post_line"></div><div class="post_line">Il se rendait chez Louis, aussi vite que ses vaisseaux le pouvait. Il avait tenter d&rsquo;arr&ecirc;ter Ellyria &agrave; l&rsquo;Assembl&eacute;e, sans succ&egrave;s. Maintenant, il mettait les mains dans le cambouis. Il &eacute;tait m&ecirc;me pr&ecirc;t &agrave; se battre pour cela. Il sauverait ce peuple. Il n&rsquo;&eacute;tait plus tr&egrave;s loin. D&eacute;j&agrave; une premi&egrave;re fr&eacute;gate &eacute;tait arriv&eacute;e sur place et corroborait les premi&egrave;res informations fournies par Louis. Les attaques &eacute;taient incessantes et les morts nombreuses. Vite, il fallait aller vite&hellip;.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Mais soudain&hellip;.</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;Stoppez les machines. Nous changeons de cap. Direction imm&eacute;diatement vers le syst&egrave;me 3, plan&egrave;te Helmgard. Faites un message &agrave; Euphor, nous allons avoir besoin de beaucoup plus de vaisseaux de transport.&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line">Denior regarda vers le ciel:</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp; Merci P&egrave;re&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Louis+Cawl">Cdt. Louis Cawl</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/11375.jpg" style="width:128px;height:95px" alt="Avatar" /><br />13/12/1021 ETU 02:56<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D291117', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal291116')">Détails</a> <a href="javascript:warnpost(291116)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal291116" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=291116',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#005dc2">Helmgart, quelle belle plan&egrave;te, &agrave; peine son nom prononc&eacute; que toute personne &eacute;tant pass&eacute;e par l&agrave; en a le sourire aux l&egrave;vres. Cette plan&egrave;te au climat temp&eacute;r&eacute; a &eacute;t&eacute; pacifi&eacute; il y a de cela plusieurs semaines, les habitants qui &eacute;taient sous l&#039;emprise de brigands ont tr&egrave;s bien accueillis les diplomates gungniriens, en quelques temps les brigands avaient &eacute;t&eacute; banni au profit d&#039;une civilisation florissante. La v&eacute;g&eacute;tation &eacute;tait partout, les habitants, en guise de remerciements avaient engag&eacute; la construction d&#039;une immense statue constitu&eacute;e d&#039;un m&eacute;tal issu du c&oelig;ur d&#039;Helmgart, un m&eacute;tal plus que rare et dont seuls les Helmgartiens en poss&egrave;de &agrave; travers toute la galaxie,&nbsp;tout en connaissant les vertus de ce m&eacute;tal bleu. Petit &agrave; petit les citoyens se multipliaient, des grattes ciels sortaient de la terre, des b&acirc;timents un peu partout tout en pr&eacute;servant la v&eacute;g&eacute;tation. Les habitant vivaient confortablement, les riches marchands s&#039;y install&egrave;rent et les politiciens en firent de m&ecirc;me, un somptueux palais pour le Guide Supr&ecirc;me avait m&ecirc;me vu le jour et c&#039;est uniquement sur cette plan&egrave;te qu&#039;une copie du&nbsp;</font><a href="https://whfb.lexicanum.com/mediawiki/images/9/9c/Temple_of_Sigmar_Altdorf_AOWO.jpg" target="_blank" rel="nofollow"><font color="#ffffff">Mundussenex </font></a><font color="#005dc2">&eacute;tait en construction pour faire rayonner le pouvoir en place m&ecirc;me au plus profond du secteur 0. Cette plan&egrave;te &eacute;tait paisible jusqu&#039;il y a quelques temps.</font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Depuis pr&egrave;s de 5 cycles, des convois ne cessent d&#039;atterrir sur Helmgart, tous en provenance du secteur 1, les gungnirs s&#039;y trouvant n&#039;&eacute;taient plus en s&eacute;curit&eacute;. Convois apr&egrave;s convois, soldats, civils, dirigeants, hauts grad&eacute;s affluent ne pensant qu&#039;a une chose: comment vont ceux rest&eacute;s en secteur 1? L&agrave;-bas&nbsp;plus aucun Gungnirs n&#039;est en s&eacute;curit&eacute;, les massacres sont si nombreux qu&#039;ils sont incalculables, des civils meurent sous les coups de soldats sans piti&eacute; dirig&eacute;s par la sournoise Commandante Ellyria. Le premier convoi se d&eacute;marquait des autres, il &eacute;tait compos&eacute; d&#039;un imposant vaisseau escort&eacute; par des fr&eacute;gates, des corvettes et nombreux militaires. &Agrave; son arriv&eacute;e, un jeune homme d&#039;une trentaine d&#039;ann&eacute;es,&nbsp;tr&egrave;s fringuant en sorti, escort&eacute; par la garde imp&eacute;riale.&nbsp;Apr&egrave;s d&#039;autres ont suivi au compte go&ucirc;te mais il s&#039;agissait seulement de vaisseaux civils. Depuis 2 cycles des vaisseaux d&eacute;sormais remplis de militaires, hauts grad&eacute;s, diplomates, techniciens, politiciens et th&eacute;ologiens affluent, &agrave; partir de cet instant, Helmgart allait &ecirc;tre transform&eacute; en forteresse, des b&acirc;timents militaires sortaient de la terre par centaines en temps record, les cha&icirc;nes de production militaires marchaient &agrave; plein r&eacute;gime, jour et nuit, sans une seule seconde de r&eacute;pit.</font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">Aujourd&#039;hui, la statue en l&#039;honneur du Guide Supr&ecirc;me Cawl venait d&#039;&ecirc;tre termin&eacute;e mais n&#039;avait pas encore &eacute;t&eacute; r&eacute;v&eacute;l&eacute;e au public, une allocution d&#039;un soi-disant haut repr&eacute;sentant devait d&#039;abord &ecirc;tre faite. Alors, aux alentours de 16H, une immense foule s&#039;&eacute;tait amass&eacute;e devant la statue, apr&egrave;s quelques minutes d&#039;attentes, un homme s&#039;avan&ccedil;a sur une plateforme pr&eacute;vu pour cela. C&#039;&eacute;tait le m&ecirc;me que celui qui avait &eacute;t&eacute; escort&eacute; par la garde imp&eacute;riale &agrave; la sortie du premier vaisseau de secours arriv&eacute; sur Helmgart. La sc&egrave;ne &eacute;tait enregistr&eacute;e et diffus&eacute;e &agrave; travers tout le territoire gungnirien.&nbsp;Le jeune homme&nbsp;regarda la foule avant de d&eacute;clarer:</font></div><div class="post_line"><font color="#005dc2">&quot;Salutations &agrave; toutes et tous,</font></div><div class="post_line"><font color="#005dc2">Vous ne me connaissez certainement pas alors je vais me pr&eacute;senter. Je suis Charles Cawl&quot;&nbsp;</font><em><font color="#ffffff">il laissa quelques instants avant de reprendre</font></em><font color="#005dc2">&nbsp;&quot;Et oui, je suis le fils du Guide Supr&ecirc;me Cawl&quot;&nbsp;</font><font color="#ffffff"><em>il baissa le tissus qui cachait la statue en pronon&ccedil;ant ces quelques mots</em>.</font><font color="#005dc2">&nbsp;La ressemblance entre la statue et l&#039;orateur &eacute;tait presque parfaite, c&#039;&eacute;tait bien son fils, cela ne faisait aucun doute.</font></div><div class="post_line"></div><div class="post_line"><font color="#005dc2">&quot;Je me tiens ici pour inaugurer cette magnifique statue mais pas seulement. Comme vous le savez, la situation en secteur 1 est catastrophique, certains de nos concitoyens sont l&acirc;chement massacr&eacute;s par les soldats d&#039;une&nbsp;Commandante immorale. Cependant rien n&#039;est finis, la lutte commence, m&ecirc;me si les Commandants ne nous aident pas pour une raison qui m&#039;&eacute;chappe, nous tiendrons! Cette plan&egrave;te sera s&eacute;curis&eacute;e petit &agrave; petit, elle va devoir accueillir de plus en plus de r&eacute;fugi&eacute;s du secteur 1. Nous allons d&eacute;cupler notre force militaire d&#039;ici peu, d&#039;ailleurs si certains d&#039;entre vous ont les moyens financiers pour aider &agrave; la r&eacute;sistance, adressez-vous au poste de commandement le plus proche.&nbsp;</font></div><div class="post_line"><font color="#005dc2">Mon p&egrave;re a d&ucirc; rester en secteur 1, il refusait de partir tant que toute la population n&#039;&eacute;tait pas &eacute;vacu&eacute;e, les forces militaires d&#039;Ellyria occupent la majeure partie su syst&egrave;me capital, ses hommes n&#039;h&eacute;sitent pas &agrave; abattre les navettes de secours remplies de civils, nous avons donc &eacute;tabli un syst&egrave;me pour limiter les pertes tout en &eacute;vacuant les plan&egrave;tes mais celui-ci est confidentiel alors je vais m&#039;arr&ecirc;ter l&agrave;.&nbsp;</font></div><div class="post_line"><font color="#005dc2">Pour seules nouvelles de mon p&egrave;re et des derniers rest&eacute;s dans le syst&egrave;me capital, nous n&#039;avons que des morceaux d&#039;hologrammes presque incompr&eacute;hensibles, nos communications sont brouill&eacute;es mais <strong>l&#039;&eacute;vacuation continue et elle continuera tant que tous les n&ocirc;tres ne seront pas sauv&eacute;s!&quot;</strong></font></div><div class="post_line"><font color="#005dc2">&quot;Mon p&egrave;re .....&quot;&nbsp;</font><em><font color="#ffffff">tout &agrave; coup, ses yeux se fig&egrave;rent, une alarme se d&eacute;clencha, tous les militaires se mirent &agrave; courir en direction de leurs positions de d&eacute;fense.</font></em>&nbsp;&quot;<font color="#005dc2">Rentrez tous chez vous, des bunkers sont mis &agrave; mis &agrave; votre disposition&nbsp;si vous n&#039;en avez pas de priv&eacute;&quot;&nbsp;</font><em><font color="#ffffff">hurla un g&eacute;n&eacute;ral pr&eacute;sent pr&egrave;s de Charles. </font></em><em><font color="#ffffff">Puis la garde imp&eacute;riale escorta Charles jusqu&#039;au bunker super s&eacute;curis&eacute; du palais r&eacute;sidentiel. L&agrave; les militaires lui expliqu&egrave;rent qu&#039;un immense convoi constitu&eacute; principalement de fr&eacute;gates venait d&#039;&ecirc;tre d&eacute;tect&eacute;. Les soldats lanc&egrave;rent donc un appel radio</font></em><em><font color="#005dc2">&nbsp; &quot;</font></em><font color="#005dc2">Ici le poste d&#039;atterrissage de la plan&egrave;te que vous approchez, veuillez d&eacute;cliner votre identit&eacute; et vos intentions sinon nous seront forc&eacute; de faire feu sur vos vaisseaux&quot;. Tous ceux pr&eacute;sents dans le bunker attendaient impatiemment la r&eacute;ponse, leur heure &eacute;tait peut-&ecirc;tre sonn&eacute;e, Ellyria avait-elle&nbsp;d&eacute;couvert la direction des convois de secours? Tant&nbsp;de questions&nbsp;fusaient dans leur t&ecirc;te mais seule la r&eacute;ponse attendue pourrait les soulager.</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior%E2%80%99back">Cdt. Denior&rsquo;back</a><br>Prestige de chroniqueur&nbsp;: 26<br /><br /><img src="/avatars/11390.jpg" style="width:128px;height:58px" alt="Avatar" /><br />13/12/1021 ETU 05:41</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal291124')">Détails</a> <a href="javascript:warnpost(291124)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal291124" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=291124',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify">&laquo;&nbsp; Votre saintet&eacute;, nous sommes en approche et les autorit&eacute;s locales nous somment de nous identifier. Elles semblent dans un &eacute;tat de panique extr&ecirc;me.</div></div><div class="post_line"></div><div class="post_line">Stoppez la flotte et assurez les de nos intentions. Et surtout pr&eacute;venez les de ma prise de parole &agrave; destination de leur repr&eacute;sentant supr&ecirc;me dans quelques instants.&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line">Denior r&eacute;fl&eacute;chissait depuis de longues minutes sur la meilleure fa&ccedil;on d&rsquo;&ecirc;tre audible aupr&egrave;s de la population comme du jeune Charles qu&rsquo;il venait rencontrer. Devait il changer d&rsquo;apparence pour para&icirc;tre plus affable. L&rsquo;aspect actuel de Denior lui plaisait toujours mais il pouvait appara&icirc;tre un peu inqui&eacute;tant, avec un c&ocirc;t&eacute; un peu mafieux, disons Corleone&hellip; et puis cela influe sur son caract&egrave;re d&eacute;j&agrave; assez impulsif. Pourquoi ne pas reprendre l&rsquo;aspect du vieux Janus Paolo sans aller jusqu&rsquo;&agrave; reprendre l&rsquo;image du martyr avec la d&eacute;g&eacute;n&eacute;rescence physique li&eacute;e &agrave; Parkinson. &Ccedil;a rassure un temps mais pour un peuple qui craint d&rsquo;&ecirc;tre &eacute;radiqu&eacute;, on fait mieux comme protecteur. Et puis de toute fa&ccedil;on, on n&rsquo;a plus le temps, va pour le mafieux. Il inspirera la force et le courage. Et puis avec l&rsquo;habit pontifical, &ccedil;a rassurera. </div><div class="post_line">Denior posa sa calotte sur sa t&ecirc;te, repla&ccedil;a son collier portant La Croix de son fr&egrave;re a&icirc;n&eacute; et se dirigea vers la salle de conf&eacute;rence. Il s&rsquo;assit, pris une longue inspiration puis appuya sur le bouton du micro:</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">&laquo;&nbsp; Je suis sa Saintet&eacute; Denior, Pape de la Sainte &Eacute;glise Catholique,&nbsp; apostolique et romaine. Le seigneur, notre Dieu, a guid&eacute; mes pas vers vous pour vous apporter la Paix et la s&eacute;curit&eacute;. Nos nonciatures sont en contact permanent avec votre plan&egrave;te m&egrave;re et votre dirigeant supr&ecirc;me et c&rsquo;est de concert avec lui que nous allons assurer votre &eacute;valuation vers une plan&egrave;te pleinement s&eacute;curis&eacute;e. Je vais prendre place dans quelques instants dans une navette de liaison et je viendrai rencontrer le prince Charles afin de les expliquer les modalit&eacute;s de cette op&eacute;ration de m&ecirc;me que je lui d&eacute;livrerai un faisceau de messages politiques et personnels majeurs. N&rsquo;ayez pas peur, le seigneur vous accompagne et vous aime&nbsp;&raquo;.</div><div class="post_line"></div><div class="post_line">Denior se dirigea d&rsquo;un pas ferme vers la petite navette de liaison du peacefigther one et en quelques instants, il &eacute;tait en direction du spatioport principal. Si les autochtones avaient eu la volont&eacute; de le d&eacute;truire, un seul tir ionique aurait suffit. Denior en acceptait le risque. Au pire, son P&egrave;re le r&eacute;incarnerait une fois de plus&hellip;</div><div class="post_line"></div><div class="post_line">Il arriva sans incident et spontan&eacute;ment, retrouvant les r&eacute;flexes de Janus Paolo , il s&rsquo;agenouilla et baisa le sol, &agrave; la surprise &eacute;vidente de la petite d&eacute;l&eacute;gation officielle qui &eacute;tait venue l&rsquo;accueillir. Parmi elle, un cardinal visiblement empli d&rsquo;&eacute;motion de recevoir ce Pape aussi lointain que mythique dont il ne savait conna&icirc;tre les r&eacute;actions ou les d&eacute;cisions. Denior riait int&eacute;rieurement de cette g&ecirc;ne enfantine. Son P&egrave;re ne serait sans doute pas d&rsquo;accord de cette inclinaison moqueuse et de fait il se reprit.</div><div class="post_line"></div><div class="post_line">&laquo;&nbsp; Mon fils, je suis heureux de te rencontrer. Tes pri&egrave;res n&rsquo;ont pas &eacute;t&eacute; vaines, ton Pape est arriv&eacute; et ton peuple sera sauv&eacute;. Mais beaucoup de choses restent encore &agrave; faire et je dois rencontrer imm&eacute;diatement ton souverain, enfin le prince Charles. </div><div class="post_line">Votre Saintet&eacute;, les dirigeants militaires qui l&rsquo;entourent m&rsquo;envoient pour mieux mesurer vos intentions. Le jeune prince est encore bien novice mais il est notre dernier espoir.</div><div class="post_line">Non, Notre Seigneur est le dernier espoir. Charles est l&rsquo;avenir et il est pour l&rsquo;instant bien sombre. Ellyria a pris votre plan&egrave;te m&egrave;re et conna&icirc;t d&eacute;sormais votre refuge. Les derniers transports arrivent mais je les ai d&rsquo;ores et d&eacute;j&agrave; d&eacute;rout&eacute; vers Le Havre o&ugrave; votre s&eacute;curit&eacute; sera v&eacute;ritablement assur&eacute;e.</div><div class="post_line">Suivez moi votre Saintet&eacute;. Je suis d&eacute;sol&eacute;, il vous faudra marcher&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line">Prenait il Denior pour un vieillard alors qu&rsquo;il &eacute;tait visiblement plus us&eacute; par les ann&eacute;es humaines que Denior dans cette nouvelle vie? Mais il avait raison, il y avait une succession de couloirs sans fin, tous aussi impersonnels les uns que les autres. Cela faisait longtemps que Denior n&rsquo;avait pas fait de sport, il cachait autant qu&rsquo;il le pouvait son agacement mais enfin au bout, une lumi&egrave;re diff&eacute;rente, une grande salle d&rsquo;o&ugrave; &eacute;mergeait un brouhaha confus. Denior pressa le pas et fit irruption avant que les gardes imp&eacute;riaux ne puissent d&eacute;gainer. Le brouhaha cessa imm&eacute;diatement pour laisser place &agrave; la stup&eacute;faction. </div><div class="post_line"></div><div class="post_line">&laquo;&nbsp; Bonjour, mes enfants. Et merci de votre accueil. Je vois que vous avez commenc&eacute; les op&eacute;rations. Il est temps de passer &agrave; la phase sup&eacute;rieure. Et pour cette raison, je prends le commandement. Quand &agrave; toi, Charles, prends place &agrave; mes c&ocirc;t&eacute;s. A derni&egrave;re chose, efficacit&eacute; militaire n&rsquo;est pas incompatible avec confort. Alors permettez moi d&rsquo;am&eacute;liorer un peu votre environnement&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line">Denior concentra son &eacute;nergie et en quelques secondes, la salle pris bient&ocirc;t l&rsquo;apparence du salon de la guerre sur Versailles. Son auditoire resta sans voix et r&eacute;action. Bient&ocirc;t, un jeune homme pris place &agrave; ses c&ocirc;t&eacute;s </div><div class="post_line"></div><div class="post_line">&laquo;&nbsp;- Bienvenu, Charles&nbsp;&raquo;</div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Louis+Cawl">Cdt. Louis Cawl</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/11375.jpg" style="width:128px;height:95px" alt="Avatar" /><br />14/12/1021 ETU 02:12<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal291151')">Détails</a> <a href="javascript:warnpost(291151)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal291151" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=291151',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#005dc2">&quot;Merci votre Saintet&eacute; pour cette transformation de la salle, elle en avait bien besoin.&quot;</font> D&eacute;clara Charles stup&eacute;fi&eacute; avant d&#039;encha&icirc;ner <font color="#005dc2">&quot;Suivez moi dans la salle d&#039;&agrave; c&ocirc;t&eacute;, nous avons beaucoup de choses &agrave; nous dire et c&#039;est l&agrave; bas que les sujets les plus confidentiels de ce moment sont d&eacute;battus&quot;.</font></div><div class="post_line">Pendant toute la nuit, personne ne sortit de la salle et &agrave; l&#039;aube, un messager &eacute;puis&eacute; du trajet arriva en courant et hurlait&nbsp;<font color="#005dc2"><strong>&quot;Vite, vite, d&eacute;gagez le passage, j&#039;ai un message capital pour le Chef!!!&quot;</strong></font>&nbsp;</div><div class="post_line">Toutes les personnes pr&eacute;sentes lui laiss&egrave;rent le passage, il arriva devant la porte de la salle confidentielle et demanda urgemment &agrave; voir le jeune h&eacute;ritier, les gardes le laiss&egrave;rent entrer, il donna la lettre &agrave; Charles et partit aussi rapidement qu&#039;il &eacute;tait arriv&eacute;, sans aucune explication.&nbsp;</div><div class="post_line">Charles ouvrit l&#039;enveloppe, une lettre s&#039;y trouvait, il entama la lecture et apr&egrave;s une dizaine de secondes, des larmes commenc&egrave;rent &agrave; tomber de ses yeux bleus scintillants. Un g&eacute;n&eacute;ral lui conseilla de s&#039;asseoir en vu de son &eacute;tat, ce qu&#039;il fit, aucune mot ne sortait de sa bouche. Tous le bombardaient de question, Denior, les G&eacute;n&eacute;raux, les proches, tous mais Charles ne pronon&ccedil;ait toujours aucun mot, aucune syllabe, aucun son, la lettre n&#039;avait pas boug&eacute; de ses mains quand tout &agrave; coup, il se leva promptement et d&eacute;clara <strong><font color="#005dc2"><font size="3">&quot;Stop, cela suffit, trop de sang &agrave; d&eacute;j&agrave; couler!!!&quot;</font></font></strong>.&nbsp;</div><div class="post_line">Suite &agrave; ces quelques mots il se dirigea vers la sortie du bunker sans mot apr&egrave;s avoir laiss&eacute; la lettre sur la table de commandement. Tous ceux pr&eacute;sents dans la salle se jet&egrave;rent alors sur la lettre pour la lire, des larmes coul&egrave;rent alors sur leur visage, une&nbsp; nouvelle tragique venait d&#039;arriver du secteur 1, une tr&egrave;s triste nouvelle.</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16156&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16156" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16156" name="d_reply_16156" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16156');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16156'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Nouvelle vie</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

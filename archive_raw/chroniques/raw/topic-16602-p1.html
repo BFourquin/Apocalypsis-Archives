@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16602 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Apocalypse de la Galaxie M&eacute;lodie</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Apocalypse de la Galaxie M&eacute;lodie</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />01/04/1023 ETU 06:27</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal296728')">Détails</a> <a href="javascript:warnpost(296728)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296728" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296728',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><font color="#68c4e8"><font size="4"><u>Alph&eacute;ras : J-180</u></font></font></strong></div><div class="post_line"></div><div class="post_line">Les scientifiques, &agrave; la surprise des populations, venaient&nbsp;d&#039;annoncer&nbsp;une terrible nouvelle;&nbsp; la fin probable de la&nbsp; <strong>Galaxie MELODIE</strong>.&nbsp;</div><div class="post_line"></div><div class="post_line">Quelques jours plus tard, les dirigeants en urgence se r&eacute;unissaient et prenaient une&nbsp;d&eacute;cision &agrave; l&rsquo;unanimit&eacute; : l&rsquo;exode de tous les peuples de&nbsp;la civilisation <strong><font size="3">Alph&eacute;rasienne</font></strong>.&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="justify">Le secteur 8 et ces plan&egrave;tes seraient probablement parmi les premiers&nbsp;touch&eacute;s, aussi fallait-il arriver &agrave; s&rsquo;&eacute;loigner de celui-ci. La solution envisag&eacute;e, partir et essayer de s&rsquo;&eacute;carter au maximum des zones les plus touch&eacute;es, puis poursuivre la route avec l&rsquo;espoir de trouver un refuge capable de les accueillir au moins temporairement. Bien sur, ne viendrait seulement qui le souhaitait&hellip; </div><div class="post_line"></div><div class="post_line">Dans les quatre syst&egrave;mes o&ugrave; la civilisation est pr&eacute;sente, tous les vaisseaux avaient &eacute;t&eacute; r&eacute;quisitionn&eacute;s, &agrave; la fois les transports pour la survie&nbsp;de la population,&nbsp;mais aussi les flottes militaires pour prot&eacute;ger ceux-ci. Au plus vite, tous s&rsquo;achemin&egrave;rent vers un&nbsp;point de ralliement dans le syst&egrave;me 15 &agrave; une demi-ann&eacute;e lumi&egrave;re d&rsquo;<strong><font size="3">Alph&eacute;ras,</font><font size="2"> la plan&egrave;te Capitale.</font></strong>&nbsp;</div><div class="post_line"></div><div class="post_line">C&rsquo;est depuis ce point que des &eacute;quipes coordonnent l&rsquo;accueil et le stationnement des vaisseaux. Le travail est gigantesque et la passerelle de Commandement du vaisseau Amiral <strong><font size="2">Galactica</font></strong> bien trop petite pour accueillir le <strong>COCDS</strong> (Centre Op&eacute;rationnel de Contr&ocirc;le et D&eacute;tection Spatiale) d&eacute;m&eacute;nag&eacute; en urgence de la plan&egrave;te Capitale. Une immense pi&egrave;ce du vaisseau fut donc r&eacute;quisitionn&eacute;e, elle contiendra&nbsp;le Centre. D&rsquo;un commun accord, les dirigeants si&eacute;geant au Conseil des Plan&egrave;tes avaient nomm&eacute; le Commandeur Thory&nbsp;&agrave; la t&ecirc;te de l&rsquo;immense flotte charg&eacute;e de l&#039;&eacute;vacuation.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />01/04/1023 ETU 07:01</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal296730')">Détails</a> <a href="javascript:warnpost(296730)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296730" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296730',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8"><font size="4"><strong><u>Le Galactica : J-60</u></strong></font></font></div><div class="post_line"></div><div class="post_line"><div align="justify">Depuis la passerelle de Commandement du <strong>GALACTICA</strong> &raquo;, Allan Thory surveillait les &eacute;volutions des vaisseaux spatiaux pr&egrave;s de la plan&egrave;te <strong>Alph&eacute;ras</strong>, les journ&eacute;es s&rsquo;&eacute;grenaient &agrave; une vitesse affolante. Allan ne se souvenait m&ecirc;me plus de sa derni&egrave;re nuit de sommeil et une question tournait en boucle dans sa t&ecirc;te : Partir, oui mais pour aller o&ugrave; ? </div></div><div class="post_line"><div align="justify"></div></div><div class="post_line">Un jeune Lieutenant assis &agrave; la console TransCom se retourna vers lui.</div><div class="post_line"><font color="#f551ff">- Commandeur, L&rsquo;amiral Rieekan vous demande au COCDS.</font></div><div class="post_line"><font color="#ffff00">- Merci Lieutenant, dite lui que j&rsquo;arrive&hellip;</font></div><div class="post_line"><font color="#f551ff">- A vos ordres Commandeur.</font></div><div class="post_line"></div><div class="post_line">Allan quitta du regard le vaste panorama et se dirigea rapidement vers la sortie.</div><div class="post_line"></div><div class="post_line">Quelques coursives &agrave; longer et plusieurs ascenseurs plus tard, il entre dans le Centre et se dirige vers la console de Commandement o&ugrave; se tiennent l&rsquo;Amiral et une personne f&eacute;minine inconnue de lui.</div><div class="post_line"><font color="#ffc95f">- Mes respects Commandeur,</font></div><div class="post_line"><font color="#ffff00">- Bonjour Amiral, </font></div><div class="post_line"></div><div class="post_line">Le militaire se retourna vers la jeune femme &agrave; cot&eacute; de lui.</div><div class="post_line"><font color="#ffc95f">- Commandeur, je vous pr&eacute;sente la princesse Tsireya Myriam de la plan&egrave;te Piscis Meridiani. La princesse est la fille ain&eacute;e du Roi L&eacute;iis 1er r&eacute;gnant sur la plan&egrave;te.</font></div><div class="post_line"></div><div class="post_line">Allan s&rsquo;inclina l&eacute;g&egrave;rement, un peu agac&eacute; en se demandant qui pouvait bien avoir autoris&eacute; une civile &agrave; p&eacute;n&eacute;trer dans le vaisseau. Il avait autre chose &agrave; faire que des courbettes &agrave; une aristocrate m&ecirc;me si, il devait bien le reconna&icirc;tre, elle &eacute;tait fort charmante. </div><div class="post_line"><font color="#ffff00">- Mes respects Princesse et bienvenue sur le vaisseau Amiral.</font> R&eacute;pondit Allan ne pensant pas un mot de ce qu&rsquo;il disait. Puis se retournant vers le militaire, </div><div class="post_line"><font color="#ffff00">- vous vouliez me voir Amiral ?</font></div><div class="post_line"><font color="#ffc95f">- Oui Commandeur et c&rsquo;est li&eacute; &agrave; la pr&eacute;sence de la Princesse. Celle-ci est aussi une &eacute;minente experte en Astronomie et en particulier dans l&rsquo;&eacute;tude&nbsp; des portes des &eacute;toiles. Un groupe de scientifique dont elle fait partie a travaill&eacute; d&rsquo;arrache pied sur l&rsquo;existence de ces portes. Sortir de notre secteur&nbsp; avec nos connaissances actuelles, nous le savons, est pratiquement illusoire. Beaucoup de nos vaisseaux d&rsquo;exploration en ont fait l&rsquo;exp&eacute;rience. Hors depuis quelques mois, nous avons acc&egrave;s &agrave; un tout nouveau prototype de communication galactique. Mais je vous laisse nous expliquer Princesse.</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- Merci Amiral, effectivement, il y a quelques mois &agrave; l&rsquo;aide de ce nouveau type de transmission, nous sommes entr&eacute;s en contact avec une civilisation d&rsquo;un autre secteur,&nbsp; l&rsquo;Association Solemnio-Sgartienne. Celle- ci beaucoup plus &eacute;volu&eacute;e que nous a bien voulu nous expliquer le principe des portes des &eacute;toiles. Elle nous a certifi&eacute;e qu&rsquo;il en existe une &agrave; proximit&eacute; du syst&egrave;me 0 de notre secteur, mais seules les civilisations de celui-ci peuvent la d&eacute;verrouiller et permettre ainsi des sauts rapides vers d&rsquo;autres endroits de la Galaxie. Cette civilisation nous a aussi affirm&eacute; qu&rsquo;il existe des tunnels de transfert hors du temps permettant de voyager &agrave; une vitesse inimaginable et surtout de transiter d&rsquo;une galaxie &agrave; une autre&hellip;&nbsp;</font></div><div class="post_line"></div><div class="post_line">Allan lui coupa la parole.</div><div class="post_line"><font color="#ffff00">- Mon dieu, ne seriez vous pas en train de me dire que le conseil rassemble cette immense armada et pr&eacute;pare l&rsquo;exode de milliards de personnes sur les hypoth&eacute;tiques affirmations de ce peuple inconnu !</font></div><div class="post_line"></div><div class="post_line">Myriam p&acirc;lit, serra les dents et reprit la parole d&rsquo;une petite voix. </div><div class="post_line"><font color="#72ff84">- Rien n&rsquo;est effectivement certifi&eacute; pour l&rsquo;instant, mais depuis longtemps nous soup&ccedil;onnions leur exist&hellip;</font></div><div class="post_line"><font color="#ffff00">- vous soup&ccedil;onniez et &agrave; partir de cela nous d&eacute;m&eacute;nageons, nous leur donnons l&rsquo;espoir d&rsquo;un avenir probablement totalement incertain pour ne pas dire plus&hellip;&nbsp;</font></div><div class="post_line"></div><div class="post_line">Myriam reprit cette fois plus fort.</div><div class="post_line"><font color="#ffff00">- Vous croyez quoi, que nous n&rsquo;en sommes pas conscient ?&nbsp;</font></div><div class="post_line"></div><div class="post_line">L&rsquo;amiral reprit la parole&hellip;</div><div class="post_line"><font color="#ffc95f">- Commandeur, s&rsquo;il vous plait, &eacute;coutez la jusqu&rsquo;au bout !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Allan sur des charbons ardents fit un effort sur lui et lui dit.</div><div class="post_line"><font color="#ffff00">- Ok, Princesse je veux bien reconna&icirc;tre votre bonne foi, qu&rsquo;attendez-vous de moi ?</font></div><div class="post_line"><font color="#72ff84">- J&rsquo;ai pr&eacute;sent&eacute; nos travaux au Conseil des plan&egrave;tes, il les a pris en compte et m&rsquo;a demand&eacute; de vous les soumettre &eacute;galement. Il faut que nous passions par cette porte du syst&egrave;me 0 pour sortir rapidement de notre secteur. Et pour cela, il faut que la civilisation <strong>Drask</strong> ouvre la porte. J&rsquo;ai appris que vous aviez des contacts avec leur responsable.</font></div><div class="post_line"><font color="#ffff00">- Je veux bien essayer de leur demander, mais comme il nous reste que peu de temps.&nbsp;</font></div><div class="post_line"></div><div class="post_line">Se tournant vers le militaire. </div><div class="post_line"><font color="#ffff00">- Il va falloir commencer &agrave; s&rsquo;acheminer vers le syst&egrave;me 0 au plus vite. Pourriez vous voir o&ugrave; en sont les vaisseaux m&egrave;re de transport de nos ressortissants. Nous pourrions commencer &agrave; faire partir ceux qui sont d&eacute;j&agrave; pr&ecirc;ts. Les autres suivront dans un deuxi&egrave;me temps. Pr&eacute;voyons de diviser les flottes de combat. Restez-vous sur notre vaisseau Princesse ?</font></div><div class="post_line"><font color="#72ff84">- Non Commandeur, je rejoints l&rsquo;INTREPIDE, le vaisseau Amiral de mon p&egrave;re. Nous vous attendrons&nbsp; au abords de la porte.</font></div><div class="post_line"><font color="#ffff00">- A bient&ocirc;t donc.&nbsp;</font></div><div class="post_line"></div><div class="post_line">Termina Allan, bizarrement il regrettait presque que la Princesse ne reste pas sur le vaisseau. Un petit signe vers l&#039;Amiral et il&nbsp;ressortit de la pi&egrave;ce.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />07/04/1023 ETU 21:29</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal296745')">Détails</a> <a href="javascript:warnpost(296745)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296745" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296745',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Depuis son vaisseau Amiral, Le Commandeur qui suivait&nbsp;sur un &eacute;cran d&eacute;di&eacute; au suivi&nbsp;des d&eacute;lib&eacute;rations de l&#039;Assembl&eacute;e Sectorielle, poussa un soupir. Il n&#039;y croyait qu&#039;&agrave; moiti&eacute; mais l&#039;Assembl&eacute;e avait&nbsp;acquiesc&eacute; &agrave; sa demande et il devait un grand merci au P&egrave;re Supr&ecirc;me Zark et &agrave; son peuple.</div><div class="post_line">Il se retourna vers l&#039;op&eacute;rateur des communications.</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- Lieutenant, diffusez ce message &agrave; tous les amiraux en charge des flottes en attente de la grande migration.</font></div><div class="post_line"><font color="#72ff84">- Je vous &eacute;coute Commandeur !</font></div><div class="post_line"><font color="#ffff00">- Message du Commandeur. Une porte des &eacute;toiles permettant de sortir rapidement de notre secteur va bient&ocirc;t &ecirc;tre ouverte. Elle se trouve dans le syst&egrave;me 0, les coordonn&eacute;es du point de rassemblement avant le saut&nbsp;vont vous &ecirc;tre transmise,&nbsp;commencez&nbsp;&agrave; vous diriger vers celle- ci. Termin&eacute;.</font></div><div class="post_line"><font color="#ffff00">- Bien Commandeur, c&#039;est en cours de diffusion.</font></div><div class="post_line">Voil&agrave;, c&#039;est parti, pensa Allan en se dirigeant vers son bureau</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />18/04/1023 ETU 20:33</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal296794')">Détails</a> <a href="javascript:warnpost(296794)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296794" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296794',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Une journ&eacute;e avant l&#039;arriv&eacute;e dans le syst&egrave;me 0 pr&eacute;s de la porte des &eacute;toiles, vaisseau Amiral <strong>GALACTICA</strong>, passerelle de Commandement.&nbsp;</div><div class="post_line"></div><div class="post_line">Capitaine, envoyez rapidement ce message &agrave; tous les vaisseaux en migration.&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">- A tous les vaisseaux op&eacute;ration APO, d</font><font color="#ffff00">&egrave;s l&#039;arriv&eacute;e pr&eacute;s de la porte du syst&egrave;me 0 du secteur</font><font color="#ffff00">, &quot;CODER</font><font color="#ffff00">&quot;&nbsp;</font><em><font color="#bbbbbb">coordonn&eacute;e : 2832.852.456 de&nbsp;SOP1</font></em><font color="#ffff00">&nbsp;&quot;FIN CODAGE&quot;. Engagez vous direction &quot;CODER&quot; </font><font color="#bbbbbb"><em>coordonn&eacute;e : 568.4263.56 de G8</em><em>S18P3</em></font><font color="#ffff00"> &quot;FIN CODAGE&quot;, point d&#039;entr&eacute;e du tunnel inter galaxie. Ne perdez pas de temps, des ogives <strong>ADM</strong> sont en direction de notre Secteur.</font><font color="#ffff00">&nbsp;D&eacute;s votre arriv&eacute;e &agrave; cet&nbsp;endroit, du fait des probables catastrophes qui seront en cours, placer tout la population non n&eacute;cessaire &agrave; la navigation en hibernation, des robots prendront le relais et prenez le tunnel sans attendre direction &quot;CODAGE&quot; </font><font color="#bbbbbb">456.123.25 de G20S1</font><font color="#ffff00"> &quot;FIN CODAGE&quot;. Bon courage &agrave; tous.&nbsp;Commandeur Thory.</font><font color="#ffff00">&nbsp;</font><font color="#ffff00">Fin du message.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Voil&agrave; se dit Allan, que la force&nbsp;soit avec nous...</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />19/04/1023 ETU 06:28</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal296830')">Détails</a> <a href="javascript:warnpost(296830)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296830" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296830',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8"><font size="3"><u>253 ann&eacute;es apr&egrave;s l&#039;apocalypse.</u></font></font></div><div class="post_line"></div><div class="post_line">Dans l&#039;immense &eacute;tendue de l&#039;espace, un vaisseau se mat&eacute;rialisa. De loin, cela pourrait &ecirc;tre un tr&egrave;s gros cylindre lisse, de pr&eacute;s sa surface semble rugueuse habill&eacute;e&nbsp;de pustules, pav&eacute;s, de paraboles et antennes.&nbsp;</div><div class="post_line"></div><div class="post_line">A l&#039;int&eacute;rieur,&nbsp;un&nbsp;droide de forme partiellement humano&iuml;de&nbsp;annon&ccedil;a dans l&#039;interphone.&nbsp;</div><div class="post_line"><font color="#9df9ff">- Message&nbsp;&nbsp;du droide Colonel D2PC3 &agrave;&nbsp;tout le personnel.&nbsp;Nous venons de sortir&nbsp;du tunnel Espace-temps. Nous sommes&nbsp;en approche d&#039;un&nbsp;syst&egrave;me inconnu dans la suppos&eacute;e Galaxie 20.&nbsp;</font></div><div class="post_line"></div><div class="post_line">Puis se tournant vers son coll&egrave;gue au Transcom.</div><div class="post_line"><font color="#9df9ff">- Envoyez notre code d&#039;identification&nbsp;&nbsp;pour les autres&nbsp;vaisseaux, et r&eacute;p&eacute;tez le toutes les deux&nbsp;heures. Et contacter le vaisseau Amiral.</font></div><div class="post_line"></div><div class="post_line">Les minutes s&#039;&eacute;gren&egrave;rent en silence dans le poste de Commandement&nbsp;dans lequel s&#039;affairaient chacun &agrave; son poste une vingtaine de droides. Celui pr&eacute;sent devant la console Radar/Transcom prit la parole.&nbsp;</div><div class="post_line"><font color="#1e92f7">- Colonel, le GALACTICA ne r&eacute;pond pas.</font></div><div class="post_line"><font color="#9df9ff">- Avez vous des r&eacute;ponses d&#039;autres vaisseaux ?</font></div><div class="post_line"><font color="#1e92f7">- Oui, au total 51 vaisseaux ruches d&#039;hibernation comme le notre, 85 escorteurs Corvettes, 10 vaisseaux nefs contenant des chasseurs et des navettes.&nbsp;</font></div><div class="post_line"><font color="#9df9ff">- Continuez &agrave; essayer de&nbsp;contacter le GALATICA et dites moi quel est le plus grad&eacute; parmi le personnel qui n&#039;est pas en hibernation sur l&#039;ensemble de tous les b&acirc;timents&nbsp;et o&ugrave; se trouve-t-il ?</font></div><div class="post_line"></div><div class="post_line">De nouveau se fut le silence l&eacute;g&egrave;rement couvert par le ronronnement sourd des appareils de climatisation. Quelques dizaines de minutes plus tard.</div><div class="post_line"><font color="#1e92f7">- Toujours rien Colonel et concernant le plus grad&eacute;, il semble que c&#039;est vous !</font></div><div class="post_line"></div><div class="post_line">Un droide ressent il des &eacute;motions ?&nbsp;En tout cas le Colonel&nbsp;D2PC3 ne pouvait transpirer mais ces circuits par contre fonctionnaient &agrave; leur possibilit&eacute; maximum. Il marqua une pause avant de r&eacute;pondre,&nbsp;se retourna vers sa droite et s&#039;adressa au droide charg&eacute; du contr&ocirc;le des syst&egrave;mes d&#039;hibernation.</div><div class="post_line"><font color="#9df9ff">- Capitaine SYSP3O, veillez r&eacute;aliser la connexion de tous les syst&egrave;mes d&#039;hibernation des ruches et trouvez moi l&#039;humain le plus grad&eacute; ainsi que tous ceux appartenant au conseil des 100 et les&nbsp;suppl&eacute;ants. Lorsque vous l&#039;aurez, donnez l&#039;ordre de les r&eacute;veiller.</font></div><div class="post_line"></div><div class="post_line">Puis se tournant de nouveau vers le Radar/TransCom</div><div class="post_line"><font color="#9df9ff">- Lieutenant, faites une communication &agrave; la flotte, notre vaisseau, le&nbsp;TPRUCHE1003 devient temporairement vaisseau Amiral. Faites&nbsp;aussi une &eacute;tude des plan&egrave;tes de ce syst&egrave;me&nbsp;potentiellement capables d&#039;accueillir nos populations et envoyer des navettes d&#039;exploration pour une confirmation.</font></div><div class="post_line"></div><div class="post_line">Voil&agrave;, l&#039;urgence est en cours,&nbsp;se dit-il !</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />25/04/1023 ETU 21:21</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal297104')">Détails</a> <a href="javascript:warnpost(297104)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal297104" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=297104',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><strong><u><font color="#44b8ff"><font size="3">Arriv&eacute;e</font></font></u></strong></div><div class="post_line"></div><div class="post_line">De sa passerelle de commandement, D2PC3 observe l&#039;arriv&eacute;e de la navette aux abords du grand vaisseau. La porte du Hall A sur la droite du vaisseau est ouverte et&nbsp;la navette commence lentement &agrave; y p&eacute;n&eacute;trer. La rel&egrave;ve arrive, se dit le dro&iuml;de.</div><div class="post_line">Trente minutes plus tard, un groupe se pr&eacute;sente &agrave; l&#039;entr&eacute;e de la pi&egrave;ce. Le garde dro&iuml;de &agrave; l&#039;entr&eacute;e, au garde &agrave; vous, demande d&#039;une voix forte. </div><div class="post_line"><font color="#ffa339">- Permission d&#039;acc&eacute;der &agrave; la passerelle pour groupe personnel de la navette X56Z.</font></div><div class="post_line"></div><div class="post_line">Le colonel se retourne vers eux et r&eacute;pond.</div><div class="post_line"><font color="#cf2be7">- Permission accord&eacute;e, Sergent, laissez les entrer.</font></div><div class="post_line"></div><div class="post_line">Le groupe s&#039;avance,&nbsp;ce sont essentiellement des humano&iuml;des, certains en tenue militaire. Les autres sont &agrave; priori des personnes civiles. Parmi eux, un militaire l&#039;allure alti&egrave;re sort du groupe et s&#039;approche.</div><div class="post_line"><font color="#72ff84">- Bonjour Colonel, je suis l&#039;Amiral Helmt Hector, Commandant la flotte des nefs, je suis originaire&nbsp;de la plan&egrave;te Piscis Meridiani. Plan&egrave;te probablement disparue &agrave; l&#039;heure o&ugrave; je vous parle. </font></div><div class="post_line"><font color="#cf2be7">- Mes respects Amiral. Votre sortie d&#039;hibernation s&#039;est elle bien pass&eacute;e ? </font></div><div class="post_line"><font color="#72ff84">- J&#039;ai connu de meilleurs moments Colonel mais je suis en vie, alors ! Mais allons au fait, pour quoi me r&eacute;veiller maintenant? </font></div><div class="post_line"><font color="#72ff84">- Vous les dro&iuml;des ne deviez vous pas r&eacute;veiller l&#039;&eacute;quipe dirigeante pour les op&eacute;rations de choix et d&#039;installation sur une ou des plan&egrave;tes compatibles avant de r&eacute;veiller toutes les ruches ?</font></div><div class="post_line"><font color="#cf2be7">- Tout &agrave; fait Amiral, seulement le vaisseau Amiral GALACTICA contenant l&#039;&eacute;quipe est port&eacute; disparu. L&#039;option suivante est de r&eacute;veiller le plus haut grad&eacute; et les membres du Conseil des 100.</font></div><div class="post_line">Helmt a compris, il&nbsp;sent un frisson lui descendre dans le dos. Ce n&#039;est pourtant pas un gamin. Avant de commander des nefs, il a fait une grosse partie de sa carri&egrave;re dans les forces sp&eacute;ciales d&#039;interventions. Mais l&agrave;, il n&#039;est pas pr&eacute;par&eacute; &agrave; &ccedil;a. Toutefois, il reprend vite ces esprits.</div><div class="post_line"><font color="#72ff84">- Je suis d&eacute;sol&eacute; pour le Commandeur Thory et son &eacute;quipe, mais peut-&ecirc;tre est-il simplement retard&eacute; !</font></div><div class="post_line"><font color="#72ff84">- Je prends la rel&egrave;ve, mon vaisseau nefs va servir de vaisseau de Commandement. Nous allons y installer un centre de contr&ocirc;le et une salle de direction pour ce qui reste du Conseil plan&eacute;taire des 100. Voulez-vous, D2PC3 &ecirc;tre mon adjoint ? Ce n&#039;est pas forc&eacute;ment un cadeau mais nous avons besoin de tous les bras disponibles.</font></div><div class="post_line">D2PC3 ne r&eacute;fl&eacute;chit pas plus longtemps et acquies&ccedil;a.&nbsp;</div><div class="post_line"><font color="#cf2be7">- Je veux bien &ecirc;tre votre second&nbsp;Amiral.</font></div><div class="post_line"><font color="#72ff84">- Ok, l&#039;affaire est entendue.&nbsp;</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />23/05/1023 ETU 05:54</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal298889')">Détails</a> <a href="javascript:warnpost(298889)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal298889" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=298889',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><u><strong><font color="#c3ffff">Arion la Belle</font></strong></u></div><div class="post_line"></div><div class="post_line">&nbsp; &nbsp; Depuis la grande baie vitr&eacute;e du vaisseau nefs, l&#039;Amiral Helmt contemplait la plan&egrave;te. Celle-ci en premier plan &eacute;tait vraiment splendide, elle lui rappelait <strong>Alph&eacute;ras</strong>, la plan&egrave;te m&egrave;re de la civilisation <strong>Alph&eacute;rasienne</strong>. En arri&egrave;re plan on devinait trois autres plan&egrave;tes sensiblement &agrave; m&ecirc;me distance les unes des autres.&nbsp;</div><div class="post_line"></div><div class="post_line">&nbsp; &nbsp; Les r&eacute;sultats des analyses commen&ccedil;aient &agrave; arriver. Au vu des donn&eacute;es, les quatre plan&egrave;tes pouvaient abriter la vie humano&iuml;de. <strong>Le conseil des 100</strong> avait donn&eacute; le feu vert pour des analyses compl&eacute;mentaires et attribu&eacute; un nom &agrave; chacune. La plus proche du vaisseau se nommerait <strong>Arion la magnifique</strong>&nbsp;et les trois autres dans l&#039;ordre <strong>Aldulfin la luxuriante</strong>, <strong>Tso Ke la montagneuse</strong> et enfin <strong>Arakis la terrible</strong>. Les analyses avaient confirm&eacute; : les trois premi&egrave;res &eacute;taient inhabit&eacute;es.</div><div class="post_line">&nbsp; &nbsp; Pour <strong>Arakis</strong> qui semblait d&eacute;sertique et inhospitali&egrave;re, les vaisseaux en approche avaient d&eacute;tect&eacute; des signes d&#039;activit&eacute; technologique. Ne sachant &agrave; quoi o&ugrave; &agrave; qui ils avaient affaire, ils s&#039;&eacute;taient &eacute;loign&eacute;s de la zone pour se poser &agrave; distance et analyser la situation.</div><div class="post_line"></div><div class="post_line">&nbsp; &nbsp; Une sonnerie se fit entendre brisant le silence feutr&eacute; du poste de Commandement. L&#039;officier Droide &agrave; la TransCom appuya sur un bouton et se retournant vers Helmt, dit.</div><div class="post_line"><font color="#ffc95f">- Amiral, le Pr&eacute;sident&nbsp;du Conseil sur l&#039;&eacute;cran g&eacute;ant.</font></div><div class="post_line"><font color="#c3ffff">- Merci Lieutenant.</font> Helmt d&eacute;tourna son regard de la plan&egrave;te et fixa l&#039;&eacute;cran.</div><div class="post_line"><font color="#c3ffff">- Bonjour Monsieur,</font></div><div class="post_line"><font color="#f551ff">- Bonjour Amiral, nous venons de prendre notre d&eacute;cision. Nous commen&ccedil;ons les sorties d&#039;hibernation dans les nefs ruche des populations n&eacute;cessaires &agrave; la colonisation. Nous commencerons par la plan&egrave;te <strong>Arion</strong>. Le Conseil, dor&eacute;navant dirigera&nbsp;ces op&eacute;rations et nous vous chargeons d&#039;assurer avec les vaisseaux militaires&nbsp;corvettes et chasseurs, la protection du dispositif.&nbsp;</font></div><div class="post_line"><font color="#f551ff">- Une zone vient d&#039;&ecirc;tre choisie et des navettes sont en pr&eacute;paration pour se rendre sur le <strong>Point One</strong> et mettre en configuration un premier spatioport de fortune.</font></div><div class="post_line"><font color="#c3ffff">- Bien Monsieur, je d&eacute;ploie les vaisseaux autour de la plan&egrave;te pour sa protection. Nous ne sommes pas certains que cette partie de l&#039;espace soit totalement inhabit&eacute;. Nous allons aussi mettre en place une voie s&eacute;curis&eacute;e pour les transits espace-plan&egrave;te.&nbsp;</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Allan+Thory">Cdt. Allan Thory</a><br>Prestige de chroniqueur&nbsp;: 21<br /><br /><img src="/avatars/11846.jpg" style="width:89px;height:128px" alt="Avatar" /><br />12/07/1023 ETU 07:33</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal302474')">Détails</a> <a href="javascript:warnpost(302474)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal302474" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=302474',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffff00"><font size="4"><u>Quelque part dans la Galaxie...</u></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">L&#039;&eacute;norme Croiseur amiral se mat&eacute;rialisa aux abords d&#039;une plan&egrave;te. Il venait de quitter le <strong>Tunnel de transfert Espace Temps</strong> inter galaxie...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Sur la passerelle de Commandement, le Colonel Droide AG45S regardant les &eacute;crans radar,&nbsp;comprit imm&eacute;diatement l&#039;urgence de la situation. Il&nbsp;s&#039;adressa imm&eacute;diatement au pilote install&eacute; aux commandes du vaisseau.</font></div><div class="post_line"><font color="#f551ff">- Capitaine barrez tribord le vaisseau en urgence, nous fon&ccedil;ons sur une plan&egrave;te.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Puis il appuya sur l&#039;interphone.</font></div><div class="post_line"><font color="#f551ff">- A tout le personnel, attention, &eacute;vitement plan&egrave;te en approche. Tous &agrave; vos postes.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Puis se retournant vers le personnel pr&eacute;sent.</font></div><div class="post_line"><font color="#f551ff">- Faites moi un &eacute;tat complet du vaisseau, sondez l&#039;espace , je veux savoir o&ugrave; sont nos flottes et envoyez une navette faire le tour de cette plan&egrave;te.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Le Lieutenant de permanence &agrave; la console Radar lan&ccedil;a une interjection et se tournant vers son chef...</font></div><div class="post_line"><font color="#c3ffff">- Colonel, nous avons un s&eacute;rieux probl&egrave;me, des centaines de vaisseaux se dirigent vers nous...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">AG45S appuya sur la touche communication destin&eacute;e &agrave; tous le vaisseaux.</font></div><div class="post_line"><font color="#f551ff">- A tous le personnel, probabilit&eacute; forte d&#039;une attaque de vaisseaux non identifi&eacute;s, nous passons en CODE ROUGE, tous le personnel aux postes de combat.</font></div><div class="post_line"><font color="#f551ff">- Commandant DFGRE, toutes les escadres de chasseurs disponibles doivent sortir et se positionner en protection du GALACTICA. Il faut emp&ecirc;cher au maximum les vaisseaux de nous atteindre.</font></div><div class="post_line"><font color="#f551ff">- Capitaine DFGUO, activait l&#039;&eacute;cran de protection puissance maximum, assurez vous que&nbsp;la d&eacute;fense anti-spatiale est pr&ecirc;te. Attention &agrave; la pr&eacute;cision et surtout ne soyez pas avare de tirs.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Puis il appuya sur un bouton not&eacute; &quot;INFIR&quot;.</font></div><div class="post_line"><font color="#ffffff">Une voix m&eacute;tallique lui r&eacute;pondit.</font></div><div class="post_line"><font color="#c0f0c6">- Enseigne DSFRE, je vous &eacute;coute Colonel.</font></div><div class="post_line"><font color="#f551ff">- Enseigne, sortez d&#039;hibernation en priorit&eacute; tous les pilotes de chasseur, puis le Commandeur et son &eacute;quipe&nbsp;et enfin tous les militaires du vaisseau. Et tout cela, le plus vite possible.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Deux heure trente plus tard, dans la pi&egrave;ce si silencieuse normalement, un l&eacute;ger brouhaha commen&ccedil;a &agrave; se faire entendre. Les rapports des personnels de la passerelle, les &eacute;changes entre les pilotes de chasseurs qui venaient&nbsp;d&#039;engager le combat&nbsp;avec les attaquants&nbsp;et rapidement les bruits des cris, des&nbsp;tirs et explosions.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Sur l&#039;&eacute;cran g&eacute;ant r&eacute;sumant la situation d&#039;engagement, un nombre rouge correspondant aux chasseurs engag&eacute;s diminuait doucement mais sans marquer le moindre arr&ecirc;t. A ce rythme, ils ne tiendraient pas longtemps.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">C&#039;est &agrave; cet instant, qu&#039;un groupe important de personnels tous humano&iuml;des&nbsp;entra dans la pi&egrave;ce. Imm&eacute;diatement chacun d&#039;eux se dirigea vers l&#039;endroit lui permettant d&#039;assurer sa fonction conjointement avec les droides en place.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Parmi eux, un homme la d&eacute;marche mal assur&eacute;e, les cheveux en bataille et le regard l&eacute;g&egrave;rement hagard se dirigea vers le Colonel.</font></div><div class="post_line"><font color="#ffff00">- Bonjour Colonel, je suis le Commandeur Thory...</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&nbsp;</font></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16602&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16602" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16602" name="d_reply_16602" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16602');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16602'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Apocalypse de la Galaxie M&eacute;lodie</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

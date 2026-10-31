@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 4 ;
+    var topic = 14602 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Philosophie d&#039;un tribun</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Philosophie d&#039;un tribun</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=14602&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=14602&c_forum_page=1&c_page=2">2</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=14602&c_forum_page=1&c_page=3">3</a>&nbsp;4&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fatlooaths">Cdt. Fatlooaths</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/10267.png" style="width:128px;height:128px" alt="Avatar" /><br />11/10/1020 ETU 21:05</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D278817', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal278803')">Détails</a> <a href="javascript:warnpost(278803)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278803" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278803',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffa500">Ce citant lui-m&ecirc;me au propos&nbsp;de sa r&eacute;flexion sur les math&eacute;matiques:</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">**********</font><em><font color="#1e92f7">Une autre possibilit&eacute;, toujours en accord avec mon id&eacute;e initiale, serait de dire qu&#039;au vu de la multitude des juges et acteurs de ces dites math&eacute;matiques, appliquant sur celle-ci as chaque instant la loi des grands nombres, et mon doute me faisant alors &eacute;galement les appliquer &quot;&agrave; mon insu&quot; quand bien m&ecirc;me je l&#039;ignorerais, n&#039;est-il pas normale que de si minime modifications, de l&#039;ordre de l&#039;imperceptible nous fasse dire &agrave; tort que celle-ci n&#039;ont jamais &quot;&eacute;volu&eacute;&quot;, d&ucirc; &agrave; notre &agrave; notre incapacit&eacute; totale &agrave; entrevoir les &quot;</font><font color="#008000">modifications</font><font color="#1e92f7">&quot; en permanence &quot;mais minimes&quot; de celle-ci? Tandis que l&#039;ont pourrais ici dire qu&#039;elles sont imparfaites, nous pourrions aussi dire qu&#039;elles sont tellement parfaites, qu&#039;elle implique en elles et &quot;sur leurs propres raisonnements&quot; la possibilit&eacute; de l&#039;erreur. Ces dites math&eacute;matiques, r&eacute;ussissant alors l&rsquo;exploit de supplant&eacute; le paradoxe du devenir, elles sont, et elles deviennent. Mais si elle le fond, alors pour rest&eacute; coh&eacute;rent, je doit consid&eacute;r&eacute; que l&rsquo;enti&egrave;ret&eacute; de la cr&eacute;ation fait de m&ecirc;me, et qu&#039;alors se &quot;paradoxe&quot; n&#039;en est pas un.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#008000"><em>Modifications qui ne se trouvent dans nos yeux, car ce qui ne peut &ecirc;tre ne devient pas, et ne peut &ecirc;tre que ce qui est d&eacute;j&agrave;.</em></font><font color="#ffc0cb">**********</font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Puis il rajouta:</font></div><div class="post_line"><font color="#1e92f7">Mais s&#039;il est toujours devenu, alors il a toujours &eacute;t&eacute; en devenir.</font></div><div class="post_line"><font color="#1e92f7">Tandis que cela ne l&rsquo;emp&ecirc;che&nbsp;pas d&#039;avoir toujours &eacute;t&eacute;.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Et ici les deux id&eacute;es, deviennent &lt;&lt;capables de march&eacute; ensembles&gt;&gt;.</font></div><div class="post_line"><font color="#1e92f7">Ou plus justement je&nbsp;peut me les figur&eacute; sans incoh&eacute;rences.&nbsp;</div><div class="post_line"></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fatlooaths">Cdt. Fatlooaths</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/10267.png" style="width:128px;height:128px" alt="Avatar" /><br />12/10/1020 ETU 11:43</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D278827', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal278821')">Détails</a> <a href="javascript:warnpost(278821)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278821" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278821',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#1e92f7"><em>Comment reproch&eacute; &agrave; ceux qui n&#039;ont jamais &eacute;t&eacute; des enfants, de ne point &ecirc;tre des adultes?</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Lorsqu&#039;un individu se jette dans la multitude des courants de la pens&eacute;e et qu&#039;il le fait sans bou&eacute;e, il encourt le risque si ce n&#039;est la certitude de se tromper.</em></font></div><div class="post_line"><font color="#1e92f7"><em>Mais chez moi, perfection accepte l&#039;erreur.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Si je peux me juger imparfait en tant qu&#039;individu, je doute qu&#039;univers lui me jugerait comme d&eacute;viant des chemins qu&#039;il m&#039;a construit.</div><div class="post_line">Et ne je fais alors, qu&#039;exactement ce que celui-ci &agrave; pr&eacute;vue pour moi.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Et si cette pens&eacute;e s&#039;applique sur moi-m&ecirc;me, je garde en t&ecirc;te ce que j&#039;ai &eacute;nonc&eacute; au propos d&#039;autrui.</div><div class="post_line">Ainsi la coh&eacute;rence me semble totale, quand bien m&ecirc;me je serais incompris</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fatlooaths">Cdt. Fatlooaths</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/10267.png" style="width:128px;height:128px" alt="Avatar" /><br />12/10/1020 ETU 12:50</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D278849', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal278828')">Détails</a> <a href="javascript:warnpost(278828)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278828" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278828',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ffa500"><font size="2"><strong>R&eacute;flexion sur l&#039;univers</strong></font></font></div></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Il y a longtemps j&#039;ai cru qu&#039;univers comme une batterie finirait fig&eacute;, j&#039;avais alors omis l&#039;absence de barri&egrave;res tangible.</font></div><div class="post_line"><font color="#1e92f7">Tandis qu&#039;il est &eacute;galement une erreur de pens&eacute;e qu&#039;une batterie puisse &ecirc;tre&nbsp;r&eacute;ellement&nbsp;fig&eacute; dans toutes les dimensions que cela comprend.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">J&#039;avais oubli&eacute; que si une &eacute;nergie &eacute;tait rappel&eacute;e dans un sens, sans fronti&egrave;res elle s&#039;&eacute;lancerait apr&egrave;s l&#039;avoir atteint dans le sens oppos&eacute; de celui qui &eacute;tait &lt;&lt;</font><font color="#ffa500">*initialement</font><font color="#1e92f7">&gt;&gt;&nbsp;le sien </font><font color="#72ff84">(Ou dans un autre si des variables m&#039;&eacute;chappes)</font><font color="#1e92f7">, tandis que pourtant la &lt;&lt;barri&egrave;re&gt;&gt; est cens&eacute;e &ecirc;tre la force de rappelle et qu&#039;alors sans cette barri&egrave;re pas de rappelle. Mais si cette barri&egrave;re est form&eacute;e d&#039;attraction, il n&#039;est pas impossible de pouvoir la parcourir en de multiples dimensions sans pour autant la briser.</font></div><div class="post_line"><font color="#ffa500">*Initialement repr&eacute;sente ici le d&eacute;but de notre observation.</font></div><div class="post_line"><font color="#2ecc40">Tandis qu&#039;il n&#039;est pas impossible de r&eacute;cup&eacute;rer une partie du potentiel&nbsp;initialement &lt;&lt;d&eacute;charg&eacute;e&gt;&gt; qui s&#039;y trouve lorsque l&#039;on y passe.</font></div><div class="post_line"><font color="#2ecc40">Je met d&#039;&eacute;normes guillemets&nbsp;&agrave; cette id&eacute;e, la supprim&eacute; ne rend pas le reste incoh&eacute;rent, c&#039;est juste une possibilit&eacute; dans la possibilit&eacute;.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Peut-on dire que l&#039;univers &agrave; un &lt;&lt;&eacute;tat&gt;&gt; m&eacute;dian et qu&#039;il y revient parfois? Tandis que le vivant, se figure &agrave; tort que cela en signifie la fin?</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je m&#039;interroge alors si la </font><font color="#ffa500">*</font><font color="#1e92f7">&lt;&lt;</font><font color="#ffa500">fin</font><font color="#1e92f7">&gt;&gt; de </font><font color="#ff56ff">l&#039;univers</font><font color="#1e92f7">, en imaginant qu&#039;il en est une peut &ecirc;tre un lieu ou l&rsquo;&eacute;nergie n&eacute;cessaire &agrave; en s&#039;en extraire puisse &ecirc;tre sup&eacute;rieur &agrave; l&#039;ensemble de l&rsquo;&eacute;nergie pr&eacute;sente en </font><font color="#ff56ff">celui-ci</font><font color="#1e92f7">.&nbsp;</font></div><div class="post_line"><font color="#1e92f7">Rendant cette &lt;&lt; fronti&egrave;re &gt;&gt; bien qu&#039;&lt;&lt;&nbsp;inexistante&gt;&gt; de la fa&ccedil;on dont l&#039;on se figure habituellement l&#039;existence paradoxalement infranchissable</font></div><div class="post_line"><font color="#ffa500">*Lieu&nbsp;th&eacute;oriquement atteignable, le plus &eacute;loign&eacute; de ce que l&#039;on estime &ecirc;tre le centre, ou l&#039;endroit ou se situe l&#039;observateur au moment de l&rsquo;exp&eacute;rience.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je n&#039;ai pas la r&eacute;ponse, mais cela me semble fort probable.</div><div class="post_line">Cette id&eacute;e semble contre intuitive, mais elle n&#039;est pas si illogique que &ccedil;a, elle r&eacute;pond simplement &agrave; une logique que l&#039;on ne se figure habituellement pas.</font></div><div class="post_line"><font color="#1e92f7">&nbsp;</font></div><div class="post_line"><font color="#1e92f7">Ainsi l&#039;univers ne serait pas d&eacute;fini, mais il aurait bel et bien une fin si l&#039;on pouvait figer un instant la mati&egrave;re.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Intangible, ne veut pas dire inexistant, &ecirc;tre en devenir, ne veut pas dire ne pas &ecirc;tre d&eacute;j&agrave; en devenir.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je n&#039;ai &agrave; ce propos aucune certitude, mais c&#039;est une &eacute;ventualit&eacute; que je prends en compte et qui me semble fortement possible.</font></div><div class="post_line"><font color="#1e92f7">Si j&#039;ai raison, celui-ci ne se figera &lt;&lt; jamais &gt;&gt;.</font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">On pourrait dire, si l&#039;on ne comprend pas tout ce que mon id&eacute;e implique qu&#039;il existe &lt;&lt;deux univers&gt;&gt;, l&#039;un positif, l&#039;un n&eacute;gatif, et que quand l&#039;un &lt;&lt; s&#039;allume &gt;&gt; l&#039;autre &lt;&lt; s&#039;&eacute;teint&gt;&gt; mais cela, serait ne comprendre que partiellement ce que j&#039;&eacute;nonce. Et si j&#039;&eacute;nonce cela, c&#039;est pour rapprocher celui qui me liera, de la compr&eacute;hension.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><div align="right"><font color="#e86e04">Le saurien utilisait des codes couleurs pour permettre une meilleur compr&eacute;hension.</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fatlooaths">Cdt. Fatlooaths</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/10267.png" style="width:128px;height:128px" alt="Avatar" /><br />12/10/1020 ETU 13:25</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal278850')">Détails</a> <a href="javascript:warnpost(278850)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278850" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278850',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#1e92f7">Si l&#039;univers ce devait d&rsquo;&ecirc;tre un jours absolument fig&eacute;, alors il le serais d&eacute;j&agrave;.</font></div><div class="post_line"><font color="#1e92f7">Temps et mati&egrave;re, ne sont il pas li&eacute;?&nbsp;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fatlooaths">Cdt. Fatlooaths</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/10267.png" style="width:128px;height:128px" alt="Avatar" /><br />12/10/1020 ETU 16:05</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D278862', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal278851')">Détails</a> <a href="javascript:warnpost(278851)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278851" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278851',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ffa500"><u>L&#039;objectivit&eacute;.</u></font></div></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Tout est objectif.</font></div><div class="post_line"><font color="#0074d9">L&#039;objectivit&eacute;, n&#039;a jamais d&eacute;pendu que d&#039;elle seule, en revanche certains l&#039;ont pens&eacute;e.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">L&#039;arbitraire est issu du d&eacute;coulement de l&#039;univers, donc l&#039;arbitraire ne l&#039;est jamais vraiment tout &agrave; fait quand bien m&ecirc;me &lt;&lt; un arbitraire &gt;&gt;&nbsp;serait en d&eacute;saccord avec ce que nous consid&eacute;rons comme &eacute;tant d&#039;autres &eacute;l&eacute;ments/personnes de ce dit univers.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">La th&eacute;orie du non-mouvement est bas&eacute; sur une l&#039;incompr&eacute;hension d&#039;une r&egrave;gle de thermodynamique simple.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Si l&#039;on consid&egrave;re que se sont ce que nous nommons objet qui est arbitraire, en observant &agrave; petite &eacute;chelle cela peut &ecirc;tre vrai. Ou plut&ocirc;t celons mon id&eacute;e, rien ne pourrait &ecirc;tre parfaitement faux.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Mais &agrave; une &eacute;chelle absolue, tout ce que l&#039;on se figure est r&eacute;el, et rien n&#039;est qu&#039;uniquement arbitraire car les &eacute;l&eacute;ments poss&eacute;dant ce que notre ignorance nous fait penser &ecirc;tre le libre arbitre, ne d&eacute;pendent en fait pas uniquement d&#039;eux-m&ecirc;mes.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Je ne suis, que ce qu&#039;univers m&#039;a fait &ecirc;tre, et alors il serait bien &eacute;trange que je parvienne, &agrave; &ecirc;tre uniquement&nbsp;</font><font color="#ff857a">arbitraire</font><font color="#0074d9">.</font></div><div class="post_line"><font color="#0074d9">Car cela implique que je parvienne &agrave; m&#039;extraire de ses </font><font color="#9df9ff">r&egrave;gles</font><font color="#0074d9">, et je le ferais alors, toujours en fonction de </font><font color="#c3ffff">celles-ci</font><font color="#0074d9">. Ne l&#039;&eacute;tant alors </font><font color="#ff857a">jamais vraiment.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Mais le fait que je puisse le penser, fait qu&#039;il y a dans cette id&eacute;e, </font><font color="#4cea5e">&lt;&lt;*une part de vrai&gt;&gt;</font><font color="#0074d9">, car cette id&eacute;e s&#039;ancre dans r&eacute;alit&eacute;.</font></div><div class="post_line"><font color="#4cea5e">*Disons une dimension?&nbsp;</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Si tout est subjective, alors la subjectivit&eacute; l&#039;est&nbsp;&eacute;galement. L&#039;univers est tout, et alors son point de vue constitu&eacute; de toutes les subjectivit&eacute;s, n&#039;est-il pas objectif?</font></div><div class="post_line"><font color="#1e92f7">Dire que tout est objectif ne pose aucun probl&egrave;me de cet ordre pour ne peut que l&#039;on admette cela du </font><font color="#ff56ff">&lt;&lt;point de vue d&rsquo;univers&gt;&gt;.</font></div><div class="post_line"><font color="#ff56ff">Point de vue que je ne peux pas comprendre enti&egrave;rement en tant qu&#039;individu et que je n&#039;ai pas la pr&eacute;tention d&#039;avoir, mais dont je ne peux m&#039;extraire.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">La subjectivit&eacute; que je suis, porte en elle et est mu&eacute; par l&#039;objectivit&eacute; de ce que je ne consid&egrave;re pas &ecirc;tre en tant qu&#039;individu.</font></div><div class="post_line"></div><div class="post_line"><font color="#0074d9">Sans mouvement pas d&#039;existence, sans existence, pas d&#039;id&eacute;es et sans id&eacute;es, pas de th&eacute;ories.</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fatlooaths">Cdt. Fatlooaths</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/10267.png" style="width:128px;height:128px" alt="Avatar" /><br />15/10/1020 ETU 01:30</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D278897', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal278885')">Détails</a> <a href="javascript:warnpost(278885)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal278885" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=278885',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><font color="#ffa500"><strong><em>Penser en vrac.</em></strong></font></div></div><div class="post_line"><div align="left"><font color="#c3ffff"><font size="1"><strong><em>Non travaill&eacute;.</div><div class="post_line"></em></strong></font></font></div></div><div class="post_line"><font color="#ffa500">***</font></div><div class="post_line"><font color="#1e92f7"><em>Le h&eacute;ros est l&#039;un des personnages principaux d&#039;une histoire.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Le h&eacute;raut n&#039;est-il pas aussi un messager?</em></font></div><div class="post_line"><font color="#1e92f7"><em>Une histoire sans messager, peut elle se transmettre?</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">***</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Si ce qui est en haut est comme ce qui est bas par le &lt;&lt;principe de correspondance&gt;&gt; .</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Je dirais&nbsp; pour &lt;&lt; jouer &gt;&gt; que ce qui est en haut est en haut et que ce qui est en bas est en bas, qu&#039;il s&#039;agit bien l&agrave; d&#039;une diff&eacute;rence que je me figure, au moins en tant que dimension, et si elles ne le sont pas en tant que tel, alors elles le sont bien en tant que figuration que &lt;&lt; moi &gt;&gt; j&#039;en ai.</em></font></div><div class="post_line"><font color="#1e92f7"><em>&lt;&lt; Principe de logique. &gt;&gt;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Correspondance, signifie aussi communication et si deux choses communiquent elles ne sont bien, pas tout &agrave; fait diff&eacute;rentes.</em></font></div><div class="post_line"><font color="#1e92f7"><em>Les nuances ne sont-elles ironiquement comprises entre d&#039;absolue oppos&eacute;es ? </em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Sont-elles comprises entre-eux, ou sont-elles form&eacute;e de ceux-l&agrave;? Doivent-elles vraiment, n&rsquo;&ecirc;tre que l&#039;un des ces deux choix, plut&ocirc;t que leurs ensemble? </em></font></div><div class="post_line"><font color="#1e92f7"><em>J&#039;admets raison au principe de correspondance et je m&#039;en sers souvent, cela n&#039;emp&ecirc;che pas la critique, l&#039;honn&ecirc;tet&eacute;, l&#039;interrogation.</em></font></div><div class="post_line"><font color="#1e92f7"><em>L&#039;ironique, n&#039;as il pas une dimension onirique, et l&rsquo;onirique, une dimension hom&eacute;rique? </em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Le pouvoir d&#039;un symbole, n&#039;est pas exempt d&#039;une influence de r&eacute;alit&eacute;.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">***</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>L&#039;art lorsqu&#039;il est exprim&eacute; dans le but d&#039;&ecirc;tre contempl&eacute; uniquement par soi-m&ecirc;me, ne serait-il pas une tentative d&#039;observer notre propre reflet maquill&eacute;, comme &eacute;tant la &lt;&lt; r&eacute;alit&eacute; &gt;&gt; ?</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Quand celui-ci est orient&eacute; vers les autres, en est-il une de les influencer, ou de s&#039;influencer soi-m&ecirc;me &agrave; travers le reflet que les autres nous renvoient de nous.</em></font></div><div class="post_line"><font color="#1e92f7"><em>Pourquoi chercher la validation des autres, en &eacute;tant d&eacute;j&agrave; s&ucirc;r de soi-m&ecirc;me?</em></font></div><div class="post_line"><font color="#1e92f7"><em>Les majorit&eacute;s de mes id&eacute;es seront tuent &agrave; jamais, car peut-&ecirc;tre trop orgueilleux, je suis d&eacute;j&agrave; absolument&nbsp;s&ucirc;re de leurs r&eacute;ussites si je les essayais, et je ne n&#039;&eacute;prouve alors aucune raison de les confront&eacute;s.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Me contentant du plaisir, de les avoir eus.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Tandis que n&#039;&eacute;tant individuellement qu&#039;une de plus, parmi un oc&eacute;an de pens&eacute;e, je les aurais oubli&eacute;s demain et je ne distingue plus celles du pass&eacute; en tant qu&#039;individualit&eacute;.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">***</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Le Saurien tente-il vraiment de fa&ccedil;onner la r&eacute;alit&eacute; &agrave; son image? ou plut&ocirc;t tente-il de fa&ccedil;onner son image, pour qu&#039;il la croit r&eacute;alisable?</em></font></div><div class="post_line"><font color="#1e92f7"><em>je crois qu&#039;en observant la r&eacute;alit&eacute;, il en obtient une image qu&#039;il se figure qu&#039;elle est, tandis que celle-ci d&eacute;pend de ce que celle-l&agrave;, lui a fait &ecirc;tre.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">***</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>On ne tombe pas pour s&#039;&eacute;lever, mais &lt;nous tombons&gt; pour permettre &agrave; ceux que nous sommes incapables d&#039;&eacute;lever de nous atteindre.</em></font></div><div class="post_line"><font color="#1e92f7"><em>Car si nous sommes incapables de les &lt;&lt; rendre meilleurs &gt;&gt; c&#039;est bien que nous ne le sommes pas nous-m&ecirc;me.</em></font></div><div class="post_line"><font color="#1e92f7"><em>Que ce l&agrave; implique, qu&#039;ils soient d&eacute;j&agrave; parfait, ou que ne nous le soyons pas. Ce n&#039;est ici, pas la question.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">***</font></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Je n&#039;ai jamais connu le Saurien m&acirc;le dont je descend pourtant, celui-ci ne pourrait alors en aucun cas me manquer.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>L&#039;id&eacute;e que quelqu&#039;un pourrait glisser dans mon esprit que cela devrait &ecirc;tre cause de d&eacute;s&eacute;quilibre, pourrait en revanche d&eacute;multipli&eacute;e une faiblesse d&eacute;j&agrave; pr&eacute;sente en moi au moment o&ugrave; il l&#039;exprime, car alors c&#039;est l&#039;id&eacute;al que je me ferait d&#039;un passer inconnue, qui engendrerait frustrations et me &lt;&lt; rendrait triste &gt;&gt; et qui pourtant ne serait pas d&ucirc; &agrave; la cause qu&#039;il pr&eacute;tend &ecirc;tre la raison de celui-ci. Tandis que sans rien r&eacute;soudre, cela &lt;&lt; empirerait tout&gt;&gt;.</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">La d&eacute;cadence des uns est l&#039;exaltation pour d&#039;autres, et je ne suis personne pour juger de ce qu&#039;est une famille &lt;&lt; qui en est une &gt;&gt;, le terme d&eacute;cadence est tout aussi rempli de la moralit&eacute; que ne l&#039;est ce qu&#039;il entend pourtant d&eacute;noncer et donc, cet argument celons ce que j&#039;en pense est soit stupide, soit malhonn&ecirc;te.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Ce que je sais en revanche, c&#039;est que d&eacute;signer un saurien, en disant qu&#039;il n&#039;en est pas c&#039;est d&eacute;montr&eacute; les limites de notre pr&eacute;tendue logique consciente.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">J&#039;aurais pu &ecirc;tre &eacute;lev&eacute; par un poulet, sans perturbation ext&eacute;rieure de mon point de vue cela aurait &eacute;t&eacute; normal, car seul &eacute;chelle de r&eacute;f&eacute;rence.</font></em></div><div class="post_line"><em><font color="#1e92f7">Quoique n&#039;ayant jamais &eacute;t&eacute; &eacute;lev&eacute; par un poulet, pr&eacute;tendre savoir ce que je penserais alors, me para&icirc;t pr&eacute;tentieux.</font></em></div><div class="post_line"><em><font color="#1e92f7">Il n&#039;emp&ecirc;che qu&#039;ici mon point de vue semble se confirmer et prouve alors sa coh&eacute;rence, car c&#039;est alors bien en fonction de cette &eacute;ducation, que je me figurerais mon &eacute;tat.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">J&#039;ai toutefois eu un &lt;&lt;p&egrave;re d&#039;adoption&gt;&gt; (beau-p&egrave;re), et je ne ferais pas l&#039;affront de ne pas le mentionner.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Si bien des gens expriment le d&eacute;sir d&#039;avoir un mod&egrave;le, c&#039;est aussi pour la facilit&eacute; que cela implique vis-&agrave;-vis d&#039;eux-m&ecirc;mes, le droit a &lt;&lt; se d&eacute;cevoir&gt;&gt;.</font></em></div><div class="post_line"><em><font color="#1e92f7">Si je ne me connais pas, sachant que c&#039;est bien en fonction de moi-m&ecirc;me que j&#039;&eacute;value les autres, il serait absurde de penser que je les connais mieux. Et si j&#039;esp&eacute;rais qu&#039;ils me connaissent peut-&ecirc;tre mieux que moi-m&ecirc;me, j&#039;aurais alors, selon-moi, encore plus de raisons de m&#039;en &eacute;loigner.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Si quelqu&#039;un &eacute;tait plus performant que moi dans tous les domaines, je ne cesserais jamais de m&#039;interroger sur ma capacit&eacute; &agrave; &eacute;valuer ce qui est bon pour moi.</font></em></div><div class="post_line"><em><font color="#1e92f7">Et alors aussi bon soit-il, je doute de sa vraie capacit&eacute; &agrave; me rassurer.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Ce faisant, je deviendrais alors d&#039;une certaine fa&ccedil;on coupable de l&#039;emp&ecirc;cher d&#039;y parvenir si il le voulait.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Je n&#039;ai jamais accept&eacute; d&rsquo;&ecirc;tre domin&eacute; par qui que ce soit, et je n&#039;ai jamais &eacute;prouv&eacute; le besoin de dominer autrui.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Peut-&ecirc;tre qu&#039;ici, l&#039;absence de p&egrave;re peut effectivement avoir jou&eacute; un r&ocirc;le, et alors mon point de vue, se confirme encore en tant que parenth&egrave;se.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">***</font></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">On ne d&eacute;truit pas un argument en l&#039;accusant d&rsquo;&ecirc;tre invalide, mais en d&eacute;montrant qu&#039;il l&#039;est.</font></em></div><div class="post_line"><em><font color="#1e92f7">Accus&eacute; autrui d&rsquo;&ecirc;tre trop moral, c&#039;est pourtant soit aussi appuyer notre raisonnement sur la chose que l&#039;on d&eacute;nonce.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Il devient donc &eacute;vident que le d&eacute;bat s&#039;embourbe, car si l&#039;argument donne raison &agrave; l&#039;un, cela veut dire qu&#039;il a &eacute;galement tort, tandis que s&#039; il a tort il as &eacute;galement raison et ainsi deux individus formes l&#039;&eacute;quilibre dont il pr&eacute;tendaient pourtant vouloir s&#039;extraire.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Beaucoup sont ceux qui accusent sans cesse les autres de ce qu&#039;ils font eux-m&ecirc;mes.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#1e92f7">Celui qui dit qu&rsquo;autrui adapte une d&eacute;marche trop manich&eacute;enne auras tendance, &agrave; lui-m&ecirc;me le faire, tandis que je ne m&#039;extrais pas moi-m&ecirc;me de cette constatation que je pense faire, sachant que j&#039;ai une erreur, &agrave; laquelle je r&eacute;ponds, mais que je ne figure pas clairement, sans quoi je la corrigerais surement, et en commettrais une autre. Ainsi, je ne r&eacute;soudrais pas non plus tout &agrave; fait cette continuit&eacute;, &agrave; laquelle il serait logique de dire que je ne peux m&rsquo;extraire. Mais si j&rsquo;avais &eacute;t&eacute; diff&eacute;rent, et bien j&rsquo;aurais pens&eacute; autre chose.</font></em></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7"><em>Le but n&#039;&eacute;tant pas celons-moi, pas de se d&eacute;barrasser d&#039;erreur, mais de lui admettre, une part de v&eacute;rit&eacute;.</em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">***...</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Fatlooaths">Cdt. Fatlooaths</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/10267.png" style="width:128px;height:128px" alt="Avatar" /><br />02/12/1020 ETU 02:57</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D279106', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal279097')">Détails</a> <a href="javascript:warnpost(279097)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal279097" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=279097',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ffa500">Penser en brut.</div><div class="post_line"><a href="https://www.youtube.com/watch?v=r37eV9ijRwg" target="_blank" rel="nofollow">Musique</a></font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">L&agrave; o&ugrave; il est pr&eacute;somptueux de dire que nous sommes car nous pensons, il serait admis de dire que nous pensons donc nous pensons. Chercher &agrave; pr&eacute;tendre plus, que les choses que l&#039;on constate c&#039;est prendre le risque de l&#039;erreur et parfois la sagesse semble se contenter de syllogismes, tandis qu&#039;en &eacute;mettant cette id&eacute;e j&#039;&eacute;mets moi-m&ecirc;me une possibilit&eacute; d&#039;erreur sur mon propre raisonnement&nbsp;et qu&#039;alors &agrave; une &eacute;chelle plus haute, je le confirme celons lui-m&ecirc;me car justement cet erreur provient de ce que je d&eacute;nonce.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Nous ne sommes pas sur des choses que l&#039;on constate, et pourtant l&#039;on s&#039;en sert pour raisonner ici se trouve une tr&egrave;s grande ironie et un &quot;choix&quot; d&eacute;licat dois-je donc douter de mes constatations dont pourtant je ne peux me passer lorsque je les analyses, sans quoi justement mes propos n&#039;auraient plus de sens, en admettant que si ces choses avaient &eacute;t&eacute; autres, mon raisonnement en fonction de celles-ci &eacute;galement?</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Si les choses que je constate sont erron&eacute;, je m&#039;interroge alors sur comment comprendre le sens, car c&#039;est sur elles que je m&#039;appuie pour dire qu&#039;elles le sont, il serait envisageable de dire que mon raisonnement faux, ce basant sur des constatations fausses devient vrai mais que cette v&eacute;rit&eacute; fausse o&ugrave; cette fausse v&eacute;rit&eacute;, n&#039;en serait pas une &agrave; l&#039;&eacute;chelle absolue cette id&eacute;e soulev&eacute;e me rend curieux&nbsp;et je la mettrais &agrave; l&#039;&eacute;preuve d&#039;un&nbsp;&lt;&lt;pari Pascalien&gt;&gt; si j&#039;ose dire afin de voir ce qu&#039;il en ressort, o&ugrave; dois-je me dire qu&#039;afin d&#039;amoindrir l&#039;erreur je dois accepter celles-ci telle qu&#039;elle me semble &ecirc;tre, le paradoxe &eacute;tant qu&#039;elle me semble &ecirc;tre en fonction, de ce que j&#039;analyse d&#039;elle.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Certains diraient qu&#039;il est en faite question de nuances et d&rsquo;&eacute;chelle, moi je dis qu&#039;a la pluralit&eacute; de ce que certains nomes effets ou causes, ne se trouve toujours qu&#039;un seul point forg&eacute; d&#039;infinit&eacute; de multitudes qui elles-m&ecirc;mes en fonction de l&#039;observateur qui-ci trouve, ne correspondent qu&#039;&agrave; un seul point (J&#039;en &eacute;mets l&#039;id&eacute;e, et d&#039;autres peuvent le voir diff&eacute;remment, cela s&#039;ancre dans le concret.) mais qui n&#039;&eacute;tant pas consciemment &quot;valuable&quot; pour nous, nous l&#039;estimons ind&eacute;finissable et il est vrai que cet &quot;unique point&quot; je ne peut toutefois pas en poser les limites tandis que je tente tout de m&ecirc;me de le faire en le nommant univers, et que si l&#039;individu targu&eacute; d&rsquo;&ecirc;tre peut douer et taxer de l&eacute;ger par ceux qui s&#039;estiment meilleurs lui reprochant la simplicit&eacute; de ses raisonnements, je ne peuvent nier qu&#039;une logique parfaite se passe de spectaculaire, le spectaculaire surprend souvent, c&#039;est bien car &agrave; premier vu il n&#039;est pas logique, nous ne nous y attendons pas. (Nous n&#039;y sont pas habitu&eacute;s, et la &quot;logique consciemment penser&quot; ce forme &eacute;galement de &quot;la rencontre&quot; entre la lois des grands nombres, et les exp&eacute;riences.)&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je leur r&eacute;ponds donc, qu&#039;en leur acceptant raison vis-&agrave;-vis du point de vue je n&#039;ai pas le d&eacute;sir de gagner une partie en cinquante&nbsp;coups lorsque trois suffisent et alors autant r&eacute;fl&eacute;chir en mati&egrave;re de ce qui me semble &ecirc;tre l&#039;absolue atteignable par ma personne, plut&ocirc;t que par micro raisonnements. C&#039;est donc une question de point de vue, mais l&#039;unit&eacute; me semble correcte, et elle mon point de vue.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je croit que la r&eacute;ponse &agrave; ce paradoxe, c&#039;est que nous n&#039;observons pas des choses, nous les sommes, on ne s&#039;appuie pas sur elle, s&rsquo;appuyer relev&eacute; d&#039;une dimension bien moindre les infinit&eacute;s dans lesquelles nous sommes qui nous constituent et que nous constituons, dimensions qui bien que ne formant qu&#039;un seul univers, en choisir l&#039;une &quot;pour s&#039;appuyer dessus&quot; serait s&#039;amputer de la capacit&eacute; &agrave; comprendre les autres,&nbsp;d&eacute;j&agrave; que m&ecirc;me sans ceux-l&agrave;, nous ne puisons toutes les comprendre, sauf dans le cas o&ugrave; en jouant sur les mots on se pr&eacute;tend univers et qu&#039;alors elles sont en nous, ou jouant encore sur les mots, dire que ces dimensions qui nous traverses, son &quot;en nous&quot; mais la simplicit&eacute; ici, me dirais justement de couper les membranes inutiles et de ne pas perdre mon temps dans de telles divergences.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Et je ne peux pas non plus m&rsquo;emp&ecirc;cher de penser que pour cerner l&#039;erreur, quand bien m&ecirc;me nous le ferions sous forme d&#039;inconnue et entre parenth&egrave;ses, nous pr&eacute;tendons alors connaitre les valeurs de v&eacute;rit&eacute;, car c&#039;est bien en fonction de ce que l&#039;on estime juste, que l&#039;on regarde ce que nous croyons ne pas l&rsquo;&ecirc;tre. (Ou l&#039;absolu contraire, ce qui en soi ne change &quot;rien&quot; vu que l&#039;on peut changer de sens des infinit&eacute;s de fois, sans rien perdre ou changer)&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Une &eacute;quation ou v&eacute;rit&eacute; et erreur sont toutes deux inconnues et sachant que c&#039;est en fonction d&#039;elles que nous estimons, me semble insoluble sauf si en faisant un choix arbitraire nous &quot;transformons&quot; la r&eacute;alit&eacute; en leur attribuant des valeurs qu&#039;elles auront alors &agrave; nos yeux ou qui permettrons la r&eacute;solution. Mais la v&eacute;rit&eacute;, et l&#039;erreur serait alors &quot;&agrave; nos yeux&quot;. Ce qui pour moi, n&#039;est pas suffisant.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">La logique &laquo; La Palicienne &raquo; ce pourrait finalement &ecirc;tre pour moi la meilleure de celles qui met donner de toucher, et si celui qui peut faire moins peut faire plus tandis que l&#039;idiot souvent rejoint le sage ou le g&eacute;nie, et qu&#039;il serait pr&eacute;somptueux ainsi que maladroit de pr&eacute;tendre &ecirc;tre l&#039;un de ces deux-l&agrave;, la solution qui me semble rapide serait donc de devenir idiot, car que je le soit ou non et bien je serais alors accompagner des sages. Mais ce paragraphe bien que plaisant &agrave; &eacute;crire et penser, est justement fait pour &ecirc;tre spectaculaire, il est le th&eacute;&acirc;tre, d&#039;une pi&egrave;ce qui se joue en moi-m&ecirc;me non pas ind&eacute;pendamment de ce que je suis, et de ce as quoi je r&eacute;ponds mais que je forme &eacute;galement, et ce th&eacute;&acirc;tre, n&#039;est fa&ccedil;onn&eacute; que d&#039;une seule pi&egrave;ce qui aurait pu &ecirc;tre raisonn&eacute; en une phrase, bien que malheureusement si elle l&#039;avait &eacute;t&eacute;, la profondeur de cette simplicit&eacute; n&#039;aurait jamais &eacute;t&eacute; perc&eacute; consciemment &quot;gr&acirc;ce &agrave; la phrase&quot;, en tout cas si l&#039;individu qui l&#039;avais &eacute;crite disposait de mes limites comme d&#039;une obligation.&nbsp;L&#039;art n&#039;est pas d&eacute;cousu de nature, il est &eacute;manation de celle-ci forger&nbsp;des mains de l&#039;homme ou du saurien. L&#039;une de ses utilisations peut &ecirc;tre de faire passer des id&eacute;es.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je me souviens de ce jour, o&ugrave; l&#039;on m&#039;a dit que ma logique &eacute;tait parfaite mais ce que n&#039;avait pas pens&eacute; ni mon juge, ni moi-m&ecirc;me &agrave; ce moment c&#039;est que si je n&#039;avais pas fait d&#039;erreurs, c&#039;est avant tout car j&#039;&eacute;tais incapable de les voir. Il serait fou, de croire que j&#039;ai eu le choix de les &eacute;viter.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Je ne peut m&rsquo;emp&ecirc;cher de mettre cela en relation avec les neurones les synapses, l&#039;univers &eacute;galement, tandis qu&#039;un autre individu dont le m&eacute;tier &eacute;tait l&#039;architecture avait utilis&eacute; pour &eacute;tablir le plus efficace r&eacute;seau de transf&egrave;re possible: une bact&eacute;rie.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Pourquoi une bact&eacute;rie? Et bien c&#039;est &quot;tr&egrave;s simple&quot; la bact&eacute;rie choisie &eacute;tant la moins complexe possible, cet architecte, dirais-je presque ce &quot;chercheur avait &eacute;mis l&#039;id&eacute;e qu&#039;elle serait redoutablement efficace et ne s&#039;ennuierait pas de biais cognitifs, il &eacute;tablit plusieurs circuits possibles &agrave; celle-ci pour obtenir de la nourriture, la bact&eacute;rie se servit alors de ses membranes, qui comme une arborescence et employ&acirc;t la totalit&eacute; des chemins possible, avant de faire mourir les membranes inutiles, puis les moins efficaces, pour ne garder finalement que la meilleure solution, celle qui ce passe d&#039;absolument tout frein. Ici on voit la parall&egrave;le que je fais avec les synapses, les neurones, mais &eacute;galement m&#039;a propre logique, si certains mon cru surdou&eacute;, c&#039;est peut-&ecirc;tre bien pour le contraire.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Mais je n&#039;ai pas &agrave; rougir de mon manque de complexit&eacute;, car alors le principe p&eacute;joratif d&#039;idiotie se trouve invalid&eacute; et cela vient d&#039;ailleurs parfaitement s&#039;additionner sur ma vision globale, qui consiste &agrave; dire que rien qui &quot;est&quot; n&#039;est dans une absolue &eacute;chelle, inutile,&nbsp;mais que c&#039;est bien nous qui jugeons les choses comme l&#039;&eacute;tant, et que m&ecirc;me si ces penser sont donc pour moi fausses &agrave; une &eacute;chelle haute, tandis que vrai &agrave; notre &eacute;chelle &quot;de tout les jours&quot;, elles sont tout de m&ecirc;me utiles, et logiques, tandis qu&#039;une chose totalement inutile ne devrait pas avoir d&#039;influence et ne pourrait donc, pas exister.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Peu importe ce qui se passe, peu importe l&#039;influence, peu importe que nous puissions le penser ou non, un jour, une autre influence mettra &agrave; profit la premi&egrave;re, parfois m&ecirc;me sans y penser, ou bien encore justement en la d&eacute;noncent.</div><div class="post_line"></div><div class="post_line">Lorsque l&#039;on critique un individu ou une id&eacute;e de passer, nous avons bien besoin de celle-ci pour le faire, et on lui admet alors aussi sans parfois le savoir une forme de r&eacute;ussite.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Le grand axe conscient du d&eacute;veloppement de mon &ecirc;tre dans la prochaine ann&eacute;e, sera la simplicit&eacute;. &Agrave; multiplier les objets afin de r&eacute;duire la marge d&#039;erreur, on finit parfois &agrave; nager dedans si longtemps qu&#039;elle nous para&icirc;t ensuite normale, et quelque part elle devient.</font></div><div class="post_line"><font color="#1e92f7">Je l&#039;ai d&eacute;j&agrave; dit, celui qui comprend tout, et celui qui ne comprend rien avance pourtant souvent main dans la main, peut &ecirc;tre&nbsp;que finalement celui qui exprime tout et le pense consciemment est l&#039;&eacute;l&egrave;ve du pr&eacute;tendu idiot qui a fait passer les d&eacute;couvertes du pr&eacute;tendu g&eacute;nie, dans le registre de ses connaissances tacites depuis si longtemps qu&#039;il les &agrave; oublier, ou peut &ecirc;tre, n&#039;en a il jamais eut besoin.</font></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Si la bact&eacute;rie le virus ou que sais-je de sa d&eacute;nomination exacte, ne disposait pas d&eacute;j&agrave; de la capacit&eacute; de devenir Saurien ou humain un jour, nous ne le serions jamais devenue et pourtant, est-il possible au Saurien de redevenir celle-ci?&nbsp; Je ne dit pas que c&#039;est impossible&nbsp;je pense m&ecirc;me que c&#039;est possible, toutefois qui peut en avoir la certitude? Ce qui est vrai dans un sens doit l&#039;&ecirc;tre dans l&#039;autre, et si nous avons travers&eacute; l&#039;&eacute;gale il ne me semble pas logique de dire que nous ne puisons le faire dans l&#039;autre sens, mais encore en math&eacute;matiques dans le registre des probabilit&eacute;s une chose qui a eu lieu &eacute;tait possible, tandis que l&#039;une que nous supposons possible, n&#039;est encore qu&#039;une esp&eacute;rance. Ainsi, je parierais alors sur la bact&eacute;rie/virus (ou autre) afin d&#039;&ecirc;tre gagnant &agrave; tout le coup et je me garderais de donner un avis sur le Saurus ou l&#039;humain, le jours au l&#039;on me questionnera. Car bien des id&eacute;es peuvent ici s&#039;affronter, la biologie notamment, ou encore l&#039;on pourrais me dire &quot;oui mais si le Saurien redevient bact&eacute;rie, au moment ou &quot;il&quot; sera ce que nous estimons &ecirc;tre&nbsp;une bact&eacute;rie il ne sera plus Saurien depuis longtemps, et alors il est en incapable. (Ce que l&#039;on pourrait dire de&nbsp;</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#1e92f7">Finalement lesquelles des deux est le plus adaptables? Lequel des deux dispose d&#039;une marge de progression qui d&eacute;passe l&#039;autre dans des dimensions colossales? Le Saurien, n&#039;est qu&#039;une membrane et toutes les membranes de celui-ci, ne d&eacute;passerons jamais ce de quoi il vient.</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=14602&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=14602&c_forum_page=1&c_page=2">2</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=14602&c_forum_page=1&c_page=3">3</a>&nbsp;4&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=14602&amp;c_topic_page=4">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=14602&c_forum_page=1&c_page=4" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_14602" name="d_reply_14602" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_14602');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_14602'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Philosophie d&#039;un tribun</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

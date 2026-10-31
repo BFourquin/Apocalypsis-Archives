@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 14915 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>De plus loin que la vie</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > De plus loin que la vie</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior+Actarii">Cdt. Denior Actarii</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10563.jpg" style="width:120px;height:128px" alt="Avatar" /><br />06/05/1020 ETU 01:07</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal273759')">Détails</a> <a href="javascript:warnpost(273759)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal273759" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=273759',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffff00">Confin&eacute;e, je suis confin&eacute;e. Pas seulement parce je suis astreinte au silence, pas seulement parce que je suis enferm&eacute;e dans une r&eacute;incarnation que je subis et que je ne comprends pas. Non, je suis confin&eacute;e dans la vie. Confin&eacute;e depuis des milliers d&rsquo;ann&eacute;es, des millions d&rsquo;ann&eacute;es depuis qu&rsquo;Il&nbsp;a d&eacute;cid&eacute; cette cr&eacute;ation et qu&rsquo;Il a d&eacute;cid&eacute; qu&rsquo;il y aurait de la vie. Pourquoi m&rsquo;a t&rsquo;Il choisi ?&nbsp;Il ne me l&rsquo;a jamais dit et je ne lui ai jamais pos&eacute; la question et pourtant, combien de fois me la suis je pos&eacute;e? A quoi puis je lui servir? J&rsquo;ai l&rsquo;impression d&rsquo;avoir tout manqu&eacute; mais mon fr&egrave;re d&eacute;chu dira que je suis sans doute son pr&eacute;f&eacute;r&eacute;. Et son pr&eacute;f&eacute;r&eacute;, il ne l&rsquo;a incarn&eacute; qu&rsquo;une fois alors que moi, je ne les compte plus.</div><div class="post_line">Oui, j&rsquo;ai &eacute;t&eacute; honor&eacute;e, Oui, j&rsquo;ai un peu fait bouger les choses mais que retient on de moi. Rien. En fait, &agrave; part l&rsquo;&eacute;ternit&eacute; je ne suis rien. Le moindre mortel, de ceux que je rencontre lorsque je suis sens&eacute; me reposer aux &Eacute;lys&eacute;es ou les secourir chez mon fr&egrave;re d&eacute;chu&nbsp;me dira que de revivre est un don. Mais voir ses proches mourir &eacute;ternellement est ce un don? Tous n&rsquo;acc&egrave;dent pas aux &Eacute;lys&eacute;es comme Prehm Abha, Anthin&eacute;a ou Alexphaelton. Beaucoup sont irr&eacute;m&eacute;diablement morts et progressivement leur souvenir s&rsquo;efface,&nbsp;m&ecirc;me de ma m&eacute;moire. Les limbes les emportent inexorablement.&nbsp;</div><div class="post_line">Et tout cela pour quoi, pour qui. Pour Lui. Mais que veut il?&nbsp;</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior+Actarii">Cdt. Denior Actarii</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10563.jpg" style="width:120px;height:128px" alt="Avatar" /><br />06/05/1020 ETU 02:22</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal273776')">Détails</a> <a href="javascript:warnpost(273776)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal273776" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=273776',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffff00">Pourquoi ne m&rsquo;a t&rsquo;Il pas laiss&eacute; ma seule mission, celle d&rsquo;accompagner les ressuscit&eacute;s et les r&eacute;incarn&eacute;s. Quelques &eacute;lus ici de l&agrave; et qui tous le m&eacute;ritaient. Pourquoi me m&ecirc;ler &agrave; leurs sorts alors qu&rsquo;Il ne me donne pas le choix de celles et ceux qu&rsquo;Il va &eacute;lire. Pourquoi m&rsquo;a t&rsquo;Il attribu&eacute; ces deux anges aussi dissemblables que farfelus. J&rsquo;en arrive &agrave; douter qu&rsquo;ils fussent des anges parfois .</div><div class="post_line"></div><div class="post_line">Et pourquoi m&rsquo;a t&rsquo;il donn&eacute; ce nom parmi les hommes ? Denior, qu&rsquo;est ce que cela veut dire? Il para&icirc;t, Elle me l&rsquo;a dit que petit je fourche sur les &laquo; S &raquo; et que je pronon&ccedil;ais &laquo; D &raquo; &agrave; la place. Petite blague Senior Denior ? Senior, Il aime bien ce mot. Il aura voulu le rappeler qu&rsquo;Il &eacute;tait le Senior et moi le petit Denior.&nbsp;</div><div class="post_line"></div><div class="post_line">Et pourquoi m&rsquo;a t&rsquo;il attribu&eacute; l&rsquo;arrogance comme &agrave; Lucy ? Sans sa s&eacute;duction, cela ne marche pas aussi bien et on ne me pardonne pas autant qu&rsquo;&agrave; lui.</div><div class="post_line"></div><div class="post_line">Et pourquoi ne me donne t&rsquo;Il le droit que de parler avec les morts quand il donne &agrave; Gabriel, Michel et Uriel des dons bien plus grands. ? Il dit qu&rsquo;il m&rsquo;aime mais depuis l&rsquo;autre, le crucifi&eacute;, il a rappel&eacute; qu&rsquo;il aimait tout le monde alors....</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior+Actarii">Cdt. Denior Actarii</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10563.jpg" style="width:120px;height:128px" alt="Avatar" /><br />06/05/1020 ETU 04:26</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal273798')">Détails</a> <a href="javascript:warnpost(273798)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal273798" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=273798',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffff00">Longtemps, je me suis content&eacute; de cela. Plus encore, j&rsquo;aimais et j&rsquo;aime encore cela. Veiller sur les ressuscit&eacute;s, ces rares &eacute;lus qui se rapprochent de nous par l&rsquo;excellence de leurs vies, apaiser leurs doutes, les aider &agrave; la saintet&eacute;, et accepter qu&rsquo;elle l&rsquo;emporte sur nous dans le c&oelig;ur des hommes. Qui sous mon nom, v&eacute;ritable, me conna&icirc;t ou m&rsquo;invoque quand des milliers de Saints ou autre d&eacute;esse abondent, eux qui n&rsquo;ont qu&rsquo;une once de notre pouvoir ? Combien en ai je rencontr&eacute; dans mes multiples vies, petits sanctifi&eacute;s gris&eacute;s de leur nouvelle &eacute;ternit&eacute; temporaire et abus&eacute;s, combien abus&eacute;s par les frasques du fr&eacute;rot. Ah Lucy, toi le brillant &agrave; qui ont longtemps tout pass&eacute; jusqu&rsquo;&agrave; lass&eacute; sans pour autant rompre &agrave; jamais.&nbsp;</div><div class="post_line"></div><div class="post_line">Moi, je n&rsquo;ai pas cela et cette humanit&eacute; r&eacute;currente m&rsquo;accable au contraire de reproches r&eacute;guliers. Mais comment trouver les &eacute;lus sans les cribler ?</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior+Actarii">Cdt. Denior Actarii</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10563.jpg" style="width:120px;height:128px" alt="Avatar" /><br />06/05/1020 ETU 19:07</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal273879')">Détails</a> <a href="javascript:warnpost(273879)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal273879" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=273879',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffff00">Aujourd&rsquo;hui, en Odyss&eacute;e, sous d&eacute;j&agrave; trois formes diff&eacute;rentes, demain o&ugrave;? Seul Lui le sait car Il sait tout, pr&eacute;voit tout mais Il ne dit rien. Il ne me dit rien. Ou presque rien. Il leur laisse croire au libre arbitre, les oblige&nbsp;par ma&nbsp;voix et celles de mes fr&egrave;res et s&oelig;urs &agrave; prendre leurs responsabilit&eacute;s mais au final, le boum final, c&rsquo;est Lui qui Le d&eacute;cide m&ecirc;me quand ces cons appuient sur un bouton de trop. &Agrave; la maison certains accusent Lucy de corrompre la chose mais je suis certain qu&rsquo;Il le laisse faire. Pourquoi, ce je ne sais pas.</div><div class="post_line">Il ne dit m&ecirc;me pas qu&rsquo;Il recommence ce qui a failli puisque cela reviendrait &agrave; conclure qu&rsquo;Il est faillible alors qu&rsquo;Il est parfait. Alors pourquoi? Je ne sais pas&nbsp;</div><div class="post_line"></div><div class="post_line">Alors je fais le job. Je traque les futurs &eacute;lus et je les pr&eacute;pare. Toujours sur la m&ecirc;me ligne, Paix et d&eacute;mocratie. Les obliger &agrave; se prendre en mains, &agrave; dialoguer. &Ccedil;a a encore march&eacute; ce coup ci m&ecirc;me si ils n&rsquo;en ont pas conscience. Et tant pis, si on le raille. Ils cr&egrave;veront alors que je rena&icirc;trai &agrave; coup s&ucirc;r. D&rsquo;ailleurs, je ne peux pas mourir. Je suis condamn&eacute; &agrave; la vie.</font></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Denior+Actarii">Cdt. Denior Actarii</a><br>Prestige de chroniqueur&nbsp;: 0<br /><br /><img src="/avatars/10563.jpg" style="width:120px;height:128px" alt="Avatar" /><br />11/05/1020 ETU 06:37</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal274575')">Détails</a> <a href="javascript:warnpost(274575)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal274575" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=274575',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#c3ffff">Condamn&eacute;e &agrave; la vie et &agrave; des vies. J&rsquo;en ai eu des centaines et pas des plus d&eacute;gueulasses croyez moi. Il me g&acirc;te. </div><div class="post_line"></div><div class="post_line">Je me suis toujours trouv&eacute; au pouvoir, c&rsquo;est bien simple au minimum ministre ou diplomate. Toujours bien nourri, bien v&ecirc;tu.&nbsp;Si le crucifi&eacute;, son pr&eacute;f&eacute;r&eacute;, a endur&eacute; toutes les mis&egrave;res, moi, j&rsquo;en ai connu les multiples plaisirs futiles et temporaires. C&rsquo;est bizarre quand m&ecirc;me. </div><div class="post_line"></div><div class="post_line">L&rsquo;autre n&rsquo;est venu qu&rsquo;une fois et &agrave; souffert et moi, c&rsquo;est en permanence et avec les honneurs et les plaisirs. Bon d&rsquo;accord, moi, je ne laisse &agrave; chaque fois qu&rsquo;une &eacute;raflure dans l&rsquo;histoire alors que le clout&eacute;, on en parle depuis, depuis, depuis, depuis une &eacute;ternit&eacute; bien sur. Merde, merde et encore merde. Il vient une fois, une seule fois et boum c&rsquo;est la star de la famille, encore plus c&eacute;l&egrave;bre que notre petit fr&egrave;re Lucy. Merde, merde et re merde.</div><div class="post_line"></div><div class="post_line">C&rsquo;est vrai quoi, j&rsquo;ai fais des choses utiles tout de m&ecirc;me. Et partout dans la galaxie. L&rsquo;autre n&rsquo;est apparu qu&rsquo;une fois et sur une seule plan&egrave;te et il sert de r&eacute;f&eacute;rence. Il me dit qu&rsquo;il a vaincu la mort mais moi je ne peux pas mourir! Est ce que je lui dois? Ou mourais je un jour?&nbsp;</div><div class="post_line"></div><div class="post_line">Parce que des dieux ou suppos&eacute;s tels, j&rsquo;en ai connu. Je me suis m&ecirc;me parfois bien amus&eacute; avec eux quand Il me laissait &ecirc;tre ce que je suis, un archange. J&rsquo;ai quelques soir&eacute;es sympas au compteur avec Aphrodite, ce n&rsquo;est pas racontable m&ecirc;me si bien s&ucirc;r, Il le sait. Jess lui bien s&ucirc;r est parfait, il n&rsquo;y a jamais touch&eacute;. Bien s&ucirc;r, il ne m&rsquo;a rien reproch&eacute;, juste une remarque de maman sur Lucy. Je l&rsquo;ai bien aim&eacute; Aphrodite tout comme Prehm Abha. Vraiment bien aim&eacute;. Elle est morte de chagrin, oubli&eacute;e de tous a cause du crucifi&eacute;. Bon, c&rsquo;est s&ucirc;r, elle ne servait pas &agrave; grand chose, mais elle ne g&ecirc;nait personne. Mais non, monsieur bricolage a voulu le monopole.&nbsp;</div><div class="post_line"></div><div class="post_line">Il a bien voulu, pr&egrave;s de 2000 ans apr&egrave;s sa disparition que je rende un petit hommage &agrave; Aphrodite. J&rsquo;ai inspire un groupe de musique un peu paum&eacute;, les enfants d&rsquo;Aphrodite il s&rsquo;appelait, enfin pour que ce soit plus parlant, les Aphrodite childs. C&rsquo;&eacute;tait pas mal au d&eacute;part et puis bien s&ucirc;r le clout&eacute; s&rsquo;en ai m&ecirc;l&eacute; et ils ont voulu faire un album sur l&rsquo;apocalypse. Bon musicalement, c&rsquo;est vrai, c&rsquo;&eacute;tait g&eacute;nial mais apr&egrave;s &ccedil;a, fini la rigolade. Le bouffi a chant&eacute; tout seul des mi&egrave;vreries pas toujours d&eacute;gueulasses et l&rsquo;autre a fait ce qu&rsquo;il faisait de mieux . De la musique. Mais plus celle d&rsquo;Aphrodite. Tout &ccedil;a &agrave; cause du clout&eacute;&nbsp;</font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=14915&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=14915" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_14915" name="d_reply_14915" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_14915');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_14915'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > De plus loin que la vie</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

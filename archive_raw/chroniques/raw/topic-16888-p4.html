@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 4 ;
+    var topic = 16888 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>A la recherche de Sarah</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche de Sarah</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=2">2</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=3">3</a>&nbsp;4&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=5">5</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=6">6</a>&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />20/09/1023 ETU 23:20<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304359')">Détails</a> <a href="javascript:warnpost(304359)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304359" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304359',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffff44">&ldquo;MYAH&hellip; Myah&hellip;&rdquo;</font></div><div class="post_line"></div><div class="post_line"><em>Elle avait eu conscience de tomber et avait attendu le choc brutal contre le sol. Elle n&rsquo;avait rien senti de cela, mais plut&ocirc;t une chute douce et son dos encastr&eacute; contre un dossier chaud et rassurant. La douleur avait reflu&eacute; et elle se sentait tellement bien qu&rsquo;elle ne voulait pas ouvrir les yeux.</em></div><div class="post_line"></div><div class="post_line"><em>Son corps flottait en apesanteur sur un oc&eacute;an de coton, la lumi&egrave;re &eacute;tait douce, les bruits de voix assourdis. Elle savait que la douleur impitoyable allait revenir&hellip; alors surtout ne pas faire un mouvement, ni m&ecirc;me un fr&eacute;missement. Garder son corps en paix, hors de la prise du temps.</em></div><div class="post_line"></div><div class="post_line"><em>Effectivement, la douleur pointa son nez de nouveau et enfla telle une vague se gavant d&rsquo;eau pour se dresser et se briser sur les rochers en myriades d&rsquo;aiguilles qui dardaient ses reins et jusqu&rsquo;au haut de son dos. Instinctivement, Myah se redressa dans un cri qui lui vrilla les oreilles comme une d&eacute;chirure. Elle en avait le souffle coup&eacute; et son instinct lui demandait de la fuir&hellip; de la fuir&hellip; ou de la combattre de toutes ses forces.</em></div><div class="post_line"></div><div class="post_line"><em>Ses entrailles irradiaient encore un malaise brutal quand elle ouvrit les yeux, qu&rsquo;elle avait rouges et larmoyants.&nbsp;Les veines de ses tempes et de son cou &eacute;taient gonfl&eacute;es, sa voix rauque.</em></div><div class="post_line"><em>Ses mains crisp&eacute;es sur&hellip; d&rsquo;autres mains ?... un bras ?... des cuisses ? serraient fort pour s&rsquo;ancrer ici bas, pour ne pas mourir, pour d&eacute;charger un peu de douleur&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><strong>Faites quelque chose !... Ne nous laissez pas&hellip; mourir !</strong></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />21/09/1023 ETU 15:28<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304381')">Détails</a> <a href="javascript:warnpost(304381)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304381" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304381',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Veuillez lui tenir les jambes plus haut... merci.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Anudar saisit le couteau &agrave; lame de bois galba qui ne quittait jamais son c&ocirc;t&eacute;. Le tranchant en &eacute;tait aussi aiguis&eacute; qu&#039;une lame de rasoir - mais il n&#039;avait bien entendu pas l&#039;intention de s&#039;en servir &agrave; des fins chirurgicales. D&#039;un geste pr&eacute;cis, le Basileus d&eacute;coupa les v&ecirc;tements et les sous-v&ecirc;tements imbib&eacute;s de liquide amniotique sans occasionner la moindre &eacute;gratignure.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Il n&#039;y aura pas d&#039;anesth&eacute;sie</strong></font><em>, r&eacute;pondit-il &agrave; Jim. </em><strong><font color="#2ecc40">D&#039;abord, parce que la patiente n&#039;a pas le temps d&#039;&ecirc;tre pr&eacute;par&eacute;e en ce sens. Ensuite, parce que le mat&eacute;riel n&#039;arrivera pas avant la fin de l&#039;accouchement. Et enfin, parce que ma formation &agrave; ce type de soin de confort n&#039;est que th&eacute;orique.</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il entendit Myah se plaindre et r&eacute;clamer de l&#039;aide.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">Ne vous inqui&eacute;tez pas</font></strong><em>, dit-il d&#039;une voix aussi rassurante que possible. </em><font color="#2ecc40"><strong>Vous n&#039;allez pas mourir et tout ceci sera termin&eacute; tr&egrave;s bient&ocirc;t.</strong></font><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>En l&#039;absence de tout d&eacute;sinfectant disponible, il ne pouvait envisager de r&eacute;aliser un toucher interne, mais une palpation du bas-abdomen de la parturiente devrait lui permettre de d&eacute;tecter l&#039;emplacement du foetus et peut-&ecirc;tre m&ecirc;me de le repositionner en cas de pr&eacute;sentation par le si&egrave;ge ou l&#039;&eacute;paule.</em></div><div class="post_line"></div><div class="post_line"><em><font color="#2ecc40"><strong>Un p&ocirc;le assez rigide en position basse et l&#039;autre plus souple en position haute... Le sens de pr&eacute;sentation est le bon. Mais &ccedil;a, qu&#039;est-ce que c&#039;est ?</strong></font></em></div><div class="post_line"></div><div class="post_line"><em>Anudar fron&ccedil;a les sourcils.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">&Epsilon;&pi;&iota;&tau;&alpha;&chi;ύ&nu;&epsilon;&tau;&epsilon; &tau;&eta;&nu; &pi;&alpha;&rho;ά&delta;&omicron;&sigma;&eta; &gamma;&upsilon;&nu;&alpha;&iota;&kappa;&omicron;&lambda;&omicron;&gamma;&iota;&kappa;&omicron;ύ &alpha;&pi;&omicron;&lambda;&upsilon;&mu;&alpha;&nu;&tau;&iota;&kappa;&omicron;ύ</font></strong><em>, ordonna-t-il &agrave; ses hoplites.</em></div><div class="post_line"></div><div class="post_line"><em>Puis, afin de solliciter l&#039;intellect de Myah comme celui de Jim avant qu&#039;ils ne s&#039;interrogent, il ajouta :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Aucune de mes patientes ne s&#039;est plainte, autrefois.</strong></font><em>&quot;</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />26/09/1023 ETU 02:06</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D304469', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304468')">Détails</a> <a href="javascript:warnpost(304468)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304468" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 3</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304468',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>*Jim &eacute;couta attentivement le Basileus, lui qui resta &agrave; tenir les jambes de son &eacute;quipi&egrave;re. Le marshal resta bouche b&eacute;e, devant le savoir faire du commandant Anudar. Le professionnalisme et le calme de ce dernier remplit le soldat d&#039;admiration...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Vous... Vous &ecirc;tes incroyable !</font></div><div class="post_line"></div><div class="post_line"><em>*TraineDehors sortis alors une bouteille de rhum de sa poche...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Basileus ? Vous pensez que &ccedil;a fera l&#039;affaire comme antiseptique ?</font></div><div class="post_line"><font color="#68c4e8">Ou peut &ecirc;tre en anesth&eacute;sie ?</font></div><div class="post_line"></div><div class="post_line"><em>*Sur cette derni&egrave;re phrase, il proposa une gorg&eacute;e &agrave; Myah...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Tiens, bois un peu... &Ccedil;a va te calmer !</font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">-------------------------------------------------------------------------------------------------------------------------</div><div class="post_line"></div><div class="post_line"><em>*Le marshal pris une inspiration, puis ramena la bouteille a sa bouche*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Allez, &ccedil;a ne peut pas me faire de mal !</font></div><div class="post_line"></div><div class="post_line"><em>*Jim se rin&ccedil;a la bouche, puis tendit la bouteille &agrave; Anudar...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Alors Doc, vous en pensez quoi ?</font></div><div class="post_line"></div><div class="post_line">-------------------------------------------------------------------------------------------------------------------------</div><div class="post_line"></div><div class="post_line"><em>*Le soldat observa ses mains trembler de plus en plus, puis s&#039;alluma un cigare. Dessus, l&#039;on pouvait lire &quot;Hamilton-Arabica. What else ?&quot;*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Oh point o&ugrave; on en est !</font></div><div class="post_line"><font color="#68c4e8">Dites Doc, c&#039;est sur &ccedil;a ira ?</font></div><div class="post_line">pfffff</div><div class="post_line"><font color="#68c4e8">Vous ne croyiez pas que l&#039;on devraiiiiiiiiiiiiiiiiiiiiiiiiiiiit... Se d&eacute;tendreeeeeeeeeeeeeeeeee ?</font></div><div class="post_line">pffff</div><div class="post_line"><font color="#68c4e8">Fumer, ou se faire fumer tel est la question...</font></div><div class="post_line">pffff</div><div class="post_line"></div><div class="post_line"><em>*Jim se tourna vers Myah...*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Tiens ma belle, prend uneeeeeeeeeeee taffeeeeeeeee !</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />27/09/1023 ETU 00:00<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304486')">Détails</a> <a href="javascript:warnpost(304486)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304486" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304486',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Sur les ordres d&rsquo;Anudar, Jim avait empoign&eacute; ses chevilles sans m&eacute;nagement <font size="1">(maladroit qu&rsquo;il &eacute;tait)</font> pour les poser sur ses &eacute;paules et Myah se sentit presque &eacute;cartel&eacute;e. Elle avait essay&eacute; de r&eacute;sister, en vain.</em></div><div class="post_line"></div><div class="post_line"><em>Anudar parlait, lui palpait le ventre en faisant des commentaires qui paraissaient apaisants. Elle se r&eacute;p&eacute;tait en boucle dans sa t&ecirc;te </em><em><font color="#ffc95f">&ldquo;... pas mourir&hellip; bient&ocirc;t fini&hellip; rassurant&hellip; bonne position&hellip; t&ecirc;te en bas&hellip; tout va bien&hellip; tout va bien&hellip; tout va b&hellip;&rdquo;</font></em></div><div class="post_line"></div><div class="post_line"><em>Puis tout eut l&rsquo;air de s&rsquo;acc&eacute;l&eacute;rer, une langue &eacute;trange cri&eacute;e fort. Elle ne la comprenait pas, mais le ton n&rsquo;&eacute;tait pas s&eacute;curisant.</em></div><div class="post_line"><font color="#ffa500">&ldquo;Que se passe-t-il ? Pourquoi tout &agrave; coup&hellip; Il disait que tout allait bien&hellip; Alors ? <font size="3">Qu&rsquo;est-ce qui cloooche ?</font>&rdquo;</font></div><div class="post_line"></div><div class="post_line"><em>C&rsquo;est &agrave; ce moment-l&agrave; que Jim lui glissa une lamp&eacute;e d&rsquo;alcool dans la gorge qu&rsquo;elle n&rsquo;eut pas le temps d&rsquo;appr&eacute;cier. Elle se mit &agrave; tousser <font size="1">(essayez de boire couch&eacute;, vous verrez !)</font>, &agrave; hoqueter proche de l&rsquo;asphyxie.</em></div><div class="post_line"><em>Puis, lors d&rsquo;une inspiration longue et r&eacute;paratrice <font size="1">(croyait-elle)</font>, elle inhala un tabac tr&egrave;s fort et parfum&eacute;. La toux reprit. Elle sentit ses boyaux se r&eacute;vulser et pensa vomir sur le m&eacute;decin de fortune. Ses yeux coulaient, son nez se remplissait de mucus&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">&ldquo;Bouchoir ! Tchoum&hellip; Kshhh&hellip; Rrr&acirc;&acirc;&hellip; M&rsquo;&eacute;touffe&hellip;&rdquo;</font></div><div class="post_line"></div><div class="post_line"><em>Elle eut du mal &agrave; parler jusqu&rsquo;&agrave; ce qu&rsquo;on lui donne de quoi soulager et vider ses conduits respiratoires et s&rsquo;essuyer les yeux. La douleur montait &agrave; nouveau. Elle poussa jusqu&#039;&agrave; s&rsquo;en faire gonfler toutes les veines du visage et elle eut juste le temps de hurler.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><strong>&ldquo;Jiiimmm, je te revaudrai &ccedil;a, sale Pirate de mes&hellip; <font size="3">AAAaaahhh</font>&hellip; j&rsquo;ai mal !&rdquo;</strong></font></div><div class="post_line"></div><div class="post_line"><em>Elle souffla profond&eacute;ment et essaya de calmer son coeur. Mais le cigare de Hamilton et les vapeurs d&rsquo;alcool firent leur effet&hellip;</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">&ldquo;T&rsquo;as trouv&eacute; quoi, </font><font color="#ffff00">Doc</font><font color="#ffa500"> ? Fais pas ton mariole, hein ? T&rsquo;es pas gaul&eacute; pour me r&eacute;sister. Hein </font><font color="#ff0000">Jim</font><font color="#ffa500">, dis-lui que je suis bal&egrave;ze ? et tire la t&ecirc;te du </font><font color="#1e92f7">machin</font><font color="#ffa500"> quand tu la verras. L&rsquo;&eacute;coute pas, l&rsquo;autre&hellip; Je veux </font><font color="#17b529">Dissident</font><font color="#ffa500">&hellip; je veux </font><font color="#ff30dc">EX-000</font><font color="#ffa500">&hellip; je veux </font><font color="#ff4136">Corn&eacute;lius</font><font color="#ffa500">&hellip; je veux </font><font color="#44b8ff">Azeran</font><font color="#ffa500">, mon amour... Qu&rsquo;est-ce qu&rsquo;ils foutent ?&rdquo;</font></div><div class="post_line"></div><div class="post_line"><em>Elle divaguait, appelait les absents, n&rsquo;avait plus conscience d&rsquo;o&ugrave; elle &eacute;tait&hellip; Elle martela de ses poings les cuisses d&rsquo;Anudar et des pieds, les &eacute;paules de Jim&hellip; C&rsquo;&eacute;tait elle qui voulait se soustraire &agrave; son corps douloureux, &agrave; ces mots qu&rsquo;elle n&rsquo;avait pas compris, &agrave; l&rsquo;emprise des deux Commandants, &agrave; sa peur aussi.</em></div><div class="post_line"></div><div class="post_line"><em>Faut dire que le cigare &ldquo;Hamilton-Arabica What else ?&rdquo;, c&rsquo;&eacute;tait pas un petit joint ! Cors&eacute;, le truc !</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />29/09/1023 ETU 18:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304539')">Détails</a> <a href="javascript:warnpost(304539)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304539" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304539',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Selon l&#039;exp&eacute;rience d&#039;Anudar, constitu&eacute;e lors d&#039;une p&eacute;riode assez courte mais&nbsp;intense, un accouchement c&#039;est avant tout de l&#039;attente. Ici, la parturition semblait appel&eacute;e &agrave; &ecirc;tre assez rapide... mais pourtant, il y avait des temps de pause pendant lesquels il n&#039;y avait rien &agrave; faire sinon observer, pour rep&eacute;rer tout signe de d&eacute;gradation chez la future m&egrave;re. En l&#039;absence de mat&eacute;riel avanc&eacute;, il n&#039;y avait aucun moyen de v&eacute;rifier qu&#039;&agrave; coup s&ucirc;r tout allait bien pour le foetus - mais Anudar avait d&eacute;tect&eacute; des preuves de&nbsp;mobilit&eacute; ind&eacute;pendantes des contractions maternelles, ce qui &eacute;tait bon signe.</em></div><div class="post_line"></div><div class="post_line"><em>Sa concentration fut &eacute;branl&eacute;e une premi&egrave;re fois lorsqu&#039;il vit Jim d&eacute;gainer une bouteille de boisson alcoolique. Avant qu&#039;il ait le temps de faire une remarque, il vit avec horreur que TraineDehors proposait une lamp&eacute;e de rhum &agrave; la parturiente - apr&egrave;s en avoir bien entendu absorb&eacute; lui-m&ecirc;me une bonne gorg&eacute;e. Il s&#039;appr&ecirc;tait &agrave; faire une remarque au moment o&ugrave; un hoplite s&#039;avan&ccedil;a en d&eacute;clarant :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">&Tau;&omicron; &alpha;&pi;&omicron;&lambda;&upsilon;&mu;&alpha;&nu;&tau;&iota;&kappa;ό &theta;&alpha; &pi;&alpha;&rho;&alpha;&delta;&omicron;&theta;&epsilon;ί &mu;&epsilon; drone &sigma;&epsilon; &delta;έ&kappa;&alpha; &lambda;&epsilon;&pi;&tau;ά.</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Il hocha la t&ecirc;te et r&eacute;pondit :</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">&Gamma;&rho;&eta;&gamma;&omicron;&rho;ό&tau;&epsilon;&rho;&alpha;. &Theta;&alpha; &chi;&rho;&epsilon;&iota;&alpha;&sigma;&tau;&epsilon;ί &epsilon;&sigma;&omega;&tau;&epsilon;&rho;&iota;&kappa;ή &psi;&eta;&lambda;ά&phi;&eta;&sigma;&eta;.</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>Du coin de l&#039;oeil, il vit Jim absorber une nouvelle gorg&eacute;e puis lui tendre la bouteille qu&#039;il refusa d&#039;un air distrait, pr&eacute;occup&eacute;&nbsp;par les nouvelles plaintes de Myah.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Vos r&eacute;actions ne sont pas anormales, amie</strong></font><em>, dit-il d&#039;une voix rassurante. </em><strong><font color="#2ecc40">Ne vous inqui&eacute;tez pas, j&#039;estime que d&#039;ici une demi-heure tout sera termin&eacute;.</font></strong><em>&quot;</em></div><div class="post_line"></div><div class="post_line"><em>La part analytique de son esprit lui rappela que si la parturition avait &eacute;t&eacute; d&eacute;clench&eacute;e cinq minutes plus tard, ils auraient &eacute;t&eacute; &agrave; bord d&#039;un v&eacute;hicule qui en ce moment pr&eacute;cis aurait d&eacute;j&agrave; conduit Myah entre les mains des biom&eacute;decins obst&eacute;triciens de l&#039;h&ocirc;pital le plus proche. Ils auraient eu du mat&eacute;riel avanc&eacute;, une pratique tr&egrave;s sup&eacute;rieure &agrave; la sienne... et lui aurait pu se consacrer &agrave; Jim afin de lui &eacute;viter de s&#039;intoxiquer&nbsp;si peu de temps avant un sommet interstellaire. Lequel sommet semblait devenir de plus en plus incertain au fur et &agrave; mesure que le comportement du Commandant se faisait de plus en plus erratique.</em></div><div class="post_line"></div><div class="post_line"><em><strong><font color="#2ecc40">Par la Sainte-Triade ! Il sort un cigare... non, il l&#039;allume ?</font></strong></em></div><div class="post_line"></div><div class="post_line"><em>L&#039;odeur qui &eacute;manait du cylindre de feuilles press&eacute;es ne semblait pas normale. Avec horreur, le Basileus reconnut la senteur caract&eacute;ristique des cannabino&iuml;des br&ucirc;l&eacute;s.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><strong><font color="#2ecc40">&Phi;έ&rho;&tau;&epsilon; &mu;&omicron;&upsilon; &tau;&omicron; &iota;&alpha;&tau;&rho;&iota;&kappa;ό &kappa;&iota;&tau; έ&kappa;&tau;&alpha;&kappa;&tau;&eta;&sigmaf; &alpha;&nu;ά&gamma;&kappa;&eta;&sigmaf;</font></strong><em>, ordonna-t-il au hoplite.</em></div><div class="post_line"></div><div class="post_line"><em>L&#039;infirmerie de la dalle de l&#039;espace poss&eacute;dait une trousse qui, bien qu&#039;elle soit d&eacute;pourvue de mat&eacute;riel d&#039;obst&eacute;trique, incluait des vaporisateurs capables de purifier une atmosph&egrave;re pollu&eacute;e par des hallucinog&egrave;nes ou des substances hypnotiques... ainsi que des s&eacute;datifs puissants, si jamais un passager incontr&ocirc;lable venait &agrave; d&eacute;barquer. Anudar doutait qu&#039;il soit n&eacute;cessaire d&#039;endormir Jim - et il esp&eacute;rait ne pas avoir &agrave; en arriver &agrave; pareille extr&eacute;mit&eacute;, qui entra&icirc;nerait sans aucun doute la rupture des relations diplomatiques entre sa civilisation et l&#039;Ecoum&eacute;n&ecirc; - mais il estimait indispensable de travailler dans une atmosph&egrave;re o&ugrave; il resterait en pleine possession de ses moyens. D&eacute;j&agrave;, il commen&ccedil;ait &agrave; sentir son esprit plus lent.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Vous me rappellerez &agrave; raison, ami Jim, que j&#039;ai d&eacute;j&agrave; travaill&eacute; dans un environnement plus pollu&eacute; que celui-ci...</strong></font><em>&nbsp;dit-il d&#039;une voix toujours aussi ma&icirc;tris&eacute;e, </em><strong><font color="#2ecc40">mais pourriez-vous &eacute;viter d&#039;intoxiquer avant m&ecirc;me son premier instant la jeune vie que nous allons faire &eacute;merger sous peu ?</font></strong><em><font color="#ffffff">&quot;</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Puis, revenant &agrave; Myah qui venait de lui poser une question de fa&ccedil;on imp&eacute;rieuse :</font></em></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><strong>&quot;</strong></font><font color="#2ecc40"><strong>Pour le moment, je n&#039;ai rien trouv&eacute; du tout. Je vais cependant vous demander votre accord pour proc&eacute;der &agrave; une palpation interne, une fois que le d&eacute;sinfectant aura &eacute;t&eacute; livr&eacute;, ce qui ne devrait pas tarder. Il est n&eacute;cessaire que je v&eacute;rifie avec soin le positionnement du foetus... au cas o&ugrave; un renversement serait n&eacute;cessaire.</strong></font><font color="#ffffff"><em>&quot;</em></font></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">Il n&#039;en dit pas plus.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">La trousse arriva, et il choisit une ampoule d&#039;un vert vif qu&#039;il brisa d&#039;un geste confiant. Le nuage de substance volatile se r&eacute;pandit autour d&#039;eux en s&#039;&eacute;claircissant et il respira de toute la force de ses poumons. Les mol&eacute;cules intelligentes se r&eacute;pandirent jusque dans son sang et vinrent ch&eacute;later les psychotropes du cigare. Le processus serait plus lent sur Jim et Myah - qui apr&egrave;s tout avaient absorb&eacute; une dose plus importante - mais au moins pourrait-il quant &agrave; lui op&eacute;rer au mieux de ses capacit&eacute;s.</font></em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffffff">&quot;</font></em><strong><font color="#2ecc40">&Kappa;&alpha;&iota; &alpha;&upsilon;&tau;ό &theta;&alpha; &epsilon;ί&nu;&alpha;&iota; &epsilon;&pi;ί&sigma;&eta;&sigmaf; &alpha;&pi;&alpha;&rho;&alpha;ί&tau;&eta;&tau;&omicron;</font></strong><em><font color="#ffffff">, marmonna-t-il pour lui-m&ecirc;me avant d&#039;entendre le bruit des pales du drone qui se rapprochait.</font></em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Myah+d%27Allow">Cdte. Myah d&#039;Allow</a><br>Prestige de chroniqueur&nbsp;: 165<br /><br /><img src="/avatars/11906.png" style="width:128px;height:128px" alt="Avatar" /><br />29/09/1023 ETU 20:55<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal304541')">Détails</a> <a href="javascript:warnpost(304541)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304541" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304541',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Myah sentait qu&#039;elle n&#039;&eacute;tait pas dans son &eacute;tat normal, mais le fait est que le rhum et le cigare frelat&eacute; att&eacute;nuaient les douleurs et le malaise. Elle avait commenc&eacute;&nbsp;&agrave; avoir mal au dos, mais l&agrave;, elle nageait dans le coton avec soulagement et d&eacute;lices. Les vapeurs inhal&eacute;es ensuite diminu&egrave;rent les effets du poison et elle reprit pied dans la r&eacute;alit&eacute; doucement. Qu&#039;avait-elle entendu juste avant ?</em></div><div class="post_line"></div><div class="post_line"><font color="#ffa500">Mon ac... accord ? Mais... non ! Enfin, oui ! Je n&#039;ai pas tout compris, excusez-moi... Le foetus ?&nbsp;Faites ce que vous voulez, c&#039;est oui... OUI...</font></div><div class="post_line"></div><div class="post_line"><em>Elle se laissa sombrer &agrave; nouveau&nbsp;dans une torpeur bienveillante, consciente qu&#039;elle avait autoris&eacute;... Anudar, &agrave; faire ce qu&#039;il jugeait bon. Pour le bien de son b&eacute;b&eacute;, le seul qui comptait. Elle esp&eacute;rait le voir...</em></div><div class="post_line"></div><div class="post_line"><em><font color="#ffc95f">*Faites qu&#039;il ait une peau normale !*</font></em></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />09/10/1023 ETU 03:00</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D304708', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal304705')">Détails</a> <a href="javascript:warnpost(304705)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304705" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304705',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8">Ok Doc, on va arr&ecirc;ter les conneries !</font></div><div class="post_line"></div><div class="post_line"><em>*Jim jeta aussi vite la fiole de rhum et le cigare.*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Qu&#039;est-ce que ?</font></div><div class="post_line"><font color="#68c4e8">Doc, Doc !</font></div><div class="post_line"><font color="#68c4e8">Je vois un truc qui sort !</font></div><div class="post_line"><font color="#68c4e8">Bordel de Krrrr.</font></div><div class="post_line"><font color="#68c4e8">On fait quoi doc ? On fait quoi ???</font></div><div class="post_line"><font color="#68c4e8">Et, mais sa continue de sortir !</font></div><div class="post_line"></div><div class="post_line"><em>*TraineDehors commen&ccedil;a a paniquer, lui qui avait si souvent c&ocirc;toyer la mort. L&#039;av&egrave;nement de la vie, &eacute;tait un tout autre obstacle !*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Tiens bon Myah ! Myah regarde moi, regarde nous.</font></div><div class="post_line"><font color="#68c4e8">Enfin, regarde quelqu&#039;un !</font></div><div class="post_line"><font color="#68c4e8">&Ccedil;a va aller, t&#039;inqui&egrave;te pas !</font></div><div class="post_line"></div><div class="post_line"><em>*Le Marshal su&eacute;e de plus en plus. Le regard vide, il s&#039;exprima d&#039;une voix plus grave...*</em></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="5">Une offrande de plus, au grand D&eacute;voreur !</font></font></div><div class="post_line"></div><div class="post_line"><em>*Jim se gifla le visage, et repris ces esprits.*</em></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Par...Pardonnez moi.</font></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">Au fait doc, vous avez d&eacute;j&agrave; effectuer ce genre d&#039;op&eacute;ration ?</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />09/10/1023 ETU 03:04<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D304710', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal304709')">Détails</a> <a href="javascript:warnpost(304709)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304709" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304709',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>La t&ecirc;te commen&ccedil;ait en effet &agrave; poindre et Anudar se pencha en avant, les mains enduites du d&eacute;sinfectant gyn&eacute;cologique.</em></div><div class="post_line"></div><div class="post_line"><em>&quot;</em><font color="#2ecc40"><strong>Oh, oui. Une trentaine de&nbsp;fois en deux heures &agrave; la fin de mes &eacute;tudes</strong></font><em>, r&eacute;pondit-il sur un ton distrait.</em></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jim+TraineDehors">Cdt. Jim TraineDehors</a><br>Prestige de chroniqueur&nbsp;: 97<br /><br /><img src="/avatars/11868.jpg" style="width:128px;height:93px" alt="Avatar" /><br />09/10/1023 ETU 03:07</td><td class="post_right"><div class="posthead">Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal304711')">Détails</a> <a href="javascript:warnpost(304711)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304711" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304711',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#68c4e8">Mais que ?</font></div><div class="post_line"><font color="#68c4e8">Trente fois, en deux heures ?</font></div><div class="post_line"><font color="#68c4e8">Dites-moi l&#039;ami, vous avez fait &eacute;clore un nid de Krrr ?</font></div><div class="post_line"><font color="#68c4e8">Comment est-ce possible ?</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Anudar">Cdt. Anudar</a><br>Prestige de chroniqueur&nbsp;: 98<br /><br /><img src="/avatars/11291.jpg" style="width:128px;height:128px" alt="Avatar" /><br />09/10/1023 ETU 03:09<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal304712')">Détails</a> <a href="javascript:warnpost(304712)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal304712" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 4</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=304712',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">&quot;<font color="#2ecc40"><strong>Non, c&#039;&eacute;tait un troupeau de ch&egrave;vres.</strong></font>&quot;</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=1">1</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=2">2</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=3">3</a>&nbsp;4&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=5">5</a>&nbsp;<a href="/assemblee/viewtopic?c_topic=16888&c_forum_page=1&c_page=6">6</a>&nbsp;</p>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > A la recherche de Sarah</p>
+      </div></div>
+      <div class="subbox footer"><div class="subbox_sub">
+      <a href="/identite/soutenir">Soutenir apocalypsis</a>
+      <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+      </div></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.help-btn').popover({html: true, placement: 'bottom'});
+  </script>
+</body>
+</html>

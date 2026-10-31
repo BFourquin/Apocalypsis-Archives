@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16660 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Chez soi n&#039;est pas un lieu</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chez soi n&#039;est pas un lieu</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Sears">Cdte. Sears</a><br>Prestige de chroniqueur&nbsp;: 13<br /><br /><img src="/avatars/11877.png" style="width:128px;height:108px" alt="Avatar" /><br />29/04/1023 ETU 05:02<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal297319')">Détails</a> <a href="javascript:warnpost(297319)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal297319" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=297319',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#9df9ff"><em><u>Depuis combien de temps ne s&rsquo;&eacute;tait elle pas &eacute;merveill&eacute;e devant la nature simple de la vie ?</u></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle-m&ecirc;me ne le savait plus.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Dans ce monde fait de chiffres, de lois et de processus ou le sensible ne trouvait pas sa place, elle avait avanc&eacute;, comme un robot soldat que l&#039;on missionnait &agrave; sa t&acirc;che au sein d&#039;une &oelig;uvre qui la d&eacute;passait de trop loin pour qu&#039;elle ne se rende compte des changements que cette m&ecirc;me &oelig;uvre avait op&eacute;r&eacute;e petit &agrave; petit en elle. </em></div></div><div class="post_line"><div align="justify"><em>Bien s&ucirc;r elle s&rsquo;&eacute;tait d&eacute;battue quelque peu, faisant montre de son caract&egrave;re tenace h&eacute;rit&eacute; de ses anc&ecirc;tres -des navigateurs nomades qui avaient connu le meilleur et le pire de ce que le voyage avait &agrave; offrir- mais inexorablement, telle une vague destin&eacute;e &agrave; toujours &ecirc;tre ramen&eacute;e sur la rive, elle avait fini par prendre le pas cadenc&eacute; du syst&egrave;me. </em></div></div><div class="post_line"><div align="justify"><em>Au point de <strong>devenir </strong>le syst&egrave;me.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Un zeppelin de la compagnie passa au dessus d&#039;elle, projetant une ombre sur le jardin dans lequel elle se trouvait : l&rsquo;a&eacute;ronef arborait sur lui une publicit&eacute;, de <font color="#ffa500"><strong>Sears Industry</strong></font> &eacute;videmment, et diffusait une musique que tous sur cette plan&egrave;te avaient plus entendu que la voix de leur propre m&egrave;re. Au son de la m&eacute;lop&eacute;e emport&eacute;e par &Eacute;ole, elle ferma les yeux et s&#039;imagina ailleurs.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Elle r&ecirc;va.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#0074d9"><em>Le son m&eacute;tallique des bottes sur le ponton m&eacute;tallique du vaisseau de ses anc&ecirc;tres. </em></font></div></div><div class="post_line"><div align="justify"><font color="#0074d9"><em>Le murmure lancinant des moteurs, invisibles sous les &eacute;paisses parois de la coque, mais omnipr&eacute;sent pour faire glisser le navire sur les gouffres amers de l&#039;espace mort. Les navigateurs, les m&eacute;caniciens, les cadres de bord qui chacun s&#039;affairaient &agrave; l&#039;une ou l&#039;autre t&acirc;che, organis&eacute;s devant l&#039;exigence imp&eacute;rative de la survie.</em></font></div></div><div class="post_line"><div align="justify"><font color="#0074d9"><em>Pareil &agrave;</em><em>...</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffa500">&quot;Une fourmili&egrave;re.&quot;</font></div></div><div class="post_line"><div align="justify"><em>Elle avait dit &ccedil;a &agrave; voix haute</em><em>, mais pourtant son murmure n&#039;avait pas eu plus d&#039;effet qu&#039;un souffle compar&eacute; au vocif&eacute;rations des slogans</em><em> <strong><font color="#ffa500">Sears Industry</font></strong> lan&ccedil;&eacute;s</em><em> au ciel par le zeppelin qui peu &agrave; peu &eacute;loignait son ombre du jardin ou elle se situait.</em></div></div><div class="post_line"><div align="justify"><em>Oui, une fourmili&egrave;re, une fourmili&egrave;re ou chacun avait son r&ocirc;le essentiel pour ajouter un jour de plus au compteur de son peuple. </em></div></div><div class="post_line"><div align="justify"><em>En y r&eacute;fl&eacute;chissant, elle avait juste reproduit sur cette </em><em>terre ce qu&#039;elle avait connu toute sa vie dans l&#039;espace.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Un r&ocirc;le &agrave;</em><em> chacun, une fonction pour tous, et une structure implacable ou &quot;survie&quot; sonnait comme le ma&icirc;tre-mot, le tout</em><em> enti&egrave;rement d&eacute;di&eacute; &agrave; l&rsquo;&oelig;uvre de la</em><em>...</em></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb">&quot;Pr&eacute;sidente ?&quot;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Sa fugace m&eacute;ditation fut interrompue par un responsable anonyme.</em></div></div><div class="post_line"><div align="justify"><font color="#ffc0cb">&quot;Nous avons des rapports &agrave; vous soumettre, il semblerait que l&#039;activit&eacute; d&eacute;tect&eacute;e en Secteur 1 soit plus importante que ce que nous avons estim&eacute;</font><font color="#ffc0cb">.&quot;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Ses yeux embrass&egrave;rent une derni&egrave;re fois le jardin : un arbre v&eacute;n&eacute;rable y tr&ocirc;nait, offrant ombre et fra&icirc;cheur dans cet &eacute;t&eacute; naissant dans cette r&eacute;gion de la plan&egrave;te Melkal. A son cot&eacute;, un panneau indiquant <strong>&quot;Bient&ocirc;t ici, des bureaux d&#039;entreprises &agrave; louer, une innovation<font color="#ffa500"> Sears Real Estate</font>&quot;</strong>.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Quittan</em><em>t son lieu de qui&eacute;tude relative, elle retourna &agrave; ses bureaux, suivi par un</em><em> responsable anonyme dont l&#039;histoire oubliera bien vite le nom.</em></div></div><div class="post_line"><div align="justify"><em>Car d</em><em>ans un monde fait de chiffres, de lois et de processus, le sensible ne trouvait pas sa place.</em></div></div><div class="post_line"><div align="justify"><em>Et </em><em>le r&ecirc;ve, comme toute autre chose, &eacute;tait</em><em> une valeur marchande qui se monnayait par le temps et l&#039;argent.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Sears">Cdte. Sears</a><br>Prestige de chroniqueur&nbsp;: 13<br /><br /><img src="/avatars/11877.png" style="width:128px;height:108px" alt="Avatar" /><br />25/05/1023 ETU 02:25<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D299045', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal299036')">Détails</a> <a href="javascript:warnpost(299036)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal299036" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=299036',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font size="1"><em><u>10 Ans plus t&ocirc;t</u></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="4"><em><font color="#bbbbbb"><u>Archive confidentielle de Sears Industry, niveau d&rsquo;accr&eacute;ditation Noir Alpha </u></font></em></font></div></div><div class="post_line"><div align="justify"><font size="4"><em><font color="#bbbbbb"><u>(PDG et co-dirigeants des G.U.N.M.)</u></font></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#5593bd"><font size="3"><u>Bilan de sant&eacute; du patient S-89BF128 &quot;Alesha&quot;</u></font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><em>La patiente est une femme de corpulence fine et dont la physionomie pr&eacute;sume un &acirc;ge situ&eacute; entre 15 et 20 ans. Elle &agrave; &eacute;t&eacute; retrouv&eacute;e dans une capsule spatiale par nos &eacute;quipes sur le site &quot;<font color="#7fdbff">Archange</font>&quot;. Cette d&eacute;couverte fait suite &agrave; un &eacute;v&egrave;nement c&eacute;leste de nature encore mal d&eacute;termin&eacute;e (Voir rapport &quot;<font color="#ff4136">Anomalie Cosmique</font>&quot; pour plus de d&eacute;tails).</em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><strong><u>Race</u> :</strong> apr&egrave;s biopsie et bilan sanguins, nous confirmons que la patiente est de race humaine. </font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><strong><u>Bilan de sant&eacute;</u> :</strong> Taux anormalement &eacute;lev&eacute; de globules blancs dans l&#039;organisme. Absence notable de r&eacute;action inflammatoire malgr&eacute; le bilan pr&eacute;c&eacute;dent. Apr&egrave;s examen, nous n&#039;avons d&eacute;tect&eacute; aucun agent viral, bact&eacute;rien ou parasite dans le corps de la patiente : Son organisme semble lutter constamment contre une maladie invisible tandis que tous ses signes vitaux indiquent une &eacute;tat de sant&eacute; exemplaire.</font></div></div><div class="post_line"><div align="justify"><font size="3">&nbsp;</font></div></div><div class="post_line"><div align="justify"><font size="3">Activit&eacute; &eacute;lectrique c&eacute;r&eacute;brale au dessus de la moyenne de plus de 70%. Nous supposons qu&#039;une exposition prolong&eacute;e aux rayonnements cosmique est la cause de telle activit&eacute; biologique.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><strong><u>Couleur de peau</u> :</strong> Noire.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><strong><u>Taille</u> :</strong> 1,73m</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><strong><u>Dextrie</u> :</strong> gauch&egrave;re, d&eacute;tection d&#039;aptitudes ambidextres concernant certaines t&acirc;ches manuelles.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><strong><u>Couleur des yeux :</u></strong> h&eacute;t&eacute;rochromie d&eacute;tect&eacute;e apr&egrave;s bilan ophtalmique, relativement peu d&eacute;tectable au premier abord sauf en cas d&#039;exposition dans une zone de forte luminosit&eacute; (ciel d&eacute;gag&eacute; et ensoleill&eacute;, salle blanche, exposition &agrave; une lumi&egrave;re au x&eacute;non)</font></div></div><div class="post_line"><div align="justify"><font size="3"><u>Droit</u> : Vert fonc&eacute;</font></div></div><div class="post_line"><div align="justify"><font size="3"><u>Gauche</u> : Marron clair</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><strong><u>Historique</u> :</strong> La patiente dit n&#039;avoir que des souvenirs confus de son pass&eacute;, et &eacute;voque des anc&ecirc;tres proches aillant sillonn&eacute; l&#039;espace. Elle se pr&eacute;nomme Alesha mais n&#039;a pas souhait&eacute; mentionner son nom complet pour des raisons personnelles. Nos psychiatres sont &agrave; l&#039;oeuvre.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><strong><u>Aptitudes</u> : </strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><em>- <font color="#0074d9">Intellectuelles </font>:</em> Ses connaissances en ing&eacute;nierie (domaines de la propulsion, de la conductivit&eacute; &eacute;nerg&eacute;tique et de la m&eacute;canique des fluides) excellent et d&eacute;passent nos savoirs les plus avanc&eacute;s. R&eacute;tro-ing&eacute;nierie conseill&eacute;e sur base des savoirs de la patiente.De plus, &quot;Alesha&quot; se montre tr&egrave;s curieuse sur les notions de religions et porte sur elle un collier d&#039;argent &eacute;voquant une croix&nbsp; : celle-ci voit sa barre horizontale d&eacute;sax&eacute;e de son centre pour rejoindre le haut de la barre verticale. Aucune similarit&eacute; avec un dogme r&eacute;pertori&eacute; &agrave; ce jour. </font></div></div><div class="post_line"><div align="justify"><font size="3">Elle &eacute;voque des notions d&eacute;passant les archives historiques connues, et se renferme dans le silence quand on la questionne plus avant sur ses connaissances historique, invoquant en cela un idiome inconnu :</div><div class="post_line"></font></div><div class="post_line"><div align="center"><font color="#005dc2"><font size="3">&quot;די געדולד פון קראַקאַדיילז.&quot;</font></font></div></div><div class="post_line"></div><div class="post_line"><font size="3">que nos linguistes traduisent partiellement par <font color="#9df9ff">&quot;Le fait d&#039;attendre les/des longs pr&eacute;dateurs&quot;</font></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><em>- <font color="#2ecc40">Sociales </font>:</em> La patiente parle peu, au point que nos psychiatres ont suppos&eacute; une forme d&#039;autisme lors de l&#039;examen pr&eacute;liminaire.Toutefois elle s&#039;est montr&eacute;e en mesure de prendre parole et son vocabulaire tend vers l&#039;&eacute;l&eacute;vation s&eacute;mantique, ce qui se se traduit par un fort usage de la m&eacute;taphore. Les sp&eacute;cialistes supposent donc des ant&eacute;c&eacute;dents d&#039;&eacute;ducation aux lettres et aux sciences.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font size="3"><em>- <font color="#ff5f54">Physiques </font>:</em> Son profil ectomorphe semble r&eacute;sulter d&#039;un long s&eacute;jour dans l&#039;espace. Sa croissance n&#039;ayant pas &eacute;t&eacute; ralentie par les effets de gravit&eacute; plan&eacute;taire, elle se situe dans la tranche des individus au dessus des courbes &eacute;tablies de croissance. Elle b&eacute;n&eacute;ficie d&#039;une endurance moyenne et d&#039;une agilit&eacute; remarquable (digne d&#039;une contorsionniste). A noter que durant les premi&egrave;res ann&eacute;es d&#039;observation, son corps a connu des troubles osseux, ainsi qu&#039;une propension aux vertiges passagers, probablement dus &agrave; l&#039;habituation &agrave; la gravit&eacute; Melkalienne.</font></div></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Sears">Cdte. Sears</a><br>Prestige de chroniqueur&nbsp;: 13<br /><br /><img src="/avatars/11877.png" style="width:128px;height:108px" alt="Avatar" /><br />27/05/1023 ETU 04:25<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D299276', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal299269')">Détails</a> <a href="javascript:warnpost(299269)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal299269" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=299269',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><em><font size="1"><u>3 ans plus tard.</u></font><font size="3"></div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Je suis <strong>Arthur Alister SEARS</strong></font></font><font color="#fff5b3">, <font size="3">et je me d&eacute;clare sain de corps et d&#039;esprit. </font></font></em></div></div><div class="post_line"><div align="justify"><em><font color="#fff5b3"><font size="3">Ceci constitue ma profession de foi autant que mon testament adress&eacute;. Je souhaite faire conna&icirc;tre mon souhait d&#039;adopter</font> <font size="3"><strong>Alesha NoName</strong>, arriv&eacute;e ce jour et selon ce qui a &eacute;t&eacute; statu&eacute; &agrave; la majorit&eacute;, afin de lui faire b&eacute;n&eacute;ficier de mes legs, noms et avoirs. </font></font></em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em><font color="#fff5b3"><font size="3">&Eacute;tant veuf et sans enfants, j&#039;ai &agrave; c&oelig;ur de voir mon h&eacute;ritage entre les mains de m&eacute;ritants et Alesha, de par son pass&eacute; et le potentiel dont elle a fait montre, fait parti de ces choisis &agrave; m&ecirc;me de grandes choses si moyens leur en sont donn&eacute;s. En tant qu&#039;actionnaire majoritaire de la compagnie <strong>SEARS INDUSTRY</strong>, je nomme &agrave; ma mort <strong>Alesha SEARS</strong> comme h&eacute;riti&egrave;re de mes parts et de mon si&egrave;ge &agrave; vie de Pr&eacute;sident d&#039;Honneur. Si ma disparition devait survenir sur le temps d&#039;un mandat, je lui en c&egrave;de ce reliquat de mandat qui m&rsquo;&eacute;tait &eacute;chu, ainsi que ma place&nbsp;au Conseil d&#039;Administration et ce, de fa&ccedil;on irr&eacute;vocable (vu l&#039;article 39.8-B al.12 du CODEM)</font></font></em>.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fff5b3"><em><font size="3">Je demande &eacute;galement &agrave; ce que mes cendres soient envoy&eacute;es dans l&#039;espace &agrave; bord du premier prototype de fus&eacute;e <strong>SP-Mark-X</strong> que nous exp&eacute;rimentons cette ann&eacute;e </font><font size="3">: il m&#039;est pr&eacute;cieux de savoir qu&#039;&agrave; ma mort, le noble int&eacute;r&ecirc;t pour l&rsquo;espace </font><font size="3">que nous avons d&eacute;velopp&eacute; depuis l&#039;arriv&eacute;e d&#039;Alesha sur Melkal soit poursuivi pour qu&#039;enfin, nous puissions embrasser le cosmos et profiter des fantastiques opportunit&eacute;s dont elle m&#039;a parl&eacute; lors de nos entretiens priv&eacute;s. Cette jeune fille saura porter mon r&ecirc;ve et le sien dans les confins de l&#039;&eacute;ternit&eacute;, j&#039;en suis s&ucirc;r.</font></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fff5b3"><em><font size="3">Donnez un tiers de ma fortune, hors parts li&eacute;es &agrave; l&#039;entreprise,</font><font size="3"> &agrave; mes ex-femmes, sans en pr&eacute;ciser la part l&eacute;gale de chacune : je veux que le monde voie leurs vrais visages quand celles-ci se d&eacute;chireront &agrave; coups d&#039;avocat pour toucher ces miettes qui ne signifient rien pour moi.</font></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fff5b3"><em><font size="3">Donnez tous le reste &agrave; Alesha, avec impossibilit&eacute; que quiconque autre en fasse l&#039;acquisition par procuration.</font></em></font></div></div><div class="post_line"><div align="justify"><font color="#fff5b3"><em><font size="3"></div><div class="post_line">Les &eacute;toiles sont un luxe et une sagesse qui ne sont pas au m&eacute;rite du premier venu.</font></em></font></div></div><div class="post_line"><div align="justify"><font color="#005dc2"><em><font size="3">&quot;</font></em><em><font size="3">די געדולד פון קראַקאַדיילז</font></em><em><font size="3">.&quot;</font></em></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#fff5b3"><em><font size="3">Fait &agrave; <strong>SARRAGIS</strong></font></em></font></div></div><div class="post_line"><div align="justify"><font color="#fff5b3"><em><font size="3">Le <strong>16</strong> du<strong> MILAN</strong></font><font size="3"> de l&#039;ann&eacute;e <strong>10 850</strong></font><font size="3">.</font></em></font></div></div><div class="post_line"></div><div class="post_line"><div align="justify"><div align="right"><font color="#fff5b3"><em><font size="3"><strong>A. A. SEARS</strong></font></em></font></div></div><div class="post_line"><div align="right"></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><font color="#fff5b3"><strong>Arthur Sears</strong></font> d&eacute;c&egrave;dera 5 ans plus tard des suites d&#039;un &eacute;panchement pleural diagnostiqu&eacute; sur le tard. Le rapport l&eacute;giste constatera une singuli&egrave;re n&eacute;crose localis&eacute;e dans l&#039;ensemble des tissus mous, des <a href="https://fr.wikipedia.org/wiki/Fascia" target="_blank" rel="nofollow">fascia</a> et sur une partie des muscles trap&eacute;zo&iuml;daux. Il &eacute;voquera en riant qu&#039;<font color="#fff5b3"><strong>Arthur Sears</strong></font> est potentiellement mort de &quot;<font color="#ff0000">d&eacute;composition</font>&quot;, du fait de son grand &acirc;ge. Il avait 64 ans. Sa cr&eacute;mation sera faite selon ses souhaits et ce sera au mod&egrave;le SP-Mark-VII &agrave; qui incombera l&#039;honneur d&#039;envoyer <font color="#fff5b3"><strong>Sears</strong></font> dans l&#039;espace en direction de l&#039;&eacute;toile locale.</div><div class="post_line"></div><div class="post_line"><font color="#ffa500"><strong>Alesha Sears</strong></font> sera &eacute;lue au Conseil d&#039;Administration au mandat suivant, et sera choisie quelques ann&eacute;es plus tard comme PDG de <strong><font color="#ffa500">Sears Industry</font></strong> &agrave; 67% des voix de ce m&ecirc;me C.A, ce apr&egrave;s avoir pilot&eacute; un bilan quinquennal aux b&eacute;n&eacute;fices records pour l&#039;entreprise. Faisant d&#039;elle la d&eacute;tentrice d&#039;un double record : 1ere femme promue &agrave; la Pr&eacute;sidence d&#039;une entreprise cot&eacute;e au SWAP25 (Indice boursier de r&eacute;f&eacute;rence sur les march&eacute;s melkaliens), et plus jeune PDG &agrave; la t&ecirc;te d&#039;une entreprise cot&eacute;e au SWAP25.</div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Sears">Cdte. Sears</a><br>Prestige de chroniqueur&nbsp;: 13<br /><br /><img src="/avatars/11877.png" style="width:128px;height:108px" alt="Avatar" /><br />11/06/1023 ETU 00:27<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D300254', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal300253')">Détails</a> <a href="javascript:warnpost(300253)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300253" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300253',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><u><strong>Qui est Alesha Sears ?</strong></u></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Sears">Cdte. Sears</a><br>Prestige de chroniqueur&nbsp;: 13<br /><br /><img src="/avatars/11877.png" style="width:128px;height:108px" alt="Avatar" /><br />11/06/1023 ETU 02:54<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D300270', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal300267')">Détails</a> <a href="javascript:warnpost(300267)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal300267" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=300267',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>&quot;Une obsession vous dites ?</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La salle d&#039;interrogatoire laissait passer d&#039;entre les lames grises du store une lumi&egrave;re qui peinait &agrave; rendre plus avenante l&#039;ambiance de la pi&egrave;ce ou se trouvaient les deux hommes. Ajout&eacute; &agrave; cela, le tic-tic d&#039;une horloge archa&iuml;que plant&eacute;e au mur, install&eacute;e l&agrave; pour deux raisons : prendre conscience du temps qui d&eacute;filait, et rendre fou les plus nerveux qui sentaient battre leur sang au rythme de l&#039;aiguille, sans savoir quel serait leur fin suite au questionnaire subi.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#ff857a">- Oui, vous avez par maintes fois r&eacute;dig&eacute; des articles vindicatifs &agrave; l&#039;encontre de la Pr&eacute;sidente, et celle-ci a d&eacute;pos&eacute; plainte ce jour afin de voir cesser cette obsession que vous avez &agrave; son encontre.</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>L&#039;interrogateur alluma quelque chose s&#039;apparentant &agrave; un long tube de papier dans lequel &eacute;tait fourr&eacute; une Melkaline s&eacute;ch&eacute;e aux propri&eacute;t&eacute;s apaisantes. Selon les &eacute;tudes marketing mises en place par les fournisseurs eux-m&ecirc;me.</em></div></div><div class="post_line"><div align="justify"><em>Tout un programme.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><strong><font color="#008000">- Me semble qu&#039;a Sarragis, non sur Melkal toute enti&egrave;re en fait, on a encore le droit d&#039;&eacute;crire ce qu&#039;on veut sur qui on veut, nan ?</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Une volute de fum&eacute;e bleue vint ajouter sa poign&eacute;e d&#039;ambiance dans la pi&egrave;ce.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Vous en avez le droit, Monsieur Gorn, tout comme Madame Sears a le droit de consid&eacute;rer que vos &eacute;crits sont un tissu de mensonge et de r&eacute;clamer que la v&eacute;rit&eacute; soit r&eacute;tablie.</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Gorn &eacute;carquilla les yeux en une grimace hagarde :</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Un tissu de mensonge ? Mais vous m&#039;avez pris pour qui ? Vous pensez que je suis un de ces gratte-papier merdeux qui sont capable de faire d&#039;une fourmi capt&eacute;e en macro-holograph un scoop sur une menace alien d&#039;un genre nouveau ? Jetez un &oelig;il &agrave; mes &eacute;tats de service : deux r&eacute;compenses de journalisme d&#039;investigation, un parcours journalistique ou les mots &quot;int&eacute;grit&eacute;&quot; et &quot;probit&eacute;&quot; transpirent de chaque ligne que j&#039;ai pu &eacute;crire, et vous osez me rabaisser au rang de scribouillard de fanzine au rabais ?</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>La col&egrave;re se disputait a une forme de tristesse dans sa voix. Il &eacute;tait furieux, oui. Furieusement d&eacute;&ccedil;u.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Allons Monsieur Gorn, du calme. Comme vous l&#039;avez dit nous agissons tous et toutes dans le cadre l&eacute;gal qui nous est allou&eacute;. Essayons de mettre tout cela au clair, et je suis s&ucirc;r que Madame Sears comprendra la m&eacute;prise et retirera ses charges.</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Gorn chercha de l&#039;aide du regard, cherchant une personne qui pourrait approuver ce qu&#039;il pensait, ce qu&#039;il allait dire de celle qui retenait des charges contre lui.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Vous bossez pour elle, pas vrai ?</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Je ne vois pas de quoi vous voulez parler.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- A ce stade, on peut l&acirc;cher les confessions, vous pensez pas ? Ouais, je vais parler, je vais vous dire ce que je sais de Sears Industry et de sa grande patronne qui donne la becqu&eacute;e au plus grand de ce monde. &Ccedil;a va t&acirc;cher, croyez moi, mais rien a foutre : je fais mon boulot, et mon boulot, c&#039;est la recherche de la v&eacute;rit&eacute;, m&ecirc;me si vous, ou personne d&#039;autre, n&rsquo;&ecirc;tes pr&ecirc;ts a l&#039;entendre.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>-Je vous &eacute;coute, Monsieur Gorn.</strong></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><em>Tic-Tac. &nbsp; </em></div></div><div class="post_line"><div align="center"><em>Tic-Tac..&nbsp; </em></div></div><div class="post_line"><div align="center"><em>Tic-Tac...</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Avant toute chose, sachez que j&#039;ai jamais voulu chercher mal &agrave; quiconque au d&eacute;but de cette histoire, mais plus j&#039;ai avanc&eacute; dans mon enqu&ecirc;te, et plus j&#039;ai ouvert des placards remplis de squelette que la presse mondiale avait pass&eacute;s sous silence. Au d&eacute;part mon chef voulait juste que je fasse un papelard sur l&#039;ascension fulgurante des usines Sears depuis quelques ann&eacute;es. Un article qui devait finir dans les pages Finances de n&#039;importe quel canard dans lesquels se branlent les salary men et autre yuppies aux dents longues. </strong></font><font color="#008000"><strong>J&#039;avais r&eacute;ussi &agrave; mettre la main sur l&#039;historique financier de Sears gr&acirc;ce &agrave; contact comptable dont la compagnie de business conseil s&rsquo;&eacute;tait faite racheter par la grande </strong></font><font color="#ffa500"><strong>Sears Industry</strong></font><font color="#008000"><strong>. Personne sait lire ces trucs, mais moi j&#039;ai appris avec le temps a lire dans ces gris-gris de sorcier &eacute;conomique et c&#039;est dingue ce qu&#039;on apprend en faisant quelques d&eacute;ductions simples sur qui poss&egrave;de quoi, ou et en quelle quantit&eacute;.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Vous dites que votre enqu&ecirc;te a d&eacute;but&eacute; dans les pages comptables d&#039;une soci&eacute;t&eacute; au rachat ?</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Gorn arbora un sourire fier.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Exactement ! Quand vous faites un mouvement mon&eacute;taire d&#039;une valeur A vers une soci&eacute;t&eacute;, et que cette soci&eacute;t&eacute; re&ccedil;oit au final une valeur B, on sait qu&#039;on peut commencer &agrave; se poser des questions sur les montages financiers qui se sont op&eacute;r&eacute;s entretemps.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Et vous dites que personne n&#039;avait constat&eacute; ces disparitions de fonds...</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le journaliste le coupa net :</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Pas disparition, apparitions.</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><em>Silence dans la pi&egrave;ce.</em></div></div><div class="post_line"><div align="center"><em>Tic-Tic-Tic..</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- De l&#039;argent blanchi, selon vous ?</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le journaliste contempla l&#039;horloge, puis tourna vainement la t&ecirc;te vers la fen&ecirc;tres aux stores quasi imp&eacute;n&eacute;trables.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- C&#039;est ce que j&#039;ai cru au d&eacute;part. Vous imaginez que quand j&#039;ai vu un poisson comme &ccedil;a barboter dans mon enqu&ecirc;te, j&#039;ai pas pu m&rsquo;emp&ecirc;cher de le ferrer. </strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>L&#039;enqu&ecirc;teur recracha de nouveau une &eacute;paisse volute de fum&eacute;e bleue.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Continuez, je vous prie.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Quand j&#039;ai constat&eacute; ces flux de monnaie apparaissant ex nihilo, j&#039;ai voulu consulter les actes notari&eacute;s de Sears r&eacute;v&eacute;l&eacute;s au moment de sa mort. Arthur Sears, hein, pas sa fille adoptive. Me suis dit que peut-&ecirc;tre ces fonds venaient d&#039;une fortune ou d&#039;un organisme qui m&#039;avait &eacute;chapp&eacute; dans l&#039;architecture complexe de la compagnie Sears. Mais plus je cherchait, et moins je trouvais de quoi me mettre sous la dent. Une impasse, comme souvent avec les multinationales : leur immensit&eacute; rend tout plus opaque, plus anonyme. Et c&#039;est la que &ccedil;a m&#039;est tomb&eacute; du ciel, de la fa&ccedil;on la plus improbable.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Quoi donc ?</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Une infirmi&egrave;re qui avait entendu parler de moi par le biais de son beau-fr&egrave;re qui bossait au m&ecirc;me service &eacute;conomique que le journal qui m&#039;avait recrut&eacute; m&#039;a contact&eacute; pour m&#039;apprendre des trucs sur Arthur Sears. Des trucs qui...</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Des choses qui sont encore aujourd&#039;hui class&eacute;es secret d&eacute;fense par acte convenu des G.U.N.M.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Faut savoir ce que vous voulez, mon gars ! Arthur Sears, le grand dirigeant, est pas mort de causes naturelles !</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>-...</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><em>Tic.Tac.Tic.Tac.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Vous le saviez, je parie ? L&#039;histoire de la liqu&eacute;faction des corps. L&#039;&eacute;pid&eacute;mie dont personne ne parle mais qui touche tout Melkal.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Cette maladie n&#039;est pas aussi virulente que ce que certains veulent le faire croire. La situation est sous contr&ocirc;le.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Mon cul que c&#039;est sous contr&ocirc;le.. Quand vous dites &ccedil;a, c&#039;est pour mieux vous terrer dans vos bunkers de luxe ensuite.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- .... Continuez je vous prie.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Quand j&#039;ai rencontr&eacute; l&#039;infirmi&egrave;re, elle m&#039;a confi&eacute; avoir sign&eacute; une d&eacute;charge sp&eacute;cifique l&#039;interdisant de raconter quoi que ce soit sur ce qu&#039;elle avait vu. Mais faut pas &ecirc;tre un g&eacute;nie pour connecter les fils quand on bosse au c&oelig;ur du syst&egrave;me de sant&eacute;. Vous avez souvent tendance &agrave; sous-estimer les gens au bas de l&#039;&eacute;chelle, c&#039;est ce qui vous perds &agrave; chaque fois.</strong></font></div></div><div class="post_line"><div align="justify"><strong><font color="#ff857a">- Vous ne savez rien de mon travail..</font></strong></div></div><div class="post_line"><div align="justify"><em>Nouvelle volute de fum&eacute;e alors que la pi&egrave;ce se remplissait d&#039;une atmosph&egrave;re couleur de nuit, fruit de la faible lumi&egrave;re et des &eacute;chapp&eacute;es nocives de Melkaline. </em></div></div><div class="post_line"><div align="justify"><strong><font color="#ff857a">...Aussi vous demanderai-je de ne pas tirer de conclusions trop h&acirc;tives. Continuez.</font></strong></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- ... Cette infirmi&egrave;re, je lui ai donn&eacute; rendez vous dans une ancienne planque de flics que j&#039;avais rep&eacute;r&eacute;e lors d&#039;une enqu&ecirc;te sur le gang Sharknet.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Votre contact est venu au rendez vous ?</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Oui, et croyez moi que vu ce qu&#039;elle avait amen&eacute; avec elle en dossier m&eacute;dicaux, j&#039;aurai pu l&#039;appeler M&egrave;re No&euml;lle tellement elle avait mis la main sur un jackpot concernant Sears. Arthur, pas Alesha.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Qu&#039;est il advenu de cette infirmi&egrave;re, M&egrave;re No&euml;lle, comme vous l&#039;appelez ?</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Renvers&eacute; par une navette interurbaine alors qu&#039;elle se rendait au travail. &Ccedil;a va faire 6 mois. Vous avez bien fait votre boulot, bandes de raclures.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Encore une fois Monsieur Gorn, vous me pr&ecirc;tez des pouvoir et des influences qui n&#039;existent que dans votre t&ecirc;te. Voir un journaliste de votre trempe tomber dans un tel niveau de parano&iuml;a est une d&eacute;solation, vraiment.</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Les mains de Gorn, crisp&eacute;es jusque l&agrave;, se d&eacute;tendirent : il se sentait coupable de ne plus r&eacute;ussir &agrave; faire confiance. Sa femme l&#039;avait trait&eacute; de fou avant de partir de la maison, ne supportant plus ses th&eacute;ories complotistes ou un nouvel ordre mondial tapi dans l&#039;ombre s&eacute;vissait contre les honn&ecirc;tes gens. Mais les indices et les preuves, le factuel, n&#039;aurait su mentir.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="center"><em>Tic.Tac.Tic.</em></div></div><div class="post_line"><div align="center"><em>Tac.Tic.Tac.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Continuez Monsieur Gorn.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- ... Les rapports m&eacute;dicaux indiquaient des apparitions tumorescentes sur l&#039;ensemble des organes d&#039;Arthur Sears, mais ce qui m&#039;a le plus frapp&eacute;, c&#039;est cette histoire de liqu&eacute;faction. J&#039;ai demand&eacute; &agrave; tous les m&eacute;decins g&eacute;n&eacute;ralistes et sp&eacute;cialistes que je connais : personne ne connait ou n&#039;a connu un symptome aussi aggressif dans sa carri&egrave;re. Ca, et la remont&eacute;e des pistes financi&egrave;res qui indiquaient d&#039;important versement vers des soci&eacute;t&eacute;s offshores ou les conglom&eacute;rats pharmaceutiques avaient leur nez en plein dedans.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- ...</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- En avan&ccedil;ant dans l&#039;enqu&ecirc;te, j&#039;ai raccroch&eacute; les wagons ensemble pour aboutir &agrave; une conclusion : Arthur Sears versait des millions dans la recherche pharmaceutique (Atemco, Pillardom, Sonogen, et j&#039;en passe) dans le but de d&eacute;velopper un vaccin contre quelque chose. Et Alesha avait pris la rel&egrave;ve, en d&eacute;veloppant une &eacute;conomie industrielle qui ne servait que de paravent pour l&#039;opinion publique. Oh bien s&ucirc;r, elle a boss&eacute; sur le moteur &agrave; fusion froide et tout le monde mange dans la main de la &quot;Wonder Woman qui &agrave; sauv&eacute; Melkal de l&#039;obscurantisme scientifique.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Mais ?</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Mais j&#039;en sais rien, y a une foutue bact&eacute;rie mangeuse de chair qui s&eacute;vit et personne n&#039;en parle. Alesha Sears a peut-&ecirc;tre tu&eacute; son p&egrave;re adoptif et tout le monde s&#039;en fout ! Et pourquoi j&#039;ai jamais r&eacute;ussi &agrave; trouver le moindre acte de naissance sur cette nana ? Elle vient d&rsquo;o&ugrave; ? De l&#039;espace ? Ah ah, &ccedil;a me rend dingue qu&#039;on ai une putain d&#039;&eacute;nigme au c&oelig;ur de notre pouvoir en place, et tout le monde semble s&#039;en foutre comme si c&rsquo;&eacute;tait la pluie de la veille.</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><em>Le visage de Gorn avait pris une teinte rougeaude sous l&#039;excitation ce qui, dans l&#039;ambiance bleu &eacute;lectrique de la pi&egrave;ce,semblait lui donner une teinte violac&eacute;e des plus morbides.</em></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Calmez vous, Monsieur Gorn. Avant tout, je tenais &agrave; vous f&eacute;liciter pour votre enqu&ecirc;te qui vous a amen&eacute; &agrave; des conclusions aussi admirables. Vous n&#039;avez pas failli &agrave; votre r&eacute;putation.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Me f&eacute;liciter ? Ca veut dire que vous bossez vraiment pas pour eux ?</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Vous avez juste fait une petite erreur dans vos d&eacute;ductions, mais je ne vous en tiens pas rigueur.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Une erreur ?</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Vous avez mentionn&eacute; le fait que </strong></font><font color="#ffa500"><strong>Sears Industry</strong></font><font color="#ff857a"><strong> allouait des fonds occultes aux groupes pharmaceutiques que vous avez mentionn&eacute;s alors que c&#039;est l&#039;inverse. Et vous avez fr&ocirc;l&eacute; de justesse une v&eacute;rit&eacute; pourtant per&ccedil;ue au yeux de tous. Une &eacute;vidence qu&#039;Arthur Sears lui-m&ecirc;me a cach&eacute; dans son testament rendu public sans notre autorisation.</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Attendez, vous voulez dire que vous &ecirc;tes pas mandat&eacute; par Sears ? Vous &ecirc;tes des G.U.N.M ?</strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Non, Monsieur Gorn. J&#039;ai en effet oubli&eacute; de me pr&eacute;senter. Je suis Garran Seckt, responsable s&eacute;curit&eacute; des m&eacute;dias et relations publiques de Sonogem, et vos actions &agrave; l&#039;encontre du sp&eacute;cimen S-89BF 128 porte pr&eacute;judice aux int&eacute;r&ecirc;ts de l&#039;entreprise..</strong></font></div></div><div class="post_line"><div align="justify"><font color="#008000"><strong>- Qu&#039;est ce que vous voulez dire ? C&#039;est quoi cette seringue ? <font size="3">L&acirc;chez moi, mais bordel l&acirc;chez moi Big Pharma de mes deux !</font></strong></font></div></div><div class="post_line"><div align="justify"><font color="#ff857a"><strong>- Je pense que nous allons clore notre entrevue ici, Monsieur Gorn. Et pour info, je ne suis pas responsable de la mort de l&#039;infirmi&egrave;re, ce n&#039;est que le fruit d&#039;un hasard malencontreux. Nos m&eacute;thodes chez Sonogem se targuent d&#039;&ecirc;tre plus... innovantes.</strong></font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><div align="center"><em><font size="4"><strong>*5 minutes plus tard*</strong></font></em></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><strong><font color="#ff857a">Garran pour &eacute;quipe de nettoyage: intervention</font></strong><strong><font color="#ff857a"> demand&eacute;e au secteur 7-8-4-2, proc&eacute;dure habituelle de pr&eacute;l&egrave;vement d&#039;&eacute;chantillon pour &eacute;tudes ult&eacute;rieures. P</font></strong><strong><font color="#ff857a">renez vos masques et vos gants : celui-l&agrave; est en plusieurs parties, il a r&eacute;ussi &agrave; courir jusqu&#039;&agrave; la porte avant de se d&eacute;sagr&eacute;ger. Lance-flammes autoris&eacute;s.</font></strong></div><div class="post_line"></div><div class="post_line"><em>Garran respira une ultime bouff&eacute;e de sa cigarette avant de quitter la pi&egrave;ce. Il consid&eacute;ra sa paie trop basse pour assumer un tel boulot. Peut-&ecirc;tre devrait il prendre rendez vous avec les RH pour voir ce qu&#039;il en est d&#039;une r&eacute;&eacute;valuation de contrat ? En plus, la secr&eacute;taire de l&#039;accueil semblait avoir le b&eacute;guin pour lui.</em></div><div class="post_line"></div><div class="post_line"><em>Ouais, c&rsquo;&eacute;tait une bonne id&eacute;e. A lui les grands restaurants et la bagnole de luxe. </em></div></div><div class="post_line"><div align="justify"><em>Et la nana en prime. Au final, il faisait bon de travailler pour Sonogen.</em></div><div class="post_line"></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16660&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16660" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16660" name="d_reply_16660" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16660');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16660'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chez soi n&#039;est pas un lieu</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

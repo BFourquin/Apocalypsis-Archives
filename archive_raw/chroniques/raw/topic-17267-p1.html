@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17267 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>L&#039;&eacute;pop&eacute;e d&#039;une r&ecirc;veuse</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;&eacute;pop&eacute;e d&#039;une r&ecirc;veuse</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yun-Yun+La+Lune">Cdte. Yun-Yun La Lune</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12288.jpg" style="width:128px;height:128px" alt="Avatar" /><br />27/05/1024 ETU 09:20</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal308676')">Détails</a> <a href="javascript:warnpost(308676)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308676" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308676',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Il &eacute;tait une fois, sur la plan&egrave;te lumineuse d&#039;Il-Lune-mination, une jeune fille nomm&eacute;e Yun-Yun Yuna. Sa vie commen&ccedil;a comme celle de n&#039;importe quel enfant, entour&eacute;e de la chaleur de sa famille noble et aimante. Mais tout changea le jour de ses dix-huit ans.</div><div class="post_line"></div><div class="post_line">Ce jour-l&agrave;, alors que Yun-Yun Yuna contemplait le ciel &eacute;toil&eacute; depuis le balcon de sa demeure, une &eacute;trange lueur argent&eacute;e apparut soudainement sur son bras. C&#039;&eacute;tait une marque en forme de croissant de lune, brillant comme les &eacute;toiles de la nuit. C&#039;&eacute;tait un signe, un appel de la Lune elle-m&ecirc;me.</div><div class="post_line"></div><div class="post_line">D&egrave;s lors, Yun-Yun Yuna se sentit diff&eacute;rente. Elle avait toujours aim&eacute; r&ecirc;ver et contempler les &eacute;toiles, mais maintenant, elle &eacute;tait li&eacute;e &agrave; elles d&#039;une mani&egrave;re myst&eacute;rieuse et profonde. La marque de la Lune la connectait &agrave; un h&eacute;ritage ancien, lui conf&eacute;rant des pouvoirs mystiques et une destin&eacute;e extraordinaire en tant que future pr&ecirc;tresse des terres lunaires.</div><div class="post_line"></div><div class="post_line">Depuis ce jour, Yun-Yun Yuna passa encore plus de temps &agrave; observer les &eacute;toiles, perdant souvent son esprit dans les galaxies lointaines et les myst&egrave;res c&eacute;lestes. Sa marque de la Lune &eacute;tait comme une fen&ecirc;tre ouverte vers un univers de possibilit&eacute;s infinies, alimentant son imagination et sa soif d&#039;aventure.</div><div class="post_line"></div><div class="post_line">Malgr&eacute; sa nouvelle responsabilit&eacute; en tant que future pr&ecirc;tresse, Yun-Yun Yuna resta la m&ecirc;me jeune fille douce et r&ecirc;veuse qu&#039;elle avait toujours &eacute;t&eacute;. Sa marque de la Lune &eacute;tait un rappel constant de la magie qui habitait en elle, et elle savait que, peu importe o&ugrave; ses r&ecirc;ves la conduiraient, elle serait toujours guid&eacute;e par la lumi&egrave;re douce et mystique de la Lune.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yun-Yun+La+Lune">Cdte. Yun-Yun La Lune</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12288.jpg" style="width:128px;height:128px" alt="Avatar" /><br />27/06/1024 ETU 03:13</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal309114')">Détails</a> <a href="javascript:warnpost(309114)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309114" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309114',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Yun-Yun Yuna est n&eacute;e dans une famille noble et ais&eacute;e sur la plan&egrave;te Il-Lune-mination. D&egrave;s son plus jeune &acirc;ge, elle montra une inclination naturelle pour la r&ecirc;verie et la contemplation. Tandis que les autres enfants couraient et jouaient sous le soleil, Yun-Yun pr&eacute;f&eacute;rait s&#039;asseoir dans les jardins luxuriants de sa maison, regardant les nuages et imaginant des mondes lointains.</div><div class="post_line"></div><div class="post_line">Ses parents, bienveillants et compr&eacute;hensifs, remarqu&egrave;rent rapidement que Yun-Yun semblait plus &eacute;veill&eacute;e et vivante lorsque le soleil se couchait. Plut&ocirc;t que de forcer leur fille &agrave; s&#039;adapter au rythme diurne traditionnel, ils d&eacute;cid&egrave;rent d&#039;adapter leur vie &agrave; ses besoins uniques. Ils engag&egrave;rent des tuteurs pour lui donner des cours particuliers la nuit, sous la lueur douce des lunes. Yun-Yun &eacute;tudiait les &eacute;toiles, les l&eacute;gendes anciennes et les arts mystiques, fascin&eacute;e par tout ce qui avait un lien avec le ciel nocturne.</div><div class="post_line"></div><div class="post_line">Le soir, apr&egrave;s ses le&ccedil;ons, Yun-Yun aimait se promener dans les vastes jardins de la propri&eacute;t&eacute; familiale. Elle passait des heures &agrave; observer les constellations, cr&eacute;ant des histoires fantastiques sur les &eacute;toiles et les galaxies. Ses parents organisaient m&ecirc;me des d&icirc;ners et des f&ecirc;tes apr&egrave;s le coucher du soleil, o&ugrave; la famille et les amis se r&eacute;unissaient pour partager des moments de joie sous les &eacute;toiles scintillantes.</div><div class="post_line"></div><div class="post_line">Son rythme de vie nocturne devint vite une partie int&eacute;grante de la routine familiale. Sa chambre &eacute;tait d&eacute;cor&eacute;e de motifs lunaires et &eacute;toil&eacute;s, avec des rideaux &eacute;pais pour bloquer la lumi&egrave;re du jour afin qu&#039;elle puisse dormir confortablement. Les repas familiaux &eacute;taient souvent d&eacute;cal&eacute;s pour correspondre &agrave; son horaire, et ses parents prenaient soin de passer du temps avec elle durant ses heures d&#039;&eacute;veil.</div><div class="post_line"></div><div class="post_line">Yun-Yun, bien que souvent la t&ecirc;te dans les &eacute;toiles, &eacute;tait une enfant aimante et curieuse. Elle adorait &eacute;couter les histoires des anciens sur les pouvoirs mystiques de la Lune et les l&eacute;gendes des pr&ecirc;tresses. Sa fascination pour la magie et la spiritualit&eacute; grandissait chaque jour, nourrie par les r&eacute;cits et les enseignements qu&#039;elle recevait.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yun-Yun+La+Lune">Cdte. Yun-Yun La Lune</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12288.jpg" style="width:128px;height:128px" alt="Avatar" /><br />27/06/1024 ETU 03:17</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal309115')">Détails</a> <a href="javascript:warnpost(309115)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309115" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309115',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Yun-Yun Yuna grandissait ainsi, entour&eacute;e d&#039;amour et de soutien, et sa vie nocturne devint une routine bien &eacute;tablie. Tandis que la plan&egrave;te Il-Lune-mination s&#039;activait durant le jour, Yun-Yun vivait ses aventures sous la lueur des lunes. Ses soir&eacute;es &eacute;taient remplies de promenades paisibles dans les jardins illumin&eacute;s, o&ugrave; chaque fleur semblait briller d&#039;une lumi&egrave;re douce et argent&eacute;e.</div><div class="post_line"></div><div class="post_line">Ses parents, d&eacute;vou&eacute;s et compr&eacute;hensifs, encourageaient ses explorations nocturnes. Ils organisaient des pique-niques sous les &eacute;toiles, o&ugrave; la famille s&#039;asseyait sur des couvertures moelleuses, d&eacute;gustant des fruits et des mets d&eacute;licats tout en admirant les constellations. Parfois, ils engageaient des conteurs pour narrer des histoires de la Lune et des &eacute;toiles, nourrissant encore plus l&#039;imagination d&eacute;bordante de Yun-Yun.</div><div class="post_line"></div><div class="post_line">Yun-Yun montrait un talent naturel pour la magie lunaire, un art ancien et respect&eacute; sur Il-Lune-mination. Ses tuteurs, impressionn&eacute;s par sa curiosit&eacute; et sa capacit&eacute; &agrave; comprendre les myst&egrave;res c&eacute;lestes, lui apprenaient des incantations et des rituels secrets. Elle absorbait ces connaissances avec une passion in&eacute;gal&eacute;e, passant des nuits enti&egrave;res &agrave; pratiquer sous la lumi&egrave;re bienveillante des lunes.</div><div class="post_line"></div><div class="post_line">Malgr&eacute; son monde unique, Yun-Yun restait connect&eacute;e &agrave; ses amis et &agrave; sa famille. Elle partageait avec eux ses d&eacute;couvertes et ses r&ecirc;ves, les entra&icirc;nant dans ses histoires fantastiques. Ses amis adoraient &eacute;couter ses r&eacute;cits sur les mondes lointains et les cr&eacute;atures magiques qu&#039;elle imaginait. Elle avait une capacit&eacute; unique &agrave; rendre le monde plus grand et plus merveilleux pour ceux qui l&#039;entouraient.</div><div class="post_line"></div><div class="post_line">Les jours, bien qu&#039;elle les passait souvent &agrave; dormir, &eacute;taient aussi remplis de douceur. Ses parents veillaient &agrave; ce qu&#039;elle soit entour&eacute;e de confort et de beaut&eacute;. Sa chambre &eacute;tait un sanctuaire de tranquillit&eacute;, avec des rideaux &eacute;pais pour bloquer la lumi&egrave;re du jour et des coussins moelleux o&ugrave; elle pouvait se reposer et r&ecirc;ver.</div><div class="post_line"></div><div class="post_line">Yun-Yun Yuna grandissait ainsi, entre r&ecirc;ves et r&eacute;alit&eacute;s, ch&eacute;rie par sa famille et guid&eacute;e par la magie des &eacute;toiles. Sa vie nocturne &eacute;tait un voyage constant de d&eacute;couvertes et de merveilles, chaque nuit apportant de nouvelles aventures et de nouvelles inspirations.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Yun-Yun+La+Lune">Cdte. Yun-Yun La Lune</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/12288.jpg" style="width:128px;height:128px" alt="Avatar" /><br />27/06/1024 ETU 03:24</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal309116')">Détails</a> <a href="javascript:warnpost(309116)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309116" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309116',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">&Agrave; 18 ans, la vie de Yun-Yun Yuna changea radicalement avec l&#039;apparition de la marque argent&eacute;e en forme de croissant de lune sur son bras. Ce symbole sacr&eacute; la d&eacute;signa comme la future pr&ecirc;tresse des terres lunaires, un r&ocirc;le de grande responsabilit&eacute; et d&#039;honneur sur Il-Lune-mination.</div><div class="post_line"></div><div class="post_line">Malgr&eacute; cette nouvelle responsabilit&eacute;, Yun-Yun resta fid&egrave;le &agrave; elle-m&ecirc;me : une r&ecirc;veuse avec la t&ecirc;te dans les &eacute;toiles. Ses journ&eacute;es &eacute;taient toujours consacr&eacute;es au repos, laissant place &agrave; des nuits pleines de contemplation et de magie. Cependant, son r&ocirc;le de pr&ecirc;tresse exigeait qu&#039;elle assume davantage de responsabilit&eacute;s. Elle devait d&eacute;sormais guider son peuple avec sagesse et s&eacute;r&eacute;nit&eacute;, tout en maintenant l&#039;harmonie et la paix sur leur plan&egrave;te.</div><div class="post_line"></div><div class="post_line">Sa famille et ses conseillers, conscients de sa nature r&ecirc;veuse, prirent soin d&#039;organiser son emploi du temps de mani&egrave;re &agrave; ce qu&#039;elle puisse continuer &agrave; vivre selon son rythme nocturne. Les r&eacute;unions importantes et les conseils se tenaient souvent sous la lueur des lunes, cr&eacute;ant une atmosph&egrave;re mystique et inspirante. Ses conseillers g&eacute;raient les affaires courantes pendant la journ&eacute;e, lui permettant de se concentrer sur les d&eacute;cisions strat&eacute;giques et spirituelles la nuit venue.</div><div class="post_line"></div><div class="post_line">Yun-Yun Yuna, en tant que pr&ecirc;tresse, devint une figure embl&eacute;matique pour son peuple. Elle incarnait les valeurs de sagesse, de paix et de connexion profonde avec la Lune. Ses discours &eacute;taient empreints de po&eacute;sie et de magie, inspirant ceux qui les &eacute;coutaient. Sa pr&eacute;sence apportait une aura de calme et de s&eacute;r&eacute;nit&eacute;, et son peuple trouvait en elle une source de r&eacute;confort et d&#039;inspiration.</div><div class="post_line"></div><div class="post_line">Les temples lunaires devinrent des centres d&#039;apprentissage et de m&eacute;ditation, o&ugrave; Yun-Yun enseignait les anciens rituels et les myst&egrave;res de la magie lunaire. Les nuits, elle menait des c&eacute;r&eacute;monies sous les &eacute;toiles, guidant son peuple dans des chants et des pri&egrave;res qui renfor&ccedil;aient leur lien avec la Lune. Sa capacit&eacute; &agrave; &eacute;couter les murmures des &eacute;toiles et &agrave; interpr&eacute;ter les signes c&eacute;lestes faisait d&#039;elle une guide pr&eacute;cieuse dans les moments de doute ou de crise.</div><div class="post_line"></div><div class="post_line">M&ecirc;me si ses responsabilit&eacute;s &eacute;taient grandes, Yun-Yun Yuna trouvait toujours le temps de r&ecirc;ver et d&#039;explorer les myst&egrave;res de l&#039;univers. Elle savait que son r&ocirc;le de pr&ecirc;tresse ne se limitait pas &agrave; la gestion des affaires terrestres, mais impliquait aussi de maintenir un &eacute;quilibre spirituel et cosmique. Gr&acirc;ce &agrave; son esprit r&ecirc;veur et sa connexion profonde avec la Lune, elle parvenait &agrave; guider son peuple vers un avenir harmonieux et lumineux.</div><div class="post_line"></div><div class="post_line">Ainsi, Yun-Yun Yuna, la pr&ecirc;tresse r&ecirc;veuse d&#039;Il-Lune-mination, continue de mener son peuple avec une sagesse c&eacute;leste, r&eacute;pandant la magie et la paix &agrave; travers les nuits &eacute;toil&eacute;es de sa plan&egrave;te bien-aim&eacute;e.</div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17267&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17267" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17267" name="d_reply_17267" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17267');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17267'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;&eacute;pop&eacute;e d&#039;une r&ecirc;veuse</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

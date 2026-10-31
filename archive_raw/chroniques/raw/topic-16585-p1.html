@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 16585 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>L&#039;abn&eacute;gation Draskienne</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;abn&eacute;gation Draskienne</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Zark">Cdt. Zark</a><br>Prestige de chroniqueur&nbsp;: 4<br /><br /><img src="/avatars/11833.jpg" style="width:108px;height:128px" alt="Avatar" /><br />12/02/1023 ETU 08:09</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal296637')">Détails</a> <a href="javascript:warnpost(296637)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal296637" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=296637',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffc0cb"><strong>- Et voila,&nbsp;nous y sommes. Nous savions tout deux que ce jour devait arriver.</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#ffa339"><strong>-&nbsp;Ta ... lia ... .</strong></font></div><div class="post_line"></div><div class="post_line">La pluie r&eacute;sonnait sur le toit du hangar B-3. Talia, Grande Draska Koganienne, s&#039;appr&ecirc;tait &agrave; livrer ses derni&egrave;res paroles pour son ami. Elle se tenait debout, fi&egrave;rement dress&eacute;e devant une fen&ecirc;tre de la salle de commande. Entre les gouttes qui d&eacute;goulinaient &agrave;&nbsp;l&#039;ext&eacute;rieur et la bu&eacute;e de son souffle qui se rependait sur l&#039;int&eacute;rieur&nbsp;de la vitre, elle observait&nbsp;la fr&ecirc;le silhouette d&#039;une fr&eacute;gate spatiale.</div><div class="post_line"></div><div class="post_line"><strong><font color="#ffa339">- Tu veux vraiment faire &ccedil;a ? Nous ne ma&icirc;trisons pas cette technologie. Et puis ... aucun test exp&eacute;rimental n&#039;a vraiment &eacute;t&eacute; concluant ...&nbsp;</font></strong></div><div class="post_line"></div><div class="post_line"><strong><font color="#ffc0cb">- Ne m&#039;oblige pas &agrave; te dire ce que tu sais d&eacute;j&agrave; Zark. Nous avons besoin de donn&eacute;es pour pouv...</font></strong></div><div class="post_line"></div><div class="post_line"><strong><font color="#ffa339">- C&#039;EST DE SUICIDE ! Pourquoi envoyer la Grande Draska pour une mission vou&eacute;e &agrave; un &eacute;chec total !?</font></strong></div><div class="post_line"></div><div class="post_line">Malgr&eacute; la tension apparente&nbsp;de la situation, Talia esquissa un l&eacute;ger sourire avant de se retourner en direction de son ami Zark.</div><div class="post_line"></div><div class="post_line"><strong><font color="#ffc0cb">- Tu es encore jeune Zark. Un Drask plein de promesses, mais encore tellement jeune.</font></strong>&nbsp;Elle s&#039;avan&ccedil;a devant lui.</div><div class="post_line"><strong><font color="#ffc0cb">Je t&#039;ai vu grandir tu sais. Tu ignores encore certaines choses, mais si tu es l&agrave; aujourd&#039;hui, c&#039;est parce que j&#039;ai plac&eacute; en toi une infinit&eacute; d&#039;espoir. Accompagne moi s&#039;il te plait.</font></strong></div><div class="post_line"></div><div class="post_line">Elle saisit la main de son jeune ami et l&#039;emmena avec elle jusqu&#039;aux abords de la fr&eacute;gate&nbsp;spatiale situ&eacute;e en contrebas du hangar. Zark ne dit rien. Il avait la gorge serr&eacute; et peinait &agrave; ordonner ses pens&eacute;es. Talia arborait alors un aire plus s&eacute;rieux et profita du trajet jusqu&#039;&agrave; la navette pour adresser ses derni&egrave;res paroles en tant que Grande Draska.</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb"><strong>- J&#039;imagine ce &agrave; quoi tu peux penser. Nous savons tout deux la v&eacute;racit&eacute; de la situation. Mais aux yeux des Koganiens, je ne suis plus la Grande Draska. Ce qui a &eacute;t&eacute; fait sera peut-&ecirc;tre consid&eacute;r&eacute; demain comme un acte d&#039;h&eacute;ro&iuml;sme national, mais aujourd&#039;hui ce n&#039;est que traitrise et trahison envers notre nation.</strong></font></div><div class="post_line"></div><div class="post_line">La main de Zark se crispa alors et de l&eacute;gers tremblements commen&ccedil;aient &agrave; saisir le jeune Drask.</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb"><strong>- Je te le r&eacute;p&egrave;te encore, mais tout ce que j&#039;ai fait jusqu&#039;&agrave; pr&eacute;sent n&#039;a &eacute;t&eacute; que pour l&#039;avenir de notre plan&egrave;te Draskyt. Et tout mes actes, toutes mes d&eacute;cisions, je ne regrette absolument rien. J&#039;ai toujours cru en notre potentiel et de surcroit, je crois en toi plus que quiconque. Je ne peux plus continuer aujourd&#039;hui, mais si je t&#039;ai gard&eacute; aupr&egrave;s de moi toutes ses ann&eacute;es, c&#039;est pour que le moment venu, tu prennes ma suite.</strong></font> Elle se stoppa et adressa un regard tendre &agrave; son compagnon.</div><div class="post_line"><font color="#ffc0cb"><strong>Tu n&#039;as pas encore 25 ans Zark, tu as toute la vie devant toi et pourtant, je suis intimement persuad&eacute;e que tu es celui qui nous m&egrave;nera&nbsp;au sommet. Tu dois continuer notre projet. Rappel toi ce que tu m&#039;as dit la premi&egrave;re fois que nous nous sommes rencontr&eacute;s. &quot;Notre monde est beaucoup trop petit pour se permettre de penser qu&#039;il n&#039;y a plus rien apr&egrave;s&quot;. Je dois t&#039;avouer que ce jour-l&agrave;, j&#039;&eacute;tais plus basse que terre. Personne ne l&#039;a jamais su, mais le Drask que j&#039;aimais venait de passer de l&#039;autre c&ocirc;t&eacute; et .... Talia marqua un temps d&#039;arr&ecirc;t, l&#039;&eacute;motion de ce jour tragique lui revint en m&eacute;moire.</strong></font> Elle essuya une petite larme sur sa joue et reprit de plus belle.</div><div class="post_line"><strong><font color="#ffc0cb">Et ce jour-l&agrave; tu es arriv&eacute; dans ma vie. J&#039;avais toujours eu un &oelig;il&nbsp;sur toi, je t&#039;observais depuis quelques ann&eacute;es. Mais cette fois-l&agrave; tu &eacute;tais en chair et en os devant moi, de l&#039;espoir plein les yeux, une ambition d&eacute;mesur&eacute;e et une rage. Une rage si forte, une rage de faire bouger les choses, une rage que je ne connaissais que chez une seule personne ... mon Ath&egrave;re ...</font></strong></div><div class="post_line"></div><div class="post_line"><strong><font color="#ffa339">- Talia ... Pourquoi fais-tu &ccedil;a ?</font></strong> Zark &eacute;tait v&eacute;ritablement touch&eacute; par son ami qui s&#039;ouvrait &agrave; lui.</div><div class="post_line"><strong><font color="#ffa339">Apr&egrave;s tout ce que tu as fais pour Kogan, ton peuple, pourquoi acceptes-tu si facilement ce ch&acirc;timent qui t&#039;as &eacute;t&eacute; inflig&eacute;s par cette bande de rustres incomp&eacute;tents !? Tu as m&eacute;rit&eacute; de te reposer, ne fl&eacute;chit pas devant eux&nbsp;! Part, prend retraite. Je suis l&agrave; d&eacute;sormais. Laisse moi faire ...</font></strong></div><div class="post_line"></div><div class="post_line">Amus&eacute;e, Talia sourit et repliqua.</div><div class="post_line"></div><div class="post_line"><strong><font color="#ffc0cb">- Partir. C&#039;est exactement ce que je fais. Je suis persuad&eacute;e que tu le&nbsp;comprendras un jour, mais je dois accepter mon sort. Je le fais pour nous, pas pour Kogan, mais pour tous les Draskiens. Je t&#039;assures que c&#039;est la meilleurs chose &agrave; faire. Mais ne t&#039;inqui&egrave;te pas, je part satisfaite. Je te laisse faire. Tu tiens&nbsp;les reines de notre avenir entre tes mains et je suis convaincue que tu guideras chaque habitant de notre plan&egrave;te dans la bonne direction.</font></strong></div><div class="post_line"></div><div class="post_line">Talia s&#039;approcha de Zark et lui d&eacute;posa un baiser sur le front. Elle se retourna alors et gravit les quelques marches pour monter &agrave; bord de la fr&eacute;gate spatiale.</div><div class="post_line"></div><div class="post_line"><strong><font color="#ffc0cb">- Aurevoir mon Zark. Prend bien soin de toi.</font></strong></div><div class="post_line"></div><div class="post_line">C&#039;est la gorge serr&eacute; et le c&oelig;ur emplit d&#039;un m&eacute;lange de col&egrave;re et de tristesse qu&#039;il lui adressa &agrave; son tour ses adieux.</div><div class="post_line">La porte de la fr&eacute;gate se referma alors sur la silhouette de Talia, puis le bruit&nbsp;des r&eacute;acteurs de l&#039;engin retentirent et firent vibrer les environs. Le vaisseau s&#039;orienta en direction des cieux et dans un vrombissement soudain, partit rejoindre l&#039;infinit&eacute; spatiale, laissant derri&egrave;re lui une train&eacute;e fumeuse.&nbsp;</div><div class="post_line"></div><div class="post_line"><strong><font color="#ffa339">- Talia, ... je m&#039;occupe de tout ... , ... Pour les Drask !</font></strong></div><div class="post_line"></div><div class="post_line">Zark observa un moment l&#039;engin spatial s&#039;&eacute;loigner, tout en essayant d&#039;ordonner ses pens&eacute;es. Il savait qu&#039;&agrave; partir de ce jour, l&#039;avenir de son peuple reposait&nbsp;sur ses &eacute;paules.</div><div class="post_line">Pendant ce temps dans la fr&eacute;gate, Talia songeait &agrave; tout ce qu&#039;elle avait accomplit et fut prit d&#039;un instant de faiblesse, seule dans ce cercueil de fer.&nbsp;Une fois la profondeur spatiale atteinte, Talia vit pour la premi&egrave;re fois sa plan&egrave;te d&#039;un point de vue ext&eacute;rieur. Une vive &eacute;motion l&#039;a saisit, elle prit un instant pour observer le fabuleux spectacle qui s&#039;offrait &agrave; elle. Elle regardait l&#039;ombre de son &eacute;toile progresser sur Draskyt, pendant que quelques nappes nuageuses enveloppait majestueusement les pourtours du continent sur lequel elle avait v&eacute;cu toute sa vie. Elle reprit alors ses esprits et saisit son ordinateur de bord pour &eacute;mettre son premier signal.</div><div class="post_line"></div><div class="post_line"><em><font color="#5593bd">{{ ==- ==</font></em></div><div class="post_line"><em><font color="#5593bd">&lt;&lt; Signal &eacute;mit depuis la fr&eacute;gate exp&eacute;rimentale&nbsp;Draskon &gt;&gt;</font></em></div><div class="post_line"><em><font color="#5593bd">&lt;&lt; Je suis Talia ex-Grande Draska de la nation Kogan &gt;&gt;</font></em></div><div class="post_line"><em><font color="#5593bd">&lt;&lt; Premier jour d&#039;exil. Le conseil Koag&acirc;n&nbsp;m&#039;a condamn&eacute; a expi&eacute; mes p&eacute;ch&eacute;s en &eacute;tant la premi&egrave;re Drask &agrave; conqu&eacute;rir&nbsp;les cieux abyssaux en rependant&nbsp;l&#039;influence Draskienne dans toute la galaxie. &gt;&gt;</font></em></div><div class="post_line"><em><font color="#5593bd">&lt;&lt; Je ne sais pas si cet&nbsp;&quot;engin interstellaire&quot; me permettra d&#039;accomplir ma t&acirc;che, mais tout porte &agrave; croire que ....</font></em></div><div class="post_line"></div><div class="post_line">Talia se stoppa net, r&eacute;fl&eacute;chit&nbsp;quelques minutes puis arr&ecirc;ta son &eacute;mission et supprima son message. Elle se leva de son poste,&nbsp;alla rejoindre le point d&#039;observation de son vaisseau et observa sa plan&egrave;te s&#039;&eacute;loigner pas &agrave; pas d&#039;elle ...</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16585&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16585" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16585" name="d_reply_16585" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16585');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16585'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > L&#039;abn&eacute;gation Draskienne</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

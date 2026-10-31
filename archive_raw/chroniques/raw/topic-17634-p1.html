@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17634 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Etrange rencontre</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Etrange rencontre</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />18/06/1025 ETU 08:15</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal314754')">Détails</a> <a href="javascript:warnpost(314754)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal314754" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=314754',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#9df9ff">https://i.pinimg.com/736x/56/2f/b8/562fb8e40a6782d51b8db0007b769c26.jpg</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Kemie-426</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">https://i.pinimg.com/736x/ec/77/46/ec7746d5f1d870b69f33866399794558.jpg</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Ethan.&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">https://i.pinimg.com/736x/0f/22/f1/0f22f152b9d16ca26914f7e9ecb00063.jpg</font></div><div class="post_line"></div><div class="post_line">Maitre Won</div><div class="post_line"></div><div class="post_line">Kemie entrainait le petit Ethan, apr&egrave;s &ecirc;tre pass&eacute;s par le tunnel de transfert, ils avaient &eacute;t&eacute; canalis&eacute;s vers la plan&egrave;te &eacute;quatoriale, elle venit de connaitre un bien &eacute;trange individu, se trouvant dans un temple, un tr&egrave;s vieux temple...</div><div class="post_line">Elle entrainait donc le jeune Ethan, <font color="#9df9ff">Tu verras, il est tr&egrave;s gentil, il y a une maison a cot&eacute;, c&#039;est un Maitre, il va t&#039;apprendre plein de choses, tu saura te d&eacute;fendre aprs et tu aua un meilleur contr&ocirc;le de ti m&ecirc;me et m&ecirc;me au del&agrave;&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">D&#039;accord Kemie , Je te fait confiance mais.....Tu ne va pas m&#039;abandonner hein ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Mais non bien sur !, je te l&#039;ai dit, a toucher le temple, il y a quelques maisons, l&#039;une, est pour nous, c&#039;est l&agrave; que nous habiterons d&eacute;sormais et en toute tranquillit&eacute;, tiens voila, nous arrivons...</font></div><div class="post_line"></div><div class="post_line">Ils entr&egrave;rent dans un grand temple,&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#4cea5e">https://i.pinimg.com/736x/c5/b1/9d/c5b19d29223cab53d949bebd05f525ab.jpg</font></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Le Maitre &eacute;tait dans l&#039;all&eacute;e centrale, Kemie fit signe &agrave; Ethan d&#039;aller vers lui, Ethan s&#039;avan&ccedil;a silencieusement</div><div class="post_line"></div><div class="post_line">Maitre Won fit, <font color="#7fdbff">soit la bienvenue ici, comment t&#039;appelle tu ?&nbsp;</font></div><div class="post_line"></div><div class="post_line">Ethan<font color="#ffdc00"> Monsieur !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Ici, tu te doit de m&#039;appeler Maitre,&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Heu... Oui Maitre !</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Bien, ou sont tes parents ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Ethan baissa la t&ecirc;te et r&eacute;pondit ..<font color="#ffdc00">.Ben au moment ou il y avait l&#039;apocalypse, ils m&#039;ont abandonn&eacute;s mais Kimie &eacute;tait l&agrave; !</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">C&#039;est bien malheureux, mais Kimie est bien gentille n&#039;est il pas ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Oui Maitre !&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">H&eacute; bien moi tu voit je vit seul ici, et je suis le dernier d&eacute;positaire de mon art, un at martial, mis qui comporte plusieurs techniques, il n&#039;y a plus de disciples ici, voudrait tu apprendre cet art ? Cela durera un bon moment mais, &agrave; la fin, toi aussi, tu sera alors en age et avec l&#039;exp&eacute;rience pour refaire connaitre cet art ? Bien sur tu est libre de refuser et cet art disparaitrais alors &agrave; tout jamais ! que d&eacute;cide tu, tu veut apprendre , ou pr&eacute;f&egrave;re tu passer ton chemin ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Ben...Je veut bien apprendre,</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Bien Bien ! lors nous nous reverrons, je vous laisse vous installer dans votre nouvelle maison, emain, je vous visiterais !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Kimie et Ethan se retir&egrave;rent ....Ils devaient s&#039;installer, demain, Ethan en aurait des choses&nbsp; &agrave; faire !&nbsp;</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />27/06/1025 ETU 05:53</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D315147', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal315145')">Détails</a> <a href="javascript:warnpost(315145)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal315145" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=315145',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Le lendemain, l&#039;&eacute;l&egrave;ve &eacute;coutait patiemment son Maitre,&nbsp;</div><div class="post_line"></div><div class="post_line">Assis en tailleurs, les mains pos&eacute;es sur les genoux, Won apprenait a son &eacute;l&egrave;ve, la d&eacute;contraction totale, plac&eacute;s devant les sorties d&#039;a&eacute;rations qui soufflait en continue dans un chuintement perp&eacute;tuel...</div><div class="post_line"></div><div class="post_line">Won lui avait conseill&eacute; de fermer les yeux, d&#039;inspirer et expirer lentement tout en associant&nbsp;le bruit de l&#039;a&eacute;ration, &agrave; son imagination, en visualisant qu&#039;il &eacute;tait devant une cascade, le bruit du chuintement faisant ainsi illusion....</div><div class="post_line"></div><div class="post_line">Ils rest&egrave;rent ainsi un bon moment dans le bruit de l&#039;a&eacute;ration, une fois bien d&eacute;tendu, ce fut comme si ils s&#039;&eacute;veillaient, comme si ils venaient d&#039;une autre dimension, un autre monde, qui leurs appartenaient &agrave; eux seuls..</div><div class="post_line"></div><div class="post_line">Ethan apprit l&#039;&eacute;quilibre, toutes sortes d&#039;exercice physique, cela dura longtemps, puis lentement, des exercices d&#039;acrobaties faciles, L&agrave;,&nbsp;&agrave; la fin de la journ&eacute;e, il put se reposer apr&egrave;s s&#039;&ecirc;tre douch&eacute;, la nuit se passa paisiblement...</div><div class="post_line"></div><div class="post_line">Won, lui, hocha la t&ecirc;te, le gar&ccedil;onnet apprenait vite pour l&#039;instant.... il y avait quelque chose a d&eacute;velopper, mais cela prendrait du temps&nbsp;&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />03/07/1025 ETU 19:40</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal315411')">Détails</a> <a href="javascript:warnpost(315411)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal315411" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=315411',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ffa339"><font size="4">https://www.youtube.com/watch?v=Jmk5frp6-3Q&amp;list=RDJmk5frp6-3Q&amp;index=1</div><div class="post_line"></div><div class="post_line"></font>(Gutav Holst,&nbsp;Mars, musique d&#039;ambiance)</font></div></div><div class="post_line"></div><div class="post_line">Maitre Won avait re&ccedil;u l&#039;implant, ses nouvelles facult&eacute;s lui permettaient d&eacute;sormais de soulever son Disck par la pens&eacute;e, et en faire ce qu&#039;il voulait, mais il s&#039;agissait tout bonnement d&#039;une t&eacute;l&eacute;commande c&eacute;r&eacute;brale, le Disck pouvait d&eacute;coller du sol, aller &agrave; droite, &agrave; gauche tout droit ou se lancer en pleine vitesse pour une force d&#039;impact maximale puis le faire revenir, le Disck &eacute;mettait une sorte de sifflement &agrave; chaque d&eacute;placement, ce qui ajoutait au cot&eacute; impressionnant, et ce,&nbsp;&nbsp;sans que Maitre Won n&#039;est &agrave; le prendre.</div><div class="post_line"></div><div class="post_line">Apr&egrave;s une discussion et une belle d&eacute;monstration, Ethan fut conquis, il re&ccedil;u des lors, l&#039;implant &agrave; son tour, un petit implant de la taille d&#039;un d&eacute; plac&eacute; pr&eacute;s du cerveau, reli&eacute; &agrave; une batterie solaire implant&eacute;e elle m&ecirc;me sur son poignet .</div><div class="post_line"></div><div class="post_line">Mais ...Il n&#039;&eacute;tait d&eacute;j&agrave; plus seul, des ados vinrent rapidement apprendre eux m&ecirc;me l&#039;art du Discka&iuml;do, d&#039;abord 5 puis 10 et bient&ocirc;t 30 !</div><div class="post_line"></div><div class="post_line">Une grande salle, fut am&eacute;nag&eacute;e dans le temple, son art avait reprit, &agrave; la satisfaction de Maitre Won !&nbsp;</div><div class="post_line"></div><div class="post_line">Bient&ocirc;t ! Oui tr&egrave;s bient&ocirc;t m&ecirc;me, Maitre Won ne serait plus le seul Maitre, la rel&egrave;ve &eacute;tait assur&eacute;e ! Il regarda ses &eacute;l&egrave;ves s&#039;entrainer, un air satisfait et fier sur son visage !</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />11/07/1025 ETU 01:15</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D315681', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal315679')">Détails</a> <a href="javascript:warnpost(315679)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal315679" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=315679',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Les &eacute;l&egrave;ves s&#039;entrainaient avec acharnement, d&eacute;sormais ils se trouvaient a pr&egrave;s de&nbsp; 93, Maitre Won enseignait aux d&eacute;butants, mais il est clair que bient&ocirc;t, certains d&#039;entre eux atteindraient le rang de Maitre, tr&egrave;s rapidement maintenant, notamment l&#039;un d&#039;eux, qui se distinguait particuli&egrave;rement, du nom de Zanthar, un&nbsp;jeune homme blond, cheveux mi longs, d&#039;allure athl&eacute;tique, sportif et souple, lui avait r&eacute;ussi &agrave; se faire connecter 2 Disck, un dans chaque main, pour lui, l&#039;art du Discka&iuml;do &eacute;tait devenu, une v&eacute;ritable passion.</div><div class="post_line"></div><div class="post_line">Lan&ccedil;ant ses discks l&#039;un apr&egrave;s l&#039;autre, avec aisance, les discks sifflant, avant de toucher, il&nbsp;les r&eacute;cup&eacute;raient ensuite avec, presque de la gr&acirc;ce,&nbsp;&nbsp;arrivant, comme il &eacute;tait pr&eacute;vu, &agrave;&nbsp;utiliser les angles des murs pour toucher les cibles mannequins mobiles presque &agrave; chaque fois !</div><div class="post_line"></div><div class="post_line">Fier de lui, il sourit au Maitre qui hocha la t&ecirc;te.</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Zanthar&nbsp;? Viens me voir !&nbsp;</font></div><div class="post_line"></div><div class="post_line">Zanthar, un peu essouffl&eacute; fit : <font color="#ffff44">Me voici Maitre !</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Zanthar ! J&#039;ai pu observer ta progression, elle est tr&egrave;s int&eacute;ressante ! Je doit avouer que tu as fait d&#039;&eacute;normes progr&egrave;s, c&#039;est d&#039;ailleurs pour cela que je te remet &agrave;&nbsp;ton nouveau rang, le rang d&#039;adepte.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">Ho merci&nbsp; Maitre ! Je serait digne de l&#039;honneur qui m&#039;est fait !</font>&nbsp;</div><div class="post_line"></div><div class="post_line">J<font color="#7fdbff">e n&#039;en doute pas un instant Zanthar...&nbsp;Cependant, je crois pouvoir observer que tu essaye d&#039;aller le plus vite possible n&#039;est ce pas ?</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff44">He bien j&#039;ai h&acirc;te d&#039;atteindre le rang de Ma&icirc;tre moi aussi !</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Hmmm oui cela est bien normal et compr&eacute;hensible&nbsp;mais toutefois c&#039;est un tort, Bruler des &eacute;tapes n&#039;est pas la bonne voie ! Entendons nous bien Zanthar, je ne d&eacute;nigre absolument pas tes progr&egrave;s, loin de l&agrave;, mais aller trop vite appelle &agrave; faire des erreurs, et au bout du compte, une erreur, tu finis toujours par la payer t&ocirc;t ou tard si elle est trop r&eacute;p&eacute;titive, et tu as tellement de chemin encore a faire, tellement de&nbsp;choses que tu doit apprendre encore..</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Suit moi, je vais te montrer quelque chose...</font></div><div class="post_line"></div><div class="post_line">Ils sortirent du temple et march&egrave;rent un petit moment, dans la for&ecirc;t,&nbsp;pour arriver devant un arbre s&#039;&eacute;levant si haut dans le ciel, le tronc &eacute;tait large, et Maitre Won lui fit signe de s&#039;assoir&nbsp;en tailleur tout comme il le fit lui m&ecirc;me.</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Quand tu vois cet arbre, que remarque tu ?</font>&nbsp;</div><div class="post_line"></div><div class="post_line">Zanthar observa la cime de cet arbre s&#039;&eacute;levant si haut, il r&eacute;pondit, <font color="#ffff44">il est dr&ocirc;lement haut, au moins entre 30 et 40 m&egrave;tre facile </font>!</div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Hmmm et crois tu que cela se soit fait en quelques jours ? ..Non ! Il a pris son temps, tout son temps mais observe sa base, ce tronc est solide, il est fort, tr&egrave;s puissant,&nbsp;crois tu qu&#039;il eu &eacute;t&eacute; aussi haut si il avait brul&eacute; ses &eacute;tapes ?</font>&nbsp;&nbsp;</div><div class="post_line"></div><div class="post_line">Zantthar sourit en &eacute;cartant une m&egrave;che de cheveux de son front, <font color="#ffff44">Je suppose que non Maitre !</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Aujourd&#039;hui, il est fort, majestueux et puissant, tout comme toi plus tard, mais prend le temps, renforce&nbsp;tes connaissances, affin de bien les assimiler,&nbsp;&nbsp;tu avanceras peut &ecirc;tre plus lentement, mais plus surement aussi...Et tes connaissances, tu les auras en m&eacute;moire plus surement, un jour m&ecirc;me, tu enseignera &agrave; ton tour.</font></div><div class="post_line"></div><div class="post_line">Zenthar hocha la t&ecirc;te, O<font color="#ffff44">ui Maitre !</font> Il gard&egrave;rent le silence et rentr&egrave;rent en m&eacute;ditation pendant un bon moment,.. Alors que les feuilles de l&#039;arbre, bruissaient au gr&eacute;s du vent ...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />30/07/1025 ETU 08:14</td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal316200')">Détails</a> <a href="javascript:warnpost(316200)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316200" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316200',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Quelque part dans le Secteur 1&nbsp;</div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#2ecc40"><font size="5">http://img.xooimage.com/files110/f/f/d/drapeau-kr-ne-4f24eec.png</font></font></div></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Drapeau Moscovian.</font></div><div class="post_line"></div><div class="post_line"><div align="center"><font size="4">https://i.pinimg.com/1200x/e6/34/90/e6349043b6702910d53cff80d6ed31cc.jpg</font></div></div><div class="post_line"></div><div class="post_line">Base militaire Moscovianne .&nbsp;</div><div class="post_line"></div><div class="post_line">Le drapeau Flottait bien haut, il n&#039;y avait aucun doute, sur certains b&acirc;timents, &eacute;taient clairement affich&eacute;es l&#039;&eacute;toile verte, symbole de l&#039;Empire Moscovian,&nbsp;</div><div class="post_line"></div><div class="post_line">Les traqueurs, ces soldats en manteaux longs et gris, arm&eacute;s de leurs fusils flascher, une toque de fourrure avec l&#039;&eacute;toile verte devant,&nbsp;marchaient au pas de loi !</div><div class="post_line"></div><div class="post_line">Des a&eacute;ro v&eacute;hicules se d&eacute;pla&ccedil;aient, transportant du mat&eacute;riel, les constructions continuaient partout, sur l&#039;immense base, L&#039;amirale Valinovsky marchait en compagnie du Premier Secr&eacute;taire G&eacute;n&eacute;ral Valery Sapa&iuml;ev, venu en visite, semblant &ecirc;tre satisfait, de l&#039;organisation et des installations ...</div><div class="post_line"></div><div class="post_line">Il se tourna vers l&#039;Amiral souriant et fit :&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">Отлично, всё отлично! Позже я сделаю заявление за всю базу, но сначала покажите мне всё, товарищ !&nbsp;</font></div><div class="post_line"></div><div class="post_line">L&#039;amirale Valinovsky lui r&eacute;pondit en souriant ...</div><div class="post_line"></div><div class="post_line"><font color="#e8b6ef">Я благодарю вас за отличную работу, которую я проделал, и за ваш визит, товарищ Первый секретарь, пожалуйста, следуйте за мной, я вас проведу....</font></div><div class="post_line"></div><div class="post_line">Ils reprirent alors leurs marches, Valinovsky lui montrant en pointant du doigt et semblant expliquer au Camarade Premier Secr&eacute;taire, les diverses b&acirc;timents et leurs fonctionnalit&eacute;...</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Xyde">Cdt. Xyde</a><br>Prestige de chroniqueur&nbsp;: 56<br /><br /><img src="/avatars/12373.jpg" style="width:128px;height:85px" alt="Avatar" /><br />06/08/1025 ETU 06:21</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D316329', 544, 464)">version précédente</a> - Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal316327')">Détails</a> <a href="javascript:warnpost(316327)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316327" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316327',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font size="4"><font color="#ffffff">https://i.pinimg.com/736</font><font color="#17b529">x/08/04/3d/08043d007</font><font color="#ffffff">e078f5be23c2833a3efe10e.jpg</div><div class="post_line"></div><div class="post_line"></font></font><font color="#ffffff">Palais Pr&eacute;sidentiel Moscovian</font>&nbsp;</div><div class="post_line"></div></div><div class="post_line"><div align="center"><font color="#ff0000"><font size="4">https://www.youtube.com/watch?v=epNCcS4gl9s&amp;list=PL0ZZBxzVjYYG8kl9ROYlHGht5dvLMdGbR&amp;index=24</div><div class="post_line"></div><div class="post_line"></font></font><font size="3"><font color="#ffffff">Hymne</font><font color="#17b529"> Mos</font>c<font color="#ffffff">ovian</div><div class="post_line"></div><div class="post_line">http://img.xooimage.com/files110/f/f/d/drapeau-kr-ne-4f24eec.png</div><div class="post_line"></div><div class="post_line"></font></font></div><div class="post_line"><div align="left"><font size="3"><font color="#ffffff">Chacun &eacute;tait devant son &eacute;cran holographique, &agrave; attendre le message du Camarade premier Secr&eacute;taire G&eacute;n&eacute;ral, de la R&eacute;publique Communiste D&eacute;mocratique Lib&eacute;rale Moscovianne; apr&egrave;s la musique, le Camarade premier Secr&eacute;taire apparut enfin ... Et commen&ccedil;a ...</font></div><div class="post_line"></div><div class="post_line"></font></div><div class="post_line"><div align="center"><font size="3"><font color="#e8c500">https://i.pinimg.com/736x/d1/79/33/d17933d4a34d71579c662fbd10acf0e6.jpg</div><div class="post_line">Camarade Premier Secr&eacute;taire G&eacute;n&eacute;ral Valery Sapa&iuml;ev</font></font></div></div><div class="post_line"></div></div><div class="post_line"></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="left"><font color="#72ff84">Пусть свет звезд осветит ваш путь всем !!</div><div class="post_line"></div><div class="post_line">Я хотел бы сообщить вам, что даже здесь, с момента нашего основания, мы не изменим свою политику, политика Москвы отныне остается и будет оставаться прежней.</div><div class="post_line"></div><div class="post_line">Но я напоминаю тем, кто может меня услышать и понять на нашем языке о нашей Родине...</div><div class="post_line">Итак, у вас будет 7 часов работы в день, восьмой час на спорт, чтобы вы поддерживали себя в форме, этот восьмой час обязателен, и не думайте, что раз я Первый Генеральный секретарь, то я избегаю этого правила, это обязательство также действует для меня. !</div><div class="post_line">Каждый будет совершенно свободен в выборе вида спорта, вам всем выдадут идентификационные таблички, как обычно, как обычно и здесь, деньги будут отменены, всё будет бесплатно, но будет только один дом на семью, только одно транспортное средство на взрослого, это будет отмечено на ваших идентификационных табличках, тем, кто приедет из других мест в гости, будет разрешено взять с собой только три предмета, это сделано для того, чтобы избежать возможного грабежа !</div><div class="post_line"></div><div class="post_line">Прошу всех быть бдительными, особенно в это смутное время !</div><div class="post_line"></font></div><div class="post_line"></div><div class="post_line"><font color="#72ff84">Товарищ! Приветствую вас! Да здравствует наша великая либерально-демократическая коммунистическая республика Московская !</font></div><div class="post_line"><font color="#ffffff"></div><div class="post_line">Il salua &agrave; la mani&egrave;re Moscovianne et se retira ensuite, apr&egrave;s quoi les programmes reprirent normalement, avec des films diverses, d&#039;aventures exotiques, documentaires animaliers, sciences fictions et d&#039;autres ...</font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Sergent+Sho%C3%AFgou">Cdt. Sergent Sho&iuml;gou</a><br>Prestige de chroniqueur&nbsp;: 1<br />25/08/1025 ETU 22:08</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal316437')">Détails</a> <a href="javascript:warnpost(316437)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal316437" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=316437',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">SALUT LES PUTAINS DE MERDE&nbsp;</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17634&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17634" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17634" name="d_reply_17634" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17634');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17634'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Etrange rencontre</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

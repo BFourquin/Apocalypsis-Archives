@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15591 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Want your love...</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Want your love...</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Kaori+Sakurajima">Cdte. Kaori Sakurajima</a><br>Prestige de chroniqueur&nbsp;: 10<br /><br /><img src="/avatars/10866.gif" style="width:90px;height:128px" alt="Avatar" /><br />21/03/1021 ETU 10:26<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D284670', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal284669')">Détails</a> <a href="javascript:warnpost(284669)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal284669" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=284669',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line"><div align="center"><em><a href="https://youtu.be/R7ltQl7Y3Q8" target="_blank" rel="nofollow">♪ ♫ ♬ ♪</a></em></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><em>Un homme en uniforme militaire aux nuances bleut&eacute;s courait dans les couloirs du palais Matriarcal. Il tenait une tablette holographique contre lui. Deux jeunes femmes qui marchaient ensemble en discutant c&ocirc;te &agrave; c&ocirc;te se firent bousculer par l&#039;homme. Il&nbsp;s&#039;excusa en continuant&nbsp;sa&nbsp;course sans s&#039;arr&ecirc;ter, alors&nbsp;que les deux femmes pestaient contre lui. Arriv&eacute; au bout du long couloir, il frappa vivement &agrave; une&nbsp;porte richement orn&eacute;e.</em></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- &quot;Oui, entrez !&quot;</font></div><div class="post_line"></div><div class="post_line"><em>Kaori &eacute;tait accoud&eacute;e au garde-corps du balcon de son bureau. Elle fixait pensive l&#039;immense parc qui juxtaposait le b&acirc;timent. Il &eacute;tait entour&eacute; d&#039;une foule d&#039;autres gratte-ciel qui formaient comme une immense muraille tout au tour de lui. Il y avait plusieurs bassins, on pouvait voir de loin les cygnes blancs en train de nager &agrave; leur surface. Quelques kiosques finement d&eacute;cor&eacute;s &eacute;taient parsem&eacute;s un peu partout dans le parc. Mais ce qu&#039;on remarquait le plus, et c&#039;&eacute;tait ce qui captivait toute l&#039;attention de Kaori, c&#039;&eacute;tait les milliers de cerisiers en fleur qui formaient de douces taches ros&eacute;s entre les autres essences d&#039;arbres et les parterres fleuris.</em></div><div class="post_line"><em>L&#039;homme visiblement essouffl&eacute; s&#039;arr&ecirc;ta derri&egrave;re Kaori et s&#039;inclina.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">- &quot;Matriarche... Je dois vous faire un rapport de la plus haute importance... Nos services de renseignements ont d&eacute;couverts que l&#039;Agent Hubert, ou devrais-je dire SOS 117, dispose de plusieurs milliers de m&eacute;cano&iuml;des dans le Secteur III. Ils sont au nombre de&nbsp;13 019 au total. Et ce n&#039;est pas tout...&nbsp;En violation des r&egrave;gles sectorielles, L&#039;Agent SOS 117 dispose aussi d&#039;une flotte de combat dans le syst&egrave;me 18 !! Nous avons relev&eacute; la pr&eacute;sence de&nbsp;136 corvettes l&eacute;g&egrave;res laser,&nbsp;342 chasseurs l&eacute;gers,&nbsp;845 chasseurs bombardiers,&nbsp;3 166 chasseurs d&#039;&eacute;lite,&nbsp;212 fr&eacute;gates de comb...&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- &quot;C&#039;est bon, c&#039;est bon !&nbsp;J&#039;ai compris Goro ! Arr&ecirc;te de t&#039;exciter comme &ccedil;a...On d&eacute;gage cet emmerdeur et puis c&#039;est tout ! Je l&#039;avait pr&eacute;venu, il devait quitter le secteur dans les 50 heures, il ne s&#039;est pas ex&eacute;cut&eacute; alors frappez puis ciao...&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">- &quot;Oui, mais on a un autre soucis... Il a aussi envahit une plan&egrave;te glaci&egrave;re dans le syst&egrave;me 18...&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- &quot;Haha ! J&#039;imagine la t&ecirc;te de Cizdi en voyant &ccedil;a, cette gamine doit &ecirc;tre entrain de crier de partout... Amiral Goro, je vous laisse le soin de d&eacute;gager les flottes de SOS, envoyez une escouade d&#039;invasion au cas o&ugrave;, mais laissez Cizdi se d&eacute;merder dans son syst&egrave;me, &ccedil;a lui apprendra &agrave; laisser ses plan&egrave;tes trainer...</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">Ah oui... Tant qu&#039;&agrave; faire, d&eacute;gagez moi aussi les autres membres du SEEN. M&ecirc;me les anciens membres, je n&#039;aime pas voir trainer ces criminels dans le Secteur III, les autres natifs&nbsp;ne devraient pas y voir d&#039;inconv&eacute;nient avec &ccedil;a. Je leur en toucherai un mot tout &agrave; l&#039;heure...&quot;</font></div><div class="post_line"></div><div class="post_line"><em>A cet instant l&#039;holocom-x de l&#039;Amiral Goro sonna, il s&#039;excusa aupr&egrave;s de Kaori et s&#039;&eacute;loigna. Son visage changea compl&egrave;tement de couleur. Il raccrocha et se retourna vers Kaori, affichant une expression choqu&eacute;e.</em></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">- &quot;I... Il... Il est l&agrave;...&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- &quot;Hein ? Qui &ccedil;a !?&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">- &quot;C&#039;est l&#039;a... L&#039;Agent Hubert Madame... Il vient de se poser ici... Sur la plateforme du rooftop&nbsp;!&quot;</font></div><div class="post_line"></div><div class="post_line"><strong><font color="#b3d5f4">- &quot;OH LE CON !!!</font></strong></div><div class="post_line"><font color="#b3d5f4">Vite ! Interceptez-le avant qu&#039;il s&#039;&eacute;chappe !!&nbsp;Je monte avec vous...</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4"><strong>Putain de putain !</strong>&nbsp;Mais quel emmerdeur ce type !!&quot;</font></div><div class="post_line"></div><div class="post_line"><em>Kaori bouillait de rage. Lorsqu&#039;ils entr&egrave;rent dans l&#039;ascenseur, escort&eacute;s par des gardes arm&eacute;s jusqu&#039;aux dents, Kaori s&#039;impatientait et appuyait machinalement sur le bouton &quot;monter&quot;, comme si le spammer allait aider&nbsp;l&#039;ascenseur &agrave; monter plus rapidement jusqu&#039;aux toits. Quand les portes s&#039;ouvrirent enfin, les gardes se d&eacute;ploy&egrave;rent autour de la plateforme. Hubert se tenait l&agrave; debout, tout seul et sans son vaisseau qui &eacute;tait d&eacute;j&agrave; reparti.&nbsp;Il tenait &agrave; la main une petite valise cabine noir, ses lunettes se soleil viss&eacute;s sur le nez, et portait son plus beau costume en alpaga.&nbsp;Il&nbsp;arbora son meilleur sourire en voyant Kaori s&#039;approcher.&nbsp;Son&nbsp;regard noir fusillait Hubert. Elle se demandait ce que ce parasite avait dans la t&ecirc;te pour oser d&eacute;barquer ainsi sur Vanilla. Hubert s&#039;exclama alors tout guilleret :</em></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">- &quot;Est-ce que mon allocution publique vous suffit pour un d&eacute;but de relation, Kaori ? Je regrette par contre, j&#039;ai tout de m&ecirc;me pris ce fameux costume. Je suis certain qu&#039;il vous plaira.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdbbb">Aussi, pour revenir sur vos propos avant de passer &agrave; la suite, si vous &eacute;tiez agent double pour le SEEN, je le saurais, croyez moi. L&#039;information, c&#039;est le nerf de la guerre. Si vous ne voulez pas vous faire surprendre, il faut avoir un coup d&#039;avance. Avec les Services Organis&eacute;s Secrets, vous &ecirc;tes sure d&#039;en avoir plusieurs. Vous savez, souvent on me demande si je suis le meilleur espion de la galaxie. Si je r&eacute;pond oui ce serait de la pr&eacute;tention, mais si je r&eacute;pond non ce serait de la b&ecirc;tise...</div><div class="post_line"></font></div><div class="post_line"><font color="#ffdbbb">Croyez moi, si je suis ici avec vous et pas quelqu&#039;un d&#039;autre c&#039;est que j&#039;ai mes raisons. Et vous voir en chair et en os en est une qui vaut la peine d&#039;&ecirc;tre v&eacute;cue.</font></div><div class="post_line"><font color="#ffdbbb">Vous me faites visiter ?&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- &quot;Oh mais bien &eacute;videment Hubert !</font></div><div class="post_line"><font color="#b3d5f4">Prenez-lui sa valise, fouillez-le et emmenez moi &ccedil;a&nbsp;au 67&egrave;me &eacute;tage...</font></div><div class="post_line"></div><div class="post_line"><em>Les gardes du service de s&eacute;curit&eacute; s&#039;ex&eacute;cut&egrave;rent instantan&eacute;ment, armes &agrave; la main. Kaori tourna alors les talons, faisant l&eacute;g&egrave;rement voler sa robe. Elle rentra dans l&#039;ascenseur, et pendant que les portes se refermaient, elle tentait de contenir sa rage encore un peu plus longtemps...</em></div><div class="post_line"></div><div class="post_line"><em>Quelques minutes plus tard, escort&eacute; par les gardes, Hubert arriva menott&eacute; les mains dans le dos&nbsp;au fameux &eacute;tage 67. Il s&#039;agissait d&#039;un immense appartement, et qui plus est, d&#039;un luxe incomparable. Kaori &eacute;tait assise &agrave; une table qui faisait face &agrave; l&#039;immense baie vitr&eacute;e. La vue sur le parc &eacute;tait imprenable. Les gardes tir&egrave;rent brusquement Hubert jusqu&#039;&agrave; la chaise devant de Kaori. Silencieuse, elle fixait l&#039;Agent SOS 117, et puis finalement, elle rompit le silence.</em></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">-&quot; Hubert... Vous &ecirc;tes compl&egrave;tement con... Enfin&nbsp;inconscient...&nbsp;</font></div><div class="post_line"><font color="#b3d5f4">Vous comprenez pourquoi vous vous retrouvez menott&eacute; ? Je vais vous expliquer. Vous &ecirc;tes d&eacute;sormais officiellement d&eacute;tenu par le Matriarcat Vanillan apr&egrave;s vous &ecirc;tre rendu coupable d&#039;avoir envoy&eacute; des troupes militaires ill&eacute;gales dans le Secteur III. En plus d&#039;avoir conquit ill&eacute;galement encore, une plan&egrave;te. Vous serez d&eacute;tenu ici en attendant votre proc&egrave;s.</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">Vous logerez ici dans cet appartement de haute s&eacute;curit&eacute;. Votre statut de dirigeant m&#039;interdit de vous faire croupir dans un&nbsp;cachot glac&eacute; et&nbsp;remplit de rats. Et ce n&#039;est pas l&#039;envie qui me manque...&nbsp;N&#039;essayez donc pas de vous enfuir, c&#039;est impossible. La seule issue est gard&eacute;e par cette porte. Qui elle m&ecirc;me est gard&eacute;e par Igor. Et Igor, il ne sait pas blaguer. N&#039;es-ce pas Igor ?&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><strong>- &quot;Nan...&quot;</strong></font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">- &quot;Voil&agrave;... Et il n&#039;est pas bavard du tout...</font></div><div class="post_line"></div><div class="post_line"><font color="#b3d5f4">Ah !&nbsp;J&#039;oubliais les mani&egrave;res... Vous voulez prendre un verre ? Une Suze peut &ecirc;tre ?&quot;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=SOS+117">Cdt. SOS 117</a><br>Prestige de chroniqueur&nbsp;: 9<br /><br /><img src="/avatars/11083.jpg" style="width:128px;height:84px" alt="Avatar" /><br />22/03/1021 ETU 01:09<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal284689')">Détails</a> <a href="javascript:warnpost(284689)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal284689" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=284689',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Non merci Kaori. Vous savez dans ma profession c&#039;est plus Vodka martini. Igor, cher majordome de ce magnifique appartement, veillez &agrave; utiliser une vodka fran&ccedil;aise. Vous avez celle avec le volatil dessus. Ne croyez pas que je sois accroc &agrave; tous ce qui est associ&eacute; au poulet, c&#039;est simplement gage de qualit&eacute;. Ha et faites &ccedil;a &agrave; la cuill&egrave;re hein, pas au shaker. Nous ne sommes pas des animaux.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffffff">Il reporta son attention vers la matriarche. Pendant qu&#039;il passait sa commande, il s&#039;&eacute;tait adroitement d&eacute;fait des menottes qu&#039;il tendit vers la jeune femme.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Je me suis permis de me lib&eacute;rer. J&#039;ai l&#039;habitude de manier ce genre de choses. Je vous les rends, je ne pense pas que vous vouliez que l&#039;on s&#039;en serve. Du moins, pas tout de suite.</font></div></div><div class="post_line"><div align="justify"><font color="#ffffff">Il lui adressa son sourire de trois-quart, celui mi-charmeur, mi-fran&ccedil;ais. Il se leva afin de faire le tour de la pi&egrave;ce. Hubert restait un professionnel.</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Vous perdez votre temps &agrave; me retenir prisonnier, je n&#039;ai absolument pas l&#039;intention de partir. Je suis venu pour vous voir, et nous voila presque seuls dans un superbe appartenant &agrave; boire un verre. J&#039;appelle &ccedil;a une prise de contact r&eacute;ussie.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify">Hubert continua son tour de la pi&egrave;ce. Il inspecta le mobilier, les angles, les murs tout en continuant son monologue.</div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Je vous propose de faire le point vous et moi avant cette histoire de proc&egrave;s. Je ne sais pas si vous &ecirc;tes en possession d&#039;information &agrave; l&#039;&eacute;chelle galactique, mais croyez vous que&nbsp;136 corvettes l&eacute;g&egrave;res laser, 342 chasseurs l&eacute;gers, 845 chasseurs bombardiers, 3 166 chasseurs d&#039;&eacute;lite, 212 fr&eacute;gates de combats est une flotte venue dans votre secteur avec de mauvaises intentions ? Dois-je vous rappeler que la nation du pr&eacute;sident Coty est la premi&egrave;re puissance galactique ? Soyons s&eacute;rieux, si nous avions voulu monter une op&eacute;ration militaire nous ne l&#039;aurions de toute &eacute;vidence pas fait avec ces moyens l&agrave;.</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Ceci &eacute;tant dit, vous pouvez m&#039;accuser de ne pas avoir respect&eacute; vos r&egrave;gles sectorielles, ce qui est tout &agrave; fait correct. Mais voyez vous, j&#039;&eacute;tais en mission. Une mission de sauvetage qui plus est. La commandante Lara Soft avait lanc&eacute; un appel de d&eacute;tresse il y a bien des cycles maintenant, et bien &eacute;videment je me suis d&eacute;placer pour venir lui porter secours. Pour r&eacute;aliser cette mission, je suis aller dans les confins du secteur 3 afin de glaner des informations et d&eacute;faire quelques brigands. J&#039;ai entendu dire qu&#039;elle &eacute;tait d&eacute;tenu par une bande de brigands sur un plan&egrave;te glaciaire du syst&egrave;me 18. J&#039;ai en effet &eacute;t&eacute; voir si cette piste menait quelque part, mais choux blanc.</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Je comptais vraiment renvoyer mes troupes militaires du secteur, je pensais que cette piste &eacute;tait la bonne et qu&#039;ils pourraient repartir rapidement, mais &ccedil;a ne s&#039;est pas pass&eacute; comme pr&eacute;vu.</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Entre temps, nous &eacute;tions repartis sur une nouvelle phase d&#039;acquisition de donn&eacute;es. J&#039;ai renvoy&eacute; des infiltr&eacute;s un peu partout dans le secteur pour r&eacute;cup&eacute;rer des informations. Et j&#039;ai d&eacute;cid&eacute; de venir sur Vanilla en personne. D&#039;abord pour poursuivre ma mission, c&#039;est souvent chez les plus grandes civilisations que l&#039;on trouve les meilleurs pistes, et puis parce que mon instinct me disait qu&#039;au del&agrave; de cette mission, mon destin &eacute;tait de rencontrer la belle Kaori Sakurajima en personne.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Si vous souhaitez m&#039;envoyer en proc&egrave;s, qu&#039;allez vous demander ? La v&eacute;rit&eacute; ? Je viens de vous la donner. La m&ecirc;me v&eacute;rit&eacute; que celle que je vous ai donn&eacute;&nbsp;lors de nos &eacute;changes avant que je me pose ici. Et vous avez pu constat&eacute; que j&#039;ai tenu parole. Je suis un homme de valeurs Kaori. Et puis, je n&#039;ai pas besoin de mentir, pour quoi faire ?</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Revenons aux chef d&#039;accusation de ce proc&egrave;s, vous pourriez demander quoi d&#039;autre...&nbsp;R&eacute;paration ? Vous avez d&eacute;truit mes flottes, je n&#039;ai pas oppos&eacute; de r&eacute;sistance et je n&#039;ai envahi qu&#039;une plan&egrave;te glaciaire aux mains des brigands. Plan&egrave;te dont je ne suis m&ecirc;me plus propri&eacute;taire. Alors passons &agrave; autre chose de plus int&eacute;ressant. J&#039;ai beaucoup de questions &agrave; vous poser.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Tout d&#039;abord, je veux savoir qui vous &ecirc;tes. Et pas de mensonges.</font></div></div><div class="post_line"><div align="justify"><font color="#ffffff">Hubert avait continuer &agrave; faire le tour de la pi&egrave;ce, verre &agrave; la main. Il s&#039;&eacute;tait retrouv&eacute; &agrave; ce moment l&agrave; dans le dos de Kaori qui &eacute;tait assise dans un large fauteuil. Il se situait&nbsp;juste au dessus de sa t&ecirc;te.</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Car visiblement, ces racines de cheveux sont bien les v&ocirc;tres. Dieu merci vous n&#039;&ecirc;tes pas chauve.</font></div></div><div class="post_line"><div align="justify"><font color="#ffffff">Il fit le tour pour venir se remettre dans le fauteuil en face de la matriarche. Il l&acirc;cha un commentaire &agrave; Igor pour lui confier que son cocktail n&#039;allait pas se d&eacute;placer tout seul.</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Le service chez vous laisse &agrave; d&eacute;sirer...</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">En parlant de &ccedil;a, qu&#039;est-ce que vous vous d&eacute;sirez ?&nbsp;</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Vous me trouvez peut &ecirc;tre singulier, Kaori, c&#039;est bien normal. Mais sachez de derri&egrave;re cette plastique impeccable et charisme qui vous pousse le palpitant naturellement vers la tachycardie, se cache un professionnel&nbsp;accompli.</font></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Je sais de vous que vous vous &ecirc;tes fait toute seule. Vous &ecirc;tes une femme de caract&egrave;re et quand on a l&#039;habitude de gravir les &eacute;chelons, on ne peut pas rester &agrave; stagner. Ne me faites pas croire que vous avez seulement pour ambition de faire respecter les r&egrave;gles de votre coalition sectorielle pour quelques vaisseaux jusqu&#039;&agrave; m&#039;emmener au proc&egrave;s alors que la premi&egrave;re puissance galactique par mon interm&eacute;diaire vous tends la main avec pour seule ambition que vous me donniez la votre afin de vous la baiser.</font></div></div><div class="post_line"><div align="justify"></div></div><div class="post_line"><div align="justify"><font color="#ffdbbb">Alors, qu&#039;en dites vous ? Je suis certains que vous avez aussi des questions. Je suis tout &agrave; vous.</font></div></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15591&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15591" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15591" name="d_reply_15591" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15591');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15591'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Want your love...</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

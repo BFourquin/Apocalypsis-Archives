@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15986 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Chroniques Arkanienne</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chroniques Arkanienne</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Elendil">Cdt. Elendil</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11270.jpg" style="width:95px;height:128px" alt="Avatar" /><br />24/10/1021 ETU 05:54</td><td class="post_right"><div class="posthead">Score&nbsp;: 8 <a href="javascript:toggle_bloc('cal288385')">Détails</a> <a href="javascript:warnpost(288385)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal288385" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 7<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=288385',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">A la passerelle de son vaisseau Amiral, aux abords de la plan&egrave;te <strong><em>Arkanii</em></strong>, Louis profite d&#039;un moment de tranquillit&eacute; pour se rem&eacute;morer les ann&eacute;es pr&eacute;c&eacute;dant&nbsp;l&#039;arriv&eacute;e de son peuple dans ce syst&egrave;me. Une renaissance pour tous...</div><div class="post_line"></div><div class="post_line">Tout a commenc&eacute;, mais pour certain, on pourrait aussi dire, c&#039;est arr&ecirc;t&eacute;, ce jour pr&eacute;cis o&ugrave; son p&egrave;re l&#039;a convoqu&eacute; manu militari. Nous voil&agrave; revenus en arri&egrave;re de quelques ann&eacute;es dans une lointaine Galaxie; &quot;<strong><font size="3">Entropie</font></strong>&quot; la bien nomm&eacute;e...</div><div class="post_line"></div><div class="post_line">Pour recentr&eacute; le contexte, Louis doit reconnaitre qu&#039;alors, il pensait essentiellement &agrave; profiter de sa jeunesse, oubliant avec d&eacute;sinvolture les charges et devoirs incombant au fils d&#039;un Commandeur Arkanien. La garde rapproch&eacute;e de son p&egrave;re est donc venue l&#039;interpeller dans son bar favori. Les trois magnifiques demoiselles buvant les paroles de Louis n&#039;eurent que le temps de voir apparaitre les militaires que celui-ci leur &eacute;tait soustrait l&#039;espace d&#039;un &eacute;clair.</div><div class="post_line"></div><div class="post_line">Le trajet, pour rallier Arkanis de Tatoinne III, dura trois jours. La Corvette se posa directement devant l&#039;immense B&acirc;timent nomm&eacute;e &quot;<strong><em>La Piscine</em></strong>&quot;, B&acirc;timent de Commandement de&nbsp;la Coalition du secteur 6. Trente minutes plus tard, il &eacute;tait pr&eacute;sent devant son p&egrave;re.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">- &quot;Bonjour Louis, comment vas tu ?&quot;</font></div><div class="post_line"><font color="#ffff44">- &quot;...........&quot;,&nbsp;</font></div><div class="post_line">Louis s&#039;&eacute;tait litt&eacute;ralement avachi dans le fauteuil plac&eacute; en face du grand bureau, ignorant les paroles de son p&egrave;re.</div><div class="post_line"><font color="#44b8ff">- &quot;Louis, j&#039;ai quelque chose de tr&egrave;s important &agrave; te confier et je n&#039;ai que tr&egrave;s peu de temps, alors &eacute;coute attentivement !&quot;</font></div><div class="post_line">Louis redressa la t&ecirc;te, &eacute;tonn&eacute;, il n&#039;avait pas souvent vu son p&egrave;re avec un air aussi sombre.</div><div class="post_line"><font color="#ffff44">- &quot; je.... t&#039;&eacute;coute...&quot;</font></div><div class="post_line"><font color="#44b8ff">- &quot; Alors ne m&#039;interromps pas et ouvre bien tes esgourdes !</font></div><div class="post_line"><font color="#44b8ff">&nbsp;La Galaxie est en guerre, des dirigeants sanguinaires sont devenus fous, notre secteur plusieurs fois a &eacute;t&eacute; bombard&eacute; par les armes ADM, des milliards de personnes sont mortes, disparues, bless&eacute;es.&nbsp;&nbsp;Mais comme un malheur n&#039;arrive jamais seul, &quot;<strong><font size="3">Entropie</font></strong>&quot; se meurt, les&nbsp;catastrophes s&#039;enchainent &agrave; un rythme de plus en plus rapides et importants. Des soleils et plan&egrave;tes implosent sur elle-m&ecirc;me, se t&eacute;lescopent, des d&eacute;bris immenses sont projet&eacute;s vers d&#039;autres syst&egrave;mes... C&#039;est la fin annonc&eacute;e de toutes vies. La Coalition, dans l&#039;urgence,&nbsp;a donn&eacute;e l&#039;ordre d&#039;&eacute;vacuation de tous les peuples alli&eacute;s. Nous avons d&eacute;j&agrave; perdu le contact avec certains de nos amis dans les secteurs &eacute;loign&eacute;s.&quot;</font></div><div class="post_line">Blafard, Louis balbutia&nbsp;</div><div class="post_line"><font color="#ffff44">-&quot; je... je ....&nbsp; ne pensai pas que .... nous en &eacute;tions &agrave; ce point ! ....&quot;</font></div><div class="post_line"><font color="#44b8ff">- &quot;Oui, je sais. Et voil&agrave; o&ugrave; je veux en venir. Il reste encore beaucoup &agrave; faire avant de pouvoir &eacute;vacuer tout le monde. Nous allons proc&eacute;der en plusieurs &eacute;tapes au fur et &agrave; mesure que les flottes seront pr&ecirc;tes, je vais rester pour diriger tout cela. Mais dans le cas ou la destruction s&#039;acc&eacute;l&egrave;rerait, nous devons assurer rapidement le d&eacute;part d&#039;un premier contingent au cas o&ugrave; !!! <strong>L&#039;Assembl&eacute;e dirigeante</strong> des mondes d&#039;<strong>Arkanis</strong> en seras.&nbsp;Tu seras aussi de ce contingent, &agrave; la passerelle du vaisseau Amiral et tu prendras le commandement de la flotte. Tu te dirigeras vers la bordure ext&eacute;rieure aux abords des <strong><em>Amas de Dene Gois</em></strong>. L&agrave;-bas, une porte des &eacute;toiles d&eacute;couverte il y a peu de temps devrait vous permettre de sortir de la Galaxie pour en atteindre une autre. Je connais d&eacute;j&agrave; ta premi&egrave;re question; Non cette porte n&#039;a jamais &eacute;t&eacute; utilis&eacute;e.&quot;</font></div><div class="post_line"><font color="#ffff44">- &quot;Mais p&egrave;re, je n&#039;ai pas la comp&eacute;tence, je ne saurai et pour quoi ne pas partir tous ensemble.&quot;</font></div><div class="post_line"><font color="#44b8ff">- &quot;Je te l&#039;ai dit, les vaisseaux pr&ecirc;ts doivent partir sans attendre au cas o&ugrave;... Tu portera le titre de Commandeur, ton vaisseau commandement <strong>L&#039;enterprise</strong> t&#039;attends. Bonne chance &agrave; toi, mon fils. Ta m&egrave;re et moi t&#039;aimons infiniment. Que la force&nbsp;nous permette de nous retrouver...</font></div><div class="post_line"><font color="#ffff44">- &quot; Mais enfin, je ne peux...&quot;</font></div><div class="post_line">Son p&egrave;re se&nbsp;retournant vers les militaires.</div><div class="post_line"><font color="#44b8ff">- &quot; Messieurs, veuillez accompagner votre Commandeur &agrave; son vaisseau.&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Le jeune enseigne, porte serviette du Commandeur crut voir une larme coul&eacute; sur la joue de Louis. Mais il avait surement&nbsp;r&ecirc;v&eacute;...</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Elendil">Cdt. Elendil</a><br>Prestige de chroniqueur&nbsp;: 14<br /><br /><img src="/avatars/11270.jpg" style="width:95px;height:128px" alt="Avatar" /><br />04/11/1021 ETU 07:43</td><td class="post_right"><div class="posthead">Score&nbsp;: 6 <a href="javascript:toggle_bloc('cal289072')">Détails</a> <a href="javascript:warnpost(289072)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal289072" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 6<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=289072',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><strong><u><font size="3">La princesse</font></u></strong></div></div><div class="post_line"></div><div class="post_line">Le trajet en direction de la porte arrivait presque &agrave; son terme, encore une semaine tout au plus. Plusieurs vaisseaux de la flottille ont subit de multiples d&eacute;g&acirc;ts. D&rsquo;immenses zones d&rsquo;&eacute;normes blocs de roches en fusion &agrave; traverser, des champs de forces et ondes de choc de syst&egrave;mes implosant sur eux-m&ecirc;mes, des ast&eacute;ro&iuml;des et d&eacute;bris projet&eacute;s &agrave; grande vitesse. Tout cela n&eacute;cessita une attention permanente et stressante des &eacute;quipages. Quelques appareils en firent les frais. Sans parler des vaisseaux de Brigands profitant des d&eacute;bris pour se cacher et aborder les vaisseaux &agrave; la traine ou s&eacute;par&eacute;s temporairement du groupe. </div><div class="post_line"></div><div class="post_line">C&rsquo;est dans ce contexte que Louis fit ces premi&egrave;res armes. Il n&rsquo;avait pas vraiment l&rsquo;&acirc;me d&rsquo;un Commandant en chef, lui qui quelques semaines auparavant profitait de la belle vie sans entrave, insouciant et refusant de se pr&ecirc;ter au protocole d&rsquo;un fils de Commandeur. Mais son p&egrave;re, une fois de plus avait r&eacute;ussi &agrave; le bluffer en d&eacute;posant entre ses mains la vie de toutes ces personnes. C&rsquo;est peut-&ecirc;tre pour cela qu&rsquo;il mit un point d&rsquo;honneur &agrave; passer le plus de temps possible sur la passerelle du croiseur amiral. Non pour se faire pr&eacute;valoir de son titre, mais pour &eacute;tudier chaque&nbsp;rouages du b&acirc;timent, et le travail &eacute;norme fournit par le personnel pour maintenir en bon ordre tous les vaisseaux. Parmi ceux-ci, quelques prestigieux b&acirc;timents de guerre avec des &eacute;quipages rod&eacute;s et capables de r&eacute;agir tr&egrave;s vite mais aussi beaucoup de vaisseaux de transport de la population nettement plus fragiles et moins r&eacute;actifs, qu&rsquo;il fallait en permanence guider et prot&eacute;ger. Jusqu&rsquo;&agrave; pr&eacute;sent, c&rsquo;est son second qui prenait toutes les d&eacute;cisions et Louis en &eacute;tait reconnaissant. Le vieil Amiral Dutant, avait rapidement compris la situation et au lieu de laisser patauger Louis, il prenait les d&eacute;cisions, s&rsquo;en expliquant patiemment &agrave; celui-ci pour lui permettre de comprendre et de donner son assentiment.</div><div class="post_line"></div><div class="post_line">22eme jours, Louis entra sur la passerelle d&rsquo;une d&eacute;marche souple. L&rsquo;Amiral, rigide scrutait les &eacute;crans.</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Bonjour Amiral.&nbsp; &nbsp; &nbsp;&nbsp;</font></div><div class="post_line"><font color="#72ff84">- Bonjour Commandeur, bien dormi.</font></div><div class="post_line"><font color="#ffff44">- Hum, moyen !</font></div><div class="post_line"><font color="#72ff84">- Les soucis, peut-&ecirc;tre&nbsp;! </font></div><div class="post_line">Louis se doutait bien que le vieux renard savait avec qui il avait pass&eacute; la nuit. Ma foi, sa soir&eacute;e avec la petite astrophysicienne avait &eacute;t&eacute; fort sympathique...</div><div class="post_line"></div><div class="post_line"><font color="#ff857a">- D&eacute;tection sonar en provenance de l&rsquo;Escadron Rogue, Monsieur,</font> annon&ccedil;a le contr&ocirc;leur radar</div><div class="post_line"><font color="#72ff84">- A-t-on des images ?</font> demanda Dutant</div><div class="post_line"><font color="#ff857a">- Pas encore Amiral&hellip;&nbsp; &nbsp; Ah si voil&agrave;, des flashes&hellip;.&nbsp; &nbsp; probablement des faisceaux ioniques</font></div><div class="post_line"><font color="#72ff84">- Afficher sur le panneau central Lieutenant,</font>&nbsp;dit Dutant.</div><div class="post_line">Imm&eacute;diatement l&rsquo;image apparut, des quantit&eacute;s de faisceaux se dirigeant tous vers un point de l&lsquo;espace.</div><div class="post_line">Soudain dans le haut parleur.&nbsp; &nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#f551ff">-&nbsp;Rogue One &agrave; Leader, nous sommes en approche&hellip; ici &ccedil;a chauffe&hellip; j&rsquo;ai des cadavres de corvettes et chasseurs dans tous les sens et je crois qu&rsquo;ils finissent le travail sur un Croiseur.&nbsp; Ces putains de Brigands sont comme des chiens sur un os&hellip; Et ils sont nombreux ces enfoir&eacute;s&hellip; demande autorisation&nbsp; d&rsquo;engager le combat &hellip;</font></div><div class="post_line"><font color="#72ff84">- Ici Leader,&nbsp; Autorisation refus&eacute;e, vous n&rsquo;&ecirc;tes pas assez nombreux, revenez Rogue One,</font></div><div class="post_line">Louis s&rsquo;approcha&nbsp;de l&rsquo;Amiral.</div><div class="post_line"><font color="#ffff44">- Amiral, il faut secourir ce batiment.</font></div><div class="post_line"><font color="#72ff84">- C&rsquo;est trop tard Commandeur le vaisseau est perdu !</font>&nbsp;</div><div class="post_line"><font color="#ffff44">- En man&oelig;uvrant finement nous pouvons y arriver,&nbsp;Amiral ?</font> Celui-ci acquies&ccedil;a de la t&ecirc;te et lui montra sa place en se d&eacute;calant</div><div class="post_line"></div><div class="post_line"><font color="#ffffff">Louis s&#039;avan&ccedil;a,</font><font color="#ffff44">&nbsp;</font></div><div class="post_line"><font color="#ffff44">- Rogue One, il faut d&eacute;tourner leur attention, amusez les en passant au plus pr&eacute;s de leurs vaisseaux pour les emp&ecirc;cher de tirer et &agrave; mon signal, vous vous &eacute;cartez rapidement.</font> <font color="#ffff44">Canonnier, faites programmer les tirs sur chacun des Brigands. Soute, envoyez dix navettes r&eacute;cup&eacute;rer les survivants.</font></div><div class="post_line">Les secondes s&rsquo;&eacute;gren&egrave;rent, une voix retentit,&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">- Navettes &agrave; Leader, nous sommes en approche&hellip;</font>Louis, du coin de l&rsquo;&oelig;il, vit le chef armement lui faire un signe. </div><div class="post_line"><font color="#ffff44">- Ok Rogue One, dix secondes pour vous &eacute;cartez !</font> Le compte &agrave; rebours d&eacute;fila sur l&rsquo;&eacute;cran : dix, neuf, huit,&hellip;..un, z&eacute;ro. Un sifflement fracassant se fit entendre, tous les b&acirc;timents de guerre tiraient comme un seul homme.&nbsp;Sur l&rsquo;&eacute;cran les Fr&eacute;gates Brigands une &agrave; une explos&egrave;rent. </div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Rogue One, nous vous envoyons de l&rsquo;aide pour nettoyer les restes.</font></div><div class="post_line">Aussit&ocirc;t l&rsquo;Amiral appuya sur sa console,</div><div class="post_line"></div><div class="post_line"><font color="#72ff84">- Escadron Delta et Primus Rouge d&eacute;collage imm&eacute;diat.</font> Puis se rapprochant de Louis pour ne pas &ecirc;tre entendu du personnel pr&eacute;sent.</div><div class="post_line"><font color="#72ff84">- Je me retire dans mes quartiers et vous laisse les commandes, vous n&#039;avez plus besoin de moi,&nbsp;votre p&egrave;re serait fier de vous.</font></div><div class="post_line"><font color="#ffff44">- Merci Amiral,</font> lui r&eacute;pondit Louis.</div><div class="post_line">Deux heures plus tard, Louis attendait le retour des Escadres&hellip; </div><div class="post_line"></div><div class="post_line">Un bruit de voix et coups se fit entendre &agrave; l&rsquo;entr&eacute;e de la passerelle. Les deux sentinelles en faction&nbsp;ceinturaient une personne qui se d&eacute;battait et ruait &agrave; tout va en les traitant de tous les noms d&rsquo;oiseaux de la Galaxie.</div><div class="post_line">Louis intervint&nbsp;&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">-&nbsp;&ccedil;a va s</font><font color="#ffff44">ergent,&nbsp;</font><font color="#ffff44">Laissez le passer !</font></div><div class="post_line">Aussit&ocirc;t les soldats rel&acirc;ch&egrave;rent le captif. En fait, Il s&rsquo;agissait d&rsquo;une jeune femme humaine couverte de fum&eacute;e et traces noires, les v&ecirc;tements en lambeaux. Elle &eacute;tait habill&eacute;e comme une combattante, un sabre dans le dos et un flasheur ionique &agrave; la hanche. Elle se redressa,&nbsp; et s&rsquo;avan&ccedil;a vers lui la t&ecirc;te haute.</div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">- Je suis la Princesse Emilia de Arkk et je voudrai m&rsquo;adresser au blaireau qui commande ici !</font></div><div class="post_line">Louis, un petit sourire en coin lui dit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Bonjour Princesse, eh bien le blaireau est en face de vous&hellip; allez y !</font></div><div class="post_line"><font color="#44b8ff">- Vous n&rsquo;&ecirc;tes pas l&rsquo;amiral, vous &ecirc;tes trop jeune pour comm&hellip;</font></div><div class="post_line"><font color="#ffff44">- Je suis le Commandeur Elendil Louis responsable de cette flottille et seul maitre &agrave; bord. Mais dites moi, la lign&eacute;e des Arkk est port&eacute;e disparue depuis plus de mille cinq cent ans dans une des premi&egrave;res Galaxies r&eacute;pertori&eacute;es. Des bruits courent sur sa survie et l&rsquo;Alliance de notre secteur en Entropie l&rsquo;a recherch&eacute; sans rel&acirc;che. C&rsquo;est une blague&hellip;</font></div><div class="post_line"><font color="#44b8ff">- Je n&rsquo;ai pas pour habitude de blaguer avec n&rsquo;importe qui, je suis une Arkk. Notre peuple a v&eacute;cut en total autarcie, cach&eacute; dans la bordure ext&eacute;rieure de la Galaxie dans des territoires inexplor&eacute;s. Nous avons repris la route suite au bordel que les peuples d&rsquo;Entropie ont fait de leur Galaxie.</font></div><div class="post_line"><font color="#ffff44">- Bon bon, ok, qu&rsquo;est ce que vous voulez Princesse ? </font></div><div class="post_line"><font color="#44b8ff">- Je veux que vous attendiez pour voir si certain des n&ocirc;tres sont dans le coin. Puis-je acc&eacute;der aux transmissions pour lancer un appel&nbsp;?</font></div><div class="post_line"><font color="#ffff44">- Cela ne servirai &agrave; rien, nos &eacute;claireurs n&rsquo;ont rien d&eacute;tecter alentour et les sonars non plus. D&rsquo;autre part je ne peux pas me permettre d&rsquo;attendre que les fr&eacute;gates Brigands qui ont surv&eacute;cu reviennent avec du renfort. Nous partons imm&eacute;diatement !</font></div><div class="post_line"><font color="#44b8ff">- Je refuse, nous restons ici, vous avez bien compris esp&egrave;ce de gr&hellip;</font></div><div class="post_line"><font color="#ffff44">- Sergent, d&eacute;barrassez moi de cette chose mal embouch&eacute;e s&#039;il vous plait.</font></div><div class="post_line">Les deux hommes ceintur&egrave;rent Emilia et la sortir de la pi&egrave;ce. Louis se retourna vers le Major Angus, Cdt de l&rsquo;Enterprise et lui dit&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffff44">- Nous partons&hellip; Major,</font></div><div class="post_line">Celui-ci pianota sur la console&nbsp;puis annon&ccedil;a au micro&nbsp;&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffc0cb">-&nbsp;Attention...&nbsp; &nbsp;pour toute la flotte, d&eacute;part vers les <strong>Amas de Dene Gois</strong> en hyperluminique dans 15 minutes.</font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15986&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15986" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15986" name="d_reply_15986" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15986');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15986'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chroniques Arkanienne</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

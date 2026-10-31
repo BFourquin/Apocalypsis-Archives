@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17890 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Chronique IV &mdash; Le Solar</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chronique IV &mdash; Le Solar</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=C%C3%A9leste+Myosotis">Cdte. C&eacute;leste Myosotis</a><br>Prestige de chroniqueur&nbsp;: 2<br /><br /><img src="/avatars/12840.jpg" style="width:128px;height:128px" alt="Avatar" /><br />18/08/1026 ETU 04:38</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal319690')">Détails</a> <a href="javascript:warnpost(319690)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal319690" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=319690',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><em><font color="#68c4e8">&laquo; Certaines fronti&egrave;res arr&ecirc;tent les vaisseaux. Elles n&rsquo;arr&ecirc;tent pas toujours ce que les peuples choisissent de partager. &raquo;</font></em></div></div><div class="post_line"></div><div class="post_line">Le colis arriva &agrave; <font color="#68c4e8">Aube-Myosotis</font> sans c&eacute;r&eacute;monie.</div><div class="post_line"></div><div class="post_line">Il n&#039;&eacute;tait accompagn&eacute; d&#039;aucune d&eacute;l&eacute;gation, d&#039;aucun vaisseau &eacute;tranger pos&eacute; sur les quais, d&#039;aucune poign&eacute;e de main entre repr&eacute;sentants de civilisations lointaines.</div><div class="post_line"></div><div class="post_line">Cela aurait &eacute;t&eacute; impossible.</div><div class="post_line"></div><div class="post_line">La fronti&egrave;re entourant le secteur de la <font color="#68c4e8">Concorde</font> demeurait ferm&eacute;e.</div><div class="post_line"></div><div class="post_line">Pourtant, quelque chose avait r&eacute;ussi &agrave; parvenir jusqu&#039;&agrave; eux.</div><div class="post_line"></div><div class="post_line">Dans l&#039;une des salles du centre de commandement, plusieurs membres du personnel entouraient d&eacute;sormais un conteneur dont personne n&#039;avait encore os&eacute; toucher le contenu.</div><div class="post_line"></div><div class="post_line">C&eacute;leste entra.</div><div class="post_line"></div><div class="post_line">&mdash; Qu&#039;avons-nous re&ccedil;u ?</div><div class="post_line"></div><div class="post_line">Une scientifique consulta une derni&egrave;re fois son terminal.</div><div class="post_line"></div><div class="post_line">&mdash; Un cadeau, Commandante.</div><div class="post_line"></div><div class="post_line">C&eacute;leste regarda le conteneur.</div><div class="post_line"></div><div class="post_line">&mdash; Voil&agrave; une r&eacute;ponse remarquablement peu rassurante.</div><div class="post_line"></div><div class="post_line">Quelques sourires apparurent autour d&#039;elle.</div><div class="post_line"></div><div class="post_line">Le couvercle fut ouvert.</div><div class="post_line"></div><div class="post_line">Et la pi&egrave;ce changea de lumi&egrave;re.</div><div class="post_line"></div><div class="post_line">&Agrave; l&#039;int&eacute;rieur reposaient des dizaines de cristaux dont les reflets semblaient presque vivants. Une lueur mouvante parcourait leur c&oelig;ur comme si une flamme minuscule y avait &eacute;t&eacute; enferm&eacute;e sans jamais parvenir &agrave; s&#039;&eacute;teindre.</div><div class="post_line"></div><div class="post_line">C&eacute;leste s&#039;approcha.</div><div class="post_line"></div><div class="post_line">Au-dessus du conteneur, un projecteur s&#039;activa.</div><div class="post_line"></div><div class="post_line">Une silhouette apparut.</div><div class="post_line"></div><div class="post_line">Un homme que personne &agrave; <font color="#68c4e8">Aube-Myosotis</font> n&#039;avait encore rencontr&eacute; se mat&eacute;rialisa sous la forme tremblante d&#039;un hologramme.</div><div class="post_line"></div><div class="post_line">L&#039;enregistrement commen&ccedil;a.</div><div class="post_line"></div><div class="post_line">Il se pr&eacute;senta comme le <font color="#5593bd">Professeur Balthazar Steffey</font>.</div><div class="post_line"></div><div class="post_line">Puis il parla des cristaux.</div><div class="post_line"></div><div class="post_line">Des <font color="#ffa500"><a href="https://img.magnific.com/photos-premium/orbe-feu-animant-monde-sa-lumiere_670382-38386.jpg" target="_blank" rel="nofollow"><font color="#ffa500">Solars</font></a></font>.</div><div class="post_line"></div><div class="post_line">Il expliqua leur chaleur, leur vibration, l&#039;&eacute;nergie qu&#039;ils pouvaient fournir et la mani&egrave;re dont certains pr&eacute;f&eacute;raient simplement les conserver pour leur lumi&egrave;re.</div><div class="post_line"></div><div class="post_line">Il expliqua &eacute;galement avoir essay&eacute; d&#039;inviter la <font color="#68c4e8">Concorde</font> dans l&#039;une de leurs bases.</div><div class="post_line"></div><div class="post_line">Sans succ&egrave;s.</div><div class="post_line"></div><div class="post_line">La fronti&egrave;re avait refus&eacute; ce que les hommes avaient tent&eacute; d&#039;organiser.</div><div class="post_line"></div><div class="post_line">Lorsque l&#039;enregistrement prit fin, le professeur disparut.</div><div class="post_line"></div><div class="post_line">La lumi&egrave;re des <font color="#ffa500">Solars</font>, elle, resta.</div><div class="post_line"></div><div class="post_line">C&eacute;leste tendit finalement la main.</div><div class="post_line"></div><div class="post_line">Ses doigts se referm&egrave;rent autour de l&#039;un des cristaux.</div><div class="post_line"></div><div class="post_line">Il &eacute;tait ti&egrave;de.</div><div class="post_line"></div><div class="post_line">Puis elle sentit la vibration.</div><div class="post_line"></div><div class="post_line">Faible.</div><div class="post_line"></div><div class="post_line">R&eacute;guli&egrave;re.</div><div class="post_line"></div><div class="post_line">Presque semblable au battement d&#039;un c&oelig;ur qui n&#039;en &eacute;tait pas un.</div><div class="post_line"></div><div class="post_line">Elle observa quelque temps les mouvements lumineux sous sa surface.</div><div class="post_line"></div><div class="post_line"><a href="https://drive.google.com/file/d/1zygtakYdJH2xtxQsqJ-TwgrTwpIRkmwE/view?usp=sharing" target="_blank" rel="nofollow">https://drive.google.com/file/d/1zygtakYdJH2xtxQsqJ-TwgrTwpIRkmwE/view?usp=sharing</a></div><div class="post_line"></div><div class="post_line">&mdash; Commandante ?</div><div class="post_line"></div><div class="post_line">C&eacute;leste releva les yeux.</div><div class="post_line"></div><div class="post_line">&mdash; Oui ?</div><div class="post_line"></div><div class="post_line">&mdash; Que devons-nous faire des autres ?</div><div class="post_line"></div><div class="post_line">Elle regarda le conteneur.</div><div class="post_line"></div><div class="post_line">Puis le Solar qu&#039;elle tenait toujours.</div><div class="post_line"></div><div class="post_line">&mdash; Faites-les examiner. Ensuite, qu&#039;une partie soit conserv&eacute;e par nos scientifiques et que les autres puissent &ecirc;tre expos&eacute;s &agrave; <font color="#68c4e8">Aube-Myosotis</font>. Ce pr&eacute;sent a &eacute;t&eacute; offert &agrave; la <font color="#68c4e8">Concorde</font>, pas &agrave; son gouvernement.</div><div class="post_line"></div><div class="post_line">Elle marqua une courte pause.</div><div class="post_line"></div><div class="post_line">&mdash; Celui-ci reste ici.</div><div class="post_line"></div><div class="post_line">Personne ne demanda lequel.</div><div class="post_line"></div><div class="post_line">Quelques heures plus tard, C&eacute;leste se trouvait devant un &eacute;metteur de communication.</div><div class="post_line"></div><div class="post_line">Elle avait pr&eacute;par&eacute; une r&eacute;ponse simple.</div><div class="post_line"></div><div class="post_line">Un remerciement.</div><div class="post_line"></div><div class="post_line">Quelques mots destin&eacute;s au professeur.</div><div class="post_line"></div><div class="post_line">La transmission fut lanc&eacute;e.</div><div class="post_line"></div><div class="post_line">Puis refus&eacute;e.</div><div class="post_line"></div><div class="post_line">C&eacute;leste resta devant l&#039;&eacute;cran.</div><div class="post_line"></div><div class="post_line">Elle connaissait d&eacute;j&agrave; ce message.</div><div class="post_line"></div><div class="post_line">La <font color="#68c4e8">Concorde</font> avait autrefois d&eacute;couvert qu&#039;elle pouvait entendre certaines voix sans &ecirc;tre capable de leur r&eacute;pondre.</div><div class="post_line"></div><div class="post_line">Elle venait simplement de rencontrer cette limite une seconde fois.</div><div class="post_line"></div><div class="post_line">Mais cette fois, quelque chose &eacute;tait diff&eacute;rent.</div><div class="post_line"></div><div class="post_line">Sur son bureau brillait un <font color="#ffa500">Solar</font>.</div><div class="post_line"></div><div class="post_line">Quelqu&#039;un, de l&#039;autre c&ocirc;t&eacute; de la fronti&egrave;re, avait trouv&eacute; un moyen de lui faire parvenir une lumi&egrave;re.</div><div class="post_line"></div><div class="post_line">Alors peut-&ecirc;tre n&#039;&eacute;tait-il pas n&eacute;cessaire que la r&eacute;ponse emprunte le chemin habituel.</div><div class="post_line"></div><div class="post_line">C&eacute;leste retourna devant l&#039;&eacute;metteur.</div><div class="post_line"></div><div class="post_line">Elle activa l&#039;enregistrement holographique.</div><div class="post_line"></div><div class="post_line">Sa silhouette apparut dans les archives publiques d&#039;<font color="#68c4e8">Aube-Myosotis</font>.</div><div class="post_line"></div><div class="post_line">Elle regarda l&#039;objectif.</div><div class="post_line"></div><div class="post_line">&mdash; <font color="#5593bd">Professeur Steffey</font>.</div><div class="post_line"></div><div class="post_line">Un l&eacute;ger sourire.</div><div class="post_line"></div><div class="post_line"><font color="#5593bd">&mdash; Votre cadeau est arriv&eacute;.</font></div><div class="post_line"></div><div class="post_line">Elle prit le <font color="#ffa500">Solar</font> entre ses mains.</div><div class="post_line"></div><div class="post_line">&mdash; Et je dois reconna&icirc;tre que vous avez r&eacute;ussi quelque chose d&#039;assez remarquable. Vous avez rendu une fronti&egrave;re ferm&eacute;e beaucoup moins&hellip; obscure.</div><div class="post_line"></div><div class="post_line">Elle observa bri&egrave;vement le cristal.</div><div class="post_line"></div><div class="post_line">&mdash; <font color="#68c4e8">La Concorde des Myosotis</font> vous remercie. Non seulement pour les <font color="#ffa500">Solars</font>, mais pour ce qu&#039;ils repr&eacute;sentent. Nous ne pouvons pas encore venir jusqu&#039;&agrave; vous. Vous ne pouvez pas encore venir jusqu&#039;&agrave; nous.</div><div class="post_line"></div><div class="post_line">Elle releva les yeux.</div><div class="post_line"></div><div class="post_line">&mdash; Alors nous allons devoir apprendre &agrave; nous rencontrer autrement.</div><div class="post_line"></div><div class="post_line">Un petit silence.</div><div class="post_line"></div><div class="post_line">&mdash; Si cet enregistrement parvient un jour jusqu&#039;&agrave; vous, <font color="#5593bd">Professeur</font>&hellip;</div><div class="post_line"></div><div class="post_line">C&eacute;leste d&eacute;posa doucement le <font color="#ffa500">Solar</font> sur son bureau.</div><div class="post_line"></div><div class="post_line"><em><font color="#5593bd">&mdash; Consid&eacute;rez que la transmission vous appartient d&eacute;sormais.</font></em></div><div class="post_line"></div><div class="post_line">L&#039;hologramme s&#039;interrompit.</div><div class="post_line"></div><div class="post_line">L&#039;enregistrement fut d&eacute;pos&eacute; dans les Chroniques de la <font color="#68c4e8">Concorde</font>.</div><div class="post_line"></div><div class="post_line">Puis laiss&eacute; ouvert.</div><div class="post_line"></div><div class="post_line">Aucune r&eacute;ponse n&#039;&eacute;tait certaine.</div><div class="post_line"></div><div class="post_line">Peut-&ecirc;tre le professeur ne le d&eacute;couvrirait-il jamais.</div><div class="post_line"></div><div class="post_line">Peut-&ecirc;tre qu&#039;un jour, au milieu des innombrables transmissions de la galaxie, son regard tomberait dessus.</div><div class="post_line"></div><div class="post_line">Et peut-&ecirc;tre qu&#039;alors une silhouette appara&icirc;trait &agrave; son tour de l&#039;autre c&ocirc;t&eacute; de cette &eacute;trange conversation.</div><div class="post_line"></div><div class="post_line">La fronti&egrave;re, elle, demeurait ferm&eacute;e.</div><div class="post_line"></div><div class="post_line">Les &eacute;toiles restaient hors d&#039;atteinte.</div><div class="post_line"></div><div class="post_line">Mais sur le bureau de la Commandante reposaient d&eacute;sormais deux petites choses.</div><div class="post_line"></div><div class="post_line">Un <font color="#68c4e8">myosotis</font>.</div><div class="post_line"></div><div class="post_line">Et un <font color="#ffa500">Solar</font>.</div><div class="post_line"></div><div class="post_line">L&#039;un rappelait &agrave; la <font color="#68c4e8">Concorde</font> pourquoi elle avait commenc&eacute; son voyage.</div><div class="post_line"></div><div class="post_line">L&#039;autre lui rappelait que, quelque part derri&egrave;re la fronti&egrave;re, quelqu&#039;un avait d&eacute;j&agrave; commenc&eacute; &agrave; venir &agrave; sa rencontre.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#68c4e8">&mdash; Archives fondatrices de la Concorde des Myosotis</font></div><div class="post_line"><font color="#68c4e8">Consign&eacute; sous l&#039;autorit&eacute; du Conseil des Racines</font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17890&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17890" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17890" name="d_reply_17890" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17890');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17890'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Chronique IV &mdash; Le Solar</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

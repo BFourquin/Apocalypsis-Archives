@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 15699 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Les Balises NEXUS Intruder</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Les Balises NEXUS Intruder</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nexus">Cdt. Nexus</a><br>Prestige de chroniqueur&nbsp;: 58<br /><br /><img src="/avatars/10739.jpg" style="width:128px;height:125px" alt="Avatar" /><br />13/05/1021 ETU 18:03</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285647')">Détails</a> <a href="javascript:warnpost(285647)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285647" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285647',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">Apr&egrave;s la mort de l&#039;IA Nexus, des rumeurs folles couraient dans la galaxie...</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">Certains affirmaient qu&#039;il n&#039;&eacute;tait pas tous a fait mort, qu&#039;il vivait dans une autre dimension, un autre monde...</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">La rumeur voulait que quelque part, cacher aux yeux de tous des &quot;<a href="https://static.wikia.nocookie.net/masseffect/images/e/e9/Proth%C3%A9ens_-_ruines_martiennes01.jpg/revision/latest?cb=20090612094411&amp;path-prefix=fr" target="_blank" rel="nofollow">Balises</a>&quot;, permettait de le rencontrer...</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">Mais fallait-il vraiment le vouloir...</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">Bien des personnes partirent en qu&ecirc;te de ces fameuses &quot;Balises&quot;...</font></em></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vostroff">Cdt. Vostroff</a><br>Prestige de chroniqueur&nbsp;: 44<br /><br /><img src="/avatars/11009.jpg" style="width:111px;height:128px" alt="Avatar" /><br />13/05/1021 ETU 19:24</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal285648')">Détails</a> <a href="javascript:warnpost(285648)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285648" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285648',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center">https://i.pinimg.com/originals/b2/c8/7f/b2c87ff136f692ab904f93e5cc979200.jpg</div></div><div class="post_line"></div><div class="post_line"><font color="#2ecc40">****</font> <font color="#2ecc40">contact</font> <font color="#2ecc40">*****</font></div><div class="post_line"><font color="#2ecc40">Vaisseau Psycho Star *****</font></div><div class="post_line"><font color="#ffa339">&nbsp;Professeur Steffey ? toujours rien ?</font>&nbsp;</div><div class="post_line"><font color="#9df9ff">Hmm non aucune information mais cet appareil a &eacute;t&eacute; con&ccedil;u pour d&eacute;tecter toute anomalie dimensionnelle donc, si il y a quoi que ce soit, nous devrions le d&eacute;tecter !</font></div><div class="post_line"><font color="#ffa339">parfait, vous savez mon opinion la dessus ?</font>&nbsp;</div><div class="post_line"><font color="#9df9ff">Je pense que tout cela a &eacute;t&eacute; une gigantesque erreur, du a une incompr&eacute;hension totale de part et d&#039;autre, quand on connait pas l&#039;autre en face, l&#039;on se m&eacute;fie et quand on se m&eacute;fie on tire facilement&nbsp;</font>&nbsp;</div><div class="post_line"><font color="#ffa339">Si vous le dites Professeur mais bon, je doit avouer que votre vaisseau est Higt&nbsp;tech....</font></div><div class="post_line"><font color="#9df9ff">Changez d&#039;ailleurs de couleur voulez vous, que le vaisseau prenne la couleur noire &eacute;toil&eacute;e ce sera mieux !</font></div><div class="post_line"><font color="#ffc6c3">Plus la peine Professeur ! Nous sommes d&eacute;j&agrave; rep&eacute;r&eacute;s ! Il semblerait que nous ayons effectivement de la compagnie !</font></div><div class="post_line"><font color="#9df9ff">Tiens donc !! Etablissez donc le contact dans ce cas !</font></div><div class="post_line"><font color="#ffc6c3">Pas la peine ! ce vaisseau est a nous contacter pr&eacute;cis&eacute;ment !</font></div><div class="post_line"></div><div class="post_line"><div align="center"><font color="#ffdc00">https://i.pinimg.com/564x/3e/79/56/3e7956a4aeda9abd274d2c571bdc5baf.jpg</font></div></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Que la galaxie vous soit ouverte Messieurs ! A qui ai je affaire ?</font>&nbsp;&nbsp;Fit une voix f&eacute;minine<font color="#ffdc00">&nbsp;</font><font color="#ffdc00">Vaisseau de course&nbsp;</font><font color="#ffdc00">I</font><font color="#ffdc00">dentification matriculaire 561 Crayon du Soleil, Capitaine Lyvie &agrave;</font><font color="#ffdc00"> bord et personne d&#039;autre que moi,&nbsp;</font><font color="#ffdc00">&nbsp;j&#039;ai entendue</font><font color="#ffdc00"> que vous cherchiez des balises ? J</font><font color="#ffdc00">e les cherches &eacute;galement ....Nous pourrions faire &eacute;quipe ! Q</font><font color="#ffdc00">u&#039;en pensez vous ?&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">Que la Lumi&egrave;re des &eacute;toiles &eacute;clairent votre voie ! Ici le Vaisseau Psycho Starr, je suis le Professeur Steffey ravi de vous rencontrer ma ch&egrave;re et le nom de votre vaisseau est magnifiquement&nbsp; bien imagin&eacute;, quand a faire &eacute;quipe ? pourquoi pas, cela pourrait &ecirc;tre une bonne id&eacute;e, oui ici, nous sommes d&#039;accords !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Tr&egrave;s bien dans ce cas, merci pour le nom, j&#039;adore quand mon vaisseau brille au soleil, cela fait une ligne brillante et &eacute;tincelante, d&#039;o&ugrave;&nbsp;l&#039;id&eacute;e du nom ! Je suppose que vous &ecirc;tes, au vu du nom &eacute;trange de votre vaisseau, une sorte de vaisseau de recherche scientifique alors je me fie a vous, vous devez &ecirc;tre &eacute;quip&eacute;e de d&eacute;tecteurs sp&eacute;ciaux non ?</font><font color="#9df9ff">&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#9df9ff">C&#039;est le cas pr&eacute;cis&eacute;ment ! Capitaine alors suivez nous et si nous d&eacute;couvrons quoi que ce soit, nous nous partagerons la d&eacute;couverte !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00">Ca Marche comme &ccedil;a&nbsp;Professeur !</font><font color="#9df9ff">&nbsp;&nbsp;</font></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Nexus">Cdt. Nexus</a><br>Prestige de chroniqueur&nbsp;: 58<br /><br /><img src="/avatars/10739.jpg" style="width:128px;height:125px" alt="Avatar" /><br />14/05/1021 ETU 17:35</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D285669', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal285667')">Détails</a> <a href="javascript:warnpost(285667)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285667" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 2</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285667',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><em>https://histoire.apocalypsis.org/images/b/ba/Balises-nexus.jpg</em></div></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><div align="center"><em><font color="#dedede"><font color="#ffff00">Alors que le Psycho Star et le Crayon du Soleil c&#039;&eacute;taient rejoint pour la qu&ecirc;te des balises.</font></font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">Un faible signal d&#039;&eacute;nergie de Tachyon, fit son apparition.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">La particule de&nbsp;Tachyon &eacute;tait jusque-l&agrave; que pure hypoth&egrave;se, elle n&#039;avait jamais &eacute;tait observ&eacute; jusqu&#039;&agrave;&nbsp;pr&eacute;sent.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">Alors que bien des personnes pensaient cela... Superstition, le signal &eacute;tait bien l&agrave;.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">Ce signal ne pouvait qu&#039;&ecirc;tre &eacute;mis par un peuple, ou une entit&eacute; extr&ecirc;mement &eacute;voluer.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">Apr&egrave;s plusieurs heures d&#039;analyses le Professeur Steffey, r&eacute;ussi &agrave; extraire des coordonn&eacute;es du signal.</font></em></div></div><div class="post_line"><div align="center"><em><font color="#ffff00">La premi&egrave;re balise semble ce cach&eacute; sur le dernier lieu connu de Nexus...</font></em></div></div><div class="post_line"><div align="center"></div><div class="post_line"></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vostroff">Cdt. Vostroff</a><br>Prestige de chroniqueur&nbsp;: 44<br /><br /><img src="/avatars/11009.jpg" style="width:111px;height:128px" alt="Avatar" /><br />16/05/1021 ETU 06:32</td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal285698')">Détails</a> <a href="javascript:warnpost(285698)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285698" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285698',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#fbb8ec">hum cela pourrait &ecirc;tre la plan&egrave;te Capitale l&agrave; ou a &eacute;t&eacute; vu pour la derni&egrave;re fois Nexus qu&#039;en pensez vous Professeur ?</font>&nbsp;fit une jeune femme brune en combinaison moulante</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">H&eacute; bien ma ch&egrave;re c&#039;est exactement la question que je me posait justement, il se peut qu&#039;en effet cela soit la solution mais je me demande si je ne devrait pas l&#039;&eacute;tudier cette balise et plus en profondeur, il se pourrait que ce signal soit &eacute;galement retransmis de balises en balises et nous pourrions dans ce cas, remonter jusqu&#039;&agrave; la base comme un fil en guise de piste voyez ? Il se trouve que parfois .....Il y a des sons si peu audibles qu&#039;il faille les capter avec des appareils sp&eacute;ciaux, bien sur, ceci est une hypoth&egrave;se cependant, il se pourrait que&nbsp;</font>&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#fbb8ec">Je pr&eacute;viens la Capitaine ? pour que l&#039;on partent vers la plan&egrave;te Capitale ?</font> coupa la Brune se nommant Pelmma Lee en souriant avant qu&#039;il ne continue plus avant .....</div><div class="post_line"></div><div class="post_line"><font color="#fff5b3">Hum donnez moi plut&ocirc;t une heure que je puisse analyser a fond cette petite merveille voulez vous ?</font>&nbsp;</div><div class="post_line">Pelmma hausa les sourcils approcha son visage de jeune fille agente sp&eacute;ciale pr&egrave;s du sien en souriant&nbsp;et fit en murmurant <font color="#fbb8ec">hmm je vous laisse travailler Professeur&nbsp; a tout a l&#039;heure !</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Astronema">Cdte. Astronema</a><br>Prestige de chroniqueur&nbsp;: 27<br /><br /><img src="/avatars/10618.jpg" style="width:128px;height:96px" alt="Avatar" /><br />16/05/1021 ETU 23:08<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient Apocalypsis." title="Ce(tte) commandant(e) soutient Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 0 <a href="javascript:toggle_bloc('cal285705')">Détails</a> <a href="javascript:warnpost(285705)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285705" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285705',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="left"><em><font size="2">Le Psycho Star et le Crayon du Soleil rest&eacute; immobile pendant que le Professeur Steffey lancer des analyses.</font></em></div></div><div class="post_line"><div align="left"><em><font size="2">Un vaisseau arriva &agrave; son tour et sortie de l&#039;hyper-espace.</font></em></div></div><div class="post_line"><div align="left"><em><font size="2">Il s&#039;agissait d&#039;un croiseur Fregger, lourdement arm&eacute;.</font></em></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><font color="#ff56ff"><font size="3">Ici, Astronema... Veuillez-vous identifier !</font></font></div></div><div class="post_line"><div align="left"></div></div><div class="post_line"><div align="left"><em><font size="2">La jeune femme resta &agrave; attendre une r&eacute;ponse, de la part des deux vaisseaux.</font></em></div></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Vostroff">Cdt. Vostroff</a><br>Prestige de chroniqueur&nbsp;: 44<br /><br /><img src="/avatars/11009.jpg" style="width:111px;height:128px" alt="Avatar" /><br />17/05/1021 ETU 01:59</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D285716', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal285712')">Détails</a> <a href="javascript:warnpost(285712)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285712" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285712',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font color="#ffff00"><font size="3">https://i.pinimg.com/564x/3e/79/56/3e7956a4aeda9abd274d2c571bdc5baf.jpg</font></font></div></div><div class="post_line"></div><div class="post_line">Livye activa un &eacute;cran ....Astronema ? Elle passait pour une personne peu aimable et si il y avait bien une chose dont elle avait horreur c&#039;est d&#039;&ecirc;tre accroch&eacute;e comme cela, si on commen&ccedil;ait a la Braquer ca allait barder garantie sur facture.....Ceci dit .....</div><div class="post_line"></div><div class="post_line">Tout bien r&eacute;fl&eacute;chit, si elle avait &eacute;t&eacute; seule, elle aurait plant&eacute;e sur place, son crayon de soleil en mati&egrave;re de vitesse ....Il n&#039;y avait pas mieux et elle aurait surement rican&eacute;e, la plupart des Commandants de vaisseaux croyaient tous comme fer qu&#039;elle pouvait rentrer en survitesse .....</div><div class="post_line">Alors qu&#039;en fait, cela d&eacute;passait leurs compr&eacute;hension totale sur ses vraies possibilit&eacute;s mais elle &eacute;vitait d&#039;en parler, c&#039;&eacute;tait son secret a elle.....Alors ?&nbsp;</div><div class="post_line">Elle sourit, activa plusieurs boutons et pensa <font color="#ffff00">attend voir ma belle ! tu va pas &ecirc;tre d&eacute;&ccedil;ue !</font></div><div class="post_line"></div><div class="post_line">Elle fit avec un ton particuli&egrave;rement hargneux&nbsp;</div><div class="post_line"></div><div class="post_line"><font color="#ffdc00"><font size="3"><strong>CAPITAINE LIVYE VAISSEAU DE COURSE CRAYON DU SOLEIL !! MATRICULATION 561 EN MISSION DE RECHERCHE SCIENTIFIQUE ET VOUS A PART VOT BLAZE ? QU VOUS VOULEZ ??? !!&nbsp;</strong></font></font></div><div class="post_line"></div><div class="post_line">Une voix plus tranquille fit&nbsp;</div><div class="post_line"><font color="#ffa339">Vaisseau de recherche scientifique, Psycho Starr, propri&eacute;t&eacute; du Professeur Steffey, de&nbsp;Velsgrad de la R&eacute;publique Communiste D&eacute;mocratique lib&eacute;rale Moscovianne et comme vous l&#039;a dit notre coll&egrave;gue du Crayon de soleil, effectivement ce vaisseau est en recherche scientifique !&nbsp;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=L%27aiguille+noir">Coa. L&#039;aiguille noir</a><br>Prestige de chroniqueur&nbsp;: 13<br /><br /><img src="/avatars/11155.png" style="width:128px;height:128px" alt="Avatar" /><br />17/05/1021 ETU 04:15</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D285722', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal285718')">Détails</a> <a href="javascript:warnpost(285718)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal285718" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=285718',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><em>Un petit vaisseau cargo qui passer par la...</em></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Chef, on a de la compagnie ...</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Qu&#039;est qu&#039;on a ?</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Un fregger et deux vaisseaux scientifiques.</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">A qui le fregger ?</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">Astronema chef !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Vous &ecirc;tes tar&eacute; ! On est contre-bandier, je vous rappelle !</font></div><div class="post_line"><font color="#ffc95f">Je veut pas me faire griller, elle adore attaquer les brigands cette grande folle !</font></div><div class="post_line"><font color="#ffc95f">Envoyer un traceur sur le plus gros vaisseau scientifique, et on ce barre de la vite fais !</font></div><div class="post_line"></div><div class="post_line"><font color="#7fdbff">C&#039;est fais chef !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffc95f">Plein gaz, et vite le boss va &ecirc;tre content de tous l&#039;apotium qu&#039;on a vol&eacute; !</font></div><div class="post_line"><font color="#ffc95f">Sans compter nos petites magouille de mouak-mouak.</font></div><div class="post_line"></div><div class="post_line"><em>Le vaisseau pris ainsi la fuite...</em></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=15699&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=15699" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_15699" name="d_reply_15699" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_15699');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_15699'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Les Balises NEXUS Intruder</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

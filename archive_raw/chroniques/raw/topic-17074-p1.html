@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17074 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Sagesse</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Sagesse</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />29/10/1023 ETU 03:06<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal305134')">Détails</a> <a href="javascript:warnpost(305134)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305134" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305134',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#ffffff"><font size="3"><em>La nuit &eacute;tait tomb&eacute;e sur Thalw, la citadelle flottante &eacute;tait silencieuse et du bureau du Grand Amiral Jace Ryzo, on entendait presque les vagues se briser contre la structure. Comme &agrave; son habitude, le Grand Amiral veillait tard, il &eacute;tait sujet &agrave; des insomnies fr&eacute;quentes et cette nuit-l&agrave;, il ne ressentait pas la moindre fatigue. Il &eacute;tait en pleine discussion holographique, assis &agrave; son bureau sur une chaise relativement peu confortable. Son auxiliaire avait pris cong&eacute;, il se retrouvait donc seul dans le b&acirc;timent administratif. Alors que son entretien battait son plein, il entendit soudainement des bruits de pas, dans l&rsquo;escalier menant &agrave; l&rsquo;&eacute;tage o&ugrave; se situait son bureau. Il conclu alors sa discussion. Apr&egrave;s quelques instants, quelqu&rsquo;un toqua &agrave; la porte :&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Entrez.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Deux silhouettes encapuch&eacute;s en uniforme militaire se pr&eacute;sent&egrave;rent au Grand Amiral. Jace ne mit que peu de temps &agrave; reconna&icirc;tre le blason singulier que les deux hommes arboraient. Ils appartenaient au corps d&rsquo;arm&eacute;e sous la direction exclusive des Sages de son peuple. Ces derniers transmettaient les volont&eacute;s divines, qu&rsquo;ils d&eacute;chiffraient dans les ph&eacute;nom&egrave;nes naturels de Thalw. Ils faisaient office d&rsquo;interm&eacute;diaires entre l&rsquo;&Ecirc;tre Supr&ecirc;me de Thalw, Nethl&eacute;em l&rsquo;Unique, et le Grand Amiral. Ceux-ci vivaient reclus dans leur temple, strictement interdit &agrave; n&rsquo;importe quel Thalwa, sauf sous convocation de ceux-ci. Ils poss&eacute;daient leur propre garde, une branche de l&rsquo;Arm&eacute;e Thalwa qui ne r&eacute;pondait qu&rsquo;aux ordres des Sages.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Les deux gardes entr&egrave;rent sans demander leur reste, et distingu&egrave;rent une silhouette dans le bureau du Grand Amiral. Ceux-ci se tourn&egrave;rent alors vers elle, et la point&egrave;rent du doigt. D&rsquo;un geste vif, le Grand Amiral actionna le bouton mettant fin &agrave; la communication avant que ceux-ci ne puissent identifier l&rsquo;identit&eacute; de son interlocuteur.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Ils regard&egrave;rent alors brusquement l&rsquo;Amiral. Sous leur capuche, les soldats portaient un masque qui donnait une lueur bleue spectrale &agrave; leur regard.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ffdc00">&ldquo;Que cachez-vous, Grand Amiral,</font> </font><font color="#ffffff"><font size="3"><em>demanda calmement l&rsquo;une des deux silhouettes, avec une voix f&eacute;minine.</em></font></font><font size="3"> <font color="#ffdc00">Pourquoi interrompre si pr&eacute;cipitamment cette discussion ?&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Le Grand Amiral Jace Ryzo fixa intens&eacute;ment les yeux de son interlocutrice :&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ff4136">&ldquo;Ce qui rel&egrave;ve de la diplomatie galactique ne vous regarde nullement soldat. Et je n&rsquo;ai aucun compte &agrave; vous rendre. Vous interrompez un entretien capital pour notre avenir galactique, alors expliquez-vous&quot;,</font><em><font color="#ffffff"> r&eacute;torqua le dirigeant Thalwa.&nbsp; </font></em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>La deuxi&egrave;me silhouette s&rsquo;approcha du bureau o&ugrave; &eacute;tait assis Jace et lui tendit une enveloppe, que ce dernier saisit. Le Grand Amiral l&rsquo;ouvrit puis en commen&ccedil;a &agrave; sortir le papier qu&rsquo;elle contenait. Il vit alors &eacute;crit &ldquo;CONVOCATION&rdquo;.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00"><font size="3">&ldquo;Les Sages vous attendent, d&egrave;s maintenant.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;D&egrave;s maintenant ?&nbsp;Nous sommes en plein milieu de la nuit, n&rsquo;est-il pas pr&eacute;f&eacute;rable d&rsquo;attendre le lever du jour ?&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Les deux silhouettes s&rsquo;&eacute;cart&egrave;rent du bureau, en d&eacute;signant la porte :&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffdc00"><font size="3">&ldquo;Apr&egrave;s vous.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Le Grand Amiral se leva alors du bureau en soupirant. Il n&rsquo;appr&eacute;ciait pas ce corps d&rsquo;arm&eacute;e, leur ind&eacute;pendance &agrave; la branche traditionnelle leur avait fait perdre certaines valeurs, dont le respect des hauts grad&eacute;s. Jace se leva, et sortit du bureau, escort&eacute; par les deux gardes.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Le temple des Sages ne se trouvait pas sur la Citadelle flottante du Grand Amiral. Les Citadelles flottantes ressemblaient &agrave; des raies, un quartier central regroupait les administrations et tous les services n&eacute;cessaires au quotidien de leurs 200 000 habitants. Deux &ldquo;ailes&rdquo; se rattachaient au centre de la structure et constituaient les quartiers habit&eacute;s. Ces ailes &eacute;taient creuses, permettant aux Thalwas de vivre abrit&eacute;s des vagues.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Les deux gardes conduisirent le Grand Amiral jusqu&rsquo;&agrave; une navette, celle-ci d&eacute;colla aussit&ocirc;t les 3 passagers &agrave; bord et prit de l&rsquo;altitude. Lors du trajet, le Grand Amiral regardait par la fen&ecirc;tre de la navette, l&rsquo;Oc&eacute;an d&eacute;filait &agrave; grande vitesse et cela dura quelques dizaines de minutes. Soudain, les passagers sentirent le v&eacute;hicule d&eacute;c&eacute;l&eacute;rer et Jace su qu&rsquo;ils &eacute;taient enfin arriv&eacute;s.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Le temple des Sages se trouvait au beau milieu de l&rsquo;Oc&eacute;an de Thalw, sur un piton rocheux sculpt&eacute; par des centaines d&rsquo;ann&eacute;es d&rsquo;&eacute;rosion. Une petite piste d&rsquo;atterrissage permettait &agrave; une navette de se poser devant un temple de taille imposante. Le Grand Amiral et son escorte descendirent, le vent iod&eacute; fouettait le visage des trois Thalwas qui se dirig&egrave;rent vers l&rsquo;entr&eacute;e du temple. L&rsquo;entr&eacute;e du temple &eacute;tait une rang&eacute;e de colonne, &agrave; partir de laquelle l&rsquo;escorte s&rsquo;arr&ecirc;ta et le Grand Amiral continua seul d&rsquo;avancer.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#d900a7">&ldquo;Grand Amiral Jace Ryzo &hellip; Quel plaisir de vous recevoir parmi nous,</font> <font color="#ffffff"><em>d&eacute;clara une voix rocailleuse qui trahissait un &acirc;ge avanc&eacute;.</em></font> <font color="#d900a7">Cela fait bien longtemps que nous ne nous &eacute;tions plus entretenus.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Jace venait d&rsquo;arriver au centre du temple, il se retrouvait face &agrave; une grande chaire o&ugrave; si&eacute;geait trois personnes en robes bleu saphir. Il alla se placer devant cette tribune, les bras crois&eacute;s derri&egrave;re le dos et le menton bien haut.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ff4136">&ldquo;En effet, je commen&ccedil;ais &agrave; croire que notre Dieu avait perdu la parole, </font><font color="#ffffff"><em>r&eacute;pondit-il</em></font><font color="#ff4136">. Que me vaut l&rsquo;honneur d&rsquo;&ecirc;tre devant vous aujourd&rsquo;hui, Sages ?&rdquo;&nbsp; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Le Sage si&eacute;geant au centre de la chaire, qui &eacute;tait un vieillard ch&eacute;tif portant des petites lunettes rondes, prit alors la parole :&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7"><font size="3">&ldquo;Grand Amiral, nous souhaitions nous entretenir avec vous au sujet de votre politique sectorielle et extrasectorielle. Notre Dieu &agrave; tous semble se poser des questions. Vous y r&eacute;pondrez honn&ecirc;tement, voulez-vous&nbsp;?&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Il me semble avoir toujours r&eacute;pondu aux volont&eacute;s divines avec sinc&eacute;rit&eacute;, je me trompe&nbsp;?&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#d900a7">&ldquo;Il semblerait que vous ayez des discussions ... Disons &hellip; Sensibles, avec des &eacute;trangers&rdquo;,</font> <em><font color="#ffffff">encha&icirc;na le Sage le plus &agrave; gauche.&nbsp; </font></em></font></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Le Grand Amiral fron&ccedil;a les sourcils, les Sages l&rsquo;auraient-ils mis sur &eacute;coute ?&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Je ne vois pas de quoi vous voulez parler. L&rsquo;Assembl&eacute;e Sectorielle est acquise &agrave; la paix, et je travaille actuellement &agrave; transmettre l&rsquo;Id&eacute;al de notre Roi au reste de la Galaxie, n&rsquo;est-ce pas Sa volont&eacute; ?&rdquo;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#d900a7">&ldquo;Bien s&ucirc;r, bien s&ucirc;r, votre travail est tr&egrave;s appr&eacute;ci&eacute; par notre Dieu.&nbsp;Cependant, certaines influences ext&eacute;rieures pourraient vous &eacute;carter du droit chemin &hellip;&quot;</font> </font><font size="3"><font color="#ffffff"><em>sugg&eacute;ra le Sage de droite, en lan&ccedil;ant un regard accusateur au Grand Amiral.&nbsp; </em></font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Et comment le sauriez-vous, chers Sages ? Auriez-vous eu l&rsquo;occasion d&rsquo;assister &agrave; un de mes entretiens ? Je croyais que vous aviez fait v&oelig;u de rester &agrave; l&rsquo;&eacute;cart de la vie politique et de n&rsquo;assurer que la transmission des Volont&eacute;s Divines ?&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#d900a7"><font size="3">&ldquo;Les nouvelles vont vite, Grand Amiral, si malgr&eacute; notre retraite des Citadelles en vivant en autarcie nous parvenons &agrave; conna&icirc;tre vos discussions, qu&rsquo;en est-il des ennemis de notre Seigneur ? Ressaisissez-vous, Jace Ryzo, ne vous laissez pas manipuler par des h&eacute;r&eacute;tiques, ces gens en veulent &agrave; notre Seigneur, et vous ne devez pas &ecirc;tre aussi faible.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#ffffff"><font size="3"><em>Jace en &eacute;tait d&eacute;sormais persuad&eacute;, il avait &eacute;t&eacute; mis sur &eacute;coute, ou quelqu&rsquo;un de sa garde rapproch&eacute;e &eacute;tait une taupe &hellip; Il n&rsquo;avait jamais cru cette situation possible, lui qui avait toujours eu une confiance aveugle envers les Sages, il ne comprenait pas ce soudain revirement de situation, et la m&eacute;fiance dont ils faisaient preuve &agrave; son &eacute;gard... </em></font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Navr&eacute;, je vais d&egrave;s &agrave; pr&eacute;sent rectifier les erreurs que j&rsquo;ai pu commettre et repenser la strat&eacute;gie de transmission des Id&eacute;aux de notre monarque.&rdquo;&nbsp; </font></font></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"><font color="#d900a7"><font size="3">&ldquo;Bien, nous n&rsquo;en attendions pas moins de vous &hellip;&rdquo;</font></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />23/01/1024 ETU 19:25<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D305934', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305933')">Détails</a> <a href="javascript:warnpost(305933)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305933" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305933',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font size="5"><u>Chapitre 2 :</u>&nbsp;Abandon</font></div></div><div class="post_line"></div><div class="post_line"><u><font size="3">Bureau du Grand Amiral, Citadelle Caridina, Thalw, quelques heures avant la prise de la plan&egrave;te par les forces Seelies :&nbsp; </font></u></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le Grand Amiral Jace Ryzo &eacute;tait assis &agrave; son bureau, et pianotait sur celui-ci d&rsquo;un air pr&eacute;occup&eacute;. Les rapports ne cessaient d&rsquo;arriver, le Khanat Stellaire envahissait les mondes Thalwa les uns apr&egrave;s les autres. Des enregistrements audios et vid&eacute;os lui parvenait, montrant la d&eacute;solation et les carnages qui se d&eacute;roulaient sur ces plan&egrave;tes. Jace bouillonnait int&eacute;rieurement, de voir des innocents se faire massacrer comme des animaux dans un abattoir. Il en voulait au Khanat Stellaire, certes, mais au plus profond de lui il enrageait envers son Dieu. La Volont&eacute; de Dieu &eacute;tait d&rsquo;apporter la Paix dans la Galaxie, alors comment pouvait-il laisser ses propres fid&egrave;les se faire tuer par des h&eacute;r&eacute;tiques ? Le Grand Amiral attendait un signe, qui lui prouverait que Dieu ne les avait pas abandonn&eacute;s, mais il ne re&ccedil;ut rien. Les Sages, responsables de la transmission des Volont&eacute;s Divines, s&rsquo;&eacute;taient mur&eacute;s dans un silence de plomb, barricad&eacute;s sur leur piton volcanique. Ils n&rsquo;&eacute;taient g&eacute;n&eacute;ralement pas tr&egrave;s bavards, mais au vu de la situation, le Grand Amiral s&rsquo;attendait au moins &agrave; un entretien.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Une notification le sortit de ses pens&eacute;es : une plan&egrave;te de plus venait de tomber aux mains des envahisseurs. Ainsi, les possessions Thalwa avaient &eacute;t&eacute; r&eacute;duites de moiti&eacute; en l&rsquo;espace de quelques heures. Au d&eacute;but, le Grand Amiral avait souhait&eacute; prot&eacute;ger l&rsquo;ensemble du Secteur 9 du Khanat, mais ses ressources s&rsquo;&eacute;taient rapidement &eacute;puis&eacute;es, et il n&rsquo;avait obtenu aucune r&eacute;ponse &agrave; ses communications de la part de ses confr&egrave;res sectoriels.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ff4136">&ldquo;Pourquoi enverrais-je toujours plus de Thalwas &agrave; la mort, quand nous nous heurtons &agrave; l&rsquo;indiff&eacute;rence des peuples que nous prot&eacute;geons ?&rdquo;</font> </font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Alors la d&eacute;cision avait &eacute;t&eacute; prise de rapatrier l&rsquo;ensemble des flottes restantes vers le berceau de la civilisation Thalwa, le syst&egrave;me 1. Tous les Thalwas avaient re&ccedil;u l&rsquo;ordre de rallier la plan&egrave;te capitale, dans l&rsquo;optique de pr&eacute;parer la Fin des Temps, et pour se recueillir dans la paix et la fraternit&eacute;.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>&Agrave; contrec&oelig;ur, Jace laissait les mondes pour lesquels ils s&rsquo;&eacute;taient battus &ecirc;tre d&eacute;rob&eacute;s par les envahisseurs. Des vaisseaux de tout le secteur convergeaient vers l&rsquo;orbite de Thalw, certains tr&egrave;s endommag&eacute;s, &agrave; la limite de la rupture. Les visages des hommes et des femmes qui revenaient du front &eacute;taient marqu&eacute;s par la fatigue, le traumatisme d&rsquo;affrontements violents, et de la peur de mourir. Les bless&eacute;s affluaient dans toutes les Citadelles, qui &eacute;taient d&eacute;bord&eacute;es. Des civi&egrave;res patientaient dans les couloirs des h&ocirc;pitaux, le souffrant ayant parfois d&eacute;j&agrave; pass&eacute; l&rsquo;arme &agrave; gauche. Des m&egrave;res en pleurs parcouraient les rues, agitant une photo d&rsquo;un fils, d&rsquo;un mari ou d&rsquo;une fille qui &eacute;tait parti au front. Les Forces Arm&eacute;es Thalwa avait d&ucirc; augmenter le budget allou&eacute; &agrave; l&rsquo;organisme d&rsquo;accueil des orphelins de guerre. Un couvre-feu avait &eacute;t&eacute; d&eacute;cr&eacute;t&eacute; &agrave; partir de 20H, dans un souci d&rsquo;&eacute;conomie d&rsquo;&eacute;nergie. Paradoxalement, laisser le Khanat Stellaire prendre davantage de mondes r&eacute;duisait quotidiennement les apports en &eacute;nergie, et petit &agrave; petit, la vie se mettait en suspens.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le peuple doutait, il doutait du Grand Amiral, qui avait envoy&eacute; de nombreuses unit&eacute;s &agrave; la mort, avant de se raviser et de rapatrier chaque vaisseau vers Thalw. Mais le peuple doutait &eacute;galement de leurs propres convictions. La Paix &eacute;tait-elle r&eacute;ellement envisageable ? Ils s&rsquo;&eacute;taient heurt&eacute;s au refus du respect de leurs lois par le Gouvernement, le syst&egrave;me d&rsquo;accueil n&rsquo;avait que peu fonctionn&eacute; et les tentatives d&rsquo;introduire les nouveaux membres du Secteur 9 dans la politique sectorielle ne donnaient pas satisfaction. Peu &agrave; peu, une maladie contagieuse et intraitable s&eacute;vissait dans le Secteur 9 et parmi ses natifs. Le silence, un ennemi redoutable, qui d&eacute;truisait les espoirs de collaboration et affaiblissait le visage uni du Secteur 9. Le Grand Amiral avait tent&eacute; de lutter face &agrave; ce fl&eacute;au qui emportait chaque jour plus de victimes, mais il d&ucirc; rapidement arriver &agrave; la conclusion suivante : il &eacute;tait seul. Quelle ironie, lui qui s&rsquo;&eacute;tait acharn&eacute; &agrave; unir et f&eacute;d&eacute;rer n&rsquo;avait au final pas su entretenir cette communaut&eacute;. Un &eacute;chec parmi tant d&rsquo;autres. </em></font></div><div class="post_line"></div><div class="post_line"><font size="3">&ldquo;<font color="#4cea5e">Grand Amiral,</font><em> une voix vint tirer Jace de ses r&eacute;flexions. Son enseigne, Crik Horne, fid&egrave;le au poste malgr&eacute; la permission qui lui avait &eacute;t&eacute; accord&eacute;e pour rejoindre sa famille. </em><font color="#4cea5e">Les flottes Seelies ont &eacute;t&eacute; d&eacute;tect&eacute;es en orbite de Thalw, ils sont nombreux.&rdquo;</font> <em>Affirma l&rsquo;enseigne d&rsquo;un ton grave.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>En entendant ce rapport, le Grand Amiral s&rsquo;enfon&ccedil;a dans son si&egrave;ge et ferma les yeux.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Ainsi, ce qu&rsquo;ils recherchaient<strong> depuis le d&eacute;but</strong> n&rsquo;&eacute;tait rien de plus que de <strong>nous r&eacute;duire &agrave; n&eacute;ant</strong> ... <strong>Combien</strong> de vaisseaux ?&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Au moins <strong>trois fois plus</strong> que nous, Monsieur.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Moral des troupes ?&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Au plus bas, Monsieur&rdquo;&nbsp; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Combien de <strong>civils</strong> pouvons-nous &eacute;vacuer ?&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Nous n&rsquo;avons que <strong>quelques vaisseaux de transports</strong>, et ils <strong>profiteront</strong> de l&rsquo;assaut pour passer les flottes ennemies.&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Jace porta une main &agrave; son menton, la situation &eacute;tait d&eacute;sesp&eacute;r&eacute;e. Accul&eacute; face au mur, il &eacute;tait temps de se tourner vers l&rsquo;ennemi et d&rsquo;effectuer un baroud d&rsquo;honneur.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ff4136">&ldquo;Placez la <strong>flotte restante</strong> en formation en <strong>orbite basse</strong>, pr&eacute;parez ma navette, la <strong>bataille finale se jouera ici</strong>, sur nos terres, pour d&eacute;fendre notre peuple<strong> face &agrave; l&rsquo;ennemi de la Paix</strong> ...&rdquo;</font><em>, ordonna le Grand Amiral d&rsquo;un ton solennel. Dans le m&ecirc;me temps, Jace se leva et se pla&ccedil;a face au soldat.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#ff4136">&ldquo;<strong>Lieutenant</strong>... Vous n&rsquo;avez pas &agrave; mourir ici. Allez mettre <strong>les Sages</strong> &agrave; l&rsquo;abri, en orbite <strong>d&rsquo;Antipodes</strong>. C&rsquo;est l&agrave; que les survivants se rejoindront, si telle est la volont&eacute; de Dieu,<strong> vous survivrez &agrave; l&rsquo;Apocalypse</strong>&rdquo;</font><em>, conclut Jace en posant sa main sur l&rsquo;&eacute;paule du jeune homme aux cheveux noirs.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le Grand Amiral Jace Ryzo se trouvait sur le pont de commandement de l&rsquo;un de ses croiseurs. Face &agrave; lui se dressait la flotte Seelie, qui constellait l&rsquo;immensit&eacute; de l&rsquo;espace devant lui. Les troupes restantes des Thalwas s&rsquo;&eacute;taient amass&eacute;es dans la m&eacute;sosph&egrave;re de Thalw, dans l&rsquo;espoir de prot&eacute;ger le berceau de leur civilisation jusqu&rsquo;&agrave; la Fin des Temps. Malheureusement, il semblait d&eacute;sormais certain que l&rsquo;avenir de Thalw allait se jouer dans une derni&egrave;re bataille. </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Jace jeta un coup d&rsquo;&oelig;il au personnel pr&eacute;sent &agrave; ses c&ocirc;t&eacute;s. Solennellement, il envoya une communication qui r&eacute;sonna dans chaque vaisseau, et chaque Citadelle de la plan&egrave;te. Les visages ferm&eacute;s ne laissaient aucun doute, la plupart des Thalwas ne s&rsquo;en sortiraient pas. Dans les ruelles des Citadelles, les sanglots de d&eacute;sespoir r&eacute;sonnaient, et les hurlements de panique d&eacute;chiraient le silence sinistre qui englobait l&rsquo;enti&egrave;ret&eacute; de la plan&egrave;te. Comme si le temps s&rsquo;&eacute;tait suspendu, le calme avant la temp&ecirc;te. Le discours se conclut dans une pri&egrave;re pour tous ceux qui allaient tenter de pr&eacute;server le joyau des Thalwas. Les larmes marquaient le visage des familles, qui s&rsquo;enla&ccedil;aient dans la peur, craignant pour leur vie.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le Grand Amiral affichait un regard glacial, ferm&eacute;. Lui qui devait paver le chemin d&rsquo;un avenir galactique radieux, et paisible, avait men&eacute; son peuple &agrave; la tombe. D&eacute;sormais, il devait mener la derni&egrave;re charge, celle qui d&eacute;terminerait la victoire, ou la fin des Thalwas. La m&acirc;choire serr&eacute;e, il fit signe &agrave; ses hommes d&rsquo;amorcer la mise &agrave; feu des canons, et dans le silence sid&eacute;ral de l&rsquo;espace, les premiers tirs fus&egrave;rent.&nbsp;</em></font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />25/01/1024 ETU 00:20<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D305938', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305935')">Détails</a> <a href="javascript:warnpost(305935)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305935" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305935',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font size="5"><u>Chapitre 3 : La Chute de l&rsquo;Ange&nbsp; </u></font></div></div><div class="post_line"><div align="center"></div></div><div class="post_line"><div align="center"><em>(Hrp : <a href="https://www.youtube.com/watch?v=fxqJzdmlqTs&amp;ab_channel=ZillaEdits" target="_blank" rel="nofollow">ambiance musicale sugg&eacute;r&eacute;e</a>)</div><div class="post_line"></em></div></div><div class="post_line"><font size="3"><em>Les t&ocirc;les grin&ccedil;aient au fur et &agrave; mesure que la surface de Thalw se rapprochait. Les alarmes incendies hurlaient tandis que des r&acirc;les d&rsquo;agonie se faisaient entendre dans tout le croiseur. De nombreuses explosions accompagnaient la chute du b&acirc;timent en feu. Une fum&eacute;e noire et &eacute;paisse envahissait l&rsquo;int&eacute;gralit&eacute; des couloirs et le pont de commandement.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Les oreilles de Jace gr&eacute;sillaient, les sons autour de lui &eacute;taient &eacute;touff&eacute;s, alors que sa vision troubl&eacute;e ne lui permettait pas de distinguer autre chose que des flammes. Naus&eacute;eux, le Grand Amiral laissa son regard parcourir la salle quand soudain il sursauta en &eacute;carquillant les yeux ! Il tomba nez &agrave; nez avec le regard sans vie d&rsquo;une jeune femme, gisant &agrave; ses c&ocirc;t&eacute;s. La mont&eacute;e soudaine d&rsquo;adr&eacute;naline le fit bondir sur ses jambes, si bien qu&rsquo;il se cogna contre une console de commande qui se trouvait &agrave; proximit&eacute;.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Il vit alors l&rsquo;ampleur du d&eacute;sastre, la salle de commandement &eacute;tait jonch&eacute;e de Thalwas d&eacute;c&eacute;d&eacute;s. Jace ne se souvenait plus des minutes pr&eacute;c&eacute;dant son r&eacute;veil, et il e&ucirc;t du mal &agrave; r&eacute;aliser la situation dans laquelle il se trouvait. Le croiseur tombait en chute libre vers l&rsquo;Oc&eacute;an depuis l&rsquo;orbite basse de Thalw. Par les fen&ecirc;tres du pont, il distinguait des points brillants sur la surface de la plan&egrave;te.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Les Citadelles br&ucirc;laient et lib&eacute;raient une fum&eacute;e noire qui enveloppait progressivement la plan&egrave;te. En voyant ce spectacle effroyable, Jace e&ucirc;t la sensation que son c&oelig;ur le l&acirc;chait. Son monde s&rsquo;effondrait. En ce jour sombre, il voyait sa civilisation partir en fum&eacute;e sous le feu nourri d&rsquo;un Khanat impitoyable. La mort s&rsquo;abattait sur chaque Citadelle, chaque &icirc;lot susceptible d&rsquo;abriter la vie. La plan&egrave;te oc&eacute;an &eacute;tait inond&eacute;e de flammes. Le Grand Amiral tomba &agrave; genoux devant les vitres, il &eacute;tait bris&eacute;. Abattu par la violence inflig&eacute;e &agrave; son peuple, qui ne jurait que par la paix, et la tol&eacute;rance. Eux qui vouaient une sympathie &agrave; l&rsquo;&eacute;gard de toutes les civilisations de la Galaxie, subissaient d&eacute;sormais la cruaut&eacute; et le vice. Jace laissa &eacute;chapper un cri d&eacute;chirant, qui retentit dans toute la salle de commandement. Ses poings s&rsquo;abattirent sur le sol br&ucirc;lant alors que les larmes de d&eacute;sespoir qui s&rsquo;&eacute;crasaient sur les t&ocirc;les chaudes s&rsquo;&eacute;vaporaient aussit&ocirc;t dans un gr&eacute;sillement.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>D&eacute;sormais, on pouvait distinguer les vagues &agrave; la surface de l&rsquo;eau, on devinait les &icirc;lots vers lesquels le vaisseau s&rsquo;&eacute;craserait. Au loin, une Citadelle que le Grand Amiral imagina &ecirc;tre Caridina, son lieu de r&eacute;sidence, sombrait progressivement sous les flots, le feu ayant ravag&eacute; sa structure, emportant avec elle des milliers de vie innocentes.&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Jace fixa droit devant lui, acceptant son tragique destin. Il vit alors une silhouette famili&egrave;re le fixer, souriante comme il l&rsquo;avait quitt&eacute;e. Le Grand Amiral tendit la main vers l&#039;apparition fantomatique, un sourire malheureux aux l&egrave;vres :&nbsp; </em></font></div><div class="post_line"></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;J&rsquo;ai <strong>&eacute;chou&eacute;</strong> ... Pardonnez-moi ...&rdquo; </font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>...</em></font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Jace+Ryzo">Cdt. Jace Ryzo</a><br>Prestige de chroniqueur&nbsp;: 93<br /><br /><img src="/avatars/12075.png" style="width:128px;height:126px" alt="Avatar" /><br />26/01/1024 ETU 00:30<div align="center"><img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0">&nbsp;<img src="/images/registered.gif" alt="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." title="Ce(tte) commandant(e) soutient beaucoup Apocalypsis." border="0"></div></td><td class="post_right"><div class="posthead">Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal305950')">Détails</a> <a href="javascript:warnpost(305950)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal305950" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=305950',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><div align="center"><font size="5"><u>Chapitre 4 : De toute urgence&nbsp;</div><div class="post_line"></u></font></div></div><div class="post_line"><font color="#ff4136"><font size="3">&ldquo;Lieutenant... Vous n&rsquo;avez <strong>pas &agrave; mourir</strong> ici. Allez mettre les <strong>Sages</strong> &agrave; l&rsquo;abri, en orbite <strong>d&rsquo;Antipodes</strong>. C&rsquo;est l&agrave; que les survivants se rejoindront, si telle est la volont&eacute; de <strong>Dieu</strong>, vous survivrez &agrave; l&rsquo;Apocalypse&rdquo;&nbsp;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Crik tourna les talons et quitta le bureau du Grand Amiral. Il avait une nouvelle mission, et celle-ci l&rsquo;intriguait particuli&egrave;rement. Jace ne lui confiait que bribes d&rsquo;informations, mais son sup&eacute;rieur lui avait fait part de ses doutes sur les actions des Sages. Crik avait re&ccedil;u l&rsquo;ordre de veiller &agrave; distance sur Jace, en restant assez discret pour d&eacute;celer toute tentative d&rsquo;atteinte &agrave; sa personne. Il avait pass&eacute; des nuits &agrave; surveiller le domicile du Grand Amiral, guettant toute intrusion, mais jamais il n&rsquo;avait eu &agrave; intervenir.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Certaines occasions avaient &eacute;t&eacute; plus &agrave; risques que d&rsquo;autres, et le lieutenant Horne l&rsquo;avait bien fait remonter au Grand Amiral. Il n&rsquo;h&eacute;sitait jamais &agrave; donner son avis sur les actions de ce dernier. Il &eacute;tait un fid&egrave;le partisan de Jace, qu&rsquo;il consid&eacute;rait comme la personne id&eacute;ale pour &eacute;tablir la paix dans la galaxie. Au fil des ann&eacute;es, Crik avait d&eacute;velopp&eacute; un profond respect pour celui qui &eacute;tait jadis son rival.</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Une rivalit&eacute; qui remontait &agrave; l&rsquo;&eacute;cole militaire, o&ugrave; les deux jeunes hommes, mu&eacute;s par la volont&eacute; de devenir Grand Amiral, cherchaient &agrave; surpasser l&rsquo;autre dans toutes les disciplines. Au final, Jace, son a&icirc;n&eacute; de deux ans, l&rsquo;avait emport&eacute;. Le lieutenant Horne s&rsquo;&eacute;tait alors tourn&eacute; vers les Forces Sp&eacute;ciales, avant d&rsquo;&ecirc;tre personnellement appel&eacute; par le Grand Amiral pour devenir son homme de main. D&rsquo;abord r&eacute;ticent, Horne avait finalement accept&eacute;. Les ann&eacute;es passant, le lieutenant Horne avait progressivement vou&eacute; un profond respect et une fid&eacute;lit&eacute; sans faille pour le Grand Amiral, tous les deux aspirant &agrave; &eacute;tablir la paix dans la Galaxie bien que Crik soit plus mesur&eacute; sur l&#039;importance de la religion.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>&Agrave; bord de la corvette, Crik prit position dans le cockpit et d&eacute;colla en direction du temple des Sages. Il vit alors la navette du Grand Amiral prendre son envol vers la flotte en orbite. Le lieutenant Horne ne se faisait pas d&rsquo;illusion, cet assaut n&rsquo;avait pour but que de faire gagner du temps pour &eacute;vacuer les civils. Int&eacute;rieurement, il salua le courage de son sup&eacute;rieur, qui faisait preuve d&rsquo;un d&eacute;vouement remarquable &agrave; l&rsquo;&eacute;gard de son peuple.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Apr&egrave;s une bonne heure de vol, alors qu&rsquo;il approchait de l&rsquo;&icirc;le, il vit &agrave; sa grande surprise des vaisseaux qui d&eacute;collaient. Il resta &agrave; distance, observant l&rsquo;op&eacute;ration qui se d&eacute;roulait sur l&#039;&icirc;lot. Les soldats du corps d&rsquo;arm&eacute;e des Sages empilait&nbsp; des archives de toutes sortes dans un transporteur. Crik fron&ccedil;a les sourcils, le symbole sur le transporteur signifiait qu&rsquo;il avait &eacute;t&eacute; r&eacute;quisitionn&eacute; pour l&rsquo;&eacute;vacuation des civils. Gr&acirc;ce aux instruments de bord, l&rsquo;enseigne Horne scanna l&rsquo;int&eacute;rieur du cargo. Il y d&eacute;couvrit des bo&icirc;tes, des artefacts divers et vari&eacute;s mais l&rsquo;un d&rsquo;eux attira son attention. L&rsquo;image autour de cet objet subissait des interf&eacute;rences. Il &eacute;tait difficile de distinguer de quel objet il s&rsquo;agissait. Crik augmenta raisonnablement la puissance du scanner, pour ne pas se faire d&eacute;tecter, en vain.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Il d&eacute;cida alors d&rsquo;atterrir sur la plateforme d&eacute;di&eacute;e, sa corvette se posa en douceur, soulevant de la poussi&egrave;re autour d&rsquo;elle. Crik se dirigea vers le temple, tout en saluant les soldats qui s&rsquo;activaient autour de lui. Par curiosit&eacute;, il jeta un coup d&rsquo;&oelig;il vers le cargo ce qui lui confirma l&rsquo;image du scanner, pas de civil dans cet appareil. Cette observation le fit bouillonner int&eacute;rieurement, au moins une centaine de Thalwas aurait pu embarquer &agrave; bord de ce vaisseau.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Il continua sa route vers le temple lorsqu&rsquo;il vit arriver en sens inverse les 3 Sages, escort&eacute;s par leurs gardes.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Lieutenant Horne au rapport. Le Grand Amiral souhaite vous voir embarquer &agrave; destination d&rsquo;Antipodes <u>d&egrave;s &agrave; pr&eacute;sent</u>. Je vous prie de bien vouloir me suivre ...&rdquo;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>L&rsquo;un des Sages s&rsquo;approcha le visage chaleureux, et posa ses mains sur les &eacute;paules du lieutenant Horne :&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7"><font size="3">&ldquo;Lieutenant, ne vous inqui&eacute;tez pas, <strong>Dieu</strong> nous prot&egrave;ge. Nous sommes investis d&rsquo;une grande mission d&eacute;sormais, nous porterons le message de Dieu &agrave; travers les galaxies. Nous <strong>le repr&eacute;senterons</strong> hors de Thalw jusqu&rsquo;au jour o&ugrave; nous reviendrons <strong>triomphalement</strong> sur notre maison.&rdquo;</font></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Et le Grand Amiral ?&rdquo;</font></font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7"><font size="3">&ldquo;La chute de Thalw est <strong>in&eacute;vitable</strong> ... Notre Grand Amiral s&rsquo;est attir&eacute; le <strong>courroux divin</strong>. Beaucoup p&eacute;riront, mais ceux qui suivent les enseignements de Dieu traverseront cette &eacute;preuve.&rdquo;</font></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Insinuez-vous que ...&rdquo;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Une navette imposante survola le piton rocheux ce qui coupa l&rsquo;&eacute;lan de l&rsquo;enseigne Horne. Elle arborait les couleurs du corps d&rsquo;arm&eacute;e des Sages mais Crik ne reconnut pas ce vaisseau. Il &eacute;tait &eacute;quip&eacute; des derni&egrave;res technologies thalwas, un v&eacute;ritable bijou de technologie qui n&rsquo;&eacute;tait pas cens&eacute; exister.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#d900a7"><font size="3">&ldquo;Lieutenant Horne, nous nous rendons sur <strong>Antipodes</strong>. Que Dieu vous garde.&rdquo;&nbsp;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le Sage s&rsquo;&eacute;carta de Crik, son visage &eacute;tait redevenu froid, et la procession embarqua &agrave; bord du vaisseau qui d&eacute;colla aussit&ocirc;t avant de dispara&icirc;tre dans le ciel azur&eacute;.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>L&rsquo;enseigne Horne restait stup&eacute;fait de ce qu&rsquo;il venait de passer. Les Sage s&rsquo;enfuyaient sans un mot, en r&eacute;quisitionnant un transporteur civil pour leurs archives. Pire encore, ils abandonnaient le Grand Amiral &agrave; son sort, en consid&eacute;rant qu&rsquo;il avait &eacute;t&eacute; jug&eacute; par Dieu pour ses actes.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le militaire serra le poing &agrave; s&rsquo;en blanchir les phalanges. Il n&rsquo;avait jamais &eacute;t&eacute; un homme de foi, il respectait les Volont&eacute;s Divines, mais il n&rsquo;&eacute;tait pas particuli&egrave;rement pacifiste. Selon lui, certaines situations n&eacute;cessitaient l&rsquo;usage de la force, et il tentait r&eacute;guli&egrave;rement de faire comprendre cela &agrave; son sup&eacute;rieur. Bafouer l&rsquo;honneur du Grand Amiral en sachant qu&rsquo;il mettait sa vie en jeu pour prot&eacute;ger les Thalwas enrageait Crik. Il devait agir.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Il rejoignit sa corvette en vitesse, se jetant dans le cockpit dans l&rsquo;espoir de rallier le croiseur du Grand Amiral pour le pr&eacute;venir des agissements suspects des Sages. Le d&eacute;collage fut rapide, et Crik poussa les capacit&eacute;s de son vaisseau au maximum. L&rsquo;appareil filait dans le ciel &agrave; vive allure, les moteurs rugissants rageusement.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Plusieurs kilom&egrave;tres au-dessus de lui, le combat faisait rage entre les vaisseaux thalwas et ceux du Khanat Stellaire. Chaque appareil devait combattre plus de 3 vaisseaux ennemis, et malgr&eacute; la bravoure des pilotes Thalwas, le combat n&rsquo;&eacute;tait pas &eacute;quitable. Les communications &eacute;taient satur&eacute;es d&rsquo;informations diverses et vari&eacute;es : estimations du nombre de vaisseaux, manoeuvres, replis, assaut ... Et pourtant, tous les efforts et la culture militaire thalwa semblait inefficace face &agrave; un ennemi impitoyable qui s&rsquo;abattait sur Thalw comme un rouleau compresseur.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>De la surface de la plan&egrave;te, le ciel bleu semblait &eacute;clair&eacute; de milliers de feu d&rsquo;artifices, r&eacute;sultant de l&rsquo;explosion des croiseurs thalwas. Petit &agrave; petit, le vacarme de milliers de vaisseaux communiquant entre eux s&rsquo;apaisait.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Soudain, une communication prioritaire retentit, passant sous silence toutes les autres :&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#e8c500"><font size="3">&ldquo;ICI, DOLI 3, JUPITER EST TOUCH&Eacute;, JE REPETE JUPITER EST TOUCH&Eacute; ! IL VA S&rsquo;ECRASER !&ldquo;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le temps s&rsquo;arr&ecirc;ta dans le cockpit. Crik n&rsquo;entendait plus le bruit des moteurs, ni des communications, son regard restait fig&eacute; devant lui. Le croiseur du Grand Amiral Jace Ryzo venait de percer la couverture nuageuse. Le b&acirc;timent &eacute;tait en proie aux flammes, et sa structure &eacute;tait endommag&eacute;e par un trou b&eacute;ant d&rsquo;o&ugrave; s&rsquo;&eacute;chappait une fum&eacute;e noire &eacute;paisse.</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le lieutenant Horne ralentit, et resta sur place, redoutant une explosion du noyau &eacute;nerg&eacute;tique du croiseur &agrave; l&rsquo;impact. Pour sa propre s&eacute;curit&eacute;, il restait donc &agrave; distance, impuissant en voyant le pont de commandement en flammes.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>L&rsquo;impact fut violent. Le croiseur s&rsquo;&eacute;crasa de tout son poids sur l&rsquo;Oc&eacute;an, se brisant en deux par la m&ecirc;me occasion.</em></font></div><div class="post_line"><font size="3"><em>&nbsp;</em></font></div><div class="post_line"><font size="3"><em>La corvette de l&rsquo;enseigne du Grand Amiral survola alors la zone du crash. Il fallait faire vite.</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Dans le cockpit, il appuya sur un bouton, et la corvette lan&ccedil;a un scan du lieu du crash.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#4cea5e">&ldquo;Allez ... Faites que vous ne soyez pas mort ...&rdquo;</font><em>, s&rsquo;impatienta-t-il en tapotant machinalement sur l&rsquo;accoudoir de son si&egrave;ge. L&rsquo;appareil d&eacute;tectait des plusieurs signes de vie, qui s&rsquo;&eacute;teignaient progressivement les uns apr&egrave;s les autres.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le noyau &eacute;nerg&eacute;tique, rafra&icirc;chit par l&rsquo;eau, n&rsquo;&eacute;tait pas entr&eacute; en fusion. Il n&rsquo;y e&ucirc;t donc pas d&rsquo;explosion qui aurait ray&eacute; toute chance de retrouver des survivants.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le d&eacute;tecteur s&rsquo;affola soudainement en &eacute;mettant des alertes : un signal faible s&rsquo;enfon&ccedil;ait dans les profondeurs, et l&rsquo;appareil identifiait ce signal comme &eacute;tant celui du Grand Amiral.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Crik Horne n&rsquo;h&eacute;sita pas un instant, et s&rsquo;approcha au maximum de l&rsquo;emplacement d&eacute;sign&eacute; par les instruments de mesure. Parfaitement au-dessus du signal, l&rsquo;enseigne d&eacute;clenchant le rayon tracteur qui ramena un corps inanim&eacute;, &agrave; l&rsquo;arri&egrave;re de l&rsquo;appareil.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Le lieutenant sauta de son si&egrave;ge, et se rua &agrave; l&rsquo;arri&egrave;re de la corvette pour identifier le fruit de sa p&ecirc;che. Le d&eacute;tecteur ne s&rsquo;&eacute;tait pas tromp&eacute;, il s&rsquo;agissait effectivement du Grand Amiral Jace Ryzo.<font color="#4cea5e">&nbsp;&quot;Enfin, ce qu&rsquo;il en reste&quot;</font>, pensa Crik en voyant l&rsquo;&eacute;tat dans lequel se trouvait le rouquin. Jace gisait inconscient, dans une mare de sang qui ne cessait de s&rsquo;agrandir. Crik activa le syst&egrave;me de premiers secours, qui souleva le Grand Amiral pour l&rsquo;allonger sur une civi&egrave;re. Des bras robotis&eacute;s s&rsquo;activaient autour du bless&eacute;, et rapidement un rapport fut annonc&eacute;.&nbsp;</em></font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff"><font size="3"><u>Patient</u> : Jace Ryzo</font></font></div><div class="post_line"><font color="#44b8ff"><font size="3"><u>&Acirc;ge</u> : 30 ans</font></font></div><div class="post_line"><font color="#44b8ff"><font size="3"><u>Sympt&ocirc;mes</u> :&nbsp;</font></font></div><div class="post_line"><font color="#44b8ff"><font size="3">Perte de l&rsquo;extr&eacute;mit&eacute; du membre sup&eacute;rieur gauche par arrachement</font></font></div><div class="post_line"><font color="#44b8ff"><font size="3">Br&ucirc;lure du second degr&eacute; profond sur 85% du dos,&nbsp;</font></font></div><div class="post_line"><font color="#44b8ff"><font size="3">Perforation du poumon droit, &eacute;panchement de sang dans la cavit&eacute; pleurale</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><font color="#44b8ff">&quot;Prise en charge <u>d&rsquo;urgence</u> ... Veuillez rallier un h&ocirc;pital <u>au plus vite</u>.&rdquo;</font></font></div><div class="post_line"></div><div class="post_line"><font color="#4cea5e"><font size="3">&ldquo;Utilisez tous les moyens &agrave; disposition pour maintenir son &eacute;tat de sant&eacute;.&rdquo;</font></font></div><div class="post_line"></div><div class="post_line"><font size="3"><em>Crik se pr&eacute;cipita dans le cockpit et profita de la fin de l&rsquo;assaut pour &eacute;chapper aux flottes Seelies. Sa destination &eacute;tait Antipodes.&nbsp;</em></font></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17074&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17074" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17074" name="d_reply_17074" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17074');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17074'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Sagesse</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

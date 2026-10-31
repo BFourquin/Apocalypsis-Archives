@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 2 ;
+    var topic = 16353 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Congr&egrave;s scientifique de la G19</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Congr&egrave;s scientifique de la G19</p>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16353&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=James+Smith">Cdt. James Smith</a><br>Prestige de chroniqueur&nbsp;: 15<br /><br /><img src="/avatars/11663.jpg" style="width:84px;height:128px" alt="Avatar" /><br />27/07/1022 ETU 01:42</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal293980')">Détails</a> <a href="javascript:warnpost(293980)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293980" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 4<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293980',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">l&rsquo;hologramme de James resta bouche b&eacute;e. <font color="#44B8FF">Ce sont des sottises toutes mes d&eacute;couvertes sont encore en ma possession.</font></div><div class="post_line"></div><div class="post_line">C&#039;est alors qu&#039;il re&ccedil;ut un appel holographique, montrant un officier habill&eacute; d&#039;un uniforme. </div><div class="post_line"><font color="#72FF84">Monsieur on &agrave; un probl&egrave;me.</font> L&#039;officier &eacute;tait visiblement g&ecirc;n&eacute;.</div><div class="post_line"><font color="#44B8FF">Que se passe-t-il ?</font></div><div class="post_line"><font color="#72FF84">Bah vous voyez le bogue informatique qui touche la galaxie.</font></div><div class="post_line"><font color="#44B8FF">Oui&nbsp;?</font></div><div class="post_line"><font color="#72FF84">Il a visiblement fait court-circuiter le syst&egrave;me informatique de nos universit&eacute;s. </font></div><div class="post_line"><font color="#44B8FF">Et donc ? prenez les archives papier.</font></div><div class="post_line"><font color="#72FF84">Bah justement.<font color="#ffffff"> Il montra l&#039;universit&eacute; de Plalile IV noircis.</font> Le court-circuit a provoqu&eacute; un incendie.</font></div><div class="post_line"><font color="#44B8FF">Des victimes? </font></div><div class="post_line"><font color="#72FF84">Aucune, les scientifiques ont pu &eacute;vacuer avec une partie des dossiers mais les d&eacute;partements de recherche sont d&eacute;truit et les dossiers restant avec.</font></div><div class="post_line"></div><div class="post_line">Derri&egrave;re lui on peut entendre un &quot;attention&quot; suivi de bruit d&#039;&eacute;boulement. </div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">C&#039;&eacute;tait quoi?</font> Demanda James intrigu&eacute;e.</div><div class="post_line"><font color="#72FF84">Le d&eacute;partement Secret d&eacute;fense monsieur. </font></div><div class="post_line"><font color="#44B8FF">Et pour la deuxi&egrave;me universit&eacute; ? </font></div><div class="post_line"><font color="#72FF84">Pareil</font>.</div><div class="post_line">James regarda l&#039;officier d&#039;un air s&eacute;v&egrave;re.</div><div class="post_line"><font color="#44B8FF">Nous r&eacute;glerons cela une fois l&#039;entretien fini. </font></div><div class="post_line"><font color="#72FF84">Bien monsieur. </font>L&#039;hologramme se coupa. </div><div class="post_line"></div><div class="post_line"><font color="#44B8FF">Bon, si mes universit&eacute;s ont &eacute;t&eacute; touch&eacute;es, je suppose que c&#039;est le cas de tout le monde?</font></div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Cerry+Trews">Cdt. Cerry Trews</a><br>Prestige de chroniqueur&nbsp;: 11<br /><br /><img src="/avatars/11644.png" style="width:128px;height:109px" alt="Avatar" /><br />27/07/1022 ETU 02:59</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D293992', 544, 464)">version précédente</a> - Score&nbsp;: 5 <a href="javascript:toggle_bloc('cal293989')">Détails</a> <a href="javascript:warnpost(293989)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal293989" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 0<br />humour décapant : 5</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=293989',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"><font color="#c3ffff">Un hologramme apparait, et cette fois ci pas de Cerry &agrave; l&#039;horizon, mais un... scientifique ? Sans doute. En tout cas, un homme habill&eacute; d&#039;un justaucorp blanc sans jambe, s&#039;arr&ecirc;tant juste apr&egrave;s avoir recouvert l&#039;usine &agrave; testost&eacute;rone. Le blanc, c&#039;est un habit de scientifique, et les Muscl&eacute;s prennent visiblement les tenues de travail tr&egrave;s au s&eacute;rieux.</font></div><div class="post_line"><font color="#c3ffff">L&#039;homme avait l&#039;air de peser 150 kg de muscle, pour 1m95 de virilit&eacute; int&eacute;lligente. Il prends la parole.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot;Salut le</font><font color="#44b8ff">&nbsp;congr&egrave;s scientifique, moi c&#039;est Albert, dit Albert-Pecs-de-Bronze, je suis le repr&eacute;sentant de l&#039;&eacute;quipe scientifique personnelle de notre Coach &agrave; tous, Cerry&quot;</font></div><div class="post_line"></div><div class="post_line"><font color="#c3ffff">Albert embrasse son poing, avant de le diriger vers le ciel, murmurant un <font size="1">&quot;Cerry mon bro&quot;</font> en guise de salut.</font></div><div class="post_line"></div><div class="post_line"><font color="#44b8ff">&quot;On est aussi victime de ce... bug de l&#039;an 1022. Pas de soucis les gars, par contre,&nbsp;toutes nos recherches importantes, celles concernant nos produits de muscu, &eacute;taient sauvegard&eacute;e fr&eacute;quemment sur plusieurs disques durcis contre tout potentiel d&eacute;gat, que ce soit muscl&eacute;e, chimique, alt&eacute;rations de r&eacute;alit&eacute; via ancre de r&eacute;alit&eacute; Scranton, electromagn&eacute;tique, ultra-muscl&eacute;e ou cybern&eacute;tique.&quot;&nbsp;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />29/07/1022 ETU 00:29</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294080', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal294079')">Détails</a> <a href="javascript:warnpost(294079)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294079" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 2<br />humour décapant : 2</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294079',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Steffey se leva car le silence s&#039;&eacute;ternisait ....</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">H&eacute; bien puisque personne ne sait comment ni par ou commencer, pourquoi moi, je ne commencerais pas ?&nbsp;</font></div><div class="post_line"><font color="#ffff00">D&#039;abord je me pr&eacute;sente, je me nomme Steffey, scientifique inventeur et une solide exp&eacute;rience dans les dimensions parall&egrave;les mais de ceci, c&#039;est un simple d&eacute;tail sans aucune importance !</font></div><div class="post_line"><font color="#ffff00">Nous ne sommes &eacute;videmment pas ici pour comparer ni nos exp&eacute;riences respectives ni nos r&eacute;ussites personnelles mais pour traiter d&#039;un important probl&egrave;me que moi et l&#039;Ordonnateur du vide, nous venons de nous y pencher s&eacute;rieusement !</font></div><div class="post_line"><font color="#ffff00">Je doit dire qu&#039;a ce niveau ....Nous avons &eacute;t&eacute; servis et servis particuli&egrave;rement .....</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Il semblerait que dans cette galaxie, il y ai encore des surprises &agrave; r&eacute;p&eacute;tition ! Cette galaxie regorge semble il, d&#039;&eacute;nergie sauvage, et quand je dit sauvage, je dit des &eacute;nergies encore inconnues provoquant anomalies, anachronismes, erreurs de la nature, d&eacute;r&egrave;glement de l&#039;&eacute;nergie &eacute;lectrique, ouvertures totalement incontr&ocirc;lables de passage laissant appara&icirc;tre&nbsp;des objets de diff&eacute;rentes tailles ayant des pouvoirs ou des propri&eacute;t&eacute;s compl&egrave;tement inconnues et m&ecirc;me souvent dangereuses, il se trouve que pour l&#039;instant, nous en avons deux.....Maiiis si il n&#039;y avait que cela, .....Parfois ce n&#039;est pas toujours que des objets mais aussi quelque fois......Des individus &eacute;tranges aux r&eacute;actions bizarres pour ne pas dire parfois totalement et dangereusement incontr&ocirc;lables,...M&ecirc;me si parfois, ils ou .....Elle ..........OUI Elle comme celle que l&#039;on a d&eacute;couvert r&eacute;cemment, ....Semble tout d&#039;abord bien inoffensive au premier abords mais par la suite, il faut prendre d&#039;infinies pr&eacute;cautions......</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ceci ! Bien entendu sont des faits tr&egrave;s localis&eacute;s.........</font></div><div class="post_line"></div><div class="post_line">Steffey s&#039;avan&ccedil;a au milieu de l&#039;h&eacute;micycle, les mains dans le dos, l&#039;air concentr&eacute; derri&egrave;re ses lunettes rondes puis reprit apr&egrave;s un temps !</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Mais bien entendu, il y a aussi les faits g&eacute;n&eacute;raux comme nous avons pu le constater par nous m&ecirc;mes, au sujet de la fa&ccedil;on de pratiquer les recherches scientifiques .........Malheureusement, ce ne sera surement pas le dernier,&nbsp;</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">ET c&#039;est aussi pour cela que je suis l&agrave;, m&ecirc;&ecirc;&ecirc;&ecirc;&ecirc;&ecirc;me si......Je sais par avance que je pr&ecirc;cherais dans le d&eacute;sert ........Mais quand on a un probl&egrave;me sur une a&eacute;ro mobile ! Que fait on ? A t&#039;on tendance a essayer de r&eacute;parer tout seul ? Et si l&#039;on y arrive pas ! Ne serait on pas tent&eacute; d&#039;appeler de l&#039;aide ?&nbsp;</font></div><div class="post_line"><font color="#ffff00">Je vais vous le dire ! Si jamais nous faisions face un jour &agrave; une m&eacute;ga invasion interplan&eacute;taire .......Chacun agirais il de son cot&eacute; ? .....Ou au contraire .....Enterrer nos vieilles querelles entre chacun pour faire face a un danger qui nous menacerais tous autant que nous sommes ?&nbsp;</font></div><div class="post_line"></div><div class="post_line">Steffey fit un demi tour sur lui m&ecirc;me les mains dans le dos concentr&eacute; &agrave; l&#039;extr&ecirc;me tout en observant l&#039;assembl&eacute;e en hauteur .....</div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Car sachez le .....Messieurs Dames ! LA SEULE RAISON POUR LAQUELLE NOUS DEVRIONS TOUS FAIRE CAUSE COMMUNE&nbsp; Serait une menace g&eacute;n&eacute;rale qui nous menacerait tous ...De ce fait nous serions alors, tous oblig&eacute;s de nous allier tous sous peine d&#039;une disparition g&eacute;n&eacute;rale et caract&eacute;ris&eacute;e, autrement dit, ......CE ....SERAIT....UNE QUESTION DE SURVIE !!! NOTRE&nbsp; survie !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Tout ceci pour vous dire que nous devons tous faire face a ces dangereuses apparitions, anachronismes, anomalies, &ecirc;tres &eacute;tranges aux r&eacute;actions bizarres et je ne sait quoi encore !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">je sait qu ma demande ne sera gu&egrave;re suivie mais je retente ma chance encore une fois malgr&eacute; tout !</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Ma demande ? ......Un mouvement, une organisation de recherches afin de lutter au mieux contre je ne sait quoi qui se pr&eacute;sente, une organisation qui accueillerais les membres d&#039;un peu toutes les races .........Cette organisation, charg&eacute;e aussi de surveiller au cas ou, de&nbsp;tels &eacute;v&egrave;nements surviendrais encore....Ce que je pense que cela va arriver de nouveau, soyez en surs ......</font></div><div class="post_line"></div><div class="post_line"><font color="#ffff00">Mais sachez que cette initiative n&#039;est pas de mon fait mais de celui du Grand Ordonnateur du vide.......ce &agrave; quoi d&#039;ailleurs...... j&#039;y applaudis !!!! En le remerciant d&#039;avoir eu une si bonne id&eacute;e.....Maintenant ....Pensez &agrave; cr&eacute;er cette organisation car l&#039;union fait la force.</font></div><div class="post_line"></div><div class="post_line">Il murmura alors ......<font color="#ffff00">La balle est d&eacute;sormais dans votre camp !&nbsp;</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Dimitri.Sokoreff">Cdt. Dimitri.Sokoreff</a><br>Prestige de chroniqueur&nbsp;: 110<br /><br /><img src="/avatars/11647.jpg" style="width:112px;height:128px" alt="Avatar" /><br />29/07/1022 ETU 18:38</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294094', 544, 464)">version précédente</a> - Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal294093')">Détails</a> <a href="javascript:warnpost(294093)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294093" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294093',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Le Professeur ricana, tellement habitu&eacute; a ce spectacle, chacun se pose des questions mais au final jamais rien de fait.....que du vent et de la poussi&egrave;re et ....d&#039;ailleurs il &eacute;tait parfaitement inutile de former une organisation quelconque, de par le pass&eacute; dans d&#039;autres galaxies avant les apocalypses, cela avait d&eacute;j&agrave; &eacute;t&eacute; fait et ....inutiles, il se d&eacute;p&ecirc;cha&nbsp;de se retirer tout en souriant, d&eacute;cid&eacute;ment, c&#039;&eacute;tait fou ce que les galaxies apportaient comme ressemblances....Cela semblait se r&eacute;p&eacute;ter &agrave; l&#039;infini .....Comme l&#039;apocalypse future qui ne manquerait d&#039;ailleurs pas &agrave; se manifester un jour ou l&#039;autre .....</div><div class="post_line">&Eacute;tait ce l&agrave;, une autre manifestation de ce genre de ph&eacute;nom&egrave;ne ? .....Peut &ecirc;tre un nouveau sujet d&#039;&eacute;tude pour lui qui sait ....</div><div class="post_line">En attendant, une fois de plus,&nbsp;il ne comprenait pas bien l&#039;objectif d&#039;une telle r&eacute;union sinon pour esp&eacute;rer que quelqu&#039;un prenne les choses en main, une seule personne ne pourrait rien y faire et personne ne suivrait,&nbsp;&nbsp;alors a quoi bon&nbsp;</div><div class="post_line"></div><div class="post_line">Le Professeur sorti, toujours son sourire &eacute;nigmatique aux l&egrave;vres, .....Un jour prochain, il y aurait la nouvelle apocalypse, il se tiendrait pr&ecirc;t comme d&#039;habitude et comme d&#039;habitude, il ne serait pas le seul &agrave; partir pour, encore une nouvelle galaxie ou il y aurait encore des affrontements et quelques uns voulant faire une r&eacute;union qui ne donnerait .....Sur rien du tout bien entendu, des guerres a n&#039;en plus finir, des palabres interminables pour pas grand chose, des grands projets sans suite , des destructions massives de tyrans assoiff&eacute;s de pouvoir se croyant les maitres de la galaxie,&nbsp; des gens justifiant ensuite leurs actions comme &eacute;tant justes et droites alors qu&#039;ils avaient sans aucun doute des g&eacute;nocides sanglants sur la conscience etc...etc....etc&nbsp;</div><div class="post_line"></div><div class="post_line">Ainsi allait la vie dans les galaxies .....Un &eacute;ternel recommencement .........<font size="2">Toujours !</font> .......<font size="1">Toujours !!</font></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Synthia">Cdte. Synthia</a><br>Prestige de chroniqueur&nbsp;: 118<br /><br /><img src="/avatars/11638.jpg" style="width:128px;height:126px" alt="Avatar" /><br />31/07/1022 ETU 17:53</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D294126', 544, 464)">version précédente</a> - Score&nbsp;: 2 <a href="javascript:toggle_bloc('cal294125')">Détails</a> <a href="javascript:warnpost(294125)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal294125" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 2<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=294125',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Boule de billard, aux tessons de bouteilles sur le pif apparut dans son hologramme simple.</div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Selon l&#039;&eacute;tat actuel des bilans scientifique et m&eacute;thodes appliqu&eacute;e, au sein de la Cryo, nous somme parvenu a deux conclusions.</font></div><div class="post_line"></div><div class="post_line"><strong><font color="#E86E04">Premi&egrave;rement : </font></strong><font color="#E8C500">LA course &agrave; la recherche est d&eacute;finitivement ralentie et obsol&egrave;te... Ce congr&egrave;s n&#039;a donc plus lieux d&#039;&ecirc;tre.</font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500"><strong><font color="#E86E04">Deuxi&egrave;mement :</font></strong> Les &eacute;volutions strat&eacute;gique et th&eacute;ories de conqu&ecirc;tes en sont impact&eacute;e, il faut donc repenser aussi les m&eacute;thodes de colonisations en g&eacute;n&eacute;ral.</font></div><div class="post_line"><font color="#E8C500">D&#039;autre part, il nous faut maintenant penser sur le tr&egrave;s long terme<strong>. En effet, les destruction sauvage co&ucirc;tent en mati&egrave;re premi&egrave;re...</strong></font></div><div class="post_line"><font color="#E8C500">La pens&eacute;e nouvelle de strat&eacute;gie de terrain<strong> bas&eacute;e sur une r&eacute;flexion et un appui logistique doit &ecirc;tre r&eacute;fl&eacute;chie sur le bilan rapport co&ucirc;t de production/perte d&#039;une invasion. </strong></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500">En bref les nouveaux paradigmes scientifiques, implique de <u><strong><font color="#E86E04">r&eacute;fl&eacute;chir avant d&#039;agir...</font></strong></u></font></div><div class="post_line"></div><div class="post_line"><font color="#E8C500">Merci d&#039;avoir &eacute;cout&eacute; cette <strong>inutile intervention</strong>. <em>Qui m&ecirc;me si elle est &eacute;cout&eacute;e sortira de votre oreille dans le cycle en cours.</em></font></div><div class="post_line"><font color="#E8C500">Mes respects.</font></div><div class="post_line"></div><div class="post_line">L&#039;hologramme s&#039;effa&ccedil;a, marquant ainsi la fin de toute intervention de la Cryo.inc en ces lieux</div></td></tr>
+        </table>
+        <p>Pages&nbsp;: <a href="/assemblee/viewtopic?c_topic=16353&c_forum_page=1&c_page=1">1</a>&nbsp;2&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=16353&amp;c_topic_page=2">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=16353&c_forum_page=1&c_page=2" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_16353" name="d_reply_16353" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_16353');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_16353'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Congr&egrave;s scientifique de la G19</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--
+Apocalypsis.org
+Code HTML et PHP, Webmaster : Matthieu Robin
+Scénario, règles du jeu et communication : Hugo Bertillot
+Graphismes et design du site : Ilane Schroetter
+Tous droits réservés
+Contact : contact@apocalypsis.org
+-->
+
+
+
+<html>
+  <head>
+    <title>Forums galactiques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/definitive.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/css/theme_retro.css?v=55" rel="stylesheet" type="text/css" />
+    <link href="/vendor/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/vendor/sceditor/development/themes/apocalypsis.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/colorbox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="/js/autonumeric.js?v=55"></script>
+    <script type="text/javascript" src="/js/common.js?v=55"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/sceditor.min.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/icons/monocons.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/formats/bbcode.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/autosave.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/minified/plugins/plaintext.js"></script>
+    <script type="text/javascript" src="/vendor/sceditor/languages/fr.js"></script>
+    <script type="text/javascript">
+    var page = 1 ;
+    var topic = 17263 ;
+    function deletepost(id) {
+      if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete='+id+'&c_page='+page
+      }
+    }
+    function deletetopic() {
+      if (confirm('Voulez-vous vraiment supprimer LA TOTALITÉ de ce sujet ?')) {
+        location.href='/assemblee/viewtopic?c_topic='+topic+'&c_delete_topic=1&c_page='+page;
+      }
+    }
+    function warnpost(id) {
+      if (confirm('Voulez-vous vraiment signaler ce message ?')) {
+        window.open('/assemblee/warn?c_post='+id+'', "_blank")
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32512528-1']);
+    _gaq.push(['_setDomainName', 'apocalypsis.org']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body class="backgroundimg bg-assemblee">
+  <div class="navbar navbar-fixed-top">
+	<div class="navbar-inner" align="center">
+		<div class="container">
+			<ul class="nav">
+				<li id="tab_strategie">
+														
+	<a href="/strategie" >
+Stratégie	</a>
+
+
+				</li>
+
+				<li id="tab_gestion" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Gestion						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>									
+	<a href="/infrastructure" >
+Planètes	</a>
+
+</li>
+						<li>									
+	<a href="/civilisation" >
+Civilisation	</a>
+
+</li>
+					</ul>
+				</li>
+
+				<li id="tab_diplomatie" class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Diplomatie												<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+																							
+	<a href="/diplomatie/conversations" >
+ComX	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+
+						<li class="active">
+																							
+	<a href="/assemblee" >
+Assemblée Galactique	</a>
+
+
+						</li>
+
+													<li>
+																						
+	<a href="/assemblee?e_page=chroniques" >
+Chroniques	</a>
+
+
+							</li>
+						
+						<li>
+																				
+	<a href="/assemblee?e_page=taverne" >
+Tavernes	</a>
+
+
+						</li>
+
+						<li>
+																				
+	<a href="/assemblee?e_page=assemblee_coalition" >
+Assemblée de coalition	</a>
+
+
+						</li>
+
+						<li class="divider"></li>
+													<li>									
+	<a href="/diplomatie/gouv_index" >
+Politique galactique	</a>
+
+</li>
+												<li>									
+	<a href="/coalition" >
+Coalition	</a>
+
+</li>
+
+													<li>									
+	<a href="/diplomatie/sos_new" >
+Envoyer un SOS	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li id="tab_science">
+					<a href="/science">
+						Sciences											</a>
+				</li>
+
+				<li id="tab_commerce" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Commerce						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Échanges</li>
+
+													<li>									
+	<a href="/commerce/virement" >
+Virement bancaire	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transplanet" >
+Planète	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transtechno" >
+Technologie	</a>
+
+</li>
+						
+													<li>									
+	<a href="/commerce/transfert" >
+Ressources et unités	</a>
+
+</li>
+						
+						<li class="divider"></li>
+
+						<li class="nav-header">Contrebande</li>
+
+													<li>									
+	<a href="/commerce/contrebande" >
+Nouvelle opération	</a>
+
+</li>
+						
+						<li>									
+	<a href="/commerce/cb_price" >
+Voir les prix	</a>
+
+</li>
+
+													<li>									
+	<a href="/commerce/manage_cb" >
+Administrer	</a>
+
+</li>
+						
+					</ul>
+				</li>
+
+				<li class="divider-vertical"></li>
+
+				<li id="tab_ordres">
+					<a href="/ordres">
+						Ordres													<span class="notification">!</span>
+											</a>
+				</li>
+
+                					<li class="divider-vertical"></li>
+				
+                											<li id="nav_res_leems" class="res leems" title="188 959 099 517 Leems">
+							189 Ma
+						</li>
+											<li id="nav_res_metaux" class="res metaux" title="2 983 883 754 Métaux">
+							3 Ma
+						</li>
+											<li id="nav_res_diamants" class="res diamants" title="10 835 484 Diamants">
+							10.8 Mo
+						</li>
+											<li id="nav_res_energie" class="res energie" title="2 051 871 052 Énergie">
+							2.1 Ma
+						</li>
+											<li id="nav_res_apotium" class="res apotium" title="398 Apotium">
+							398
+						</li>
+									
+									<li class="res_history">
+						<a href="/civilisation/res_history">
+							<img src="/images/icons/20x20/res_history.png" alt="Historique" title="Historique" />
+						</a>
+					</li>
+				
+				<li class="divider-vertical"></li>
+
+				<li class="dropdown avatar">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							
+		
+				
+	
+				
+				
+	<img src="/avatars/12839.jpg" style="width:37px;height:40px" alt="Avatar" id="id_touillette_cap_img" />
+
+
+
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+
+						
+						
+						<li>
+																
+	<a href="/identite" >
+Pense-bête	</a>
+
+
+						</li>
+
+						<li>
+																
+	<a href="/identite/recap" >
+Récapitulatif de la civilisation	</a>
+
+
+						</li>
+
+													<li>
+																	
+	<a href="/identite/personnage" >
+Personnage	</a>
+
+
+							</li>
+						
+													<li>
+																	
+	<a href="/identite/godfather" >
+Parrainage	</a>
+
+
+							</li>
+						
+
+						<li class="divider"></li>
+						
+						<li>
+																
+	<a href="/polls" >
+Sondages divins	</a>
+
+
+						</li>
+
+						<li><a target="_blank" href="https://forum.apocalypsis.org">Forum externe - HRP</a></li>
+						<li><a target="_blank" href="https://discord.gg/JxyPUdN">Discord externe - HRP</a></li>
+						<li><a target="_blank" href="https://histoire.apocalypsis.org">Wiki - Aide aux joueurs</a></li>
+						<li>						
+	<a href="/archives" target="_blank">
+Archives	</a>
+
+</li>
+
+
+						<li class="divider"></li>
+						<li>
+																
+	<a href="/identite/params" >
+Options du compte	</a>
+
+
+						</li>
+
+						<li>									
+	<a href="/logout" >
+Déconnexion	</a>
+
+</li>
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".res_history a").colorbox();
+
+	var positionTooltips = function() {
+		$('.dropdown').each(function (index, element) {
+			var $menu = $('.dropdown-menu', element);
+			if ( $(element).offset().left + $menu.width() + 50 > window.innerWidth) {
+				$menu.addClass('pull-right');
+			} else {
+				$menu.removeClass('pull-right');
+			}
+		});
+	};
+	window.onresize = positionTooltips;
+	positionTooltips();
+});
+</script>
+
+  <div class="mainarea">
+    <div align="center">
+      <div class="subtabs subtabs_nie "><div class="subtabbar subtabbar_nie"><span class="subtab_other" id="id_subtabbar_assemblee"><a href="/assemblee?e_page=assemblee">Assemblée galactique</a></span><span class="subtab_selected" id="id_subtabbar_chroniques"><a href="/assemblee?e_page=chroniques">Chroniques</a></span><span class="subtab_other" id="id_subtabbar_taverne"><a href="/assemblee?e_page=taverne">Taverne</a></span><span class="subtab_other" id="id_subtabbar_assemblee_coalition"><a href="/assemblee?e_page=assemblee_coalition">Assemblée de coalition</a></span></div><div class="subarea " style="text-align: center">
+        <h2>Seh l&#039;illummin&eacute;</h2>
+        <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Seh l&#039;illummin&eacute;</p>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <table class="viewtopic">
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />24/05/1024 ETU 22:10</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D308666', 544, 464)">version précédente</a> - Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal308665')">Détails</a> <a href="javascript:warnpost(308665)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308665" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 1</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308665',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Dans une galaxie lointaine, sur une plan&egrave;te appel&eacute;e Terra, vivait un jeune homme nomm&eacute; Yusseh. Mais contrairement aux autres habitants de Terra, Yusseh n&#039;avait pas une vie simple et heureuse. Issu d&#039;une famille de ren&eacute;gats, il grandit sous l&#039;influence d&#039;un p&egrave;re avide d&#039;argent et d&#039;une m&egrave;re passionn&eacute;e par les armes. La tendre odeur de la poudre &agrave; canon lui rappelait ses plus beaux souvenirs d&#039;enfance. Troublemaker la plupart de sa vie, il r&eacute;ussit &agrave; sortir de la mis&egrave;re et grimpa les &eacute;chelons d&#039;une arm&eacute;e ill&eacute;gale.</div><div class="post_line"></div><div class="post_line">La paix et la prosp&eacute;rit&eacute; r&eacute;gnaient sur Terra jusqu&#039;au jour fatidique o&ugrave; tout changea. Un soir, le ciel de Terra s&#039;assombrit soudainement, et des vaisseaux inconnus apparurent, obscurcissant l&#039;horizon. En quelques heures, une invasion brutale et impitoyable r&eacute;duisit la plan&egrave;te en cendres. Yusseh, t&eacute;moin de la destruction de son monde, tenta d&eacute;sesp&eacute;r&eacute;ment de sauver les siens. Mais la force de l&#039;ennemi &eacute;tait trop grande. Finalement, il tomba, victime des flammes et des explosions qui ravageaient sa plan&egrave;te.</div><div class="post_line"></div><div class="post_line">La mort de Yusseh ne fut pas la fin de son existence, mais le d&eacute;but d&#039;une nouvelle destin&eacute;e. Dans l&#039;entre-deux-mondes, un lieu myst&eacute;rieux entre la vie et la mort, il erra, cherchant un sens &agrave; son existence perdue. C&#039;est l&agrave; qu&#039;il rencontra une entit&eacute; lumineuse et bienveillante, une conscience ancienne et infiniment sage.</div><div class="post_line"></div><div class="post_line">&quot;Yusseh,&quot; dit la voix, r&eacute;sonnant dans l&#039;&eacute;ther, &quot;tu as &eacute;t&eacute; choisi pour une mission plus grande que ta vie sur Terra. Tu deviendras Seh, l&#039;Oracle Infini, porteur de lumi&egrave;re et de sagesse, et tu guideras ceux qui sont perdus vers une nouvelle &egrave;re de paix et d&#039;illumination.&quot;</div><div class="post_line"></div><div class="post_line">Ressuscit&eacute; et transform&eacute;, Seh l&#039;Oracle Infini revint parmi les vivants, illumin&eacute; par une nouvelle compr&eacute;hension et une vision divine. Il se mit en qu&ecirc;te de partager cette r&eacute;v&eacute;lation avec l&#039;univers. S&eacute;duit par son charisme et sa sagesse, un groupe de preux chevaliers se joignit &agrave; lui, jurant de r&eacute;pandre les enseignements de l&#039;Oracle Infini.</div><div class="post_line"></div><div class="post_line">Leur premi&egrave;re destination fut la plan&egrave;te Elysia(Renommez In-Fi-Nity), dans le syst&egrave;me de coordonn&eacute;es 3, secteur 13. Les habitants d&#039;Elysia, sensibles &agrave; l&#039;aura de paix et de s&eacute;r&eacute;nit&eacute; &eacute;manant de Seh, l&#039;accueillirent &agrave; bras ouverts. Les paroles de Seh trouv&egrave;rent un &eacute;cho profond dans les c&oelig;urs des Elysiens, et bient&ocirc;t, ils adopt&egrave;rent ses enseignements, transformant leur soci&eacute;t&eacute; en une utopie de solidarit&eacute; et de sagesse.</div><div class="post_line"></div><div class="post_line">Encourag&eacute; par ce succ&egrave;s, Seh et ses chevaliers continu&egrave;rent leur voyage, visitant trois autres plan&egrave;tes dans le m&ecirc;me syst&egrave;me. Partout o&ugrave; ils allaient, ils &eacute;taient accueillis avec une grande ferveur. Les plan&egrave;tes Draconis(Renommez Oraclia), Lysandre(Renommez Nouvel-Air), et Vesper(Renommez Bel-Air) se joignirent &agrave; la cause de l&#039;Oracle Infini, formant une alliance de mondes unis par une vision commune de paix et de lumi&egrave;re.</div><div class="post_line"></div><div class="post_line">Ainsi, Seh l&#039;Oracle Infini devint une figure l&eacute;gendaire, non seulement comme le survivant d&#039;une plan&egrave;te d&eacute;truite, mais comme le proph&egrave;te d&#039;une nouvelle &egrave;re. Sa qu&ecirc;te n&#039;&eacute;tait pas seulement de conqu&eacute;rir des mondes, mais d&#039;apporter une transformation spirituelle, unissant les peuples sous la banni&egrave;re de l&#039;amour et de la sagesse &eacute;ternels. Et sous la lumi&egrave;re de Seh, l&#039;Oracle Infini, les syst&egrave;mes autrefois divis&eacute;s trouv&egrave;rent enfin la paix et l&#039;harmonie qu&#039;ils avaient longtemps cherch&eacute;es.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />24/05/1024 ETU 22:30</td><td class="post_right"><div class="posthead">Message édité - <a href="javascript:popup('%2Fassemblee%2Fviewpost%3F%26c_post%3D308668', 544, 464)">version précédente</a> - Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal308667')">Détails</a> <a href="javascript:warnpost(308667)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308667" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308667',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Apr&egrave;s un r&egrave;gne prosp&egrave;re et pacifique, Seh l&#039;Oracle Infini rencontrait des difficult&eacute;s avec certains commandants de syst&egrave;mes voisins. Il trouvait ces leaders souvent trop vieux ou trop hautains, ancr&eacute;s dans des traditions rigides et r&eacute;fractaires &agrave; ses enseignements. Malgr&eacute; ses efforts pour &eacute;tablir un dialogue constructif, ces commandants refusaient d&#039;aller plus loin dans la collaboration.</div><div class="post_line"></div><div class="post_line">D&eacute;cid&eacute; &agrave; r&eacute;pandre la lumi&egrave;re et la sagesse divine au-del&agrave; des fronti&egrave;res de ses alli&eacute;s actuels, Seh tenta de pr&ecirc;cher la bonne parole sur les plan&egrave;tes situ&eacute;es en coordonn&eacute;e 1. Cependant, ces mondes, plut&ocirc;t que d&#039;accueillir les enseignements de l&#039;Oracle Infini, les rejet&egrave;rent avec m&eacute;pris, allant m&ecirc;me jusqu&#039;&agrave; blasph&eacute;mer contre la divinit&eacute; qu&#039;il v&eacute;n&eacute;rait.</div><div class="post_line"></div><div class="post_line">Face &agrave; ce rejet et &agrave; cet affront, Seh comprit que la diplomatie seule ne suffirait pas. Il se r&eacute;solut &agrave; agir pour prot&eacute;ger et &eacute;tendre les valeurs qu&#039;il avait jur&eacute; de d&eacute;fendre. L&#039;invasion de ces deux plan&egrave;tes devenait in&eacute;vitable.</div><div class="post_line"></div><div class="post_line">Pr&eacute;parant ses chevaliers et ses forces arm&eacute;es, Seh se tenait pr&ecirc;t &agrave; mener une campagne pour r&eacute;tablir l&#039;honneur de son divin. Les arm&eacute;es se rassembl&egrave;rent, et les vaisseaux se mirent en formation, pr&ecirc;ts &agrave; partir &agrave; l&#039;assaut.</div><div class="post_line"></div><div class="post_line">Avant de lancer l&#039;attaque, Seh se tourna vers ses fid&egrave;les et d&eacute;clara : &quot;Nous avons tent&eacute; la voie de la paix et de la diplomatie. Mais ceux qui blasph&egrave;ment contre notre divin ne peuvent rester impunis. Nous devons agir pour d&eacute;fendre notre foi et r&eacute;pandre la lumi&egrave;re l&agrave; o&ugrave; r&egrave;gne l&#039;obscurit&eacute;.&quot;</div><div class="post_line"></div><div class="post_line">Les troupes acclam&egrave;rent leur leader, d&eacute;termin&eacute;es &agrave; suivre l&#039;Oracle Infini dans cette nouvelle &eacute;preuve. Les vaisseaux travers&egrave;rent l&#039;espace, se dirigeant vers les plan&egrave;tes en coordonn&eacute;e 1. L&#039;invasion ne fut pas seulement une d&eacute;monstration de force militaire, mais aussi une mission sacr&eacute;e, destin&eacute;e &agrave; purifier ces mondes et &agrave; les convertir &agrave; la vraie foi.</div><div class="post_line"></div><div class="post_line">La bataille fut intense. Les forces de Seh affront&egrave;rent une r&eacute;sistance farouche, mais la d&eacute;termination et la ferveur de ses chevaliers, inspir&eacute;s par leur foi en l&#039;Oracle Infini, leur donn&egrave;rent l&#039;avantage. Peu &agrave; peu, les d&eacute;fenses des plan&egrave;tes ennemies c&eacute;d&egrave;rent, et les envahisseurs purent &eacute;tablir leur contr&ocirc;le.</div><div class="post_line"></div><div class="post_line">Une fois les plan&egrave;tes conquises, Seh ordonna de traiter les habitants avec cl&eacute;mence, mais de leur inculquer les enseignements de la divinit&eacute; qu&#039;ils avaient autrefois blasph&eacute;m&eacute;e. Les temples furent &eacute;rig&eacute;s, et les pr&ecirc;tres commenc&egrave;rent &agrave; pr&ecirc;cher la nouvelle foi. Les c&oelig;urs et les esprits des habitants furent lentement transform&eacute;s, et une nouvelle &egrave;re de lumi&egrave;re commen&ccedil;a &agrave; poindre pour ces mondes autrefois r&eacute;fractaires.</div><div class="post_line"></div><div class="post_line">Seh l&#039;Oracle Infini, malgr&eacute; la n&eacute;cessit&eacute; de l&#039;invasion, ne perdit jamais de vue son objectif ultime : unir les peuples sous la banni&egrave;re de l&#039;amour et de la sagesse &eacute;ternels. Avec chaque nouvelle victoire, la galaxie se rapprochait un peu plus de cette vision de paix et d&#039;harmonie universelles.</div><div class="post_line"></div><div class="post_line">C&#039;est 2 plan&egrave;tes se nommerons R&eacute;demption et Expiation dor&eacute;navant.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />25/05/1024 ETU 06:51</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308670')">Détails</a> <a href="javascript:warnpost(308670)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308670" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308670',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Apr&egrave;s la conqu&ecirc;te victorieuse des deux plan&egrave;tes en coordonn&eacute;e 1, Seh l&#039;Oracle Infini d&eacute;cida d&#039;envoyer un groupe de ses plus exp&eacute;riment&eacute;s preux pr&ecirc;cheurs en mission vers une nouvelle destination. Ces preux pr&ecirc;cheurs, ayant particip&eacute; &agrave; l&#039;invasion sainte et ayant prouv&eacute; leur d&eacute;vouement et leur bravoure, furent choisis pour une mission des plus p&eacute;rilleuses : convertir la plan&egrave;te la plus puissante des coordonn&eacute;es voisines.</div><div class="post_line"></div><div class="post_line">Cette plan&egrave;te, nomm&eacute;e Sterersa, &eacute;tait renomm&eacute;e pour sa puissance militaire et son rejet obstin&eacute; de toute forme de foi ext&eacute;rieure. Les habitants de Sterersa v&eacute;n&eacute;raient des divinit&eacute;s anciennes et refusaient toute influence &eacute;trang&egrave;re. Conscient du danger, Seh confia cette mission &agrave; ses meilleurs &eacute;l&eacute;ments, convaincu que leur exp&eacute;rience et leur foi in&eacute;branlable feraient la diff&eacute;rence.</div><div class="post_line"></div><div class="post_line">Les preux pr&ecirc;cheurs, men&eacute;s par le vaillant chevalier Orlum, se pr&eacute;par&egrave;rent minutieusement. Avant leur d&eacute;part, Seh les b&eacute;nit, invoquant la protection divine sur chacun d&#039;eux. &quot;Allez, porteurs de lumi&egrave;re,&quot; leur dit-il. &quot;Que votre foi guide vos pas et que votre courage inspire ceux que vous rencontrerez. Soyez prudents, mais ne fl&eacute;chissez jamais dans votre mission.&quot;</div><div class="post_line"></div><div class="post_line"> &Agrave; leur arriv&eacute;e sur Sterersa, ils furent accueillis avec m&eacute;fiance et hostilit&eacute;. N&eacute;anmoins, Orlum et ses compagnons commenc&egrave;rent &agrave; pr&ecirc;cher, cherchant &agrave; toucher les c&oelig;urs des Sterersiens avec leurs paroles de paix et de sagesse.</div><div class="post_line"></div><div class="post_line">Pendant plusieurs jours, ils rencontr&egrave;rent une r&eacute;sistance croissante. Les chefs de Sterersa, farouchement attach&eacute;s &agrave; leurs croyances ancestrales, voyaient en ces pr&ecirc;cheurs une menace &agrave; leur autorit&eacute;. Malgr&eacute; les avertissements et les menaces, les preux pr&ecirc;cheurs continu&egrave;rent leur mission avec une d&eacute;termination sans faille.</div><div class="post_line"></div><div class="post_line">Puis, un jour, les communications entre Sterersa et la flotte de l&#039;Oracle Infini se coup&egrave;rent brusquement. Les derniers messages re&ccedil;us &eacute;taient des bruits de combat, des cris de douleur et des g&eacute;missements insoutenables. Le silence qui suivit fut assourdissant. Le c&oelig;ur lourd, Seh et ses chevaliers comprirent que leurs fr&egrave;res avaient probablement &eacute;t&eacute; massacr&eacute;s par les h&eacute;r&eacute;tiques de Sterersa.</div><div class="post_line"></div><div class="post_line">Cette nouvelle plongea Seh dans une profonde r&eacute;flexion. La perte de ses preux pr&ecirc;cheurs &eacute;tait un coup dur, mais elle ne faisait que renforcer sa d&eacute;termination &agrave; r&eacute;pandre la lumi&egrave;re divine. &quot;Leur sacrifice ne sera pas vain,&quot; d&eacute;clara-t-il &agrave; ses chevaliers rassembl&eacute;s. &quot;Nous ne pouvons laisser cette barbarie impunie. Les h&eacute;r&eacute;tiques de Sterersa doivent comprendre la puissance et la justice de notre foi.&quot;</div><div class="post_line"></div><div class="post_line">Seh commen&ccedil;a &agrave; pr&eacute;parer une r&eacute;ponse appropri&eacute;e. Une arm&eacute;e plus grande et mieux &eacute;quip&eacute;e serait n&eacute;cessaire pour affronter Sterersa et venger les preux pr&ecirc;cheurs tomb&eacute;s. Les chevaliers se mirent imm&eacute;diatement au travail, rassemblant des forces et affinant leurs strat&eacute;gies pour l&#039;assaut &agrave; venir.</div><div class="post_line"></div><div class="post_line">La nouvelle de l&#039;assassinat des pr&ecirc;cheurs se r&eacute;pandit rapidement parmi les mondes unis sous la banni&egrave;re de l&#039;Oracle Infini. Les habitants, indign&eacute;s par cet acte de barbarie, offrirent leur soutien &agrave; Seh, pr&ecirc;ts &agrave; se battre pour la cause divine. Les temples organis&egrave;rent des c&eacute;r&eacute;monies en m&eacute;moire des preux pr&ecirc;cheurs, renfor&ccedil;ant encore la ferveur religieuse et l&#039;unit&eacute; des croyants.</div><div class="post_line"></div><div class="post_line">Le moment de la vengeance approchait. Seh, avec une d&eacute;termination renouvel&eacute;e, se pr&eacute;para &agrave; mener son arm&eacute;e vers Sterersa. L&#039;attaque ne serait pas seulement une r&eacute;ponse militaire, mais aussi un acte de justice divine. Les h&eacute;r&eacute;tiques de Sterersa allaient bient&ocirc;t comprendre la puissance de l&#039;Oracle Infini et la lumi&egrave;re de sa foi.</div><div class="post_line"></div><div class="post_line">Quand la plan&egrave;te sera notre une statue sera &eacute;riger pour le Preux Chevalier Orlum, qui sera aussi un lieux de p&egrave;lerinage afin de propager la bonne parole sur cette plan&egrave;te d&#039;h&eacute;r&eacute;tique.&nbsp;&nbsp;</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />27/05/1024 ETU 20:45</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308680')">Détails</a> <a href="javascript:warnpost(308680)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308680" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308680',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">La bataille pour Stetrersa fut l&#039;une des plus f&eacute;roces et des plus d&eacute;vastatrices que l&#039;arm&eacute;e de Seh ait jamais livr&eacute;e. Les d&eacute;fenses de Zarakon &eacute;taient bien plus redoutables que pr&eacute;vues. Malgr&eacute; leur foi et leur bravoure, les forces de l&#039;Oracle Infini rencontr&egrave;rent une r&eacute;sistance implacable. Les Zarakoniens, d&eacute;termin&eacute;s &agrave; prot&eacute;ger leur plan&egrave;te et leurs croyances ancestrales, combattirent avec une f&eacute;rocit&eacute; sans pareille.</div><div class="post_line"></div><div class="post_line">Les pertes furent immenses des deux c&ocirc;t&eacute;s, mais l&#039;arm&eacute;e de Seh subit des d&eacute;faites cruciales. De vaillant chevalier, tomba au combat, entra&icirc;nant avec lui de nombreux preux pr&ecirc;cheurs. La bataille, loin d&#039;&ecirc;tre une victoire &eacute;clatante, se transforma en un cauchemar sanglant. Face &agrave; une telle adversit&eacute;, Seh fut contraint de retirer ses forces pour &eacute;viter un massacre total.</div><div class="post_line"></div><div class="post_line">De retour sur leur base, les survivants &eacute;taient d&eacute;vast&eacute;s par la d&eacute;faite. Le conseil de l&#039;Oracle Infini se r&eacute;unit en urgence pour discuter des &eacute;v&eacute;nements tragiques et des prochaines &eacute;tapes. Seh, bien que profond&eacute;ment affect&eacute; par la perte de Orlum et de nombreux autres fid&egrave;les, savait qu&#039;ils ne pouvaient pas abandonner leur mission divine.</div><div class="post_line"></div><div class="post_line">&quot;Stetrersa&nbsp;est trop bien d&eacute;fendue pour que nous puissions l&#039;emporter par la force brute,&quot; d&eacute;clara l&#039;un des conseillers. &quot;Nous devons trouver une autre voie.&quot;</div><div class="post_line"></div><div class="post_line">Le conseil r&eacute;fl&eacute;chit &agrave; diverses options. Ils r&eacute;alis&egrave;rent qu&#039;une expansion dans un autre syst&egrave;me pourrait &ecirc;tre une solution viable. En &eacute;tablissant de nouvelles bases et en gagnant des alli&eacute;s suppl&eacute;mentaires, ils pourraient renforcer leur arm&eacute;e et pr&eacute;parer une strat&eacute;gie plus subtile pour influencer Stetrersa &agrave; long terme.</div><div class="post_line"></div><div class="post_line">&quot;Nous devons renforcer notre influence ailleurs,&quot; sugg&eacute;ra un autre conseiller. &quot;En prenant le contr&ocirc;le de nouvelles plan&egrave;tes et en gagnant leur soutien, nous pourrons revenir plus forts. Peut-&ecirc;tre que la diplomatie et l&#039;infiltration spirituelle seront plus efficaces que la force militaire seule.&quot;</div><div class="post_line"></div><div class="post_line">Seh approuva cette nouvelle strat&eacute;gie. Ils commenc&egrave;rent imm&eacute;diatement &agrave; planifier des missions d&#039;exploration et de conversion dans d&#039;autres syst&egrave;mes voisins. Les chevaliers survivants, bien que meurtris par la d&eacute;faite, se pr&eacute;par&egrave;rent &agrave; de nouvelles missions, d&eacute;termin&eacute;s &agrave; r&eacute;pandre la lumi&egrave;re de l&#039;Oracle Infini.</div><div class="post_line"></div><div class="post_line">Ainsi, le conseil d&eacute;cida de diriger ses efforts vers de nouvelles plan&egrave;tes, esp&eacute;rant y trouver des alliances solides et une base plus large de fid&egrave;les. La m&eacute;moire de Orlum et des preux pr&ecirc;cheurs tomb&eacute;s en Stetrersa resta vive dans leurs c&oelig;urs, inspirant chaque action et chaque d&eacute;cision.</div><div class="post_line"></div><div class="post_line">L&#039;expansion vers un autre syst&egrave;me marquait un nouveau chapitre dans la qu&ecirc;te de Seh. Bien que la bataille de Stetrersa f&ucirc;t un &eacute;chec, elle enseigna des le&ccedil;ons pr&eacute;cieuses sur la r&eacute;silience et la foi. Arm&eacute;s de ces le&ccedil;ons, Seh et ses chevaliers se tourn&egrave;rent vers l&#039;avenir, pr&ecirc;ts &agrave; embrasser de nouvelles opportunit&eacute;s et &agrave; continuer leur mission divine avec une d&eacute;termination renouvel&eacute;e.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />31/05/1024 ETU 05:45</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal308695')">Détails</a> <a href="javascript:warnpost(308695)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308695" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 0<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308695',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line">Seh l&#039;Oracle Infini, conscient des pertes et des &eacute;preuves endur&eacute;es lors de la bataille pour Zarakon, d&eacute;cida de se tourner vers une nouvelle strat&eacute;gie. Plut&ocirc;t que de continuer &agrave; confronter directement des ennemis aussi puissants, il opta pour l&#039;expansion pacifique vers d&#039;autres syst&egrave;mes. Ainsi commen&ccedil;a une nouvelle &egrave;re d&#039;exploration et de croissance pour l&#039;Ordre de l&#039;Oracle Infini.</div><div class="post_line"></div><div class="post_line">Les chevaliers et preux pr&ecirc;cheurs se mirent &agrave; explorer les syst&egrave;mes voisins, cherchant des plan&egrave;tes susceptibles d&#039;accueillir la lumi&egrave;re et la sagesse de l&#039;Oracle Infini. Cette phase d&#039;expansion se d&eacute;roula sans incident majeur, et de nouvelles alliances furent rapidement forg&eacute;es avec des mondes jusque-l&agrave; inconnus. Chaque nouvelle plan&egrave;te convertie renfor&ccedil;ait la foi et la puissance de l&#039;Ordre.</div><div class="post_line"></div><div class="post_line">Cependant, un quiproquo survint avec un commandant d&#039;un secteur adjacent, un homme renomm&eacute; pour son arrogance et sa condescendance. Ce malentendu, d&ucirc; &agrave; une mauvaise interpr&eacute;tation des intentions de l&#039;Oracle Infini, faillit d&eacute;clencher une nouvelle guerre. Les tensions mont&egrave;rent rapidement, les deux camps se pr&eacute;parant &agrave; un possible affrontement.</div><div class="post_line"></div><div class="post_line">Le commandant hautain, certain de sa sup&eacute;riorit&eacute;, refusa d&#039;&eacute;couter les &eacute;missaires de l&#039;Oracle Infini, les accusant de tentatives d&#039;expansion agressive. Les discussions furent initialement st&eacute;riles, chaque camp se m&eacute;fiant profond&eacute;ment de l&#039;autre.</div><div class="post_line"></div><div class="post_line">Seh, d&eacute;termin&eacute; &agrave; &eacute;viter un conflit destructeur, prit les devants en initiant des pourparlers diplomatiques. Gr&acirc;ce &agrave; sa sagesse et &agrave; sa capacit&eacute; &agrave; apaiser les esprits, il parvint &agrave; organiser une rencontre directe avec le commandant. Les discussions furent longues et parfois tendues, mais Seh, par sa patience et sa pers&eacute;v&eacute;rance, r&eacute;ussit &agrave; d&eacute;montrer les v&eacute;ritables intentions pacifiques de son ordre.</div><div class="post_line"></div><div class="post_line">Les relations entre les deux parties s&#039;am&eacute;lior&egrave;rent progressivement. Les efforts diplomatiques port&egrave;rent leurs fruits et aboutirent &agrave; un accord provisoire visant &agrave; maintenir la paix dans le secteur 6.&nbsp;</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />23/06/1024 ETU 02:16</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal308920')">Détails</a> <a href="javascript:warnpost(308920)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal308920" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=308920',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Beaucoup de temps ont pass&eacute; depuis les derniers conflits. De nouvelles plan&egrave;tes ont &eacute;t&eacute; colonis&eacute;es, et l&#039;empire de l&#039;Oracle Infini s&#039;est &eacute;tendu, apportant lumi&egrave;re et sagesse &agrave; de nombreux mondes. La paix et la prosp&eacute;rit&eacute; r&eacute;gnaient, et tout semblait aller pour le mieux. Cependant, cet &eacute;quilibre fragile fut brusquement perturb&eacute; par la rage d&#039;un commandant m&eacute;content.</div><div class="post_line"></div><div class="post_line">Un commandant, furieux de voir ses territoires pill&eacute;s alors que tout le monde dans le syst&egrave;me subissait le m&ecirc;me sort, d&eacute;cida de prendre les choses en main. Aveugl&eacute; par sa col&egrave;re, il lan&ccedil;a une s&eacute;rie d&#039;attaques imprudentes et agressives, d&eacute;clenchant ainsi une guerre d&eacute;vastatrice.</div><div class="post_line"></div><div class="post_line">Le conseil de l&#039;Oracle Infini, constern&eacute; par cette escalade de violence, d&eacute;cr&eacute;ta que l&#039;&eacute;limination de ce commandant enrag&eacute; &eacute;tait d&eacute;sormais la priorit&eacute; absolue. Tous les commandants du secteur, unis par un but commun, jur&egrave;rent de mettre fin &agrave; son r&egrave;gne de terreur. Des alliances se form&egrave;rent, et des forces consid&eacute;rables furent mobilis&eacute;es pour cette mission cruciale.</div><div class="post_line"></div><div class="post_line">Malheureusement, cette guerre ne fut pas sans pertes. Un grand commandant marchand, un pr&eacute;cieux ami et alli&eacute; de longue date, mourut soudainement de causes inconnues. Sa mort, myst&eacute;rieuse et inattendue, fut un coup dur pour tous. Il avait &eacute;t&eacute; une figure cl&eacute; dans les efforts de paix et d&#039;expansion, toujours pr&ecirc;t &agrave; aider et &agrave; soutenir l&#039;Oracle Infini.</div><div class="post_line"></div><div class="post_line">La perte de ce commandant marchand n&#039;&eacute;tait pas seulement une trag&eacute;die personnelle, mais aussi un coup strat&eacute;gique. Sa sagesse et ses comp&eacute;tences manquaient cruellement dans cette p&eacute;riode de crise. En son honneur, et pour venger sa mort, les forces de l&#039;Oracle Infini se pr&eacute;par&egrave;rent &agrave; intensifier leurs efforts pour &eacute;liminer le commandant rebelle.</div><div class="post_line"></div><div class="post_line">La guerre qui suivit fut intense et d&eacute;vastatrice. Les forces loyales &agrave; l&#039;Oracle Infini, anim&eacute;es par la douleur de la perte et la d&eacute;termination de restaurer l&#039;ordre, combattirent avec une f&eacute;rocit&eacute; renouvel&eacute;e. La m&eacute;moire du commandant marchand tomb&eacute; servit de flambeau, guidant les guerriers et inspirant un esprit de vengeance justifi&eacute;e.</div><div class="post_line"></div><div class="post_line">Les alli&eacute;s de l&#039;Oracle Infini, voyant l&#039;ampleur de la menace pos&eacute;e par le commandant rebelle, proclam&egrave;rent leur all&eacute;geance et se joignirent &agrave; la lutte. Ensemble, ils form&egrave;rent une coalition puissante, d&eacute;cid&eacute;e &agrave; mettre fin &agrave; cette guerre et &agrave; ramener la paix dans le secteur.</div><div class="post_line"></div><div class="post_line">La bataille pour l&#039;&eacute;limination du commandant rebelle devint le point focal de tous les efforts militaires. Des strat&eacute;gies complexes furent &eacute;labor&eacute;es, et des assauts coordonn&eacute;s furent lanc&eacute;s. Malgr&eacute; les obstacles et les revers, la coalition progressa, d&eacute;termin&eacute;e &agrave; &eacute;radiquer la source de la rage et du chaos.</div><div class="post_line"></div><div class="post_line">Alors que la guerre faisait rage, les commandants loyalistes savaient que cette lutte n&#039;&eacute;tait pas seulement pour la vengeance, mais aussi pour pr&eacute;server les id&eacute;aux et les valeurs de l&#039;Oracle Infini. La victoire sur le commandant rebelle marquerait non seulement la fin de la terreur, mais aussi un nouveau chapitre de r&eacute;silience et de renouveau pour l&#039;empire.</div><div class="post_line"></div><div class="post_line">Et ainsi, dans le feu de la bataille et le fracas des armes, les forces de l&#039;Oracle Infini continu&egrave;rent &agrave; avancer, port&eacute;es par l&#039;espoir de justice et de r&eacute;demption, d&eacute;termin&eacute;es &agrave; restaurer la lumi&egrave;re et la paix sur tous les mondes touch&eacute;s par cette guerre.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />26/06/1024 ETU 20:27</td><td class="post_right"><div class="posthead">Score&nbsp;: 4 <a href="javascript:toggle_bloc('cal309104')">Détails</a> <a href="javascript:warnpost(309104)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309104" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 3<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309104',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line">Rien ne va plus dans l&#039;empire de l&#039;Oracle Infini. Les plan&egrave;tes, autrefois unies sous la lumi&egrave;re et la sagesse de Seh, sont r&eacute;cup&eacute;r&eacute;es une &agrave; une par un fou alli&eacute; et, d&#039;autre part, par le chef supr&ecirc;me de la galaxie. Le secteur 6, autrefois bastion de paix et de prosp&eacute;rit&eacute;, est d&eacute;sormais plong&eacute; dans le chaos et l&#039;incertitude.</div><div class="post_line"></div><div class="post_line">La question qui hante tous les croyants est la suivante : allons-nous encore trouver notre place au sein de ce secteur ? L&#039;Oracle Infini, d&#039;habitude si clairvoyant et d&eacute;termin&eacute;, se trouve dans l&#039;incapacit&eacute; de parlementer ou m&ecirc;me de discuter avec ces commandants hostiles. Les perspectives sont sombres et la fin semble in&eacute;vitable.</div><div class="post_line"></div><div class="post_line">Voyant ses plan&egrave;tes tomber une par une, Seh l&#039;Oracle Infini, d&#039;une voix empreinte de tristesse et de gravit&eacute;, pronon&ccedil;a ces mots solennels :</div><div class="post_line"></div><div class="post_line">&quot;Si nous tombons, nous nous rel&egrave;verons. Que ce soit demain, dans deux jours, deux ans, deux d&eacute;cennies, ou peut-&ecirc;tre jamais... Mais notre foi, notre esprit, ne p&eacute;riront jamais.&quot;</div><div class="post_line"></div><div class="post_line">Les habitants, le c&oelig;ur lourd, &eacute;cout&egrave;rent ces paroles avec un m&eacute;lange de d&eacute;sespoir et de r&eacute;signation. La fin semblait proche, et pourtant, quelque part au fond de chaque croyant, subsistait une &eacute;tincelle d&#039;espoir, nourrie par la foi in&eacute;branlable en l&#039;Oracle Infini.&nbsp;</div><div class="post_line"></div><div class="post_line">Dans les jours qui suivirent, l&#039;empire fit face &agrave; ses plus grands d&eacute;fis, luttant contre les forces destructrices qui mena&ccedil;aient d&#039;effacer tout ce qu&#039;ils avaient construit. Mais dans l&#039;obscurit&eacute;, l&#039;esprit de r&eacute;sistance grandissait, pr&ecirc;t &agrave; se rallumer &agrave; la moindre occasion, pour un jour peut-&ecirc;tre, rena&icirc;tre de ses cendres.</div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />26/06/1024 ETU 21:37</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal309105')">Détails</a> <a href="javascript:warnpost(309105)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309105" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 3<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309105',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line"></div><div class="post_line">Il y a longtemps, l&#039;univers resplendissait sous l&#039;influence de Seh, l&#039;Oracle Infini. Les plan&egrave;tes Elysia, Draconis, Lysandre, et Vesper avaient &eacute;t&eacute; conquises non par la force des armes, mais par la force des c&oelig;urs et des esprits. Les temples s&rsquo;&eacute;levaient majestueusement, les pri&egrave;res r&eacute;sonnaient dans les cieux, et la paix r&eacute;gnait sur des mondes unis par une foi commune. Seh &eacute;tait plus qu&#039;un leader; il &eacute;tait une lumi&egrave;re, un phare de sagesse et de compassion. Les souvenirs de ces jours glorieux &eacute;taient grav&eacute;s dans chaque pierre sacr&eacute;e, chaque c&oelig;ur d&eacute;vou&eacute;.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Mais aujourd&#039;hui, cette lumi&egrave;re vacille. Rien ne va plus dans l&#039;empire de l&#039;Oracle Infini. Les plan&egrave;tes, autrefois unies et prosp&egrave;res, tombent une &agrave; une sous les assauts d&#039;un commandant fou et du chef supr&ecirc;me de la galaxie. Le secteur 6, autrefois bastion de paix, est plong&eacute; dans le chaos. Les croyants sont d&eacute;sorient&eacute;s, les pri&egrave;res se m&ecirc;lent aux cris de d&eacute;sespoir, et l&#039;ombre de la d&eacute;faite s&#039;&eacute;tend inexorablement.</div><div class="post_line"></div><div class="post_line">Seh, sentant le poids du monde sur ses &eacute;paules, regarde impuissant ses plan&egrave;tes tomber une par une. Chaque jour, la menace se rapproche, chaque heure est une nouvelle plaie saignante. Les perspectives sont sombres, et pour la premi&egrave;re fois, Seh ressent la morsure froide de la peur.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Les habitants se murmurent entre eux : &quot;Allons-nous encore trouver notre place au sein de ce secteur ?&quot; Seh, d&#039;habitude si clairvoyant, se trouve dans l&#039;incapacit&eacute; de parlementer ou m&ecirc;me de discuter avec ces commandants hostiles. La fin semble in&eacute;vitable, et une ombre de d&eacute;sespoir plane sur l&rsquo;empire. Les temples, autrefois remplis de lumi&egrave;re et de chants, r&eacute;sonnent maintenant de silences lourds et de pri&egrave;res silencieuses.</div><div class="post_line"></div><div class="post_line">Voyant ses plan&egrave;tes tomber, Seh se tient devant ses fid&egrave;les et, d&#039;une voix bris&eacute;e par l&#039;&eacute;motion, prononce ces mots solennels :</div><div class="post_line"></div><div class="post_line">&quot;Si nous tombons, nous nous rel&egrave;verons. Que ce soit demain, dans deux jours, deux ans, deux d&eacute;cennies, ou peut-&ecirc;tre jamais... Mais notre foi, notre esprit, ne p&eacute;riront jamais.&quot;</div><div class="post_line"></div><div class="post_line"></div><div class="post_line">Les croyants, les yeux remplis de larmes, &eacute;coutent ces paroles avec un m&eacute;lange de d&eacute;sespoir et de r&eacute;signation. La fin semble proche, et pourtant, quelque part au fond de chaque c&oelig;ur, subsiste une &eacute;tincelle d&#039;espoir, nourrie par la foi in&eacute;branlable en l&#039;Oracle Infini. Malgr&eacute; tout, il y a cette infime lueur, ce dernier souffle de lumi&egrave;re dans l&#039;obscurit&eacute;.</div><div class="post_line"></div><div class="post_line">La Derni&egrave;re Lutte</div><div class="post_line">Seh sait qu&#039;il doit agir pour maintenir cette &eacute;tincelle vivante. Il rassemble ses commandants loyaux et les quelques alli&eacute;s restants, leur exposant un plan audacieux pour tenter de reprendre le contr&ocirc;le du systeme 13. Les pr&eacute;paratifs sont longs et &eacute;prouvants, mais la d&eacute;termination des fid&egrave;les ne faiblit pas.</div><div class="post_line"></div><div class="post_line">Alors que les forces de l&#039;Oracle Infini se pr&eacute;parent &agrave; affronter l&#039;ennemi, Seh sent l&#039;ombre de la fin planer sur eux. Chaque d&eacute;cision, chaque mouvement est empreint de la crainte que cela puisse &ecirc;tre leur dernier acte. Pourtant, il se tient droit, pr&ecirc;t &agrave; d&eacute;fendre jusqu&#039;au dernier souffle les id&eacute;aux et la foi qu&#039;il a instaur&eacute;s.</div><div class="post_line"></div><div class="post_line">Les fid&egrave;les se battent avec le courage du d&eacute;sespoir, inspir&eacute;s par les mots de Seh. La bataille est f&eacute;roce, les pertes sont lourdes, mais tant qu&#039;une &eacute;tincelle d&#039;espoir brille, Seh et ses fid&egrave;les ne c&eacute;deront pas &agrave; l&#039;obscurit&eacute;.</div><div class="post_line"></div><div class="post_line">La guerre continue, marqu&eacute;e par des sacrifices et des actes de bravoure inou&iuml;s. Chaque soldat, chaque pr&ecirc;cheur, chaque croyant sait que la lumi&egrave;re de l&#039;Oracle Infini ne doit pas s&#039;&eacute;teindre. Et m&ecirc;me si la fin semble in&eacute;luctable, ils se battent, non seulement pour leur survie, mais pour l&#039;essence m&ecirc;me de leur foi.</div><div class="post_line"></div><div class="post_line">Et dans le tumulte de la guerre, l&#039;esprit de l&#039;Oracle Infini persiste, un phare de lumi&egrave;re dans l&#039;obscurit&eacute;, pr&ecirc;t &agrave; se rallumer &agrave; la moindre occasion, pour un jour peut-&ecirc;tre, rena&icirc;tre de ses cendres.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />26/06/1024 ETU 22:10</td><td class="post_right"><div class="posthead">Score&nbsp;: 3 <a href="javascript:toggle_bloc('cal309107')">Détails</a> <a href="javascript:warnpost(309107)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309107" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 1<br />conteur formidable : 2<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309107',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Seh, l&#039;Oracle Infini, se tenait seul dans sa chambre, une pi&egrave;ce autrefois lumineuse et pleine de symboles sacr&eacute;s, maintenant plong&eacute;e dans l&#039;obscurit&eacute; et le d&eacute;sordre. La lueur vacillante d&#039;une chandelle jetait des ombres inqui&eacute;tantes sur les murs. Des fioles vides jonchaient le sol, t&eacute;moins silencieux de ses tentatives d&eacute;sesp&eacute;r&eacute;es pour fuir une r&eacute;alit&eacute; insupportable.</div><div class="post_line"></div><div class="post_line">Il murmure, sa voix tremblante r&eacute;sonnant dans le silence :</div><div class="post_line"></div><div class="post_line">&quot;Qu&#039;ai-je fait ? O&ugrave; suis-je all&eacute; si mal ? Ces mondes... ces gens... ils avaient confiance en moi. J&#039;&eacute;tais leur lumi&egrave;re, leur guide, et maintenant... maintenant, je ne suis plus qu&#039;une ombre.&quot;</div><div class="post_line"></div><div class="post_line">Seh se laisse tomber sur son si&egrave;ge, les yeux hagards, regardant fixement une bouteille &agrave; moiti&eacute; vide. Il tremble en la prenant, mais porte tout de m&ecirc;me le goulot &agrave; ses l&egrave;vres, cherchant un r&eacute;confort &eacute;ph&eacute;m&egrave;re dans l&#039;ivresse.</div><div class="post_line"></div><div class="post_line">&quot;Est-ce que tout cela valait la peine ? La foi, les batailles, les sacrifices... Ils disaient que j&#039;&eacute;tais un phare dans l&#039;obscurit&eacute;, mais regarde-moi maintenant... Qu&#039;est-ce que je suis devenu ? Juste un homme bris&eacute;, se cachant derri&egrave;re des illusions et des drogues. Est-ce que je m&eacute;rite encore de vivre ?&quot;</div><div class="post_line"></div><div class="post_line">Il se l&egrave;ve, titubant vers un miroir bris&eacute; accroch&eacute; au mur. Son reflet, m&eacute;connaissable, le d&eacute;visage avec une froide indiff&eacute;rence.</div><div class="post_line"></div><div class="post_line">&quot;Regarde-toi, Seh. Un proph&egrave;te... Un oracle... Tu n&#039;es rien de tout cela. Juste un homme perdu, pris au pi&egrave;ge dans ses propres mensonges et illusions. Les plan&egrave;tes tombent, les croyants perdent espoir, et toi... toi, tu te drogues pour oublier.&quot;</div><div class="post_line"></div><div class="post_line">Des larmes silencieuses coulent sur ses joues. Il serre les poings, sentant la rage et la d&eacute;sespoir bouillonner en lui.</div><div class="post_line"></div><div class="post_line">&quot;Pourquoi continuer ? Pourquoi se battre quand tout semble perdu ? Peut-&ecirc;tre qu&#039;il serait plus facile de tout laisser tomber... de finir tout &ccedil;a ici, maintenant. Une derni&egrave;re dose, une derni&egrave;re coupe, et tout s&#039;arr&ecirc;te.&quot;</div><div class="post_line"></div><div class="post_line">Seh prend une lame pos&eacute;e sur la table, la regardant avec une intensit&eacute; terrifiante.</div><div class="post_line"></div><div class="post_line">&quot;Est-ce vraiment ce que je veux ? Finir comme &ccedil;a, dans l&#039;oubli, comme un l&acirc;che ? Non... non, je ne peux pas... mais, est-ce que j&#039;ai encore la force de continuer ?&quot;</div><div class="post_line"></div><div class="post_line">Il laisse tomber la lame, les mains tremblantes, et tombe &agrave; genoux.</div><div class="post_line"></div><div class="post_line">&quot;Peut-&ecirc;tre que... peut-&ecirc;tre que la fin est in&eacute;vitable. Peut-&ecirc;tre que je suis destin&eacute; &agrave; &eacute;chouer. Mais s&#039;il y a encore un fragment de moi qui croit... un fragment de moi qui esp&egrave;re... alors je dois me battre. M&ecirc;me si &ccedil;a me tue.&quot;</div><div class="post_line"></div><div class="post_line">Les pens&eacute;es suicidaires le hantent, un combat constant entre l&#039;envie d&#039;abandonner et le devoir de continuer. Mais la drogue, l&#039;alcool, et le d&eacute;sespoir creusent chaque jour un peu plus son esprit, l&#039;entra&icirc;nant vers des t&eacute;n&egrave;bres dont il peine &agrave; se lib&eacute;rer.</div><div class="post_line"></div><div class="post_line">&quot;Je suis l&#039;Oracle Infini... Je suis cens&eacute; &ecirc;tre l&#039;incarnation de la lumi&egrave;re, de l&#039;espoir. Mais aujourd&#039;hui, je ne suis qu&#039;une ombre, un fant&ocirc;me de ce que j&#039;&eacute;tais. Si seulement je pouvais trouver la force... Si seulement je pouvais croire encore.&quot;</div><div class="post_line"></div><div class="post_line">Le silence s&#039;installe, lourd et oppressant. Seh, &eacute;puis&eacute; et bris&eacute;, se laisse tomber sur le sol, esp&eacute;rant trouver dans le sommeil une &eacute;vasion temporaire de ses d&eacute;mons int&eacute;rieurs. Mais m&ecirc;me dans ses r&ecirc;ves, les ombres le poursuivent, et l&#039;Oracle Infini se demande s&#039;il trouvera jamais la paix.</div><div class="post_line"></div></td></tr>
+          <tr><td class="post_left"><a href="/showuser?e_cap=Seh+L%27Oracle+Infini">Cdt. Seh L&#039;Oracle Infini</a><br>Prestige de chroniqueur&nbsp;: 34<br /><br /><img src="/avatars/12270.jpg" style="width:128px;height:128px" alt="Avatar" /><br />03/07/1024 ETU 21:38</td><td class="post_right"><div class="posthead">Score&nbsp;: 1 <a href="javascript:toggle_bloc('cal309244')">Détails</a> <a href="javascript:warnpost(309244)"><img src="/images/warning.gif" alt="Prévenir Dieu" title="Prévenir Dieu" border="0" class="posthead" /></a><div id="cal309244" class="vote">
+						<div class="vote-inner">
+							<table align="center"><tr>
+								<td class="vote2">chronique passionante : 0<br />conteur formidable : 1<br />humour décapant : 0</td></tr></table><center><a style="color: #FFFF80" href="javascript:popup('/assemblee/viewvotes?c_post_id=309244',300,400)">Détail des votes</a></center> </div></div></div><div class="post_line">Seh, l&#039;Oracle Infini, prit la d&eacute;cision difficile d&#039;abandonner les autres syst&egrave;mes pour se concentrer enti&egrave;rement sur son propre syst&egrave;me, le Syst&egrave;me Saint. Ce lieu sacr&eacute;, o&ugrave; l&#039;Oracle avait vu le jour et grandi, n&eacute;cessitait toute son attention. Les guerres incessantes et les batailles sanglantes avaient &eacute;puis&eacute; ses ressources et sa volont&eacute;. Le Syst&egrave;me Saint devait &ecirc;tre prot&eacute;g&eacute; &agrave; tout prix.</div><div class="post_line"></div><div class="post_line">Les plan&egrave;tes autrefois prosp&egrave;res &eacute;taient maintenant des champs de ruines et de d&eacute;solation. Le commandant fou, qui avait sem&eacute; le chaos et la destruction, semblait avoir disparu, laissant derri&egrave;re lui un h&eacute;ritage de peur et de d&eacute;sespoir. Seh se retrouvait &agrave; devoir reconstruire ce qui avait &eacute;t&eacute; perdu, non seulement en termes de territoires, mais aussi en termes de foi et d&#039;espoir parmi ses croyants.</div><div class="post_line"></div><div class="post_line">&quot;Avons-nous fait le bon choix en nous repliant ?&quot; se demandait Seh, la t&ecirc;te entre les mains. &quot;&Eacute;tait-il sage de laisser les autres syst&egrave;mes se d&eacute;brouiller seuls ? Ou avons-nous simplement laiss&eacute; l&#039;ennemi se regrouper pour mieux nous frapper &agrave; nouveau ?&quot;</div><div class="post_line"></div><div class="post_line">La guerre avait &eacute;t&eacute; impitoyable. Chaque jour apportait son lot de pertes et de souffrances. Mais maintenant, avec le commandant fou hors de sc&egrave;ne, une nouvelle t&acirc;che s&#039;imposait : r&eacute;cup&eacute;rer les plan&egrave;tes perdues durant le conflit. Cependant, cette fois, la diplomatie devait &ecirc;tre la cl&eacute;. Trop de sang avait d&eacute;j&agrave; &eacute;t&eacute; vers&eacute;.</div><div class="post_line"></div><div class="post_line">Les nuits &eacute;taient les plus difficiles pour Seh. Seul dans ses quartiers, il se perdait dans des r&eacute;flexions tortur&eacute;es.</div><div class="post_line"></div><div class="post_line">&quot;Et si tout ceci n&#039;&eacute;tait qu&#039;une erreur ? Si ma qu&ecirc;te pour la paix n&#039;avait fait que semer davantage de chaos ?&quot; murmurait-il, ses pens&eacute;es noy&eacute;es dans une brume d&#039;alcool et de drogue. &quot;Est-ce que j&#039;ai failli &agrave; ma mission, &agrave; mon peuple ?&quot;</div><div class="post_line"></div><div class="post_line">Les questions tournaient en boucle dans son esprit, un cercle vicieux de doutes et de peurs. La solitude &eacute;tait accablante, et la responsabilit&eacute; pesait lourd sur ses &eacute;paules.</div><div class="post_line"></div><div class="post_line">&quot;Peut-on r&eacute;ellement r&eacute;parer ce qui a &eacute;t&eacute; bris&eacute; ? Et suis-je encore la personne capable de le faire ?&quot; songeait-il, sentant le poids de chaque d&eacute;cision pass&eacute;e.</div><div class="post_line"></div><div class="post_line">&quot;Je dois croire en la possibilit&eacute; de la r&eacute;demption,&quot; pensa Seh, en observant les &eacute;toiles scintiller faiblement dans le ciel nocturne. &quot;Pour eux, pour nous tous, je dois trouver un moyen de gu&eacute;rir ces blessures.&quot;</div><div class="post_line"></div><div class="post_line">La route serait longue, sem&eacute;e d&#039;emb&ucirc;ches et de d&eacute;fis. Mais tant qu&#039;il restait une &eacute;tincelle de vie et d&#039;espoir, Seh l&#039;Oracle Infini savait qu&#039;il ne pouvait abandonner. Le Syst&egrave;me Saint devait rena&icirc;tre de ses cendres, et avec lui, la foi en un avenir meilleur.</div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div><div class="post_line"></div></td></tr>
+        </table>
+        <p>Pages&nbsp;: 1&nbsp;</p>
+        <div class="title"><a href="/assemblee/newpost?c_topic=17263&amp;c_topic_page=1">Répondre</a></div>
+        <div class="contents">
+          <form action="?c_topic=17263" method="post" name="newpost">
+            <input type="hidden" name="e_form_name" value="newpost" />
+            <table>
+              <tr>
+                <td colspan="2">
+                  
+                  <br /><textarea id="sceditor-textarea-d_reply_17263" name="d_reply_17263" cols="115" rows="20"></textarea><script type="text/javascript">
+			var textarea = document.getElementById('sceditor-textarea-d_reply_17263');
+			sceditor.create(textarea, {
+				format: 'bbcode',
+				toolbar: 'bold,italic,underline,strike|left,center,right,justify|size,color,removeformat|link|source',
+				icons: 'monocons',
+				style: '/vendor/sceditor/minified/themes/content/apocalypsis.min.css',
+				enablePasteFiltering: true,
+				startInSourceMode: false,
+				locale: 'fr',
+				emoticonsEnabled: false,
+				colors: '#ffffff,#44B8FF,#1E92F7,#0074D9,#005DC2,#b3d5f4|#5593BD,#C3FFFF,#9DF9FF,#7FDBFF,#68C4E8,#d9f4ff|#008000,#72FF84,#4CEA5E,#2ECC40,#17B529,#c0f0c6|#FFFF00,#FFFF44,#FFFA1E,#FFDC00,#E8C500,#fff5b3|#FFA500,#FFC95F,#FFA339,#FF851B,#E86E04,#ffdbbb|#FF0000,#FF857A,#FF5F54,#FF4136,#E82A1F,#ffc6c3|#FFC0CB,#FF56FF,#FF30DC,#F012BE,#D900A7,#fbb8ec|#bbbbbb,#F551FF,#CF2BE7,#B10DC9,#9A00B2,#e8b6ef',
+				plugins: 'autosave,plaintext',
+				autosave: {
+					storageKey: 'sce-autodraft-d_reply_17263'
+				}
+			});
+		</script>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_preview" value="Prévisualiser" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+                  <input type="submit" name="e_submit" value="Poster" />
+                </td>
+              </tr>
+            </table>
+            </form>
+            </div>
+            <p><a href="/assemblee">Forums galactiques</a> > <a href="/assemblee/viewforum?c_forum=2038&amp;c_page=1">Chroniques</a> > Seh l&#039;illummin&eacute;</p>
+          </div></div>
+          <div class="subbox footer"><div class="subbox_sub">
+          <a href="/identite/soutenir">Soutenir apocalypsis</a>
+          <p><a href="http://www.tourdejeu.net/annu/votejeu.php?id=2201&amp;retourfiche=0" target="_blank"><img src="/images/public/tourdejeu.png" border="0"/></a>
+<a href="http://www.jeux-alternatifs.com/Apocalypsis-jeu616_hit-parade_1_1.html" target="_blank"><img src="/images/public/jeuxalternatifs.png" border="0"/></a>
+<a href="https://www.jeuxonline.info/jeu/Apocalypsis" target="_blank"><img src="/images/public/jeuxonline.png" border="0"/></a></p>
+          </div></div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.help-btn').popover({html: true, placement: 'bottom'});
+      </script>
+    </body>
+  </html>
