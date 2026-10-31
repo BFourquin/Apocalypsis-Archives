@@ -395,7 +395,7 @@ RE_J_GAMMA_LIST = re.compile(r"/archives/([^/]+)/([^/]+)/forums/(\d+)/page(\d+)$
 RE_J_BETA_TOPIC = re.compile(r"^/([^/]+)/galaxie_?(\d+)/forums_galactiques/(\d+)/(?:\d+/)?viewtopic-(\d+)-(\d+)\.html$")
 RE_TAG = re.compile(r"<[^>]+>")
 RE_DATE = re.compile(r"(\d\d)/(\d\d)(?:/(\d{4}))? ETU (\d\d:\d\d)")
-RE_J_ROW = re.compile(r'<tr>\s*<td class="wrap_allowed">(.*?)</tr>', re.S)
+RE_J_ROW = re.compile(r'<tr( class="deleted")?>\s*<td class="wrap_allowed">(.*?)</tr>', re.S)
 RE_J_SUPPRIME = re.compile(r'<div class="red">\s*<img[^>]*trashcan_full[^>]*>\s*Ce message a été supprimé durant la partie\.\s*</div>\s*(?:<hr\s*/?>)?')
 
 
@@ -540,7 +540,9 @@ def parse_topic_page(html: str, partie: str, galaxie: str, forum: str, topic: st
         for chunk in re.split(r'<tr>\s*<td class="posts">', html)[1:]:
             left, _, right = chunk.partition('</td><td class="posts">')
             posts.append(_post(left, right, False, base))
-    nums = [int(n) for n in re.findall(r"/page(\d+)\"" if gamma else r"viewtopic-\d+-(\d+)\.html", html)]
+    # pagination du sujet = avant le premier message (les liens du corps des messages ne comptent pas)
+    head = re.split(r'<td class="post_left">' if gamma else r'<tr>\s*<td class="posts">', html, 1)[0]
+    nums = [int(n) for n in re.findall(r"/page(\d+)\"" if gamma else r"viewtopic-\d+-(\d+)\.html", head)]
     meta = {"partie": partie, "galaxie": galaxie, "forum": int(forum), "topic": int(topic),
             "titre": _txt(h2.group(1)) if h2 else "", "forum_nom": _txt(fm.group(1)) if fm else "",
             "pages": max(nums + [page])}
@@ -551,13 +553,15 @@ def parse_list_page(html: str, partie: str, galaxie: str, forum: str, page: int)
     h2 = re.search(r"<h2>(.*?)</h2>", html, re.S)
     h3 = re.search(r"<h3>(.*?)</h3>", html, re.S)
     topics = {}
-    for row in RE_J_ROW.findall(html):
+    for deleted, row in RE_J_ROW.findall(html):
         t = re.search(r'/topics/(\d+)/page1"[^>]*>(.*?)</a>', row, re.S)
         if not t:
             continue
         d = {"titre": _txt(re.sub(r'<font color="#FFC525">\[Vote\]</font>', "", t.group(2)))}
         if "[Vote]" in t.group(2):
             d["sondage"] = True
+        if deleted:
+            d["supprime"] = True  # sujet supprimé durant la partie (ligne class="deleted")
         cells = re.findall(r'<td class="title">(.*?)</td>', row, re.S)
         if len(cells) >= 3:
             grade, name = _author(cells[0], True)
