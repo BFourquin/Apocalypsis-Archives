@@ -32,6 +32,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from archive_crawler import local_path, normalize_url  # noqa: E402
 
 GAMMA, BETA = "www.apocalypsis.org", "archivesbeta.apocalypsis.org"
+BETA_HOST = BETA
 ASSET_EXT = re.compile(r"\.(css|js|gif|jpe?g|png|ico|svg|woff2?|ttf|eot)$", re.I)
 SCOPE_PREFIX = ("/archives", "/css/", "/js/", "/images/", "/avatars/", "/vendor/", "/pub/")
 URL_RE = re.compile(r"^(?:https?://(www\.apocalypsis\.org|archivesbeta\.apocalypsis\.org))?(/(?!/)[^#]*)?(#.*)?$", re.I)
@@ -58,6 +59,11 @@ def decode(body, gamma):
         return body.decode("latin-1")
 
 
+KNOWN = None  # chemins (relatifs à raw) des pages présentes dans le site ; None : pas de contrôle
+ARCHIVES_HOME = f"{GAMMA}/archives.html"
+REFRESH_RE = re.compile(r"""(<meta[^>]*http-equiv=["']?refresh["']?[^>]*content=["'][^"']*URL=)([^"']+)""", re.I)
+
+
 def rel(target, page_rel):
     return posixpath.relpath(target, posixpath.dirname(page_rel))
 
@@ -75,6 +81,12 @@ def rewrite_url(val, page_rel, page_host):
     if host == GAMMA and not (path.startswith(SCOPE_PREFIX) or ASSET_EXT.search(path)):
         return "https://" + host + path_q + frag  # hors archive : on garde le lien vers le site d'origine
     target = local_path(normalize_url("https://" + host + path_q))
+    # Beta : « …/forums_galactiques » redirigeait vers « …/forums_galactiques/ » ; seule la copie du dossier
+    # (index.html) résout correctement default.css et images/
+    if host == BETA_HOST and target.endswith("/forums_galactiques.html"):
+        target = target[:-5] + "/index.html"
+    if KNOWN is not None and target.endswith(".html") and target not in KNOWN:
+        target = ARCHIVES_HOME  # page absente de l'archive : on renvoie vers l'index des archives
     return rel(target, page_rel) + frag
 
 
@@ -87,9 +99,23 @@ def transform_html(body, page_rel):
         t = WARN_RE.sub("", t)
         for a, b in LABELS + LABEL_ENT:
             t = t.replace(a, b)
+    # pages de redirection Beta (meta refresh vers l'ancien site)
+    t = REFRESH_RE.sub(lambda m: m.group(1) + rewrite_url(m.group(2), page_rel, host), t)
     t = ATTR_RE.sub(lambda m: f"{m.group(1)}={m.group(2)}{rewrite_url(m.group(3), page_rel, host)}{m.group(2)}", t)
     t = re.sub(r"(charset\s*=\s*)iso-8859-1", r"\1utf-8", t, flags=re.I)
+    if gamma and 'id="login"' in t:  # pages d'index (archives, parties, galaxies) : gabarit du site public
+        t = simplify_public_page(t)
     return t.encode("utf-8")
+
+
+def simplify_public_page(t):
+    """Pages d'index des archives : on ne garde que le logo et les onglets Accueil (-> notre accueil), Forum, Discord, Wiki, Archives."""
+    a, b = t.index('<div class="span4">'), t.index('<div class="span8">')
+    t = t[:a] + t[b:].replace('<div class="span8">', '<div class="span12">', 1)  # connexion et actualités
+    c = t.rindex('<div class="row">')
+    d = t.index("</div>\n\n</body>", c)
+    t = t[:c] + t[d:]  # bandeau Facebook et sites de notation
+    return re.sub(r'<span class="subtab_other" id="id_subtabbar_(?:presentation|charte)">.*?</span>', "", t)
 
 
 def transform_css(body, page_rel):
@@ -116,6 +142,24 @@ def tokens(s):
 TOPIC_G = re.compile(r"/archives/(gamma\d)/(galaxie\d+)/forums/(\d+)/topics/(\d+)/page(\d+)\.html$")
 TOPIC_B = re.compile(r"^(beta\d)/galaxie_(\d+)/forums_galactiques/(\d+)/[^/]+/viewtopic-(\d+)-(\d+)\.html$")
 PARTIE = {"beta1": "Beta 1", "beta2": "Beta 2", "beta3": "Beta 3", "gamma1": "Gamma 1", "gamma2": "Gamma 2"}
+
+
+# noms des galaxies Gamma (https://www.apocalypsis.org/archives)
+NOMS = {
+    "gamma1": ["Éveil", "Devenir", "Espoir", "Éternité", "Songe", "Aurore", "Firmament"],
+    "gamma2": ["Éveil", "Devenir", "Espoir", "Sagesse", "Rédemption", "Utopie", "Décadence", "Renaissance",
+               "Révolution", "Catharsis", "Clairvoyance", "Corruption", "Paradoxe", "Crépuscule", "Résurgence",
+               "Unité", "Odyssée", "Entropie", "Souvenir", "Mélodie", "Vindicte", "Harmonie", "Délivrance",
+               "Déclin", "Transcendance"],
+}
+
+
+def galaxy_label(partie, galaxie):
+    """« Gamma 2 · Galaxie 5 », suivi du nom de la galaxie quand il existe (« · Utopie »)."""
+    n = int(galaxie[7:])
+    label = f'{PARTIE.get(partie, partie)} · Galaxie {n}'
+    noms = NOMS.get(partie, [])
+    return f"{label} · {noms[n]}" if n < len(noms) else label
 
 
 def b36(n):
@@ -166,6 +210,7 @@ def build_search(json_root, files, out):
     groups, gidx, docs, dkeys, gkeys = [], {}, [], [], []
     fields = {"t": {}, "c": {}, "a": {}}  # titre, contenu, auteurs (commandants et coalitions)
     authors = {}
+    stats = {}  # galaxie -> sujets, posts, mots, commandants (hors floodeur en Gamma 2 · Galaxie 5)
     n_json = 0
     for root, _, fns in os.walk(json_root):
         if os.path.basename(root) != "topics":
@@ -175,8 +220,20 @@ def build_search(json_root, files, out):
                 t = json.load(fh)
             n_json += 1
             tkey = (t["partie"], t["galaxie"], t["forum"], t["topic"])
-            gal = f'{PARTIE.get(t["partie"], t["partie"])} · Galaxie {t["galaxie"][7:]}'
+            gal = galaxy_label(t["partie"], t["galaxie"])
+            S = stats.setdefault(gal, {"t": set(), "p": 0, "w": 0, "a": set()})
+            # Beta : seules les assemblées galactiques sont comparables aux forums Gamma (hors taverne, marché, journal...)
+            in_stats = not t["partie"].startswith("beta") or t.get("forum_nom", "").startswith("Assembl")
+            if in_stats:
+                S["t"].add((t["forum"], t["topic"]))
             for page, msgs in sorted(t["messages"].items(), key=lambda kv: int(kv[0])):
+                for m in (msgs if in_stats else ()):
+                    who = norm(m["auteur"].strip())
+                    if gal.startswith("Gamma 2 · Galaxie 5 ·") and who in ("floodeur", "cdt. floodeur", "cdte. floodeur"):
+                        continue
+                    S["p"] += 1
+                    S["w"] += len(re.findall(r"\w+", m["texte"]))
+                    S["a"].add(who)
                 path = files.get((t["partie"], t["galaxie"], str(t["forum"]), str(t["topic"]), int(page)))
                 if not path:
                     continue
@@ -260,6 +317,13 @@ def build_search(json_root, files, out):
         json.dump({"groups": groups, "docs": docs}, fh, ensure_ascii=False, separators=(",", ":"))
     nfiles = sum(write_postings(os.path.join(sdir, f), p, n) for f, p in fields.items())
 
+    rows = []
+    for gal in sorted(stats, key=galaxy_order):
+        S = stats[gal]
+        rows.append([gal, len(S["t"]), S["p"], len(S["a"]), S["w"]])
+    with open(os.path.join(out, "stats.json"), "w", encoding="utf-8") as fh:
+        json.dump(rows, fh, ensure_ascii=False, separators=(",", ":"))
+
     # fiches commandants / coalitions
     adir = os.path.join(out, "auteurs")
     os.makedirs(adir, exist_ok=True)
@@ -320,6 +384,14 @@ def main():
     if os.path.isdir(a.out):
         shutil.rmtree(a.out)
     shutil.copytree(a.viewer, a.out)
+    global KNOWN
+    KNOWN = set()
+    for base in [a.raw] + ([a.overlay] if a.overlay else []):
+        for root, _, fns in os.walk(base):
+            for fn in fns:
+                KNOWN.add(os.path.relpath(os.path.join(root, fn), base).replace(os.sep, "/"))
+    for k in [k for k in KNOWN if k.startswith(BETA) and k.endswith("/forums_galactiques.html")]:
+        KNOWN.discard(k)
     files, n_html, n_other = {}, 0, 0
     for base in [a.raw] + ([a.overlay] if a.overlay else []):
         for root, _, fns in os.walk(base):
@@ -328,6 +400,8 @@ def main():
                 page_rel = os.path.relpath(src, base).replace(os.sep, "/")
                 if page_rel.split("/", 1)[0] not in (GAMMA, BETA):
                     continue
+                if page_rel.startswith(BETA) and page_rel.endswith("/forums_galactiques.html"):
+                    continue  # doublon de forums_galactiques/index.html, aux liens relatifs décalés
                 dst = os.path.join(a.out, page_rel)
                 if base != a.raw and os.path.exists(dst):
                     continue
