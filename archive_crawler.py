@@ -375,6 +375,9 @@ def extract_links(body: bytes, ctype: str | None, base: str):
         # "(" : faux lien tiré d'un script (ex. `ga.src = ('https:' == …` de Google Analytics)
         if not raw or raw.startswith(("#", "javascript:", "mailto:", "data:", "(")):
             continue
+        # faux liens tirés de texte de message mal balisé (`…/5</a`, `&quot;http:…&quot;`, espaces)
+        if re.search(r"""[<>\s]|&quot;""", raw):
+            continue
         out.add(urljoin(base, raw.replace("&amp;", "&")))
     return out
 
