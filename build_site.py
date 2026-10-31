@@ -378,7 +378,11 @@ def main():
         for d in ("search", "auteurs"):
             shutil.rmtree(os.path.join(a.out, d), ignore_errors=True)
         for fn in os.listdir(a.viewer):
-            shutil.copy(os.path.join(a.viewer, fn), a.out)
+            src = os.path.join(a.viewer, fn)
+            if os.path.isdir(src):
+                shutil.copytree(src, os.path.join(a.out, fn), dirs_exist_ok=True)
+            else:
+                shutil.copy(src, a.out)
         build_search(a.json, files, a.out)
         return
     if os.path.isdir(a.out):
