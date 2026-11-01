@@ -7,7 +7,7 @@ const $ = id => document.getElementById(id);
 const PER_PAGE = 20;
 const FIELDS = {all: ["t", "c", "a"], t: ["t"], c: ["c"], a: ["a"]};
 const WEIGHT = {t: 3, c: 1, a: 2};
-let meta = null, hits = [], shown = 0, terms = [], people = null;
+let chron = -1, meta = null, hits = [], shown = 0, terms = [], people = null;
 const shards = {};
 
 async function getJson(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + " : " + r.status); return r.json(); }
@@ -43,7 +43,7 @@ async function search(q, mode, group) {
     if (!acc) acc = new Map(l);
     else for (const d of [...acc.keys()]) l.has(d) ? acc.set(d, acc.get(d) + l.get(d)) : acc.delete(d);
   }
-  hits = [...acc].filter(([d]) => group === "" || meta.docs[d][2] === +group).sort((a, b) => b[0] - a[0]); // du plus récent au plus ancien
+  hits = [...acc].filter(([d]) => group === "" ? meta.docs[d][2] !== chron : meta.docs[d][2] === +group).sort((a, b) => b[0] - a[0]); // du plus récent au plus ancien
   $("status").textContent = `${hits.length} page(s) de sujet trouvée(s)`;
   if (mode === "a") showPeople(q);
   more();
@@ -95,7 +95,9 @@ async function snippet(p, path) {
 async function init() {
   meta = await getJson("search/docs.json");
   const sel = $("g");
-  meta.groups.forEach((g, i) => sel.add(new Option(g, i))); // déjà du plus récent au plus ancien
+  chron = meta.groups.indexOf("Chroniques"); // forum hors galaxie : cherché seulement quand on le choisit, jamais dans « Toutes les galaxies »
+  if (chron >= 0) sel.add(new Option("Chroniques (hors galaxie)", chron));
+  meta.groups.forEach((g, i) => { if (i !== chron) sel.add(new Option(g, i)); }); // déjà du plus récent au plus ancien
   const u = new URLSearchParams(location.search);
   $("q").value = u.get("q") || ""; sel.value = u.get("g") || ""; $("m").value = u.get("m") || "all";
   const go = () => search($("q").value, $("m").value, sel.value);

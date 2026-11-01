@@ -5,6 +5,7 @@ Le site est un miroir des pages d'origine (archive_raw/raw), à l'identique visu
   archive_raw/raw/<hôte>/...   -> _site/<hôte>/...   (HTML nettoyé, ressources copiées telles quelles)
   viewer/*                     -> _site/             (page d'accueil et recherche)
   archive_raw/json/**          -> _site/search/      (index de recherche, généré)
+  wiki/*                       -> _site/wiki/        (copie statique du wiki du jeu, générée par build_wiki.py)
 
 Modifications apportées aux pages d'origine (voir CONTEXT.md, 2.6 et 2.9) :
   * Google Analytics retiré ;
@@ -16,7 +17,7 @@ Modifications apportées aux pages d'origine (voir CONTEXT.md, 2.6 et 2.9) :
 
 Forum « Chroniques » (RP privés, hors galaxie ; scrape_chroniques.py -> archive_raw/json/chroniques) : pages regénérées
 dans le gabarit Gamma sous archives/chroniques*, lien dans un premier tableau de la page des archives, participations
-ajoutées aux fiches des commandants ; exclu des statistiques et de la recherche.
+ajoutées aux fiches des commandants ; exclu des statistiques ; dans la recherche, option « Chroniques » du menu des galaxies.
 
 Les ressources absentes de la capture (CSS, images... pas encore téléchargées) sont simplement
 absentes du site ; relancer la construction une fois la capture terminée.
@@ -137,6 +138,9 @@ def transform_html(body, page_rel):
         t = re.sub(r"</body>", "</div></body>", t, 1, flags=re.I)
     if gamma and 'id="login"' in t:  # pages d'index (archives, parties, galaxies) : gabarit du site public
         t = simplify_public_page(t)
+        # onglet Wiki : copie statique du wiki (wiki/, build_wiki.py) au lieu du site d'origine
+        t = t.replace('<a href="https://histoire.apocalypsis.org" target="_blank">Wiki</a>',
+                      f'<a href="{rel("wiki/index.html", page_rel)}">Wiki</a>')
     return t.encode("utf-8")
 
 
@@ -160,6 +164,7 @@ def transform_css(body, page_rel):
 # Chroniques : forum hors galaxie, regénéré dans le gabarit des pages Gamma
 # --------------------------------------------------------------------------
 CHRON_DIR = "chroniques"
+CHRON_GROUP = "Chroniques"  # groupe de la recherche (hors galaxie)
 CHRON_LIST = f"{GAMMA}/archives/{CHRON_DIR}.html"
 NEG_LABELS = ["orthographe insuffisante", "présentation bâclée", "hors sujet", "hors role play", "message insultant"]
 POS_LABELS = ["efforts visibles", "message adapté", "message remarquable", "humour décapant", "role play intéressant"]
@@ -503,6 +508,28 @@ def build_search(json_root, files, out):
                 for f, counts in tf.items():
                     for tok, c in counts.items():
                         fields[f].setdefault(tok, []).append((d, c))
+    # Chroniques : pages indexées dans un groupe à part (proposé dans le menu de la recherche, hors « toutes les galaxies »)
+    for t in load_chroniques(json_root):
+        g = CHRON_GROUP
+        if g not in gidx:
+            gidx[g] = len(groups)
+            groups.append(g)
+            gkeys.append((galaxy_order(g), ""))
+        for page in chron_pages(t):
+            d = len(docs)
+            docs.append([f"{GAMMA}/archives/{CHRON_DIR}/topics/{t['topic']}/page{page}.html", t["titre"], gidx[g], page])
+            dkeys.append((galaxy_order(g), t["topic"], -page))
+            tf = {"t": {}, "c": {}, "a": {}}
+            texts = {"t": [t["titre"]], "a": [m["auteur"] for m in t["messages"][str(page)]],
+                     "c": [m["texte"] for m in t["messages"][str(page)]]}
+            if page == chron_pages(t)[0] and t.get("sondage"):
+                texts["c"].append(t["sondage"].get("question", "") + " " + " ".join(o["texte"] for o in t["sondage"].get("options", [])))
+            for f, parts in texts.items():
+                for tok in tokens(" ".join(parts)):
+                    tf[f][tok] = tf[f].get(tok, 0) + 1
+            for f, counts in tf.items():
+                for tok, c in counts.items():
+                    fields[f].setdefault(tok, []).append((d, c))
     n = len(docs)
     # numéros de pages dans l'ordre chronologique (galaxie, sujet, page) : la recherche trie du plus grand
     # au plus petit numéro, donc du plus récent au plus ancien ; groupes (galaxie + forum) du plus récent au plus ancien
@@ -607,6 +634,7 @@ def main():
     ap.add_argument("--json", default="archive_raw/json")
     ap.add_argument("--out", default="_site")
     ap.add_argument("--viewer", default="viewer")
+    ap.add_argument("--wiki", default="wiki", help="copie statique du wiki (build_wiki.py)")
     ap.add_argument("--search-only", action="store_true", help="ne régénère que search/ et auteurs/ dans un _site existant")
     ap.add_argument("--overlay", help="dossier de ressources (même arborescence que raw) à ajouter s'il manque (essais)")
     a = ap.parse_args()
@@ -677,6 +705,8 @@ def main():
         with open(dst, "wb") as fh:
             fh.write(transform_html(page.encode("utf-8"), page_rel))
         n_html += 1
+    if os.path.isdir(a.wiki):
+        shutil.copytree(a.wiki, os.path.join(a.out, "wiki"))
     open(os.path.join(a.out, ".nojekyll"), "w").close()
     print(f"{n_html} pages HTML, {n_other} autres fichiers")
     build_search(a.json, files, a.out)
